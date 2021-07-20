@@ -3,7 +3,7 @@ const Banner = () => {
     <div
       className='py-20 w-full'
       style={{
-        background: `linear-gradient(to right, rgba(0,0,0,.8),rgba(0,0,0,.8)) ,url('/images/banner.png')`,
+        background: `linear-gradient(to right, rgba(0,0,0,.9),rgba(0,0,0,.8)) ,url('/images/banner.png')`,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         backgroundSize: 'cover',
@@ -25,32 +25,32 @@ const Banner = () => {
             All-in-One <br /> Wedding Platform
           </h1>
         </div>
-        <div className='flex items-center flex-wrap -space-x-16 mb-20'>
-          <div className='border-4 border-primary w-72 h-72 rounded-full bg-white flex flex-col items-center justify-center'>
-            <img src='/icons/message.svg' alt='' />
+        <div className='flex items-center justify-center flex-wrap -space-x-12 mb-20'>
+          <div className='border-4 border-primary w-64 h-64 rounded-full bg-white flex flex-col items-center justify-center'>
+            <img src='/icons/message.svg' className='w-20 h-20' alt='' />
             <h4 className='font-medium mt-3 text-lg text-center'>
               Text <br /> Invitation
             </h4>
           </div>
-          <div className='border-4 border-secondary/30 w-72 h-72 rounded-full bg-white flex flex-col items-center justify-center'>
-            <img src='/icons/mail.svg' alt='' />
+          <div className='border-4 border-secondary/30 w-64 h-64 rounded-full bg-white flex flex-col items-center justify-center'>
+            <img src='/icons/mail.svg' className='w-20 h-20' alt='' />
             <h4 className='font-medium mt-3 text-lg text-center'>
               Mail out <br /> Invitation
             </h4>
           </div>
-          <div className='border-4 border-primary w-72 h-72 rounded-full bg-white flex flex-col items-center justify-center'>
-            <img src='/icons/rsvp.svg' alt='' />
+          <div className='border-4 border-primary w-64 h-64 rounded-full bg-white flex flex-col items-center justify-center'>
+            <img src='/icons/rsvp.svg' className='w-20 h-20' alt='' />
             <h4 className='font-medium mt-3 text-lg text-center'>RSVP</h4>
           </div>
-          <div className='border-4 border-secondary/30 w-72 h-72 rounded-full bg-white flex flex-col items-center justify-center'>
-            <img src='/icons/gift_solid.svg' alt='' />
+          <div className='border-4 border-secondary/30 w-64 h-64 rounded-full bg-white flex flex-col items-center justify-center'>
+            <img src='/icons/gift_solid.svg' className='w-20 h-20' alt='' />
             <h4 className='font-medium mt-3 text-lg text-center'>
               Universal <br />
               Gift Registry
             </h4>
           </div>
-          <div className='border-4 border-primary w-72 h-72 rounded-full bg-white flex flex-col items-center justify-center'>
-            <img src='/icons/site.svg' alt='' />
+          <div className='border-4 border-primary w-64 h-64 rounded-full bg-white flex flex-col items-center justify-center'>
+            <img src='/icons/site.svg' className='w-20 h-20' alt='' />
             <h4 className='font-medium mt-3 text-lg text-center'>
               Wedding
               <br />

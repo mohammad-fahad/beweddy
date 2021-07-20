@@ -1,9 +1,10 @@
-import { Banner } from '@components/index';
+import { Banner, CreateWebsite } from '@components/index';
 
 const HomePage = () => {
   return (
     <>
       <Banner />
+      <CreateWebsite />
     </>
   );
 };
