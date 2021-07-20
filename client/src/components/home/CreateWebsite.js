@@ -13,7 +13,7 @@ const CreateWebsite = () => {
     >
       <div className='mx-auto absolute left-2/4 -translate-x-2/4 -top-3'>
         <Link href='/get-started'>
-          <a className='bg-white py-3 px-20 border-2 border-primary text-primary rounded-3xl'>
+          <a className='whitespace-nowrap bg-white py-3 px-20 border-2 border-primary text-primary rounded-3xl'>
             Let's Get Started
           </a>
         </Link>

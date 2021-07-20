@@ -13,7 +13,7 @@ export const Header = () => {
         {/* Logo */}
         <Link href='/'>
           <a>
-            <img src='/images/logo.svg' alt='' className='h-24' />
+            <img src='/images/logo.svg' alt='' className='h-25' />
           </a>
         </Link>
         {/* Navigation */}
@@ -74,25 +74,25 @@ export const Header = () => {
             <div className='flex items-center space-x-9'>
               <a href='#'>
                 <Facebook
-                  size={24}
+                  size={25}
                   className='text-gray-400 hover:text-[#1877F2] transition-colors duration-300'
                 />
               </a>
               <a href='#'>
                 <Twitter
-                  size={24}
+                  size={25}
                   className='text-gray-400 hover:text-[#1DA1F2] transition-colors duration-300'
                 />
               </a>
               <a href='#'>
                 <Instagram
-                  size={24}
+                  size={25}
                   className='text-gray-500 hover:text-[#E4405F] transition-colors duration-300'
                 />
               </a>
               <a href='#'>
                 <Linkedin
-                  size={24}
+                  size={25}
                   className='text-gray-500 hover:text-[#0A66C2] transition-colors duration-300'
                 />
               </a>
