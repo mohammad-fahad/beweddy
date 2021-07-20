@@ -3,7 +3,7 @@ import { Youtube } from '@icons-pack/react-simple-icons';
 
 const HowItWork = () => {
   return (
-    <div className='bg-[#FFCCD5] min-h-[70vh] relative bg-blend-overlay'>
+    <div className='bg-[#FFCCD5] min-h-[70vh]'>
       <div className='container py-20'>
         <Heading label='How It Works' />
         <div className='max-w-3xl mx-auto'>
