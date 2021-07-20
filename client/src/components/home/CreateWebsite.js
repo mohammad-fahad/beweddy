@@ -21,8 +21,8 @@ const CreateWebsite = () => {
       <div className='container py-20'>
         <Heading label='Create Your BeWeddy Website' />
         <img src='/images/wedding-macbook.png' alt='' className='mx-auto' />
-        <div className='mt-10'>
-          <Button label='Get Started' className='block mx-auto' />
+        <div className='mt-10 text-center'>
+          <Button label='Get Started' href='/' />
         </div>
       </div>
     </div>
