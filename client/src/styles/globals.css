@@ -38,4 +38,8 @@
   input:focus {
     @apply outline-none ring-0 !important;
   }
+
+  .timeline {
+    @apply border-t-2 odd:ml-3 even:mr-3 odd:border-r-2 odd:rounded-tr-2xl even:border-l-2 even:rounded-tl-2xl border-primary;
+  }
 }

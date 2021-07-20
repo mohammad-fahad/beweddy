@@ -1,4 +1,4 @@
-import { Button } from '@components/index';
+import { Button, Heading } from '@components/index';
 import Link from 'next/link';
 
 const CreateWebsite = () => {
@@ -19,10 +19,7 @@ const CreateWebsite = () => {
         </Link>
       </div>
       <div className='container py-20'>
-        <h2 className='text-6xl text-center mt-16 pb-10'>
-          Create Your BeWeddy Website
-        </h2>
-        <div className='w-48 mx-auto bg-primary h-1 mb-16' />
+        <Heading label='Create Your BeWeddy Website' />
         <img src='/images/wedding-macbook.png' alt='' className='mx-auto' />
         <div className='mt-10'>
           <Button label='Get Started' className='block mx-auto' />
