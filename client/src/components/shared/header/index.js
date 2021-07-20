@@ -1,11 +1,10 @@
 import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faFacebook,
-  faInstagram,
-  faLinkedin,
-  faTwitter,
-} from '@fortawesome/free-brands-svg-icons';
+  Facebook,
+  Instagram,
+  Linkedin,
+  Twitter,
+} from '@icons-pack/react-simple-icons';
 
 export const Header = () => {
   return (
@@ -24,25 +23,25 @@ export const Header = () => {
             <div className='flex items-center space-x-8'>
               <Link href='/'>
                 <a className='flex items-center space-x-3 text-primary font-bold font-inter hover:text-primary transition-colors duration-300'>
-                  <img src='/icons/home.svg' alt='' />
+                  <img src='/icons/home.svg' alt='' className='w-5 h-5' />
                   <span>Home</span>
                 </a>
               </Link>
               <Link href='/'>
                 <a className='flex items-center space-x-3 text-primary/60 font-bold font-inter hover:text-primary transition-colors duration-300'>
-                  <img src='/icons/compass.svg' alt='' />
+                  <img src='/icons/compass.svg' alt='' className='w-5 h-5' />
                   <span>Need your Address</span>
                 </a>
               </Link>
               <Link href='/'>
                 <a className='flex items-center space-x-3 text-primary/60 font-bold font-inter hover:text-primary transition-colors duration-300'>
-                  <img src='/icons/gift.svg' alt='' />
+                  <img src='/icons/gift.svg' alt='' className='w-5 h-5' />
                   <span>Registry</span>
                 </a>
               </Link>
               <Link href='/'>
                 <a className='flex items-center space-x-3 text-primary/60 font-bold font-inter hover:text-primary transition-colors duration-300'>
-                  <img src='/icons/chat.svg' alt='' />
+                  <img src='/icons/chat.svg' alt='' className='w-5 h-5' />
                   <span>Text-Email-Mail Invites</span>
                 </a>
               </Link>
@@ -74,27 +73,27 @@ export const Header = () => {
             </div>
             <div className='flex items-center space-x-9'>
               <a href='#'>
-                <FontAwesomeIcon
-                  icon={faFacebook}
-                  className='text-[length:25px] text-gray-400 hover:text-[#1877F2] transition-colors duration-300'
+                <Facebook
+                  size={24}
+                  className='text-gray-400 hover:text-[#1877F2] transition-colors duration-300'
                 />
               </a>
               <a href='#'>
-                <FontAwesomeIcon
-                  icon={faTwitter}
-                  className='text-[length:25px] text-gray-400 hover:text-[#1DA1F2] transition-colors duration-300'
+                <Twitter
+                  size={24}
+                  className='text-gray-400 hover:text-[#1DA1F2] transition-colors duration-300'
                 />
               </a>
               <a href='#'>
-                <FontAwesomeIcon
-                  icon={faInstagram}
-                  className='text-[length:25px] text-gray-500 hover:text-[#E4405F] transition-colors duration-300'
+                <Instagram
+                  size={24}
+                  className='text-gray-500 hover:text-[#E4405F] transition-colors duration-300'
                 />
               </a>
               <a href='#'>
-                <FontAwesomeIcon
-                  icon={faLinkedin}
-                  className='text-[length:25px] text-gray-500 hover:text-[#0A66C2] transition-colors duration-300'
+                <Linkedin
+                  size={24}
+                  className='text-gray-500 hover:text-[#0A66C2] transition-colors duration-300'
                 />
               </a>
             </div>
