@@ -1,8 +1,11 @@
 import {
   Banner,
+  CreateAccount,
   CreateWebsite,
   Features,
+  Footer,
   GiftCards,
+  HowItWork,
   Registries,
 } from '@components/index';
 
@@ -14,6 +17,9 @@ const HomePage = () => {
       <Features />
       <GiftCards />
       <Registries />
+      <HowItWork />
+      <CreateAccount />
+      <Footer />
     </>
   );
 };
