@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-inter;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-alice;
+  }
+
+  h4,
+  h5,
+  h6 {
+    @apply font-inter;
+  }
+
+  a,
+  button {
+    @apply font-poppins;
+  }
+}
+
+@layer components {
+  button,
+  a {
+    @apply focus:outline-none;
+  }
+
+  /* .shadow-box {
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.06);
+  } */
+
+  input:focus {
+    @apply outline-none ring-0 !important;
+  }
+}
