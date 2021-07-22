@@ -3,7 +3,7 @@ const Banner = () => {
     <div
       className='py-20 w-full'
       style={{
-        background: `linear-gradient(to right, rgba(0,0,0,.9),rgba(0,0,0,.8)) ,url('/images/banner.png')`,
+        background: `linear-gradient(to right, rgba(0,0,0,.6),rgba(0,0,0,.6)) ,url('/images/banner.png')`,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         backgroundSize: 'cover',

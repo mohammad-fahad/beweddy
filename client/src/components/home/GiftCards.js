@@ -2,7 +2,7 @@ import { Button, Heading } from '@components/shared';
 
 const GiftCards = () => {
   return (
-    <div className='bg-gradient-to-tr from-secondary/50 to-secondary/25'>
+    <div className='bg-gradient-to-br from-[#FCE3EB] to-white'>
       <div className='container py-20'>
         <Heading label='Collect Gifts With The Best 100+ Gift Card Registry ' />
         <div className='my-20 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-xs mx-auto sm:max-w-full gap-10'>
