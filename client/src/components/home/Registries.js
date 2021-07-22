@@ -7,7 +7,7 @@ const Registries = () => {
       <div className='container py-20'>
         <Heading
           label='Sync Your Registries All in One Place!'
-          color='bg-secondary'
+          color='bg-secondary-alternative'
         />
         <div className='my-20 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-xs mx-auto sm:max-w-full gap-6'>
           <div className='w-full h-40 flex items-center justify-center p-5 border-4 border-primary rounded-xl overflow-hidden '>

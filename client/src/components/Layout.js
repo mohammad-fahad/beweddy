@@ -3,7 +3,7 @@ import { Header } from './shared';
 const Layout = ({ children }) => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <main>{children}</main>
     </>
   );

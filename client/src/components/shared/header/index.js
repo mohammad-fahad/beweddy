@@ -13,7 +13,7 @@ export const Header = () => {
         {/* Logo */}
         <Link href='/'>
           <a>
-            <img src='/images/logo.svg' alt='' className='h-25' />
+            <img src='/images/logo.png' alt='' className='h-25' />
           </a>
         </Link>
         {/* Navigation */}

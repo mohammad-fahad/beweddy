@@ -11,7 +11,7 @@ import {
 const Footer = () => {
   return (
     <div className='bg-white py-16'>
-      <Heading label='Follow BeWeddy' color='bg-secondary' />
+      <Heading label='Follow BeWeddy' color='bg-secondary-alternative' />
       <div className='flex items-center justify-center space-x-16'>
         <a href='#'>
           <Facebook size={35} color='#1877F2' />

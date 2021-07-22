@@ -12,7 +12,7 @@ const CreateWebsite = () => {
       }}
     >
       <div className='mx-auto absolute left-2/4 -translate-x-2/4 -top-3'>
-        <Link href='/get-started'>
+        <Link href='/signup'>
           <a className='whitespace-nowrap bg-white py-3 px-20 border-2 border-primary text-primary rounded-3xl'>
             Let's Get Started
           </a>
@@ -22,7 +22,7 @@ const CreateWebsite = () => {
         <Heading label='Create Your BeWeddy Website' />
         <img src='/images/wedding-macbook.png' alt='' className='mx-auto' />
         <div className='mt-10 text-center'>
-          <Button label='Get Started' href='/' />
+          <Button label='Get Started' href='/signup' />
         </div>
       </div>
     </div>

@@ -6,6 +6,7 @@ import {
   Features,
   Footer,
   GiftCards,
+  Header,
   HowItWork,
   Registries,
 } from '@components/index';
@@ -17,6 +18,7 @@ const HomePage = () => {
         <title>BeWeddy | Free All-in-One Wedding Platform</title>
         <meta name='description' content='Free All-in-One Wedding Platform' />
       </Head>
+      <Header />
       <Banner />
       <CreateWebsite />
       <Features />

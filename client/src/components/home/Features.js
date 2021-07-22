@@ -5,7 +5,7 @@ const Features = () => {
     <div className='min-h-screen container py-20'>
       <Heading
         label='The Only Free Text Messaging Wedding Platform'
-        color='bg-secondary'
+        color='bg-secondary-alternative'
       />
       <div className='grid md:grid-cols-12 gap-20 max-w-4xl mx-auto'>
         <div className='col-span-7'>

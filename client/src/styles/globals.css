@@ -35,8 +35,13 @@
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.06);
   } */
 
-  input:focus {
+  [type='radio']:not():focus {
     @apply outline-none ring-0 !important;
+  }
+
+  [type='radio']:checked {
+    @apply bg-primary;
+    /* background-image: none; */
   }
 
   .timeline {
