@@ -17,12 +17,12 @@ export const WeddingDay = ({ register, errors, step, setStep }) => {
           <input
             type='text'
             id='weddingDate'
-            className='w-52 font-semibold py-3 px-4 pl-12 placeholder-primary border-2 border-primary rounded-lg'
+            className='w-56 font-semibold py-3 px-4 placeholder-primary border-2 border-primary rounded-lg'
             placeholder='Pick your date'
             onFocus={e => (e.target.type = 'date')}
             {...register('weddingDate')}
           />
-          <div className='absolute top-[15px] left-[15px] bottom-0'>
+          <div className='absolute top-[15px] right-[15px] bg-white'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-6 w-6'
@@ -61,12 +61,12 @@ export const WeddingDay = ({ register, errors, step, setStep }) => {
         style={{ fontSize: '40px', paddingBottom: '24px' }}
         lineStyle={{ marginBottom: '45px' }}
       />
-      <div className='w-full flex items-center justify-center gap-5 mb-5'>
+      <div className='w-full flex items-center justify-center gap-5 mb-5 flex-wrap'>
         <div className='relative'>
           <input
             type='text'
             id='weddingDate'
-            className='w-52 font-semibold py-3 px-4 pl-12 placeholder-primary border-2 border-primary rounded-lg'
+            className='w-56 font-semibold py-3 px-4 placeholder-primary border-2 border-primary rounded-lg'
             placeholder='Pick your date'
             onFocus={e => (e.target.type = 'date')}
             {...register('weddingDate', {
@@ -76,7 +76,7 @@ export const WeddingDay = ({ register, errors, step, setStep }) => {
               },
             })}
           />
-          <div className='absolute top-[15px] left-[15px] bottom-0'>
+          <div className='absolute top-[15px] right-[15px] bg-white'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-6 w-6'
@@ -97,12 +97,12 @@ export const WeddingDay = ({ register, errors, step, setStep }) => {
           <input
             type='text'
             id='weddingDate'
-            className='w-52 font-semibold py-3 px-4 pl-12 placeholder-primary border-2 border-primary rounded-lg'
+            className='w-56 font-semibold py-3 px-4 placeholder-primary border-2 border-primary rounded-lg'
             placeholder='Pick your date'
             onFocus={e => (e.target.type = 'date')}
             {...register('weddingDate')}
           />
-          <div className='absolute top-[15px] left-[15px] bottom-0'>
+          <div className='absolute top-[15px] right-[15px] bg-white'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-6 w-6'
