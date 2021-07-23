@@ -1,7 +1,6 @@
 import { Heading } from '@components/index';
 import {
   Facebook,
-  Gmail,
   Instagram,
   Linkedin,
   Twitter,

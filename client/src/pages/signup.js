@@ -1,18 +1,31 @@
+import { useState } from 'react';
 import { Heading } from '@components/shared';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { signupSchema } from '@configs/index';
+import {
+  CoupleName,
+  DemoWebsite,
+  GetStarted,
+} from '@components/signup/questions';
 
 const SignupPage = () => {
+  const [step, setStep] = useState(1);
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: 'all', resolver: yupResolver(signupSchema) });
+  } = useForm({ mode: 'all' });
 
-  const onSubmit = data => console.log(data);
+  console.log(errors);
+
+  const onSubmit = data => {
+    if (data) {
+      if (step === 4) return;
+      setStep(current => current + 1);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -31,7 +44,11 @@ const SignupPage = () => {
             className='w-full min-h-[70vh] flex items-center justify-center'
             onSubmit={handleSubmit(onSubmit)}
           >
-            <section className='bg-white border-4 border-primary p-10 md:pb-18 md:pt-20 md:px-24 max-w-xl w-full mx-auto rounded-xl'>
+            <section
+              className={`${
+                step > 1 ? 'hidden' : 'block'
+              } bg-white border-4 border-primary p-10 md:pb-18 md:pt-20 md:px-24 max-w-xl w-full mx-auto rounded-xl`}
+            >
               <Heading
                 label='Create Your Account'
                 color='bg-secondary-alternative'
@@ -82,12 +99,24 @@ const SignupPage = () => {
                 <div className='w-full'>
                   <input
                     type='email'
-                    className='w-full font-normal py-3 px-4 placeholder-gray-400 border-2 border-primary rounded-lg'
+                    className='w-full lowercase font-normal py-3 px-4 placeholder-gray-400 border-2 border-primary rounded-lg'
                     placeholder='Your Email'
-                    {...register('email')}
+                    {...register('email', {
+                      required: {
+                        value: true,
+                        message: 'Email is required!',
+                      },
+                      pattern: {
+                        value:
+                          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                        message: 'Must be a valid email address',
+                      },
+                    })}
                   />
                   {errors.email && (
-                    <p className='mt-2 text-red-400 font-light text-sm'>{errors.email.message}</p>
+                    <p className='mt-2 text-red-400 font-light text-sm'>
+                      {errors.email.message}
+                    </p>
                   )}
                 </div>
                 <div className='w-full'>
@@ -95,7 +124,16 @@ const SignupPage = () => {
                     type='password'
                     className='w-full font-normal py-3 px-4 placeholder-gray-400 border-2 border-primary rounded-lg'
                     placeholder='Password'
-                    {...register('password')}
+                    {...register('password', {
+                      required: {
+                        value: true,
+                        message: 'Password is required!',
+                      },
+                      minLength: {
+                        value: 6,
+                        message: 'Password must be at least 6 characters',
+                      },
+                    })}
                   />
                   {errors.password && (
                     <p className='mt-2 text-red-400 font-light text-sm'>
@@ -104,7 +142,10 @@ const SignupPage = () => {
                   )}
                 </div>
                 <div className='w-full'>
-                  <button className='w-full py-3 px-4 placeholder-gray-400 border-2 border-primary bg-primary hover:bg-primary/80 text-white rounded-lg flex items-center justify-center space-x-3 transition duration-300'>
+                  <button
+                    type='submit'
+                    className='w-full py-3 px-4 placeholder-gray-400 border-2 border-primary bg-primary hover:bg-primary/80 text-white rounded-lg flex items-center justify-center space-x-3 transition duration-300'
+                  >
                     <img src='/icons/signup.svg' alt='' className='w-6 h-6' />
                     <span>Signup</span>
                   </button>
@@ -127,6 +168,11 @@ const SignupPage = () => {
                 </div>
               </div>
             </section>
+            {step >= 2 && <GetStarted {...{ step, setStep }} />}
+            {step >= 3 && <DemoWebsite {...{ step, setStep }} />}
+            {step >= 4 && (
+              <CoupleName {...{ register, errors, step, setStep }} />
+            )}
           </form>
         </div>
       </div>

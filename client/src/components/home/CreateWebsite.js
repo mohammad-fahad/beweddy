@@ -1,4 +1,4 @@
-import { Button, Heading } from '@components/index';
+import { LinkButton, Heading } from '@components/index';
 import Link from 'next/link';
 
 const CreateWebsite = () => {
@@ -22,7 +22,7 @@ const CreateWebsite = () => {
         <Heading label='Create Your BeWeddy Website' />
         <img src='/images/wedding-macbook.png' alt='' className='mx-auto' />
         <div className='mt-10 text-center'>
-          <Button label='Get Started' href='/signup' />
+          <LinkButton label='Get Started' href='/signup' />
         </div>
       </div>
     </div>

@@ -10,4 +10,8 @@ export const signupSchema = yup.object().shape({
     .string()
     .required('Password is required!')
     .min(6, 'Password must be at least 6 characters'),
+  // your_firstName: yup.string().required('First name is required!'),
+  // your_lastName: yup.string().required('Last name is required!'),
+  // spouse_to_be_firstName: yup.string().required('First name is required!'),
+  // spouse_to_be_lastName: yup.string().required('Last name is required!'),
 });

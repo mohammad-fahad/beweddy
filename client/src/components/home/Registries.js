@@ -1,4 +1,4 @@
-import { Button, Heading } from '@components/shared';
+import { LinkButton, Heading } from '@components/shared';
 import Link from 'next/link';
 
 const Registries = () => {
@@ -33,7 +33,7 @@ const Registries = () => {
           </div>
         </div>
         <div>
-          <Button label='See More' href='/' />
+          <LinkButton label='See More' href='/' />
         </div>
       </div>
     </div>

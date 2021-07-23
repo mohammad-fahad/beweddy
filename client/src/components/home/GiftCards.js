@@ -1,4 +1,4 @@
-import { Button, Heading } from '@components/shared';
+import { LinkButton, Heading } from '@components/shared';
 
 const GiftCards = () => {
   return (
@@ -20,7 +20,7 @@ const GiftCards = () => {
           </div>
         </div>
         <div>
-          <Button label='See More' outline href='/' />
+          <LinkButton label='See More' outline href='/' />
         </div>
       </div>
     </div>
