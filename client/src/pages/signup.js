@@ -7,6 +7,7 @@ import {
   CoupleName,
   DemoWebsite,
   GetStarted,
+  WeddingDay,
 } from '@components/signup/questions';
 
 const SignupPage = () => {
@@ -21,7 +22,7 @@ const SignupPage = () => {
 
   const onSubmit = data => {
     if (data) {
-      if (step === 4) return;
+      if (step === 9) return;
       setStep(current => current + 1);
     }
   };
@@ -172,6 +173,9 @@ const SignupPage = () => {
             {step >= 3 && <DemoWebsite {...{ step, setStep }} />}
             {step >= 4 && (
               <CoupleName {...{ register, errors, step, setStep }} />
+            )}
+            {step >= 5 && (
+              <WeddingDay {...{ register, errors, step, setStep }} />
             )}
           </form>
         </div>

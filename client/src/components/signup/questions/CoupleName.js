@@ -104,11 +104,7 @@ export const CoupleName = ({ register, errors, step, setStep }) => {
           className='opacity-50'
           onClick={() => setStep(current => current - 1)}
         />
-        <Button
-          type='submit'
-          label='Next'
-          // onClick={() => setStep(current => current + 1)}
-        />
+        <Button label='Next' onClick={() => setStep(current => current + 1)} />
       </div>
     </div>
   );
