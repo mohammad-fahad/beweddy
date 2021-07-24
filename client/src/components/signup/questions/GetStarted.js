@@ -1,6 +1,10 @@
 import { Heading, Button } from '@components/index';
+import { useRouter } from 'next/dist/client/router';
 
-export const GetStarted = ({ step, setStep }) => {
+export const GetStarted = () => {
+  const { query } = useRouter();
+  const step = Number(query.step);
+
   return (
     <div
       className={`${
@@ -15,11 +19,7 @@ export const GetStarted = ({ step, setStep }) => {
       <p className='text-2xl text-center font-normal w-full max-w-xl mb-10'>
         Creating your wedding website & lets get this party started
       </p>
-      <Button
-        label="Let's get started"
-        outline
-        onClick={() => setStep(current => current + 1)}
-      />
+      <Button label="Let's get started" outline type='submit' />
     </div>
   );
 };

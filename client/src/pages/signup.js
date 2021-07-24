@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Heading } from '@components/shared';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -7,25 +7,49 @@ import {
   CoupleName,
   DemoWebsite,
   GetStarted,
+  Preview,
+  SentInvitation,
+  UploadAnnouncement,
+  UploadCouplePicture,
   WeddingDay,
 } from '@components/signup/questions';
+import { useRouter } from 'next/dist/client/router';
 
 const SignupPage = () => {
-  const [step, setStep] = useState(1);
+  const { pathname, push, query } = useRouter();
+  const [steps, setStep] = useState(1);
+  const step = Number(query.step);
+
   const {
+    watch,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: 'all' });
 
-  console.log(errors);
-
   const onSubmit = data => {
     if (data) {
       if (step === 9) return;
-      setStep(current => current + 1);
+      push({
+        pathname: '/signup',
+        query: {
+          step: step + 1,
+        },
+      });
     }
   };
+
+  useEffect(() => {
+    console.log(query);
+    if (!Object.keys(query).length) {
+      push({
+        pathname: '/signup',
+        query: {
+          step: 1,
+        },
+      });
+    }
+  }, []);
 
   return (
     <>
@@ -48,7 +72,7 @@ const SignupPage = () => {
             <section
               className={`${
                 step > 1 ? 'hidden' : 'block'
-              } bg-white border-4 border-primary p-10 md:pb-18 md:pt-20 md:px-24 max-w-xl w-full mx-auto rounded-xl`}
+              } bg-white border-4 my-10 border-primary p-10 md:pb-18 md:pt-20 md:px-24 max-w-xl w-full mx-auto rounded-xl`}
             >
               <Heading
                 label='Create Your Account'
@@ -61,7 +85,7 @@ const SignupPage = () => {
               />
               <div className='flex flex-col items-center justify-center space-y-6'>
                 <div className='flex items-center gap-3 md:gap-5 justify-center flex-wrap'>
-                  <div className='flex items-center space-x-3'>
+                  <div className='flex items-center gap-3'>
                     <input
                       type='radio'
                       id='couple'
@@ -93,7 +117,7 @@ const SignupPage = () => {
                     </label>
                   </div>
                 </div>
-                <button className='border-2 border-primary py-3 px-12 flex items-center space-x-3 rounded-[100px]'>
+                <button className='border-2 text-sm md:text-base border-primary py-3 px-4 md:px-12 flex items-center space-x-3 rounded-[100px]'>
                   <img src='/icons/gmail.svg' alt='' className='w-5 h-5' />
                   <span>Start with Google</span>
                 </button>
@@ -169,14 +193,16 @@ const SignupPage = () => {
                 </div>
               </div>
             </section>
-            {step >= 2 && <GetStarted {...{ step, setStep }} />}
-            {step >= 3 && <DemoWebsite {...{ step, setStep }} />}
-            {step >= 4 && (
-              <CoupleName {...{ register, errors, step, setStep }} />
+            {step >= 2 && <GetStarted />}
+            {step >= 3 && <DemoWebsite />}
+            {step >= 4 && <CoupleName {...{ register, errors }} />}
+            {step >= 5 && <WeddingDay {...{ register, errors }} />}
+            {step >= 6 && (
+              <UploadAnnouncement {...{ watch, register, errors }} />
             )}
-            {step >= 5 && (
-              <WeddingDay {...{ register, errors, step, setStep }} />
-            )}
+            {step >= 7 && <SentInvitation {...{ watch, register, errors }} />}
+            {step >= 8 && <UploadCouplePicture {...{ watch, register, errors }} />}
+            {step >= 9 && <Preview {...{ watch, register, errors }} />}
           </form>
         </div>
       </div>

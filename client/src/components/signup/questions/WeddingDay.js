@@ -1,18 +1,22 @@
 import { Heading, Button } from '@components/index';
+import { useRouter } from 'next/dist/client/router';
 
-export const WeddingDay = ({ register, errors, step, setStep }) => {
+export const WeddingDay = ({ register, errors }) => {
+  const { query, push } = useRouter();
+  const step = Number(query.step);
+
   return (
     <div
       className={`${
         step === 5 ? 'flex' : 'hidden'
-      } flex-col items-center justify-center`}
+      } flex-col items-center justify-center my-5 md:my-0`}
     >
       <Heading
         label="When's your special Wedding day?"
         color='bg-secondary-alternative'
         lineStyle={{ marginBottom: '45px' }}
       />
-      <div className='w-full flex flex-col items-center justify-center gap-8 mb-10'>
+      <div className='w-full flex flex-col items-center justify-center gap-3 md:gap-5 mb-10'>
         <div className='relative'>
           <input
             type='text'
@@ -22,7 +26,10 @@ export const WeddingDay = ({ register, errors, step, setStep }) => {
             onFocus={e => (e.target.type = 'date')}
             {...register('weddingDate')}
           />
-          <div className='absolute top-[15px] right-[15px] bg-white'>
+          <label
+            htmlFor='weddingDate'
+            className='absolute cursor-pointer top-[15px] right-[15px] bg-white'
+          >
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-6 w-6'
@@ -37,7 +44,10 @@ export const WeddingDay = ({ register, errors, step, setStep }) => {
                 d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'
               />
             </svg>
-          </div>
+          </label>
+          <p className='mt-2 text-red-400 font-light text-sm h-4 text-center'>
+            {errors?.weddingDate?.message}
+          </p>
         </div>
         <div className='flex items-center space-x-3'>
           <input
@@ -58,10 +68,11 @@ export const WeddingDay = ({ register, errors, step, setStep }) => {
       <Heading
         label='Have 2 receptions?'
         color='bg-secondary-alternative'
-        style={{ fontSize: '40px', paddingBottom: '24px' }}
+        className='text-3xl md:!text-4xl'
+        style={{ paddingBottom: '24px' }}
         lineStyle={{ marginBottom: '45px' }}
       />
-      <div className='w-full flex items-center justify-center gap-5 mb-5 flex-wrap'>
+      <div className='w-full flex items-center justify-center gap-3 md:gap-5 mb-5 flex-wrap'>
         <div className='relative'>
           <input
             type='text'
@@ -76,7 +87,10 @@ export const WeddingDay = ({ register, errors, step, setStep }) => {
               },
             })}
           />
-          <div className='absolute top-[15px] right-[15px] bg-white'>
+          <label
+            htmlFor='weddingDate'
+            className='absolute cursor-pointer top-[15px] right-[15px] bg-white'
+          >
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-6 w-6'
@@ -91,7 +105,10 @@ export const WeddingDay = ({ register, errors, step, setStep }) => {
                 d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'
               />
             </svg>
-          </div>
+          </label>
+          <p className='mt-2 text-red-400 font-light text-sm h-4 text-center'>
+            {errors?.weddingDate?.message}
+          </p>
         </div>
         <div className='relative'>
           <input
@@ -102,7 +119,10 @@ export const WeddingDay = ({ register, errors, step, setStep }) => {
             onFocus={e => (e.target.type = 'date')}
             {...register('weddingDate')}
           />
-          <div className='absolute top-[15px] right-[15px] bg-white'>
+          <label
+            htmlFor='weddingDate'
+            className='absolute cursor-pointer top-[15px] right-[15px] bg-white'
+          >
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-6 w-6'
@@ -117,20 +137,19 @@ export const WeddingDay = ({ register, errors, step, setStep }) => {
                 d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'
               />
             </svg>
-          </div>
+          </label>
+          <p className='mt-2 text-red-400 font-light text-sm h-4 text-center'>
+            {errors?.weddingDate?.message}
+          </p>
         </div>
       </div>
       <div className='my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'>
         <Button
           label='Previews'
           className='opacity-50'
-          onClick={() => setStep(current => current - 1)}
+          onClick={() => push({ query: { step: step - 1 } })}
         />
-        <Button
-          type='submit'
-          label='Next'
-          // onClick={() => setStep(current => current + 1)}
-        />
+        <Button label='Next' type='submit' />
       </div>
     </div>
   );

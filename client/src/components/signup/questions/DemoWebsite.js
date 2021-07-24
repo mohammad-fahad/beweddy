@@ -1,6 +1,10 @@
 import { Heading, Button } from '@components/index';
+import { useRouter } from 'next/dist/client/router';
 
-export const DemoWebsite = ({ step, setStep }) => {
+export const DemoWebsite = () => {
+  const { query } = useRouter();
+  const step = Number(query.step);
+
   return (
     <div
       className={`${
@@ -13,8 +17,8 @@ export const DemoWebsite = ({ step, setStep }) => {
         alt=''
         className='mx-auto max-w-2xl w-full'
       />
-      <div className='my-10 text-center'>
-        <Button label='Next' onClick={() => setStep(current => current + 1)} />
+      <div className='my-5 text-center'>
+        <Button label='Next' type='submit' />
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ export const Button = ({ outline, type, label, className, onClick }) => {
   return (
     <button
       type={type ? type : 'button'}
-      className={`py-3 text-center block w-full max-w-xs mx-auto px-20 border-2 border-primary rounded-3xl whitespace-nowrap transition-colors duration-300 ${
+      className={`py-3 text-center block mx-auto px-10 md:px-15 border-2 border-primary rounded-[100px] whitespace-nowrap transition-colors duration-300 ${
         outline
           ? 'bg-white text-primary hover:bg-primary hover:text-white'
           : 'bg-primary text-white hover:bg-white hover:text-primary'

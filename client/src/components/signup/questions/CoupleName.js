@@ -1,6 +1,10 @@
 import { Heading, Button } from '@components/index';
+import { useRouter } from 'next/dist/client/router';
 
-export const CoupleName = ({ register, errors, step, setStep }) => {
+export const CoupleName = ({ register, errors }) => {
+  const { query, push } = useRouter();
+  const step = Number(query.step);
+
   return (
     <div
       className={`${
@@ -11,7 +15,7 @@ export const CoupleName = ({ register, errors, step, setStep }) => {
         label="What's your name? & Who's your lucky spouse-to-be?"
         color='bg-secondary-alternative'
       />
-      <div className='flex items-center gap-5 flex-wrap flex-col xl:flex-row'>
+      <div className='flex items-center gap-3 md:gap-5 flex-wrap flex-col xl:flex-row'>
         <div className='flex items-center gap-3 flex-wrap sm:flex-nowrap'>
           <div className='w-full'>
             <input
@@ -102,9 +106,9 @@ export const CoupleName = ({ register, errors, step, setStep }) => {
         <Button
           label='Previews'
           className='opacity-50'
-          onClick={() => setStep(current => current - 1)}
+          onClick={() => push({ query: { step: step - 1 } })}
         />
-        <Button label='Next' onClick={() => setStep(current => current + 1)} />
+        <Button label='Next' type='submit' />
       </div>
     </div>
   );

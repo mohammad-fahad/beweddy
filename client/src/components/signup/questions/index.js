@@ -2,3 +2,7 @@ export * from './GetStarted';
 export * from './DemoWebsite';
 export * from './CoupleName';
 export * from './WeddingDay';
+export * from './UploadAnnouncement';
+export * from './SentInvitation';
+export * from './UploadCouplePicture';
+export * from './Preview';
