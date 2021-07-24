@@ -13,7 +13,7 @@ import {
   UploadCouplePicture,
   WeddingDay,
 } from '@components/signup/questions';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 
 const SignupPage = () => {
   const { pathname, push, query } = useRouter();
@@ -58,7 +58,7 @@ const SignupPage = () => {
       </Head>
       <div className='bg-gradient-to-br from-[#FCE3EB] to-white '>
         <div className='container min-h-screen'>
-          <div className='min-h-[20vh] flex items-center justify-center'>
+          <div className='min-h-[15vh] flex items-center justify-center'>
             <Link href='/'>
               <a className='text-center'>
                 <img src='/images/logo.png' alt='' className='h-24 mx-auto' />
@@ -66,7 +66,7 @@ const SignupPage = () => {
             </Link>
           </div>
           <form
-            className='w-full min-h-[70vh] flex items-center justify-center'
+            className='w-full min-h-[75vh] flex items-center justify-center'
             onSubmit={handleSubmit(onSubmit)}
           >
             <section
@@ -77,10 +77,7 @@ const SignupPage = () => {
               <Heading
                 label='Create Your Account'
                 color='bg-secondary-alternative'
-                style={{
-                  fontSize: '40px',
-                  lineHeight: 1,
-                }}
+                className='!pb-5 md:!text-4xl'
                 lineStyle={{ marginBottom: '35px' }}
               />
               <div className='flex flex-col items-center justify-center space-y-6'>
@@ -177,6 +174,17 @@ const SignupPage = () => {
                 </div>
                 <div className='w-full'>
                   <p className='font-light'>
+                    Already have an account?{' '}
+                    <Link href='/login'>
+                      <a className='font-inter font-semibold hover:underline text-secondary'>
+                        Login here
+                      </a>
+                    </Link>
+                  </p>
+                </div>
+                <div className='max-w-xs w-full mx-auto h-[2px] bg-gray-200'></div>
+                <div className='w-full'>
+                  <p className='font-light'>
                     By creating an account you accept our{' '}
                     <Link href='/'>
                       <a className='font-inter font-semibold hover:underline'>
@@ -201,7 +209,9 @@ const SignupPage = () => {
               <UploadAnnouncement {...{ watch, register, errors }} />
             )}
             {step >= 7 && <SentInvitation {...{ watch, register, errors }} />}
-            {step >= 8 && <UploadCouplePicture {...{ watch, register, errors }} />}
+            {step >= 8 && (
+              <UploadCouplePicture {...{ watch, register, errors }} />
+            )}
             {step >= 9 && <Preview {...{ watch, register, errors }} />}
           </form>
         </div>

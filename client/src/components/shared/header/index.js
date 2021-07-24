@@ -52,7 +52,7 @@ export const Header = () => {
                   Login
                 </a>
               </Link>
-              <Link href='/login'>
+              <Link href='/signup'>
                 <a className='text-primary py-3 px-8 border-2 border-primary rounded-[100px] font-bold font-inter hover:text-white hover:bg-primary transition-colors duration-300'>
                   Signup
                 </a>

@@ -1,5 +1,5 @@
 import { Heading, Button } from '@components/index';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 
 export const CoupleName = ({ register, errors }) => {
   const { query, push } = useRouter();

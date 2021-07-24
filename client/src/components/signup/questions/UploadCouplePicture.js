@@ -1,5 +1,5 @@
 import { Heading, Button } from '@components/index';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 export const UploadCouplePicture = ({ watch, register, errors }) => {

@@ -10,7 +10,7 @@ const Heading = ({ label, color, className, style, lineStyle }) => {
         {label}
       </h2>
       <div
-        className={`w-48 mx-auto h-1 mb-16 ${color ? color : 'bg-primary'}`}
+        className={`w-48 mx-auto h-[2px] md:h-1 mb-16 ${color ? color : 'bg-primary'}`}
         style={lineStyle}
       />
     </>

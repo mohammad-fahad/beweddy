@@ -2,7 +2,7 @@ import { Heading, Button } from '@components/index';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
 import axios from 'axios';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Fragment, useEffect, useState } from 'react';
 
