@@ -5,7 +5,7 @@ const CreateAccount = () => {
     <div className='bg-primary py-16 flex items-center justify-center text-white'>
       <Link href='/signup'>
         <a className='space-x-5 text-2xl font-inter font-semibold flex items-center hover:underline'>
-          <span>Create Your Account</span>
+          <span>Create Your Free Account</span>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-8 w-8'
