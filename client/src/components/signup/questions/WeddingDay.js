@@ -146,10 +146,10 @@ export const WeddingDay = ({ register, errors }) => {
       <div className='my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'>
         <Button
           label='Previews'
-          className='opacity-50'
+          className='opacity-50 !rounded-md'
           onClick={() => push({ query: { step: step - 1 } })}
         />
-        <Button label='Next' type='submit' />
+        <Button label='Next' type='submit' className=' !rounded-md' />
       </div>
     </div>
   );

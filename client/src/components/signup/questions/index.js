@@ -6,3 +6,4 @@ export * from './UploadAnnouncement';
 export * from './SentInvitation';
 export * from './UploadCouplePicture';
 export * from './Preview';
+export * from './LinkRegistries';

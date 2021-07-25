@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Heading } from '@components/shared';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -7,6 +7,7 @@ import {
   CoupleName,
   DemoWebsite,
   GetStarted,
+  LinkRegistries,
   Preview,
   SentInvitation,
   UploadAnnouncement,
@@ -16,8 +17,7 @@ import {
 import { useRouter } from 'next/router';
 
 const SignupPage = () => {
-  const { pathname, push, query } = useRouter();
-  const [steps, setStep] = useState(1);
+  const { push, query } = useRouter();
   const step = Number(query.step);
 
   const {
@@ -29,7 +29,7 @@ const SignupPage = () => {
 
   const onSubmit = data => {
     if (data) {
-      if (step === 9) return;
+      if (step === 10) return;
       push({
         pathname: '/signup',
         query: {
@@ -56,9 +56,13 @@ const SignupPage = () => {
       <Head>
         <title>BeWeddy | Get Started</title>
       </Head>
-      <div className='bg-gradient-to-br from-[#FCE3EB] to-white '>
+      <div
+        className={`${
+          step >= 10 ? 'bg-white' : 'bg-gradient-to-br from-[#FCE3EB] to-white'
+        }`}
+      >
         <div className='container min-h-screen'>
-          <div className='min-h-[15vh] flex items-center justify-center'>
+          <div className='min-h-[20vh] flex items-center justify-center'>
             <Link href='/'>
               <a className='text-center'>
                 <img src='/images/logo.png' alt='' className='h-24 mx-auto' />
@@ -66,7 +70,7 @@ const SignupPage = () => {
             </Link>
           </div>
           <form
-            className='w-full min-h-[75vh] flex items-center justify-center'
+            className='w-full min-h-[70vh] flex items-center justify-center'
             onSubmit={handleSubmit(onSubmit)}
           >
             <section
@@ -213,6 +217,7 @@ const SignupPage = () => {
               <UploadCouplePicture {...{ watch, register, errors }} />
             )}
             {step >= 9 && <Preview {...{ watch, register, errors }} />}
+            {step >= 10 && <LinkRegistries {...{ register, errors }} />}
           </form>
         </div>
       </div>

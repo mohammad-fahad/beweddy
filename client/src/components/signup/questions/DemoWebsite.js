@@ -18,7 +18,7 @@ export const DemoWebsite = () => {
         className='mx-auto max-w-2xl w-full'
       />
       <div className='my-5 text-center'>
-        <Button label='Next' type='submit' />
+        <Button label='Next' type='submit' className=' !rounded-md' />
       </div>
     </div>
   );
