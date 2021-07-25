@@ -8,7 +8,7 @@ export const DemoWebsite = () => {
   return (
     <div
       className={`${
-        step === 3 ? 'flex' : 'hidden'
+        step === 2 ? 'flex' : 'hidden'
       } flex-col items-center justify-center`}
     >
       <Heading label='Here is an example preview of the website your creating!' />

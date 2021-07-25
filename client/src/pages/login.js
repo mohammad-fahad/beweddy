@@ -93,13 +93,6 @@ const LoginPage = () => {
                       {errors.password.message}
                     </p>
                   )}
-                  <div className='mt-3 w-full text-right'>
-                    <Link href='/signup'>
-                      <a className='font-inter text-right font-light hover:underline text-red-400'>
-                        Forgot your password?
-                      </a>
-                    </Link>
-                  </div>
                 </div>
                 <div className='w-full'>
                   <button
@@ -123,8 +116,13 @@ const LoginPage = () => {
                     <span>Login</span>
                   </button>
                 </div>
-                <div className='w-full'>
-                  <p className='font-light'>
+                <div className='w-full space-y-2'>
+                  <Link href='/signup'>
+                    <a className='font-inter font-light hover:underline text-red-400 text-center block'>
+                      Forgot your password?
+                    </a>
+                  </Link>
+                  <p className='font-light text-center'>
                     Don't have an account?&nbsp;
                     <Link href='/signup'>
                       <a className='font-inter font-semibold hover:underline'>

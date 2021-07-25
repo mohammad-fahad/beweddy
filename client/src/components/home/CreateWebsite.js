@@ -1,7 +1,18 @@
 import { LinkButton, Heading } from '@components/index';
 import Link from 'next/link';
+import Swiper from 'react-id-swiper';
+
+import SwiperCore, { Lazy, Autoplay } from 'swiper';
+SwiperCore.use([Lazy, Autoplay]);
 
 const CreateWebsite = () => {
+  const params = {
+    loop: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+  };
   return (
     <div
       className='bg-secondary min-h-screen relative'
@@ -20,9 +31,34 @@ const CreateWebsite = () => {
       </div>
       <div className='container py-20'>
         <Heading label='Create Your BeWeddy Website' />
-        <img src='/images/wedding-macbook.png' alt='' className='mx-auto' />
+        <Swiper {...params}>
+          <div>
+            <img
+              src='/images/wedding-laptop.png'
+              alt=''
+              className='mx-auto swiper-lazy'
+            />
+            <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
+          </div>
+          <div>
+            <img
+              src='/images/wedding-phone.png'
+              alt=''
+              className='mx-auto swiper-lazy'
+            />
+            <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
+          </div>
+          <div>
+            <img
+              src='/images/wedding-macbook.png'
+              alt=''
+              className='mx-auto swiper-lazy'
+            />
+            <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
+          </div>
+        </Swiper>
         <div className='mt-10 text-center'>
-          <LinkButton label='Get Started' href='/signup' />
+          <LinkButton label='Create Your Wedding Website' href='/signup' />
         </div>
       </div>
     </div>

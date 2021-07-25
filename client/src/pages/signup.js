@@ -204,8 +204,8 @@ const SignupPage = () => {
                 </div>
               </div>
             </section>
-            {step >= 2 && <GetStarted />}
-            {step >= 3 && <DemoWebsite />}
+            {step >= 2 && <DemoWebsite />}
+            {step >= 3 && <GetStarted />}
             {step >= 4 && <CoupleName {...{ register, errors }} />}
             {step >= 5 && <WeddingDay {...{ register, errors }} />}
             {step >= 6 && (

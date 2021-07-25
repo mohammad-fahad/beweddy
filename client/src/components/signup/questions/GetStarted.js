@@ -8,7 +8,7 @@ export const GetStarted = () => {
   return (
     <div
       className={`${
-        step === 2 ? 'flex' : 'hidden'
+        step === 3 ? 'flex' : 'hidden'
       } flex-col items-center justify-center`}
     >
       <h3 className='text-7xl'>🎉</h3>

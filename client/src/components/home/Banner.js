@@ -1,11 +1,11 @@
 const Banner = () => {
   return (
     <div
-      className='py-20 w-full'
+      className='pt-32 pb-32 w-full'
       style={{
         background: `linear-gradient(to right, rgba(0,0,0,.6),rgba(0,0,0,.6)) ,url('/images/banner.png')`,
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
+        backgroundPosition: 'top',
         backgroundSize: 'cover',
       }}
     >
@@ -25,7 +25,7 @@ const Banner = () => {
             All-in-One <br /> Wedding Platform
           </h1>
         </div>
-        <div className='flex items-center justify-center flex-wrap -space-x-12 mb-20'>
+        <div className='flex items-center justify-center flex-wrap -space-x-12 mb-20 pt-28'>
           <div className='border-4 border-primary w-64 h-64 rounded-full bg-white flex flex-col items-center justify-center'>
             <img src='/icons/message.svg' className='w-20 h-20' alt='' />
             <h4 className='font-medium mt-3 text-lg text-center'>
