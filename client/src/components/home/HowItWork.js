@@ -3,7 +3,17 @@ import { Youtube } from '@icons-pack/react-simple-icons';
 
 const HowItWork = () => {
   return (
-    <div className='bg-gradient-to-br from-[#FCE3EB] to-white min-h-[70vh]'>
+    <div
+      className='bg-gradient-to-br from-[#FCE3EB] to-white min-h-[70vh]'
+      style={{
+        backgroundImage: `url('/images/footer-leaf.png')`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'contain',
+        backgroundPosition: 'top 100%',
+        backgroundColor: '#FEC6CC',
+        backgroundBlendMode: 'darken',
+      }}
+    >
       <div className='container py-20'>
         <Heading label='How It Works' />
         <div className='max-w-3xl mx-auto'>
