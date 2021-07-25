@@ -7,4 +7,3 @@ export * from './SentInvitation';
 export * from './UploadCouplePicture';
 export * from './Preview';
 export * from './LinkRegistries';
-export * from './SyncRegistries';
