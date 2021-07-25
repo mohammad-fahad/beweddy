@@ -40,7 +40,6 @@ const SignupPage = () => {
   };
 
   useEffect(() => {
-    console.log(query);
     if (!Object.keys(query).length) {
       push({
         pathname: '/signup',
@@ -61,7 +60,7 @@ const SignupPage = () => {
           step >= 10 ? 'bg-white' : 'bg-gradient-to-br from-[#FCE3EB] to-white'
         }`}
       >
-        <div className='container min-h-screen'>
+        <div className='container min-h-screen pb-16'>
           <div className='min-h-[20vh] flex items-center justify-center'>
             <Link href='/'>
               <a className='text-center'>

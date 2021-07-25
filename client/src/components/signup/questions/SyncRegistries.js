@@ -1,7 +1,7 @@
 import { Heading, Button } from '@components/index';
 import { useRouter } from 'next/router';
 
-export const LinkRegistries = () => {
+export const SyncRegistries = () => {
   const { query, push } = useRouter();
   const step = Number(query.step);
 
