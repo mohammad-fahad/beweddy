@@ -11,7 +11,7 @@ export const DemoWebsite = () => {
         step === 3 ? 'flex' : 'hidden'
       } flex-col items-center justify-center`}
     >
-      <Heading label='Here is an example of the website your creating!' />
+      <Heading label='Here is an example preview of the website your creating!' />
       <img
         src='/images/wedding-macbook.png'
         alt=''
