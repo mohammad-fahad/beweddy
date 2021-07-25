@@ -19,7 +19,7 @@ const GiftCards = () => {
             <img src='/images/wallmart.png' alt='macys' className='w-full' />
           </div>
         </div>
-        <div>
+        <div className='text-center'>
           <LinkButton label='See More' outline href='/' />
         </div>
       </div>

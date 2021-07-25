@@ -13,7 +13,7 @@ export const DemoWebsite = () => {
     >
       <Heading label='Here is an example preview of the website your creating!' />
       <img
-        src='/images/wedding-macbook.png'
+        src='/images/wedding-laptop.png'
         alt=''
         className='mx-auto max-w-2xl w-full'
       />

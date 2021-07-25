@@ -32,7 +32,7 @@ const Registries = () => {
             </Link>
           </div>
         </div>
-        <div>
+        <div className='text-center'>
           <LinkButton label='See More' href='/' />
         </div>
       </div>
