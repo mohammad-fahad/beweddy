@@ -20,7 +20,7 @@ export const CoupleName = ({ register, errors }) => {
           <div className='w-full'>
             <input
               type='text'
-              className='w-full font-normal py-3 px-4 placeholder-gray-400 border-2 border-primary rounded-lg'
+              className='w-full font-normal py-3 px-4 placeholder-primary border-2 border-primary rounded-lg'
               placeholder='First Name'
               {...register('your_firstName', {
                 required: {
@@ -40,7 +40,7 @@ export const CoupleName = ({ register, errors }) => {
           <div className='w-full'>
             <input
               type='text'
-              className='w-full font-normal py-3 px-4 placeholder-gray-400 border-2 border-primary rounded-lg'
+              className='w-full font-normal py-3 px-4 placeholder-primary border-2 border-primary rounded-lg'
               placeholder='Last Name'
               {...register('your_lastName', {
                 required: {
@@ -63,7 +63,7 @@ export const CoupleName = ({ register, errors }) => {
           <div className='w-full'>
             <input
               type='text'
-              className='w-full font-normal py-3 px-4 placeholder-gray-400 border-2 border-primary rounded-lg'
+              className='w-full font-normal py-3 px-4 placeholder-primary border-2 border-primary rounded-lg'
               placeholder='First Name'
               {...register('spouse_to_be_firstName', {
                 required: {
@@ -83,7 +83,7 @@ export const CoupleName = ({ register, errors }) => {
           <div className='w-full'>
             <input
               type='text'
-              className='w-full font-normal py-3 px-4 placeholder-gray-400 border-2 border-primary rounded-lg'
+              className='w-full font-normal py-3 px-4 placeholder-primary border-2 border-primary rounded-lg'
               placeholder='Last Name'
               {...register('spouse_to_be_lastName', {
                 required: {

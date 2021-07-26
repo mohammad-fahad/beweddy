@@ -8,9 +8,11 @@ specifiers:
   '@tailwindcss/forms': ^0.3.3
   autoprefixer: ^10.3.1
   axios: ^0.21.1
+  moment: ^2.29.1
   next: 11.0.1
   postcss: ^8.3.5
   react: 17.0.2
+  react-day-picker: ^7.4.10
   react-dom: 17.0.2
   react-hook-form: ^7.11.1
   react-id-swiper: ^4.0.0
@@ -25,8 +27,10 @@ dependencies:
   '@icons-pack/react-simple-icons': 4.6.1_react@17.0.2
   '@tailwindcss/forms': 0.3.3_tailwindcss@2.2.4
   axios: 0.21.1
+  moment: 2.29.1
   next: 11.0.1_react-dom@17.0.2+react@17.0.2
   react: 17.0.2
+  react-day-picker: 7.4.10_react@17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-hook-form: 7.11.1_react@17.0.2
   react-id-swiper: 4.0.0_34146a6e7538b09058193b63f1601461
@@ -1421,6 +1425,10 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
+  /moment/2.29.1:
+    resolution: {integrity: sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==}
+    dev: false
+
   /ms/2.0.0:
     resolution: {integrity: sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=}
     dev: false
@@ -1917,6 +1925,15 @@ packages:
       http-errors: 1.7.3
       iconv-lite: 0.4.24
       unpipe: 1.0.0
+    dev: false
+
+  /react-day-picker/7.4.10_react@17.0.2:
+    resolution: {integrity: sha512-/QkK75qLKdyLmv0kcVzhL7HoJPazoZXS8a6HixbVoK6vWey1Od1WRLcxfyEiUsRfccAlIlf6oKHShqY2SM82rA==}
+    peerDependencies:
+      react: ~0.13.x || ~0.14.x || ^15.0.0 || ^16.0.0 || ^17.0.0
+    dependencies:
+      prop-types: 15.7.2
+      react: 17.0.2
     dev: false
 
   /react-dom/17.0.2_react@17.0.2:

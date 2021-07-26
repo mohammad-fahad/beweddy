@@ -4,17 +4,24 @@ import { Youtube } from '@icons-pack/react-simple-icons';
 const HowItWork = () => {
   return (
     <div
-      className='bg-gradient-to-br from-[#FCE3EB] to-white min-h-[70vh]'
-      style={{
-        backgroundImage: `url('/images/footer-leaf.png')`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'contain',
-        backgroundPosition: 'top 100%',
-        backgroundColor: '#FEC6CC',
-        backgroundBlendMode: 'darken',
-      }}
+      className='bg-gradient-to-b from-white to-[#FCE3EB] min-h-[70vh] relative overflow-hidden'
+      // style={{
+      //   backgroundImage: `url('/images/footer-leaf.png')`,
+      //   backgroundRepeat: 'no-repeat',
+      //   backgroundSize: 'contain',
+      //   backgroundPosition: '0 130%',
+      //   backgroundColor: '#FEC6CC',
+      //   backgroundBlendMode: 'darken',
+      // }}
     >
-      <div className='container py-20'>
+      <div className='absolute -bottom-5 sm:-bottom-10 md:-bottom-16 lg:-bottom-20 xl:-bottom-48  right-0 left-0 w-full'>
+        <img
+          src='/images/footer-leaf.png'
+          alt=''
+          className='object-cover w-full'
+        />
+      </div>
+      <div className='container pt-20 pb-20 md:pb-32'>
         <Heading label='How It Works' />
         <div className='max-w-3xl mx-auto'>
           <div className='relative w-full rounded-2xl overflow-hidden'>

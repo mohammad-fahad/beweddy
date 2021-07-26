@@ -135,14 +135,14 @@ export const SentInvitation = ({ watch, register, errors }) => {
             id='text_invite'
             value={true}
             defaultChecked
-            className='text-primary rounded-md border-2 border-primary w-[22px] h-[22px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+            className='text-primary rounded-md border-2 border-primary w-[24px] h-[24px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
             {...register('text_invite')}
           />
           <label
             htmlFor='text_invite'
-            className='font-inter font-light text-base cursor-pointer'
+            className='font-inter font-light text-lg cursor-pointer'
           >
-            Text invitation 💬 <strong>(Free)</strong>
+            Text invitation 📲 <strong className='font-semibold'>(Free)</strong>
           </label>
         </div>
         <div className='flex items-center space-x-3'>
@@ -151,14 +151,14 @@ export const SentInvitation = ({ watch, register, errors }) => {
             id='email_invite'
             value={true}
             defaultChecked
-            className='text-primary rounded-md border-2 border-primary w-[22px] h-[22px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+            className='text-primary rounded-md border-2 border-primary w-[24px] h-[24px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
             {...register('email_invite')}
           />
           <label
             htmlFor='email_invite'
-            className='font-inter font-light text-base cursor-pointer'
+            className='font-inter font-light text-lg cursor-pointer'
           >
-            Email invitation ✉️ <strong>(Free)</strong>
+            Email invitation 🖥 <strong className='font-semibold'>(Free)</strong>
           </label>
         </div>
         <div className='flex items-center space-x-3'>
@@ -166,19 +166,19 @@ export const SentInvitation = ({ watch, register, errors }) => {
             type='checkbox'
             id='mail_out_invite'
             value={true}
-            className='text-primary rounded-md border-2 border-primary w-[22px] h-[22px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+            className='text-primary rounded-md border-2 border-primary w-[24px] h-[24px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
             {...register('mail_out_invite')}
           />
           <label
             htmlFor='mail_out_invite'
-            className='font-inter font-light text-base cursor-pointer'
+            className='font-inter font-light text-lg cursor-pointer'
           >
             Mail out Invitation ($1.25 for prints, envelopes & postage 💌)
           </label>
         </div>
       </div>
       <div className='my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'>
-      <Button
+        <Button
           label='Previews'
           className='opacity-50 !rounded-md'
           onClick={() => push({ query: { step: step - 1 } })}

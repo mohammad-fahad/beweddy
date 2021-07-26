@@ -43,8 +43,22 @@
     @apply bg-primary;
     /* background-image: none; */
   }
-
+  [type='checkbox']:checked,
+  [type='checkbox']:checked:hover,
+  [type='checkbox']:checked:focus {
+    @apply bg-secondary-alternative border-primary border-2;
+    background-image: url('/icons/tik.svg');
+    background-size: 12px;
+  }
   .timeline {
     @apply border-t-2 odd:ml-3 even:mr-3 odd:border-r-2 odd:rounded-tr-2xl even:border-l-2 even:rounded-tl-2xl border-primary;
   }
+}
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+  @apply bg-secondary !important;
+}
+
+.DayPicker:not(.DayPicker--interactionDisabled)
+  .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
+  @apply bg-secondary-alternative/20 !important;
 }

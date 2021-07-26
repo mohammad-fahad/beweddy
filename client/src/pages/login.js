@@ -52,7 +52,7 @@ const LoginPage = () => {
                 <div className='w-full'>
                   <input
                     type='email'
-                    className='w-full lowercase font-normal py-3 px-4 placeholder-gray-400 border-2 border-primary rounded-lg'
+                    className='w-full font-normal py-3 px-4 placeholder-gray-400 border-2 border-primary rounded-lg'
                     placeholder='Your Email'
                     {...register('email', {
                       required: {
@@ -118,7 +118,7 @@ const LoginPage = () => {
                 </div>
                 <div className='w-full space-y-2'>
                   <Link href='/signup'>
-                    <a className='font-inter font-light hover:underline text-red-400 text-center block'>
+                    <a className='font-inter font-normal hover:underline hover:text-red-400 text-center block'>
                       Forgot your password?
                     </a>
                   </Link>

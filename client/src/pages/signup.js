@@ -25,10 +25,12 @@ const SignupPage = () => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm({ mode: 'all' });
 
   const onSubmit = data => {
     if (data) {
+      console.log(data);
       if (step === 10) return;
       push({
         pathname: '/signup',
@@ -91,7 +93,7 @@ const SignupPage = () => {
                       id='couple'
                       value='couple'
                       defaultChecked
-                      className='text-primary border-2 border-primary w-[22px] h-[22px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+                      className='text-primary border-2 border-primary w-[24px] h-[24px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
                       {...register('user')}
                     />
                     <label
@@ -106,7 +108,7 @@ const SignupPage = () => {
                       type='radio'
                       id='venue'
                       value='venue'
-                      className='text-primary border-2 border-primary w-[22px] h-[22px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+                      className='text-primary border-2 border-primary w-[24px] h-[24px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
                       {...register('user')}
                     />
                     <label
@@ -124,7 +126,7 @@ const SignupPage = () => {
                 <div className='w-full'>
                   <input
                     type='email'
-                    className='w-full lowercase font-normal py-3 px-4 placeholder-gray-400 border-2 border-primary rounded-lg'
+                    className='w-full font-normal py-3 px-4 placeholder-gray-400 border-2 border-primary rounded-lg'
                     placeholder='Your Email'
                     {...register('email', {
                       required: {
@@ -207,7 +209,9 @@ const SignupPage = () => {
             {step >= 2 && <DemoWebsite />}
             {step >= 3 && <GetStarted />}
             {step >= 4 && <CoupleName {...{ register, errors }} />}
-            {step >= 5 && <WeddingDay {...{ register, errors }} />}
+            {step >= 5 && (
+              <WeddingDay {...{ watch, setValue, register, errors }} />
+            )}
             {step >= 6 && (
               <UploadAnnouncement {...{ watch, register, errors }} />
             )}

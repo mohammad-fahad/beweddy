@@ -24,7 +24,7 @@ const CreateWebsite = () => {
     >
       <div className='mx-auto absolute left-2/4 -translate-x-2/4 -top-3'>
         <Link href='/signup'>
-          <a className='whitespace-nowrap bg-white py-3 px-20 border-2 border-primary text-primary rounded-3xl'>
+          <a className='whitespace-nowrap bg-white py-3 px-20 md:px-28 border-2 border-primary text-primary rounded-3xl'>
             Let's Get Started
           </a>
         </Link>
@@ -57,7 +57,7 @@ const CreateWebsite = () => {
             <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
           </div>
         </Swiper>
-        <div className='mt-10 text-center'>
+        <div className='mt-8 text-center'>
           <LinkButton label='Create Your Wedding Website' href='/signup' />
         </div>
       </div>

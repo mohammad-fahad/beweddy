@@ -38,7 +38,7 @@ const SyncNowPage = () => {
                       type='checkbox'
                       id='something'
                       value={true}
-                      className='text-primary rounded-md border-2 border-primary w-[22px] h-[22px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+                      className='text-primary rounded-md border-2 border-primary w-[24px] h-[24px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
                       // {...register('something')}
                     />
                     <label
@@ -61,7 +61,7 @@ const SyncNowPage = () => {
                       type='checkbox'
                       id='something'
                       value={true}
-                      className='text-primary rounded-md border-2 border-primary w-[22px] h-[22px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+                      className='text-primary rounded-md border-2 border-primary w-[24px] h-[24px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
                       // {...register('something')}
                     />
                     <label
