@@ -1,5 +1,7 @@
 import { LinkButton, Heading } from '@components/shared';
+import { XIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
+import { useState } from 'react';
 
 const giftCards = [
   {
@@ -37,9 +39,14 @@ const giftCards = [
 ];
 
 const GiftCards = () => {
+  const [pushItemTo, setPushItemTo] = useState(0);
+  const [showTooltip, setShowTooltip] = useState(false);
+
   const handleTooltip = index => {
-    const getRowNumber = ((index + 1) * 4) / giftCards.length;
-    console.log('Row Number', getRowNumber);
+    const itemRowNumber = Math.ceil(index / 4);
+    console.log('item  row', itemRowNumber);
+    setPushItemTo(itemRowNumber * 4 - index + index);
+    setShowTooltip(true);
   };
 
   return (
@@ -48,19 +55,31 @@ const GiftCards = () => {
         <Heading label='Collect Gifts With The Best 100+ Gift Card Registry ' />
         <div className='my-20 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-xs mx-auto sm:max-w-full gap-10 relative'>
           {giftCards.map((giftCard, index) => (
-            <div
-              key={index}
-              className='w-full rounded-xl overflow-hidden cursor-pointer hover:scale-110 transition-transform duration-300 ease-easing'
-              onClick={() => handleTooltip(index)}
-            >
-              <Image
-                width={287}
-                height={170}
-                src={giftCard.image}
-                alt={giftCard.name}
-                className='w-full'
-              />
-            </div>
+            <>
+              <div
+                key={index}
+                className='w-full rounded-xl overflow-hidden cursor-pointer hover:scale-110 transition-transform duration-300 ease-easing'
+                onClick={() => handleTooltip(index + 1)}
+              >
+                <Image
+                  width={287}
+                  height={170}
+                  src={giftCard.image}
+                  alt={giftCard.name}
+                  className='w-full'
+                />
+              </div>
+              {index + 1 === pushItemTo && showTooltip && (
+                <div className='-mt-6 bg-white col-span-full border-2 border-gray-300 p-10 rounded-lg relative'>
+                  <div className='absolute right-5 top-5'>
+                    <button onClick={() => setShowTooltip(prev => !prev)}>
+                      <XIcon className='w-6 h-6 hover:text-gray-500' />
+                    </button>
+                  </div>
+                  hellow
+                </div>
+              )}
+            </>
           ))}
         </div>
         <div className='text-center'>
