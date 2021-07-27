@@ -15,11 +15,12 @@ const CreateWebsite = () => {
   };
   return (
     <div
-      className='bg-secondary relative'
+      className='bg-secondary relative banner'
       style={{
         background: `url('/images/leaf-bg.png'), linear-gradient(to right, #FFD9EC, #FEDFF2)`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'contain',
+        backgroundColor: '#FEDFF2',
       }}
     >
       <div className='mx-auto absolute left-2/4 -translate-x-2/4 -top-3'>

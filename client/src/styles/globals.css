@@ -62,3 +62,9 @@
   .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
   @apply bg-secondary-alternative/20 !important;
 }
+
+@media (max-width: 800px) {
+  .banner {
+    background-position: -120px !important;
+  }
+}

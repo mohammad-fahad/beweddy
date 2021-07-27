@@ -1,7 +1,7 @@
 const Banner = () => {
   return (
     <div
-      className='pt-14 xxl:pt-28 pb-32 w-full'
+      className='pt-14 xxl:pt-28 pb-32 w-full bg-secondary-alternative'
       style={{
         background: `linear-gradient(to right, rgba(0,0,0,.6),rgba(0,0,0,.6)) ,url('/images/banner.png')`,
         backgroundRepeat: 'no-repeat',
