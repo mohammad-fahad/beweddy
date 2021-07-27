@@ -37,6 +37,11 @@ const giftCards = [
 ];
 
 const GiftCards = () => {
+  const handleTooltip = index => {
+    const getRowNumber = ((index + 1) * 4) / giftCards.length;
+    console.log('Row Number', getRowNumber);
+  };
+
   return (
     <div className='bg-gradient-to-br from-[#FCE3EB] to-white'>
       <div className='container py-20'>
@@ -45,7 +50,8 @@ const GiftCards = () => {
           {giftCards.map((giftCard, index) => (
             <div
               key={index}
-              className='w-full rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition duration-300'
+              className='w-full rounded-xl overflow-hidden cursor-pointer hover:scale-110 transition-transform duration-300 ease-easing'
+              onClick={() => handleTooltip(index)}
             >
               <Image
                 width={287}
