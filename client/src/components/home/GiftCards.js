@@ -13,18 +13,26 @@ const giftCards = [
   {
     name: 'Gift',
     image: '/images/gift-2.png',
+    description:
+      'Gift-giving has never been easier with the 1-800-FLOWERS.COM® Gift Card! Browse a wide selection of fresh flowers, delicious gourmet treats and desserts, beautiful plants, stunning gift baskets and more – and then choose exactly what you want!',
   },
   {
     name: 'Air',
     image: '/images/air.png',
+    description:
+      'Unforgettable travel experiences start with Airbnb. Find travel adventures and new places to go far away or near to you, and access vacation home rentals, new experiences, and places to visit all around the world.',
   },
   {
     name: 'Cake',
     image: '/images/cake.png',
+    description:
+      'Cake Beauty is Canada’s most iconic independent beauty brand, delivering naturally luxe confections in haircare, skincare, bath and body by Cake and Delectable since 2003.',
   },
   {
     name: 'Gift',
     image: '/images/gift-6.png',
+    description:
+      'Buffalo Wild Wings® is a sports bar with beer and wings and a crazy amount of TVs showing all the games. And rowdy fans and all the sauces for all the wings. Did we mention beer? Because we pour more beer than anyone in the country. So bring your friends, your outside voice and cheer on your favorite team to victory at any of our 1,200+ locations nationwide. Why aren’t you here already? www.buffalowildwings.com',
   },
   {
     name: 'Best Buy',
@@ -82,17 +90,13 @@ const GiftCards = () => {
                       <XIcon className='w-6 h-6 hover:text-gray-500' />
                     </button>
                   </div>
-                  <div className='flex gap-14'>
-                    <div>
-                      <Image
-                        width={287}
-                        height={170}
-                        src={tooltip.image}
-                        alt={tooltip.name}
-                        className='w-full h-40'
-                      />
-                    </div>
-                    <div>
+                  <div className='flex divide-x divide-gray-100'>
+                    <img
+                      src={tooltip.image}
+                      alt={tooltip.name}
+                      className='w-64 h-40 object-cover mr-10'
+                    />
+                    <div className='pl-10'>
                       <h4 className='text-xl font-semibold text-primary'>
                         {tooltip.name}
                       </h4>
