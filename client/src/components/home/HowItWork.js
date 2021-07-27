@@ -4,7 +4,7 @@ import { Youtube } from '@icons-pack/react-simple-icons';
 const HowItWork = () => {
   return (
     <div
-      className='bg-gradient-to-b from-white to-[#FCE3EB] min-h-[70vh] relative overflow-hidden'
+      className='bg-gradient-to-b from-white to-[#FCE3EB]  relative overflow-hidden'
       // style={{
       //   backgroundImage: `url('/images/footer-leaf.png')`,
       //   backgroundRepeat: 'no-repeat',
@@ -14,17 +14,17 @@ const HowItWork = () => {
       //   backgroundBlendMode: 'darken',
       // }}
     >
-      <div className='absolute -bottom-5 sm:-bottom-10 md:-bottom-16 lg:-bottom-20 xl:-bottom-48  right-0 left-0 w-full'>
+      <div className='absolute -bottom-5 sm:-bottom-10 lg:-bottom-16 xl:-bottom-20 xxl:-bottom-48  right-0 left-0 w-full'>
         <img
           src='/images/footer-leaf.png'
           alt=''
           className='object-cover w-full'
         />
       </div>
-      <div className='container pt-20 pb-20 md:pb-32'>
+      <div className='container pt-20 pb-20 md:pb-32 relative z-20'>
         <Heading label='How It Works' />
         <div className='max-w-3xl mx-auto'>
-          <div className='relative w-full rounded-2xl overflow-hidden'>
+          <div className='relative w-full rounded-2xl overflow-hidden hover:scale-95 transition duration-300'>
             <a
               target='_blank'
               href='https://www.youtube.com/watch?v=ALad4ovPbDc'
@@ -37,7 +37,7 @@ const HowItWork = () => {
           <a
             target='_blank'
             href='https://www.youtube.com/watch?v=ALad4ovPbDc'
-            className='mt-8 flex items-center space-x-5'
+            className='mt-8 flex items-center space-x-5 hover:opacity-50 transition duration-300'
           >
             <Youtube color='#FF0000' size={45} />
             <h4 className='tex-sm font-semibold'>Watch it on YouTube</h4>

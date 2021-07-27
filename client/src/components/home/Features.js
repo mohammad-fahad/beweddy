@@ -1,4 +1,5 @@
 import { Heading } from '@components/index';
+import Image from 'next/image';
 
 const Features = () => {
   return (
@@ -41,11 +42,13 @@ const Features = () => {
             </div>
           </div>
         </div>
-        <div className='col-span-6 md:col-span-5'>
-          <img
+        <div className='col-span-6 md:col-span-5 mx-auto'>
+          <Image
+            width={288}
+            height={550}
             src='/images/feature-mobile.png'
             alt=''
-            className='w-72 mx-auto'
+            // className='w-72 mx-auto'
           />
         </div>
       </div>

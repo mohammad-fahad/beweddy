@@ -1,4 +1,5 @@
 import { LinkButton, Heading } from '@components/shared';
+import Image from 'next/image';
 
 const GiftCards = () => {
   return (
@@ -6,17 +7,77 @@ const GiftCards = () => {
       <div className='container py-20'>
         <Heading label='Collect Gifts With The Best 100+ Gift Card Registry ' />
         <div className='my-20 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-xs mx-auto sm:max-w-full gap-10'>
-          <div className='w-full rounded-xl overflow-hidden'>
-            <img src='/images/macys.png' alt='macys' className='w-full' />
+          <div className='w-full rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition duration-300'>
+            <Image
+              width={287}
+              height={170}
+              src='/images/amazon.png'
+              alt='amazon'
+              className='w-full'
+            />
           </div>
-          <div className='w-full rounded-xl overflow-hidden'>
-            <img src='/images/amazon.png' alt='amazon' className='w-full' />
+          <div className='w-full rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition duration-300'>
+            <Image
+              width={287}
+              height={170}
+              src='/images/gift-2.png'
+              alt='Gift'
+              className='w-full'
+            />
           </div>
-          <div className='w-full rounded-xl overflow-hidden'>
-            <img src='/images/BestBuy.png' alt='macys' className='w-full' />
+          <div className='w-full rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition duration-300'>
+            <Image
+              width={287}
+              height={170}
+              src='/images/air.png'
+              alt='Air'
+              className='w-full'
+            />
           </div>
-          <div className='w-full rounded-xl overflow-hidden'>
-            <img src='/images/wallmart.png' alt='macys' className='w-full' />
+          <div className='w-full rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition duration-300'>
+            <Image
+              width={287}
+              height={170}
+              src='/images/cake.png'
+              alt='cake'
+              className='w-full'
+            />
+          </div>
+          <div className='w-full rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition duration-300'>
+            <Image
+              width={287}
+              height={170}
+              src='/images/best-buy.png'
+              alt='Best Buy'
+              className='w-full'
+            />
+          </div>
+          <div className='w-full rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition duration-300'>
+            <Image
+              width={287}
+              height={170}
+              src='/images/adidas.png'
+              alt='Adidas'
+              className='w-full'
+            />
+          </div>
+          <div className='w-full rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition duration-300'>
+            <Image
+              width={287}
+              height={170}
+              src='/images/gift-6.png'
+              alt='Gift'
+              className='w-full'
+            />
+          </div>
+          <div className='w-full rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition duration-300'>
+            <Image
+              width={287}
+              height={170}
+              src='/images/reward.png'
+              alt='Reward'
+              className='w-full'
+            />
           </div>
         </div>
         <div className='text-center'>

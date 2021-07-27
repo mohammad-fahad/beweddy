@@ -1,4 +1,5 @@
 import { LinkButton, Heading } from '@components/index';
+import Image from 'next/image';
 import Link from 'next/link';
 import Swiper from 'react-id-swiper';
 
@@ -23,7 +24,7 @@ const CreateWebsite = () => {
         backgroundColor: '#FEDFF2',
       }}
     >
-      <div className='mx-auto absolute left-2/4 -translate-x-2/4 -top-3'>
+      <div className='mx-auto absolute left-2/4 -translate-x-2/4 -top-3 z-20 hover:scale-110 transition duration-200'>
         <Link href='/signup'>
           <a className='whitespace-nowrap bg-white py-3 px-20 md:px-28 border-2 border-primary text-primary rounded-3xl'>
             Let's Get Started
@@ -33,24 +34,30 @@ const CreateWebsite = () => {
       <div className='container py-20'>
         <Heading label='Create Your BeWeddy Website' />
         <Swiper {...params}>
-          <div>
-            <img
+          <div className='mx-auto w-full'>
+            <Image
+              width={920}
+              height={567}
               src='/images/wedding-laptop.png'
               alt=''
               className='mx-auto swiper-lazy'
             />
             <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
           </div>
-          <div>
-            <img
+          <div className='mx-auto w-full'>
+            <Image
+              width={298}
+              height={519}
               src='/images/wedding-phone.png'
               alt=''
               className='mx-auto swiper-lazy'
             />
             <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
           </div>
-          <div>
-            <img
+          <div className='mx-auto w-full'>
+            <Image
+              width={598}
+              height={558}
               src='/images/wedding-macbook.png'
               alt=''
               className='mx-auto swiper-lazy'
