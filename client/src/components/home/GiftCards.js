@@ -7,6 +7,8 @@ const giftCards = [
   {
     name: 'Amazon',
     image: '/images/amazon.png',
+    description:
+      'Use your Amazon.com Gift Card* towards Books, Electronics, Music, and more. The Amazon.com web site is the place to find and discover almost any thing you want to buy online at a great price.',
   },
   {
     name: 'Gift',
@@ -41,6 +43,7 @@ const giftCards = [
 const GiftCards = () => {
   const [pushItemTo, setPushItemTo] = useState(0);
   const [showTooltip, setShowTooltip] = useState(false);
+  const [tooltip, setTooltip] = useState({});
 
   const handleTooltip = index => {
     const itemRowNumber = Math.ceil(index / 4);
@@ -59,7 +62,10 @@ const GiftCards = () => {
               <div
                 key={index}
                 className='w-full rounded-xl overflow-hidden cursor-pointer hover:scale-110 transition-transform duration-300 ease-easing'
-                onClick={() => handleTooltip(index + 1)}
+                onClick={() => {
+                  handleTooltip(index + 1);
+                  setTooltip(giftCard);
+                }}
               >
                 <Image
                   width={287}
@@ -70,13 +76,29 @@ const GiftCards = () => {
                 />
               </div>
               {index + 1 === pushItemTo && showTooltip && (
-                <div className='-mt-6 bg-white col-span-full border-2 border-gray-300 p-10 rounded-lg relative'>
+                <div className='-mt-6 bg-white col-span-full border-2 border-gray-200 p-14 rounded-lg relative'>
                   <div className='absolute right-5 top-5'>
                     <button onClick={() => setShowTooltip(prev => !prev)}>
                       <XIcon className='w-6 h-6 hover:text-gray-500' />
                     </button>
                   </div>
-                  hellow
+                  <div className='flex gap-14'>
+                    <div>
+                      <Image
+                        width={287}
+                        height={170}
+                        src={tooltip.image}
+                        alt={tooltip.name}
+                        className='w-full h-40'
+                      />
+                    </div>
+                    <div>
+                      <h4 className='text-xl font-semibold text-primary'>
+                        {tooltip.name}
+                      </h4>
+                      <p className='mt-3 text-sm'>{tooltip.description}</p>
+                    </div>
+                  </div>
                 </div>
               )}
             </>
