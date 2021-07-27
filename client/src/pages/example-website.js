@@ -8,9 +8,7 @@ const ExampleWebsitePage = () => {
       <Head>
         <title>BeWeddy | Get Started</title>
       </Head>
-      <div
-        className={`bg-gradient-to-br from-[#FCE3EB] to-white`}
-      >
+      <div className={`bg-gradient-to-br from-[#FCE3EB] to-white`}>
         <div className='container min-h-screen pb-16'>
           <div className='min-h-[20vh] flex items-center justify-center'>
             <Link href='/'>
@@ -28,7 +26,11 @@ const ExampleWebsitePage = () => {
                 className='mx-auto max-w-2xl w-full'
               />
               <div className='my-5 text-center'>
-                <LinkButton label='Next' href='/signup' className='!rounded-md' />
+                <LinkButton
+                  label='Create Your Website'
+                  href='/signup'
+                  className='!rounded-md'
+                />
               </div>
             </div>
           </div>
