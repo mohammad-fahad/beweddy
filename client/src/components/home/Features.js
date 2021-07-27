@@ -2,7 +2,7 @@ import { Heading } from '@components/index';
 
 const Features = () => {
   return (
-    <div className='min-h-screen container py-20'>
+    <div className='container py-20'>
       <Heading
         label='The Only Free Text Messaging Wedding Platform'
         color='bg-secondary-alternative'

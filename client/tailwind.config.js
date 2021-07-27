@@ -8,8 +8,13 @@ module.exports = {
       md: '768px',
       lg: '992px',
       xl: '1300px',
+      xxl: '1700px',
     },
-    container: { center: true, padding: '1rem' },
+    container: {
+      center: true,
+      padding: '1rem',
+      screens: { sm: '576px', md: '768px', lg: '992px', xl: '1300px' },
+    },
     extend: {
       fontFamily: {
         alice: ['Alice', 'serif'],

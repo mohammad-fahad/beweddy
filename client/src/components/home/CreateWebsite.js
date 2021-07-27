@@ -9,13 +9,13 @@ const CreateWebsite = () => {
   const params = {
     loop: true,
     autoplay: {
-      delay: 2500,
+      delay: 5000,
       disableOnInteraction: false,
     },
   };
   return (
     <div
-      className='bg-secondary min-h-screen relative'
+      className='bg-secondary relative'
       style={{
         background: `url('/images/leaf-bg.png'), linear-gradient(to right, #FFD9EC, #FEDFF2)`,
         backgroundRepeat: 'no-repeat',
