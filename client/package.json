@@ -12,6 +12,7 @@
     "@heroicons/react": "^1.0.2",
     "@hookform/resolvers": "^2.6.1",
     "@icons-pack/react-simple-icons": "^4.6.1",
+    "@react-hook/media-query": "^1.1.1",
     "@tailwindcss/forms": "^0.3.3",
     "axios": "^0.21.1",
     "moment": "^2.29.1",

@@ -5,6 +5,7 @@ specifiers:
   '@heroicons/react': ^1.0.2
   '@hookform/resolvers': ^2.6.1
   '@icons-pack/react-simple-icons': ^4.6.1
+  '@react-hook/media-query': ^1.1.1
   '@tailwindcss/forms': ^0.3.3
   autoprefixer: ^10.3.1
   axios: ^0.21.1
@@ -26,6 +27,7 @@ dependencies:
   '@heroicons/react': 1.0.2_react@17.0.2
   '@hookform/resolvers': 2.6.1_react-hook-form@7.11.1
   '@icons-pack/react-simple-icons': 4.6.1_react@17.0.2
+  '@react-hook/media-query': 1.1.1_react@17.0.2
   '@tailwindcss/forms': 0.3.3_tailwindcss@2.2.4
   axios: 0.21.1
   moment: 2.29.1
@@ -215,6 +217,14 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.11.1
     dev: true
+
+  /@react-hook/media-query/1.1.1_react@17.0.2:
+    resolution: {integrity: sha512-VM14wDOX5CW5Dn6b2lTiMd79BFMTut9AZj2+vIRT3LCKgMCYmdqruTtzDPSnIVDQdtxdPgtOzvU9oK20LopuOw==}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      react: 17.0.2
+    dev: false
 
   /@tailwindcss/forms/0.3.3_tailwindcss@2.2.4:
     resolution: {integrity: sha512-U8Fi/gq4mSuaLyLtFISwuDYzPB73YzgozjxOIHsK6NXgg/IWD1FLaHbFlWmurAMyy98O+ao74ksdQefsquBV1Q==}
