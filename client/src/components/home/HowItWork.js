@@ -27,7 +27,7 @@ const HowItWork = () => {
           <div className='relative w-full rounded-2xl overflow-hidden'>
             <a
               target='_blank'
-              href='https://www.youtube.com/watch?v=2b97Ot1LQw4'
+              href='https://www.youtube.com/watch?v=ALad4ovPbDc'
               className='absolute inset bg-primary/30 w-full h-full flex items-center justify-center'
             >
               <img src='/icons/play.svg' alt='play' className='w-24' />
@@ -36,7 +36,7 @@ const HowItWork = () => {
           </div>
           <a
             target='_blank'
-            href='https://www.youtube.com/watch?v=2b97Ot1LQw4'
+            href='https://www.youtube.com/watch?v=ALad4ovPbDc'
             className='mt-8 flex items-center space-x-5'
           >
             <Youtube color='#FF0000' size={45} />
