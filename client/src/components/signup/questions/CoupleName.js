@@ -13,7 +13,7 @@ export const CoupleName = ({ register, errors }) => {
     >
       <Heading
         label="What's your name? & Who's your lucky spouse-to-be?"
-        color='bg-secondary-alternative'
+        color='bg-primary'
       />
       <div className='flex items-center gap-3 md:gap-5 flex-wrap flex-col xl:flex-row'>
         <div className='flex items-center gap-3 flex-wrap sm:flex-nowrap'>

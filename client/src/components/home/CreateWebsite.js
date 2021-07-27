@@ -1,5 +1,4 @@
 import { LinkButton, Heading } from '@components/index';
-import Image from 'next/image';
 import Link from 'next/link';
 import Swiper from 'react-id-swiper';
 
@@ -34,30 +33,24 @@ const CreateWebsite = () => {
       <div className='container py-20'>
         <Heading label='Create Your BeWeddy Website' />
         <Swiper {...params}>
-          <div className='mx-auto w-full'>
-            <Image
-              width={920}
-              height={567}
+          <div>
+            <img
               src='/images/wedding-laptop.png'
               alt=''
               className='mx-auto swiper-lazy'
             />
             <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
           </div>
-          <div className='mx-auto w-full'>
-            <Image
-              width={298}
-              height={519}
+          <div>
+            <img
               src='/images/wedding-phone.png'
               alt=''
               className='mx-auto swiper-lazy'
             />
             <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
           </div>
-          <div className='mx-auto w-full'>
-            <Image
-              width={598}
-              height={558}
+          <div>
+            <img
               src='/images/wedding-macbook.png'
               alt=''
               className='mx-auto swiper-lazy'

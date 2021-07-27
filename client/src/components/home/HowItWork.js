@@ -1,19 +1,14 @@
 import { Heading } from '@components/shared';
 import { Youtube } from '@icons-pack/react-simple-icons';
+import YouTube from 'react-youtube';
+
+const opts = {
+  height: '400px',
+};
 
 const HowItWork = () => {
   return (
-    <div
-      className='bg-gradient-to-b from-white to-[#FCE3EB]  relative overflow-hidden'
-      // style={{
-      //   backgroundImage: `url('/images/footer-leaf.png')`,
-      //   backgroundRepeat: 'no-repeat',
-      //   backgroundSize: 'contain',
-      //   backgroundPosition: '0 130%',
-      //   backgroundColor: '#FEC6CC',
-      //   backgroundBlendMode: 'darken',
-      // }}
-    >
+    <div className='bg-gradient-to-b from-white to-[#FCE3EB]  relative overflow-hidden'>
       <div className='absolute -bottom-5 sm:-bottom-10 lg:-bottom-16 xl:-bottom-20 xxl:-bottom-48  right-0 left-0 w-full'>
         <img
           src='/images/footer-leaf.png'
@@ -25,6 +20,11 @@ const HowItWork = () => {
         <Heading label='How It Works' />
         <div className='max-w-3xl mx-auto'>
           <div className='relative w-full rounded-2xl overflow-hidden hover:scale-95 transition duration-300'>
+            <YouTube
+              videoId='ALad4ovPbDc'
+              className='mx-auto w-full'
+              {...{ opts }}
+            />
             <a
               target='_blank'
               href='https://www.youtube.com/watch?v=ALad4ovPbDc'
@@ -32,7 +32,6 @@ const HowItWork = () => {
             >
               <img src='/icons/play.svg' alt='play' className='w-24' />
             </a>
-            <img src='/images/couple.png' alt='' className='w-full' />
           </div>
           <a
             target='_blank'

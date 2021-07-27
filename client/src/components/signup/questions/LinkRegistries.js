@@ -13,7 +13,7 @@ export const LinkRegistries = () => {
     >
       <Heading
         label='Link All Your Wedding Registries You Want Below!'
-        color='bg-secondary-alternative'
+        color='bg-primary'
       />
       <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-sm md:max-w-5xl w-full mb-10'>
         {[...Array(6)].map((_, i) => (

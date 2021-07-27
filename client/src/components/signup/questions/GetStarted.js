@@ -14,7 +14,7 @@ export const GetStarted = () => {
       <h3 className='text-7xl'>🎉</h3>
       <Heading
         label='Welcome... Now Eat, Drink, & BeWeddy!'
-        color='bg-secondary-alternative'
+        color='bg-primary'
       />
       <p className='text-2xl text-center font-normal w-full max-w-xl mb-10'>
         Creating your wedding website & lets get this party started

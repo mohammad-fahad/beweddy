@@ -33,7 +33,7 @@ export const SentInvitation = ({ watch, register, errors }) => {
     >
       <Heading
         label='How would you like your invitations sent?'
-        color='bg-secondary-alternative'
+        color='bg-primary'
         style={{ paddingBottom: '25px' }}
         lineStyle={{ marginBottom: '25px' }}
       />

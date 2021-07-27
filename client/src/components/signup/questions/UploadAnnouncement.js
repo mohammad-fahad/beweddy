@@ -14,7 +14,7 @@ export const UploadAnnouncement = ({ watch, register, errors }) => {
     >
       <Heading
         label='Upload Wedding invite & announcement!'
-        color='bg-secondary-alternative'
+        color='bg-primary'
         lineStyle={{ marginBottom: '45px' }}
       />
       <div className='w-full flex flex-col items-center justify-center gap-8 mb-10'>

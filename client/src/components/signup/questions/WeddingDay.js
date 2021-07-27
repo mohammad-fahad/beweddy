@@ -2,12 +2,9 @@ import { Heading, Button } from '@components/index';
 import moment from 'moment';
 import { useRouter } from 'next/router';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
+import { formatDate, parseDate } from 'react-day-picker/moment';
 import 'react-day-picker/lib/style.css';
 
-import MomentLocaleUtils, {
-  formatDate,
-  parseDate,
-} from 'react-day-picker/moment';
 
 export const WeddingDay = ({ watch, register, setValue, errors }) => {
   const { query, push } = useRouter();
@@ -17,11 +14,11 @@ export const WeddingDay = ({ watch, register, setValue, errors }) => {
     <div
       className={`${
         step === 5 ? 'flex' : 'hidden'
-      } flex-col items-center justify-center my-5 md:my-0`}
+      } flex-col items-center justify-center my-5 md:my-0 pb-24`}
     >
       <Heading
         label="When's your special Wedding day?"
-        color='bg-secondary-alternative'
+        color='bg-primary'
         lineStyle={{ marginBottom: '45px' }}
       />
       <div className='w-full flex flex-col items-center justify-center gap-3 md:gap-5 mb-10'>
@@ -92,14 +89,14 @@ export const WeddingDay = ({ watch, register, setValue, errors }) => {
       </div>
       <Heading
         label='Have 2 receptions?'
-        color='bg-secondary-alternative'
+        color='bg-primary'
         className='text-3xl md:!text-4xl'
         style={{ paddingBottom: '24px' }}
         lineStyle={{ marginBottom: '45px' }}
       />
       <div className='w-full flex items-center justify-center gap-3 md:gap-5 mb-5 flex-wrap'>
         <DayPickerInput
-          placeholder='Pick your date'
+          placeholder='First reception date'
           {...{ formatDate, parseDate }}
           format='LL'
           format='LL'
@@ -111,7 +108,7 @@ export const WeddingDay = ({ watch, register, setValue, errors }) => {
               <input
                 id='firstReception'
                 name='firstReception'
-                className='w-56 font-semibold py-3 pr-4 pl-12 placeholder-primary border-2 border-primary rounded-lg'
+                className='w-64 font-semibold py-3 pr-4 pl-12 placeholder-primary border-2 border-primary rounded-lg'
                 {...register('firstReception')}
                 {...props}
               />
@@ -144,7 +141,7 @@ export const WeddingDay = ({ watch, register, setValue, errors }) => {
           )}
         />
         <DayPickerInput
-          placeholder='Pick your date'
+          placeholder='Second reception date'
           {...{ formatDate, parseDate }}
           format='LL'
           format='LL'
@@ -155,7 +152,7 @@ export const WeddingDay = ({ watch, register, setValue, errors }) => {
             <div className='relative'>
               <input
                 name='secondReception'
-                className='w-56 font-semibold py-3 pr-4 pl-12 placeholder-primary border-2 border-primary rounded-lg'
+                className='w-64 font-semibold py-3 pr-4 pl-12 placeholder-primary border-2 border-primary rounded-lg'
                 {...register('secondReception')}
                 {...props}
               />
