@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const Registries = () => {
   return (
-    <div className='bg-white'>
+    <div className='bg-white border-t-4 border-primary'>
       <div className='container py-20'>
         <Heading
           label={

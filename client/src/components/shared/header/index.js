@@ -6,6 +6,7 @@ import {
   Twitter,
 } from '@icons-pack/react-simple-icons';
 import { MenuIcon } from '@heroicons/react/solid';
+import { SearchIcon } from '@heroicons/react/outline';
 
 export const Header = () => {
   return (
@@ -14,7 +15,7 @@ export const Header = () => {
         {/* Logo */}
         <Link href='/'>
           <a>
-            <img src='/images/logo.png' alt='' className='h-25' />
+            <img src='/images/logo.png' alt='' className='h-24' />
           </a>
         </Link>
         {/* Navigation */}
@@ -29,32 +30,32 @@ export const Header = () => {
                 </a>
               </Link>
               <Link href='/'>
-                <a className='flex items-center space-x-3 text-primary/60 font-bold font-inter hover:text-primary transition-colors duration-300'>
+                <a className='flex items-center space-x-3 text-primary/60 font-bold font-inter hover:text-primary hover:underline transition-colors duration-300'>
                   <img src='/icons/compass.svg' alt='' className='w-5 h-5' />
                   <span>Need your Address</span>
                 </a>
               </Link>
               <Link href='/'>
-                <a className='flex items-center space-x-3 text-primary/60 font-bold font-inter hover:text-primary transition-colors duration-300'>
+                <a className='flex items-center space-x-3 text-primary/60 font-bold font-inter hover:text-primary hover:underline transition-colors duration-300'>
                   <img src='/icons/gift.svg' alt='' className='w-5 h-5' />
                   <span>Registry</span>
                 </a>
               </Link>
               <Link href='/'>
-                <a className='flex items-center space-x-3 text-primary/60 font-bold font-inter hover:text-primary transition-colors duration-300'>
+                <a className='flex items-center space-x-3 text-primary/60 font-bold font-inter hover:text-primary hover:underline transition-colors duration-300'>
                   <img src='/icons/chat.svg' alt='' className='w-5 h-5' />
                   <span>Text-Email-Mail Invites</span>
                 </a>
               </Link>
             </div>
-            <div className='flex items-center gap-8'>
+            <div className='flex items-center gap-5'>
               <Link href='/login'>
-                <a className='text-primary font-bold font-inter hover:text-primary/60 transition-colors duration-300'>
+                <a className='text-primary py-2 px-6 border-2 border-gray-200 rounded-md font-bold font-inter hover:text-white hover:bg-primary hover:border-primary transition-colors duration-300'>
                   Login
                 </a>
               </Link>
               <Link href='/signup'>
-                <a className='text-primary py-3 px-8 border-2 border-primary rounded-[100px] font-bold font-inter hover:text-white hover:bg-primary transition-colors duration-300'>
+                <a className='text-primary py-2 px-6 border-2 border-primary rounded-md font-bold font-inter hover:text-white hover:bg-primary transition-colors duration-300'>
                   Signup
                 </a>
               </Link>
@@ -69,11 +70,11 @@ export const Header = () => {
             <div className='relative flex-1'>
               <input
                 type='text'
-                className='w-full py-3 px-4 border-2 border-primary border-r-0 rounded-r-none rounded-md text-lg font-inter font-bold placeholder-primary/60 focus:ring-0 focus:border-primary'
+                className='w-full py-2 px-5 border-2 border-primary border-r-0 rounded-r-none rounded-md text-lg font-inter font-bold placeholder-primary/60 focus:ring-0 focus:border-primary'
                 placeholder='Find a couple'
               />
-              <button className='absolute -right-2 top-0 bottom-0 border-2 border-primary rounded-md py-3 px-6'>
-                <img src='/icons/search.svg' alt='' />
+              <button className='absolute bg-primary text-white -right-2 top-0 bottom-0 border-2 border-primary rounded-md py-3 px-7'>
+                <SearchIcon className='w-6 h-6' />
               </button>
             </div>
             <div className='hidden xl:flex items-center gap-6 xl:gap-9'>
@@ -108,11 +109,11 @@ export const Header = () => {
           <div className='relative flex-1'>
             <input
               type='text'
-              className='w-full py-3 px-4 border-2 border-primary border-r-0 rounded-r-none rounded-md text-lg font-inter font-bold placeholder-primary/60 focus:ring-0 focus:border-primary'
+              className='w-full py-2 px-5 border-2 border-primary border-r-0 rounded-r-none rounded-md text-lg font-inter font-bold placeholder-primary/60 focus:ring-0 focus:border-primary'
               placeholder='Find a couple'
             />
-            <button className='absolute -right-2 top-0 bottom-0 border-2 border-primary rounded-md py-3 px-6'>
-              <img src='/icons/search.svg' alt='' />
+            <button className='absolute bg-primary text-white -right-2 top-0 bottom-0 border-2 border-primary rounded-md py-3 px-7'>
+              <SearchIcon className='w-6 h-6' />
             </button>
           </div>
           <div className='flex items-center gap-6 xl:gap-9'>
