@@ -256,7 +256,7 @@ const WeddingDay = () => {
         )}
         <div className='my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'>
           <Button
-            label='Previews'
+            label='Back'
             className='opacity-50 !rounded-md'
             onClick={() => push('/create-website/step-1')}
           />

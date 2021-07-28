@@ -1,19 +1,22 @@
 import { CreateWebsiteContainer } from '@components/createWebsite';
 import { Button, Heading } from '@components/index';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
 const UploadAnnouncement = () => {
   const dispatch = useDispatch();
+  const { push } = useRouter();
   const { questions } = useSelector(state => state.question);
   const {
+    watch,
     register,
     getValues,
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: 'all', defaultValues: questions });
-
+  watch('do_this_later');
   const onSubmit = data => {
     push('/create-website/step-4');
   };
@@ -81,7 +84,7 @@ const UploadAnnouncement = () => {
         </p>
         <div className='my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'>
           <Button
-            label='Previews'
+            label='Back'
             className='opacity-50 !rounded-md'
             onClick={() => push('/create-website/step-2')}
           />
