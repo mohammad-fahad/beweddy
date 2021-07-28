@@ -35,7 +35,7 @@ export const Header = () => {
               <Link href='/'>
                 <a className='flex items-center gap-3 text-primary/60 font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
                   <img src='/icons/compass.svg' alt='' className='w-5 h-5' />
-                  <span>Need your Address</span>
+                  <span>Need Your Address</span>
                   <span className='absolute bottom-[-10px] left-0 w-0 h-[3px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300'></span>
                 </a>
               </Link>
@@ -79,7 +79,7 @@ export const Header = () => {
                 className='w-full py-2 px-5 border-2 border-primary border-r-0 rounded-r-none rounded-md text-lg font-inter font-bold placeholder-primary/60 focus:ring-0 focus:border-primary'
                 placeholder='Find a couple'
               />
-              <button className='absolute bg-primary text-white -right-2 top-0 bottom-0 border-2 border-primary rounded-md py-3 px-7'>
+              <button className='absolute bg-primary text-white hover:bg-white hover:text-primary -right-2 top-0 bottom-0 border-2 border-primary rounded-md py-3 px-7 transition-colors duration-300'>
                 <SearchIcon className='w-6 h-6' />
               </button>
             </div>
@@ -118,7 +118,7 @@ export const Header = () => {
               className='w-full py-2 px-5 border-2 border-primary border-r-0 rounded-r-none rounded-md text-lg font-inter font-bold placeholder-primary/60 focus:ring-0 focus:border-primary'
               placeholder='Find a couple'
             />
-            <button className='absolute bg-primary text-white -right-2 top-0 bottom-0 border-2 border-primary rounded-md py-3 px-7'>
+            <button className='absolute bg-primary text-white hover:bg-white hover:text-primary -right-2 top-0 bottom-0 border-2 border-primary rounded-md py-3 px-7 transition-colors duration-300'>
               <SearchIcon className='w-6 h-6' />
             </button>
           </div>
