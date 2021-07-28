@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 
 const LoginPage = () => {
+  const { push } = useRouter();
   const {
     watch,
     register,
@@ -14,6 +15,7 @@ const LoginPage = () => {
 
   const onSubmit = data => {
     if (data) {
+      push('/create-website');
     }
   };
 

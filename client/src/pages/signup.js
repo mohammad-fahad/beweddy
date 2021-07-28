@@ -1,42 +1,21 @@
-import { useEffect } from 'react';
 import { Heading } from '@components/shared';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
-import {
-  CoupleName,
-  DemoWebsite,
-  GetStarted,
-  LinkRegistries,
-  Preview,
-  SentInvitation,
-  UploadAnnouncement,
-  UploadCouplePicture,
-  WeddingDay,
-} from '@components/signup/questions';
 import { useRouter } from 'next/router';
 
 const SignupPage = () => {
-  const { push, query } = useRouter();
-  const step = Number(query.step);
+  const { push } = useRouter();
 
   const {
-    watch,
     register,
     handleSubmit,
     formState: { errors },
-    setValue,
   } = useForm({ mode: 'all' });
 
   const onSubmit = data => {
     if (data) {
-      if (step === 10) return;
-      push({
-        pathname: '/signup',
-        query: {
-          step: step + 1,
-        },
-      });
+      push('/create-website');
     }
   };
 
@@ -45,9 +24,7 @@ const SignupPage = () => {
       <Head>
         <title>BeWeddy | Get Started</title>
       </Head>
-      <div
-        className={`bg-gradient-to-br from-[#FCE3EB] to-white`}
-      >
+      <div className={`bg-gradient-to-br from-[#FCE3EB] to-white`}>
         <div className='container min-h-screen flex items-center justify-center'>
           <form className='w-full' onSubmit={handleSubmit(onSubmit)}>
             <section
