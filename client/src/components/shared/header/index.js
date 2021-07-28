@@ -46,7 +46,7 @@ export const Header = () => {
                   <span className='absolute bottom-[-10px] left-0 w-0 h-[3px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300'></span>
                 </a>
               </Link>
-              <Link href='/'>
+              <Link href='/example-website'>
                 <a className='flex items-center gap-3 text-primary/60 font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
                   <img src='/icons/chat.svg' alt='' className='w-5 h-5' />
                   <span>Text-Email-Mail Invites</span>
@@ -56,7 +56,7 @@ export const Header = () => {
             </div>
             <div className='flex items-center gap-5'>
               <Link href='/login'>
-                <a className='text-primary py-2 px-6 border-2 border-gray-200 rounded-md font-bold font-inter hover:text-white hover:bg-primary hover:border-primary transition-colors duration-300'>
+                <a className='text-primary py-2 px-6 border-2 border-primary rounded-md font-bold font-inter hover:text-white hover:bg-primary hover:border-primary transition-colors duration-300'>
                   Login
                 </a>
               </Link>

@@ -1,9 +1,31 @@
 import { CreateWebsiteContainer } from '@components/createWebsite';
+import { Button, Heading } from '@components/index';
+import Link from 'next/link';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 
 const UploadAnnouncement = () => {
+  const dispatch = useDispatch();
+  const { questions } = useSelector(state => state.question);
+  const {
+    register,
+    getValues,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ mode: 'all', defaultValues: questions });
+
+  const onSubmit = data => {
+    push('/create-website/step-4');
+  };
+
   return (
-    <CreateWebsiteContainer>
-      <div className={`flex flex-col items-center justify-center`}>
+    <CreateWebsiteContainer
+      seo={{ title: 'Upload Wedding Invitation & Announcement' }}
+    >
+      <form
+        className={`flex flex-col items-center justify-center`}
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <Heading
           label='Upload Wedding invite & announcement!'
           color='bg-primary'
@@ -13,24 +35,24 @@ const UploadAnnouncement = () => {
           <div className='relative'>
             <input
               type='file'
-              id='upload'
+              id='uploadAnnouncement'
               className='hidden'
               placeholder='Upload'
-              {...register('upload', {
+              {...register('uploadAnnouncement', {
                 required: {
-                  value: !watch('do_this_later'),
+                  value: !getValues('do_this_later'),
                   message: 'Please upload file or check do this later',
                 },
               })}
             />
             <label
-              htmlFor='upload'
+              htmlFor='uploadAnnouncement'
               className='w-56 bg-white cursor-pointer inline-block text-center font-semibold py-3 px-4 placeholder-primary border-2 border-primary rounded-lg'
             >
               Upload
             </label>
             <p className='mt-2 text-red-400 font-light text-sm text-center'>
-              {errors?.upload?.message}
+              {errors?.uploadAnnouncement?.message}
             </p>
           </div>
           <div className='flex items-center space-x-3'>
@@ -53,7 +75,7 @@ const UploadAnnouncement = () => {
           Don’t have one yet? we recommend Esty <br />
           <Link href='/'>
             <a className='font-inter text-blue-500 font-semibold hover:underline mt-3 block'>
-              Affiliate Link
+              Etsy.com/beweddy
             </a>
           </Link>
         </p>
@@ -61,11 +83,11 @@ const UploadAnnouncement = () => {
           <Button
             label='Previews'
             className='opacity-50 !rounded-md'
-            onClick={() => push({ query: { step: step - 1 } })}
+            onClick={() => push('/create-website/step-2')}
           />
           <Button label='Next' type='submit' className=' !rounded-md' />
         </div>
-      </div>
+      </form>
     </CreateWebsiteContainer>
   );
 };

@@ -64,7 +64,7 @@ const WeddingDay = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <Heading
-          label="When's your special Wedding day?"
+          label="When's Your Special Wedding Day?"
           color='bg-primary'
           lineStyle={{ marginBottom: '45px' }}
         />
@@ -258,7 +258,7 @@ const WeddingDay = () => {
           <Button
             label='Previews'
             className='opacity-50 !rounded-md'
-            onClick={() => push({ query: { step: step - 1 } })}
+            onClick={() => push('/create-website/step-1')}
           />
           <Button label='Next' type='submit' className=' !rounded-md' />
         </div>
