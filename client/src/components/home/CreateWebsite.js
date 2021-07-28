@@ -13,9 +13,10 @@ const CreateWebsite = () => {
       disableOnInteraction: false,
     },
   };
+
   return (
     <div
-      className='bg-secondary relative banner'
+      className='bg-secondary relative banner border-t-4 border-primary'
       style={{
         background: `url('/images/leaf-bg.png'), linear-gradient(to right, #FFD9EC, #FEDFF2)`,
         backgroundRepeat: 'no-repeat',

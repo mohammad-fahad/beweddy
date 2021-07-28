@@ -24,27 +24,33 @@ export const Header = () => {
           <div className='flex items-center justify-between'>
             <div className='hidden xl:flex items-center gap-8'>
               <Link href='/'>
-                <a className='flex items-center space-x-3 text-primary font-bold font-inter hover:text-primary transition-colors duration-300'>
+                <a className='flex items-center gap-3 text-primary font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
                   <img src='/icons/home.svg' alt='' className='w-5 h-5' />
                   <span>Home</span>
+                  <span
+                    className={`absolute bottom-[-10px] left-0 w-full h-[3px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300`}
+                  ></span>
                 </a>
               </Link>
               <Link href='/'>
-                <a className='flex items-center space-x-3 text-primary/60 font-bold font-inter hover:text-primary hover:underline transition-colors duration-300'>
+                <a className='flex items-center gap-3 text-primary/60 font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
                   <img src='/icons/compass.svg' alt='' className='w-5 h-5' />
                   <span>Need your Address</span>
+                  <span className='absolute bottom-[-10px] left-0 w-0 h-[3px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300'></span>
                 </a>
               </Link>
               <Link href='/'>
-                <a className='flex items-center space-x-3 text-primary/60 font-bold font-inter hover:text-primary hover:underline transition-colors duration-300'>
+                <a className='flex items-center gap-3 text-primary/60 font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
                   <img src='/icons/gift.svg' alt='' className='w-5 h-5' />
                   <span>Registry</span>
+                  <span className='absolute bottom-[-10px] left-0 w-0 h-[3px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300'></span>
                 </a>
               </Link>
               <Link href='/'>
-                <a className='flex items-center space-x-3 text-primary/60 font-bold font-inter hover:text-primary hover:underline transition-colors duration-300'>
+                <a className='flex items-center gap-3 text-primary/60 font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
                   <img src='/icons/chat.svg' alt='' className='w-5 h-5' />
                   <span>Text-Email-Mail Invites</span>
+                  <span className='absolute bottom-[-10px] left-0 w-0 h-[3px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300'></span>
                 </a>
               </Link>
             </div>
@@ -60,7 +66,7 @@ export const Header = () => {
                 </a>
               </Link>
 
-              <button className='inline-block xl:hidden text-primary font-bold font-inter hover:text-primary/60 transition-colors duration-300'>
+              <button className='inline-block xl:hidden text-primary font-bold font-inter group hover:text-primary/60 transition-colors duration-300'>
                 <MenuIcon className='w-8 h-8' />
               </button>
             </div>

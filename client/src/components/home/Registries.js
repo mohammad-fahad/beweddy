@@ -15,7 +15,7 @@ const Registries = () => {
           color='bg-secondary-alternative'
         />
         <div className='my-20 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-xs mx-auto sm:max-w-full gap-6'>
-          <div className='w-full h-40 flex items-center justify-center p-5 border-4 border-primary rounded-xl overflow-hidden hover:scale-105 transition duration-300'>
+          <div className='w-full h-40 flex items-center justify-center p-5 border-4 border-primary rounded-xl overflow-hidden hover:scale-110 transition duration-300 ease-easing'>
             <Image
               width={196}
               height={53}
@@ -23,7 +23,7 @@ const Registries = () => {
               alt='amazon'
             />
           </div>
-          <div className='w-full h-40 flex items-center justify-center p-5 border-4 border-primary rounded-xl overflow-hidden hover:scale-105 transition duration-300'>
+          <div className='w-full h-40 flex items-center justify-center p-5 border-4 border-primary rounded-xl overflow-hidden hover:scale-110 transition duration-300 ease-easing'>
             <Image
               width={196}
               height={53}
@@ -31,7 +31,7 @@ const Registries = () => {
               alt='bloomingdale'
             />
           </div>
-          <div className='w-full h-40 flex items-center justify-center p-5 border-4 border-primary rounded-xl overflow-hidden hover:scale-105 transition duration-300'>
+          <div className='w-full h-40 flex items-center justify-center p-5 border-4 border-primary rounded-xl overflow-hidden hover:scale-110 transition duration-300 ease-easing'>
             <Image
               width={196}
               height={53}
@@ -39,7 +39,7 @@ const Registries = () => {
               alt='traveler'
             />
           </div>
-          <div className='w-full h-40 bg-secondary/25 flex flex-col items-center justify-center p-5 border-4 border-primary rounded-xl overflow-hidden hover:scale-105 transition duration-300'>
+          <div className='w-full h-40 bg-secondary/25 flex flex-col items-center justify-center p-5 border-4 border-primary rounded-xl overflow-hidden hover:scale-110 transition duration-300 ease-easing'>
             <Link href='/'>
               <a className='py-2 px-6 text-white bg-primary hover:bg-primary/80 rounded-3xl text-base mt-5 transition-colors duration-300'>
                 Create Registry
@@ -53,7 +53,7 @@ const Registries = () => {
           </div>
         </div>
         <div className='text-center'>
-          <LinkButton label='See More' href='/' />
+          <LinkButton label='See More' href='/' outline />
         </div>
       </div>
     </div>

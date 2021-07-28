@@ -8,7 +8,7 @@ const opts = {
 
 const HowItWork = () => {
   return (
-    <div className='bg-gradient-to-b from-white to-[#FCE3EB]  relative overflow-hidden'>
+    <div className='bg-gradient-to-b from-[#FCE3EB] to-[#FEC9CD]  relative overflow-hidden border-t-4 border-primary'>
       <div className='absolute -bottom-5 sm:-bottom-10 lg:-bottom-16 xl:-bottom-20 xxl:-bottom-48  right-0 left-0 w-full'>
         <img
           src='/images/footer-leaf.png'

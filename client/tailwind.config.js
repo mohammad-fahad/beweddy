@@ -35,6 +35,7 @@ module.exports = {
     extend: {
       display: ['group-hover', 'group-focus'],
       visibility: ['group-hover'],
+      width: ['responsive', 'hover', 'group-hover'],
     },
   },
   plugins: [require('@tailwindcss/forms')],
