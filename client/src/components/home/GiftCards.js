@@ -1,7 +1,7 @@
 import { LinkButton, Heading } from '@components/shared';
 import { XIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useMediaQuery } from '@react-hook/media-query';
 
 const giftCards = [
@@ -118,9 +118,8 @@ const GiftCards = () => {
         <div className='my-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full px-5 sm:px-0 mx-auto sm:max-w-full gap-x-5 sm:gap-x-10 relative'>
           {giftCards.map((giftCard, index) => {
             return (
-              <>
+              <Fragment key={index}>
                 <div
-                  key={index}
                   className={`w-full py-5 rounded-xl overflow-hidden cursor-pointer transition-transform duration-300 ease-easing relative ${
                     selected === index ? '' : 'hover:scale-110'
                   }`}
@@ -192,7 +191,7 @@ const GiftCards = () => {
                     )}
                   </div>
                 )}
-              </>
+              </Fragment>
             );
           })}
         </div>

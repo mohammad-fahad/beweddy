@@ -23,26 +23,30 @@ const LoginPage = () => {
         <title>BeWeddy | Login</title>
       </Head>
       <div className='bg-gradient-to-br from-[#FCE3EB] to-white '>
-        <div className='container min-h-screen'>
-          <div className='min-h-[15vh] flex items-center justify-center'>
-            <Link href='/'>
-              <a className='text-center'>
-                <img src='/images/logo.png' alt='' className='h-24 mx-auto' />
-              </a>
-            </Link>
-          </div>
+        <div className='container min-h-screen flex items-center justify-center'>
           <form
             className='w-full min-h-[75vh] flex items-center justify-center'
             onSubmit={handleSubmit(onSubmit)}
           >
             <section
-              className={`bg-white border-4 my-10 border-primary p-10 md:pb-18 md:pt-20 md:px-24 max-w-xl w-full mx-auto rounded-xl`}
+              className={`bg-white border-4 my-10 border-primary py-8 md:py-10 px-10 md:px-24 max-w-xl w-full mx-auto rounded-xl`}
             >
+              <div className='text-center mb-3'>
+                <Link href='/'>
+                  <a className='text-center'>
+                    <img
+                      src='/images/logo.png'
+                      alt=''
+                      className='h-16 md:h-20 mx-auto'
+                    />
+                  </a>
+                </Link>
+              </div>
               <Heading
-                label='Welcome back!'
+                label='Welcome Back!'
                 color='bg-secondary-alternative'
                 className='!pb-5'
-                lineStyle={{ marginBottom: '35px' }}
+                lineStyle={{ marginBottom: '30px' }}
               />
               <div className='flex flex-col items-center justify-center space-y-6'>
                 <button className='border-2 text-sm md:text-base border-primary py-3 px-4 md:px-12 flex items-center space-x-3 rounded-[100px]'>

@@ -30,7 +30,6 @@ const SignupPage = () => {
 
   const onSubmit = data => {
     if (data) {
-      console.log(data);
       if (step === 10) return;
       push({
         pathname: '/signup',
@@ -41,59 +40,45 @@ const SignupPage = () => {
     }
   };
 
-  useEffect(() => {
-    if (!Object.keys(query).length) {
-      push({
-        pathname: '/signup',
-        query: {
-          step: 1,
-        },
-      });
-    }
-  }, []);
-
   return (
     <>
       <Head>
         <title>BeWeddy | Get Started</title>
       </Head>
       <div
-        className={`${
-          step >= 10 ? 'bg-white' : 'bg-gradient-to-br from-[#FCE3EB] to-white'
-        }`}
+        className={`bg-gradient-to-br from-[#FCE3EB] to-white`}
       >
-        <div className='container min-h-screen pb-16'>
-          <div className='min-h-[20vh] flex items-center justify-center'>
-            <Link href='/'>
-              <a className='text-center'>
-                <img src='/images/logo.png' alt='' className='h-24 mx-auto' />
-              </a>
-            </Link>
-          </div>
-          <form
-            className='w-full min-h-[70vh] flex items-center justify-center'
-            onSubmit={handleSubmit(onSubmit)}
-          >
+        <div className='container min-h-screen flex items-center justify-center'>
+          <form className='w-full' onSubmit={handleSubmit(onSubmit)}>
             <section
-              className={`${
-                step > 1 ? 'hidden' : 'block'
-              } bg-white border-4 my-10 border-primary p-10 md:pb-18 md:pt-20 md:px-24 max-w-xl w-full mx-auto rounded-xl`}
+              className={`bg-white border-4 my-10 border-primary py-8 md:py-10 px-10 md:px-24 max-w-xl w-full mx-auto rounded-xl`}
             >
+              <div className='text-center mb-3'>
+                <Link href='/'>
+                  <a className='text-center'>
+                    <img
+                      src='/images/logo.png'
+                      alt=''
+                      className='h-16 md:h-20 mx-auto'
+                    />
+                  </a>
+                </Link>
+              </div>
               <Heading
                 label='Create Your Account'
                 color='bg-secondary-alternative'
-                className='!pb-5 md:!text-4xl'
-                lineStyle={{ marginBottom: '35px' }}
+                className='!pb-5 md:!text-[2.55rem]'
+                lineStyle={{ marginBottom: '30px' }}
               />
-              <div className='flex flex-col items-center justify-center space-y-6'>
-                <div className='flex items-center gap-3 md:gap-5 justify-center flex-wrap'>
+              <div className='flex flex-col items-center justify-center space-y-5'>
+                <div className='flex items-center gap-3 sm:space-x-4 justify-center flex-wrap'>
                   <div className='flex items-center gap-3'>
                     <input
                       type='radio'
                       id='couple'
                       value='couple'
                       defaultChecked
-                      className='text-primary border-2 border-primary w-[24px] h-[24px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+                      className='text-primary'
                       {...register('user')}
                     />
                     <label
@@ -108,7 +93,7 @@ const SignupPage = () => {
                       type='radio'
                       id='venue'
                       value='venue'
-                      className='text-primary border-2 border-primary w-[24px] h-[24px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+                      className='text-primary'
                       {...register('user')}
                     />
                     <label
@@ -206,21 +191,6 @@ const SignupPage = () => {
                 </div>
               </div>
             </section>
-            {step >= 2 && <DemoWebsite />}
-            {step >= 3 && <GetStarted />}
-            {step >= 4 && <CoupleName {...{ register, errors }} />}
-            {step >= 5 && (
-              <WeddingDay {...{ watch, setValue, register, errors }} />
-            )}
-            {step >= 6 && (
-              <UploadAnnouncement {...{ watch, register, errors }} />
-            )}
-            {step >= 7 && <SentInvitation {...{ watch, register, errors }} />}
-            {step >= 8 && (
-              <UploadCouplePicture {...{ watch, register, errors }} />
-            )}
-            {step >= 9 && <Preview {...{ watch, register, errors }} />}
-            {step >= 10 && <LinkRegistries {...{ register, errors }} />}
           </form>
         </div>
       </div>

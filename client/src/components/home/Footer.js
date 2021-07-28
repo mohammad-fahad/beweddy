@@ -71,7 +71,7 @@ const Footer = () => {
             </strong>{' '}
             All rights reserved.
           </p>
-          <div className='flex items-center gap-8'>
+          <div className='flex items-center gap-6'>
             <Link href='/'>
               <a className='text-primary font-medium font-inter group hover:text-primary transition-colors duration-300 relative'>
                 <span>About us</span>

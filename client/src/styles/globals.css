@@ -39,9 +39,12 @@
     @apply outline-none ring-0 focus:border-primary !important;
   }
 
+  [type='radio'] {
+    @apply w-4 h-4 border-none ring-[3px] ring-offset-4 ring-primary;
+  }
   [type='radio']:checked {
-    @apply bg-primary;
-    /* background-image: none; */
+    @apply bg-primary ring-[3px] ring-offset-4 ring-primary;
+    background-image: none;
   }
   [type='checkbox']:checked,
   [type='checkbox']:checked:hover,
