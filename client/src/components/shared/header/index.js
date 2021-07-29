@@ -33,21 +33,21 @@ export const Header = () => {
                 </a>
               </Link>
               <Link href='/'>
-                <a className='flex items-center gap-3 text-primary/60 font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
+                <a className='flex items-center gap-3 text-primary font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
                   <img src='/icons/compass.svg' alt='' className='w-5 h-5' />
                   <span>Need Your Address</span>
                   <span className='absolute bottom-[-10px] left-0 w-0 h-[3px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300'></span>
                 </a>
               </Link>
               <Link href='/'>
-                <a className='flex items-center gap-3 text-primary/60 font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
+                <a className='flex items-center gap-3 text-primary font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
                   <img src='/icons/gift.svg' alt='' className='w-5 h-5' />
                   <span>Registry</span>
                   <span className='absolute bottom-[-10px] left-0 w-0 h-[3px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300'></span>
                 </a>
               </Link>
               <Link href='/example-website'>
-                <a className='flex items-center gap-3 text-primary/60 font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
+                <a className='flex items-center gap-3 text-primary font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
                   <img src='/icons/chat.svg' alt='' className='w-5 h-5' />
                   <span>Text-Email-Mail Invites</span>
                   <span className='absolute bottom-[-10px] left-0 w-0 h-[3px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300'></span>
@@ -66,7 +66,7 @@ export const Header = () => {
                 </a>
               </Link>
 
-              <button className='inline-block xl:hidden text-primary font-bold font-inter group hover:text-primary/60 transition-colors duration-300'>
+              <button className='inline-block xl:hidden text-primary font-bold font-inter group hover:text-primary transition-colors duration-300'>
                 <MenuIcon className='w-8 h-8' />
               </button>
             </div>
@@ -76,7 +76,7 @@ export const Header = () => {
             <div className='relative flex-1'>
               <input
                 type='text'
-                className='w-full py-2 px-5 border-2 border-primary border-r-0 rounded-r-none rounded-md text-lg font-inter font-bold placeholder-primary/60 focus:ring-0 focus:border-primary'
+                className='w-full py-2 px-5 border-2 border-primary border-r-0 rounded-r-none rounded-md text-lg font-inter font-bold placeholder-primary focus:ring-0 focus:border-primary'
                 placeholder='Find a couple'
               />
               <button className='absolute bg-primary text-white hover:bg-white hover:text-primary -right-2 top-0 bottom-0 border-2 border-primary rounded-md py-3 px-7 transition-colors duration-300'>
@@ -87,7 +87,7 @@ export const Header = () => {
               <a href='#'>
                 <Facebook
                   size={25}
-                  className='text-gray-400 hover:text-[#1877F2] transition-colors duration-300'
+                  className='text-gray-500 hover:text-[#1877F2] transition-colors duration-300'
                 />
               </a>
               <a href='#'>
@@ -115,7 +115,7 @@ export const Header = () => {
           <div className='relative flex-1'>
             <input
               type='text'
-              className='w-full py-2 px-5 border-2 border-primary border-r-0 rounded-r-none rounded-md text-lg font-inter font-bold placeholder-primary/60 focus:ring-0 focus:border-primary'
+              className='w-full py-2 px-5 border-2 border-primary border-r-0 rounded-r-none rounded-md text-lg font-inter font-bold placeholder-primary focus:ring-0 focus:border-primary'
               placeholder='Find a couple'
             />
             <button className='absolute bg-primary text-white hover:bg-white hover:text-primary -right-2 top-0 bottom-0 border-2 border-primary rounded-md py-3 px-7 transition-colors duration-300'>

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Image } from 'cloudinary-react';
 import axios from 'axios';
 import { addWeddingAnnouncement } from '@features/question/questionSlice';
+import { XIcon } from '@heroicons/react/solid';
 
 const UploadAnnouncement = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,10 @@ const UploadAnnouncement = () => {
     setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: 'all', defaultValues: questions.weddingAnnouncement });
+  } = useForm({
+    mode: 'all',
+    defaultValues: { uploadAnnouncement: uploadedFile },
+  });
 
   watch('do_this_later');
 
@@ -94,7 +98,10 @@ const UploadAnnouncement = () => {
         <div className='w-full flex flex-col items-center justify-center gap-8 mb-10'>
           {uploadedFile && (
             <div className='flex items-center justify-center flex-wrap gap-5'>
-              <div className='border-2 border-primary rounded-lg overflow-hidden'>
+              <div className='border-2 border-primary rounded-lg overflow-hidden relative'>
+                <button className='absolute right-1 top-1 p-1 text-red-400 border border-primary bg-white rounded-full'>
+                  <XIcon className='w-5 h-5' />
+                </button>
                 <Image
                   cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                   publicId={uploadedFile.public_id}

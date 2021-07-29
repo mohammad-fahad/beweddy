@@ -27,10 +27,12 @@ const registriesCards = [
       'Unforgettable travel experiences start with Airbnb. Find travel adventures and new places to go far away or near to you, and access vacation home rentals, new experiences, and places to visit all around the world.',
   },
   {
-    name: 'Cake',
-    image: '/images/cake.png',
+    name: 'Amazon',
+    image: '/images/amazon-registry.png',
     description:
-      'Cake Beauty is Canada’s most iconic independent beauty brand, delivering naturally luxe confections in haircare, skincare, bath and body by Cake and Delectable since 2003.',
+      'Use your Amazon.com Gift Card* towards Books, Electronics, Music, and more. The Amazon.com web site is the place to find and discover almost any thing you want to buy online at a great price.',
+    currency: 'USD',
+    amount: 25.6,
   },
   {
     name: 'Amazon',

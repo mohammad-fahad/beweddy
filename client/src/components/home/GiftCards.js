@@ -9,7 +9,7 @@ const giftCards = [
     name: 'Mycys',
     image: '/images/macys.png',
     description:
-      'Use your Amazon.com Gift Card* towards Books, Electronics, Music, and more. The Amazon.com web site is the place to find and discover almost any thing you want to buy online at a great price.',
+      'A Macy’s E-Gift Card is appreciated by one and all. With a store full of wonderful items for home, weekend or work, it’s the opportunity to get exactly what you want.  Recipients can choose from Macy’s incredible selection of fashions, furnishings and so much more. And Macy’s e-Gift cards never expire.',
     currency: 'USD',
     amount: 25.6,
   },
@@ -231,10 +231,8 @@ const GiftCards = () => {
                         )}
                         {tooltip.amount && (
                           <p className='text-sm'>
-                            <strong className='font-semibold uppercase'>
-                              Amount
-                            </strong>
-                            : ${tooltip.amount}
+                            <strong className='font-semibold'>Amount</strong>:
+                            any
                           </p>
                         )}
                       </div>
