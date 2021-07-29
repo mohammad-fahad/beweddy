@@ -16,6 +16,7 @@ const Banner = () => {
         layout='fill'
         src='/images/banner.png'
         alt='banner'
+        priority
         className='object-top object-cover pointer-events-none'
       />
       <div className='container z-50 relative'>
