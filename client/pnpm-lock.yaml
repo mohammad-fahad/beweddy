@@ -10,12 +10,14 @@ specifiers:
   '@tailwindcss/forms': ^0.3.3
   autoprefixer: ^10.3.1
   axios: ^0.21.1
+  lodash: ^4.17.21
   moment: ^2.29.1
   next: 11.0.1
   postcss: ^8.3.5
   react: 17.0.2
   react-day-picker: ^7.4.10
   react-dom: 17.0.2
+  react-dropzone: ^11.3.4
   react-hook-form: ^7.11.1
   react-id-swiper: ^4.0.0
   react-redux: ^7.2.4
@@ -34,11 +36,13 @@ dependencies:
   '@reduxjs/toolkit': 1.6.1_react-redux@7.2.4+react@17.0.2
   '@tailwindcss/forms': 0.3.3_tailwindcss@2.2.4
   axios: 0.21.1
+  lodash: 4.17.21
   moment: 2.29.1
   next: 11.0.1_react-dom@17.0.2+react@17.0.2
   react: 17.0.2
   react-day-picker: 7.4.10_react@17.0.2
   react-dom: 17.0.2_react@17.0.2
+  react-dropzone: 11.3.4_react@17.0.2
   react-hook-form: 7.11.1_react@17.0.2
   react-id-swiper: 4.0.0_34146a6e7538b09058193b63f1601461
   react-redux: 7.2.4_react-dom@17.0.2+react@17.0.2
@@ -382,6 +386,11 @@ packages:
 
   /ast-types/0.13.2:
     resolution: {integrity: sha512-uWMHxJxtfj/1oZClOxDEV1sQ1HCDkA4MG8Gr69KKeBjEVH0R84WlejZ0y2DcwyBlpAEMltmVYkVgqfLFb2oyiA==}
+    engines: {node: '>=4'}
+    dev: false
+
+  /attr-accept/2.2.2:
+    resolution: {integrity: sha512-7prDjvt9HmqiZ0cl5CRjtS84sEyhsHP2coDkaZKRKVfCDo9s7iw7ChVmar78Gu9pC4SoR/28wFu/G5JJhTnqEg==}
     engines: {node: '>=4'}
     dev: false
 
@@ -986,6 +995,13 @@ packages:
     dependencies:
       reusify: 1.0.4
     dev: true
+
+  /file-selector/0.2.4:
+    resolution: {integrity: sha512-ZDsQNbrv6qRi1YTDOEWzf5J2KjZ9KMI1Q2SGeTkCJmNNW25Jg4TW4UMcmoqcg4WrAyKRcpBXdbWRxkfrOzVRbA==}
+    engines: {node: '>= 10'}
+    dependencies:
+      tslib: 2.3.0
+    dev: false
 
   /fill-range/7.0.1:
     resolution: {integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==}
@@ -2038,6 +2054,18 @@ packages:
       scheduler: 0.20.2
     dev: false
 
+  /react-dropzone/11.3.4_react@17.0.2:
+    resolution: {integrity: sha512-B1nzNRZ4F1cnrfEC0T6KXeBN1mCPinu4JCoTrp7NjB+442KSPxqfDrw41QIA2kAwlYs1+wj/0BTedeM5hc2+xw==}
+    engines: {node: '>= 10'}
+    peerDependencies:
+      react: '>= 16.8'
+    dependencies:
+      attr-accept: 2.2.2
+      file-selector: 0.2.4
+      prop-types: 15.7.2
+      react: 17.0.2
+    dev: false
+
   /react-hook-form/7.11.1_react@17.0.2:
     resolution: {integrity: sha512-lBt428oU03dNUF5qZy5xqEdANaH3L/ilKWQS2t8wD6zF7FypOv46kEkZmg+oHf3n2xgeGYJgbMIGtYExsfKJ8A==}
     peerDependencies:
@@ -2548,6 +2576,10 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
+    dev: false
+
+  /tslib/2.3.0:
+    resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}
     dev: false
 
   /tty-browserify/0.0.0:

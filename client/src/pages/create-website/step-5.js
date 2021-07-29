@@ -17,11 +17,12 @@ const UploadCouplePicture = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: 'all', defaultValues: questions });
-  
+
   watch('do_this_later_upload_couple');
 
   const onSubmit = data => {
     // dispatch(addQuestion(data));
+
     push('/create-website/step-6');
   };
 

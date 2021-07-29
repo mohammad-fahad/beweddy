@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 
+
 const UploadAnnouncement = () => {
   const dispatch = useDispatch();
   const { push } = useRouter();
@@ -18,6 +19,7 @@ const UploadAnnouncement = () => {
   } = useForm({ mode: 'all', defaultValues: questions });
   watch('do_this_later');
   const onSubmit = data => {
+    console.log(data);
     push('/create-website/step-4');
   };
 

@@ -13,8 +13,8 @@ const Features = () => {
           <div className='col-span-6 md:col-span-7'>
             <div className='space-y-5'>
               <div className='pr-8 lg:pr-10 timeline pl-7 lg:pl-8 py-7 lg:py-8 flex items-center space-x-8 lg:space-x-10'>
-                <p className='text-lg lg:text-xl font-medium'>
-                  Text/ Email/ Mail Out Your Invitations & E-Invites
+                <p className='text-lg lg:text-xl font-medium normal-case'>
+                  Text/ Email/ Mail out your invitations & E-invites
                 </p>
                 <img src='/icons/mail.svg' alt='' className='w-12 lg:w-14' />
               </div>
@@ -24,21 +24,21 @@ const Features = () => {
                   alt=''
                   className='w-12 lg:w-14'
                 />
-                <p className='text-lg lg:text-xl font-medium'>
-                  Send Reminders, Updates & Collect Addresses from the Wedding
-                  Party
+                <p className='text-lg lg:text-xl font-medium normal-case'>
+                  Send reminders, updates & collect addresses from the wedding
+                  party
                 </p>
               </div>
               <div className='pr-8 lg:pr-10 timeline pl-7 lg:pl-8 py-7 lg:py-8 flex items-center space-x-8 lg:space-x-10'>
-                <p className='text-lg lg:text-xl font-medium'>
-                  Text your Wedding Schedule, RSVP & Itinerary
+                <p className='text-lg lg:text-xl font-medium normal-case'>
+                  Text your wedding schedule, RSVP & itinerary
                 </p>
                 <img src='/icons/archive.svg' alt='' className='w-12 lg:w-14' />
               </div>
               <div className='pl-8 lg:pl-10 timeline pr-7 lg:pr-8 py-7 lg:py-8 flex items-center space-x-8 lg:space-x-10'>
                 <img src='/icons/chat.svg' alt='' className='w-12 lg:w-14' />
-                <p className='text-lg lg:text-xl font-medium'>
-                  Send A Thank You message by Text or E-mail
+                <p className='text-lg lg:text-xl font-medium normal-case'>
+                  Send a thank you message by Text or E-mail
                 </p>
               </div>
             </div>

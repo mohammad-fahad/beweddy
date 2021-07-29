@@ -22,14 +22,6 @@ const giftCards = [
     amount: 25.6,
   },
   {
-    name: 'Gift',
-    image: '/images/gift-2.png',
-    description:
-      'Gift-giving has never been easier with the 1-800-FLOWERS.COM® Gift Card! Browse a wide selection of fresh flowers, delicious gourmet treats and desserts, beautiful plants, stunning gift baskets and more – and then choose exactly what you want!',
-    currency: 'USD',
-    amount: 25.6,
-  },
-  {
     name: 'Wallmart',
     image: '/images/wallmart.png',
     description:
@@ -86,10 +78,44 @@ const giftCards = [
     amount: 25.6,
   },
   {
-    name: 'Air',
-    image: '/images/air.png',
+    name: 'Bath & Body Works',
+    image: '/images/bath&body.png',
     description:
-      'Unforgettable travel experiences start with Airbnb. Find travel adventures and new places to go far away or near to you, and access vacation home rentals, new experiences, and places to visit all around the world.',
+      'We Make Fragrance Fun!™ From head-to-toe and throughout your home, Bath & Body Works brings you the best indulgences with exclusive Signature Collection scents, the world’s best Home Fragrances, Anti-Bacterial Hand Soaps & Sanitizers, perfect gifts & so much more!',
+    currency: 'USD',
+    amount: 25.6,
+  },
+  {
+    name: 'DoorDash',
+    image: '/images/doordash.png',
+    description:
+      'Your favorite restaurants, delivered. Gift the gift of food delivery with a DoorDash gift card. The DoorDash app connects your favorite people with the foods they love from more than 310,000 local and national restaurants across 4,000 cities in the US and Canada. Gift food delivery for easier evenings, happier days, and more time to enjoy the people and things they love.',
+    currency: 'USD',
+    amount: 25.6,
+  },
+  {
+    name: "Chili's",
+    image: '/images/chilis.png',
+    description:
+      'From fresh hand-prepared salads to mouthwatering burgers, Chili’s kicks up the flavor with food that is anything but ordinary. To use your Chili’s eGift Card, this must be printed and presented in the restaurant in order to be accepted.',
+    currency: 'USD',
+    amount: 25.6,
+  },
+  {
+    name: 'Disney',
+    image: '/images/disney.png',
+    description:
+      "*Disney is not a sponsor of the rewards or otherwise affiliated with the reward program. The logos and other identifying marks attached are trademarks of and owned by each represented company and/or its affiliates. Please visit each company's website for additional terms and conditions.",
+    currency: 'USD',
+    amount: 25.6,
+  },
+  {
+    name: 'Nordstrom',
+    image: '/images/nordstrom.png',
+    description:
+      "Nordstrom, one of the nation's leading fashion specialty retailers, offers a large selection of quality fashion apparel, shoes, cosmetics and accessories for men, women and children, including a comprehensive offering of top brand names and designer collections. Nordstrom is committed to providing customers with the best possible service, and to improving it every day. Free shipping and free returns, mobile shopping and exciting new retail partnerships offer Nordstrom continued opportunities to serve more customers in more ways with a fresh, relevant shopping experience and inspiring style. Nordstrom serves customers through Nordstrom Rack stores and online at nordstromrack.com and flash-sale site Hautelook.com. Nordstrom is excited to give 1% of all gift card sales to nonprofit organizations within the communities they serve.",
+    currency: 'USD',
+    amount: 25.6,
   },
   {
     name: 'Mastercard® Prepaid Card USD',
@@ -98,28 +124,10 @@ const giftCards = [
       "A Mastercard Prepaid Card gives you the flexibility to shop anywhere Mastercard is accepted around the world. You will receive an email with instructions for selecting either a virtual or physical card. Choose a virtual card that's available immediately, or a physical card sent via mail (shipping and handling fee of $3.00 to be deducted from card balance). ",
   },
   {
-    name: 'Cake',
-    image: '/images/cake.png',
-    description:
-      'Cake Beauty is Canada’s most iconic independent beauty brand, delivering naturally luxe confections in haircare, skincare, bath and body by Cake and Delectable since 2003.',
-  },
-  {
-    name: 'Buffalo',
-    image: '/images/gift-6.png',
-    description:
-      'Buffalo Wild Wings® is a sports bar with beer and wings and a crazy amount of TVs showing all the games. And rowdy fans and all the sauces for all the wings. Did we mention beer? Because we pour more beer than anyone in the country. So bring your friends, your outside voice and cheer on your favorite team to victory at any of our 1,200+ locations nationwide. Why aren’t you here already? www.buffalowildwings.com',
-  },
-  {
     name: 'Best Buy',
     image: '/images/best-buy.png',
     description:
       'Best Buy® has all of the tech that tech lovers love. Whether you’re a video game enthusiast, a kitchen gadget groupie, or a fan of wireless headphones, there’s lots of tech for you to discover in store, online or on our app. And if you’re not sure what you’re looking for, Blue Shirts and Geek Squad Agents are here for you every step of the way to share expert advice and guidance.',
-  },
-  {
-    name: 'Adidas',
-    image: '/images/adidas.png',
-    description:
-      'Our love for sport drives who we are and what we do. Every day. adidas has a clear mission: be the globally leading and most popular sporting goods brand. We are not just designing products for all kinds of sports. We are designing products for athletes. Athletes always strive for their personal best. Athletes find inspiration in sports no matter what they do. We help them to achieve their peak performance by making them faster, stronger, smarter and cooler. adidas gift cards can be redeemed in over 150 adidas Sport Performance, adidas Originals, or adidas Outlet stores in the US, as well as online at adidas.com.',
   },
 ];
 
