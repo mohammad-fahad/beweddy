@@ -10,6 +10,7 @@ specifiers:
   '@tailwindcss/forms': ^0.3.3
   autoprefixer: ^10.3.1
   axios: ^0.21.1
+  cloudinary-react: ^1.7.0
   lodash: ^4.17.21
   moment: ^2.29.1
   next: 11.0.1
@@ -36,6 +37,7 @@ dependencies:
   '@reduxjs/toolkit': 1.6.1_react-redux@7.2.4+react@17.0.2
   '@tailwindcss/forms': 0.3.3_tailwindcss@2.2.4
   axios: 0.21.1
+  cloudinary-react: 1.7.0_lodash@4.17.21+react@17.0.2
   lodash: 4.17.21
   moment: 2.29.1
   next: 11.0.1_react-dom@17.0.2+react@17.0.2
@@ -644,6 +646,27 @@ packages:
 
   /classnames/2.2.6:
     resolution: {integrity: sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==}
+    dev: false
+
+  /cloudinary-core/2.11.4_lodash@4.17.21:
+    resolution: {integrity: sha512-F1BZczD6f5mB73D0c8gl/iuacVQQO+UhckNZxeeS9ZIVeIHbsfqwWiAZMQmIvEb7Wti/9MLU0xVwaWOak2THHA==}
+    peerDependencies:
+      lodash: '>=4.0'
+    dependencies:
+      lodash: 4.17.21
+    dev: false
+
+  /cloudinary-react/1.7.0_lodash@4.17.21+react@17.0.2:
+    resolution: {integrity: sha512-Q2fQrQ+NwJ1Ei5ISHfWX7cZfC9z71OeOZYQv4MV8sDEDVCml2cvRexvbQ7ksDvqkYd3SCegn5vMDuHp5w3NlCQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16.3.3 || ^17.0.0
+    dependencies:
+      cloudinary-core: 2.11.4_lodash@4.17.21
+      prop-types: 15.7.2
+      react: 17.0.2
+    transitivePeerDependencies:
+      - lodash
     dev: false
 
   /color-convert/1.9.3:
