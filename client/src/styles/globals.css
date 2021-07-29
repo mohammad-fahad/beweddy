@@ -56,6 +56,10 @@
   .timeline {
     @apply border-t-2 odd:ml-3 even:mr-3 odd:border-r-2 odd:rounded-tr-2xl even:border-l-2 even:rounded-tl-2xl border-primary;
   }
+
+  /* .wrapper-image > div:first-child {
+    @apply static !important;
+  } */
 }
 .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
   @apply bg-secondary !important;

@@ -1,5 +1,5 @@
 import { Button, Heading, CreateWebsiteContainer } from '@components/index';
-import { addQuestion } from '@features/question/questionSlice';
+import { addCoupleName } from '@features/question/questionSlice';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,10 +13,10 @@ const CoupleName = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: 'all', defaultValues: questions });
+  } = useForm({ mode: 'all', defaultValues: questions.coupleName });
 
   const onSubmit = data => {
-    dispatch(addQuestion(data));
+    dispatch(addCoupleName(data));
     push('/create-website/step-2');
   };
 

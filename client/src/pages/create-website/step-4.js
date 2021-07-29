@@ -1,6 +1,6 @@
 import { CreateWebsiteContainer } from '@components/createWebsite';
 import { Button, Heading } from '@components/index';
-import { addQuestion } from '@features/question/questionSlice';
+import { addSentInvitation } from '@features/question/questionSlice';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
 import axios from 'axios';
@@ -32,13 +32,16 @@ const SentInvitation = () => {
     getValues,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: 'all', defaultValues: questions });
+  } = useForm({ mode: 'all', defaultValues: questions.sentInvitation });
 
   watch('do_this_later');
 
   const onSubmit = data => {
     dispatch(
-      addQuestion({ ...data, callingCode: selectedCountry.callingCodes[0] })
+      addSentInvitation({
+        ...data,
+        callingCode: selectedCountry.callingCodes[0],
+      })
     );
     push('/create-website/step-5');
   };

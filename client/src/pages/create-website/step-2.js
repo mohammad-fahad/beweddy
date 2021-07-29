@@ -1,5 +1,5 @@
 import { Button, Heading, CreateWebsiteContainer } from '@components/index';
-import { addQuestion } from '@features/question/questionSlice';
+import { addWeddingDay } from '@features/question/questionSlice';
 import moment from 'moment';
 import { useRouter } from 'next/router';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
@@ -30,7 +30,7 @@ const WeddingDay = () => {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm({ mode: 'all', defaultValues: questions });
+  } = useForm({ mode: 'all', defaultValues: questions.weddingDay });
 
   watch(['have2Reception', 'tba']);
 
@@ -52,7 +52,7 @@ const WeddingDay = () => {
         secondReception: data.secondReception,
       };
     }
-    dispatch(addQuestion(values));
+    dispatch(addWeddingDay(values));
 
     push('/create-website/step-3');
   };

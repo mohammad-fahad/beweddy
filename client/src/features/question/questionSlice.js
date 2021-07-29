@@ -3,18 +3,42 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   loading: false,
   // error: null,
-  questions: null,
+  questions: {
+    coupleName: null,
+    weddingDay: null,
+    weddingAnnouncement: null,
+    sentInvitation: null,
+    couplePictures: null,
+  },
 };
 
 const questionSlice = createSlice({
   name: 'question',
   initialState,
   reducers: {
-    addQuestion: (state, action) => ({
-      questions: { ...state.questions, ...action.payload },
-    }),
+    addCoupleName: (state, action) => {
+      state.questions.coupleName = action.payload;
+    },
+    addWeddingDay: (state, action) => {
+      state.questions.weddingDay = action.payload;
+    },
+    addWeddingAnnouncement: (state, action) => {
+      state.questions.weddingAnnouncement = action.payload;
+    },
+    addSentInvitation: (state, action) => {
+      state.questions.sentInvitation = action.payload;
+    },
+    addCouplePictures: (state, action) => {
+      state.questions.couplePictures = action.payload;
+    },
   },
 });
 
-export const { addQuestion } = questionSlice.actions;
+export const {
+  addCoupleName,
+  addWeddingDay,
+  addWeddingAnnouncement,
+  addSentInvitation,
+  addCouplePictures,
+} = questionSlice.actions;
 export const questionReducer = questionSlice.reducer;
