@@ -99,7 +99,7 @@ const UploadAnnouncement = () => {
           {uploadedFile && (
             <div className='flex items-center justify-center flex-wrap gap-5'>
               <div className='border-2 border-primary rounded-lg overflow-hidden relative'>
-                <button className='absolute right-1 top-1 p-1 text-red-400 border border-primary bg-white rounded-full'>
+                <button className='hidden absolute right-1 top-1 p-1 text-red-400 border border-primary bg-white rounded-full'>
                   <XIcon className='w-5 h-5' />
                 </button>
                 <Image
