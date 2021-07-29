@@ -32,6 +32,29 @@ const registriesCards = [
     description:
       'Cake Beauty is Canada’s most iconic independent beauty brand, delivering naturally luxe confections in haircare, skincare, bath and body by Cake and Delectable since 2003.',
   },
+  {
+    name: 'Amazon',
+    image: '/images/amazon-registry.png',
+    description:
+      'Use your Amazon.com Gift Card* towards Books, Electronics, Music, and more. The Amazon.com web site is the place to find and discover almost any thing you want to buy online at a great price.',
+    currency: 'USD',
+    amount: 25.6,
+  },
+  {
+    name: 'Gift',
+    image: '/images/bloomingdale.png',
+    description:
+      'Gift-giving has never been easier with the 1-800-FLOWERS.COM® Gift Card! Browse a wide selection of fresh flowers, delicious gourmet treats and desserts, beautiful plants, stunning gift baskets and more – and then choose exactly what you want!',
+  },
+  {
+    isComponent: true,
+  },
+  {
+    name: 'Air',
+    image: '/images/traveler.png',
+    description:
+      'Unforgettable travel experiences start with Airbnb. Find travel adventures and new places to go far away or near to you, and access vacation home rentals, new experiences, and places to visit all around the world.',
+  },
 ];
 
 const Registries = () => {
@@ -87,33 +110,48 @@ const Registries = () => {
           {registriesCards.map((registriesCard, index) => {
             return (
               <Fragment key={index}>
-                <div
-                  className={`py-5 relative transition-transform duration-300 ease-easing cursor-pointer ${
-                    selected === index ? '' : 'hover:scale-110'
-                  }`}
-                >
-                  <div
-                    className={`w-full h-40 flex items-center justify-center p-5 border-4 border-primary rounded-xl overflow-hidden`}
-                    onClick={() => {
-                      handleTooltip(index + 1);
-                      setTooltip(registriesCard);
-                    }}
-                  >
-                    {selected === index && (
-                      <>
-                        <div className='absolute bottom-[-18px] left-6 h-8 w-8 border-4 border-gray-200 border-t-transparent border-r-transparent rotate-[135deg] z-10 bg-white'></div>
-                        <div className='absolute bottom-[-21px] left-6 h-8 w-8 border-4 border-transparent rotate-[135deg] z-30 bg-white'></div>
-                      </>
-                    )}
-                    <Image
-                      width={196}
-                      height={53}
-                      src={registriesCard.image}
-                      alt={registriesCard.name}
-                      className='w-full'
-                    />
+                {registriesCard.isComponent ? (
+                  <div className='w-full h-40 bg-secondary/25 flex flex-col items-center justify-center p-5 border-4 border-primary rounded-xl overflow-hidden hover:scale-110 transition duration-300 ease-easing my-5'>
+                    <Link href='/'>
+                      <a className='py-2 px-6 text-white bg-primary hover:bg-primary/80 rounded-3xl text-base mt-5 transition-colors duration-300 whitespace-nowrap'>
+                        Create Registry
+                      </a>
+                    </Link>
+                    <Link href='/'>
+                      <a className='py-2 px-6 text-blue-500 text-base font-light font-inter hover:underline'>
+                        Learn more
+                      </a>
+                    </Link>
                   </div>
-                </div>
+                ) : (
+                  <div
+                    className={`py-5 relative transition-transform duration-300 ease-easing cursor-pointer ${
+                      selected === index ? '' : 'hover:scale-110'
+                    }`}
+                  >
+                    <div
+                      className={`w-full h-40 flex items-center justify-center p-5 border-4 border-primary rounded-xl overflow-hidden`}
+                      onClick={() => {
+                        handleTooltip(index + 1);
+                        setTooltip(registriesCard);
+                      }}
+                    >
+                      {selected === index && (
+                        <>
+                          <div className='absolute bottom-[-18px] left-6 h-8 w-8 border-4 border-gray-200 border-t-transparent border-r-transparent rotate-[135deg] z-10 bg-white'></div>
+                          <div className='absolute bottom-[-21px] left-6 h-8 w-8 border-4 border-transparent rotate-[135deg] z-30 bg-white'></div>
+                        </>
+                      )}
+                      <Image
+                        width={196}
+                        height={53}
+                        src={registriesCard.image}
+                        alt={registriesCard.name}
+                        className='w-full'
+                      />
+                    </div>
+                  </div>
+                )}
                 {index + 1 === pushItemTo && showTooltip && (
                   <div className='bg-white col-span-full border-2 border-gray-200 px-14 py-12 rounded-lg relative z-20'>
                     <div className='absolute right-5 top-5'>
@@ -166,18 +204,6 @@ const Registries = () => {
               </Fragment>
             );
           })}
-          {/* <div className='w-full h-40 bg-secondary/25 flex flex-col items-center justify-center p-5 border-4 border-primary rounded-xl overflow-hidden hover:scale-110 transition duration-300 ease-easing'>
-            <Link href='/'>
-              <a className='py-2 px-6 text-white bg-primary hover:bg-primary/80 rounded-3xl text-base mt-5 transition-colors duration-300'>
-                Create Registry
-              </a>
-            </Link>
-            <Link href='/'>
-              <a className='py-2 px-6 text-blue-500 text-base font-light font-inter hover:underline'>
-                Learn more
-              </a>
-            </Link>
-          </div> */}
         </div>
         <div className='text-center'>
           <LinkButton label='See More' href='/' outline />
