@@ -2,7 +2,7 @@ import { CreateWebsiteContainer } from '@components/createWebsite';
 import { Button, Heading } from '@components/index';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,6 +26,7 @@ const UploadAnnouncement = () => {
     register,
     getValues,
     setValue,
+    clearErrors,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -34,7 +35,13 @@ const UploadAnnouncement = () => {
   });
 
   watch('do_this_later');
-
+  const doThisLater = getValues('do_this_later');
+  
+  useEffect(() => {
+    if (doThisLater) {
+      clearErrors('uploadAnnouncement');
+    }
+  }, [doThisLater]);
   const onSubmit = data => {
     if (!getValues('do_this_later')) {
       dispatch(addWeddingAnnouncement(data));
@@ -83,6 +90,16 @@ const UploadAnnouncement = () => {
     accept: 'image/*',
     multiple: false,
   });
+
+  const handleRemoveImage = async () => {
+    try {
+      await removeImage(uploadedFile.public_id);
+      setUploadedFile(null);
+      setValue('uploadAnnouncement', null);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
 
   return (
     <CreateWebsiteContainer

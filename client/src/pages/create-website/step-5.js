@@ -25,6 +25,7 @@ const UploadCouplePicture = () => {
     getValues,
     setValue,
     setError,
+    clearErrors,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -34,6 +35,13 @@ const UploadCouplePicture = () => {
 
   watch(['do_this_later_upload_couple', 'uploadCouplePicture']);
 
+  const doThisLater = getValues('do_this_later_upload_couple');
+  
+  useEffect(() => {
+    if (doThisLater) {
+      clearErrors('uploadCouplePicture');
+    }
+  }, [doThisLater]);
   const onSubmit = _ => {
     if (!getValues('do_this_later_upload_couple')) {
       dispatch(addCouplePictures(uploadedFiles));
