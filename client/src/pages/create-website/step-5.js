@@ -46,7 +46,7 @@ const UploadCouplePicture = () => {
       if (uploadedFiles.length === 4) {
         setError('uploadCouplePicture', {
           type: 'maxLength',
-          message: 'Maximum number of files uploaded is 4',
+          message: 'Maximum number of files uploaded',
         });
         return;
       }
