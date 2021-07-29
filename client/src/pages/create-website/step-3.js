@@ -10,6 +10,7 @@ import { Image } from 'cloudinary-react';
 import axios from 'axios';
 import { addWeddingAnnouncement } from '@features/question/questionSlice';
 import { XIcon } from '@heroicons/react/solid';
+import { removeImage } from '@utils/index';
 
 const UploadAnnouncement = () => {
   const dispatch = useDispatch();
@@ -82,6 +83,7 @@ const UploadAnnouncement = () => {
     accept: 'image/*',
     multiple: false,
   });
+
   return (
     <CreateWebsiteContainer
       seo={{ title: 'Upload Wedding Invitation & Announcement' }}
@@ -98,8 +100,12 @@ const UploadAnnouncement = () => {
         <div className='w-full flex flex-col items-center justify-center gap-8 mb-10'>
           {uploadedFile && (
             <div className='flex items-center justify-center flex-wrap gap-5'>
-              <div className='border-2 border-primary rounded-lg overflow-hidden relative'>
-                <button className='hidden absolute right-1 top-1 p-1 text-red-400 border border-primary bg-white rounded-full'>
+              <div className='group border-2 border-primary rounded-lg overflow-hidden relative'>
+                <button
+                  type='button'
+                  className='hidden group-hover:inline-block absolute right-1 top-1 p-1 text-red-400 border border-primary bg-white rounded-full'
+                  onClick={handleRemoveImage}
+                >
                   <XIcon className='w-5 h-5' />
                 </button>
                 <Image

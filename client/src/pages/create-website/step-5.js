@@ -1,6 +1,8 @@
 import { CreateWebsiteContainer } from '@components/createWebsite';
 import { Button, Heading } from '@components/index';
 import { addCouplePictures } from '@features/question/questionSlice';
+import { XIcon } from '@heroicons/react/solid';
+import { removeImage } from '@utils/index';
 import axios from 'axios';
 import { Image } from 'cloudinary-react';
 import { useRouter } from 'next/router';
@@ -93,6 +95,15 @@ const UploadCouplePicture = () => {
     maxFiles: 4,
   });
 
+  const handleRemoveImage = async id => {
+    try {
+      await removeImage(id);
+      setUploadedFiles(prev => prev.filter(image => image.public_id !== id));
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
   return (
     <CreateWebsiteContainer seo={{ title: 'Upload Couple Picture' }}>
       <form
@@ -103,9 +114,16 @@ const UploadCouplePicture = () => {
           <div className='flex items-center justify-center flex-wrap gap-5'>
             {uploadedFiles.map(image => (
               <div
-                className='border-2 border-primary rounded-lg overflow-hidden'
+                className='group border-2 border-primary rounded-lg overflow-hidden relative transition duration-300'
                 key={image.url}
               >
+                <button
+                  type='button'
+                  className='hidden group-hover:inline-block absolute right-1 top-1 p-1 text-red-400 border border-primary bg-white rounded-full transition duration-300'
+                  onClick={() => handleRemoveImage(image.public_id)}
+                >
+                  <XIcon className='w-5 h-5' />
+                </button>
                 <Image
                   cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                   publicId={image.public_id}
