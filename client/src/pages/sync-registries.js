@@ -1,4 +1,5 @@
 import { Heading } from '@components/shared';
+import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
 
@@ -8,7 +9,12 @@ const SyncRegistries = () => {
       <Head>
         <title>BeWeddy | Sync or Link Registries</title>
       </Head>
-      <div className='bg-white'>
+      <motion.div
+        className='bg-white'
+        exit={{ opacity: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
         <div className='container py-16'>
           <div className='w-full mb-14'>
             <Link href='/'>
@@ -97,7 +103,7 @@ const SyncRegistries = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

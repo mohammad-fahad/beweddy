@@ -1,11 +1,16 @@
 import { Button, Heading } from '@components/shared';
 import { StarIcon } from '@heroicons/react/solid';
+import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
 
 const InvitesPage = () => {
   return (
-    <>
+    <motion.div
+      exit={{ opacity: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
       <Head>
         <title>BeWeddy | Invites</title>
       </Head>
@@ -72,7 +77,7 @@ const InvitesPage = () => {
           </div>
         </div>
       </div>
-    </>
+    </motion.div>
   );
 };
 

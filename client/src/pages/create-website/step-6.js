@@ -1,16 +1,36 @@
 import { CreateWebsiteContainer } from '@components/createWebsite';
 import { Heading, LinkButton } from '@components/shared';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const WebsitePreview = () => {
   return (
     <CreateWebsiteContainer seo={{ title: 'Preview Your Wedding Website' }}>
-      <div className={`flex flex-col items-center justify-center`}>
-        <Heading
-          label='Wedding Website Preview'
-          lineStyle={{ display: 'none' }}
-        />
-        <div className='max-w-4xl w-full mx-auto'>
+      <motion.div
+        className={`flex flex-col items-center justify-center`}
+        exit={{ opacity: 0 }}
+        initial={{ opacity: 0 }}
+        initial={{ opacity: 1 }}
+      >
+        <motion.div
+          exit={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+        >
+          <Heading
+            label='Wedding Website Preview'
+            lineStyle={{ display: 'none' }}
+          />
+        </motion.div>
+        <motion.div
+          className='max-w-4xl w-full mx-auto'
+          exit={{ opacity: 0, scale: 1.8 }}
+          initial={{ opacity: 0, scale: 1.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            duration: 0.6,
+          }}
+        >
           <Image
             width={1215}
             height={595}
@@ -18,7 +38,7 @@ const WebsitePreview = () => {
             alt=''
             className='mx-auto max-w-3xl w-full'
           />
-        </div>
+        </motion.div>
         <div className='mb-5'>
           <LinkButton
             label='Edit'
@@ -33,7 +53,7 @@ const WebsitePreview = () => {
             className='!rounded-lg'
           />
         </div>
-      </div>
+      </motion.div>
     </CreateWebsiteContainer>
   );
 };

@@ -2,18 +2,19 @@ import { persistor, store } from '@app/store';
 import { Layout } from '@components/index';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-// import 'slick-carousel/slick/slick.css';
-// import 'slick-carousel/slick/slick-theme.css';
 import 'swiper/swiper.min.css';
 import '../styles/globals.css';
+import { AnimatePresence } from 'framer-motion';
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, router, pageProps }) {
   return (
     <Provider {...{ store }}>
       <PersistGate loading={null} {...{ persistor }}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <AnimatePresence exitBeforeEnter>
+          <Layout key={router.route}>
+            <Component {...pageProps} />
+          </Layout>
+        </AnimatePresence>
       </PersistGate>
     </Provider>
   );

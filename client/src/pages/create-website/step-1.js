@@ -1,5 +1,6 @@
 import { Button, Heading, CreateWebsiteContainer } from '@components/index';
 import { addCoupleName } from '@features/question/questionSlice';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,11 +27,22 @@ const CoupleName = () => {
         className={`flex flex-col items-center justify-center`}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <Heading
-          label="What's your name? & Who's your lucky spouse-to-be?"
-          color='bg-primary'
-        />
-        <div className='flex items-center gap-3 md:gap-5 flex-wrap flex-col xl:flex-row'>
+        <motion.div
+          exit={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+        >
+          <Heading
+            label="What's your name? & Who's your lucky spouse-to-be?"
+            color='bg-primary'
+          />
+        </motion.div>
+        <motion.div
+          className='flex items-center gap-3 md:gap-5 flex-wrap flex-col xl:flex-row'
+          exit={{ opacity: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
           <div className='flex items-center gap-3 flex-wrap sm:flex-nowrap'>
             <div className='w-full'>
               <input
@@ -116,7 +128,7 @@ const CoupleName = () => {
               </p>
             </div>
           </div>
-        </div>
+        </motion.div>
         <div className='my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'>
           <Button
             label='Back'

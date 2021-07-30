@@ -11,6 +11,31 @@ import axios from 'axios';
 import { addWeddingAnnouncement } from '@features/question/questionSlice';
 import { XIcon } from '@heroicons/react/solid';
 import { removeImage } from '@utils/index';
+import { motion } from 'framer-motion';
+
+const easing = [0.6, -0.05, 0.01, 0.99];
+const fadeInUp = {
+  initial: {
+    opacity: 0,
+    y: 60,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: easing,
+    },
+  },
+};
+
+const stagger = {
+  animate: {
+    transition: {
+      staggerChildren: 0.05,
+    },
+  },
+};
 
 const UploadAnnouncement = () => {
   const dispatch = useDispatch();
@@ -109,91 +134,116 @@ const UploadAnnouncement = () => {
       seo={{ title: 'Upload Wedding Invitation & Announcement' }}
     >
       {loading && <Loader />}
-      <form
-        className={`flex flex-col items-center justify-center`}
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <Heading
-          label='Upload Wedding invite & announcement!'
-          color='bg-primary'
-          lineStyle={{ marginBottom: '45px' }}
-        />
-        <div className='w-full flex flex-col items-center justify-center gap-8 mb-10'>
-          {uploadedFile && (
-            <div className='flex items-center justify-center flex-wrap gap-5'>
-              <div className='group border-2 border-primary rounded-lg overflow-hidden relative'>
-                <button
-                  type='button'
-                  className='hidden group-hover:inline-block absolute right-1 top-1 p-1 text-red-400 border border-primary bg-white rounded-full'
-                  onClick={handleRemoveImage}
-                >
-                  <XIcon className='w-5 h-5' />
-                </button>
-                <Image
-                  cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
-                  publicId={uploadedFile.public_id}
-                  src={!uploadedFile.public_id ? uploadedFile.url : null}
-                  width='300'
-                  crop='scale'
-                  className='h-40 w-60 object-cover'
-                />
+      <motion.div exit={{ opacity: 0 }} initial='initial' animate='animate'>
+        <motion.form
+          className={`flex flex-col items-center justify-center`}
+          onSubmit={handleSubmit(onSubmit)}
+          exit={{ opacity: 0 }}
+          variants={stagger}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+          >
+            <Heading
+              label='Upload Wedding invite & announcement!'
+              color='bg-primary'
+              lineStyle={{ marginBottom: '45px' }}
+            />
+          </motion.div>
+          <motion.div
+            className='w-full flex flex-col items-center justify-center gap-8 mb-10'
+            variants={fadeInUp}
+          >
+            {uploadedFile && (
+              <div className='flex items-center justify-center flex-wrap gap-5'>
+                <div className='group border-2 border-primary rounded-lg overflow-hidden relative'>
+                  <button
+                    type='button'
+                    className='hidden group-hover:inline-block absolute right-1 top-1 p-1 text-red-400 border border-primary bg-white rounded-full'
+                    onClick={handleRemoveImage}
+                  >
+                    <XIcon className='w-5 h-5' />
+                  </button>
+                  <Image
+                    cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
+                    publicId={uploadedFile.public_id}
+                    src={!uploadedFile.public_id ? uploadedFile.url : null}
+                    width='300'
+                    crop='scale'
+                    className='h-40 w-60 object-cover'
+                  />
+                </div>
               </div>
-            </div>
-          )}
-          <div className='relative' {...getRootProps()}>
-            <input
-              id='uploadAnnouncement'
-              ref={register('uploadAnnouncement', {
-                required: {
-                  value: !getValues('do_this_later'),
-                  message: 'Please upload file or check do this later',
-                },
-              })}
-              {...getInputProps()}
-            />
-            <label
-              htmlFor='uploadAnnouncement'
-              className='w-56 bg-white cursor-pointer inline-block text-center font-semibold py-3 px-4 placeholder-primary border-2 border-primary rounded-lg'
+            )}
+            <motion.div
+              className='relative'
+              variants={fadeInUp}
+              {...getRootProps()}
             >
-              Upload
-            </label>
-            <p className='mt-2 text-red-400 font-light text-sm text-center'>
-              {errors?.uploadAnnouncement?.message}
-            </p>
-          </div>
-          <div className='flex items-center space-x-3'>
-            <input
-              type='checkbox'
-              id='do_this_later'
-              value={true}
-              className='text-secondary-alternative rounded-md border-2 border-primary w-[24px] h-[24px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
-              {...register('do_this_later')}
-            />
-            <label
-              htmlFor='do_this_later'
-              className='font-inter text-lg font-normal cursor-pointer'
+              <input
+                id='uploadAnnouncement'
+                ref={register('uploadAnnouncement', {
+                  required: {
+                    value: !getValues('do_this_later'),
+                    message: 'Please upload file or check do this later',
+                  },
+                })}
+                {...getInputProps()}
+              />
+              <label
+                htmlFor='uploadAnnouncement'
+                className='w-56 bg-white cursor-pointer inline-block text-center font-semibold py-3 px-4 placeholder-primary border-2 border-primary rounded-lg'
+              >
+                Upload
+              </label>
+              <p className='mt-2 text-red-400 font-light text-sm text-center'>
+                {errors?.uploadAnnouncement?.message}
+              </p>
+            </motion.div>
+            <motion.div
+              className='flex items-center space-x-3'
+              variants={fadeInUp}
             >
-              I will do this later
-            </label>
-          </div>
-        </div>
-        <p className='font-light max-w-lg text-center'>
-          Don’t have one yet? we recommend Esty <br />
-          <Link href='/'>
-            <a className='font-inter text-blue-500 font-semibold hover:underline mt-3 block'>
-              Etsy.com/beweddy
-            </a>
-          </Link>
-        </p>
-        <div className='my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'>
-          <Button
-            label='Back'
-            className='opacity-50 !rounded-md'
-            onClick={() => push('/create-website/step-2')}
-          />
-          <Button label='Next' type='submit' className=' !rounded-md' />
-        </div>
-      </form>
+              <input
+                type='checkbox'
+                id='do_this_later'
+                value={true}
+                className='text-secondary-alternative rounded-md border-2 border-primary w-[24px] h-[24px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+                {...register('do_this_later')}
+              />
+              <label
+                htmlFor='do_this_later'
+                className='font-inter text-lg font-normal cursor-pointer'
+              >
+                I will do this later
+              </label>
+            </motion.div>
+          </motion.div>
+          <motion.p
+            className='font-light max-w-lg text-center'
+            variants={fadeInUp}
+          >
+            Don’t have one yet? we recommend Esty <br />
+            <Link href='/'>
+              <a className='font-inter text-blue-500 font-semibold hover:underline mt-3 block'>
+                Etsy.com/beweddy
+              </a>
+            </Link>
+          </motion.p>
+          <motion.div
+            className='my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'
+            variants={fadeInUp}
+          >
+            <Button
+              label='Back'
+              className='opacity-50 !rounded-md'
+              onClick={() => push('/create-website/step-2')}
+            />
+            <Button label='Next' type='submit' className=' !rounded-md' />
+          </motion.div>
+        </motion.form>
+      </motion.div>
     </CreateWebsiteContainer>
   );
 };

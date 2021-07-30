@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
 
@@ -7,7 +8,12 @@ export const CreateWebsiteContainer = ({ seo, children }) => {
       <Head>
         <title>BeWeddy | {seo.title}</title>
       </Head>
-      <div className={`bg-gradient-to-br from-[#FCE3EB] to-white`}>
+      <motion.div
+        className={`bg-gradient-to-br from-[#FCE3EB] to-white`}
+        exit={{ opacity: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
         <div className='container min-h-screen pb-16'>
           <div className='min-h-[20vh] flex items-center justify-center'>
             <Link href='/'>
@@ -20,7 +26,7 @@ export const CreateWebsiteContainer = ({ seo, children }) => {
             {children}
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

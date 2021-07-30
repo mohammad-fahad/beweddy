@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
 const SignupPage = () => {
   const { push } = useRouter();
@@ -24,7 +25,12 @@ const SignupPage = () => {
       <Head>
         <title>BeWeddy | Get Started</title>
       </Head>
-      <div className={`bg-gradient-to-br from-[#FCE3EB] to-white`}>
+      <motion.div
+        className={`bg-gradient-to-br from-[#FCE3EB] to-white`}
+        exit={{ opacity: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
         <div className='container min-h-screen flex items-center justify-center'>
           <form className='w-full' onSubmit={handleSubmit(onSubmit)}>
             <section
@@ -170,7 +176,7 @@ const SignupPage = () => {
             </section>
           </form>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

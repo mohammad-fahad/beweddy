@@ -1,5 +1,5 @@
-import { Button, Heading } from '@components/shared';
-import { StarIcon } from '@heroicons/react/solid';
+import { Heading } from '@components/shared';
+import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
 
@@ -9,7 +9,12 @@ const SyncNowPage = () => {
       <Head>
         <title>BeWeddy | Sync Now</title>
       </Head>
-      <div className='bg-white'>
+      <motion.div
+        className='bg-white'
+        exit={{ opacity: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
         <div className='container py-16'>
           <div className='w-full mb-14'>
             <Link href='/'>
@@ -77,7 +82,7 @@ const SyncNowPage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };
