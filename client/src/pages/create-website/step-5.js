@@ -32,7 +32,7 @@ const UploadCouplePicture = () => {
     formState: { errors },
   } = useForm({
     mode: 'all',
-    defaultValues: { uploadCouplePicture: questions.couplePictures },
+    defaultValues: { uploadCouplePicture: uploadedFiles },
   });
 
   // Watch input field changes
@@ -51,7 +51,10 @@ const UploadCouplePicture = () => {
   const onSubmit = _ => {
     // check if user will not do this later
     if (!getValues('do_this_later_upload_couple')) {
+      // if (uploadedFiles.length === 0) return;
       dispatch(addCouplePictures(uploadedFiles));
+    } else {
+      dispatch(addCouplePictures(null));
     }
     // if submit done then go to next page
     push('/create-website/step-6');
@@ -92,9 +95,10 @@ const UploadCouplePicture = () => {
             process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
           );
           const { data } = await axios.post(URL, formData, config);
-          setLoading(false);
           setValue('uploadCouplePicture', data);
+          clearErrors('uploadCouplePicture');
           setUploadedFiles(prev => [...prev, data]);
+          setLoading(false);
         } catch (err) {
           setLoading(false);
           console.error(err.message);
@@ -117,6 +121,17 @@ const UploadCouplePicture = () => {
       setLoading(true);
       await removeImage(id);
       setUploadedFiles(prev => prev.filter(image => image.public_id !== id));
+      if (uploadedFiles.length === 0) {
+        setError('uploadCouplePicture', {
+          type: 'required',
+          message: 'Please upload couple picture file or check do this later',
+        });
+        setValue('uploadCouplePicture', undefined, {
+          shouldValidate: true,
+        });
+      } else {
+        setValue('uploadCouplePicture', uploadedFiles);
+      }
       setLoading(false);
     } catch (err) {
       setLoading(false);
