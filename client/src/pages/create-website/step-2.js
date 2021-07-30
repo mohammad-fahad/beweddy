@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { formatDate, parseDate } from 'react-day-picker/moment';
 import 'react-day-picker/lib/style.css';
 import useOuterClickHandler from 'hooks/useOuterClickHandler';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 const WeddingDay = () => {
   const dispatch = useDispatch();
@@ -18,9 +18,9 @@ const WeddingDay = () => {
   const { questions } = useSelector(state => state.question);
 
   const innerRef = useOuterClickHandler(() => {
-    const hide = picker.current;
-    hide.hideDayPicker();
-    picker.current.hideDayPicker();
+    // const hide = picker.current;
+    // hide.hideDayPicker();
+    picker2.current.hideDayPicker();
   });
 
   const {
@@ -29,10 +29,27 @@ const WeddingDay = () => {
     register,
     handleSubmit,
     setValue,
-    formState: { errors },
-  } = useForm({ mode: 'all', defaultValues: questions.weddingDay });
+    setError,
+    clearErrors,
+    formState: { errors, },
+  } = useForm({
+    mode: 'all',
+    defaultValues: questions.weddingDay,
+    shouldFocusError: false,
+  });
+console.log(errors)
+  watch([
+    'have2Reception',
+    'tba',
+    'weddingDate',
+    'firstReception',
+    'secondReception',
+  ]);
 
-  watch(['have2Reception', 'tba']);
+  const tba = getValues('tba');
+  const weddingDate = getValues('weddingDate');
+  const firstReception = getValues('firstReception');
+  const secondReception = getValues('secondReception');
 
   const onSubmit = data => {
     let values;
@@ -57,6 +74,50 @@ const WeddingDay = () => {
     push('/create-website/step-3');
   };
 
+  useEffect(() => {
+    if (
+      !weddingDate ||
+      new Date(weddingDate).getDate() >= new Date().getDate()
+    ) {
+      clearErrors('weddingDate');
+    } else {
+      setError('weddingDate', {
+        type: 'manual',
+        message: 'Seems like you have selected past date',
+      });
+    }
+
+    if (
+      !firstReception ||
+      new Date(firstReception).getDate() >= new Date().getDate()
+    ) {
+      clearErrors('firstReception');
+    } else {
+      setError('firstReception', {
+        type: 'validate',
+        message: 'Seems like you have selected past date',
+      });
+    }
+    if (
+      !secondReception ||
+      new Date(secondReception).getDate() >= new Date().getDate()
+    ) {
+      clearErrors('secondReception');
+    } else {
+      setError('secondReception', {
+        type: 'validate',
+        message: 'Seems like you have selected past date',
+      });
+    }
+  }, [weddingDate, firstReception, secondReception]);
+
+  useEffect(() => {
+    if (tba) {
+      clearErrors('weddingDate');
+      setValue('weddingDate', '');
+    }
+  }, [tba]);
+
   return (
     <CreateWebsiteContainer seo={{ title: 'Wedding Day' }}>
       <form
@@ -69,9 +130,9 @@ const WeddingDay = () => {
           lineStyle={{ marginBottom: '45px' }}
         />
         <div className='w-full flex flex-col items-center justify-center gap-3 md:gap-5 mb-10'>
-          <div ref={innerRef}>
+          <div>
             <DayPickerInput
-              ref={picker}
+              // ref={picker}
               placeholder='Pick your date'
               {...{ formatDate, parseDate }}
               format='LL'
