@@ -31,13 +31,13 @@ const WeddingDay = () => {
     setValue,
     setError,
     clearErrors,
-    formState: { errors, },
+    formState: { errors },
   } = useForm({
     mode: 'all',
     defaultValues: questions.weddingDay,
     shouldFocusError: false,
   });
-console.log(errors)
+
   watch([
     'have2Reception',
     'tba',
@@ -69,9 +69,11 @@ console.log(errors)
         secondReception: data.secondReception,
       };
     }
-    dispatch(addWeddingDay(values));
-
-    push('/create-website/step-3');
+    console.log(Object.keys(errors).length);
+    if (!Object.keys(errors).length) {
+      dispatch(addWeddingDay(values));
+      push('/create-website/step-3');
+    }
   };
 
   useEffect(() => {

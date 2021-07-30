@@ -1,5 +1,5 @@
 import { CreateWebsiteContainer } from '@components/createWebsite';
-import { Button, Heading } from '@components/index';
+import { Button, Heading, Loader } from '@components/index';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
@@ -36,7 +36,7 @@ const UploadAnnouncement = () => {
 
   watch('do_this_later');
   const doThisLater = getValues('do_this_later');
-  
+
   useEffect(() => {
     if (doThisLater) {
       clearErrors('uploadAnnouncement');
@@ -93,10 +93,13 @@ const UploadAnnouncement = () => {
 
   const handleRemoveImage = async () => {
     try {
+      setLoading(true);
       await removeImage(uploadedFile.public_id);
       setUploadedFile(null);
       setValue('uploadAnnouncement', null);
+      setLoading(false);
     } catch (err) {
+      setLoading(false);
       console.error(err.message);
     }
   };
@@ -105,6 +108,7 @@ const UploadAnnouncement = () => {
     <CreateWebsiteContainer
       seo={{ title: 'Upload Wedding Invitation & Announcement' }}
     >
+      {loading && <Loader />}
       <form
         className={`flex flex-col items-center justify-center`}
         onSubmit={handleSubmit(onSubmit)}

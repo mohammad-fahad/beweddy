@@ -1,5 +1,5 @@
 import { CreateWebsiteContainer } from '@components/createWebsite';
-import { Button, Heading } from '@components/index';
+import { Button, Loader } from '@components/index';
 import { addCouplePictures } from '@features/question/questionSlice';
 import { XIcon } from '@heroicons/react/solid';
 import { removeImage } from '@utils/index';
@@ -19,6 +19,8 @@ const UploadCouplePicture = () => {
   const [uploadedFiles, setUploadedFiles] = useState(
     questions.couplePictures || []
   );
+
+  // React Hook Form to handle form submission
   const {
     watch,
     register,
@@ -33,26 +35,32 @@ const UploadCouplePicture = () => {
     defaultValues: { uploadCouplePicture: questions.couplePictures },
   });
 
+  // Watch input field changes
   watch(['do_this_later_upload_couple', 'uploadCouplePicture']);
-
+  // doThisLater
   const doThisLater = getValues('do_this_later_upload_couple');
-  
+
+  // handle side effect if user upload couple picture later
   useEffect(() => {
     if (doThisLater) {
       clearErrors('uploadCouplePicture');
     }
   }, [doThisLater]);
+
+  // Handle form submission
   const onSubmit = _ => {
+    // check if user will not do this later
     if (!getValues('do_this_later_upload_couple')) {
       dispatch(addCouplePictures(uploadedFiles));
     }
+    // if submit done then go to next page
     push('/create-website/step-6');
   };
 
+  // Handle image uploadedFiles
   const onDrop = useCallback(
-    (acceptedFiles, rejectedFiles) => {
-      console.log(rejectedFiles);
-
+    acceptedFiles => {
+      // check if user uploaded maximum number of files & throw an error also block uploading images
       if (uploadedFiles.length === 4) {
         setError('uploadCouplePicture', {
           type: 'maxLength',
@@ -103,17 +111,22 @@ const UploadCouplePicture = () => {
     maxFiles: 4,
   });
 
+  // Handle remove images
   const handleRemoveImage = async id => {
     try {
+      setLoading(true);
       await removeImage(id);
       setUploadedFiles(prev => prev.filter(image => image.public_id !== id));
+      setLoading(false);
     } catch (err) {
+      setLoading(false);
       console.error(err.message);
     }
   };
 
   return (
     <CreateWebsiteContainer seo={{ title: 'Upload Couple Picture' }}>
+      {loading && <Loader />}
       <form
         className={`flex flex-col items-center justify-center`}
         onSubmit={handleSubmit(onSubmit)}
