@@ -37,7 +37,7 @@ const Banner = () => {
         </div>
         <div className='flex items-center justify-center flex-wrap -space-x-8 lg:-space-x-10 mb-20 pt-32 xl:pt-36'>
           <Link href='/example-website'>
-            <a className='cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
+            <a className='bg-white/90 hover:bg-white cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
               <img
                 src='/icons/message.svg'
                 className='w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20'
@@ -49,7 +49,7 @@ const Banner = () => {
             </a>
           </Link>
           <Link href='/example-website'>
-            <a className='cursor-pointer border-4 border-secondary/30 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
+            <a className='bg-white/90 hover:bg-white cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
               <img
                 src='/icons/mail.svg'
                 className='w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20'
@@ -61,7 +61,7 @@ const Banner = () => {
             </a>
           </Link>
           <Link href='/example-website'>
-            <a className='cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
+            <a className='bg-white/90 hover:bg-white cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
               <img
                 src='/icons/rsvp.svg'
                 className='w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20'
@@ -73,7 +73,7 @@ const Banner = () => {
             </a>
           </Link>
           <Link href='/example-website'>
-            <a className='cursor-pointer border-4 border-secondary/30 w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
+            <a className='bg-white/90 hover:bg-white cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
               <img
                 src='/icons/gift_solid.svg'
                 className='w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20'
@@ -86,7 +86,7 @@ const Banner = () => {
             </a>
           </Link>
           <Link href='/example-website'>
-            <a className='cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
+            <a className='bg-white/90 hover:bg-white cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
               <img
                 src='/icons/site.svg'
                 className='w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20'
