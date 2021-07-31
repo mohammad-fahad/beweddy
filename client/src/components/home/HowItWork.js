@@ -8,14 +8,14 @@ const opts = {
 
 const HowItWork = () => {
   return (
-    <div className='bg-secondary-alternative relative overflow-hidden border-t-4 border-primary'>
-      {/* <div className='absolute -bottom-5 sm:-bottom-10 lg:-bottom-16 xl:-bottom-20 xxl:-bottom-48  right-0 left-0 w-full'>
+    <div className='bg-gradient-to-br from-[#FCE3EB] to-white relative overflow-hidden border-t-4 border-primary'>
+      <div className='absolute -bottom-5 sm:-bottom-10 lg:-bottom-16 xl:-bottom-20 xxl:-bottom-48  right-0 left-0 w-full'>
         <img
           src='/images/footer-leaf.png'
           alt=''
           className='object-cover w-full'
         />
-      </div> */}
+      </div>
       <div className='container pt-20 pb-20 md:pb-32 relative z-20'>
         <Heading label='How It Works' />
         <div className='max-w-3xl mx-auto'>

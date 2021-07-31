@@ -77,7 +77,7 @@ export const Header = () => {
           </div>
           {/* Searchbar & Social Links */}
           <div className='hidden lg:flex flex-1 items-center gap-10 xl:gap-20'>
-            <div className='max-w-lg relative flex-1'>
+            <div className='max-w-[xl relative flex-1'>
               <input
                 type='text'
                 className='w-full py-2 px-5 border border-primary border-r-0 rounded-r-none rounded-md text-base font-inter font-normal placeholder-primary focus:ring-0 focus:border-primary'
@@ -116,7 +116,7 @@ export const Header = () => {
           </div>
         </div>
         <div className='w-full flex lg:hidden items-center gap-10 xl:gap-20'>
-          <div className='max-w-lg relative flex-1'>
+          <div className='max-w-[xl relative flex-1'>
             <input
               type='text'
               className='w-full py-2 px-5 border border-primary border-r-0 rounded-r-none rounded-md text-base font-inter font-normal placeholder-primary focus:ring-0 focus:border-primary'

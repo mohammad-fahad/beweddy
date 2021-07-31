@@ -162,7 +162,7 @@ const GiftCards = () => {
   };
 
   return (
-    <div className='bg-secondary-alternative'>
+    <div className='bg-gradient-to-br from-[#FCE3EB] to-white'>
       <div className='container py-20'>
         <Heading label='Collect Gifts With The Best 100+ Gift Card Registry ' />
         <div className='my-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full px-5 sm:px-0 mx-auto sm:max-w-full gap-x-5 sm:gap-x-10 relative'>
