@@ -22,7 +22,7 @@ const giftCards = [
     // amount: 25.6,
   },
   {
-    name: 'Wallmart',
+    name: 'Walmart',
     image: '/images/wallmart.png',
     description:
       'With a Walmart eGift Card, you get low prices every day on thousands of popular products in stores or online at Walmart.com.You’ll find a wide assortment of top electronics, toys, home essentials and more. Plus, cards don’t expire and you never pay any fees.With a Walmart eGift Card, you get low prices every day on thousands of popular products in stores or online at Walmart.com.You’ll find a wide assortment of top electronics, toys, home essentials and more. Plus, cards don’t expire and you never pay any fees.',

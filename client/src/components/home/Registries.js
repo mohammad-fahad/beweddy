@@ -113,7 +113,7 @@ const Registries = () => {
             return (
               <Fragment key={index}>
                 {registriesCard.isComponent ? (
-                  <div className='w-full h-40 bg-secondary/25 flex flex-col items-center justify-center p-5 border-4 border-primary rounded-xl overflow-hidden hover:scale-110 transition duration-300 ease-easing my-5'>
+                  <div className='w-full h-40 bg-secondary/25 flex flex-col items-center justify-center p-5 border-2 border-secondary rounded-xl overflow-hidden hover:scale-110 transition duration-300 ease-easing my-5'>
                     <Link href='/'>
                       <a className='py-2 px-6 text-white bg-primary hover:bg-primary/80 rounded-3xl text-base mt-5 transition-colors duration-300 whitespace-nowrap'>
                         Create Registry
@@ -132,7 +132,7 @@ const Registries = () => {
                     }`}
                   >
                     <div
-                      className={`w-full h-40 flex items-center justify-center p-5 border-4 border-primary rounded-xl overflow-hidden`}
+                      className={`w-full h-40 flex items-center justify-center p-5 border-2 border-gray-200 rounded-xl overflow-hidden`}
                       onClick={() => {
                         handleTooltip(index + 1);
                         setTooltip(registriesCard);
