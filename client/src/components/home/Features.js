@@ -16,7 +16,7 @@ const Features = () => {
                 <p className='text-lg lg:text-xl font-medium capitalize'>
                   Text/ Email/ Mail out your invitations & E-invites
                 </p>
-                <img src='/icons/mail.svg' alt='' className='w-12 lg:w-14' />
+                <img src='/icons/mail_outline.svg' alt='' className='w-12 lg:w-14' />
               </div>
               <div className='pl-8 lg:pl-10 timeline pr-7 lg:pr-8 py-7 lg:py-8 flex items-center space-x-8 lg:space-x-10'>
                 <img

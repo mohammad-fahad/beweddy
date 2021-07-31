@@ -11,11 +11,15 @@ import { SearchIcon } from '@heroicons/react/outline';
 export const Header = () => {
   return (
     <header className='bg-white'>
-      <div className='max-w-6xl px-10 xl:px-0 mx-auto xl:container py-10 flex items-center justify-between gap-5 lg:gap-10 xl:gap-16 flex-wrap'>
+      <div className='max-w-6xl px-10 xl:px-0 mx-auto xl:container py-10 flex items-center justify-between gap-5 lg:gap-10 xl:gap-20 flex-wrap'>
         {/* Logo */}
         <Link href='/'>
           <a>
-            <img src='/images/logo.png' alt='' className='h-24' />
+            <img
+              src='/images/logo.png'
+              alt=''
+              className='h-20 w-52 object-cover'
+            />
           </a>
         </Link>
         {/* Navigation */}
@@ -24,66 +28,66 @@ export const Header = () => {
           <div className='flex items-center justify-between'>
             <div className='hidden xl:flex items-center gap-8'>
               <Link href='/'>
-                <a className='flex items-center gap-3 text-primary font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
+                <a className='flex items-center gap-3 text-sm text-primary font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
                   <img src='/icons/home.svg' alt='' className='w-5 h-5' />
                   <span>Home</span>
                   <span
-                    className={`absolute bottom-[-10px] left-0 w-full h-[3px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300`}
+                    className={`absolute bottom-[-10px] left-0 w-full h-[2.6px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300`}
                   ></span>
                 </a>
               </Link>
               <Link href='/'>
-                <a className='flex items-center gap-3 text-primary font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
+                <a className='flex items-center gap-3 text-sm text-primary font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
                   <img src='/icons/compass.svg' alt='' className='w-5 h-5' />
                   <span>Need Your Address</span>
-                  <span className='absolute bottom-[-10px] left-0 w-0 h-[3px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300'></span>
+                  <span className='absolute bottom-[-10px] left-0 w-0 h-[2.6px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300'></span>
                 </a>
               </Link>
               <Link href='/'>
-                <a className='flex items-center gap-3 text-primary font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
+                <a className='flex items-center gap-3 text-sm text-primary font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
                   <img src='/icons/gift.svg' alt='' className='w-5 h-5' />
                   <span>Registry</span>
-                  <span className='absolute bottom-[-10px] left-0 w-0 h-[3px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300'></span>
+                  <span className='absolute bottom-[-10px] left-0 w-0 h-[2.6px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300'></span>
                 </a>
               </Link>
               <Link href='/example-website'>
-                <a className='flex items-center gap-3 text-primary font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
+                <a className='flex items-center gap-3 text-sm text-primary font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
                   <img src='/icons/chat.svg' alt='' className='w-5 h-5' />
                   <span>Text-Email-Mail Invites</span>
-                  <span className='absolute bottom-[-10px] left-0 w-0 h-[3px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300'></span>
+                  <span className='absolute bottom-[-10px] left-0 w-0 h-[2.6px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300'></span>
                 </a>
               </Link>
             </div>
-            <div className='flex items-center gap-5'>
+            <div className='flex items-center gap-4'>
               <Link href='/login'>
-                <a className='text-primary py-2 px-6 border-2 border-primary rounded-md font-bold font-inter hover:text-white hover:bg-primary hover:border-primary transition-colors duration-300'>
+                <a className='text-sm text-primary py-2 px-6 border-2 border-primary rounded-md font-bold font-inter hover:text-white hover:bg-primary hover:border-primary transition-colors duration-300'>
                   Login
                 </a>
               </Link>
               <Link href='/signup'>
-                <a className='text-primary py-2 px-6 border-2 border-primary rounded-md font-bold font-inter hover:text-white hover:bg-primary transition-colors duration-300'>
+                <a className='text-sm text-primary py-2 px-6 border-2 border-primary rounded-md font-bold font-inter hover:text-white hover:bg-primary transition-colors duration-300'>
                   Signup
                 </a>
               </Link>
 
-              <button className='inline-block xl:hidden text-primary font-bold font-inter group hover:text-primary transition-colors duration-300'>
+              <button className='inline-block xl:hidden text-sm text-primary font-bold font-inter group hover:text-primary transition-colors duration-300'>
                 <MenuIcon className='w-8 h-8' />
               </button>
             </div>
           </div>
           {/* Searchbar & Social Links */}
           <div className='hidden lg:flex flex-1 items-center gap-10 xl:gap-20'>
-            <div className='relative flex-1'>
+            <div className='max-w-lg relative flex-1'>
               <input
                 type='text'
-                className='w-full py-2 px-5 border-2 border-primary border-r-0 rounded-r-none rounded-md text-lg font-inter font-bold placeholder-primary focus:ring-0 focus:border-primary'
+                className='w-full py-2 px-5 border border-primary border-r-0 rounded-r-none rounded-md text-base font-inter font-normal placeholder-primary focus:ring-0 focus:border-primary'
                 placeholder='Find a couple'
               />
-              <button className='absolute bg-primary text-white hover:bg-white hover:text-primary -right-2 top-0 bottom-0 border-2 border-primary rounded-md py-3 px-7 transition-colors duration-300'>
+              <button className='absolute bg-primary text-white hover:bg-white hover:text-primary -right-2 top-0 bottom-0 border-2 border-primary rounded-md py-3 px-7 transition-colors duration-300 flex items-center justify-center'>
                 <SearchIcon className='w-6 h-6' />
               </button>
             </div>
-            <div className='hidden xl:flex items-center gap-6 xl:gap-9'>
+            <div className='hidden xl:flex items-center ml-auto gap-6 xl:gap-9'>
               <a href='#'>
                 <Facebook
                   size={25}
@@ -112,13 +116,13 @@ export const Header = () => {
           </div>
         </div>
         <div className='w-full flex lg:hidden items-center gap-10 xl:gap-20'>
-          <div className='relative flex-1'>
+          <div className='max-w-lg relative flex-1'>
             <input
               type='text'
-              className='w-full py-2 px-5 border-2 border-primary border-r-0 rounded-r-none rounded-md text-lg font-inter font-bold placeholder-primary focus:ring-0 focus:border-primary'
+              className='w-full py-2 px-5 border border-primary border-r-0 rounded-r-none rounded-md text-base font-inter font-normal placeholder-primary focus:ring-0 focus:border-primary'
               placeholder='Find a couple'
             />
-            <button className='absolute bg-primary text-white hover:bg-white hover:text-primary -right-2 top-0 bottom-0 border-2 border-primary rounded-md py-3 px-7 transition-colors duration-300'>
+            <button className='absolute bg-primary text-white hover:bg-white hover:text-primary -right-2 top-0 bottom-0 border-2 border-primary rounded-md py-3 px-7 transition-colors duration-300 flex items-center justify-center'>
               <SearchIcon className='w-6 h-6' />
             </button>
           </div>
