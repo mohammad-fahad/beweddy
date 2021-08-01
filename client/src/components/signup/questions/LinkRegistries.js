@@ -33,10 +33,10 @@ export const LinkRegistries = () => {
       <div className='mt-5 mb-20 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'>
         <Button
           label='Previews'
-          className='opacity-50 !rounded-md'
+          className='opacity-50 !rounded-[10px]'
           onClick={() => push({ query: { step: step - 1 } })}
         />
-        <Button label='Next' type='submit' className=' !rounded-md' />
+        <Button label='Next' type='submit' className=' !rounded-[10px]' />
       </div>
     </div>
   );

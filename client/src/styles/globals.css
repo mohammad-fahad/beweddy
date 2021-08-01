@@ -57,7 +57,7 @@
   [type='checkbox']:checked:focus {
     @apply bg-[#FFB1B6] border-primary border-2;
     background-image: url('/icons/tik.svg');
-    background-size: 12px;
+    background-size: 14px;
   }
 
   .timeline {

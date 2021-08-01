@@ -78,7 +78,10 @@ const ExampleWebsite = ({ label, href, seo }) => {
               }}
             />
             <div className='my-5 text-center'>
-              <LinkButton className='!rounded-md' {...{ href, label }} />
+              <LinkButton
+                className='!px-10 !md:px-15 !rounded-[10px] '
+                {...{ href, label }}
+              />
             </div>
           </motion.div>
         </motion.div>

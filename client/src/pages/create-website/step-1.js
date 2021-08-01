@@ -132,10 +132,10 @@ const CoupleName = () => {
         <div className='my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'>
           <Button
             label='Back'
-            className='opacity-50 !rounded-md'
+            className='opacity-50 !rounded-[10px]'
             onClick={() => push('/create-website')}
           />
-          <Button label='Next' type='submit' className=' !rounded-md' />
+          <Button label='Next' type='submit' className='!rounded-[10px]' />
         </div>
       </form>
     </CreateWebsiteContainer>

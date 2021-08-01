@@ -105,10 +105,10 @@ export const CoupleName = ({ register, errors }) => {
       <div className='my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'>
         <Button
           label='Previews'
-          className='opacity-50 !rounded-md'
+          className='opacity-50 !rounded-[10px]'
           onClick={() => push({ query: { step: step - 1 } })}
         />
-        <Button label='Next' type='submit' className=' !rounded-md' />
+        <Button label='Next' type='submit' className=' !rounded-[10px]' />
       </div>
     </div>
   );

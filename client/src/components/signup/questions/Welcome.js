@@ -31,18 +31,19 @@ export const Welcome = () => {
             transition={{ ease: 'backInOut', delay: 0.5 }}
           >
             <Heading
+              className='md:!text-[42px]'
               label='Welcome... Now Eat, Drink, & BeWeddy!'
               color='bg-primary'
             />
           </motion.div>
           <motion.p
-            className='text-2xl text-center font-normal w-full max-w-xl mb-10'
+            className='text-2xl text-center font-normal w-full max-w-xl mb-10 capitalize'
             exit={{ opacity: 0, y: 60 }}
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ ease: 'backInOut', delay: 0.7 }}
           >
-            Creating your wedding website & lets get this party started
+            Creating your wedding website & lets <br />get this party started
           </motion.p>
           {/* <Button label="Let's get started" outline type='submit' /> */}
         </div>

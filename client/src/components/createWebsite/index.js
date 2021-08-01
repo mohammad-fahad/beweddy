@@ -38,7 +38,7 @@ export const CreateWebsiteContainer = ({ seo, children }) => {
         initial='initial'
         animate='animate'
       >
-        <div className='container py-16'>
+        <div className='container'>
           <div className='min-h-screen flex items-center justify-center'>
             {children}
           </div>
