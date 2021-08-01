@@ -60,7 +60,11 @@ const CreateWebsite = () => {
           </div>
         </Swiper>
         <div className='mt-8 text-center'>
-          <LinkButton label='Create Your Wedding Website' href='/signup' />
+          <LinkButton
+            label='Create Your Wedding Website'
+            className='!rounded-[100px] md:!px-10'
+            href='/signup'
+          />
         </div>
       </div>
     </div>
