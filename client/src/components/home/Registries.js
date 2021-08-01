@@ -113,7 +113,7 @@ const Registries = () => {
             return (
               <Fragment key={index}>
                 {registriesCard.isComponent ? (
-                  <div className='w-full h-40 bg-secondary-alternative flex flex-col items-center justify-center p-5 border-2 border-transparent rounded-xl overflow-hidden hover:scale-110 transition duration-300 ease-easing my-2'>
+                  <div className='w-full h-40 bg-secondary-alternative flex flex-col items-center justify-center p-5 border-2 border-transparent rounded-xl overflow-hidden hover:scale-105 transition duration-300 ease-easing my-2'>
                     <Link href='/'>
                       <a className='py-2 px-6 text-white bg-primary hover:bg-primary/80 rounded-lg text-base mt-5 transition-colors duration-300 whitespace-nowrap'>
                         Create Registry

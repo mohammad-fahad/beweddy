@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-const Banner = () => {
+const Banner = ({ setImageLoaded }) => {
   return (
     <div
       className='pt-14 xxl:pt-28 pb-32 w-full relative'
@@ -18,6 +18,7 @@ const Banner = () => {
         alt='banner'
         priority
         className='object-top object-cover pointer-events-none'
+        onLoad={() => setImageLoaded(prev => !prev)}
       />
       <div className='container z-50 relative'>
         <div className='mb-28'>
