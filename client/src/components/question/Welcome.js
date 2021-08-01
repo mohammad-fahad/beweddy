@@ -2,7 +2,7 @@ import { Heading } from '@components/index';
 import { motion } from 'framer-motion';
 import Head from 'next/head';
 
-export const Welcome = () => {
+const Welcome = () => {
   return (
     <motion.div
       className={`bg-gradient-to-br from-[#FCE3EB] to-white`}
@@ -43,7 +43,8 @@ export const Welcome = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ ease: 'backInOut', delay: 0.7 }}
           >
-            Creating your wedding website & lets <br />get this party started
+            Creating your wedding website & lets <br />
+            get this party started
           </motion.p>
           {/* <Button label="Let's get started" outline type='submit' /> */}
         </div>
@@ -51,3 +52,5 @@ export const Welcome = () => {
     </motion.div>
   );
 };
+
+export default Welcome;
