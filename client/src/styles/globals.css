@@ -36,7 +36,7 @@
   } */
 
   input:not([type='radio']):focus {
-    @apply outline-none ring-0 focus:border-primary !important;
+    @apply outline-none ring-0 focus:border-primary;
   }
 
   [type='radio']:checked + label .checked-outer {

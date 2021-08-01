@@ -62,6 +62,16 @@ const UploadAnnouncement = () => {
   watch('do_this_later');
   const doThisLater = getValues('do_this_later');
 
+  // React hook form register uploadAnnouncement
+  useEffect(() => {
+    register('uploadAnnouncement', {
+      required: {
+        value: !doThisLater,
+        message: 'Please upload file or check do this later',
+      },
+    });
+  }, [register, doThisLater]);
+
   useEffect(() => {
     if (doThisLater) {
       clearErrors('uploadAnnouncement');
@@ -175,21 +185,18 @@ const UploadAnnouncement = () => {
               </div>
             </div>
           )}
-          <motion.div
-            className='relative'
-            variants={fadeInUp}
-            {...getRootProps()}
-          >
-            <input
-              id='uploadAnnouncement'
-              ref={register('uploadAnnouncement', {
+          {/* register('uploadAnnouncement', {
                 required: {
                   value: !getValues('do_this_later'),
                   message: 'Please upload file or check do this later',
                 },
-              })}
-              {...getInputProps()}
-            />
+              }) */}
+          <motion.div
+            className='relative focus:outline-none'
+            variants={fadeInUp}
+            {...getRootProps()}
+          >
+            <input {...getInputProps()} />
             <label
               htmlFor='uploadAnnouncement'
               className='w-56 bg-white cursor-pointer inline-block text-center font-semibold py-3 px-4 placeholder-primary border-[3px] border-primary rounded-[5px]'

@@ -196,7 +196,7 @@ const SentInvitation = () => {
               <input
                 id='phone'
                 type='tel'
-                className='max-w-sm w-full bg-white inline-block font-normal py-3 px-4 pl-5 placeholder-gray-400 border-[3px] border-gray-200 rounded-[5px]'
+                className='max-w-sm w-full focus:!border-gray-200 bg-white inline-block font-normal py-3 px-4 pl-5 placeholder-gray-400 border-[3px] border-gray-200 rounded-[5px]'
                 placeholder='Enter phone number'
                 {...register('phone', {
                   required: {
