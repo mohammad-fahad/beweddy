@@ -8,7 +8,7 @@ const Loader = ({ section, preloader }) => {
         exit={{ opacity: 0 }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className='fixed inset-0 w-full h-full flex items-center justify-center bg-secondary z-50'
+        className='fixed inset-0 w-full h-full flex items-center justify-center bg-secondary z-[60]'
       >
         <Spinner color='#fff' loading size={150} />
       </motion.div>
