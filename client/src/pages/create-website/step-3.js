@@ -185,12 +185,6 @@ const UploadAnnouncement = () => {
               </div>
             </div>
           )}
-          {/* register('uploadAnnouncement', {
-                required: {
-                  value: !getValues('do_this_later'),
-                  message: 'Please upload file or check do this later',
-                },
-              }) */}
           <motion.div
             className='relative focus:outline-none'
             variants={fadeInUp}
