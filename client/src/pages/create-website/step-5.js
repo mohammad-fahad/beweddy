@@ -79,6 +79,15 @@ const UploadCouplePicture = () => {
   // doThisLater
   const doThisLater = getValues('do_this_later_upload_couple');
 
+  // React hook form register uploadCouplePicture
+  useEffect(() => {
+    register('uploadCouplePicture', {
+      required: {
+        value: !doThisLater,
+        message: 'Please upload file or check do this later',
+      },
+    });
+  }, [register, doThisLater]);
   // handle side effect if user upload couple picture later
   useEffect(() => {
     if (doThisLater) {
@@ -226,21 +235,11 @@ const UploadCouplePicture = () => {
           </motion.div>
 
           <motion.div
-            className='relative'
+            className='relative focus:outline-none'
             {...getRootProps()}
             variants={fadeInUp}
           >
-            <input
-              id='uploadCouplePicture'
-              ref={register('uploadCouplePicture', {
-                required: {
-                  value: !getValues('do_this_later_upload_couple'),
-                  message:
-                    'Please upload couple picture file or check do this later',
-                },
-              })}
-              {...getInputProps()}
-            />
+            <input {...getInputProps()} />
             <label
               htmlFor='uploadCouplePicture'
               className='bg-white cursor-pointer inline-block text-xl text-center font-semibold py-5 px-8 md:px-12 placeholder-primary border-[3px] border-primary rounded-[5px]'
