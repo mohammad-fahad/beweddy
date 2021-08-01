@@ -10,6 +10,8 @@ import 'react-day-picker/lib/style.css';
 import useOuterClickHandler from 'hooks/useOuterClickHandler';
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { isEmpty } from 'lodash';
+import { compareDate } from '@helpers/index';
 
 const easing = [0.6, -0.05, 0.01, 0.99];
 const fadeInUp = {
@@ -101,10 +103,7 @@ const WeddingDay = () => {
   };
 
   useEffect(() => {
-    if (
-      !weddingDate ||
-      new Date(weddingDate).getDate() >= new Date().getDate()
-    ) {
+    if (isEmpty(weddingDate) || compareDate(weddingDate)) {
       clearErrors('weddingDate');
     } else {
       setError('weddingDate', {
@@ -113,10 +112,7 @@ const WeddingDay = () => {
       });
     }
 
-    if (
-      !firstReception ||
-      new Date(firstReception).getDate() >= new Date().getDate()
-    ) {
+    if (isEmpty(firstReception) || compareDate(firstReception)) {
       clearErrors('firstReception');
     } else {
       setError('firstReception', {
@@ -124,10 +120,7 @@ const WeddingDay = () => {
         message: 'Seems like you have selected past date',
       });
     }
-    if (
-      !secondReception ||
-      new Date(secondReception).getDate() >= new Date().getDate()
-    ) {
+    if (isEmpty(secondReception) || compareDate(secondReception)) {
       clearErrors('secondReception');
     } else {
       setError('secondReception', {

@@ -208,7 +208,7 @@ const UploadAnnouncement = () => {
               type='checkbox'
               id='do_this_later'
               value={true}
-              className='text-secondary-alternative rounded-md border-[3px] border-primary w-[24px] h-[24px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+              className='text-secondary-alternative rounded-md border-2 border-primary w-[24px] h-[24px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
               {...register('do_this_later')}
             />
             <label
