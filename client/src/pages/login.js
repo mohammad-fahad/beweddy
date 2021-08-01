@@ -45,7 +45,7 @@ const LoginPage = () => {
                     <img
                       src='/images/logo.png'
                       alt=''
-                      className='h-16 md:h-20 mx-auto'
+                      className='h-16 md:h-[60px] mx-auto'
                     />
                   </a>
                 </Link>
@@ -59,12 +59,12 @@ const LoginPage = () => {
               <div className='flex flex-col items-center justify-center space-y-6'>
                 <button className='border-2 text-sm md:text-base border-primary py-3 px-4 md:px-12 flex items-center space-x-3 rounded-[100px]'>
                   <img src='/icons/gmail.svg' alt='' className='w-5 h-5' />
-                  <span>Continue with Google</span>
+                  <span>Start with Google</span>
                 </button>
                 <div className='w-full'>
                   <input
                     type='email'
-                    className='w-full font-normal py-3 px-4 placeholder-gray-400 border-2 border-primary rounded-lg'
+                    className='w-full text-lg font-normal py-3 px-6 placeholder-gray-400 border-[3px] border-primary rounded-lg'
                     placeholder='Your Email'
                     {...register('email', {
                       required: {
@@ -87,7 +87,7 @@ const LoginPage = () => {
                 <div className='w-full'>
                   <input
                     type='password'
-                    className='w-full font-normal py-3 px-4 placeholder-gray-400 border-2 border-primary rounded-lg'
+                    className='w-full text-lg font-normal py-3 px-6 placeholder-gray-400 border-[3px] border-primary rounded-lg'
                     placeholder='Password'
                     {...register('password', {
                       required: {
@@ -130,11 +130,11 @@ const LoginPage = () => {
                 </div>
                 <div className='w-full space-y-2'>
                   <Link href='/signup'>
-                    <a className='font-inter font-normal hover:underline hover:text-red-400 text-center block'>
+                    <a className='text-sm font-inter font-normal hover:underline hover:text-red-400 text-center block'>
                       Forgot your password?
                     </a>
                   </Link>
-                  <p className='font-light text-center'>
+                  <p className='text-lg font-semibold text-center'>
                     Don't have an account?&nbsp;
                     <Link href='/signup'>
                       <a className='font-inter font-semibold hover:underline'>

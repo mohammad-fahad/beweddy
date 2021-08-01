@@ -90,8 +90,8 @@ const Registries = () => {
   };
 
   return (
-    <div className='bg-white border-t-4 border-primary'>
-      <div className='container py-20'>
+    <div className='bg-white border-t-[5px] border-primary min-h-screen'>
+      <div className='container py-32'>
         <Heading
           label={
             <>
@@ -100,7 +100,7 @@ const Registries = () => {
           }
           color='bg-secondary-alternative'
         />
-        <div className='my-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full px-5 sm:px-0 mx-auto sm:max-w-full gap-x-5 sm:gap-x-10 relative'>
+        <div className='my-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full px-5 sm:px-0 mx-auto sm:max-w-full gap-x-3 relative'>
           {/* <div className='w-full h-40 flex items-center justify-center p-5 border-4 border-primary rounded-xl overflow-hidden hover:scale-110 transition duration-300 ease-easing'>
             <Image
               width={196}
@@ -113,9 +113,9 @@ const Registries = () => {
             return (
               <Fragment key={index}>
                 {registriesCard.isComponent ? (
-                  <div className='w-full h-40 bg-secondary/25 flex flex-col items-center justify-center p-5 border-2 border-secondary rounded-xl overflow-hidden hover:scale-110 transition duration-300 ease-easing my-5'>
+                  <div className='w-full h-40 bg-secondary-alternative flex flex-col items-center justify-center p-5 border-2 border-transparent rounded-xl overflow-hidden hover:scale-110 transition duration-300 ease-easing my-2'>
                     <Link href='/'>
-                      <a className='py-2 px-6 text-white bg-primary hover:bg-primary/80 rounded-3xl text-base mt-5 transition-colors duration-300 whitespace-nowrap'>
+                      <a className='py-2 px-6 text-white bg-primary hover:bg-primary/80 rounded-lg text-base mt-5 transition-colors duration-300 whitespace-nowrap'>
                         Create Registry
                       </a>
                     </Link>
@@ -127,8 +127,8 @@ const Registries = () => {
                   </div>
                 ) : (
                   <div
-                    className={`py-5 relative transition-transform duration-300 ease-easing cursor-pointer ${
-                      selected === index ? '' : 'hover:scale-110'
+                    className={`py-2 relative transition-transform duration-300 ease-easing cursor-pointer ${
+                      selected === index ? '' : 'hover:scale-105'
                     }`}
                   >
                     <div

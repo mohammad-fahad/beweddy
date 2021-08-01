@@ -16,9 +16,9 @@ const CreateWebsite = () => {
 
   return (
     <div
-      className='bg-gradient-to-br to-[#FCE3EB] from-white relative banner border-t-4 border-primary'
+      className='bg-gradient-to-br from-[#FCE3EB] to-white relative banner border-t-[5px] -mt-2 border-primary'
       style={{
-        background: `url('/images/leaf-bg.png'), linear-gradient(to right bottom, #fff, #fce3eb)`,
+        background: `url('/images/leaf-bg.png'), linear-gradient(120.68deg, #FCE3EB 30.04%, #FFFFFF 100%)`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'contain',
         backgroundColor: '#FEDFF2',

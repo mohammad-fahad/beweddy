@@ -42,7 +42,7 @@ const SignupPage = () => {
                     <img
                       src='/images/logo.png'
                       alt=''
-                      className='h-16 md:h-20 mx-auto'
+                      className='h-16 md:h-[60px] mx-auto'
                     />
                   </a>
                 </Link>
@@ -54,47 +54,57 @@ const SignupPage = () => {
                 lineStyle={{ marginBottom: '30px' }}
               />
               <div className='flex flex-col items-center justify-center space-y-5'>
-                <div className='flex items-center gap-3 sm:space-x-4 justify-center flex-wrap'>
-                  <div className='flex items-center gap-3'>
+                <div className='flex items-center gap-3 sm:space-x-4 justify-center flex-wrap mb-3'>
+                  <div className='flex items-center'>
                     <input
                       type='radio'
                       id='couple'
                       value='couple'
                       defaultChecked
-                      className='text-primary'
+                      className='hidden'
                       {...register('user')}
                     />
                     <label
                       htmlFor='couple'
-                      className='font-inter text-lg font-bold cursor-pointer'
+                      className='flex items-center space-x-3 cursor-pointer'
                     >
-                      For Couple
+                      <div className='checked-outer border-[3px] rounded-full border-primary w-7 h-7 flex items-center justify-center'>
+                        <div className='checked-inner w-3 h-3 rounded-full'></div>
+                      </div>
+                      <span className='font-inter text-lg font-bold'>
+                        For Couple
+                      </span>
                     </label>
                   </div>
-                  <div className='flex items-center space-x-3'>
+                  <div className='flex items-center'>
                     <input
                       type='radio'
                       id='venue'
                       value='venue'
-                      className='text-primary'
+                      className='hidden'
                       {...register('user')}
                     />
                     <label
                       htmlFor='venue'
-                      className='font-inter text-lg font-bold cursor-pointer'
+                      className='flex items-center space-x-3 cursor-pointer'
                     >
-                      For Venue
+                      <div className='checked-outer border-[3px] rounded-full border-primary w-7 h-7 flex items-center justify-center'>
+                        <div className='checked-inner w-3 h-3 rounded-full'></div>
+                      </div>
+                      <span className='font-inter text-lg font-bold'>
+                        For Venue
+                      </span>
                     </label>
                   </div>
                 </div>
-                <button className='border-2 text-sm md:text-base border-primary py-3 px-4 md:px-12 flex items-center space-x-3 rounded-[100px]'>
+                <button className='!mb-3 border-2 text-sm md:text-base border-primary py-3 px-4 md:px-12 flex items-center space-x-3 rounded-[100px]'>
                   <img src='/icons/gmail.svg' alt='' className='w-5 h-5' />
                   <span>Start with Google</span>
                 </button>
                 <div className='w-full'>
                   <input
                     type='email'
-                    className='w-full font-normal py-3 px-4 placeholder-gray-400 border-2 border-primary rounded-lg'
+                    className='w-full text-lg font-normal py-3 px-4 placeholder-gray-400 border-[3px] border-primary rounded-[10px]'
                     placeholder='Your Email'
                     {...register('email', {
                       required: {
@@ -117,7 +127,7 @@ const SignupPage = () => {
                 <div className='w-full'>
                   <input
                     type='password'
-                    className='w-full font-normal py-3 px-4 placeholder-gray-400 border-2 border-primary rounded-lg'
+                    className='w-full text-lg font-normal py-3 px-4 placeholder-gray-400 border-[3px] border-primary rounded-[10px]'
                     placeholder='Password'
                     {...register('password', {
                       required: {
@@ -145,7 +155,7 @@ const SignupPage = () => {
                     <span>Signup</span>
                   </button>
                 </div>
-                <div className='w-full'>
+                {/* <div className='w-full'>
                   <p className='font-light'>
                     Already have an account?{' '}
                     <Link href='/login'>
@@ -155,7 +165,7 @@ const SignupPage = () => {
                     </Link>
                   </p>
                 </div>
-                <div className='max-w-xs w-full mx-auto h-[2px] bg-gray-200'></div>
+                <div className='max-w-xs w-full mx-auto h-[2px] bg-gray-200'></div> */}
                 <div className='w-full'>
                   <p className='font-light'>
                     By creating an account you accept our{' '}

@@ -63,7 +63,7 @@ const Footer = () => {
           </a>
         </div>
       </div>
-      <div className='py-8 bg-gradient-to-br from-[#FCE3EB] to-white border-t-2 border-primary'>
+      <div className='py-8 bg-gradient-to-br from-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary'>
         <div className='container flex items-center justify-between gap-5 flex-wrap'>
           <p className='text-base'>
             <strong className='font-semibold'>

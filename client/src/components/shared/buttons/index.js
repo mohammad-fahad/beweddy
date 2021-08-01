@@ -4,7 +4,7 @@ export const LinkButton = ({ outline, label, className, href, onClick }) => {
   return (
     <Link {...{ href }}>
       <a
-        className={`py-3 text-center mx-auto px-20 border-2 border-primary rounded-3xl whitespace-nowrap transition-colors duration-300 ${
+        className={`py-3 inline-block text-center mx-auto px-28 border-[3px] border-primary rounded-3xl whitespace-nowrap transition-colors duration-300 ${
           outline
             ? 'bg-white text-primary hover:bg-primary hover:text-white'
             : 'bg-primary text-white hover:bg-white hover:text-primary'

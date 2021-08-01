@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Features = () => {
   return (
-    <div className='border-4 border-l-0 border-r-0 border-primary'>
+    <div className='border-[5px] border-l-0 border-r-0 border-primary'>
       <div className='container py-20'>
         <Heading
           label='The Only Free Text Messaging Wedding Platform'
