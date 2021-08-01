@@ -1,4 +1,4 @@
-import { Welcome } from '@components/signup/questions';
+import { Welcome } from '@components/question';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
