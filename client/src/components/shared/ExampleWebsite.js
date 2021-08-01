@@ -1,33 +1,32 @@
 import { Heading, LinkButton } from '@components/shared';
 import { motion } from 'framer-motion';
 import Head from 'next/head';
-import Link from 'next/link';
+
+const easing = [0.6, -0.05, 0.01, 0.99];
+const fadeInUp = {
+  initial: {
+    opacity: 0,
+    y: 60,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: easing,
+    },
+  },
+};
+
+const stagger = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
 
 const ExampleWebsite = ({ label, href, seo }) => {
-  const easing = [0.6, -0.05, 0.01, 0.99];
-  const fadeInUp = {
-    initial: {
-      opacity: 0,
-      y: 60,
-    },
-    animate: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: easing,
-      },
-    },
-  };
-
-  const stagger = {
-    animate: {
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-  
   return (
     <>
       <Head>
@@ -38,41 +37,48 @@ const ExampleWebsite = ({ label, href, seo }) => {
         exit={{ opacity: 0 }}
         initial='initial'
         animate='animate'
-        // initial={{ opacity: 0 }}
-        // animate={{ opacity: 1 }}
       >
-        <motion.div className='container min-h-screen pb-16' variants={stagger}>
+        <motion.div
+          className='container min-h-screen py-16 flex items-center justify-center'
+          variants={stagger}
+        >
           <motion.div
             variants={fadeInUp}
-            className='min-h-[20vh] flex items-center justify-center'
+            className='flex flex-col items-center justify-center'
           >
-            <Link href='/'>
-              <a className='text-center'>
-                <img src='/images/logo.png' alt='' className='h-24 mx-auto' />
-              </a>
-            </Link>
-          </motion.div>
-          <motion.div
-            variants={fadeInUp}
-            className='w-full min-h-[70vh] flex items-center justify-center'
-          >
-            <div className={`flex flex-col items-center justify-center`}>
+            <motion.div variants={fadeInUp}>
               <Heading label='Here is an example preview of the website your creating!' />
-              <motion.img
-                src='/images/wedding-laptop.png'
-                alt='Previews'
-                className='mx-auto max-w-2xl w-full'
-                exit={{
-                  scale: 3,
-                  opacity: 0,
-                  transition: {
-                    ease: 'linear',
-                  },
-                }}
-              />
-              <div className='my-5 text-center'>
-                <LinkButton className='!rounded-md' {...{ href, label }} />
-              </div>
+            </motion.div>
+            <motion.img
+              variants={fadeInUp}
+              src='/images/wedding-laptop.png'
+              alt='Previews'
+              className='mx-auto max-w-2xl w-full'
+              exit={{
+                scale: 3,
+                opacity: 0,
+                transition: {
+                  ease: 'linear',
+                },
+              }}
+              initial={{
+                scale: 3,
+                opacity: 0,
+                transition: {
+                  ease: 'linear',
+                },
+              }}
+              animate={{
+                scale: 1,
+                opacity: 1,
+                transition: {
+                  duration: 0.3,
+                  ease: 'linear',
+                },
+              }}
+            />
+            <div className='my-5 text-center'>
+              <LinkButton className='!rounded-md' {...{ href, label }} />
             </div>
           </motion.div>
         </motion.div>

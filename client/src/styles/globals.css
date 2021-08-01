@@ -39,7 +39,6 @@
     @apply outline-none ring-0 focus:border-primary !important;
   }
 
- 
   [type='radio']:checked + label .checked-outer {
     @apply bg-secondary-alternative;
   }
@@ -47,12 +46,20 @@
     @apply bg-primary;
   }
 
-  [type='checkbox']:checked + label .checked-outer,
-  [type='checkbox']:checked:hover + label .checked-outer,
-  [type='checkbox']:checked:focus + label .checked-outer {
+  [type='radio']:checked + label .checked-outer,
+  [type='radio']:checked:hover + label .checked-outer,
+  [type='radio']:checked:focus + label .checked-outer {
     @apply bg-secondary-alternative;
   }
-  
+
+  [type='checkbox']:checked,
+  [type='checkbox']:checked:hover,
+  [type='checkbox']:checked:focus {
+    @apply bg-[#FFB1B6] border-primary border-2;
+    background-image: url('/icons/tik.svg');
+    background-size: 12px;
+  }
+
   .timeline {
     @apply border-t-2 odd:ml-3 even:mr-3 odd:border-r-2 odd:rounded-tr-[25px] even:border-l-2 even:rounded-tl-[25px] border-primary;
   }

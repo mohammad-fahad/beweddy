@@ -44,10 +44,10 @@ const CoupleName = () => {
           animate={{ opacity: 1 }}
         >
           <div className='flex items-center gap-3 flex-wrap sm:flex-nowrap'>
-            <div className='w-full'>
+            <div className='max-w-[283px] w-full'>
               <input
                 type='text'
-                className='w-full font-normal py-3 px-4 placeholder-primary border-2 border-primary rounded-lg'
+                className='w-full text-lg font-normal py-3 px-4 placeholder-primary border-[3px] border-primary rounded-[5px]'
                 placeholder='First Name'
                 {...register('your_firstName', {
                   required: {
@@ -64,10 +64,10 @@ const CoupleName = () => {
                 {errors?.your_firstName?.message}
               </p>
             </div>
-            <div className='w-full'>
+            <div className='max-w-[283px] w-full'>
               <input
                 type='text'
-                className='w-full font-normal py-3 px-4 placeholder-primary border-2 border-primary rounded-lg'
+                className='w-full text-lg font-normal py-3 px-4 placeholder-primary border-[3px] border-primary rounded-[5px]'
                 placeholder='Last Name'
                 {...register('your_lastName', {
                   required: {
@@ -87,10 +87,10 @@ const CoupleName = () => {
           </div>
           <h2 className='font-alice text-4xl text-center'>&</h2>
           <div className='flex items-center gap-3 flex-wrap sm:flex-nowrap'>
-            <div className='w-full'>
+            <div className='max-w-[283px] w-full'>
               <input
                 type='text'
-                className='w-full font-normal py-3 px-4 placeholder-primary border-2 border-primary rounded-lg'
+                className='w-full text-lg font-normal py-3 px-4 placeholder-primary border-[3px] border-primary rounded-[5px]'
                 placeholder='First Name'
                 {...register('spouse_to_be_firstName', {
                   required: {
@@ -107,10 +107,10 @@ const CoupleName = () => {
                 {errors?.spouse_to_be_firstName?.message}
               </p>
             </div>
-            <div className='w-full'>
+            <div className='max-w-[283px] w-full'>
               <input
                 type='text'
-                className='w-full font-normal py-3 px-4 placeholder-primary border-2 border-primary rounded-lg'
+                className='w-full text-lg font-normal py-3 px-4 placeholder-primary border-[3px] border-primary rounded-[5px]'
                 placeholder='Last Name'
                 {...register('spouse_to_be_lastName', {
                   required: {

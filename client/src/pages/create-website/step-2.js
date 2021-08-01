@@ -30,7 +30,7 @@ const fadeInUp = {
 const stagger = {
   animate: {
     transition: {
-      staggerChildren: 0.05,
+      staggerChildren: 0.1,
     },
   },
 };
@@ -146,9 +146,9 @@ const WeddingDay = () => {
 
   return (
     <CreateWebsiteContainer seo={{ title: 'Wedding Day' }}>
-      <motion.div exit={{ opacity: 0 }} initial='initial' animate='animate'>
+      <motion.div>
         <motion.form
-          className={`flex  flex-col items-center justify-center my-5 md:my-0 !-mt-24`}
+          className={`flex flex-col w-full h-full items-center justify-center my-5 md:my-0 !-mt-24`}
           onSubmit={handleSubmit(onSubmit)}
           exit={{ opacity: 0 }}
           variants={stagger}

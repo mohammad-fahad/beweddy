@@ -1,6 +1,29 @@
 import { motion } from 'framer-motion';
 import Head from 'next/head';
-import Link from 'next/link';
+
+const easing = [0.6, -0.05, 0.01, 0.99];
+const fadeInUp = {
+  initial: {
+    opacity: 0,
+    y: 60,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: easing,
+    },
+  },
+};
+
+const stagger = {
+  animate: {
+    transition: {
+      staggerChildren: 0.05,
+    },
+  },
+};
 
 export const CreateWebsiteContainer = ({ seo, children }) => {
   return (
@@ -10,19 +33,13 @@ export const CreateWebsiteContainer = ({ seo, children }) => {
       </Head>
       <motion.div
         className={`bg-gradient-to-br from-[#FCE3EB] to-white`}
+        e
         exit={{ opacity: 0 }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial='initial'
+        animate='animate'
       >
-        <div className='container min-h-screen pb-16'>
-          <div className='min-h-[20vh] flex items-center justify-center'>
-            <Link href='/'>
-              <a className='text-center'>
-                <img src='/images/logo.png' alt='' className='h-24 mx-auto' />
-              </a>
-            </Link>
-          </div>
-          <div className='w-full min-h-[70vh] flex items-center justify-center'>
+        <div className='container py-16'>
+          <div className='min-h-screen flex items-center justify-center'>
             {children}
           </div>
         </div>

@@ -6,10 +6,10 @@ import { useMediaQuery } from '@react-hook/media-query';
 
 const giftCards = [
   {
-    name: 'Mycys',
+    name: "Macy's",
     image: '/images/macys.png',
     description:
-      'A Macy’s E-Gift Card is appreciated by one and all. With a store full of wonderful items for home, weekend or work, it’s the opportunity to get exactly what you want.  Recipients can choose from Macy’s incredible selection of fashions, furnishings and so much more. And Macy’s e-Gift cards never expire.',
+      'A Macy’s E-Gift Card is appreciated by one and all. With a store full of wonderful items for home, weekend or work, it’s the opportunity to get exactly what you want.  Recipients can choose from Macy’s incredible selection of fashions, furnishings and so much more.',
     // currency: 'USD',
     // amount: 25.6,
   },
@@ -23,7 +23,7 @@ const giftCards = [
   },
   {
     name: 'Walmart',
-    image: '/images/wallmart.png',
+    image: '/images/walmart.png',
     description:
       'With a Walmart eGift Card, you get low prices every day on thousands of popular products in stores or online at Walmart.com.You’ll find a wide assortment of top electronics, toys, home essentials and more. Plus, cards don’t expire and you never pay any fees.With a Walmart eGift Card, you get low prices every day on thousands of popular products in stores or online at Walmart.com.You’ll find a wide assortment of top electronics, toys, home essentials and more. Plus, cards don’t expire and you never pay any fees.',
     // currency: 'USD',
