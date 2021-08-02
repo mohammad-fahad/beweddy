@@ -43,7 +43,7 @@ const UploadAnnouncement = () => {
   const [loading, setLoading] = useState(false);
   const { questions } = useSelector(state => state.question);
   const [uploadedFile, setUploadedFile] = useState(
-    questions.weddingAnnouncement?.uploadAnnouncement || null
+    questions.weddingAnnouncement?.uploadAnnouncement || {}
   );
 
   const {
