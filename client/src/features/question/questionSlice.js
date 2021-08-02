@@ -4,11 +4,11 @@ const initialState = {
   loading: false,
   // error: null,
   questions: {
-    coupleName: null,
-    weddingDay: null,
-    weddingAnnouncement: null,
-    sentInvitation: null,
-    couplePictures: null,
+    coupleName: {},
+    weddingDay: {},
+    weddingAnnouncement: {},
+    sentInvitation: {},
+    couplePictures: [],
   },
 };
 
