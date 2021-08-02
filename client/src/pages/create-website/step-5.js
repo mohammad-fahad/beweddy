@@ -88,6 +88,11 @@ const UploadCouplePicture = () => {
       },
     });
   }, [register, doThisLater]);
+
+  useEffect(() => {
+    console.log(uploadedFiles);
+    setValue('uploadCouplePicture', uploadedFiles);
+  }, [uploadedFiles]);
   // handle side effect if user upload couple picture later
   useEffect(() => {
     if (doThisLater) {
