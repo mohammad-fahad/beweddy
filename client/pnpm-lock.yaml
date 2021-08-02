@@ -7,6 +7,7 @@ specifiers:
   '@icons-pack/react-simple-icons': ^4.6.1
   '@react-hook/media-query': ^1.1.1
   '@reduxjs/toolkit': ^1.6.1
+  '@tailwindcss/aspect-ratio': ^0.2.1
   '@tailwindcss/forms': ^0.3.3
   autoprefixer: ^10.3.1
   axios: ^0.21.1
@@ -38,6 +39,7 @@ dependencies:
   '@icons-pack/react-simple-icons': 4.6.1_react@17.0.2
   '@react-hook/media-query': 1.1.1_react@17.0.2
   '@reduxjs/toolkit': 1.6.1_react-redux@7.2.4+react@17.0.2
+  '@tailwindcss/aspect-ratio': 0.2.1_tailwindcss@2.2.4
   '@tailwindcss/forms': 0.3.3_tailwindcss@2.2.4
   axios: 0.21.1
   cloudinary: 1.26.2
@@ -339,6 +341,14 @@ packages:
       redux: 4.1.0
       redux-thunk: 2.3.0
       reselect: 4.0.0
+    dev: false
+
+  /@tailwindcss/aspect-ratio/0.2.1_tailwindcss@2.2.4:
+    resolution: {integrity: sha512-aDFi80aHQ3JM3symJ5iKU70lm151ugIGFCI0yRZGpyjgQSDS+Fbe93QwypC1tCEllQE8p0S7TUu20ih1b9IKLA==}
+    peerDependencies:
+      tailwindcss: '>=2.0.0'
+    dependencies:
+      tailwindcss: 2.2.4_d0cbdb03a6e75c60c9760f17c403e6d9
     dev: false
 
   /@tailwindcss/forms/0.3.3_tailwindcss@2.2.4:
