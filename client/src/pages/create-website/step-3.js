@@ -169,8 +169,27 @@ const UploadAnnouncement = () => {
           variants={fadeInUp}
         >
           {uploadedFile && (
-            <div className='flex items-center justify-center flex-wrap gap-5'>
+            <div className='max-w-xs w-full mx-auto'>
               <div className='group border-[3px] border-primary rounded-[5px] overflow-hidden relative'>
+                <button
+                  type='button'
+                  className='z-50 hidden group-hover:inline-block absolute right-1 top-1 p-1 text-red-400 border border-primary bg-white rounded-full'
+                  onClick={handleRemoveImage}
+                >
+                  <XIcon className='w-5 h-5' />
+                </button>
+                <div className='aspect-w-2 aspect-h-2'>
+                  <Image
+                    cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
+                    publicId={uploadedFile.public_id}
+                    src={!uploadedFile.public_id ? uploadedFile.url : null}
+                    width='350'
+                    crop='scale'
+                    className='object-cover w-full'
+                  />
+                </div>
+              </div>
+              {/* <div className='pb-[80%] group border-[3px] border-primary rounded-[5px] overflow-hidden relative'>
                 <button
                   type='button'
                   className='hidden group-hover:inline-block absolute right-1 top-1 p-1 text-red-400 border border-primary bg-white rounded-full'
@@ -184,9 +203,9 @@ const UploadAnnouncement = () => {
                   src={!uploadedFile.public_id ? uploadedFile.url : null}
                   width='300'
                   crop='scale'
-                  className='h-40 w-60 object-cover'
+                  className='absolute inset-0 h-full object-cover w-full'
                 />
-              </div>
+              </div> */}
             </div>
           )}
           <motion.div

@@ -14,6 +14,7 @@
     "@icons-pack/react-simple-icons": "^4.6.1",
     "@react-hook/media-query": "^1.1.1",
     "@reduxjs/toolkit": "^1.6.1",
+    "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/forms": "^0.3.3",
     "axios": "^0.21.1",
     "cloudinary": "^1.26.2",
