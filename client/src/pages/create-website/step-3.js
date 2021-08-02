@@ -169,7 +169,7 @@ const UploadAnnouncement = () => {
           variants={fadeInUp}
         >
           {uploadedFile && (
-            <div className='max-w-xs w-full mx-auto'>
+            <div className='max-w-[240px] w-full mx-auto'>
               <div className='group border-[3px] border-primary rounded-[5px] overflow-hidden relative'>
                 <button
                   type='button'

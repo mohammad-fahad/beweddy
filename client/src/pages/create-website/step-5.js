@@ -204,19 +204,19 @@ const UploadCouplePicture = () => {
           className='w-full flex flex-col items-center justify-center gap-8 mb-5'
           variants={fadeInUp}
         >
-          <motion.div
-            className='flex items-center justify-center gap-5 w-full'
-
-            // ani
-            // variants={stagger}
-          >
+          <motion.div className='flex items-center justify-center gap-5 w-full'>
             {uploadedFiles.map(image => (
-              <div className='max-w-xs w-full group border-[3px] border-primary rounded-[5px] overflow-hidden relative'>
-                {/* <div className='max-w-xs w-full mx-auto'> */}
+              <motion.div
+                className='max-w-[250px] w-full group border-[3px] border-primary rounded-[5px] overflow-hidden relative'
+                layout
+                exit={{ opacity: 0 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
                 <button
                   type='button'
                   className='z-50 hidden group-hover:inline-block absolute right-1 top-1 p-1 text-red-400 border border-primary bg-white rounded-full'
-                  onClick={handleRemoveImage}
+                  onClick={() => handleRemoveImage(image.public_id)}
                 >
                   <XIcon className='w-5 h-5' />
                 </button>
@@ -229,26 +229,8 @@ const UploadCouplePicture = () => {
                     crop='scale'
                     className='object-cover w-full'
                   />
-                  {/* <div className='pb-[80%] group border-[3px] border-primary rounded-[5px] overflow-hidden relative'>
-                <button
-                  type='button'
-                  className='hidden group-hover:inline-block absolute right-1 top-1 p-1 text-red-400 border border-primary bg-white rounded-full'
-                  onClick={handleRemoveImage}
-                >
-                  <XIcon className='w-5 h-5' />
-                </button>
-                <Image
-                  cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
-                  publicId={image.public_id}
-                  src={!image.public_id ? image.url : null}
-                  width='300'
-                  crop='scale'
-                  className='absolute inset-0 h-full object-cover w-full'
-                />
-              </div> */}
-                  {/* </div> */}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
 
