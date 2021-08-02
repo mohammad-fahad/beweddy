@@ -59,7 +59,7 @@ const UploadAnnouncement = () => {
     defaultValues: { uploadAnnouncement: uploadedFile },
   });
 
-  watch('do_this_later');
+  watch(['do_this_later']);
   const doThisLater = getValues('do_this_later');
 
   // React hook form register uploadAnnouncement
@@ -71,6 +71,10 @@ const UploadAnnouncement = () => {
       },
     });
   }, [register, doThisLater]);
+
+  useEffect(() => {
+    setValue('uploadAnnouncement', uploadedFile);
+  }, [uploadedFile]);
 
   useEffect(() => {
     if (doThisLater) {
