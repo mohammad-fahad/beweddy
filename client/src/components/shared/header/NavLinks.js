@@ -2,7 +2,9 @@ import Link from 'next/link';
 
 const NavLinks = ({ className }) => {
   return (
-    <div className={`flex items-center gap-5 ${className ? className : ''}`}>
+    <div
+      className={`flex md:items-center md:gap-5 ${className ? className : ''}`}
+    >
       <Link href='/'>
         <a className='flex items-center gap-3 text-base text-primary font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
           <img src='/icons/home.svg' alt='' className='w-5 h-5' />

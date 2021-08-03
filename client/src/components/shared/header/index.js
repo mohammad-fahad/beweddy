@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import { MenuIcon, XIcon } from '@heroicons/react/solid';
+import { SearchIcon } from '@heroicons/react/outline';
 import NavLinks from './NavLinks';
 import AuthLinks from './AuthLinks';
 import SearchBar from './SearchBar';
@@ -10,6 +11,7 @@ import { useState } from 'react';
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   return (
     <header className='bg-white relative'>
       <div className='max-w-6xl px-10 xxl:px-0 mx-auto xl:container py-10 flex flex-col gap-5'>
@@ -20,7 +22,7 @@ export const Header = () => {
               <img
                 src='/images/logo.png'
                 alt=''
-                className='h-20 w-52 object-cover'
+                className='h-14 sm:h-16 md:h-20 md:w-52 object-cover'
               />
             </a>
           </Link>
@@ -32,32 +34,62 @@ export const Header = () => {
               </div>
               {/* Navigation Links Ends */}
               {/* Authentication Links */}
-              <div className='flex items-center sm:ml-auto xl:ml-0 gap-2'>
-                <AuthLinks />
+              <div className='flex items-center ml-auto xl:ml-0 gap-2'>
+                <div className='hidden sm:flex items-center gap-2'>
+                  <AuthLinks />
+                </div>
                 {/* Menu Button */}
                 <button
-                  className='ml-5 inline-block xl:hidden text-sm text-primary font-bold font-inter group hover:text-primary transition-colors duration-300'
+                  className='ml-5 inline-block sm:hidden text-sm font-bold font-inter group hover:text-primary transition-colors duration-300'
+                  onClick={() => setIsSearchOpen(prev => !prev)}
+                >
+                  <SearchIcon className='w-8 h-8 text-gray-700' />
+                </button>
+                <button
+                  className='ml-5 inline-block xl:hidden text-sm font-bold font-inter group hover:text-primary transition-colors duration-300'
                   onClick={() => setIsOpen(prev => !prev)}
                 >
                   {isOpen ? (
-                    <XIcon className='w-8 h-8' />
+                    <XIcon className='w-8 h-8 text-gray-700' />
                   ) : (
-                    <MenuIcon className='w-8 h-8' />
+                    <svg
+                      width='68'
+                      height='68'
+                      viewBox='0 0 68 68'
+                      fill='none'
+                      className='w-8 h-8 text-gray-700'
+                      xmlns='http://www.w3.org/2000/svg'
+                    >
+                      <path
+                        d='M11.3335 31.1667H45.3335V36.8333H11.3335V31.1667ZM11.3335 17H56.6668V22.6667H11.3335V17ZM11.3335 51H31.8327V45.3333H11.3335V51Z'
+                        fill='black'
+                      />
+                    </svg>
                   )}
                 </button>
+                {/* <MenuIcon className='w-8 h-8' /> */}
               </div>
             </div>
-            <div className='hidden md:flex items-center justify-between flex-1 gap-10 xl:gap-20'>
+            <div className='hidden xl:flex items-center justify-between flex-1 gap-10 xl:gap-20'>
               {/* Search Bar Area */}
               <SearchBar />
               {/* Search Bar Area End */}
               {/* Social Links */}
+              {/* <div className='hidden xl:block'> */}
               <SocialLinks />
+              {/* </div> */}
             </div>
           </div>
         </div>
-        <div className='md:hidden'>
+        {isSearchOpen && <SearchBar />}
+        <div className='hidden xl:hidden sm:flex items-center justify-between flex-1 gap-10 xl:gap-20'>
           <SearchBar />
+          {/* Search Bar Area */}
+          {/* Search Bar Area End */}
+          {/* Social Links */}
+          <div className='hidden md:block'>
+            <SocialLinks />
+          </div>
         </div>
       </div>
       {isOpen && <MobileMenu />}

@@ -42,7 +42,7 @@ const SignupPage = () => {
                     <img
                       src='/images/logo.png'
                       alt=''
-                      className='h-16 md:h-[60px] mx-auto'
+                      className='h-14 md:h-[60px] mx-auto'
                     />
                   </a>
                 </Link>
