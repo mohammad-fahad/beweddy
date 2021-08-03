@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  
   html {
     scroll-behavior: smooth;
   }
@@ -82,8 +81,30 @@
   @apply bg-secondary-alternative/20 !important;
 }
 
-@media (max-width: 800px) {
+@media screen and (min-width: 300px) {
   .banner {
-    background-position: -120px !important;
+    background-position: -180% 0%, 0% 0% !important;
+  }
+}
+@media screen and (min-width: 400px) {
+  .banner {
+    background-position: -30% 0%, 0% 0% !important;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .banner {
+    background-position: -40% 0%, 0% 0% !important;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .banner {
+    background-position: -20% 0%, 0% 0% !important;
+  }
+}
+@media screen and (min-width: 992px) {
+  .banner {
+    background-position: -0% 0%, 0% 0% !important;
   }
 }

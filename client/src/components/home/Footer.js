@@ -64,14 +64,14 @@ const Footer = () => {
         </div>
       </div>
       <div className='py-8 bg-gradient-to-br from-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary'>
-        <div className='container flex items-center justify-between gap-5 flex-wrap'>
+        <div className='container flex items-center justify-center sm:justify-between gap-5 flex-wrap'>
           <p className='text-base'>
             <strong className='font-semibold'>
               &copy; {new Date().getFullYear()} BeWeddy.
             </strong>{' '}
             All rights reserved.
           </p>
-          <div className='flex items-center gap-6'>
+          <div className='flex items-center justify-center sm:justify-between flex-wrap gap-3 sm:gap-6'>
             <Link href='/'>
               <a className='text-primary font-medium font-inter group hover:text-primary transition-colors duration-300 relative'>
                 <span>About us</span>

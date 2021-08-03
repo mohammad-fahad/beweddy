@@ -22,10 +22,10 @@ const Banner = ({ setImageLoaded }) => {
       />
       <div className='container z-50 relative'>
         <div className='mb-28'>
-          <h1 className='text-6xl lg:text-[64px] xl:text-7xl text-white text-center font-normal'>
+          <h1 className='text-4xl sm:text-5xl md:text-6xl lg:text-[64px] xl:text-7xl text-white text-center font-normal'>
             <span className='text-[#F9D1DE] relative inline-block mr-1'>
               Free{' '}
-              <div className='absolute top-[-10px] lg:top-[-14px] left-[-25px] xl:left-[-34px] xxl:left-[-40px] w-[150px] h-[150px] lg:w-[164px] lg:h-[164px] xl:w-48 xl:h-48'>
+              <div className='absolute top-[-10px] lg:top-[-14px] left-[-25px] xl:left-[-34px] xxl:left-[-40px] w-[110px] sm:w-[128px] md:w-[150px] h-[150px] lg:w-[164px] lg:h-[164px] xl:w-48 xl:h-48'>
                 <img
                   src='/images/banner_circle.svg'
                   alt=''
@@ -36,9 +36,9 @@ const Banner = ({ setImageLoaded }) => {
             All-in-One <br /> Wedding Platform
           </h1>
         </div>
-        <div className='flex items-center justify-center flex-wrap -space-x-8 lg:-space-x-10 mb-20 pt-32 xl:pt-36'>
+        <div className='md:px-5 flex items-center justify-center flex-wrap md:mb-20 pt-32 xl:pt-36'>
           <Link href='/example-website'>
-            <a className='bg-white/90 hover:bg-white cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
+            <a className='sm:-ml-8 lg:-ml-10 bg-white/90 hover:bg-white cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
               <img
                 src='/icons/message.svg'
                 className='w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20'
@@ -50,7 +50,7 @@ const Banner = ({ setImageLoaded }) => {
             </a>
           </Link>
           <Link href='/example-website'>
-            <a className='bg-white/90 hover:bg-white cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
+            <a className='-ml-8 lg:-ml-10 bg-white/90 hover:bg-white cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
               <img
                 src='/icons/mail.svg'
                 className='w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20'
@@ -62,7 +62,7 @@ const Banner = ({ setImageLoaded }) => {
             </a>
           </Link>
           <Link href='/example-website'>
-            <a className='bg-white/90 hover:bg-white cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
+            <a className='-ml-8 lg:-ml-10 bg-white/90 hover:bg-white cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
               <img
                 src='/icons/rsvp.svg'
                 className='w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20 -mt-8'
@@ -74,7 +74,7 @@ const Banner = ({ setImageLoaded }) => {
             </a>
           </Link>
           <Link href='/example-website'>
-            <a className='bg-white/90 hover:bg-white cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
+            <a className='-mr-8 md:-mr-0 -ml-8 lg:-ml-10 bg-white/90 hover:bg-white cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
               <img
                 src='/icons/gift_solid.svg'
                 className='w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20'
@@ -87,7 +87,7 @@ const Banner = ({ setImageLoaded }) => {
             </a>
           </Link>
           <Link href='/example-website'>
-            <a className='bg-white/90 hover:bg-white cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
+            <a className='md:-ml-8 lg:-ml-10 bg-white/90 hover:bg-white cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
               <img
                 src='/icons/site.svg'
                 className='w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20'

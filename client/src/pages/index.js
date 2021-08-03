@@ -23,7 +23,7 @@ const HomePage = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
-      {!imageLoaded && <Loader preloader />}
+      {/* {!imageLoaded && <Loader preloader />} */}
       <Head>
         <title>BeWeddy | Free All-in-One Wedding Platform</title>
         <meta name='description' content='Free All-in-One Wedding Platform' />

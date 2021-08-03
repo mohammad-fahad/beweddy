@@ -115,12 +115,12 @@ const Registries = () => {
                 {registriesCard.isComponent ? (
                   <div className='w-full h-40 bg-secondary-alternative flex flex-col items-center justify-center p-5 border-2 border-transparent rounded-xl overflow-hidden hover:scale-105 transition duration-300 ease-easing my-2'>
                     <Link href='/'>
-                      <a className='py-2 px-6 text-white bg-primary hover:bg-primary/80 rounded-lg text-base mt-5 transition-colors duration-300 whitespace-nowrap'>
+                      <a className='py-2 px-6 text-white bg-primary hover:bg-primary/80 rounded-lg text-xs md:text-base mt-5 transition-colors duration-300 whitespace-nowrap'>
                         Create Registry
                       </a>
                     </Link>
                     <Link href='/'>
-                      <a className='py-2 px-6 text-blue-500 text-base font-light font-inter hover:underline'>
+                      <a className='py-2 text-blue-500 text-base font-light font-inter hover:underline'>
                         Learn more
                       </a>
                     </Link>
