@@ -33,7 +33,7 @@ const LoginPage = () => {
       >
         <div className='container min-h-screen flex items-center justify-center'>
           <form
-            className='w-full min-h-[75vh] flex items-center justify-center'
+            className='w-full flex items-center justify-center'
             onSubmit={handleSubmit(onSubmit)}
           >
             <section
@@ -45,7 +45,7 @@ const LoginPage = () => {
                     <img
                       src='/images/logo.png'
                       alt=''
-                      className='h-16 md:h-[60px] mx-auto'
+                      className='h-14 md:h-[60px] mx-auto'
                     />
                   </a>
                 </Link>
@@ -64,7 +64,7 @@ const LoginPage = () => {
                 <div className='w-full'>
                   <input
                     type='email'
-                    className='w-full text-lg font-normal py-3 px-6 placeholder-gray-400 border-[3px] border-primary rounded-lg'
+                    className='w-full text-sm md:text-lg font-normal py-2 md:py-3 px-4 md:px-6 placeholder-gray-400 border-[3px] border-primary rounded-lg'
                     placeholder='Your Email'
                     {...register('email', {
                       required: {
@@ -87,7 +87,7 @@ const LoginPage = () => {
                 <div className='w-full'>
                   <input
                     type='password'
-                    className='w-full text-lg font-normal py-3 px-6 placeholder-gray-400 border-[3px] border-primary rounded-lg'
+                    className='w-full text-sm md:text-lg font-normal py-2 md:py-3 px-4 md:px-6 placeholder-gray-400 border-[3px] border-primary rounded-lg'
                     placeholder='Password'
                     {...register('password', {
                       required: {
@@ -109,7 +109,7 @@ const LoginPage = () => {
                 <div className='w-full'>
                   <button
                     type='submit'
-                    className='w-full py-3 px-4 placeholder-gray-400 border-2 border-primary bg-primary hover:bg-primary/80 text-white rounded-lg flex items-center justify-center space-x-3 transition duration-300'
+                    className='w-full text-sm md:text-base py-2 md:py-3 px-4 placeholder-gray-400 border-2 border-primary bg-primary hover:bg-primary/80 text-white rounded-lg flex items-center justify-center space-x-3 transition duration-300'
                   >
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
@@ -134,7 +134,7 @@ const LoginPage = () => {
                       Forgot your password?
                     </a>
                   </Link>
-                  <p className='text-lg font-semibold text-center'>
+                  <p className='text-sm md:text-lg font-semibold text-center'>
                     Don't have an account?&nbsp;
                     <Link href='/signup'>
                       <a className='font-inter font-semibold hover:underline'>

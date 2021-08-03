@@ -1,5 +1,5 @@
 import { CreateWebsiteContainer } from '@components/createWebsite';
-import { Button, Loader } from '@components/index';
+import { Button, Heading, Loader } from '@components/index';
 import { addCouplePictures } from '@features/question/questionSlice';
 import { XIcon } from '@heroicons/react/solid';
 import { removeImage } from '@utils/index';
@@ -201,13 +201,24 @@ const UploadCouplePicture = () => {
         variants={stagger}
       >
         <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+        >
+          <Heading
+            label='Upload your favorite picture of you two. ❤️'
+            color='bg-primary'
+            className='pt-5 md:pt-0'
+            lineStyle={{ marginBottom: '40px' }}
+          />
+        </motion.div>
+        <motion.div
           className='w-full flex flex-col items-center justify-center gap-8 mb-5'
           variants={fadeInUp}
         >
-          <motion.div className='flex items-center justify-center gap-5 w-full'>
+          <motion.div className='flex items-center justify-center flex-wrap gap-5 w-full'>
             {uploadedFiles.map(image => (
               <motion.div
-                className='max-w-[250px] w-full group border-[3px] border-primary rounded-[5px] overflow-hidden relative'
+                className='max-w-[150px] md:max-w-[220px] w-full group border-[3px] border-primary rounded-[5px] overflow-hidden relative'
                 layout
                 exit={{ opacity: 0 }}
                 initial={{ opacity: 0 }}
@@ -242,9 +253,9 @@ const UploadCouplePicture = () => {
             <input {...getInputProps()} />
             <label
               htmlFor='uploadCouplePicture'
-              className='bg-white cursor-pointer inline-block text-xl text-center font-semibold py-5 px-8 md:px-12 placeholder-primary border-[3px] border-primary rounded-[5px]'
+              className='w-56 bg-white cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-2 md:py-3 px-4 placeholder-primary border-[3px] border-primary rounded-[5px]'
             >
-              Upload your favorite picture of you two. ❤️
+              Upload
             </label>
             <p className='mt-2 text-red-400 font-light text-sm text-center'>
               {errors?.uploadCouplePicture?.message}

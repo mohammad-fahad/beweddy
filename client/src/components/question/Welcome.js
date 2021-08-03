@@ -37,7 +37,7 @@ const Welcome = () => {
             />
           </motion.div>
           <motion.p
-            className='text-2xl text-center font-normal w-full max-w-xl mb-10 capitalize'
+            className='text-sm md:text-2xl text-center font-normal w-full max-w-xl mb-10 capitalize'
             exit={{ opacity: 0, y: 60 }}
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}

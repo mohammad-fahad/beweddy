@@ -18,7 +18,7 @@ const WebsitePreview = () => {
   return (
     <CreateWebsiteContainer seo={{ title: 'Preview Your Wedding Website' }}>
       <motion.div
-        className={`flex flex-col items-center justify-center`}
+        className={`flex flex-col items-center justify-center overflow-hidden`}
         exit={{ opacity: 0 }}
       >
         <motion.div
@@ -42,7 +42,7 @@ const WebsitePreview = () => {
               <img
                 src='/images/wedding-laptop.png'
                 alt=''
-                className='max-h-[450px] mx-auto swiper-lazy'
+                className='h-full max-h-[250px] md:max-h-[395px] lg:max-h-[550px] mx-auto swiper-lazy'
               />
               <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
             </div>
@@ -50,7 +50,7 @@ const WebsitePreview = () => {
               <img
                 src='/images/wedding-phone.png'
                 alt=''
-                className='max-h-[450px] mx-auto swiper-lazy'
+                className='h-full max-h-[250px] md:max-h-[395px] lg:max-h-[550px] mx-auto swiper-lazy'
               />
               <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
             </div>
@@ -58,7 +58,7 @@ const WebsitePreview = () => {
               <img
                 src='/images/wedding-macbook.png'
                 alt=''
-                className='max-h-[460px] mx-auto swiper-lazy'
+                className='h-full max-h-[250px] md:max-h-[395px] lg:max-h-[560px] mx-auto swiper-lazy'
               />
               <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
             </div>
@@ -68,12 +68,12 @@ const WebsitePreview = () => {
           <LinkButton
             href='/create-website/step-7'
             label='Launch Your Wedding Platform'
-            className='!rounded-[10px] !py-5 md:!px-10 !text-lg'
+            className='!rounded-[10px] !py-5 md:!px-10'
           />
         </div>
         <div className='mb-5'>
           <Link href='/create-website/step-1'>
-            <a className='text-lg font-inter font-medium text-center capitalize hover:underline'>
+            <a className='text-sm md:text-lg font-inter font-medium text-center capitalize hover:underline'>
               Edit your platform
             </a>
           </Link>
