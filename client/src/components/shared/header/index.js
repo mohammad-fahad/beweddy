@@ -29,7 +29,7 @@ export const Header = () => {
               </div>
               {/* Navigation Links Ends */}
               {/* Authentication Links */}
-              <div className='flex items-center ml-auto xl:ml-0 gap-2'>
+              <div className='flex items-center sm:ml-auto xl:ml-0 gap-2'>
                 <AuthLinks />
                 {/* Menu Button */}
                 <button className='ml-5 inline-block xl:hidden text-sm text-primary font-bold font-inter group hover:text-primary transition-colors duration-300'>
