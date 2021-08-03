@@ -53,7 +53,3 @@ export const Header = () => {
     </header>
   );
 };
-
-// Sign in sign up
-
-// Search bar
