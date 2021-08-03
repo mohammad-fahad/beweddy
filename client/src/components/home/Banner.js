@@ -36,7 +36,7 @@ const Banner = ({ setImageLoaded }) => {
             All-in-One <br /> Wedding Platform
           </h1>
         </div>
-        <div className='md:px-5 flex items-center justify-center flex-wrap md:mb-20 pt-32 xl:pt-36'>
+        <div className='banner-bubble sm:ml-8 md:px-5 flex items-center justify-center flex-wrap md:mb-20 pt-32 xl:pt-36'>
           <Link href='/example-website'>
             <a className='sm:-ml-8 lg:-ml-10 bg-white/90 hover:bg-white cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
               <img
@@ -74,7 +74,7 @@ const Banner = ({ setImageLoaded }) => {
             </a>
           </Link>
           <Link href='/example-website'>
-            <a className='-mr-8 md:-mr-0 -ml-8 lg:-ml-10 bg-white/90 hover:bg-white cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
+            <a className='banner-bubble-item-1 -ml-8 lg:-ml-10 bg-white/90 hover:bg-white cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
               <img
                 src='/icons/gift_solid.svg'
                 className='w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20'
@@ -87,7 +87,7 @@ const Banner = ({ setImageLoaded }) => {
             </a>
           </Link>
           <Link href='/example-website'>
-            <a className='md:-ml-8 lg:-ml-10 bg-white/90 hover:bg-white cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
+            <a className='banner-bubble-item-2 -mt-7 sm:-mt-0 sm:-ml-8 lg:-ml-10 bg-white/90 hover:bg-white cursor-pointer border-4 border-primary w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-full bg-white flex flex-col items-center justify-center hover:scale-110 transition duration-300'>
               <img
                 src='/icons/site.svg'
                 className='w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20'

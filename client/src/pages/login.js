@@ -27,9 +27,9 @@ const LoginPage = () => {
       </Head>
       <motion.div
         className='bg-gradient-to-br from-[#FCE3EB] to-white '
-        exit={{ opacity: 0 }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        // exit={{ opacity: 0 }}
+        // initial={{ opacity: 0 }}
+        // animate={{ opacity: 1 }}
       >
         <div className='container min-h-screen flex items-center justify-center'>
           <form

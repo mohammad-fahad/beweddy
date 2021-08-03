@@ -33,7 +33,7 @@ const ExampleWebsite = ({ label, href, seo }) => {
         <title>BeWeddy | {seo.title}</title>
       </Head>
       <motion.div
-        className={`bg-gradient-to-br from-[#FCE3EB] to-white`}
+        className={`bg-gradient-to-br from-[#FCE3EB] to-white overflow-hidden`}
         exit={{ opacity: 0 }}
         initial='initial'
         animate='animate'

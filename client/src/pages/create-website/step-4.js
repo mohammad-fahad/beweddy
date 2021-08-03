@@ -88,7 +88,7 @@ const SentInvitation = () => {
   return (
     <CreateWebsiteContainer seo={{ title: 'Sent Invitations' }}>
       <motion.form
-        className={`flex flex-col items-center justify-center`}
+        className={`flex flex-col items-center justify-center overflow-hidden`}
         onSubmit={handleSubmit(onSubmit)}
         variants={stagger}
       >
