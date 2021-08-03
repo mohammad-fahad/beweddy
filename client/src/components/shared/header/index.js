@@ -83,8 +83,8 @@ export const Header = () => {
         </div>
         {isSearchOpen && <SearchBar />}
         <div className='hidden xl:hidden sm:flex items-center justify-between flex-1 gap-10 xl:gap-20'>
-          <SearchBar />
           {/* Search Bar Area */}
+          <SearchBar />
           {/* Search Bar Area End */}
           {/* Social Links */}
           <div className='hidden md:block'>

@@ -11,8 +11,8 @@ const registriesCards = [
     image: '/images/amazon-registry.png',
     description:
       'Use your Amazon.com Gift Card* towards Books, Electronics, Music, and more. The Amazon.com web site is the place to find and discover almost any thing you want to buy online at a great price.',
-    currency: 'USD',
-    amount: 25.6,
+    // currency: 'USD',
+    // amount: 25.6,
   },
   {
     name: 'Gift',
@@ -31,16 +31,16 @@ const registriesCards = [
     image: '/images/amazon-registry.png',
     description:
       'Use your Amazon.com Gift Card* towards Books, Electronics, Music, and more. The Amazon.com web site is the place to find and discover almost any thing you want to buy online at a great price.',
-    currency: 'USD',
-    amount: 25.6,
+    // currency: 'USD',
+    // amount: 25.6,
   },
   {
     name: 'Amazon',
     image: '/images/amazon-registry.png',
     description:
       'Use your Amazon.com Gift Card* towards Books, Electronics, Music, and more. The Amazon.com web site is the place to find and discover almost any thing you want to buy online at a great price.',
-    currency: 'USD',
-    amount: 25.6,
+    // currency: 'USD',
+    // amount: 25.6,
   },
   {
     name: 'Gift',
@@ -170,7 +170,7 @@ const Registries = () => {
                       <img
                         src={tooltip.image}
                         alt={tooltip.name}
-                        className='w-64 h-40 object-cover md:mr-10 hidden md:block'
+                        className='h-8 object-cover md:mr-10 hidden md:block'
                       />
                       <div className='md:pl-10'>
                         <h4 className='text-2xl md:text-3xl font-medium text-[#f16521]'>
