@@ -14,7 +14,7 @@ export const Header = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   return (
     <header className='bg-white relative'>
-      <div className='max-w-6xl px-10 xxl:px-0 mx-auto xl:container py-6 md:py-10 flex flex-col gap-5'>
+      <div className='max-w-6xl px-10 xxl:px-0 mx-auto xl:container py-5 md:py-10 flex flex-col gap-5'>
         <div className=' flex items-center justify-between gap-5 lg:gap-16 xl:gap-20 flex-wrap'>
           {/* Logo */}
           <Link href='/'>
