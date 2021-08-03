@@ -161,15 +161,16 @@ const UploadAnnouncement = () => {
           <Heading
             label='Upload Wedding invite & announcement!'
             color='bg-primary'
-            lineStyle={{ marginBottom: '45px' }}
+            className='pt-5 md:pt-0'
+            lineStyle={{ marginBottom: '40px' }}
           />
         </motion.div>
         <motion.div
-          className='w-full flex flex-col items-center justify-center gap-8 mb-10'
+          className='w-full flex flex-col items-center justify-center gap-5 md:gap-8 mb-8 md:mb-10'
           variants={fadeInUp}
         >
           {uploadedFile && (
-            <div className='max-w-[240px] w-full mx-auto'>
+            <div className='max-w-[200px] md:max-w-[240px] w-full mx-auto'>
               <div className='group border-[3px] border-primary rounded-[5px] overflow-hidden relative'>
                 <button
                   type='button'
@@ -178,7 +179,7 @@ const UploadAnnouncement = () => {
                 >
                   <XIcon className='w-5 h-5' />
                 </button>
-                <div className='aspect-w-2 aspect-h-2'>
+                <div className='aspect-w-1 md:aspect-w-2 aspect-h-1 md:aspect-h-2'>
                   <Image
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                     publicId={uploadedFile.public_id}
@@ -216,7 +217,7 @@ const UploadAnnouncement = () => {
             <input {...getInputProps()} />
             <label
               htmlFor='uploadAnnouncement'
-              className='w-56 bg-white cursor-pointer inline-block text-center font-semibold py-3 px-4 placeholder-primary border-[3px] border-primary rounded-[5px]'
+              className='w-56 bg-white cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-2 md:py-3 px-4 placeholder-primary border-[3px] border-primary rounded-[5px]'
             >
               Upload
             </label>
@@ -232,12 +233,12 @@ const UploadAnnouncement = () => {
               type='checkbox'
               id='do_this_later'
               value={true}
-              className='text-secondary-alternative rounded-md border-2 border-primary w-[24px] h-[24px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+              className='text-secondary-alternative rounded-md border-2 border-primary w-[20px] md:w-[24px] h-[20px] md:h-[24px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
               {...register('do_this_later')}
             />
             <label
               htmlFor='do_this_later'
-              className='font-inter text-lg font-normal cursor-pointer'
+              className='font-inter text-sm md:text-lg font-normal cursor-pointer'
             >
               I will do this later
             </label>

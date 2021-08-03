@@ -35,19 +35,21 @@ const CoupleName = () => {
           <Heading
             label="What's your name? & Who's your lucky spouse-to-be?"
             color='bg-primary'
+            className='pt-5 md:pt-0'
+            lineStyle={{ marginBottom: '45px' }}
           />
         </motion.div>
         <motion.div
-          className='flex items-center gap-3 md:gap-5 flex-wrap flex-col xl:flex-row'
+          className='flex items-center gap-2 md:gap-5 flex-wrap flex-col xl:flex-row'
           exit={{ opacity: 0 }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
-          <div className='flex items-center gap-3 flex-wrap sm:flex-nowrap'>
+          <div className='flex justify-center items-center gap-3 flex-wrap sm:flex-nowrap'>
             <div className='max-w-[283px] w-full'>
               <input
                 type='text'
-                className='w-full text-lg font-normal py-3 px-4 placeholder-primary border-[3px] border-primary rounded-[5px]'
+                className='w-full text-sm md:text-lg font-normal py-2 md:py-3 px-3 md:px-4 placeholder-primary border-[3px] border-primary rounded-[5px]'
                 placeholder='First Name'
                 {...register('your_firstName', {
                   required: {
@@ -67,7 +69,7 @@ const CoupleName = () => {
             <div className='max-w-[283px] w-full'>
               <input
                 type='text'
-                className='w-full text-lg font-normal py-3 px-4 placeholder-primary border-[3px] border-primary rounded-[5px]'
+                className='w-full text-sm md:text-lg font-normal py-2 md:py-3 px-3 md:px-4 placeholder-primary border-[3px] border-primary rounded-[5px]'
                 placeholder='Last Name'
                 {...register('your_lastName', {
                   required: {
@@ -85,12 +87,12 @@ const CoupleName = () => {
               </p>
             </div>
           </div>
-          <h2 className='font-alice text-4xl text-center'>&</h2>
-          <div className='flex items-center gap-3 flex-wrap sm:flex-nowrap'>
+          <h2 className='font-alice text-3xl md:text-4xl text-center'>&</h2>
+          <div className='flex justify-center items-center gap-3 flex-wrap sm:flex-nowrap'>
             <div className='max-w-[283px] w-full'>
               <input
                 type='text'
-                className='w-full text-lg font-normal py-3 px-4 placeholder-primary border-[3px] border-primary rounded-[5px]'
+                className='w-full text-sm md:text-lg font-normal py-2 md:py-3 px-3 md:px-4 placeholder-primary border-[3px] border-primary rounded-[5px]'
                 placeholder='First Name'
                 {...register('spouse_to_be_firstName', {
                   required: {
@@ -110,7 +112,7 @@ const CoupleName = () => {
             <div className='max-w-[283px] w-full'>
               <input
                 type='text'
-                className='w-full text-lg font-normal py-3 px-4 placeholder-primary border-[3px] border-primary rounded-[5px]'
+                className='w-full text-sm md:text-lg font-normal py-2 md:py-3 px-3 md:px-4 placeholder-primary border-[3px] border-primary rounded-[5px]'
                 placeholder='Last Name'
                 {...register('spouse_to_be_lastName', {
                   required: {
@@ -129,7 +131,7 @@ const CoupleName = () => {
             </div>
           </div>
         </motion.div>
-        <div className='my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'>
+        <div className='my-3 md:my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'>
           <Button
             label='Back'
             className='opacity-50 !rounded-[10px]'

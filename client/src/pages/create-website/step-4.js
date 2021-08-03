@@ -100,18 +100,19 @@ const SentInvitation = () => {
           <Heading
             label='How would you like your invitations sent?'
             color='bg-primary'
+            className='pt-5 md:pt-0'
             style={{ paddingBottom: '25px' }}
             lineStyle={{ marginBottom: '25px' }}
           />
         </motion.div>
         <motion.h2
-          className='font-semibold font-inter text-3xl text-center mb-8'
+          className='font-semibold font-inter text-lg md:text-3xl text-center mb-8'
           variants={fadeInUp}
         >
           (Check all that apply)
         </motion.h2>
         <motion.div
-          className='w-full max-w-xl flex flex-col justify-center gap-5 mb-10 ml-28'
+          className='w-full max-w-xl flex flex-col justify-center gap-5 mb-10 md:ml-28'
           variants={fadeInUp}
         >
           <div>
@@ -121,11 +122,11 @@ const SentInvitation = () => {
             <div className='flex items-center'>
               <Listbox value={selectedCountry} onChange={setSelectedCountry}>
                 <div className='relative -mr-2'>
-                  <Listbox.Button className='bg-white cursor-pointer inline-block font-semibold py-[10px] px-4 placeholder-gray-400 border-[3px] border-gray-200 rounded-[5px] -mr-1'>
+                  <Listbox.Button className='bg-white cursor-pointer inline-block font-semibold py-[6px] md:py-[10px] px-4 placeholder-gray-400 border-[3px] border-gray-200 rounded-[5px] -mr-1'>
                     <img
                       src={selectedCountry.flag}
                       alt={selectedCountry.name}
-                      className='w-7 h-7 object-cover rounded-full mr-4'
+                      className='w-7 h-7 object-cover rounded-full mr-8 md:mr-4'
                     />
                     <span className='absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none'>
                       <svg
@@ -196,7 +197,7 @@ const SentInvitation = () => {
               <input
                 id='phone'
                 type='tel'
-                className='max-w-sm w-full focus:!border-gray-200 bg-white inline-block font-normal py-3 px-4 pl-5 placeholder-gray-400 border-[3px] border-gray-200 rounded-[5px]'
+                className='max-w-sm w-full focus:!border-gray-200 bg-white inline-block font-normal py-2 md:py-3 px-4 pl-5 placeholder-gray-400 border-[3px] border-gray-200 rounded-[5px]'
                 placeholder='Enter phone number'
                 {...register('phone', {
                   required: {
@@ -224,12 +225,12 @@ const SentInvitation = () => {
                 id='text_invite'
                 value={true}
                 defaultChecked
-                className='text-primary rounded-md border-2 border-primary w-[24px] h-[24px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+                className='text-primary rounded-md border-2 border-primary w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
                 {...register('text_invite')}
               />
               <label
                 htmlFor='text_invite'
-                className='font-inter font-light text-lg cursor-pointer'
+                className='font-inter font-light text-sm md:text-lg cursor-pointer'
               >
                 Text invitation 📲{' '}
                 <strong className='font-semibold'>(Free)</strong>
@@ -244,12 +245,12 @@ const SentInvitation = () => {
                 id='email_invite'
                 value={true}
                 defaultChecked
-                className='text-primary rounded-md border-2 border-primary w-[24px] h-[24px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+                className='text-primary rounded-md border-2 border-primary w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
                 {...register('email_invite')}
               />
               <label
                 htmlFor='email_invite'
-                className='font-inter font-light text-lg cursor-pointer'
+                className='font-inter font-light text-sm md:text-lg cursor-pointer'
               >
                 Email invitation 🖥{' '}
                 <strong className='font-semibold'>(Free)</strong>
@@ -263,12 +264,12 @@ const SentInvitation = () => {
                 type='checkbox'
                 id='mail_out_invite'
                 value={true}
-                className='text-primary rounded-md border-2 border-primary w-[24px] h-[24px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+                className='text-primary rounded-md border-2 border-primary w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
                 {...register('mail_out_invite')}
               />
               <label
                 htmlFor='mail_out_invite'
-                className='font-inter font-light text-lg cursor-pointer'
+                className='font-inter font-light text-sm md:text-lg cursor-pointer'
               >
                 Mail out Invitation ($1.25 for prints, envelopes & postage 💌)
               </label>
@@ -281,12 +282,12 @@ const SentInvitation = () => {
                 type='checkbox'
                 id='all_the_above'
                 value={true}
-                className='text-primary rounded-md border-2 border-primary w-[24px] h-[24px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+                className='text-primary rounded-md border-2 border-primary w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
                 {...register('all_the_above')}
               />
               <label
                 htmlFor='all_the_above'
-                className='font-inter font-light text-lg cursor-pointer'
+                className='font-inter font-light text-sm md:text-lg cursor-pointer'
               >
                 All the above 💯 ($1.25 per invite mailed)
               </label>
@@ -294,7 +295,7 @@ const SentInvitation = () => {
           </motion.div>
         </motion.div>
         <motion.div
-          className='my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'
+          className='my-5 md:my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'
           variants={fadeInUp}
         >
           <Button

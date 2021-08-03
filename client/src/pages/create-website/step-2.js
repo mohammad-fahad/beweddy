@@ -149,12 +149,12 @@ const WeddingDay = () => {
           <Heading
             label="When's Your Special Wedding Day?"
             color='bg-primary'
-            lineStyle={{ marginBottom: '45px' }}
+            lineStyle={{ marginBottom: '40px' }}
           />
         </motion.div>
         <motion.div
           variants={fadeInUp}
-          className='w-full flex flex-col items-center justify-center gap-3 md:gap-5 mb-10'
+          className='w-full flex flex-col items-center justify-center gap-3 md:gap-5 mb-5 md:mb-10'
         >
           <div>
             <DayPickerInput
@@ -170,7 +170,7 @@ const WeddingDay = () => {
                   <input
                     id='weddingDate'
                     name='weddingDate'
-                    className='w-56 font-semibold py-3 pr-4 pl-14 placeholder-primary border-[3px] border-primary rounded-[5px]'
+                    className='w-56 text-sm md:text-base font-medium md:font-semibold py-2 md:py-3 pr-4 pl-14 placeholder-primary border-[3px] border-primary rounded-[5px]'
                     {...register('weddingDate', {
                       required: {
                         value: !getValues('tba'),
@@ -181,14 +181,14 @@ const WeddingDay = () => {
                   />
                   <label
                     htmlFor='weddingDate'
-                    className='absolute cursor-pointer top-[15px] left-[18px] bg-white'
+                    className='absolute cursor-pointer top-[12px] md:top-[15px] left-[18px] bg-white'
                   >
                     <svg
                       width='28'
                       height='31'
                       viewBox='0 0 28 31'
                       fill='none'
-                      className='w-6 h-6'
+                      className='w-5 md:w-6 h-5 md:h-6'
                       xmlns='http://www.w3.org/2000/svg'
                     >
                       <path
@@ -216,12 +216,12 @@ const WeddingDay = () => {
               type='checkbox'
               id='tba'
               value={true}
-              className='text-primary rounded-md border-2 border-primary w-[25px] h-[25px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+              className='text-sm md:text-base text-primary rounded-md border-2 border-primary w-[25px] h-[25px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
               {...register('tba')}
             />
             <label
               htmlFor='tba'
-              className='font-inter text-lg font-normal cursor-pointer'
+              className='font-inter text-sm md:text-lg font-normal cursor-pointer'
             >
               We're still deciding (TBA)
             </label>
@@ -229,19 +229,19 @@ const WeddingDay = () => {
         </motion.div>
         <motion.div
           variants={fadeInUp}
-          className={`w-48 mx-auto h-[2px] md:h-[3px] mb-10 bg-primary`}
+          className={`w-48 mx-auto h-[2px] md:h-[3px] mb-5 md:mb-10 bg-primary`}
         />
         <motion.div variants={fadeInUp} className='flex items-center space-x-3'>
           <input
             type='checkbox'
             id='have2Reception'
             value={true}
-            className='text-primary rounded-md border-2 border-primary w-[25px] h-[25px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+            className='text-sm md:text-base text-primary rounded-md border-2 border-primary w-[25px] h-[25px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
             {...register('have2Reception')}
           />
           <label
             htmlFor='have2Reception'
-            className='font-inter text-lg font-normal cursor-pointer'
+            className='font-inter text-sm md:text-lg font-normal cursor-pointer'
           >
             Reception and wedding not on the same day?
           </label>
@@ -266,7 +266,7 @@ const WeddingDay = () => {
                     <input
                       id='firstReception'
                       name='firstReception'
-                      className='w-64 font-semibold py-3 pr-4 pl-14 placeholder-primary border-[3px] border-primary rounded-[5px]'
+                      className='w-64 text-sm md:text-base font-medium md:font-semibold py-2 md:py-3 pr-4 pl-14 placeholder-primary border-[3px] border-primary rounded-[5px]'
                       {...register('firstReception', {
                         required: {
                           value: true,
@@ -277,14 +277,14 @@ const WeddingDay = () => {
                     />
                     <label
                       htmlFor='firstReception'
-                      className='absolute cursor-pointer top-[15px] left-[18px] bg-white'
+                      className='absolute cursor-pointer top-[12px] md:top-[15px] left-[18px] bg-white'
                     >
                       <svg
                         width='28'
                         height='31'
                         viewBox='0 0 28 31'
                         fill='none'
-                        className='w-6 h-6'
+                        className='w-5 md:w-6 h-5 md:h-6'
                         xmlns='http://www.w3.org/2000/svg'
                       >
                         <path
@@ -316,20 +316,20 @@ const WeddingDay = () => {
                 <div className='relative'>
                   <input
                     name='secondReception'
-                    className='w-64 font-semibold py-3 pr-4 pl-14 placeholder-primary border-[3px] border-primary rounded-[5px]'
+                    className='w-64 text-sm md:text-base font-medium md:font-semibold py-2 md:py-3 pr-4 pl-14 placeholder-primary border-[3px] border-primary rounded-[5px]'
                     {...register('secondReception')}
                     {...props}
                   />
                   <label
                     htmlFor='secondReception'
-                    className='absolute cursor-pointer top-[15px] left-[18px] bg-white'
+                    className='absolute cursor-pointer top-[12px] md:top-[15px] left-[18px] bg-white'
                   >
                     <svg
                       width='28'
                       height='31'
                       viewBox='0 0 28 31'
                       fill='none'
-                      className='w-6 h-6'
+                      className='w-5 md:w-6 h-5 md:h-6'
                       xmlns='http://www.w3.org/2000/svg'
                     >
                       <path
@@ -352,7 +352,7 @@ const WeddingDay = () => {
         )}
         <motion.div
           variants={fadeInUp}
-          className='my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'
+          className='my-2 md:my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'
         >
           <Button
             label='Back'

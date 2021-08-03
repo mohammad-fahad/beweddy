@@ -2,7 +2,7 @@ const Heading = ({ label, color, className, style, lineStyle }) => {
   return (
     <>
       <h2
-        className={`text-4xl lg:text-5xl max-w-3xl mx-auto text-center pb-6 capitalize ${
+        className={`text-2xl md:text-4xl lg:text-5xl max-w-3xl mx-auto text-center pb-6 capitalize ${
           className ? className : ''
         }`}
         style={{ lineHeight: 1.3, ...style }}
