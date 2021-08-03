@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply font-inter;
   }
@@ -82,5 +87,3 @@
     background-position: -120px !important;
   }
 }
-
-
