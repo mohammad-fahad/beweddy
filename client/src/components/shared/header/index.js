@@ -41,13 +41,19 @@ export const Header = () => {
                 {/* Menu Button */}
                 <button
                   className='ml-5 inline-block sm:hidden text-sm font-bold font-inter group hover:text-primary transition-colors duration-300'
-                  onClick={() => setIsSearchOpen(prev => !prev)}
+                  onClick={() => {
+                    setIsSearchOpen(prev => !prev);
+                    setIsOpen(false);
+                  }}
                 >
                   <SearchIcon className='w-8 h-8 text-gray-700' />
                 </button>
                 <button
                   className='ml-5 inline-block xl:hidden text-sm font-bold font-inter group hover:text-primary transition-colors duration-300'
-                  onClick={() => setIsOpen(prev => !prev)}
+                  onClick={() => {
+                    setIsOpen(prev => !prev);
+                    setIsSearchOpen(false);
+                  }}
                 >
                   {isOpen ? (
                     <XIcon className='w-8 h-8 text-gray-700' />
@@ -80,6 +86,9 @@ export const Header = () => {
               {/* </div> */}
             </div>
           </div>
+        </div>
+        <div className='flex sm:hidden items-center gap-2'>
+          <AuthLinks />
         </div>
         {isSearchOpen && <SearchBar />}
         <div className='hidden xl:hidden sm:flex items-center justify-between flex-1 gap-10 xl:gap-20'>

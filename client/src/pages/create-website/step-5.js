@@ -207,7 +207,7 @@ const UploadCouplePicture = () => {
           <Heading
             label='Upload your favorite picture of you two. ❤️'
             color='bg-primary'
-            className='pt-5 md:pt-0'
+            // className='pt-5 md:pt-0'
             lineStyle={{ marginBottom: '40px' }}
           />
         </motion.div>

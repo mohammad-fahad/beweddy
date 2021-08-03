@@ -67,10 +67,6 @@
   .timeline {
     @apply border-t-2 odd:ml-3 even:mr-3 odd:border-r-2 odd:rounded-tr-[25px] even:border-l-2 even:rounded-tl-[25px] border-primary;
   }
-
-  /* .wrapper-image > div:first-child {
-    @apply static !important;
-  } */
 }
 .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
   @apply bg-secondary !important;
@@ -98,11 +94,27 @@
   }
 }
 
+@media screen and (max-width: 447px) {
+  .banner-bubble-item-1 {
+    @apply -mt-7 ml-5;
+  }
+  .banner-bubble-item-2 {
+    @apply -ml-8;
+  }
+}
+
+/* @media screen and (max-width: 539px) {
+  .banner-bubble {
+    @apply ml-[-5px];
+  }
+} */
+
 @media screen and (min-width: 768px) {
   .banner {
     background-position: -20% 0%, 0% 0% !important;
   }
 }
+
 @media screen and (min-width: 992px) {
   .banner {
     background-position: -0% 0%, 0% 0% !important;

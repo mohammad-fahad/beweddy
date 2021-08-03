@@ -161,7 +161,7 @@ const UploadAnnouncement = () => {
           <Heading
             label='Upload Wedding invite & announcement!'
             color='bg-primary'
-            className='pt-5 md:pt-0'
+            // className='pt-5 md:pt-0'
             lineStyle={{ marginBottom: '40px' }}
           />
         </motion.div>
@@ -256,7 +256,7 @@ const UploadAnnouncement = () => {
           </Link>
         </motion.p>
         <motion.div
-          className='my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'
+          className='my-5 md:my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'
           variants={fadeInUp}
         >
           <Button
