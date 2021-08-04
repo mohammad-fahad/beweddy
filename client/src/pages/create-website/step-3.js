@@ -87,7 +87,7 @@ const UploadAnnouncement = () => {
     } else {
       dispatch(addWeddingAnnouncement({}));
     }
-    push('/create-website/step-4');
+    push('/create-website/step-4', null, { shallow: true });
   };
 
   const onDrop = useCallback(acceptedFiles => {
@@ -262,7 +262,9 @@ const UploadAnnouncement = () => {
           <Button
             label='Back'
             className='opacity-50 !rounded-[10px]'
-            onClick={() => push('/create-website/step-2')}
+            onClick={() =>
+              push('/create-website/step-2', null, { shallow: true })
+            }
           />
           <Button label='Next' type='submit' className=' !rounded-[10px]' />
         </motion.div>

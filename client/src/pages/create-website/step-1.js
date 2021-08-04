@@ -18,7 +18,7 @@ const CoupleName = () => {
 
   const onSubmit = data => {
     dispatch(addCoupleName(data));
-    push('/create-website/step-2');
+    push('/create-website/step-2', null, { shallow: true });
   };
 
   return (
@@ -135,7 +135,7 @@ const CoupleName = () => {
           <Button
             label='Back'
             className='opacity-50 !rounded-[10px]'
-            onClick={() => push('/create-website')}
+            onClick={() => push('/create-website', null, { shallow: true })}
           />
           <Button label='Next' type='submit' className='!rounded-[10px]' />
         </div>

@@ -80,7 +80,9 @@ const WebsitePreview = () => {
           <Button
             label='Edit your platform'
             className='!border-secondary-alternative !rounded-[10px] hover:!bg-secondary/5 !bg-transparent !text-primary'
-            onClick={() => push('/create-website/step-1')}
+            onClick={() =>
+              push('/create-website/step-1', null, { shallow: true })
+            }
           />
         </div>
       </motion.div>

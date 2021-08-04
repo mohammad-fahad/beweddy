@@ -39,7 +39,7 @@ const CreateWebsite = () => {
               <img
                 src='/images/wedding-laptop.png'
                 alt=''
-                className='w-full md:max-h-[395px] lg:max-h-[550px] mx-auto swiper-lazy'
+                className='md:max-h-[395px] lg:max-h-[550px] mx-auto swiper-lazy'
               />
               <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
             </div>
