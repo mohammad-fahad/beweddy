@@ -2,9 +2,10 @@ import { persistor, store } from '@app/store';
 import { Layout } from '@components/index';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import 'swiper/swiper.min.css';
-import '../styles/globals.css';
 import { AnimatePresence } from 'framer-motion';
+import 'swiper/swiper.min.css';
+import 'react-datepicker/dist/react-datepicker.css';
+import '../styles/globals.css';
 
 function MyApp({ Component, router, pageProps }) {
   return (

@@ -4,11 +4,12 @@ import moment from 'moment';
 import { useRouter } from 'next/router';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import { useForm } from 'react-hook-form';
+import DatePicker from 'react-datepicker';
 import { useDispatch, useSelector } from 'react-redux';
 import { formatDate, parseDate } from 'react-day-picker/moment';
 import 'react-day-picker/lib/style.css';
 import useOuterClickHandler from 'hooks/useOuterClickHandler';
-import { useEffect, useRef } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { isEmpty } from 'lodash';
 import { compareDate } from '@helpers/index';
@@ -40,6 +41,9 @@ const stagger = {
 const WeddingDay = () => {
   const dispatch = useDispatch();
   const picker2 = useRef();
+  const weddingDatePicker = useRef();
+  const firstReceptionDatePicker = useRef();
+  const secondReceptionDatePicker = useRef();
   const { push } = useRouter();
   const { questions } = useSelector(state => state.question);
 
@@ -48,7 +52,50 @@ const WeddingDay = () => {
     // hide.hideDayPicker();
     picker2.current.hideDayPicker();
   });
-
+  const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
+    <div className='relative'>
+      <input
+        ref={ref}
+        id='weddingDate'
+        name='weddingDate'
+        value={value}
+        onFocus={onClick}
+        className='w-56 text-sm md:text-base font-medium md:font-semibold py-2 md:py-3 pr-4 pl-14 placeholder-primary border-[3px] border-primary rounded-[5px]'
+        placeholder='Pick your date'
+        {...register('weddingDate', {
+          required: {
+            value: !getValues('tba'),
+            message: 'Please pick your date',
+          },
+        })}
+      />
+      <label
+        htmlFor='weddingDate'
+        className='absolute cursor-pointer top-[12px] md:top-[15px] left-[18px] bg-white'
+      >
+        <svg
+          width='28'
+          height='31'
+          viewBox='0 0 28 31'
+          fill='none'
+          className='w-5 md:w-6 h-5 md:h-6'
+          xmlns='http://www.w3.org/2000/svg'
+        >
+          <path
+            d='M6.02777 13.7778H9.12777V16.9352H6.02777V13.7778ZM6.02777 20.0926H9.12777V23.2501H6.02777V20.0926ZM12.2278 13.7778H15.3278V16.9352H12.2278V13.7778ZM12.2278 20.0926H15.3278V23.2501H12.2278V20.0926ZM18.4278 13.7778H21.5278V16.9352H18.4278V13.7778ZM18.4278 20.0926H21.5278V23.2501H18.4278V20.0926Z'
+            fill='black'
+          />
+          <path
+            d='M3.06173 31H24.4938C26.1824 31 27.5556 29.6096 27.5556 27.9V6.2C27.5556 4.49035 26.1824 3.1 24.4938 3.1H21.4321V0H18.3704V3.1H9.18519V0H6.12346V3.1H3.06173C1.37319 3.1 0 4.49035 0 6.2V27.9C0 29.6096 1.37319 31 3.06173 31ZM24.4938 9.3L24.4954 27.9H3.06173V9.3H24.4938Z'
+            fill='black'
+          />
+        </svg>
+      </label>
+      <p className='mt-2 text-red-400 font-light text-sm h-4 text-center'>
+        {errors?.weddingDate?.message}
+      </p>
+    </div>
+  ));
   const {
     watch,
     getValues,
@@ -157,55 +204,10 @@ const WeddingDay = () => {
           className='w-full flex flex-col items-center justify-center gap-3 md:gap-5 mb-5 md:mb-10'
         >
           <div>
-            <DayPickerInput
-              // ref={picker}
-              placeholder='Pick your date'
-              {...{ formatDate, parseDate }}
-              format='LL'
-              onDayChange={date =>
-                setValue('weddingDate', moment(date).format('LL'))
-              }
-              component={props => (
-                <div className='relative'>
-                  <input
-                    id='weddingDate'
-                    name='weddingDate'
-                    className='w-56 text-sm md:text-base font-medium md:font-semibold py-2 md:py-3 pr-4 pl-14 placeholder-primary border-[3px] border-primary rounded-[5px]'
-                    {...register('weddingDate', {
-                      required: {
-                        value: !getValues('tba'),
-                        message: 'Please pick your date',
-                      },
-                    })}
-                    {...props}
-                  />
-                  <label
-                    htmlFor='weddingDate'
-                    className='absolute cursor-pointer top-[12px] md:top-[15px] left-[18px] bg-white'
-                  >
-                    <svg
-                      width='28'
-                      height='31'
-                      viewBox='0 0 28 31'
-                      fill='none'
-                      className='w-5 md:w-6 h-5 md:h-6'
-                      xmlns='http://www.w3.org/2000/svg'
-                    >
-                      <path
-                        d='M6.02777 13.7778H9.12777V16.9352H6.02777V13.7778ZM6.02777 20.0926H9.12777V23.2501H6.02777V20.0926ZM12.2278 13.7778H15.3278V16.9352H12.2278V13.7778ZM12.2278 20.0926H15.3278V23.2501H12.2278V20.0926ZM18.4278 13.7778H21.5278V16.9352H18.4278V13.7778ZM18.4278 20.0926H21.5278V23.2501H18.4278V20.0926Z'
-                        fill='black'
-                      />
-                      <path
-                        d='M3.06173 31H24.4938C26.1824 31 27.5556 29.6096 27.5556 27.9V6.2C27.5556 4.49035 26.1824 3.1 24.4938 3.1H21.4321V0H18.3704V3.1H9.18519V0H6.12346V3.1H3.06173C1.37319 3.1 0 4.49035 0 6.2V27.9C0 29.6096 1.37319 31 3.06173 31ZM24.4938 9.3L24.4954 27.9H3.06173V9.3H24.4938Z'
-                        fill='black'
-                      />
-                    </svg>
-                  </label>
-                  <p className='mt-2 text-red-400 font-light text-sm h-4 text-center'>
-                    {errors?.weddingDate?.message}
-                  </p>
-                </div>
-              )}
+            <DatePicker
+              // selected={startDate}
+              onChange={date => console.log(date)}
+              customInput={<ExampleCustomInput />}
             />
           </div>
           <motion.div
