@@ -42,7 +42,7 @@ const WebsitePreview = () => {
               <img
                 src='/images/wedding-laptop.png'
                 alt=''
-                className='h-full max-h-[250px] md:max-h-[395px] lg:max-h-[450px] mx-auto swiper-lazy'
+                className='max-h-[250px] md:max-h-[395px] lg:max-h-[450px] mx-auto swiper-lazy'
               />
               <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
             </div>
