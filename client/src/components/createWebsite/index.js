@@ -40,7 +40,7 @@ export const CreateWebsiteContainer = ({ seo, page, children }) => {
       >
         {page && <div className='text-center py-5 text-lg'>{page} / 5</div>}
         <div className='container'>
-          <div className={`${page ? 'min-h-[calc(100vh-68px)]':'min-h-screen'} flex items-center justify-center`}>
+          <div className={`${page ? 'min-h-[calc(100vh-68px)]':'min-h-screen'} flex items-center justify-center w-screen`}>
             {children}
           </div>
         </div>
