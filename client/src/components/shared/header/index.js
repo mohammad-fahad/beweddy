@@ -39,7 +39,7 @@ export const Header = () => {
                   <AuthLinks />
                 </div>
                 {/* Menu Button */}
-                <button
+                {/* <button
                   className='ml-5 inline-block sm:hidden text-sm font-bold font-inter group hover:text-primary transition-colors duration-300'
                   onClick={() => {
                     setIsSearchOpen(prev => !prev);
@@ -47,7 +47,7 @@ export const Header = () => {
                   }}
                 >
                   <SearchIcon className='w-8 h-8 text-gray-700' />
-                </button>
+                </button> */}
                 <button
                   className='ml-5 inline-block xl:hidden text-sm font-bold font-inter group hover:text-primary transition-colors duration-300'
                   onClick={() => {
@@ -90,8 +90,9 @@ export const Header = () => {
         <div className='flex sm:hidden items-center gap-2'>
           <AuthLinks />
         </div>
-        {isSearchOpen && <SearchBar />}
-        <div className='hidden xl:hidden sm:flex items-center justify-between flex-1 gap-10 xl:gap-20'>
+        {/* {isSearchOpen && <SearchBar />} */}
+        {/* <div className='hidden xl:hidden sm:flex items-center justify-between flex-1 gap-10 xl:gap-20'> */}
+        <div className='xl:hidden flex items-center justify-between flex-1 gap-10 xl:gap-20'>
           {/* Search Bar Area */}
           <SearchBar />
           {/* Search Bar Area End */}
