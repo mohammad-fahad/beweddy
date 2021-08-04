@@ -47,7 +47,7 @@ const Features = () => {
             <Image
               width={288}
               height={550}
-              src='/images/feature-mobile.png'
+              src='/images/feature-mobile.jpeg'
               alt=''
               // className='w-72 mx-auto'
             />
