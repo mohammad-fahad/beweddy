@@ -185,7 +185,7 @@ const WeddingDay = () => {
   }, [tba]);
 
   return (
-    <CreateWebsiteContainer seo={{ title: 'Wedding Day' }}>
+    <CreateWebsiteContainer seo={{ title: 'Wedding Day' }} page='2'>
       <motion.form
         className={`flex flex-col w-full h-full items-center justify-center my-5`}
         onSubmit={handleSubmit(onSubmit)}

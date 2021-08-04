@@ -25,21 +25,22 @@ const stagger = {
   },
 };
 
-export const CreateWebsiteContainer = ({ seo, children }) => {
+export const CreateWebsiteContainer = ({ seo, page, children }) => {
   return (
     <>
       <Head>
         <title>BeWeddy | {seo.title}</title>
       </Head>
       <motion.div
-        className={`bg-gradient-to-br from-[#FCE3EB] to-white`}
+        className={`bg-gradient-to-br from-[#FCE3EB] to-white `}
         e
         exit={{ opacity: 0 }}
         initial='initial'
         animate='animate'
       >
+        {page && <div className='text-center py-5 text-lg'>{page} / 5</div>}
         <div className='container'>
-          <div className='min-h-screen flex items-center justify-center'>
+          <div className={`${page ? 'min-h-[calc(100vh-68px)]':'min-h-screen'} flex items-center justify-center`}>
             {children}
           </div>
         </div>

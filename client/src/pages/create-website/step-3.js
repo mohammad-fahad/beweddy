@@ -145,6 +145,7 @@ const UploadAnnouncement = () => {
 
   return (
     <CreateWebsiteContainer
+      page='3'
       seo={{ title: 'Upload Wedding Invitation & Announcement' }}
     >
       {loading && <Loader />}

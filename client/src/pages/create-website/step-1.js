@@ -22,7 +22,7 @@ const CoupleName = () => {
   };
 
   return (
-    <CreateWebsiteContainer seo={{ title: 'Couple Names' }}>
+    <CreateWebsiteContainer seo={{ title: 'Couple Names' }} page='1'>
       <form
         className={`flex flex-col items-center justify-center`}
         onSubmit={handleSubmit(onSubmit)}
