@@ -2,9 +2,9 @@ import {
   Button,
   Heading,
   CreateWebsiteContainer,
-  InputIcon,
-  InputText,
   WeddingDatePicker,
+  FirstReceptionDatePicker,
+  SecondReceptionDatePicker,
 } from '@components/index';
 import { addWeddingDay } from '@features/question/questionSlice';
 import moment from 'moment';
@@ -16,9 +16,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { formatDate, parseDate } from 'react-day-picker/moment';
 import 'react-day-picker/lib/style.css';
 import useOuterClickHandler from 'hooks/useOuterClickHandler';
-import { forwardRef, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { isEmpty, isNull } from 'lodash';
+import { isEmpty } from 'lodash';
 import { compareDate } from '@helpers/index';
 
 const easing = [0.6, -0.05, 0.01, 0.99];
@@ -51,16 +51,28 @@ const WeddingDay = () => {
   const picker2 = useRef();
   const { push } = useRouter();
 
+  // WeddingDate Picker
   const _weddingDate = questions?.weddingDay?.weddingDate
     ? new Date(questions?.weddingDay?.weddingDate)
-    : null;
+    : '';
+
   const [selectWeddingDay, setSelectWeddingDay] = useState(_weddingDate);
 
-  const innerRef = useOuterClickHandler(() => {
-    // const hide = picker.current;
-    // hide.hideDayPicker();
-    picker2.current.hideDayPicker();
-  });
+  // First Reception Picker
+  const _firstReception = questions?.weddingDay?.firstReception
+    ? new Date(questions?.weddingDay?.firstReception)
+    : '';
+
+  const [selectFirstReception, setSelectFirstReception] =
+    useState(_firstReception);
+
+  // Second Reception Picker
+  const _secondReception = questions?.weddingDay?.secondReception
+    ? new Date(questions?.weddingDay?.secondReception)
+    : '';
+
+  const [selectSecondReception, setSelectSecondReception] =
+    useState(_secondReception);
 
   const {
     watch,
@@ -86,6 +98,7 @@ const WeddingDay = () => {
   ]);
 
   const tba = getValues('tba');
+  const have2Reception = getValues('have2Reception');
   const weddingDate = getValues('weddingDate');
   const firstReception = getValues('firstReception');
   const secondReception = getValues('secondReception');
@@ -99,15 +112,37 @@ const WeddingDay = () => {
     });
     register('firstReception', {
       required: {
-        value: true,
+        value: have2Reception,
         message: 'First reception date is required!',
       },
     });
     register('secondReception');
     setValue('weddingDate', selectWeddingDay);
-  }, [register, tba]);
+  }, [register, tba, have2Reception]);
 
   const onSubmit = data => {
+    if (!compareDate(data.weddingDate)) {
+      setError('weddingDate', {
+        type: 'validate',
+        message: 'Seems like you have selected past date',
+      });
+      return;
+    }
+    if (!compareDate(data.firstReception)) {
+      setError('firstReception', {
+        type: 'validate',
+        message: 'Seems like you have selected past date',
+      });
+      return;
+    }
+    if (!compareDate(data.secondReception)) {
+      setError('secondReception', {
+        type: 'validate',
+        message: 'Seems like you have selected past date',
+      });
+      return;
+    }
+
     let values;
     if (getValues('tba')) {
       values = {
@@ -133,12 +168,9 @@ const WeddingDay = () => {
   };
 
   useEffect(() => {
-    console.log(isNull(selectWeddingDay), compareDate(selectWeddingDay));
-    if (isEmpty(selectWeddingDay) || compareDate(selectWeddingDay)) {
+    if (isEmpty(weddingDate) || compareDate(weddingDate)) {
       clearErrors('weddingDate');
-      console.log('clear');
     } else {
-      console.log('error');
       setError('weddingDate', {
         type: 'validate',
         message: 'Seems like you have selected past date',
@@ -196,7 +228,7 @@ const WeddingDay = () => {
               popperPlacement='top-end'
               onChange={date => {
                 setSelectWeddingDay(date);
-                setValue('weddingDate', date);
+                setValue('weddingDate', moment(date).format('LL'));
               }}
               customInput={<WeddingDatePicker {...{ errors }} />}
             />
@@ -244,103 +276,29 @@ const WeddingDay = () => {
             variants={fadeInUp}
             className='w-full flex items-center justify-center gap-3 md:gap-5 mt-6 mb-5 flex-wrap'
           >
-            <div ref={innerRef}>
-              <DayPickerInput
-                ref={picker2}
-                placeholder='Reception 1 date'
-                {...{ formatDate, parseDate }}
-                format='LL'
-                format='LL'
-                onDayChange={date =>
-                  setValue('firstReception', moment(date).format('LL'))
-                }
-                component={props => (
-                  <div className='relative'>
-                    <input
-                      id='firstReception'
-                      name='firstReception'
-                      className='w-64 text-sm md:text-base font-medium md:font-semibold py-2 md:py-3 pr-4 pl-14 placeholder-primary border-[3px] border-primary rounded-[5px]'
-                      {...register('firstReception', {
-                        required: {
-                          value: true,
-                          message: 'First reception date is required!',
-                        },
-                      })}
-                      {...props}
-                    />
-                    <label
-                      htmlFor='firstReception'
-                      className='absolute cursor-pointer top-[12px] md:top-[15px] left-[18px] bg-white'
-                    >
-                      <svg
-                        width='28'
-                        height='31'
-                        viewBox='0 0 28 31'
-                        fill='none'
-                        className='w-5 md:w-6 h-5 md:h-6'
-                        xmlns='http://www.w3.org/2000/svg'
-                      >
-                        <path
-                          d='M6.02777 13.7778H9.12777V16.9352H6.02777V13.7778ZM6.02777 20.0926H9.12777V23.2501H6.02777V20.0926ZM12.2278 13.7778H15.3278V16.9352H12.2278V13.7778ZM12.2278 20.0926H15.3278V23.2501H12.2278V20.0926ZM18.4278 13.7778H21.5278V16.9352H18.4278V13.7778ZM18.4278 20.0926H21.5278V23.2501H18.4278V20.0926Z'
-                          fill='black'
-                        />
-                        <path
-                          d='M3.06173 31H24.4938C26.1824 31 27.5556 29.6096 27.5556 27.9V6.2C27.5556 4.49035 26.1824 3.1 24.4938 3.1H21.4321V0H18.3704V3.1H9.18519V0H6.12346V3.1H3.06173C1.37319 3.1 0 4.49035 0 6.2V27.9C0 29.6096 1.37319 31 3.06173 31ZM24.4938 9.3L24.4954 27.9H3.06173V9.3H24.4938Z'
-                          fill='black'
-                        />
-                      </svg>
-                    </label>
-                    <p className='mt-2 text-red-400 font-light text-sm h-4 text-center'>
-                      {errors?.firstReception?.message}
-                    </p>
-                  </div>
-                )}
+            <div>
+              <DatePicker
+                selected={selectFirstReception}
+                // popperPlacement='top-end'
+                onChange={date => {
+                  setSelectFirstReception(date);
+                  setValue('firstReception', moment(date).format('LL'));
+                }}
+                customInput={<FirstReceptionDatePicker {...{ errors }} />}
               />
             </div>
-            <DayPickerInput
-              placeholder='Reception 2 date'
-              {...{ formatDate, parseDate }}
-              format='LL'
-              format='LL'
-              onDayChange={date =>
-                setValue('secondReception', moment(date).format('LL'))
-              }
-              component={props => (
-                <div className='relative'>
-                  <input
-                    name='secondReception'
-                    className='w-64 text-sm md:text-base font-medium md:font-semibold py-2 md:py-3 pr-4 pl-14 placeholder-primary border-[3px] border-primary rounded-[5px]'
-                    {...register('secondReception')}
-                    {...props}
-                  />
-                  <label
-                    htmlFor='secondReception'
-                    className='absolute cursor-pointer top-[12px] md:top-[15px] left-[18px] bg-white'
-                  >
-                    <svg
-                      width='28'
-                      height='31'
-                      viewBox='0 0 28 31'
-                      fill='none'
-                      className='w-5 md:w-6 h-5 md:h-6'
-                      xmlns='http://www.w3.org/2000/svg'
-                    >
-                      <path
-                        d='M6.02777 13.7778H9.12777V16.9352H6.02777V13.7778ZM6.02777 20.0926H9.12777V23.2501H6.02777V20.0926ZM12.2278 13.7778H15.3278V16.9352H12.2278V13.7778ZM12.2278 20.0926H15.3278V23.2501H12.2278V20.0926ZM18.4278 13.7778H21.5278V16.9352H18.4278V13.7778ZM18.4278 20.0926H21.5278V23.2501H18.4278V20.0926Z'
-                        fill='black'
-                      />
-                      <path
-                        d='M3.06173 31H24.4938C26.1824 31 27.5556 29.6096 27.5556 27.9V6.2C27.5556 4.49035 26.1824 3.1 24.4938 3.1H21.4321V0H18.3704V3.1H9.18519V0H6.12346V3.1H3.06173C1.37319 3.1 0 4.49035 0 6.2V27.9C0 29.6096 1.37319 31 3.06173 31ZM24.4938 9.3L24.4954 27.9H3.06173V9.3H24.4938Z'
-                        fill='black'
-                      />
-                    </svg>
-                  </label>
-                  <p className='mt-2 text-red-400 font-light text-sm h-4 text-center'>
-                    {errors?.secondReception?.message}
-                  </p>
-                </div>
-              )}
-            />
+
+            <div>
+              <DatePicker
+                selected={selectSecondReception}
+                // popperPlacement='top-end'
+                onChange={date => {
+                  setSelectSecondReception(date);
+                  setValue('secondReception', moment(date).format('LL'));
+                }}
+                customInput={<SecondReceptionDatePicker {...{ errors }} />}
+              />
+            </div>
           </motion.div>
         )}
         <motion.div

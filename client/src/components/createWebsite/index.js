@@ -38,14 +38,16 @@ export const CreateWebsiteContainer = ({ seo, page, children }) => {
         animate='animate'
       >
         {page && <div className='text-center py-5 text-lg'>{page} / 5</div>}
-        <div className='container'>
-          <div
+        <div className={`${
+              page ? 'min-h-[calc(100vh-68px)]' : 'min-h-screen'
+            } flex flex-col items-center justify-center overflow-x-hidden container`}>
+          {/* <div
             className={`${
               page ? 'min-h-[calc(100vh-68px)]' : 'min-h-screen'
             } flex items-center justify-center overflow-x-hidden`}
-          >
+          > */}
             {children}
-          </div>
+          {/* </div> */}
         </div>
       </motion.div>
     </>
