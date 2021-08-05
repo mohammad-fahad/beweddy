@@ -82,11 +82,11 @@ const SentInvitation = () => {
         callingCode: selectedCountry.callingCodes[0],
       })
     );
-    push('/create-website/step-5');
+    push('/create-website/step-5', null, { shallow: true });
   };
 
   return (
-    <CreateWebsiteContainer seo={{ title: 'Sent Invitations' }}>
+    <CreateWebsiteContainer seo={{ title: 'Sent Invitations' }} page='4'>
       <motion.form
         className={`flex flex-col items-center justify-center overflow-hidden`}
         onSubmit={handleSubmit(onSubmit)}
@@ -301,7 +301,9 @@ const SentInvitation = () => {
           <Button
             label='Back'
             className='opacity-50 !rounded-[10px]'
-            onClick={() => push('/create-website/step-3')}
+            onClick={() =>
+              push('/create-website/step-3', null, { shallow: true })
+            }
           />
           <Button label='Next' type='submit' className=' !rounded-[10px]' />
         </motion.div>

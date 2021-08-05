@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 const WelcomePage = () => {
   const { push } = useRouter();
   useEffect(() => {
-    const redirect = setTimeout(() => push('/'), 2500);
+    const redirect = setTimeout(() => push('/', null, { shallow: true }), 2500);
     return () => clearTimeout(redirect);
   }, []);
   return <Welcome />;

@@ -4,3 +4,4 @@ export { default as Loader } from './Loader';
 
 export * from './header';
 export * from './buttons';
+export * from './form';

@@ -18,13 +18,13 @@ const CoupleName = () => {
 
   const onSubmit = data => {
     dispatch(addCoupleName(data));
-    push('/create-website/step-2');
+    push('/create-website/step-2', null, { shallow: true });
   };
 
   return (
-    <CreateWebsiteContainer seo={{ title: 'Couple Names' }}>
+    <CreateWebsiteContainer seo={{ title: 'Couple Names' }} page='1'>
       <form
-        className={`flex flex-col items-center justify-center`}
+        className={`flex flex-col items-center justify-center w-full`}
         onSubmit={handleSubmit(onSubmit)}
       >
         <motion.div
@@ -135,7 +135,7 @@ const CoupleName = () => {
           <Button
             label='Back'
             className='opacity-50 !rounded-[10px]'
-            onClick={() => push('/create-website')}
+            onClick={() => push('/create-website', null, { shallow: true })}
           />
           <Button label='Next' type='submit' className='!rounded-[10px]' />
         </div>
