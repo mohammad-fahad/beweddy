@@ -32,21 +32,23 @@ export const CreateWebsiteContainer = ({ seo, page, children }) => {
         <title>BeWeddy | {seo.title}</title>
       </Head>
       <motion.div
-        className={`bg-gradient-to-br from-[#FCE3EB] to-white w-screen overflow-x-hidden`}
+        className={`bg-gradient-to-br from-[#FCE3EB] to-white`}
         exit={{ opacity: 0 }}
         initial='initial'
         animate='animate'
       >
         {page && <div className='text-center py-5 text-lg'>{page} / 5</div>}
-        <div className={`${
-              page ? 'min-h-[calc(100vh-68px)]' : 'min-h-screen'
-            } flex flex-col items-center justify-center overflow-x-hidden container`}>
+        <div
+          className={`${
+            page ? 'min-h-[calc(100vh-68px)]' : 'min-h-screen'
+          } flex flex-col items-center justify-center container`}
+        >
           {/* <div
             className={`${
               page ? 'min-h-[calc(100vh-68px)]' : 'min-h-screen'
             } flex items-center justify-center overflow-x-hidden`}
           > */}
-            {children}
+          {children}
           {/* </div> */}
         </div>
       </motion.div>

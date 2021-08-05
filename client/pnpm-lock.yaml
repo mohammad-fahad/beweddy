@@ -25,6 +25,7 @@ specifiers:
   react-dropzone: ^11.3.4
   react-hook-form: ^7.11.1
   react-id-swiper: ^4.0.0
+  react-image-crop: ^8.6.12
   react-redux: ^7.2.4
   react-spinners: ^0.11.0
   react-youtube: ^7.13.1
@@ -56,6 +57,7 @@ dependencies:
   react-dropzone: 11.3.4_react@17.0.2
   react-hook-form: 7.11.1_react@17.0.2
   react-id-swiper: 4.0.0_34146a6e7538b09058193b63f1601461
+  react-image-crop: 8.6.12_react@17.0.2
   react-redux: 7.2.4_react-dom@17.0.2+react@17.0.2
   react-spinners: 0.11.0_react-dom@17.0.2+react@17.0.2
   react-youtube: 7.13.1_react@17.0.2
@@ -781,6 +783,11 @@ packages:
       core-js: 3.6.5
       lodash: 4.17.21
       q: 1.5.1
+    dev: false
+
+  /clsx/1.1.1:
+    resolution: {integrity: sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==}
+    engines: {node: '>=6'}
     dev: false
 
   /color-convert/1.9.3:
@@ -2294,6 +2301,16 @@ packages:
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       swiper: 6.8.0
+    dev: false
+
+  /react-image-crop/8.6.12_react@17.0.2:
+    resolution: {integrity: sha512-3CNz1xfsRRSH/iH023IDMXxzsb1M6RTHHUVsVcb8uFPcjGiA9WisvQ24G1eRDf2j4NlybupOEEdfK2vT0etN6A==}
+    peerDependencies:
+      react: '>=16.13.1'
+    dependencies:
+      clsx: 1.1.1
+      prop-types: 15.7.2
+      react: 17.0.2
     dev: false
 
   /react-is/16.13.1:
