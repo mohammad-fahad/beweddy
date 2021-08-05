@@ -1,4 +1,11 @@
-import { Button, Heading, CreateWebsiteContainer } from '@components/index';
+import {
+  Button,
+  Heading,
+  CreateWebsiteContainer,
+  InputIcon,
+  InputText,
+  WeddingDatePicker,
+} from '@components/index';
 import { addWeddingDay } from '@features/question/questionSlice';
 import moment from 'moment';
 import { useRouter } from 'next/router';
@@ -11,7 +18,7 @@ import 'react-day-picker/lib/style.css';
 import useOuterClickHandler from 'hooks/useOuterClickHandler';
 import { forwardRef, useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { isEmpty } from 'lodash';
+import { isEmpty, isNull } from 'lodash';
 import { compareDate } from '@helpers/index';
 
 const easing = [0.6, -0.05, 0.01, 0.99];
@@ -40,52 +47,20 @@ const stagger = {
 
 const WeddingDay = () => {
   const dispatch = useDispatch();
+  const { questions } = useSelector(state => state.question);
   const picker2 = useRef();
   const { push } = useRouter();
-  const [selectWeddingDay, setSelectWeddingDay] = useState();
-  const { questions } = useSelector(state => state.question);
+
+  const _weddingDate = questions?.weddingDay?.weddingDate
+    ? new Date(questions?.weddingDay?.weddingDate)
+    : null;
+  const [selectWeddingDay, setSelectWeddingDay] = useState(_weddingDate);
 
   const innerRef = useOuterClickHandler(() => {
     // const hide = picker.current;
     // hide.hideDayPicker();
     picker2.current.hideDayPicker();
   });
-
-  const WeddingDatePicker = forwardRef(({ value, onClick }, ref) => (
-    <div>
-      <button
-        ref={ref}
-        type='button'
-        {...{ onClick }}
-        className='relative w-56 bg-white text-sm md:text-base font-medium md:font-semibold py-2 md:py-3 pr-4 pl-8 placeholder-primary border-[3px] border-primary rounded-[5px]'
-      >
-        {value ? value : 'Pick your date'}
-        <span className='absolute cursor-pointer top-[12px] md:top-[12px] left-[18px] bg-white'>
-          <svg
-            width='28'
-            height='31'
-            viewBox='0 0 28 31'
-            fill='none'
-            className='w-5 md:w-6 h-5 md:h-6'
-            xmlns='http://www.w3.org/2000/svg'
-          >
-            <path
-              d='M6.02777 13.7778H9.12777V16.9352H6.02777V13.7778ZM6.02777 20.0926H9.12777V23.2501H6.02777V20.0926ZM12.2278 13.7778H15.3278V16.9352H12.2278V13.7778ZM12.2278 20.0926H15.3278V23.2501H12.2278V20.0926ZM18.4278 13.7778H21.5278V16.9352H18.4278V13.7778ZM18.4278 20.0926H21.5278V23.2501H18.4278V20.0926Z'
-              fill='black'
-            />
-            <path
-              d='M3.06173 31H24.4938C26.1824 31 27.5556 29.6096 27.5556 27.9V6.2C27.5556 4.49035 26.1824 3.1 24.4938 3.1H21.4321V0H18.3704V3.1H9.18519V0H6.12346V3.1H3.06173C1.37319 3.1 0 4.49035 0 6.2V27.9C0 29.6096 1.37319 31 3.06173 31ZM24.4938 9.3L24.4954 27.9H3.06173V9.3H24.4938Z'
-              fill='black'
-            />
-          </svg>
-        </span>
-      </button>
-
-      <p className='mt-2 text-red-400 font-light text-sm h-4 text-center'>
-        {errors?.weddingDate?.message}
-      </p>
-    </div>
-  ));
 
   const {
     watch,
@@ -115,6 +90,23 @@ const WeddingDay = () => {
   const firstReception = getValues('firstReception');
   const secondReception = getValues('secondReception');
 
+  useEffect(() => {
+    register('weddingDate', {
+      required: {
+        value: !tba,
+        message: 'Please pick your date',
+      },
+    });
+    register('firstReception', {
+      required: {
+        value: true,
+        message: 'First reception date is required!',
+      },
+    });
+    register('secondReception');
+    setValue('weddingDate', selectWeddingDay);
+  }, [register, tba]);
+
   const onSubmit = data => {
     let values;
     if (getValues('tba')) {
@@ -141,11 +133,14 @@ const WeddingDay = () => {
   };
 
   useEffect(() => {
-    if (isEmpty(weddingDate) || compareDate(weddingDate)) {
+    console.log(isNull(selectWeddingDay), compareDate(selectWeddingDay));
+    if (isEmpty(selectWeddingDay) || compareDate(selectWeddingDay)) {
       clearErrors('weddingDate');
+      console.log('clear');
     } else {
+      console.log('error');
       setError('weddingDate', {
-        type: 'manual',
+        type: 'validate',
         message: 'Seems like you have selected past date',
       });
     }
@@ -170,6 +165,7 @@ const WeddingDay = () => {
 
   useEffect(() => {
     if (tba) {
+      setSelectWeddingDay(null);
       clearErrors('weddingDate');
       setValue('weddingDate', '');
     }
@@ -196,9 +192,13 @@ const WeddingDay = () => {
         >
           <div>
             <DatePicker
-              // selected={startDate}
-              onChange={date => console.log(date)}
-              customInput={<WeddingDatePicker />}
+              selected={selectWeddingDay}
+              popperPlacement='top-end'
+              onChange={date => {
+                setSelectWeddingDay(date);
+                setValue('weddingDate', date);
+              }}
+              customInput={<WeddingDatePicker {...{ errors }} />}
             />
           </div>
           <motion.div
