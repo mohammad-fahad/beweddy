@@ -205,7 +205,7 @@ const UploadCouplePicture = () => {
           animate={{ opacity: 1, scale: 1 }}
         >
           <Heading
-            label='Upload your favorite picture of you two. ❤️'
+            label='Upload your favorite pictures of you two. ❤️'
             color='bg-primary'
             // className='pt-5 md:pt-0'
             lineStyle={{ marginBottom: '40px' }}
