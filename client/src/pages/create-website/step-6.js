@@ -2,12 +2,14 @@ import { CreateWebsiteContainer } from '@components/createWebsite';
 import { Button, Heading, LinkButton } from '@components/shared';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Swiper from 'react-id-swiper';
 
 import SwiperCore, { Lazy, Autoplay } from 'swiper';
 SwiperCore.use([Lazy, Autoplay]);
 
 const WebsitePreview = () => {
+  const { push } = useRouter();
   const params = {
     loop: true,
     autoplay: {
@@ -63,7 +65,7 @@ const WebsitePreview = () => {
           <LinkButton
             href='/create-website/step-7'
             label='Launch Your Wedding Platform'
-            className='!rounded-[10px] !py-5 md:!px-10'
+            className='!rounded-[10px] py-3 md:!py-5 md:!px-10'
           />
         </div>
         <div className='mb-5'>
