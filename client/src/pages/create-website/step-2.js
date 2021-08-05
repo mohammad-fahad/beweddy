@@ -9,14 +9,10 @@ import {
 import { addWeddingDay } from '@features/question/questionSlice';
 import moment from 'moment';
 import { useRouter } from 'next/router';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
 import { useForm } from 'react-hook-form';
 import DatePicker from 'react-datepicker';
 import { useDispatch, useSelector } from 'react-redux';
-import { formatDate, parseDate } from 'react-day-picker/moment';
-import 'react-day-picker/lib/style.css';
-import useOuterClickHandler from 'hooks/useOuterClickHandler';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { isEmpty } from 'lodash';
 import { compareDate } from '@helpers/index';
@@ -48,7 +44,6 @@ const stagger = {
 const WeddingDay = () => {
   const dispatch = useDispatch();
   const { questions } = useSelector(state => state.question);
-  const picker2 = useRef();
   const { push } = useRouter();
 
   // WeddingDate Picker
@@ -74,6 +69,7 @@ const WeddingDay = () => {
   const [selectSecondReception, setSelectSecondReception] =
     useState(_secondReception);
 
+  // React Hook Form
   const {
     watch,
     getValues,
@@ -89,6 +85,7 @@ const WeddingDay = () => {
     shouldFocusError: false,
   });
 
+  // Watch Input Fields
   watch([
     'have2Reception',
     'tba',
@@ -97,12 +94,14 @@ const WeddingDay = () => {
     'secondReception',
   ]);
 
+  // Input Fields as Variable
   const tba = getValues('tba');
   const have2Reception = getValues('have2Reception');
   const weddingDate = getValues('weddingDate');
   const firstReception = getValues('firstReception');
   const secondReception = getValues('secondReception');
 
+  // Register & set values
   useEffect(() => {
     register('weddingDate', {
       required: {
@@ -116,18 +115,26 @@ const WeddingDay = () => {
         message: 'First reception date is required!',
       },
     });
+
     register('secondReception');
     setValue('weddingDate', selectWeddingDay);
+    
+    if (have2Reception) {
+      setValue('firstReception', selectFirstReception);
+      setValue('secondReception', selectSecondReception);
+    }
   }, [register, tba, have2Reception]);
 
+  // Form submit handler
   const onSubmit = data => {
-    if (!compareDate(data.weddingDate)) {
+    if (!tba && !compareDate(data.weddingDate)) {
       setError('weddingDate', {
         type: 'validate',
         message: 'Seems like you have selected past date',
       });
       return;
     }
+
     if (!compareDate(data.firstReception)) {
       setError('firstReception', {
         type: 'validate',
@@ -229,6 +236,10 @@ const WeddingDay = () => {
               onChange={date => {
                 setSelectWeddingDay(date);
                 setValue('weddingDate', moment(date).format('LL'));
+
+                if (tba) {
+                  setValue('tba', false);
+                }
               }}
               customInput={<WeddingDatePicker {...{ errors }} />}
             />
