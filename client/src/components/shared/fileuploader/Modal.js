@@ -16,7 +16,10 @@ const Modal = ({ children, modalIsOpen, setModalIsOpen, onSave }) => {
         {children}
         <div className='mt-5'>
           <div className='flex items-center space-x-5'>
-            <button className='py-2 text-sm px-5 border-2 border-black rounded-md'>
+            <button
+              className='py-2 text-sm px-5 border-2 border-black rounded-md'
+              onClick={() => setModalIsOpen(false)}
+            >
               Cancel
             </button>
             <button

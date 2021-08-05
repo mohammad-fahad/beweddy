@@ -1,4 +1,4 @@
-import  { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import Modal from './Modal';
@@ -9,7 +9,7 @@ const CropImage = props => {
   const [crop, setCrop] = useState({
     unit: '%',
     width: 80,
-    aspect: 3 / 2,
+    aspect: props.aspectRatio || 3 / 2,
   });
 
   const [src, setSrc] = useState();
