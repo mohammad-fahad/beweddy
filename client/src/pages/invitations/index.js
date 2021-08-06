@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { useEffect } from 'react';
 import {
   CreateAccount,
   Footer,
@@ -8,7 +7,7 @@ import {
   HowItWork,
   PageTitle,
 } from '@components/index';
-import { Offers, Features } from '@components/shared/index';
+import { Offers } from '@components/shared/index';
 
 const offers = [
   {
@@ -38,9 +37,6 @@ const offers = [
 ];
 
 const InvitationsPage = () => {
-  useEffect(() => {
-    alert('This page is under constructions');
-  }, []);
   return (
     <>
       <Head>
