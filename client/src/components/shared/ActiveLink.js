@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 const ActiveLink = ({ children, href, className }) => {
   const router = useRouter();
-  console.log(router.pathname, href);
+
   return (
     <Link href={href} scroll={false}>
       <a
