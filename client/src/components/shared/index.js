@@ -5,6 +5,7 @@ export { default as PageTitle } from './PageTitle';
 export { default as HeroSection } from './HeroSection';
 export { default as Features } from '../shared/Features';
 export { default as Offers } from '../shared/Offers';
+export { default as ActiveLink } from '../shared/ActiveLink';
 
 export * from './header';
 export * from './buttons';
