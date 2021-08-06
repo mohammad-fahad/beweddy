@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { useEffect } from 'react';
 import {
   CreateAccount,
   Footer,
@@ -8,7 +7,7 @@ import {
   HowItWork,
   PageTitle,
 } from '@components/index';
-import { Offers, Features } from '@components/shared/index';
+import { Offers } from '@components/shared/index';
 
 const offers = [
   {
@@ -38,9 +37,6 @@ const offers = [
 ];
 
 const InvitationsPage = () => {
-  useEffect(() => {
-    alert('This page is under constructions');
-  }, []);
   return (
     <>
       <Head>
@@ -57,14 +53,14 @@ const InvitationsPage = () => {
         paragraph='Useful, Easy to use Features Multiple Options To Send Invitations Manage Your Guests All in One Place'
         grid={{
           gridCols: 'md:grid-cols-3',
-          leftCol: 'col-span-2',
-          rightCol: 'col-span-1',
+          leftCol: 'md:col-span-2',
+          rightCol: 'md:col-span-1',
         }}
       >
         <img
           src='/images/feature-mobile.png'
           alt=''
-          className='max-h-[250px] md:max-h-[395px] lg:max-h-[450px] mx-auto'
+          className='max-h-[395px] lg:max-h-[450px] mx-auto'
         />
       </HeroSection>
       <Offers title='How Invitations Works' {...{ offers }} />
