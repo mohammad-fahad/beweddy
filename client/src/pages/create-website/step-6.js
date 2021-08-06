@@ -39,7 +39,7 @@ const WebsitePreview = () => {
               <img
                 src='/images/wedding-laptop.png'
                 alt=''
-                className='md:max-h-[395px] lg:max-h-[550px] mx-auto swiper-lazy'
+                className='md:max-h-[395px] lg:max-h-[450px] mx-auto swiper-lazy'
               />
               <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
             </div>
@@ -47,7 +47,7 @@ const WebsitePreview = () => {
               <img
                 src='/images/wedding-phone.png'
                 alt=''
-                className='max-h-[250px] md:max-h-[395px] lg:max-h-[550px] mx-auto swiper-lazy'
+                className='max-h-[250px] md:max-h-[395px] lg:max-h-[450px] mx-auto swiper-lazy'
               />
               <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
             </div>
@@ -55,7 +55,7 @@ const WebsitePreview = () => {
               <img
                 src='/images/wedding-macbook.png'
                 alt=''
-                className='max-h-[250px] md:max-h-[395px] lg:max-h-[560px] mx-auto swiper-lazy'
+                className='max-h-[250px] md:max-h-[395px] lg:max-h-[450px] mx-auto swiper-lazy'
               />
               <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
             </div>
