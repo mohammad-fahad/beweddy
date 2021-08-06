@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { useEffect } from 'react';
 import {
   CreateAccount,
   Footer,
@@ -38,9 +37,6 @@ const offers = [
 ];
 
 const WeddingWebsitePage = () => {
-  useEffect(() => {
-    alert('This page is under constructions');
-  }, []);
   return (
     <>
       <Head>
