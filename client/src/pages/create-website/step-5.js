@@ -1,5 +1,5 @@
 import { CreateWebsiteContainer } from '@components/createWebsite';
-import { Button, Heading, Loader } from '@components/index';
+import { Button, CropImage, Heading, Loader } from '@components/index';
 import { addCouplePictures } from '@features/question/questionSlice';
 import { XIcon } from '@heroicons/react/solid';
 import { removeImage } from '@utils/index';
@@ -54,10 +54,11 @@ const UploadCouplePicture = () => {
   const dispatch = useDispatch();
   const { push } = useRouter();
   const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState();
+  const [preview, setPreview] = useState();
+  const [selectedImageFile, setSelectedImageFile] = useState();
   const { questions } = useSelector(state => state.question);
-  const [uploadedFiles, setUploadedFiles] = useState(
-    questions.couplePictures || []
-  );
+  const [uploadedFiles, setUploadedFiles] = useState(questions.couplePictures);
 
   // React Hook Form to handle form submission
   const {
@@ -107,66 +108,74 @@ const UploadCouplePicture = () => {
       // if (uploadedFiles.length === 0) return;
       dispatch(addCouplePictures(uploadedFiles));
     } else {
-      dispatch(addCouplePictures(null));
+      dispatch(addCouplePictures([]));
     }
     // if submit done then go to next page
     push('/create-website/step-6', null, { shallow: true });
   };
 
   // Handle image uploadedFiles
-  const onDrop = useCallback(
-    acceptedFiles => {
-      // check if user uploaded maximum number of files & throw an error also block uploading images
-      if (uploadedFiles.length === 4) {
-        setError('uploadCouplePicture', {
-          type: 'maxLength',
-          message: 'Maximum number of files uploaded',
-        });
-        return;
-      }
-      setLoading(true);
-      const URL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`;
-      const config = {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          // Authorization: `Bearer ${userLogin.token}`,
-        },
-      };
 
-      acceptedFiles.forEach(async acceptedFile => {
-        try {
-          const formData = new FormData();
-
-          formData.append('file', acceptedFile);
-          formData.append(
-            'upload_preset',
-            process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
-          );
-
-          formData.append(
-            'folder',
-            process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
-          );
-          const { data } = await axios.post(URL, formData, config);
-          setValue('uploadCouplePicture', data);
-          clearErrors('uploadCouplePicture');
-          setUploadedFiles(prev => [...prev, data]);
-          setLoading(false);
-        } catch (err) {
-          setLoading(false);
-          console.error(err.message);
-        }
+  const onDrop = useCallback(acceptedFiles => {
+    if (uploadedFiles.length === 4) {
+      setError('uploadCouplePicture', {
+        type: 'maxLength',
+        message: 'Maximum number of files uploaded',
       });
-    },
-    [uploadedFiles]
-  );
+      return;
+    }
+
+    const fileDropped = acceptedFiles[0];
+    if (fileDropped['type'].split('/')[0] === 'image') {
+      setSelectedImageFile(fileDropped);
+      return;
+    }
+    setFile(fileDropped);
+    const previewUrl = URL.createObjectURL(fileDropped);
+    setPreview(previewUrl);
+  });
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: 'image/*',
-    multiple: true,
-    maxFiles: 4,
+    multiple: false,
   });
+
+  const onCropSave = async ({ file, preview }) => {
+    setLoading(true);
+    setPreview(preview);
+    setFile(file);
+
+    const URL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`;
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    };
+
+    try {
+      const formData = new FormData();
+
+      formData.append('file', file);
+      formData.append(
+        'upload_preset',
+        process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
+      );
+
+      formData.append(
+        'folder',
+        process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
+      );
+      const { data } = await axios.post(URL, formData, config);
+      setValue('uploadCouplePicture', data);
+      clearErrors('uploadCouplePicture');
+      setUploadedFiles(prev => [...prev, data]);
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      console.error(err.message);
+    }
+  };
 
   // Handle remove images
   const handleRemoveImage = async id => {
@@ -205,7 +214,7 @@ const UploadCouplePicture = () => {
           animate={{ opacity: 1, scale: 1 }}
         >
           <Heading
-            label='Upload your favorite picture of you two. ❤️'
+            label='Upload your favorite pictures of you two. ❤️'
             color='bg-primary'
             // className='pt-5 md:pt-0'
             lineStyle={{ marginBottom: '40px' }}
@@ -231,7 +240,7 @@ const UploadCouplePicture = () => {
                 >
                   <XIcon className='w-5 h-5' />
                 </button>
-                <div className='aspect-w-2 aspect-h-2'>
+                <div className='aspect-w-16 aspect-h-10'>
                   <Image
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                     publicId={image.public_id}
@@ -294,6 +303,11 @@ const UploadCouplePicture = () => {
           <Button label='Next' type='submit' className=' !rounded-[10px]' />
         </motion.div>
       </motion.form>
+      <CropImage
+        onSave={onCropSave}
+        selectedFile={selectedImageFile}
+        aspectRatio={16 / 9}
+      />
     </CreateWebsiteContainer>
   );
 };

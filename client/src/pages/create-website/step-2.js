@@ -142,13 +142,13 @@ const WeddingDay = () => {
       });
       return;
     }
-    if (!compareDate(data.secondReception)) {
-      setError('secondReception', {
-        type: 'validate',
-        message: 'Seems like you have selected past date',
-      });
-      return;
-    }
+    // if (!compareDate(data.secondReception)) {
+    //   setError('secondReception', {
+    //     type: 'validate',
+    //     message: 'Seems like you have selected past date',
+    //   });
+    //   return;
+    // }
 
     let values;
     if (getValues('tba')) {

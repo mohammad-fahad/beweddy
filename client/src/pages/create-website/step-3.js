@@ -1,5 +1,5 @@
 import { CreateWebsiteContainer } from '@components/createWebsite';
-import { Button, Heading, Loader } from '@components/index';
+import { Button, CropImage, Heading, Loader } from '@components/index';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
@@ -12,6 +12,7 @@ import { addWeddingAnnouncement } from '@features/question/questionSlice';
 import { XIcon } from '@heroicons/react/solid';
 import { removeImage } from '@utils/index';
 import { motion } from 'framer-motion';
+import { isEmpty } from 'lodash';
 
 const easing = [0.6, -0.05, 0.01, 0.99];
 const fadeInUp = {
@@ -41,9 +42,13 @@ const UploadAnnouncement = () => {
   const dispatch = useDispatch();
   const { push } = useRouter();
   const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState();
+  const [preview, setPreview] = useState();
+  const [selectedImageFile, setSelectedImageFile] = useState();
+
   const { questions } = useSelector(state => state.question);
   const [uploadedFile, setUploadedFile] = useState(
-    questions.weddingAnnouncement?.uploadAnnouncement || {}
+    questions.weddingAnnouncement?.uploadAnnouncement
   );
 
   const {
@@ -81,6 +86,7 @@ const UploadAnnouncement = () => {
       clearErrors('uploadAnnouncement');
     }
   }, [doThisLater]);
+
   const onSubmit = data => {
     if (!getValues('do_this_later')) {
       dispatch(addWeddingAnnouncement(data));
@@ -91,38 +97,15 @@ const UploadAnnouncement = () => {
   };
 
   const onDrop = useCallback(acceptedFiles => {
-    setLoading(true);
-    const URL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`;
-    const config = {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    };
-
-    acceptedFiles.forEach(async acceptedFile => {
-      try {
-        const formData = new FormData();
-
-        formData.append('file', acceptedFile);
-        formData.append(
-          'upload_preset',
-          process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
-        );
-
-        formData.append(
-          'folder',
-          process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
-        );
-        const { data } = await axios.post(URL, formData, config);
-        setLoading(false);
-        setValue('uploadAnnouncement', data);
-        setUploadedFile(data);
-      } catch (err) {
-        setLoading(false);
-        console.error(err.message);
-      }
-    });
-  }, []);
+    const fileDropped = acceptedFiles[0];
+    if (fileDropped['type'].split('/')[0] === 'image') {
+      setSelectedImageFile(fileDropped);
+      return;
+    }
+    setFile(fileDropped);
+    const previewUrl = URL.createObjectURL(fileDropped);
+    setPreview(previewUrl);
+  });
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -130,12 +113,46 @@ const UploadAnnouncement = () => {
     multiple: false,
   });
 
+  const onCropSave = async ({ file, preview }) => {
+    setPreview(preview);
+    setFile(file);
+    const URL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`;
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    };
+
+    try {
+      setLoading(true);
+      const formData = new FormData();
+
+      formData.append('file', file);
+      formData.append(
+        'upload_preset',
+        process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
+      );
+
+      formData.append(
+        'folder',
+        process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
+      );
+      const { data } = await axios.post(URL, formData, config);
+      setLoading(false);
+      setValue('uploadAnnouncement', data);
+      setUploadedFile(data);
+    } catch (err) {
+      setLoading(false);
+      console.error(err.message);
+    }
+  };
+
   const handleRemoveImage = async () => {
     try {
       setLoading(true);
       await removeImage(uploadedFile.public_id);
-      setUploadedFile(null);
-      setValue('uploadAnnouncement', null);
+      setUploadedFile({});
+      setValue('uploadAnnouncement', {});
       setLoading(false);
     } catch (err) {
       setLoading(false);
@@ -170,7 +187,7 @@ const UploadAnnouncement = () => {
           className='w-full flex flex-col items-center justify-center gap-5 md:gap-8 mb-8 md:mb-10'
           variants={fadeInUp}
         >
-          {uploadedFile && (
+          {!isEmpty(uploadedFile) && (
             <div className='max-w-[200px] md:max-w-[240px] w-full mx-auto'>
               <div className='group border-[3px] border-primary rounded-[5px] overflow-hidden relative'>
                 <button
@@ -180,7 +197,7 @@ const UploadAnnouncement = () => {
                 >
                   <XIcon className='w-5 h-5' />
                 </button>
-                <div className='aspect-w-1 md:aspect-w-2 aspect-h-1 md:aspect-h-2'>
+                <div className='aspect-w-3 aspect-h-2'>
                   <Image
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                     publicId={uploadedFile.public_id}
@@ -270,6 +287,11 @@ const UploadAnnouncement = () => {
           <Button label='Next' type='submit' className=' !rounded-[10px]' />
         </motion.div>
       </motion.form>
+      <CropImage
+        onSave={onCropSave}
+        selectedFile={selectedImageFile}
+        aspectRatio={3 / 2}
+      />
     </CreateWebsiteContainer>
   );
 };

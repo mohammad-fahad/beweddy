@@ -2,12 +2,14 @@ import { CreateWebsiteContainer } from '@components/createWebsite';
 import { Button, Heading, LinkButton } from '@components/shared';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Swiper from 'react-id-swiper';
 
 import SwiperCore, { Lazy, Autoplay } from 'swiper';
 SwiperCore.use([Lazy, Autoplay]);
 
 const WebsitePreview = () => {
+  const { push } = useRouter();
   const params = {
     loop: true,
     autoplay: {
@@ -18,7 +20,7 @@ const WebsitePreview = () => {
   return (
     <CreateWebsiteContainer seo={{ title: 'Preview Your Wedding Website' }}>
       <motion.div
-        className={`flex flex-col items-center justify-center overflow-hidden`}
+        className={`flex flex-col items-center justify-center w-full`}
         exit={{ opacity: 0 }}
       >
         <motion.div
@@ -31,18 +33,13 @@ const WebsitePreview = () => {
             lineStyle={{ marginBottom: '45px' }}
           />
         </motion.div>
-        <motion.div
-          className='container overflow-hidden'
-          exit={{ opacity: 0, scale: 1.5 }}
-          initial={{ opacity: 0, scale: 1.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-        >
+        <div className='container'>
           <Swiper {...params}>
             <div>
               <img
                 src='/images/wedding-laptop.png'
                 alt=''
-                className='max-h-[250px] md:max-h-[395px] lg:max-h-[450px] mx-auto swiper-lazy'
+                className='md:max-h-[395px] lg:max-h-[450px] mx-auto swiper-lazy'
               />
               <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
             </div>
@@ -50,7 +47,7 @@ const WebsitePreview = () => {
               <img
                 src='/images/wedding-phone.png'
                 alt=''
-                className='h-full max-h-[250px] md:max-h-[395px] lg:max-h-[450px] mx-auto swiper-lazy'
+                className='max-h-[250px] md:max-h-[395px] lg:max-h-[450px] mx-auto swiper-lazy'
               />
               <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
             </div>
@@ -58,17 +55,17 @@ const WebsitePreview = () => {
               <img
                 src='/images/wedding-macbook.png'
                 alt=''
-                className='h-full max-h-[250px] md:max-h-[395px] lg:max-h-[450px] mx-auto swiper-lazy'
+                className='max-h-[250px] md:max-h-[395px] lg:max-h-[450px] mx-auto swiper-lazy'
               />
               <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
             </div>
           </Swiper>
-        </motion.div>
+        </div>
         <div className='my-5 text-center'>
           <LinkButton
             href='/create-website/step-7'
             label='Launch Your Wedding Platform'
-            className='!rounded-[10px] !py-5 md:!px-10'
+            className='!rounded-[10px] py-3 md:!py-5 md:!px-10'
           />
         </div>
         <div className='mb-5'>
