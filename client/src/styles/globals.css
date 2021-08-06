@@ -71,6 +71,9 @@
   .timeline {
     @apply border-t-2 odd:ml-3 even:mr-3 odd:border-r-2 odd:rounded-tr-[25px] even:border-l-2 even:rounded-tl-[25px] border-primary;
   }
+  .gradient {
+    background: linear-gradient(120.68deg, #fce3eb 30.04%, #ffffff 100%);
+  }
 }
 .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
   @apply bg-secondary !important;
@@ -100,7 +103,7 @@
 
 @media screen and (max-width: 447px) {
   .banner-bubble-item-1 {
-    @apply -mt-7 ml-5;
+    @apply -mt-5 ml-5;
   }
   .banner-bubble-item-2 {
     @apply -ml-8;

@@ -5,8 +5,11 @@ const NavLinks = ({ className }) => {
     <div
       className={`flex md:items-center md:gap-5 ${className ? className : ''}`}
     >
-      <Link href='/'>
-        <a className='flex items-center gap-3 text-base text-primary font-bold font-inter group hover:text-primary transition-colors duration-300 relative'>
+      <Link href='/wedding-website'>
+        <a
+          target='_blank'
+          className='flex items-center gap-3 text-base text-primary font-bold font-inter group hover:text-primary transition-colors duration-300 relative'
+        >
           <img src='/icons/home.svg' alt='' className='w-5 h-5' />
           <span>Wedding Website</span>
           <span
@@ -14,7 +17,7 @@ const NavLinks = ({ className }) => {
           ></span>
         </a>
       </Link>
-      <Link href='/example-website'>
+      <Link href='/invitations'>
         <a
           target='_blank'
           className='flex items-center gap-3 text-base text-primary font-bold font-inter group hover:text-primary transition-colors duration-300 relative'
