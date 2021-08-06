@@ -12,65 +12,62 @@ import { Offers, Features } from '@components/shared/index';
 
 const offers = [
   {
-    icon: '/icons/user.svg',
-    title: 'Create Your Free Account',
+    icon: '/icons/outline-textsms.svg',
+    title: 'Text Invites',
     paragraph:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
   },
   {
-    icon: '/icons/template.svg',
-    title: 'Select A Design Template',
+    icon: '/icons/outline-mark-email-read.svg',
+    title: 'Email Invites',
     paragraph:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
   },
   {
-    icon: '/icons/layout.svg',
-    title: 'Easily Customize',
+    icon: '/icons/chat-mail.png',
+    title: 'Mail Out Invites',
     paragraph:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
   },
   {
-    icon: '/icons/rocket.svg',
-    title: 'Launch & Share With Guests',
+    icon: '/icons/insert-invitation.svg',
+    title: 'Simple Way To Send Invites',
     paragraph:
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
   },
 ];
 
-const WeddingWebsitePage = () => {
+const InvitationsPage = () => {
   useEffect(() => {
     alert('This page is under constructions');
   }, []);
   return (
     <>
       <Head>
-        <title>BeWeddy | Fun, Free Wedding Website</title>
-        <meta name='description' content='Fun, Free Wedding Website' />
+        <title>BeWeddy | Send Your Text-Email-Mail Wedding Invitations.</title>
+        <meta
+          name='description'
+          content='Send Your Text-Email-Mail Wedding Invitations.'
+        />
       </Head>
       <Header />
-      <PageTitle title='Wedding Website' />
+      <PageTitle title='Text-Email-Mail Invites ' />
       <HeroSection
-        heading={<>Fun, Free Wedding Website</>}
-        paragraph={
-          <>
-            Awesome design for Website Easy to use, customizable Options useful
-            features for couples and guests
-          </>
-        }
+        heading={<>Send Your Text-Email-Mail Wedding Invitations.</>}
+        paragraph='Useful, Easy to use Features Multiple Options To Send Invitations Manage Your Guests All in One Place'
         grid={{
-          gridCols: 'md:grid-cols-2',
-          leftCol: 'col-span-1',
+          gridCols: 'md:grid-cols-3',
+          leftCol: 'col-span-2',
           rightCol: 'col-span-1',
         }}
       >
         <img
-          src='/images/wedding-laptop.png'
+          src='/images/feature-mobile.png'
           alt=''
-          className='max-w-3xl w-full mx-auto'
+          className='max-h-[250px] md:max-h-[395px] lg:max-h-[450px] mx-auto'
         />
       </HeroSection>
-      <Offers title='How to Create Your Free Wedding Website' {...{ offers }} />
-      <Features />
+      <Offers title='How Invitations Works' {...{ offers }} />
       <CreateAccount />
       <HowItWork />
       <CreateAccount />
@@ -79,4 +76,4 @@ const WeddingWebsitePage = () => {
   );
 };
 
-export default WeddingWebsitePage;
+export default InvitationsPage;

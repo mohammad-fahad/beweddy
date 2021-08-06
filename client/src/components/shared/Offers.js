@@ -1,38 +1,11 @@
 const { Heading } = require('@components/shared');
 
-const offers = [
-  {
-    icon: '/icons/user.svg',
-    title: 'Create Your Free Account',
-    paragraph:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-  },
-  {
-    icon: '/icons/template.svg',
-    title: 'Select A Design Template',
-    paragraph:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-  },
-  {
-    icon: '/icons/layout.svg',
-    title: 'Easily Customize',
-    paragraph:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-  },
-  {
-    icon: '/icons/rocket.svg',
-    title: 'Launch & Share With Guests',
-    paragraph:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-  },
-];
-
-const Offers = () => {
+const Offers = ({ offers, title }) => {
   return (
     <div className='border-t-4 border-primary'>
       <div className='container py-20'>
         <Heading
-          label='How to Create Your Free Wedding Website'
+          label={title}
           color='bg-secondary-alternative'
           className='lg:!text-4xl'
           // lineStyle={{ marginBottom: '45px' }}

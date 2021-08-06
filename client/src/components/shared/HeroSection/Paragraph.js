@@ -1,7 +1,7 @@
 const Paragraph = ({ children }) => (
-  <div className='max-w-lg text-base md:text-xl leading-9 capitalize font-medium mb-5'>
+  <p className='max-w-md text-base md:text-xl !leading-relaxed capitalize font-medium mb-6'>
     {children}
-  </div>
+  </p>
 );
 
 export default Paragraph;

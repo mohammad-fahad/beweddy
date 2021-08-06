@@ -2,12 +2,12 @@ import { LinkButton } from '../buttons';
 import Paragraph from './Paragraph';
 import SectionHeading from './SectionHeading';
 
-const HeroSection = ({ heading, paragraph, children }) => {
+const HeroSection = ({ heading, paragraph, grid, children }) => {
   return (
     <div className='gradient'>
       <div className='container py-20'>
-        <div className='grid md:grid-cols-2 gap-10'>
-          <div className='col-span-1'>
+        <div className={`grid gap-10 ${grid.gridCols}`}>
+          <div className={grid.leftCol}>
             <SectionHeading>{heading}</SectionHeading>
             <Paragraph>{paragraph}</Paragraph>
             <LinkButton
@@ -16,7 +16,7 @@ const HeroSection = ({ heading, paragraph, children }) => {
               className='!rounded-[5px] !py-3 !px-7'
             />
           </div>
-          <div className='col-span-1 self-center'>{children}</div>
+          <div className={`self-center ${grid.rightCol}`}>{children}</div>
         </div>
       </div>
     </div>
