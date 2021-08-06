@@ -31,7 +31,7 @@ const NavLinks = ({ className }) => {
           <span className='absolute bottom-[-10px] left-0 w-0 h-[3px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300'></span>
         </a>
       </Link>
-      <Link href='/example-website'>
+      <Link href='/gift-and-registry'>
         <a
           target='_blank'
           className='flex items-center gap-3 text-base text-primary font-bold font-inter group hover:text-primary transition-colors duration-300 relative'
