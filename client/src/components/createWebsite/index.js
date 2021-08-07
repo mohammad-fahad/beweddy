@@ -28,17 +28,17 @@ const stagger = {
 
 export const CreateWebsiteContainer = ({ seo, page, children }) => {
 
-  // useEffect(() => {
-  //   const initialValue = document.body.style.zoom;
+  useEffect(() => {
+    const initialValue = document.body.style.transform;
 
-  //   // Change zoom level on mount
-  //   document.body.style.transform = "20%";
+    // Change zoom level on mount
+    document.body.style.transform = "scale(.8)";
 
-  //   return () => {
-  //     // Restore default value
-  //     document.body.style.transform = initialValue;
-  //   };
-  // }, []);
+    return () => {
+      // Restore default value
+      document.body.style.transform = initialValue;
+    };
+  }, []);
 
   return (
     <>
