@@ -44,7 +44,7 @@ const ExampleWebsite = ({ label, href, seo }) => {
         >
           <motion.div
             variants={fadeInUp}
-            className='flex flex-col items-center justify-center w-full'
+            className='flex flex-col items-center justify-center w-full -mt-12 sm:mt-0'
           >
             <motion.div variants={fadeInUp}>
               <Heading label='Here is an example preview of the website your creating!' />
