@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion';
 import Head from 'next/head';
+import {useEffect} from 'react'
+import { motion } from 'framer-motion';
 
 const easing = [0.6, -0.05, 0.01, 0.99];
 const fadeInUp = {
@@ -26,6 +27,19 @@ const stagger = {
 };
 
 export const CreateWebsiteContainer = ({ seo, page, children }) => {
+
+  // useEffect(() => {
+  //   const initialValue = document.body.style.zoom;
+
+  //   // Change zoom level on mount
+  //   document.body.style.transform = "20%";
+
+  //   return () => {
+  //     // Restore default value
+  //     document.body.style.transform = initialValue;
+  //   };
+  // }, []);
+
   return (
     <>
       <Head>
