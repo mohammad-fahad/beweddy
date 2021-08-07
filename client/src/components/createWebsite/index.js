@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import {useEffect} from 'react'
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const easing = [0.6, -0.05, 0.01, 0.99];
@@ -27,18 +27,17 @@ const stagger = {
 };
 
 export const CreateWebsiteContainer = ({ seo, page, children }) => {
+  // useEffect(() => {
+  //   const initialValue = document.body.style.transform;
 
-  useEffect(() => {
-    const initialValue = document.body.style.transform;
+  //   // Change zoom level on mount
+  //   document.body.style.transform = "scale(.8)";
 
-    // Change zoom level on mount
-    document.body.style.transform = "scale(.8)";
-
-    return () => {
-      // Restore default value
-      document.body.style.transform = initialValue;
-    };
-  }, []);
+  //   return () => {
+  //     // Restore default value
+  //     document.body.style.transform = initialValue;
+  //   };
+  // }, []);
 
   return (
     <>
@@ -46,7 +45,7 @@ export const CreateWebsiteContainer = ({ seo, page, children }) => {
         <title>BeWeddy | {seo.title}</title>
       </Head>
       <motion.div
-        className={`bg-gradient-to-br from-[#FCE3EB] to-white`}
+        className={`bg-gradient-to-br from-[#FCE3EB] to-white w-full`}
         exit={{ opacity: 0 }}
         initial='initial'
         animate='animate'
