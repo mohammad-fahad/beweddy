@@ -3,7 +3,6 @@ import {
   Banner,
   CreateAccount,
   CreateWebsite,
-  Features,
   Footer,
   GiftCards,
   Header,
@@ -11,6 +10,7 @@ import {
   Registries,
   Loader,
 } from '@components/index';
+import Features  from '@components/home/Features';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
