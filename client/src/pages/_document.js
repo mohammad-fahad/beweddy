@@ -6,7 +6,7 @@ class MyDocument extends Document {
       <Html lang='en'>
         <Head>
           {/* <meta name='image' content='/images/seo_image.png' /> */}
-
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
           <meta property='title' content='BeWeddy' />
           <meta name='description' content='' />
           <meta property='og:title' content='' />

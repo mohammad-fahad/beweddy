@@ -45,16 +45,16 @@ export const CreateWebsiteContainer = ({ seo, page, children }) => {
         <title>BeWeddy | {seo.title}</title>
       </Head>
       <motion.div
-        className={`bg-gradient-to-br from-[#FCE3EB] to-white w-full`}
+        className={`bg-gradient-to-br from-[#FCE3EB] to-white max-w-full`}
         exit={{ opacity: 0 }}
         initial='initial'
         animate='animate'
       >
-        {page && <div className='text-center py-5 text-lg'>{page} / 5</div>}
+        {page && <div className='text-center pt-5 text-lg'>{page} / 5</div>}
         <div
           className={`${
-            page ? 'min-h-[calc(100vh-68px)]' : 'min-h-screen'
-          } flex flex-col items-center justify-center container`}
+            page ? 'min-h-[calc(100vh-48px)]' : 'min-h-screen'
+          } flex flex-col items-center justify-center container w-full`}
         >
           {/* <div
             className={`${
