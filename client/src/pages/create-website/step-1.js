@@ -35,7 +35,7 @@ const CoupleName = () => {
           <Heading
             label="What's your name? & Who's your lucky spouse-to-be?"
             color='bg-primary'
-            className='pt-5 md:pt-0'
+            // className='pt-5 md:pt-0'
             lineStyle={{ marginBottom: '45px' }}
           />
         </motion.div>
@@ -82,9 +82,11 @@ const CoupleName = () => {
                   },
                 })}
               />
-              <p className='mt-2 text-red-400 font-light text-sm h-4'>
-                {errors?.your_lastName?.message}
-              </p>
+              {errors?.your_lastName && (
+                <p className='mt-2 text-red-400 font-light text-sm'>
+                  {errors?.your_lastName?.message}
+                </p>
+              )}
             </div>
           </div>
           <h2 className='font-alice text-3xl md:text-4xl text-center'>&</h2>

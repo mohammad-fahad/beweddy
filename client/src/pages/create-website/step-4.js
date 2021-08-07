@@ -100,7 +100,7 @@ const SentInvitation = () => {
           <Heading
             label='How would you like your invitations sent?'
             color='bg-primary'
-            className='pt-5 md:pt-0'
+            // className='pt-5 md:pt-0'
             style={{ paddingBottom: '25px' }}
             lineStyle={{ marginBottom: '25px' }}
           />
