@@ -27,18 +27,18 @@ const CoupleName = () => {
         className={`flex flex-col items-center justify-center w-full`}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <motion.div
+        {/* <motion.div
           exit={{ opacity: 0, scale: 0.8 }}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-        >
+        > */}
           <Heading
             label="What's your name? & Who's your lucky spouse-to-be?"
             color='bg-primary'
             // className='pt-5 md:pt-0'
             lineStyle={{ marginBottom: '45px' }}
           />
-        </motion.div>
+        {/* </motion.div> */}
         <motion.div
           className='flex items-center gap-2 md:gap-5 flex-wrap flex-col xl:flex-row'
           exit={{ opacity: 0 }}
