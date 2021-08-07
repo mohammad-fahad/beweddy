@@ -24,7 +24,7 @@ const CoupleName = () => {
   return (
     <CreateWebsiteContainer seo={{ title: 'Couple Names' }} page='1'>
       <form
-        className={`flex flex-col items-center justify-center w-full`}
+        className={`flex flex-col items-center justify-center w-full -mt-12`}
         onSubmit={handleSubmit(onSubmit)}
       >
         {/* <motion.div

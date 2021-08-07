@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import {useEffect} from 'react'
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const easing = [0.6, -0.05, 0.01, 0.99];
@@ -27,35 +27,23 @@ const stagger = {
 };
 
 export const CreateWebsiteContainer = ({ seo, page, children }) => {
-
-  useEffect(() => {
-    const initialValue = document.body.style.transform;
-
-    // Change zoom level on mount
-    document.body.style.transform = "scale(.8)";
-
-    return () => {
-      // Restore default value
-      document.body.style.transform = initialValue;
-    };
-  }, []);
-
+   
   return (
     <>
       <Head>
         <title>BeWeddy | {seo.title}</title>
       </Head>
       <motion.div
-        className={`bg-gradient-to-br from-[#FCE3EB] to-white`}
+        className={`bg-gradient-to-br from-[#FCE3EB] to-white max-w-full`}
         exit={{ opacity: 0 }}
         initial='initial'
         animate='animate'
       >
-        {page && <div className='text-center py-5 text-lg'>{page} / 5</div>}
+        {page && <div className='text-center pt-5 text-lg'>{page} / 5</div>}
         <div
           className={`${
-            page ? 'min-h-[calc(100vh-68px)]' : 'min-h-screen'
-          } flex flex-col items-center justify-center container`}
+            page ? 'min-h-[calc(100vh-48px)]' : 'min-h-screen'
+          } flex flex-col items-center justify-center container w-full`}
         >
           {/* <div
             className={`${

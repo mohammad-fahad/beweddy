@@ -167,7 +167,7 @@ const UploadAnnouncement = () => {
     >
       {loading && <Loader />}
       <motion.form
-        className={`flex flex-col items-center justify-center`}
+        className={`flex flex-col items-center justify-center -mt-12`}
         onSubmit={handleSubmit(onSubmit)}
         exit={{ opacity: 0 }}
         variants={stagger}
