@@ -7,32 +7,30 @@ import {
   HowItWork,
   PageTitle,
 } from '@components/index';
-import { Offers, Features } from '@components/shared/index';
+import { Offers } from '@components/shared/index';
 
 const offers = [
   {
-    icon: '/icons/user.svg',
-    title: 'Create Your Free Account',
+    icon: '/icons/card-coin.svg',
+    title: 'Create Your Wedding Platform',
     paragraph:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      'All-in-one wedding platform. Everything you need for your special day.',
   },
   {
-    icon: '/icons/template.svg',
-    title: 'Select A Design Template',
+    icon: '/icons/card-tick.svg',
+    title: 'Customize Your Wedding Website',
     paragraph:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      'Link your registries, gift cards, & share your bio with the wedding party.',
   },
   {
-    icon: '/icons/layout.svg',
-    title: 'Easily Customize',
-    paragraph:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    icon: '/icons/card-edit.svg',
+    title: 'Easily Customizable',
+    paragraph: 'The best wedding platform for all your wedding planning needs.',
   },
   {
-    icon: '/icons/rocket.svg',
-    title: 'Launch & Share With Guests',
-    paragraph:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    icon: '/icons/user-tag.svg',
+    title: 'Link In Bio',
+    paragraph: 'Share your love story in our Bio. ',
   },
 ];
 
@@ -46,11 +44,11 @@ const WeddingWebsitePage = () => {
       <Header />
       <PageTitle title='Wedding Website' />
       <HeroSection
-        heading={<>Fun, Free Wedding Website</>}
+        heading={<>Fancy, Fun & Free Wedding Website</>}
         paragraph={
           <>
-            Awesome design for Website Easy to use, customizable Options useful
-            features for couples and guests
+            One Stop Shop For All Your Wedding Needs. Texting platform,
+            Registries, I Need Your Adresses & Much More!
           </>
         }
         grid={{
@@ -65,9 +63,7 @@ const WeddingWebsitePage = () => {
           className='max-w-3xl w-full mx-auto'
         />
       </HeroSection>
-      <Offers title='How to Create Your Free Wedding Website' {...{ offers }} />
-      <Features />
-      <CreateAccount />
+      <Offers title='How To Create Your Wedding Website' {...{ offers }} />
       <HowItWork />
       <CreateAccount />
       <Footer />
