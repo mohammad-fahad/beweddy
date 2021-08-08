@@ -21,7 +21,7 @@ const NavLinks = ({ className }) => {
         <img src='/icons/gift.svg' alt='Registry' className='w-5 h-5' />
         <span>Registry</span>
       </ActiveLink>
-      <ActiveLink href='/example-website'>
+      <ActiveLink href='/address-and-rsvp'>
         <img
           src='/icons/compass.svg'
           alt='Need Your Address'
