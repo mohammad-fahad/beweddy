@@ -1,8 +1,8 @@
 const { Heading } = require('@components/shared');
 
-const Offers = ({ offers, title }) => {
+const Offers = ({ offers, className, title }) => {
   return (
-    <div className='border-t-4 border-primary'>
+    <div className={`border-t-4 border-primary ${className ? className : ''}`}>
       <div className='container py-20'>
         <Heading
           label={title}

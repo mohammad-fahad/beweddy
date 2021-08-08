@@ -13,28 +13,26 @@ import { Offers } from '@components/shared/index';
 
 const offers = [
   {
-    icon: '/icons/user.svg',
-    title: 'Add Wedding Gifts',
+    icon: '/icons/message-favorite.svg',
+    title: 'Personal Note With Each Gift',
     paragraph:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      'Receive Personalized Messages and Notes of Gratitude With Each Gift purchased.',
   },
   {
-    icon: '/icons/template.svg',
-    title: 'Guests Buy You Gifts',
-    paragraph:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    icon: '/icons/bookmark-2.svg',
+    title: '100+ Gift Card Options',
+    paragraph: 'You choose and pick the gift card options you want to receive.',
   },
   {
-    icon: '/icons/layout.svg',
-    title: 'Collect Gifts',
-    paragraph:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    icon: '/icons/driver-refresh.svg',
+    title: 'Sync & Link Your Registries',
+    paragraph: 'You choose and pick the registries you want to feature.',
   },
   {
-    icon: '/icons/rocket.svg',
-    title: 'Sync Your Registry',
+    icon: '/icons/link-2.svg',
+    title: 'Link & Sink All Your Gifts, & Registries',
     paragraph:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      '#1 option to share all your wedding registries & favorite gift card choices so people can love and support you.',
   },
 ];
 
@@ -51,8 +49,8 @@ const GiftRegistryPage = () => {
       <Header />
       <PageTitle title='Gift & Registry' />
       <HeroSection
-        heading={<>Everything Your Wedding Registry Should Be</>}
-        paragraph='Gifts, experiences, and honeymoon funds in one place Thoughtfully designed to save time for you and guests One-on-one support you won’t find anywhere else'
+        heading={<>Gifts & Registry</>}
+        paragraph='Wedding platform that connects gifts & registries all in one location.'
         grid={{
           gridCols: 'md:grid-cols-3',
           leftCol: 'md:col-span-2',
@@ -65,8 +63,11 @@ const GiftRegistryPage = () => {
           className='max-h-[395px] lg:max-h-[450px] mx-auto'
         />
       </HeroSection>
-      <Offers title='How Invitations Works' {...{ offers }} />
-      <CreateAccount />
+      <Offers
+        title='How Gifts & Registry Works'
+        className='border-b-4'
+        {...{ offers }}
+      />
       <GiftCards />
       <Registries />
       <HowItWork />
