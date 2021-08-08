@@ -32,12 +32,12 @@ const CoupleName = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
         > */}
-          <Heading
-            label="What's your name? & Who's your lucky spouse-to-be?"
-            color='bg-primary'
-            // className='pt-5 md:pt-0'
-            lineStyle={{ marginBottom: '45px' }}
-          />
+        <Heading
+          label="What's your name? & Who's your lucky spouse-to-be?"
+          color='bg-primary'
+          // className='pt-5 md:pt-0'
+          lineStyle={{ marginBottom: '45px' }}
+        />
         {/* </motion.div> */}
         <motion.div
           className='flex items-center gap-2 md:gap-5 flex-wrap flex-col xl:flex-row'
@@ -82,11 +82,9 @@ const CoupleName = () => {
                   },
                 })}
               />
-              {errors?.your_lastName && (
-                <p className='mt-2 text-red-400 font-light text-sm'>
-                  {errors?.your_lastName?.message}
-                </p>
-              )}
+              <p className='mt-2 text-red-400 font-light text-sm h-4'>
+                {errors?.your_lastName?.message}
+              </p>
             </div>
           </div>
           <h2 className='font-alice text-3xl md:text-4xl text-center'>&</h2>

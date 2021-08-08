@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const easing = [0.6, -0.05, 0.01, 0.99];
+
 const fadeInUp = {
   initial: {
     opacity: 0,
@@ -27,7 +28,6 @@ const stagger = {
 };
 
 export const CreateWebsiteContainer = ({ seo, page, children }) => {
-   
   return (
     <>
       <Head>

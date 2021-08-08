@@ -7,7 +7,7 @@ const HeroSection = ({ heading, paragraph, grid, children }) => {
     <div className='gradient'>
       <div className='container py-20'>
         <div className={`grid gap-10 ${grid.gridCols}`}>
-          <div className={grid.leftCol}>
+          <div className={`self-center ${grid.leftCol}`}>
             <SectionHeading>{heading}</SectionHeading>
             <Paragraph>{paragraph}</Paragraph>
             <LinkButton
