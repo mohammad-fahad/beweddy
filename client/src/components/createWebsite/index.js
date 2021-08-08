@@ -28,7 +28,6 @@ const stagger = {
 };
 
 export const CreateWebsiteContainer = ({ seo, page, children }) => {
-  
   return (
     <>
       <Head>
