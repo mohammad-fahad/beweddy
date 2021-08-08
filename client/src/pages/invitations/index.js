@@ -11,28 +11,27 @@ import { Offers } from '@components/shared/index';
 
 const offers = [
   {
-    icon: '/icons/outline-textsms.svg',
+    icon: '/icons/message-notif.svg',
     title: 'Text Invites',
     paragraph:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      'This is a new and improved way of getting your invites out faster and more efficiently. (Plus saves money.)',
   },
   {
-    icon: '/icons/outline-mark-email-read.svg',
+    icon: '/icons/sms-notification.svg',
     title: 'Email Invites',
     paragraph:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      'This is another simple way of getting your invitations out quicker to your guests. It is also linked to your gift registry and website.',
   },
   {
-    icon: '/icons/chat-mail.png',
+    icon: '/icons/sms-tracking.svg',
     title: 'Mail Out Invites',
     paragraph:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      "This is the most common way of inviting your guests. It's always fun to receive mail. (I mean.. who wouldn't want good looking people on the fridge.)",
   },
   {
-    icon: '/icons/insert-invitation.svg',
-    title: 'Simple Way To Send Invites',
-    paragraph:
-      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+    icon: '/icons/people.svg',
+    title: 'Manage Guest List',
+    paragraph: 'Communicate with all your guests in one place.',
   },
 ];
 
@@ -49,8 +48,8 @@ const InvitationsPage = () => {
       <Header />
       <PageTitle title='Text-Email-Mail Invites ' />
       <HeroSection
-        heading={<>Send Your Text-Email-Mail Wedding Invitations.</>}
-        paragraph='Useful, Easy to use Features Multiple Options To Send Invitations Manage Your Guests All in One Place'
+        heading={<>Text, E-Mail, and Mail Out Wedding Invitations</>}
+        paragraph='Multiple Options On How to Send Your Invites. All Easy to Use Features.'
         grid={{
           gridCols: 'md:grid-cols-3',
           leftCol: 'md:col-span-2',
@@ -64,7 +63,6 @@ const InvitationsPage = () => {
         />
       </HeroSection>
       <Offers title='How Invitations Works' {...{ offers }} />
-      <CreateAccount />
       <HowItWork />
       <CreateAccount />
       <Footer />

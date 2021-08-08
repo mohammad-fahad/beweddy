@@ -7,7 +7,7 @@ const Offers = ({ offers, title }) => {
         <Heading
           label={title}
           color='bg-secondary-alternative'
-          className='!max-w-4xl'
+          className='!max-w-4xl drop-shadow-2xl'
           // lineStyle={{ marginBottom: '45px' }}
         />
         <div className='grid md:grid-cols-2 gap-20'>
