@@ -9,7 +9,9 @@ import {
   PageTitle,
   Registries,
 } from '@components/index';
-import { Offers } from '@components/shared/index';
+import { LinkButton, Offers } from '@components/shared/index';
+import SectionHeading from '@components/shared/HeroSection/SectionHeading';
+import Paragraph from '@components/shared/HeroSection/Paragraph';
 
 const offers = [
   {
@@ -47,21 +49,35 @@ const GiftRegistryPage = () => {
       </Head>
       <Header />
       <PageTitle title='Address & RSVP' />
-      <HeroSection
-        heading={<>Collect Addresses & RSVP</>}
-        paragraph='With these fun features you can, Text E-mail and even DM your wedding party to gather addresses.'
-        grid={{
-          gridCols: 'md:grid-cols-3',
-          leftCol: 'md:col-span-2',
-          rightCol: 'md:col-span-1',
-        }}
-      >
-        <img
-          src='/images/feature-mobile.png'
-          alt=''
-          className='max-h-[395px] lg:max-h-[450px] mx-auto'
-        />
-      </HeroSection>
+      <div className='gradient'>
+        <div className='container py-20'>
+          <div className={`grid gap-10 md:grid-cols-3`}>
+            <div className={`self-center md:col-span-2`}>
+              <SectionHeading className='text-center md:!text-left'>
+                Collect Addresses & RSVP
+              </SectionHeading>
+              <Paragraph className='text-center mx-auto md:!mx-0 md:text-left'>
+                With these fun features you can, Text E-mail and even DM your
+                wedding party to gather addresses.
+              </Paragraph>
+              <div className='flex items-center justify-center md:justify-start'>
+                <LinkButton
+                  href='/create-website'
+                  label='Create Your Wedding Website'
+                  className='!rounded-[5px] !py-3 !px-7 !m-0 md:!mr-auto'
+                />
+              </div>
+            </div>
+            <div className={`self-center md:col-span-1`}>
+              <img
+                src='/images/feature-mobile.png'
+                alt=''
+                className='max-h-[395px] lg:max-h-[450px] mx-auto'
+              />
+            </div>
+          </div>
+        </div>
+      </div>
       <Offers
         title='How Address & RSVP Works'
         className='border-b-4'

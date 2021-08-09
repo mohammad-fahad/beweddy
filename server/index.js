@@ -1,27 +1,38 @@
+// Config DotEnv
 import './env.js';
+
 import 'colors';
 import path from 'path';
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
-import connectDB from './configs/connectDB.js';
 import { errorHandler, notFound } from './middlewares/error.js';
+import connectDB from './configs/db.js';
+import userRoutes from './routes/userRoutes.js';
 
 // Connect MongoDB
 connectDB();
 
 const app = express();
-
 // Port
 const port = process.env.PORT || 5000;
-
+// API URL
+const API_VERSION = process.env.API_VERSION || '/api/v1';
 // Bypass cors
 app.use(cors());
 
-// Enable morgan
+// const __dirname = path.resolve();
+
+// if (process.env.NODE_ENV === 'production') {
+//   app.use(express.static(path.join(__dirname, '/client/build')));
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+//   });
+// }
+
 if (process.env.NODE_ENV !== 'production') {
-  app.use(morgan('tiny'));
+  app.use(morgan('dev'));
 }
 
 app.use(express.json());
@@ -30,9 +41,9 @@ app.use(
     useTempFiles: true,
   })
 );
-// Routes
 
-// app.use('/api/users', userRoutes);
+// Routes
+app.use(`${API_VERSION}/users`, userRoutes);
 
 // Error Handler
 app.use(notFound);

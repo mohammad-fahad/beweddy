@@ -1,0 +1,203 @@
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import asyncHandler from 'express-async-handler';
+import User from '../models/User.js';
+import {
+  generateActivationToken,
+  generateIdToken,
+  resetPasswordIdToken,
+} from '../utils/token/index.js';
+import {
+  sendActivationEmail,
+  sendPasswordResetEmail,
+} from '../utils/mailer/index.js';
+
+// Register New User
+
+export const register = asyncHandler(async (req, res) => {
+  const {
+    questions: { firstName },
+    email,
+  } = req.body;
+
+  const userExists = await User.findOne({ email });
+  if (userExists) {
+    res.status(400);
+    throw new Error('User already exists');
+  }
+
+  const activationToken = generateActivationToken(req.body);
+  const url = `${process.env.CLIENT_URL}/activation/${activationToken}`;
+  await sendActivationEmail(firstName, email, url);
+  res.json({ message: `Account activation email has sent to ${email}` });
+});
+
+// Active User
+
+export const activeUser = asyncHandler(async (req, res) => {
+  const { token } = req.body;
+
+  // Decode token
+  const decode = jwt.verify(token, process.env.JWT_SECRET);
+
+  // Check if token is not valid
+  if (!decode) {
+    res.status(401);
+    throw new Error('Activation token expired');
+  }
+
+  const { email, phone, password, questions, role } = decode;
+  const { firstName, lastName } = questions;
+
+  // Check if user exists
+  const userExists = await User.findOne({ email });
+  if (userExists) {
+    res.status(400);
+    throw new Error('User already exists');
+  }
+
+  // Create new user
+  const user = await User.create({
+    firstName,
+    lastName,
+    email,
+    phone,
+    password,
+    questions,
+    role,
+  });
+
+  // Send response
+  if (user) {
+    res.status(201).json({
+      user: {
+        _id: user._id,
+        fullName: user.fullName,
+        email: user.email,
+        phone: user.phone,
+        questions: user.questions,
+        avatar: user.avatar,
+        isAdmin: user.isAdmin,
+        role: user.role,
+        token: generateIdToken(user._id),
+      },
+      message: `Your account has been successfully activated!`,
+    });
+  }
+});
+
+// User Login
+
+export const login = asyncHandler(async (req, res) => {
+  const { emailOrPhone, password } = req.body;
+
+  const user = await User.findOne({
+    $or: [
+      {
+        email: emailOrPhone,
+      },
+      {
+        phone: emailOrPhone,
+      },
+    ],
+  });
+
+  // Check if user & password matches
+  if (user && (await user.matchPassword(password))) {
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+      address: user.address,
+      balance: user.balance,
+      avatar: user.avatar,
+      isAdmin: user.isAdmin,
+      token: generateIdToken(user._id),
+    });
+  } else {
+    res.status(401);
+    throw new Error('Invalid email or phone or password');
+  }
+});
+
+// Request to reset password
+export const requestResetPassword = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+  // Check if user exists
+  const user = await User.findOne({ email });
+
+  // Check if user does not exist
+  if (!user) {
+    res.status(404);
+    throw new Error('User not found');
+  }
+
+  const url = `${process.env.CLIENT_URL}/password/reset/${resetPasswordIdToken(
+    user._id
+  )}`;
+
+  await sendPasswordResetEmail(email, url);
+  return res.status(200).json({
+    message: `Password reset link has been sent to ${email}`,
+  });
+});
+
+// Reset password
+export const resetPassword = asyncHandler(async (req, res) => {
+  const { token, password } = req.body;
+
+  // Verify token
+  const decode = await jwt.verify(token, process.env.JWT_SECRET);
+  // Check if token is valid
+  if (!decode) {
+    res.status(401);
+    throw new Error('Invalid token');
+  }
+
+  const id = decode.id;
+  // Update password
+
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+
+  const user = await User.findByIdAndUpdate(id, {
+    password: hashedPassword,
+  });
+
+  // Check if user does not exist
+  if (!user) {
+    res.status(404);
+    throw new Error('User not found');
+  }
+
+  await user.save();
+
+  return res.status(200).json({
+    message: `Your password has been changed successfully`,
+  });
+});
+
+// Get User Profile
+export const getUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    res.json({
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        address: user.address,
+        balance: user.balance,
+        avatar: user.avatar,
+        isAdmin: user.isAdmin,
+        token: generateIdToken(user._id),
+      },
+    });
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+});
