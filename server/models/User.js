@@ -66,12 +66,30 @@ const userSchema = new mongoose.Schema(
         min: 2,
         max: 20,
       },
-      specialDay: {
-        type: Date,
+      weddingDay: {
+        specialDay: {
+          type: Date,
+        },
+        tba: {
+          type: Boolean,
+        },
+        firstReception: {
+          type: Date,
+        },
+        secondReception: {
+          type: Date,
+        },
       },
-      tba: {
-        type: Boolean,
+      announcement: {
+        type: Object,
+        // Invitation Card Image
       },
+      invitation: {
+        countryCode: String,
+        phone: String,
+        
+      },
+      couplePictures: [],
     },
     role: {
       type: String,
@@ -82,7 +100,7 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    contactNumber: {
+    phone: {
       type: String,
     },
     avatar: {
@@ -93,6 +111,10 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+userSchema.virtual('fullName').get(function () {
+  return `${this.questions.firstName} ${this.questions.lastName}`;
+});
 
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);

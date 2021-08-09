@@ -74,6 +74,7 @@ const WeddingDay = () => {
     watch,
     getValues,
     register,
+    unregister,
     handleSubmit,
     setValue,
     setError,
@@ -109,21 +110,24 @@ const WeddingDay = () => {
         message: 'Please pick your date',
       },
     });
-    register('firstReception', {
-      required: {
-        value: have2Reception,
-        message: 'First reception date is required!',
-      },
-    });
 
-    register('secondReception');
     setValue('weddingDate', selectWeddingDay);
-    
+
     if (have2Reception) {
+      register('firstReception', {
+        required: {
+          value: have2Reception,
+          message: 'First reception date is required!',
+        },
+      });
+      register('secondReception');
       setValue('firstReception', selectFirstReception);
       setValue('secondReception', selectSecondReception);
+    } else {
+      unregister('firstReception');
+      unregister('secondReception');
     }
-  }, [register, tba, have2Reception]);
+  }, [register, unregister, tba, have2Reception]);
 
   // Form submit handler
   const onSubmit = data => {
