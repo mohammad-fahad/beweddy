@@ -15,41 +15,9 @@ import {
 // Register New User
 
 export const register = asyncHandler(async (req, res) => {
-  const {
-    questions: { firstName },
-    email,
-  } = req.body;
-
-  const userExists = await User.findOne({ email });
-  if (userExists) {
-    res.status(400);
-    throw new Error('User already exists');
-  }
-
-  const activationToken = generateActivationToken(req.body);
-  const url = `${process.env.CLIENT_URL}/activation/${activationToken}`;
-  await sendActivationEmail(firstName, email, url);
-  res.json({ message: `Account activation email has sent to ${email}` });
-});
-
-// Active User
-
-export const activeUser = asyncHandler(async (req, res) => {
-  const { token } = req.body;
-
-  // Decode token
-  const decode = jwt.verify(token, process.env.JWT_SECRET);
-
-  // Check if token is not valid
-  if (!decode) {
-    res.status(401);
-    throw new Error('Activation token expired');
-  }
-
-  const { email, phone, password, questions, role } = decode;
+  const { email, phone, password, questions, role } = req.body;
   const { firstName, lastName } = questions;
 
-  // Check if user exists
   const userExists = await User.findOne({ email });
   if (userExists) {
     res.status(400);
@@ -67,12 +35,50 @@ export const activeUser = asyncHandler(async (req, res) => {
     role,
   });
 
+  if (user) {
+    const activationToken = generateActivationToken(user._id);
+    const url = `${process.env.CLIENT_URL}/activation/${activationToken}`;
+    await sendActivationEmail(user.fullName, email, url);
+
+    res
+      .status(201)
+      .json({ message: `Account activation email has sent to ${email}` });
+  }
+});
+
+// Active User
+
+export const activeUser = asyncHandler(async (req, res) => {
+  const { token } = req.body;
+
+  // Decode token
+  const decode = jwt.verify(token, process.env.JWT_SECRET);
+
+  // Check if token is not valid
+  if (!decode) {
+    res.status(401);
+    throw new Error('Activation token expired');
+  }
+
+  const id = decode.id;
+
+  // Check if user exists
+  const userExists = await User.findById(id);
+  if (!userExists) {
+    res.status(404);
+    throw new Error('User not found');
+  }
+
+  userExists.emailVerified = true;
+  const user = await userExists.save();
+
   // Send response
   if (user) {
     res.status(201).json({
       user: {
         _id: user._id,
         fullName: user.fullName,
+        username: user.username,
         email: user.email,
         phone: user.phone,
         questions: user.questions,
@@ -89,30 +95,33 @@ export const activeUser = asyncHandler(async (req, res) => {
 // User Login
 
 export const login = asyncHandler(async (req, res) => {
-  const { emailOrPhone, password } = req.body;
+  const { email, password } = req.body;
 
-  const user = await User.findOne({
-    $or: [
-      {
-        email: emailOrPhone,
-      },
-      {
-        phone: emailOrPhone,
-      },
-    ],
-  });
+  const user = await User.findOne({ email });
+
+  if (user && !user.emailVerified) {
+    const activationToken = generateActivationToken(user._id);
+    const url = `${process.env.CLIENT_URL}/activation/${activationToken}`;
+    await sendActivationEmail(user.fullName, email, url);
+
+    res.status(401);
+    throw new Error(
+      'Your account is not activated yet, please check your email'
+    );
+  }
 
   // Check if user & password matches
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
-      name: user.name,
+      fullName: user.fullName,
+      username: user.username,
       email: user.email,
       phone: user.phone,
-      address: user.address,
-      balance: user.balance,
+      questions: user.questions,
       avatar: user.avatar,
       isAdmin: user.isAdmin,
+      role: user.role,
       token: generateIdToken(user._id),
     });
   } else {

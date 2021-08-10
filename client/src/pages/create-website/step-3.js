@@ -138,9 +138,17 @@ const UploadAnnouncement = () => {
         process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
       );
       const { data } = await axios.post(URL, formData, config);
+
+      const { public_id, height, width, secure_url, url } = data;
       setLoading(false);
-      setValue('uploadAnnouncement', data);
-      setUploadedFile(data);
+      setValue('uploadAnnouncement', {
+        public_id,
+        height,
+        width,
+        secure_url,
+        url,
+      });
+      setUploadedFile({ public_id, height, width, secure_url, url });
     } catch (err) {
       setLoading(false);
       console.error(err.message);
