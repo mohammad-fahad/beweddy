@@ -6,6 +6,6 @@ import { uploader } from '../middlewares/upload.js';
 const router = express.Router();
 
 router.route('/').post(uploader, uploadImage);
-router.route('/delete').post(protect, removeImage);
+router.route('/delete').post(removeImage);
 
 export default router;

@@ -111,7 +111,8 @@ const UploadCouplePicture = () => {
       dispatch(addCouplePictures([]));
     }
     // if submit done then go to next page
-    push('/create-website/step-6', null, { shallow: true });
+    push({ query: { step: 6 } });
+    // push('/create-website/step-6', null, { shallow: true });
   };
 
   // Handle image uploadedFiles
@@ -301,8 +302,9 @@ const UploadCouplePicture = () => {
           <Button
             label='Back'
             className='opacity-50 !rounded-[10px]'
-            onClick={() =>
-              push('/create-website/step-4', null, { shallow: true })
+            onClick={
+              () => push({ query: { step: 4 } })
+              // push('/create-website/step-4', null, { shallow: true })
             }
           />
           <Button label='Next' type='submit' className=' !rounded-[10px]' />

@@ -17,7 +17,7 @@ export const attemptImageUpload = async imageData => {
       'Content-Type': 'multipart/form-data',
     },
   };
-  
+
   try {
     const { data } = await axios.post(`${API_URL}/upload`, imageData, config);
     return data;
@@ -32,7 +32,7 @@ export const attemptImageUpload = async imageData => {
 export const removeImage = async public_id => {
   try {
     const { data } = await axios.post(
-      `/api/cloudinary/remove`,
+      `${API_URL}/upload/delete`,
       {
         public_id,
       },

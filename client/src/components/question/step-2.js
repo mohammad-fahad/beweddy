@@ -174,7 +174,9 @@ const WeddingDay = () => {
 
     if (!Object.keys(errors).length) {
       dispatch(addWeddingDay(values));
-      push('/create-website/step-3', null, { shallow: true });
+      push({ query: { step: 3 } });
+
+      // push('/create-website/step-3', null, { shallow: true });
     }
   };
 
@@ -323,9 +325,7 @@ const WeddingDay = () => {
           <Button
             label='Back'
             className='opacity-50 !rounded-[10px]'
-            onClick={() =>
-              push('/create-website/step-1', null, { shallow: true })
-            }
+            onClick={() => push({ query: { step: 1 } })}
           />
           <Button label='Next' type='submit' className=' !rounded-[10px]' />
         </motion.div>

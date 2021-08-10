@@ -18,7 +18,8 @@ const CoupleName = () => {
 
   const onSubmit = data => {
     dispatch(addCoupleName(data));
-    push('/create-website/step-2', null, { shallow: true });
+    push({ query: { step: 2 } });
+    // push('/create-website/step-2', null, { shallow: true });
   };
 
   return (
