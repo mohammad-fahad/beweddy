@@ -114,7 +114,7 @@ userSchema.virtual('fullName').get(function () {
 
 userSchema.virtual('username').get(function () {
   return `${this.questions.firstName}${this.questions.lastName}_${nanoid(
-    3
+    4
   )}`.toLowerCase();
 });
 
