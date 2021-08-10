@@ -72,7 +72,9 @@ const CropImage = props => {
 
     canvas.toBlob(blob => {
       const previewUrl = URL.createObjectURL(blob);
-      const newFile = new File([blob], props.selectedFile.name);
+      const newFile = new File([blob], props.selectedFile.name, {
+        type: 'image/jpg',
+      });
 
       setPreview(previewUrl);
       setCroppedFile(newFile);

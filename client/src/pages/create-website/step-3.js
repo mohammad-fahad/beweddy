@@ -7,10 +7,9 @@ import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Image } from 'cloudinary-react';
-import axios from 'axios';
 import { addWeddingAnnouncement } from '@features/question/questionSlice';
 import { XIcon } from '@heroicons/react/solid';
-import { removeImage } from '@utils/index';
+import { attemptImageUpload, removeImage } from '@utils/index';
 import { motion } from 'framer-motion';
 import { isEmpty } from 'lodash';
 
@@ -116,28 +115,17 @@ const UploadAnnouncement = () => {
   const onCropSave = async ({ file, preview }) => {
     setPreview(preview);
     setFile(file);
-    const URL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`;
-    const config = {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    };
-
+    console.log(file);
     try {
       setLoading(true);
       const formData = new FormData();
 
-      formData.append('file', file);
-      formData.append(
-        'upload_preset',
-        process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
-      );
-
+      formData.append('image', file);
       formData.append(
         'folder',
         process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
       );
-      const { data } = await axios.post(URL, formData, config);
+      const data = await attemptImageUpload(formData);
       setLoading(false);
       setValue('uploadAnnouncement', data);
       setUploadedFile(data);

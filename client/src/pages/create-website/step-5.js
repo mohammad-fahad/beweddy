@@ -167,9 +167,14 @@ const UploadCouplePicture = () => {
         process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
       );
       const { data } = await axios.post(URL, formData, config);
-      setValue('uploadCouplePicture', data);
+      const { public_id, height, width, secure_url, url } = data;
+      setUploadedFiles(prev => [
+        ...prev,
+        { public_id, height, width, secure_url, url },
+      ]);
+
+      setValue('uploadCouplePicture', uploadedFiles);
       clearErrors('uploadCouplePicture');
-      setUploadedFiles(prev => [...prev, data]);
       setLoading(false);
     } catch (err) {
       setLoading(false);

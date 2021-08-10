@@ -10,6 +10,7 @@ import fileUpload from 'express-fileupload';
 import { errorHandler, notFound } from './middlewares/error.js';
 import connectDB from './configs/db.js';
 import userRoutes from './routes/userRoutes.js';
+import uploadRoutes from './routes/uploadRoutes.js';
 
 // Connect MongoDB
 connectDB();
@@ -44,6 +45,7 @@ app.use(
 
 // Routes
 app.use(`${API_VERSION}/users`, userRoutes);
+app.use(`${API_VERSION}/upload`, uploadRoutes);
 
 // Error Handler
 app.use(notFound);

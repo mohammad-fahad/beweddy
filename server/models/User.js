@@ -1,5 +1,6 @@
-import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
+import { nanoid } from 'nanoid';
+import mongoose from 'mongoose';
 
 //creating user schema for user admin
 const userSchema = new mongoose.Schema(
@@ -18,14 +19,6 @@ const userSchema = new mongoose.Schema(
       min: 3,
       max: 20,
     },
-    username: {
-      type: String,
-      required: true,
-      trim: true,
-      unique: true,
-      index: true,
-      lowercase: true,
-    },
     email: {
       type: String,
       required: true,
@@ -38,14 +31,14 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     questions: {
-      yourFirstName: {
+      firstName: {
         type: String,
         required: true,
         trim: true,
         min: 2,
         max: 20,
       },
-      yourLastName: {
+      lastName: {
         type: String,
         required: true,
         trim: true,
@@ -87,7 +80,6 @@ const userSchema = new mongoose.Schema(
       invitation: {
         countryCode: String,
         phone: String,
-        
       },
       couplePictures: [],
     },
@@ -97,6 +89,10 @@ const userSchema = new mongoose.Schema(
       default: 'couple',
     },
     isAdmin: {
+      type: Boolean,
+      default: false,
+    },
+    emailVerified: {
       type: Boolean,
       default: false,
     },
@@ -114,6 +110,12 @@ const userSchema = new mongoose.Schema(
 
 userSchema.virtual('fullName').get(function () {
   return `${this.questions.firstName} ${this.questions.lastName}`;
+});
+
+userSchema.virtual('username').get(function () {
+  return `${this.questions.firstName}${this.questions.lastName}_${nanoid(
+    4
+  )}`.toLowerCase();
 });
 
 userSchema.methods.matchPassword = async function (enteredPassword) {

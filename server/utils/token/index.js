@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken';
 
 /**
- * @param  {Object} payload
+ * @param  {String} id
  */
-export const generateActivationToken = payload => {
-  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '5m' });
+export const generateActivationToken = id => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '15m' });
 };
 
 /**
