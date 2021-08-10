@@ -63,7 +63,7 @@ const WebsitePreview = () => {
         </div>
         <div className='my-5 text-center'>
           <LinkButton
-            href='/create-website/step-7'
+            href='/create-website?step=7'
             label='Launch Your Wedding Platform'
             className='!rounded-[10px] py-3 md:!py-5 md:!px-10'
           />
@@ -77,8 +77,9 @@ const WebsitePreview = () => {
           <Button
             label='Edit your platform'
             className='!border-secondary-alternative !rounded-[10px] hover:!bg-secondary/5 !bg-transparent !text-primary'
-            onClick={() =>
-              push('/create-website/step-1', null, { shallow: true })
+            onClick={
+              () => push({ query: { step: 1 } })
+              // push('/create-website/step-1', null, { shallow: true })
             }
           />
         </div>
