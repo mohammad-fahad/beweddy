@@ -1,7 +1,7 @@
 import { Welcome } from '@components/question';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-// pushing
+// pushing new commit
 const WelcomePage = () => {
   const { push } = useRouter();
   useEffect(() => {
