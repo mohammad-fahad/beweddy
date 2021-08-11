@@ -176,8 +176,8 @@ const UploadAnnouncement = () => {
           <Heading
             label='Upload Wedding invite & announcement!'
             color='bg-primary'
-            className='lg:!text-[44px]'
-            lineStyle={{ marginBottom: '40px' }}
+            className='lg:!text-[40px]'
+            lineStyle={{ marginBottom: '37px' }}
           />
         </motion.div>
         <motion.div
@@ -261,7 +261,7 @@ const UploadAnnouncement = () => {
           </motion.div>
         </motion.div>
         <motion.p
-          className='font-light max-w-lg text-center'
+          className='font-light max-w-lg text-center !-mt-5 md:mt-0'
           variants={fadeInUp}
         >
           Don’t have one yet? we recommend Esty <br />
@@ -272,7 +272,7 @@ const UploadAnnouncement = () => {
           </Link>
         </motion.p>
         <motion.div
-          className='my-3 md:my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'
+          className='my-1 md:my-5 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'
           variants={fadeInUp}
         >
           <Button
