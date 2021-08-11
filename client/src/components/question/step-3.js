@@ -186,7 +186,7 @@ const UploadAnnouncement = () => {
                 >
                   <XIcon className='w-5 h-5' />
                 </button>
-                <div className='aspect-w-3 aspect-h-2'>
+                <div className='aspect-w-1 aspect-h-1'>
                   <Image
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                     publicId={uploadedFile.public_id}
@@ -277,7 +277,7 @@ const UploadAnnouncement = () => {
       <CropImage
         onSave={onCropSave}
         selectedFile={selectedImageFile}
-        aspectRatio={3 / 2}
+        // aspectRatio={3 / 2}
       />
     </CreateWebsiteContainer>
   );

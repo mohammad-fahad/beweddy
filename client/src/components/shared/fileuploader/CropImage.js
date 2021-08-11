@@ -9,7 +9,8 @@ const CropImage = props => {
   const [crop, setCrop] = useState({
     unit: '%',
     width: 80,
-    aspect: props.aspectRatio || 3 / 2,
+    height: 60,
+    aspect: props.aspectRatio ? props.aspectRatio : null,
   });
 
   const [src, setSrc] = useState();
