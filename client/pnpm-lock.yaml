@@ -24,6 +24,7 @@ specifiers:
   react-dom: 17.0.2
   react-dropzone: ^11.3.4
   react-hook-form: ^7.11.1
+  react-hot-toast: ^2.1.0
   react-id-swiper: ^4.0.0
   react-image-crop: ^8.6.12
   react-redux: ^7.2.4
@@ -56,6 +57,7 @@ dependencies:
   react-dom: 17.0.2_react@17.0.2
   react-dropzone: 11.3.4_react@17.0.2
   react-hook-form: 7.11.1_react@17.0.2
+  react-hot-toast: 2.1.0_react-dom@17.0.2+react@17.0.2
   react-id-swiper: 4.0.0_34146a6e7538b09058193b63f1601461
   react-image-crop: 8.6.12_react@17.0.2
   react-redux: 7.2.4_react-dom@17.0.2+react@17.0.2
@@ -1285,6 +1287,12 @@ packages:
       path-is-absolute: 1.0.1
     dev: true
 
+  /goober/2.0.39:
+    resolution: {integrity: sha512-ryw0VaZaehKmnjL4ZEJaiUVQc+XFa5dXIAbf2QC3F+WVKRbzaSuJyq7w28bdlwqYctiZ0Ok5QL/Pap5M2pCHQg==}
+    peerDependencies:
+      csstype: ^2.6.2
+    dev: false
+
   /graceful-fs/4.2.6:
     resolution: {integrity: sha512-nTnJ528pbqxYanhpDYsi4Rd8MAeaBA67+RZ10CM1m3bTAVFEDcd5AuA4a6W5YkGZ1iNXHzZz8T6TBKLeBuNriQ==}
 
@@ -2287,6 +2295,20 @@ packages:
       react: ^16.8.0 || ^17
     dependencies:
       react: 17.0.2
+    dev: false
+
+  /react-hot-toast/2.1.0_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-/wUoUVUC/qCYmkJvMzl/oXBIJe47vYqtwOpA76Pz8SrklrF8RBUTLG2eS+ivznzQzY8YlsyODIV7Qk3vOnFf1g==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+    dependencies:
+      goober: 2.0.39
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    transitivePeerDependencies:
+      - csstype
     dev: false
 
   /react-id-swiper/4.0.0_34146a6e7538b09058193b63f1601461:

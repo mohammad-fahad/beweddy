@@ -53,16 +53,16 @@ const SentInvitation = () => {
 
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState({});
-
   useEffect(() => {
     fetchCountryData();
   }, []);
-
+  
   const fetchCountryData = async () => {
     const { data } = await axios.get('https://restcountries.eu/rest/v2/all');
     setCountries(data);
     setSelectedCountry(...data.filter(country => country.alpha3Code === 'USA'));
   };
+
   const { push } = useRouter();
   const { questions } = useSelector(state => state.question);
   const {
@@ -82,7 +82,7 @@ const SentInvitation = () => {
         callingCode: selectedCountry.callingCodes[0],
       })
     );
-    push({ query: { step: 5 } })
+    push({ query: { step: 5 } });
     // push('/create-website/step-5', null, { shallow: true });
   };
 
@@ -302,9 +302,7 @@ const SentInvitation = () => {
           <Button
             label='Back'
             className='opacity-50 !rounded-[10px]'
-            onClick={() =>
-              push({ query: { step: 3 } })
-            }
+            onClick={() => push({ query: { step: 3 } })}
           />
           <Button label='Next' type='submit' className=' !rounded-[10px]' />
         </motion.div>
