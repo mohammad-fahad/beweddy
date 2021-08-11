@@ -5,13 +5,13 @@ const Banner = ({ setImageLoaded }) => {
     <div
       className='pt-14 xxl:pt-28 pb-32 w-full relative'
       style={{
-        background: `linear-gradient(to right, rgba(0,0,0,.6),rgba(0,0,0,.6)) ,url('/images/banner.png')`,
+        background: `linear-gradient(to right, rgba(0,0,0,.7),rgba(0,0,0,.7)) ,url('/images/banner.png')`,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'top',
         backgroundSize: 'cover',
       }}
     >
-      <div className='absolute w-full h-full inset-0 bg-primary/60 z-10' />
+      <div className='absolute w-full h-full inset-0 bg-primary/40 z-10' />
       <Image
         layout='fill'
         src='/images/banner.png'
