@@ -8,7 +8,7 @@ const AuthLinks = () => {
           Login
         </a>
       </Link>
-      <Link href='/signup'>
+      <Link href='/create-website'>
         <a className='text-sm text-primary py-2 px-6 border-2 border-primary rounded-md font-bold font-inter hover:text-white hover:bg-primary transition-colors duration-300'>
           Signup
         </a>

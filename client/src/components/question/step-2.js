@@ -161,13 +161,13 @@ const WeddingDay = () => {
         tba: data.tba,
       };
     } else {
-      values = { ...values, weddingDate: data.weddingDate };
+      values = { ...values, weddingDate: moment(data.weddingDate) };
     }
     if (getValues('have2Reception')) {
       values = {
         ...values,
         have2Reception: data.have2Reception,
-        firstReception: data.firstReception,
+        firstReception: moment(data.firstReception),
         secondReception: data.secondReception,
       };
     }
