@@ -126,10 +126,13 @@ const UploadAnnouncement = () => {
         'folder',
         process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
       );
-      const data = await attemptImageUpload(formData);
+      // const data = await attemptImageUpload(formData);
+      // setLoading(false);
+      // setValue('uploadAnnouncement', data);
+      // setUploadedFile(data);
       setLoading(false);
-      setValue('uploadAnnouncement', data);
-      setUploadedFile(data);
+      setValue('uploadAnnouncement', preview);
+      setUploadedFile(preview);
     } catch (err) {
       setLoading(false);
       console.error(err.message);
@@ -189,8 +192,9 @@ const UploadAnnouncement = () => {
                 <div className='aspect-w-1 aspect-h-1'>
                   <Image
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
-                    publicId={uploadedFile.public_id}
-                    src={!uploadedFile.public_id ? uploadedFile.url : null}
+                    // publicId={uploadedFile.public_id}
+                    // src={!uploadedFile.public_id ? uploadedFile.url : null}
+                    src={preview}
                     width='350'
                     crop='scale'
                     className='object-cover w-full'
