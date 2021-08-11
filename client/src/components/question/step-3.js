@@ -75,7 +75,9 @@ const UploadAnnouncement = () => {
       },
     });
   }, [register, doThisLater]);
-
+  useEffect(() => {
+    alert('This page is under construction');
+  }, []);
   useEffect(() => {
     setValue('uploadAnnouncement', uploadedFile);
   }, [uploadedFile]);
