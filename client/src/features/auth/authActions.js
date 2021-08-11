@@ -1,5 +1,6 @@
 import { errorAlert, handleErrorMessage, successAlert } from '@helpers/index';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { API_URL } from '@utils/index';
 import axios from 'axios';
 
 const config = {
@@ -13,7 +14,7 @@ export const attemptSignup = createAsyncThunk(
   async signupData => {
     try {
       const { data } = await axios.post(
-        `/api/auth/register`,
+        `${API_URL}/auth/register`,
         signupData,
         config
       );

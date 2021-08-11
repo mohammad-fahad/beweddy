@@ -101,12 +101,17 @@
   }
 }
 
-@media screen and (max-width: 447px) {
+@media screen and (max-width: 479px) {
   .banner-bubble-item-1 {
-    @apply -mt-5 ml-[-4px];
+    @apply mt-[-1.2rem];
   }
   .banner-bubble-item-2 {
     @apply -ml-8;
+  }
+}
+@media screen and (max-width: 367px) {
+  .banner-bubble-item-1 {
+    @apply mt-0;
   }
 }
 

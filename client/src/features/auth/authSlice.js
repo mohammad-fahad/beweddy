@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { attemptSignup } from './authActions';
 
 const initialState = {
   loading: false,
