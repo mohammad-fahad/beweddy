@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Head from 'next/head';
 import Link from 'next/link';
 
+// not working
 const InvitesPage = () => {
   return (
     <motion.div
