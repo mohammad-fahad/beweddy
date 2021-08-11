@@ -164,7 +164,7 @@ const UploadAnnouncement = () => {
     >
       {loading && <Loader />}
       <motion.form
-        className={`flex flex-col items-center justify-center -mt-12 sm:mt-0`}
+        className={`flex flex-col items-center justify-center -mt-2 sm:mt-0`}
         onSubmit={handleSubmit(onSubmit)}
         exit={{ opacity: 0 }}
         variants={stagger}
@@ -176,7 +176,7 @@ const UploadAnnouncement = () => {
           <Heading
             label='Upload Wedding invite & announcement!'
             color='bg-primary'
-            // className='pt-5 md:pt-0'
+            className='lg:!text-[44px]'
             lineStyle={{ marginBottom: '40px' }}
           />
         </motion.div>
@@ -185,7 +185,7 @@ const UploadAnnouncement = () => {
           variants={fadeInUp}
         >
           {!isEmpty(uploadedFile) && (
-            <div className='max-w-[200px] md:max-w-[240px] w-full mx-auto'>
+            <div className='max-w-[200px] md:max-w-[190px] w-full mx-auto'>
               <div className='group border-[3px] border-primary rounded-[5px] overflow-hidden relative'>
                 <button
                   type='button'
@@ -272,7 +272,7 @@ const UploadAnnouncement = () => {
           </Link>
         </motion.p>
         <motion.div
-          className='my-5 md:my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'
+          className='my-3 md:my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'
           variants={fadeInUp}
         >
           <Button
