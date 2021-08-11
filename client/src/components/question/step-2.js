@@ -219,7 +219,7 @@ const WeddingDay = () => {
   return (
     <CreateWebsiteContainer seo={{ title: 'Wedding Day' }} page='2'>
       <motion.form
-        className={`flex flex-col w-full h-full items-center justify-center -mt-12`}
+        className={`flex flex-col w-full h-full items-center justify-center -mt-9 sm:mt-0`}
         onSubmit={handleSubmit(onSubmit)}
         exit={{ opacity: 0 }}
         variants={stagger}

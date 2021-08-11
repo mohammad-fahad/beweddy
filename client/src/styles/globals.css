@@ -110,16 +110,19 @@
   }
 }
 @media screen and (max-width: 367px) {
+  .bubble {
+    @apply w-[106px] h-[106px];
+  }
+  .bubble h4 {
+    @apply text-[10px];
+  }
+}
+
+@media screen and (max-width: 349px) {
   .banner-bubble-item-1 {
     @apply mt-0;
   }
 }
-
-/* @media screen and (max-width: 539px) {
-  .banner-bubble {
-    @apply ml-[-5px];
-  }
-} */
 
 @media screen and (min-width: 768px) {
   .banner {

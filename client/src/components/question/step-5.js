@@ -211,7 +211,7 @@ const UploadCouplePicture = () => {
     <CreateWebsiteContainer seo={{ title: 'Upload Couple Picture' }} page='5'>
       {loading && <Loader />}
       <motion.form
-        className={`flex flex-col items-center justify-center w-full -mt-12`}
+        className={`flex flex-col items-center justify-center w-full -mt-9 sm:mt-0`}
         onSubmit={handleSubmit(onSubmit)}
         variants={stagger}
       >
