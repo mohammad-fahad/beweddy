@@ -123,9 +123,6 @@ const WeddingDay = () => {
       register('secondReception');
       setValue('firstReception', selectFirstReception);
       setValue('secondReception', selectSecondReception);
-    } else {
-      unregister('firstReception');
-      unregister('secondReception');
     }
   }, [register, unregister, tba, have2Reception]);
 
