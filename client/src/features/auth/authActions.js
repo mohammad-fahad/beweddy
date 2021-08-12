@@ -14,7 +14,7 @@ export const attemptSignup = createAsyncThunk(
   async signupData => {
     try {
       const { data } = await axios.post(
-        `${API_URL}/auth/register`,
+        `${API_URL}/users/register`,
         signupData,
         config
       );

@@ -31,6 +31,9 @@ const questionSlice = createSlice({
     addCouplePictures: (state, action) => {
       state.questions.couplePictures = action.payload;
     },
+    resetQuestions: (state, action) => {
+      state = initialState;
+    },
   },
 });
 
@@ -40,5 +43,6 @@ export const {
   addWeddingAnnouncement,
   addSentInvitation,
   addCouplePictures,
+  resetQuestions,
 } = questionSlice.actions;
 export const questionReducer = questionSlice.reducer;

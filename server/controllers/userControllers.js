@@ -46,6 +46,19 @@ export const register = asyncHandler(async (req, res) => {
   }
 });
 
+// export const verifyEmail = asyncHandler(async (req, res) => {
+//   const { email, phone, password, questions, role } = req.body;
+//   const activationToken = generateActivationToken(user._id);
+//   const url = `${process.env.CLIENT_URL}/activation/${activationToken}`;
+//   await sendActivationEmail(user.fullName, email, url);
+
+//   if (user) {
+//     res
+//       .status(201)
+//       .json({ message: `Account activation email has sent to ${email}` });
+//   }
+// });
+
 // Active User
 
 export const activeUser = asyncHandler(async (req, res) => {

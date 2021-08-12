@@ -60,7 +60,7 @@ const userSchema = new mongoose.Schema(
         max: 20,
       },
       weddingDay: {
-        specialDay: {
+        weddingDate: {
           type: Date,
         },
         tba: {
@@ -77,8 +77,8 @@ const userSchema = new mongoose.Schema(
         type: Object,
         // Invitation Card Image
       },
-      invitation: {
-        countryCode: String,
+      wayOfInvitation: {
+        callingCode: String,
         phone: String,
       },
       couplePictures: [],
