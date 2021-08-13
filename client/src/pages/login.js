@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { attemptLogin } from '@features/user/userActions';
 import { withAuthRedirect } from '@hoc/withAuthRedirect';
 
