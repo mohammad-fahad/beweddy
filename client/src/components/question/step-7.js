@@ -1,8 +1,18 @@
 import { CreateWebsiteContainer } from '@components/createWebsite';
 import { Heading } from '@components/shared';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 const VerifyEmail = () => {
+  const { success } = useSelector(state => state.auth);
+  const { push } = useRouter();
+  useEffect(() => {
+    if (!success) {
+      push({ query: { step: 6 } });
+    }
+  }, [success]);
   return (
     <CreateWebsiteContainer seo={{ title: 'Verify your account' }}>
       <Link href='/'>

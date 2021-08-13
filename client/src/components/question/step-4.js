@@ -89,7 +89,7 @@ const SentInvitation = () => {
   return (
     <CreateWebsiteContainer seo={{ title: 'Sent Invitations' }} page='4'>
       <motion.form
-        className={`flex flex-col items-center justify-center overflow-hidden -mt-9 sm:mt-0`}
+        className={`flex flex-col items-center justify-center overflow-hidden`}
         onSubmit={handleSubmit(onSubmit)}
         variants={stagger}
       >
@@ -107,7 +107,7 @@ const SentInvitation = () => {
           />
         </motion.div>
         <motion.h2
-          className='font-semibold font-inter text-lg md:text-3xl text-center mb-8'
+          className='font-semibold font-inter text-lg md:text-3xl text-center mb-5 md:mb-8'
           variants={fadeInUp}
         >
           (Check all that apply)
@@ -212,9 +212,11 @@ const SentInvitation = () => {
                 })}
               />
             </div>
-            <p className='mt-2 text-red-400 font-light h-4 text-sm'>
-              {errors?.phone?.message}
-            </p>
+            {errors.phone && (
+              <p className='mt-2 text-red-400 font-light text-sm'>
+                {errors?.phone?.message}
+              </p>
+            )}
           </div>
           <motion.div variants={stagger} className='flex flex-col gap-3'>
             <motion.div
@@ -296,7 +298,7 @@ const SentInvitation = () => {
           </motion.div>
         </motion.div>
         <motion.div
-          className='my-5 md:my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'
+          className='mb-5 md:mb-10 text-center flex items-center space-x-3 flex-wrap sm:flex-nowrap'
           variants={fadeInUp}
         >
           <Button

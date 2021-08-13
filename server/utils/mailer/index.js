@@ -30,7 +30,6 @@ export const sendActivationEmail = async (name, email, url) => {
 
   // const result = await transport.sendMail(mailOptions);
   const result = await sgMail.send(mailOptions);
-  console.log(result);
   if (!result) {
     throw new Error('Something went wrong');
   }

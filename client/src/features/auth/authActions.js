@@ -18,11 +18,10 @@ export const attemptSignup = createAsyncThunk(
         signupData,
         config
       );
-      errorAlert(data.error);
       successAlert(data.message);
     } catch (err) {
       errorAlert(handleErrorMessage(err));
-      return handleErrorMessage(err);
+      return err.response && err.response.data;
     }
   }
 );

@@ -1,3 +1,4 @@
+import logger from 'redux-logger';
 import { configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 import rootReducers from './reducers';
@@ -7,7 +8,7 @@ const persistConfig = {
   key: 'beweddy',
   storage,
   whitelist: ['question', 'user'],
-  blacklist: ['auth'],
+  // blacklist: ['auth'],
 };
 
 const rootReducer = (state, action) => {
@@ -25,7 +26,7 @@ const reducer = persistReducer(persistConfig, rootReducer);
 export const store = configureStore({
   reducer,
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({ serializableCheck: false }),
+    getDefaultMiddleware({ serializableCheck: false }).concat(logger),
 });
 
 export const persistor = persistStore(store);

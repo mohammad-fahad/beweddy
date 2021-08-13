@@ -36,7 +36,7 @@ const CoupleName = () => {
         <Heading
           label="What's your name? & Who's your lucky spouse-to-be?"
           color='bg-primary'
-          // className='pt-5 md:pt-0'
+          className='lg:text-[40px]'
           lineStyle={{ marginBottom: '45px' }}
         />
         {/* </motion.div> */}

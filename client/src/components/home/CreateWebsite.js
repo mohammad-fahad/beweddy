@@ -65,7 +65,7 @@ const CreateWebsite = () => {
           <LinkButton
             label='Create Your Wedding Website'
             className='!rounded-[100px] !px-10'
-            href='/signup'
+            href='/create-website'
           />
         </div>
       </div>

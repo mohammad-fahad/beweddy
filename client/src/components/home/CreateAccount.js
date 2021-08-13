@@ -3,7 +3,7 @@ import Link from 'next/link';
 const CreateAccount = () => {
   return (
     <div className='bg-primary py-10 flex items-center justify-center text-white'>
-      <Link href='/signup'>
+      <Link href='/create-website'>
         <a className='space-x-5 sm:text-lg md:text-2xl font-inter font-semibold flex items-center hover:underline'>
           <span>Create Your Free Account</span>
           <svg

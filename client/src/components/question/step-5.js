@@ -91,12 +91,12 @@ const UploadCouplePicture = () => {
   }, [register, doThisLater]);
 
   useEffect(() => {
-    console.log(uploadedFiles);
     setValue('uploadCouplePicture', uploadedFiles);
   }, [uploadedFiles]);
   // handle side effect if user upload couple picture later
   useEffect(() => {
     if (doThisLater) {
+      setUploadedFiles([]);
       clearErrors('uploadCouplePicture');
     }
   }, [doThisLater]);
@@ -217,6 +217,7 @@ const UploadCouplePicture = () => {
           <motion.div className='flex items-center justify-center flex-wrap gap-5 w-full'>
             {uploadedFiles.map(image => (
               <motion.div
+                key={image.public_id}
                 className='max-w-[150px] md:max-w-[220px] w-full group border-[3px] border-primary rounded-[5px] overflow-hidden relative'
                 layout
                 exit={{ opacity: 0 }}
@@ -280,7 +281,7 @@ const UploadCouplePicture = () => {
           </label>
         </motion.div>
         <motion.div
-          className='my-5 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'
+          className='mb-5 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'
           variants={fadeInUp}
         >
           <Button
@@ -297,7 +298,7 @@ const UploadCouplePicture = () => {
       <CropImage
         onSave={onCropSave}
         selectedFile={selectedImageFile}
-        aspectRatio={16 / 9}
+        aspectRatio={16 / 12}
       />
     </CreateWebsiteContainer>
   );

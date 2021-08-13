@@ -57,7 +57,7 @@ const SignupPage = () => {
         <div className='container min-h-screen flex items-center justify-center'>
           <form className='w-full' onSubmit={handleSubmit(onSubmit)}>
             <section
-              className={`bg-white border-4 my-5 md:my-10 border-primary py-8 md:py-10 px-10 md:px-24 max-w-xl w-full mx-auto rounded-xl`}
+              className={`bg-white border-4 my-5 md:my-10 border-primary py-5 md:py-10 px-10 md:px-24 max-w-xl w-full mx-auto rounded-xl`}
             >
               <div className='text-center mb-3'>
                 <Link href='/'>

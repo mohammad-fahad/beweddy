@@ -75,13 +75,14 @@ const UploadAnnouncement = () => {
       },
     });
   }, [register, doThisLater]);
-  
+
   useEffect(() => {
     setValue('uploadAnnouncement', uploadedFile);
   }, [uploadedFile]);
 
   useEffect(() => {
     if (doThisLater) {
+      setUploadedFile({});
       clearErrors('uploadAnnouncement');
     }
   }, [doThisLater]);
