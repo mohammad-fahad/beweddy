@@ -5,3 +5,4 @@ export * from './shared';
 export * from './home';
 export * from './createWebsite';
 export * from './question';
+export * from './dashboard';

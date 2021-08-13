@@ -1,9 +1,17 @@
-const index = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+import DashboardTopBar from '@components/dashboard/header/TopBar';
+import DashboardLayout from '@components/dashboard/layout';
+import Head from 'next/head';
 
-export default index
+const DashboardPage = () => {
+  return (
+    <>
+      <Head>
+        <title>Beweddy | Dashboard</title>
+      </Head>
+      <DashboardTopBar />
+      <DashboardLayout></DashboardLayout>
+    </>
+  );
+};
+
+export default DashboardPage;

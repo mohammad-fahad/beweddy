@@ -36,7 +36,7 @@ const ProfileLinks = ({ user }) => {
             >
               <Menu.Item>
                 {({ active }) => (
-                  <Link href='/profile'>
+                  <Link href='/dashboard'>
                     <a
                       className={`group font-inter ${
                         active ? 'bg-gray-100' : 'hover:bg-gray-100'

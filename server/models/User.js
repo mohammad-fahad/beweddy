@@ -114,6 +114,10 @@ userSchema.virtual('fullName').get(function () {
   return `${this.questions.firstName} ${this.questions.lastName}`;
 });
 
+userSchema.virtual('coupleName').get(function () {
+  return `${this.questions.firstName} & ${this.questions.spouseFirstName}`;
+});
+
 userSchema.virtual('username').get(function () {
   return `${this.questions.firstName}${this.questions.lastName}_${nanoid(
     4

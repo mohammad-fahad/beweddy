@@ -96,6 +96,7 @@ export const activeUser = asyncHandler(async (req, res) => {
       user: {
         _id: user._id,
         fullName: user.fullName,
+        coupleName: user.coupleName,
         username: user.username,
         email: user.email,
         phone: user.phone,
@@ -134,6 +135,7 @@ export const login = asyncHandler(async (req, res) => {
       user: {
         _id: user._id,
         fullName: user.fullName,
+        coupleName: user.coupleName,
         username: user.username,
         email: user.email,
         phone: user.phone,
