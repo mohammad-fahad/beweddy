@@ -1,4 +1,4 @@
-import { DashboardHeader } from '@components/dashboard';
+import { DashboardHeader, ActivityInfo } from '@components/dashboard';
 import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
 import { LinkIcon } from '@heroicons/react/outline';
@@ -28,6 +28,7 @@ const DashboardPage = () => {
             </Link>
           </div>
         </DashboardHeader>
+        <ActivityInfo />
       </DashboardLayout>
     </>
   );

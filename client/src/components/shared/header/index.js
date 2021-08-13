@@ -17,8 +17,8 @@ export const Header = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   return (
     <header className='bg-white relative'>
-      <div className='max-w-6xl px-10 xxl:px-0 mx-auto xl:container py-5 md:py-10 flex flex-col gap-5'>
-        <div className=' flex items-center justify-between gap-5 lg:gap-16 xl:gap-20 flex-wrap'>
+      <div className='max-w-[1350px] px-10 xxl:px-0 mx-auto py-5 md:py-10 flex flex-col gap-5'>
+        <div className=' flex items-center lg:gap-16'>
           {/* Logo */}
           <Link href='/'>
             <a className='-mt-[0.6rem]'>
@@ -29,7 +29,7 @@ export const Header = () => {
               />
             </a>
           </Link>
-          <div className='space-y-8 xl:space-y-10 flex-1 xl:flex-none'>
+          <div className='space-y-8 xl:space-y-10 flex-1 xl:flex-none ml-auto'>
             {/* Navigation Links Start */}
             <div className='flex items-center justify-between flex-1 gap-20'>
               <div className='hidden xl:block'>
@@ -39,7 +39,9 @@ export const Header = () => {
               {/* Authentication Links */}
               <div className='flex items-center ml-auto xl:ml-0 gap-2'>
                 {user ? (
-                  <ProfileLinks {...{ user }} />
+                  <div className='hidden sm:block'>
+                    <ProfileLinks {...{ user }} />
+                  </div>
                 ) : (
                   <div className='hidden sm:flex items-center gap-2'>
                     <AuthLinks />
