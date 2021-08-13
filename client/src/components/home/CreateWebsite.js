@@ -25,7 +25,7 @@ const CreateWebsite = () => {
       }}
     >
       <div className='mx-auto absolute left-2/4 -translate-x-2/4 -top-3 z-20 hover:scale-110 transition duration-200'>
-        <Link href='/signup'>
+        <Link href='/create-website'>
           <a className='whitespace-nowrap bg-white py-3 px-20 md:px-28 border-2 border-primary text-primary rounded-3xl'>
             Let's Get Started
           </a>

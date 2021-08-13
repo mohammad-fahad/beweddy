@@ -1,0 +1,17 @@
+Backend Development
+
+# Starter Project
+------------------------------------  
+  [+] Project Structure
+  [+] DB Schema Design
+  [+] Error Middleware
+  [+] Setup Initial Project
+
+# User Routes
+------------------------------------ 
+  [+][POST] User Registration (/api/v1/users/register)
+  [+][POST] User Activation (/api/v1/users/active)
+  [+][POST] User Login (/api/v1/users/login)
+  [+][POST] User Request Reset Password (/api/v1/users/requestRestPassword)
+  [+][POST] User Reset Password (/api/v1/users/restPassword)
+  [+][GET] User Profile (/api/v1/users/profile)

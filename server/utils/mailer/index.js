@@ -1,27 +1,19 @@
-import nodemailer from 'nodemailer';
+import sgMail from '@sendgrid/mail';
+
 import {
   activationTemplate,
   passwordResetTemplate,
 } from './templates/index.js';
 
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
 const {
-  EMAIL_SERVER_HOST,
-  EMAIL_SERVER_PORT,
-  EMAIL_SERVER_USER,
-  EMAIL_SERVER_PASS,
   EMAIL_FROM,
   SITE_NAME,
   CLIENT_URL,
 } = process.env;
 
-const transport = nodemailer.createTransport({
-  host: EMAIL_SERVER_HOST,
-  port: EMAIL_SERVER_PORT,
-  auth: {
-    user: EMAIL_SERVER_USER,
-    pass: EMAIL_SERVER_PASS,
-  },
-});
 /**
  * @param  {String} name
  * @param  {String} email
@@ -30,14 +22,15 @@ const transport = nodemailer.createTransport({
 
 export const sendActivationEmail = async (name, email, url) => {
   const mailOptions = {
-    from: `${SITE_NAME} < ${EMAIL_FROM}`,
+    from: `${SITE_NAME} <${EMAIL_FROM}>`,
     to: email,
     subject: `Signup to ${CLIENT_URL}`,
     html: activationTemplate(name, url),
   };
 
-  const result = await transport.sendMail(mailOptions);
-
+  // const result = await transport.sendMail(mailOptions);
+  const result = await sgMail.send(mailOptions);
+  console.log(result);
   if (!result) {
     throw new Error('Something went wrong');
   }
@@ -50,13 +43,14 @@ export const sendActivationEmail = async (name, email, url) => {
 
 export const sendPasswordResetEmail = async (email, url) => {
   const mailOptions = {
-    from: `${SITE_NAME} < ${EMAIL_FROM}>`,
+    from: `${SITE_NAME} <${EMAIL_FROM}>`,
     to: email,
     subject: `Reset your Password for ${SITE_NAME}`,
     html: passwordResetTemplate(url),
   };
+  const result = await sgMail.send(mailOptions);
 
-  const result = await transport.sendMail(mailOptions);
+  // const result = await transport.sendMail(mailOptions);
 
   if (!result) {
     throw new Error('Something went wrong');

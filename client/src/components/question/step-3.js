@@ -193,13 +193,14 @@ const UploadAnnouncement = () => {
                 >
                   <XIcon className='w-5 h-5' />
                 </button>
-                <div className='aspect-w-1 aspect-h-1'>
+                {/* <div className='aspect-w-1 aspect-h-1'> */}
+                <div>
                   <Image
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                     publicId={uploadedFile.public_id}
                     src={!uploadedFile.public_id ? uploadedFile.url : null}
                     // src={preview}
-                    width='350'
+                    width='200'
                     crop='scale'
                     className='object-cover w-full'
                   />

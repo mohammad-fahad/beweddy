@@ -44,6 +44,10 @@ app.use(
 );
 
 // Routes
+app.get('/', (_req, res) => {
+  res.json({ message: 'Welcome to Beweddy.' });
+});
+
 app.use(`${API_VERSION}/users`, userRoutes);
 app.use(`${API_VERSION}/upload`, uploadRoutes);
 

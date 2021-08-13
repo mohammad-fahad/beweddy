@@ -8,8 +8,11 @@ import SearchBar from './SearchBar';
 import SocialLinks from './SocialLinks';
 import MobileMenu from './MobileMenu';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import ProfileLinks from './profileLinks';
 
 export const Header = () => {
+  const { user } = useSelector(state => state.user);
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   return (
@@ -29,15 +32,19 @@ export const Header = () => {
           <div className='space-y-8 xl:space-y-10 flex-1 xl:flex-none'>
             {/* Navigation Links Start */}
             <div className='flex items-center justify-between flex-1 gap-20'>
-              <div className='hidden xl:block w-full'>
+              <div className='hidden xl:block'>
                 <NavLinks />
               </div>
               {/* Navigation Links Ends */}
               {/* Authentication Links */}
               <div className='flex items-center ml-auto xl:ml-0 gap-2'>
-                <div className='hidden sm:flex items-center gap-2'>
-                  <AuthLinks />
-                </div>
+                {user ? (
+                  <ProfileLinks {...{ user }} />
+                ) : (
+                  <div className='hidden sm:flex items-center gap-2'>
+                    <AuthLinks />
+                  </div>
+                )}
                 {/* Menu Button */}
                 {/* <button
                   className='ml-5 inline-block sm:hidden text-sm font-bold font-inter group hover:text-primary transition-colors duration-300'
@@ -88,7 +95,7 @@ export const Header = () => {
           </div>
         </div>
         <div className='flex sm:hidden items-center gap-2'>
-          <AuthLinks />
+          {user ? <ProfileLinks {...{ user }} /> : <AuthLinks />}
         </div>
         {/* {isSearchOpen && <SearchBar />} */}
         {/* <div className='hidden xl:hidden sm:flex items-center justify-between flex-1 gap-10 xl:gap-20'> */}

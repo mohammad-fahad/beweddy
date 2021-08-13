@@ -4,8 +4,12 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
+import { useDispatch } from 'react-redux';
+import { attemptLogin } from '@features/user/userActions';
+import { withAuthRedirect } from '@hoc/withAuthRedirect';
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
   const { push } = useRouter();
   const {
     watch,
@@ -16,7 +20,7 @@ const LoginPage = () => {
 
   const onSubmit = data => {
     if (data) {
-      push('/create-website');
+      dispatch(attemptLogin(data));
     }
   };
 
@@ -152,4 +156,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default withAuthRedirect(LoginPage);

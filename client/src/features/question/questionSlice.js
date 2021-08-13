@@ -32,7 +32,7 @@ const questionSlice = createSlice({
       state.questions.couplePictures = action.payload;
     },
     resetQuestions: (state, action) => {
-      state = initialState;
+      return initialState;
     },
   },
 });

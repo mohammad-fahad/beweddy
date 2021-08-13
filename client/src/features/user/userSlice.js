@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { attemptSignup } from './authActions';
+import { attemptActivation, attemptLogin } from './userActions';
 
 const initialState = {
   loading: false,
@@ -9,45 +9,42 @@ const initialState = {
   message: null,
 };
 
-const authSlice = createSlice({
-  name: 'auth',
+const userSlice = createSlice({
+  name: 'user',
   initialState,
   reducers: {
-    updateAuthUser: (state, { payload }) => {
-      state.user = payload;
-    },
     logout: (state, action) => {
       return initialState;
     },
   },
   extraReducers: builder => {
     builder
-      .addCase(attemptSignup.pending, state => {
+      .addCase(attemptActivation.pending, state => {
         state.loading = true;
       })
-      .addCase(attemptSignup.fulfilled, state => {
+      .addCase(attemptActivation.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.success = true;
-        state.error = null;
+        state.user = payload.user;
+        state.error = payload.error;
       })
-      .addCase(attemptSignup.rejected, (state, { payload }) => {
+      .addCase(attemptActivation.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(attemptLogin.pending, state => {
+        state.loading = true;
+      })
+      .addCase(attemptLogin.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.success = true;
+        state.user = payload.user;
+        state.error = payload.error;
+      })
+      .addCase(attemptLogin.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
       });
-
-    // .addCase(attemptLogin.pending, state => {
-    //   state.loading = true;
-    // })
-    // .addCase(attemptLogin.fulfilled, (state, { payload }) => {
-    //   state.loading = false;
-    //   state.success = true;
-    //   state.user = payload.user;
-    //   state.error = payload.error;
-    // })
-    // .addCase(attemptLogin.rejected, (state, { payload }) => {
-    //   state.loading = false;
-    //   state.error = payload;
-    // })
     // .addCase(attemptGoogleSignIn.pending, state => {
     //   state.loading = true;
     // })
@@ -77,6 +74,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout, updateAuthUser } = authSlice.actions;
+export const { logout } = userSlice.actions;
 
-export const authReducer = authSlice.reducer;
+export const userReducer = userSlice.reducer;

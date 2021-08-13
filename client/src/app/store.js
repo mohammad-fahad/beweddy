@@ -6,8 +6,8 @@ import storage from './storage';
 const persistConfig = {
   key: 'beweddy',
   storage,
-  whitelist: ['question'],
-  blacklist: [],
+  whitelist: ['question', 'user'],
+  blacklist: ['auth'],
 };
 
 const rootReducer = (state, action) => {

@@ -9,17 +9,18 @@ const config = {
   },
 };
 
-export const attemptSignup = createAsyncThunk(
-  'auth/attemptSignup',
-  async signupData => {
+export const attemptActivation = createAsyncThunk(
+  'auth/attemptActivation',
+  async token => {
     try {
       const { data } = await axios.post(
-        `${API_URL}/users/register`,
-        signupData,
+        `${API_URL}/users/active`,
+        { token },
         config
       );
-      errorAlert(data.error);
       successAlert(data.message);
+      errorAlert(data.error);
+      return data;
     } catch (err) {
       errorAlert(handleErrorMessage(err));
       return handleErrorMessage(err);
@@ -27,13 +28,18 @@ export const attemptSignup = createAsyncThunk(
   }
 );
 
-export const attemptGoogleSignIn = createAsyncThunk(
-  'auth/attemptGoogleSignIn',
-  async token => {
+export const attemptLogin = createAsyncThunk(
+  'auth/attemptLogin',
+  async loginData => {
     try {
-      const { data } = await axios.post(`/api/auth/google`, token, config);
+      const { data } = await axios.post(
+        `${API_URL}/users/login`,
+        loginData,
+        config
+      );
       successAlert(data.message);
       errorAlert(data.error);
+
       return data;
     } catch (err) {
       errorAlert(handleErrorMessage(err));
