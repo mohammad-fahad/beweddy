@@ -4,7 +4,7 @@ import Link from 'next/link';
 const DashboardTopBar = () => {
   return (
     <div className='bg-secondary-alternative border-b-[3px] border-primary'>
-      <div className='max-w-7xl mx-auto px-5 md:px-0'>
+      <div className='max-w-[1440px] mx-auto px-5 md:px-0'>
         <div className='flex justify-end items-center space-x-5 py-5'>
           <Link href='/'>
             <a className='flex items-center space-x-3 font-inter text-base text-gray-700 hover:text-primary font-semibold transition duration-300'>

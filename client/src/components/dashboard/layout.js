@@ -1,4 +1,3 @@
-import DashboardHeader from './header';
 import DashboardNavLinks from './navLinks';
 
 const DashboardLayout = ({ children }) => {
@@ -12,10 +11,7 @@ const DashboardLayout = ({ children }) => {
           <DashboardNavLinks />
         </div>
       </div>
-      <div className='max-w-full'>
-        <DashboardHeader />
-        {children}
-      </div>
+      <div className='w-full container'>{children}</div>
     </div>
   );
 };
