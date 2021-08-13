@@ -75,12 +75,7 @@ const UploadAnnouncement = () => {
       },
     });
   }, [register, doThisLater]);
-  // ---------------------- ******************* will remove ***********************
-  useEffect(() => {
-    alert('This page is under construction');
-  }, []);
-
-  // ---------------------- ******************* will remove ***********************
+  
   useEffect(() => {
     setValue('uploadAnnouncement', uploadedFile);
   }, [uploadedFile]);
