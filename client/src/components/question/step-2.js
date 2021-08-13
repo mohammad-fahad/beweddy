@@ -84,6 +84,7 @@ const WeddingDay = () => {
     mode: 'all',
     defaultValues: questions.weddingDay,
     shouldFocusError: false,
+    shouldUnregister: true,
   });
 
   // Watch Input Fields

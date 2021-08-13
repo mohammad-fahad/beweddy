@@ -60,7 +60,7 @@ const userSchema = new mongoose.Schema(
         max: 20,
       },
       weddingDay: {
-        specialDay: {
+        weddingDate: {
           type: Date,
         },
         tba: {
@@ -77,8 +77,8 @@ const userSchema = new mongoose.Schema(
         type: Object,
         // Invitation Card Image
       },
-      invitation: {
-        countryCode: String,
+      wayOfInvitation: {
+        callingCode: String,
         phone: String,
       },
       couplePictures: [],
@@ -101,6 +101,8 @@ const userSchema = new mongoose.Schema(
     },
     avatar: {
       type: String,
+      default:
+        'https://res.cloudinary.com/muttakinhasib/image/upload/v1611336104/avatar/user_qcrqny.svg',
     },
   },
   {
@@ -110,6 +112,10 @@ const userSchema = new mongoose.Schema(
 
 userSchema.virtual('fullName').get(function () {
   return `${this.questions.firstName} ${this.questions.lastName}`;
+});
+
+userSchema.virtual('coupleName').get(function () {
+  return `${this.questions.firstName} & ${this.questions.spouseFirstName}`;
 });
 
 userSchema.virtual('username').get(function () {

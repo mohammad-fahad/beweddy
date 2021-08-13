@@ -8,6 +8,8 @@ import {
   Step6,
   Step7,
 } from '@components/index';
+import { withAuthRedirect } from '@hoc/withAuthRedirect';
+
 import { useRouter } from 'next/router';
 
 const CreateWebsitePage = () => {
@@ -47,4 +49,4 @@ const CreateWebsitePage = () => {
       );
   }
 };
-export default CreateWebsitePage;
+export default withAuthRedirect(CreateWebsitePage);

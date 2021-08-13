@@ -7,7 +7,7 @@
       "@configs/*": ["configs/*"],
       "@features/*": ["features/*"],
       "@helpers/*": ["helpers/*"],
-      // "@hoc/*": ["hoc/*"],
+      "@hoc/*": ["hoc/*"],
       "@utils/*": ["utils/*"],
       "@styles/*": ["styles/*"]
     }

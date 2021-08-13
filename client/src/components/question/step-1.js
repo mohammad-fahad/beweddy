@@ -36,7 +36,7 @@ const CoupleName = () => {
         <Heading
           label="What's your name? & Who's your lucky spouse-to-be?"
           color='bg-primary'
-          // className='pt-5 md:pt-0'
+          className='lg:text-[40px]'
           lineStyle={{ marginBottom: '45px' }}
         />
         {/* </motion.div> */}
@@ -52,7 +52,7 @@ const CoupleName = () => {
                 type='text'
                 className='w-full text-sm md:text-lg font-normal py-2 md:py-3 px-3 md:px-4 placeholder-primary border-[3px] border-primary rounded-[5px]'
                 placeholder='First Name'
-                {...register('your_firstName', {
+                {...register('firstName', {
                   required: {
                     value: true,
                     message: 'First name is required!',
@@ -64,7 +64,7 @@ const CoupleName = () => {
                 })}
               />
               <p className='mt-2 text-red-400 font-light text-sm h-4'>
-                {errors?.your_firstName?.message}
+                {errors?.firstName?.message}
               </p>
             </div>
             <div className='max-w-[283px] w-full'>
@@ -72,7 +72,7 @@ const CoupleName = () => {
                 type='text'
                 className='w-full text-sm md:text-lg font-normal py-2 md:py-3 px-3 md:px-4 placeholder-primary border-[3px] border-primary rounded-[5px]'
                 placeholder='Last Name'
-                {...register('your_lastName', {
+                {...register('lastName', {
                   required: {
                     value: true,
                     message: 'Last name is required!',
@@ -84,7 +84,7 @@ const CoupleName = () => {
                 })}
               />
               <p className='mt-2 text-red-400 font-light text-sm h-4'>
-                {errors?.your_lastName?.message}
+                {errors?.lastName?.message}
               </p>
             </div>
           </div>
@@ -95,7 +95,7 @@ const CoupleName = () => {
                 type='text'
                 className='w-full text-sm md:text-lg font-normal py-2 md:py-3 px-3 md:px-4 placeholder-primary border-[3px] border-primary rounded-[5px]'
                 placeholder='First Name'
-                {...register('spouse_to_be_firstName', {
+                {...register('spouseFirstName', {
                   required: {
                     value: true,
                     message: 'First name is required!',
@@ -107,7 +107,7 @@ const CoupleName = () => {
                 })}
               />
               <p className='mt-2 text-red-400 font-light text-sm h-4'>
-                {errors?.spouse_to_be_firstName?.message}
+                {errors?.spouseFirstName?.message}
               </p>
             </div>
             <div className='max-w-[283px] w-full'>
@@ -115,7 +115,7 @@ const CoupleName = () => {
                 type='text'
                 className='w-full text-sm md:text-lg font-normal py-2 md:py-3 px-3 md:px-4 placeholder-primary border-[3px] border-primary rounded-[5px]'
                 placeholder='Last Name'
-                {...register('spouse_to_be_lastName', {
+                {...register('spouseLastName', {
                   required: {
                     value: true,
                     message: 'Last name is required!',
@@ -127,7 +127,7 @@ const CoupleName = () => {
                 })}
               />
               <p className='mt-2 text-red-400 font-light text-sm h-4'>
-                {errors?.spouse_to_be_lastName?.message}
+                {errors?.spouseLastName?.message}
               </p>
             </div>
           </div>

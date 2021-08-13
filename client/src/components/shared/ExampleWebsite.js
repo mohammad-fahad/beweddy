@@ -39,15 +39,15 @@ const ExampleWebsite = ({ label, href, seo }) => {
         animate='animate'
       >
         <motion.div
-          className='container min-h-screen py-16 flex items-center justify-center'
+          className='container min-h-screen py-10 md:py-0 flex items-center justify-center'
           variants={stagger}
         >
           <motion.div
             variants={fadeInUp}
-            className='flex flex-col items-center justify-center w-full -mt-12 sm:mt-0'
+            className='flex flex-col items-center justify-center w-full -mt-9 sm:mt-0'
           >
             <motion.div variants={fadeInUp}>
-              <Heading label='Here is an example preview of the website your creating!' />
+              <Heading label='Here is an example preview of the website your creating!' className='lg:!text-[40px]' />
             </motion.div>
             <motion.img
               variants={fadeInUp}
@@ -77,7 +77,7 @@ const ExampleWebsite = ({ label, href, seo }) => {
                 },
               }}
             />
-            <div className='my-5 text-center'>
+            <div className='mt-5 text-center'>
               <LinkButton
                 className='!px-10 !md:px-15 !rounded-[10px] '
                 {...{ href, label }}

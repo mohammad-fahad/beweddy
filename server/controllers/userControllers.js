@@ -46,6 +46,19 @@ export const register = asyncHandler(async (req, res) => {
   }
 });
 
+// export const verifyEmail = asyncHandler(async (req, res) => {
+//   const { email, phone, password, questions, role } = req.body;
+//   const activationToken = generateActivationToken(user._id);
+//   const url = `${process.env.CLIENT_URL}/activation/${activationToken}`;
+//   await sendActivationEmail(user.fullName, email, url);
+
+//   if (user) {
+//     res
+//       .status(201)
+//       .json({ message: `Account activation email has sent to ${email}` });
+//   }
+// });
+
 // Active User
 
 export const activeUser = asyncHandler(async (req, res) => {
@@ -69,6 +82,11 @@ export const activeUser = asyncHandler(async (req, res) => {
     throw new Error('User not found');
   }
 
+  if (userExists.emailVerified) {
+    res.status(400);
+    throw new Error('Account already activated, please login');
+  }
+
   userExists.emailVerified = true;
   const user = await userExists.save();
 
@@ -78,6 +96,7 @@ export const activeUser = asyncHandler(async (req, res) => {
       user: {
         _id: user._id,
         fullName: user.fullName,
+        coupleName: user.coupleName,
         username: user.username,
         email: user.email,
         phone: user.phone,
@@ -113,16 +132,20 @@ export const login = asyncHandler(async (req, res) => {
   // Check if user & password matches
   if (user && (await user.matchPassword(password))) {
     res.json({
-      _id: user._id,
-      fullName: user.fullName,
-      username: user.username,
-      email: user.email,
-      phone: user.phone,
-      questions: user.questions,
-      avatar: user.avatar,
-      isAdmin: user.isAdmin,
-      role: user.role,
-      token: generateIdToken(user._id),
+      user: {
+        _id: user._id,
+        fullName: user.fullName,
+        coupleName: user.coupleName,
+        username: user.username,
+        email: user.email,
+        phone: user.phone,
+        questions: user.questions,
+        avatar: user.avatar,
+        isAdmin: user.isAdmin,
+        role: user.role,
+        token: generateIdToken(user._id),
+      },
+      message: `Welcome back ${user.fullName}`,
     });
   } else {
     res.status(401);

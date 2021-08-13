@@ -1,12 +1,15 @@
-import { Heading } from '@components/shared';
+import { Heading, Loader } from '@components/index';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
+import { useDispatch, useSelector } from 'react-redux';
+import { attemptLogin } from '@features/user/userActions';
+import { withAuthRedirect } from '@hoc/withAuthRedirect';
 
 const LoginPage = () => {
-  const { push } = useRouter();
+  const dispatch = useDispatch();
+  const { loading } = useSelector(state => state.user);
   const {
     watch,
     register,
@@ -16,7 +19,7 @@ const LoginPage = () => {
 
   const onSubmit = data => {
     if (data) {
-      push('/create-website');
+      dispatch(attemptLogin(data));
     }
   };
 
@@ -25,6 +28,7 @@ const LoginPage = () => {
       <Head>
         <title>BeWeddy | Login</title>
       </Head>
+      {loading && <Loader />}
       <motion.div
         className='bg-gradient-to-br from-[#FCE3EB] to-white w-full'
         // exit={{ opacity: 0 }}
@@ -152,4 +156,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default withAuthRedirect(LoginPage);

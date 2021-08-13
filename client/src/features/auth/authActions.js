@@ -14,46 +14,14 @@ export const attemptSignup = createAsyncThunk(
   async signupData => {
     try {
       const { data } = await axios.post(
-        `${API_URL}/auth/register`,
+        `${API_URL}/users/register`,
         signupData,
         config
       );
-      errorAlert(data.error);
       successAlert(data.message);
     } catch (err) {
       errorAlert(handleErrorMessage(err));
-      return handleErrorMessage(err);
-    }
-  }
-);
-
-export const attemptActivation = createAsyncThunk(
-  'auth/attemptActivation',
-  async token => {
-    try {
-      const { data } = await axios.post(`/api/auth/active`, { token }, config);
-      successAlert(data.message);
-      errorAlert(data.error);
-      return data;
-    } catch (err) {
-      errorAlert(handleErrorMessage(err));
-      return handleErrorMessage(err);
-    }
-  }
-);
-
-export const attemptLogin = createAsyncThunk(
-  'auth/attemptLogin',
-  async loginData => {
-    try {
-      const { data } = await axios.post(`/api/auth/login`, loginData, config);
-      successAlert(data.message);
-      errorAlert(data.error);
-
-      return data;
-    } catch (err) {
-      errorAlert(handleErrorMessage(err));
-      return handleErrorMessage(err);
+      return err.response && err.response.data;
     }
   }
 );

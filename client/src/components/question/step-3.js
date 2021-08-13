@@ -75,18 +75,14 @@ const UploadAnnouncement = () => {
       },
     });
   }, [register, doThisLater]);
-  // ---------------------- ******************* will remove ***********************
-  useEffect(() => {
-    alert('This page is under construction');
-  }, []);
 
-  // ---------------------- ******************* will remove ***********************
   useEffect(() => {
     setValue('uploadAnnouncement', uploadedFile);
   }, [uploadedFile]);
 
   useEffect(() => {
     if (doThisLater) {
+      setUploadedFile({});
       clearErrors('uploadAnnouncement');
     }
   }, [doThisLater]);
@@ -121,7 +117,6 @@ const UploadAnnouncement = () => {
   const onCropSave = async ({ file, preview }) => {
     setPreview(preview);
     setFile(file);
-    console.log(file);
     try {
       setLoading(true);
       const formData = new FormData();
@@ -131,13 +126,13 @@ const UploadAnnouncement = () => {
         'folder',
         process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
       );
-      // const data = await attemptImageUpload(formData);
-      // setLoading(false);
-      // setValue('uploadAnnouncement', data);
-      // setUploadedFile(data);
+      const data = await attemptImageUpload(formData);
       setLoading(false);
-      setValue('uploadAnnouncement', preview);
-      setUploadedFile(preview);
+      setValue('uploadAnnouncement', data);
+      setUploadedFile(data);
+      // setLoading(false);
+      // setValue('uploadAnnouncement', preview);
+      // setUploadedFile(preview);
     } catch (err) {
       setLoading(false);
       console.error(err.message);
@@ -194,13 +189,14 @@ const UploadAnnouncement = () => {
                 >
                   <XIcon className='w-5 h-5' />
                 </button>
-                <div className='aspect-w-1 aspect-h-1'>
+                {/* <div className='aspect-w-1 aspect-h-1'> */}
+                <div>
                   <Image
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
-                    // publicId={uploadedFile.public_id}
-                    // src={!uploadedFile.public_id ? uploadedFile.url : null}
-                    src={preview}
-                    width='350'
+                    publicId={uploadedFile.public_id}
+                    src={!uploadedFile.public_id ? uploadedFile.url : null}
+                    // src={preview}
+                    width='200'
                     crop='scale'
                     className='object-cover w-full'
                   />

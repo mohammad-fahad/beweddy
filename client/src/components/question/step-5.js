@@ -2,7 +2,7 @@ import { CreateWebsiteContainer } from '@components/createWebsite';
 import { Button, CropImage, Heading, Loader } from '@components/index';
 import { addCouplePictures } from '@features/question/questionSlice';
 import { XIcon } from '@heroicons/react/solid';
-import { removeImage } from '@utils/index';
+import { attemptImageUpload, removeImage } from '@utils/index';
 import axios from 'axios';
 import { Image } from 'cloudinary-react';
 import { motion } from 'framer-motion';
@@ -91,12 +91,12 @@ const UploadCouplePicture = () => {
   }, [register, doThisLater]);
 
   useEffect(() => {
-    console.log(uploadedFiles);
     setValue('uploadCouplePicture', uploadedFiles);
   }, [uploadedFiles]);
   // handle side effect if user upload couple picture later
   useEffect(() => {
     if (doThisLater) {
+      setUploadedFiles([]);
       clearErrors('uploadCouplePicture');
     }
   }, [doThisLater]);
@@ -146,33 +146,17 @@ const UploadCouplePicture = () => {
     setLoading(true);
     setPreview(preview);
     setFile(file);
-
-    const URL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`;
-    const config = {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    };
-
     try {
       const formData = new FormData();
 
-      formData.append('file', file);
-      formData.append(
-        'upload_preset',
-        process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
-      );
-
+      formData.append('image', file);
       formData.append(
         'folder',
         process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
       );
-      const { data } = await axios.post(URL, formData, config);
-      const { public_id, height, width, secure_url, url } = data;
-      setUploadedFiles(prev => [
-        ...prev,
-        { public_id, height, width, secure_url, url },
-      ]);
+      const data = await attemptImageUpload(formData);
+
+      setUploadedFiles(prev => [...prev, data]);
 
       setValue('uploadCouplePicture', uploadedFiles);
       clearErrors('uploadCouplePicture');
@@ -233,6 +217,7 @@ const UploadCouplePicture = () => {
           <motion.div className='flex items-center justify-center flex-wrap gap-5 w-full'>
             {uploadedFiles.map(image => (
               <motion.div
+                key={image.public_id}
                 className='max-w-[150px] md:max-w-[220px] w-full group border-[3px] border-primary rounded-[5px] overflow-hidden relative'
                 layout
                 exit={{ opacity: 0 }}
@@ -251,7 +236,7 @@ const UploadCouplePicture = () => {
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                     publicId={image.public_id}
                     src={!image.public_id ? image.url : null}
-                    width='350'
+                    width='200'
                     crop='scale'
                     className='object-cover w-full'
                   />
@@ -296,7 +281,7 @@ const UploadCouplePicture = () => {
           </label>
         </motion.div>
         <motion.div
-          className='my-5 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'
+          className='mb-5 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'
           variants={fadeInUp}
         >
           <Button
@@ -313,7 +298,7 @@ const UploadCouplePicture = () => {
       <CropImage
         onSave={onCropSave}
         selectedFile={selectedImageFile}
-        aspectRatio={16 / 9}
+        aspectRatio={16 / 12}
       />
     </CreateWebsiteContainer>
   );

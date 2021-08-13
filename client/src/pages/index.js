@@ -10,11 +10,13 @@ import {
   Registries,
   Loader,
 } from '@components/index';
-import Features  from '@components/home/Features';
+import Features from '@components/home/Features';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const HomePage = () => {
+  const { user } = useSelector(state => state.user);
   const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
@@ -35,7 +37,7 @@ const HomePage = () => {
       <GiftCards />
       <Registries />
       <HowItWork />
-      <CreateAccount />
+      {!user && <CreateAccount />}
       <Footer />
     </motion.div>
   );

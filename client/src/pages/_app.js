@@ -7,6 +7,7 @@ import 'swiper/swiper.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../styles/globals.css';
 import Head from 'next/head';
+import { Toaster } from 'react-hot-toast';
 
 function MyApp({ Component, router, pageProps }) {
   return (
@@ -14,6 +15,11 @@ function MyApp({ Component, router, pageProps }) {
       <PersistGate loading={null} {...{ persistor }}>
         <AnimatePresence exitBeforeEnter>
           <Layout key={router.route}>
+            <Toaster
+              // position='top-right'
+              reverseOrder={false}
+              // toastOptions={{ style: { marginTop: '4.5rem' } }}
+            />
             <Head>
               <meta
                 name='viewport'
