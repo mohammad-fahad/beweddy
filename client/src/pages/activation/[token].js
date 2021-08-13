@@ -15,7 +15,7 @@ const AccountActivationPage = () => {
       dispatch(attemptActivation(token));
     }
     if (success) {
-      const redirect = setTimeout(push('/'), 2500);
+      const redirect = setTimeout(push('/preview'), 3000);
       return () => clearTimeout(redirect);
     }
   }, [token]);
