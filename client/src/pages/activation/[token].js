@@ -3,26 +3,19 @@ import { attemptActivation } from '@features/user/userActions';
 import { withAuthRedirect } from '@hoc/withAuthRedirect';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const AccountActivationPage = () => {
   const dispatch = useDispatch();
-  const { success } = useSelector(state => state.user);
-  const { query, push } = useRouter();
+  const { query } = useRouter();
   const token = query.token;
 
   useEffect(() => {
-    if (success) {
-      const redirect = setTimeout(
-        () => push('/', null, { shallow: true }),
-        2500
-      );
-      return () => clearTimeout(redirect);
-    }
     if (token) {
-      dispatch(attemptActivation(token));
+      const activation = setTimeout(dispatch(attemptActivation(token)), 1500);
+      return () => clearTimeout(activation);
     }
-  }, [token, success]);
+  }, [token]);
 
   return <Welcome />;
 };
