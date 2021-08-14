@@ -4,7 +4,7 @@ export { default as Loader } from './Loader';
 export { default as RedirectLoader } from './RedirectLoader';
 export { default as PageTitle } from './PageTitle';
 export { default as HeroSection } from './HeroSection';
-// export { default as Features } from './CoreFeatures';
+export { default as Divider } from './Divider';
 export { default as Offers } from '../shared/Offers';
 export { default as ActiveLink } from '../shared/ActiveLink';
 

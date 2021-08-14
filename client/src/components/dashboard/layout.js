@@ -4,7 +4,7 @@ const DashboardLayout = ({ children }) => {
   return (
     <div className='flex space-x-16 py-12'>
       <div className='max-w-xs w-full'>
-        <div className='px-14 mb-12'>
+        <div className='px-14 mb-20'>
           <img src='/images/logo.png' alt='' className='h-14' />
         </div>
         <div className='border-4 border-[#FCE3EB] border-l-0 rounded-l-none rounded-[20px] bg-[#FFFCFD] py-10 px-14'>

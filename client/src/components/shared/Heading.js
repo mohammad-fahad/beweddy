@@ -1,4 +1,16 @@
-const Heading = ({ label, color, className, style, lineStyle }) => {
+const Heading = ({
+  h3,
+  children,
+  label,
+  color,
+  className,
+  style,
+  lineStyle,
+}) => {
+  if (h3) {
+    return <h4 className='text-2xl capitalize font-semibold'>{children}</h4>;
+  }
+
   return (
     <>
       <h2

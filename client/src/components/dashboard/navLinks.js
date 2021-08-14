@@ -7,7 +7,7 @@ const navLinks = [
   },
   {
     label: 'Your Website',
-    href: '/website',
+    href: '/dashboard/website',
   },
   {
     label: 'Address & RSVP',
