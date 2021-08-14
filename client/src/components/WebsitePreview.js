@@ -8,15 +8,16 @@ import Swiper from 'react-id-swiper';
 import SwiperCore, { Lazy, Autoplay } from 'swiper';
 SwiperCore.use([Lazy, Autoplay]);
 
+const params = {
+  loop: true,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false,
+  },
+};
+
 const WebsitePreview = () => {
   const { push } = useRouter();
-  const params = {
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-    },
-  };
   return (
     <CreateWebsiteContainer seo={{ title: 'Preview Your Wedding Website' }}>
       <motion.div
