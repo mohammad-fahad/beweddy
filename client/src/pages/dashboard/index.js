@@ -6,6 +6,7 @@ import {
 } from '@components/dashboard';
 import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
+import { Footer } from '@components/home';
 import { LinkIcon } from '@heroicons/react/outline';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -47,7 +48,38 @@ const DashboardPage = () => {
             </p>
           </button>
         </div>
+        <div className='mt-10 grid grid-cols-3 gap-10'>
+          <div className='flex flex-col space-y-8 rounded-lg border-2 border-secondary-alternative bg-secondary-alternative/10 px-10 py-8'>
+            <img src='/icons/gift.svg' alt='' className='w-14 h-14' />
+            <p className='text-2xl font-medium capitalize'>
+              Select gift card <br /> display
+            </p>
+          </div>
+          <div className='flex flex-col space-y-8 rounded-lg border-2 border-secondary-alternative bg-secondary-alternative/10 px-10 py-8'>
+            <img src='/icons/mail_outline.svg' alt='' className='w-14 h-14' />
+            <div>
+              <p className='text-2xl font-medium capitalize'>Invitations</p>
+              <div className='flex items-center space-x-10 mt-2'>
+                <div>
+                  <p className='font-light mb-1'>E-invite</p>
+                  <p className='font-light'>Text</p>
+                </div>
+                <div>
+                  <p className='font-light mb-1'>Email</p>
+                  <p className='font-light'>Mail</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='flex flex-col space-y-8 rounded-lg border-2 border-secondary-alternative bg-secondary-alternative/10 px-10 py-8'>
+            <img src='/icons/direct.svg' alt='' className='w-14 h-14' />
+            <p className='text-2xl font-medium capitalize'>
+              Collect <br /> Address - RSVP
+            </p>
+          </div>
+        </div>
       </DashboardLayout>
+      <Footer hideSocial />
     </>
   );
 };
