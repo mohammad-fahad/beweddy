@@ -34,6 +34,11 @@ const DashboardPage = () => {
         </DashboardHeader>
         <ActivityInfo />
         <WebsitePreviewContainer />
+        <div className='mt-10 flex space-x-16'>
+          <div>
+            <h4 className='text-xl font-medium'>Wedding Day Countdown</h4>
+          </div>
+        </div>
       </DashboardLayout>
     </>
   );
