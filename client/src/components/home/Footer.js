@@ -8,61 +8,63 @@ import {
 } from '@icons-pack/react-simple-icons';
 import Link from 'next/link';
 
-const Footer = () => {
+const Footer = ({ hideSocial }) => {
   return (
     <>
-      <div className='bg-white py-10'>
-        <Heading
-          label='Follow BeWeddy'
-          color='bg-secondary-alternative'
-          className='lg:!text-4xl'
-          lineStyle={{ marginBottom: '30px' }}
-        />
-        <div className='flex items-center justify-center gap-8 md:gap-14 flex-wrap'>
-          <a href='#'>
-            <Facebook
-              size={35}
-              color='#1877F2'
-              className='hover:scale-125 transition duration-300'
-            />
-          </a>
-          <a href='#'>
-            <Twitter
-              size={35}
-              color='#1DA1F2'
-              className='hover:scale-125 transition duration-300'
-            />
-          </a>
-          <a href='#'>
-            <Instagram
-              size={35}
-              color='#E4355F'
-              className='hover:scale-125 transition duration-300'
-            />
-          </a>
-          <a href='#'>
-            <Linkedin
-              size={35}
-              color='#0A66C2'
-              className='hover:scale-125 transition duration-300'
-            />
-          </a>
-          <a href='#' title='google'>
-            <img
-              src='/icons/gmail.svg'
-              alt='gmail'
-              className='w-[35px] h-[35px] hover:scale-125 transition duration-300'
-            />
-          </a>
-          <a href='#'>
-            <Youtube
-              color='#FF0000'
-              size={35}
-              className='hover:scale-125 transition duration-300'
-            />
-          </a>
+      {!hideSocial && (
+        <div className='bg-white py-10'>
+          <Heading
+            label='Follow BeWeddy'
+            color='bg-secondary-alternative'
+            className='lg:!text-4xl'
+            lineStyle={{ marginBottom: '30px' }}
+          />
+          <div className='flex items-center justify-center gap-8 md:gap-14 flex-wrap'>
+            <a href='#'>
+              <Facebook
+                size={35}
+                color='#1877F2'
+                className='hover:scale-125 transition duration-300'
+              />
+            </a>
+            <a href='#'>
+              <Twitter
+                size={35}
+                color='#1DA1F2'
+                className='hover:scale-125 transition duration-300'
+              />
+            </a>
+            <a href='#'>
+              <Instagram
+                size={35}
+                color='#E4355F'
+                className='hover:scale-125 transition duration-300'
+              />
+            </a>
+            <a href='#'>
+              <Linkedin
+                size={35}
+                color='#0A66C2'
+                className='hover:scale-125 transition duration-300'
+              />
+            </a>
+            <a href='#' title='google'>
+              <img
+                src='/icons/gmail.svg'
+                alt='gmail'
+                className='w-[35px] h-[35px] hover:scale-125 transition duration-300'
+              />
+            </a>
+            <a href='#'>
+              <Youtube
+                color='#FF0000'
+                size={35}
+                className='hover:scale-125 transition duration-300'
+              />
+            </a>
+          </div>
         </div>
-      </div>
+      )}
       <div className='py-8 bg-gradient-to-br from-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary'>
         <div className='container flex items-center justify-center sm:justify-between gap-5 flex-wrap'>
           <p className='text-base'>
