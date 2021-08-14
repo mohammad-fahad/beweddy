@@ -12,7 +12,7 @@ const Footer = ({ hideSocial }) => {
   return (
     <>
       {!hideSocial && (
-        <div className='bg-white py-10'>
+        <div className='bg-gray-50 pb-16 py-20'>
           <Heading
             label='Follow BeWeddy'
             color='bg-secondary-alternative'
