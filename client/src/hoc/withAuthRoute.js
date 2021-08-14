@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 export const withAuthRoute = Component => {
   const RequireAuthentication = props => {
-    const { user } = useSelector(state => state.auth);
+    const { user } = useSelector(state => state.user);
 
     useEffect(() => {
       if (!user) {

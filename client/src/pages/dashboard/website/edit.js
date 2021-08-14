@@ -3,6 +3,7 @@ import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
 import { Divider, Footer, Heading } from '@components/index';
 import { LinkIcon, PencilIcon } from '@heroicons/react/outline';
+import { withAuthRoute } from '@hoc/withAuthRoute';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
@@ -110,4 +111,4 @@ const EditWebsitePage = () => {
   );
 };
 
-export default EditWebsitePage;
+export default withAuthRoute(EditWebsitePage);
