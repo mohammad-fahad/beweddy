@@ -1,30 +1,196 @@
+import Head from 'next/head';
+import Link from 'next/link';
+import { Image } from 'cloudinary-react';
 import { DashboardHeader } from '@components/dashboard';
 import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
-import { Divider, Footer, Heading } from '@components/index';
-import { LinkIcon, PencilIcon } from '@heroicons/react/outline';
+import {
+  Button,
+  CropImage,
+  Divider,
+  FirstReceptionDatePicker,
+  Footer,
+  Heading,
+  Loader,
+  SecondReceptionDatePicker,
+} from '@components/index';
+import {
+  LinkIcon,
+  MinusIcon,
+  PencilIcon,
+  PlusIcon,
+} from '@heroicons/react/outline';
 import { withAuthRoute } from '@hoc/withAuthRoute';
-import Head from 'next/head';
-import Link from 'next/link';
+import { attemptImageUpload, removeImage } from '@utils/index';
+import { useCallback, useEffect, useState } from 'react';
+import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
+import { XIcon } from '@heroicons/react/solid';
+import moment from 'moment';
+import DatePicker from 'react-datepicker';
+import { compareDate } from '@helpers/index';
+import { isEmpty } from 'lodash';
+import {
+  Facebook,
+  Gmail,
+  Google,
+  Instagram,
+  Linkedin,
+  Twitter,
+  Youtube,
+} from '@icons-pack/react-simple-icons';
 
 const EditWebsitePage = () => {
   const { user } = useSelector(state => state.user);
+  const [loading, setLoading] = useState(false);
+  const [file, setFile] = useState();
+  const [preview, setPreview] = useState();
+  const [selectedImageFile, setSelectedImageFile] = useState();
+  const [uploadedFiles, setUploadedFiles] = useState(
+    user.questions.couplePictures
+  );
+  // First Reception Picker
+  const _firstReception = user.questions?.weddingDay?.firstReception
+    ? new Date(user.questions?.weddingDay?.firstReception)
+    : '';
+
+  const [selectFirstReception, setSelectFirstReception] =
+    useState(_firstReception);
+
+  // Second Reception Picker
+  const _secondReception = user.questions?.weddingDay?.secondReception
+    ? new Date(user.questions?.weddingDay?.secondReception)
+    : '';
+
+  const [selectSecondReception, setSelectSecondReception] =
+    useState(_secondReception);
+
   const {
+    watch,
     register,
+    setError,
+    setValue,
+    getValues,
+    clearErrors,
     handleSubmit,
     formState: { errors },
   } = useForm({
     mode: 'all',
     defaultValues: user.questions,
+    shouldFocusError: false,
+    shouldUnregister: true,
   });
+
+  // Watch Input Fields
+  watch(['firstReception', 'secondReception']);
+
+  // Input Fields as Variable
+  const firstReception = getValues('firstReception');
+  const secondReception = getValues('secondReception');
+
+  useEffect(() => {
+    if (isEmpty(firstReception) || compareDate(firstReception)) {
+      clearErrors('firstReception');
+    } else {
+      setError('firstReception', {
+        type: 'validate',
+        message: 'Seems like you have selected past date',
+      });
+    }
+    if (isEmpty(secondReception) || compareDate(secondReception)) {
+      clearErrors('secondReception');
+    } else {
+      setError('secondReception', {
+        type: 'validate',
+        message: 'Seems like you have selected past date',
+      });
+    }
+  }, [firstReception, secondReception]);
+
+  // Handle image uploadedFiles
+
+  const onDrop = useCallback(acceptedFiles => {
+    if (uploadedFiles.length === 4) {
+      setError('couplePictures', {
+        type: 'maxLength',
+        message: 'Maximum number of files uploaded',
+      });
+      return;
+    }
+
+    const fileDropped = acceptedFiles[0];
+    if (fileDropped['type'].split('/')[0] === 'image') {
+      setSelectedImageFile(fileDropped);
+      return;
+    }
+    setFile(fileDropped);
+    const previewUrl = URL.createObjectURL(fileDropped);
+    setPreview(previewUrl);
+  });
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: 'image/*',
+    multiple: false,
+  });
+
+  const onCropSave = async ({ file, preview }) => {
+    setLoading(true);
+    setPreview(preview);
+    setFile(file);
+    try {
+      const formData = new FormData();
+
+      formData.append('image', file);
+      formData.append(
+        'folder',
+        process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
+      );
+      const data = await attemptImageUpload(formData);
+
+      setUploadedFiles(prev => [...prev, data]);
+
+      setValue('couplePictures', uploadedFiles);
+      clearErrors('couplePictures');
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      console.error(err.message);
+    }
+  };
+
+  // Handle remove images
+  const handleRemoveImage = async id => {
+    try {
+      setLoading(true);
+      await removeImage(id);
+      setUploadedFiles(prev => prev.filter(image => image.public_id !== id));
+      if (uploadedFiles.length === 0) {
+        setError('couplePictures', {
+          type: 'required',
+          message: 'Please upload couple picture file or check do this later',
+        });
+        setValue('couplePictures', undefined, {
+          shouldValidate: true,
+        });
+      } else {
+        setValue('couplePictures', uploadedFiles);
+      }
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      console.error(err.message);
+    }
+  };
 
   return (
     <>
       <Head>
         <title>Beweddy | Edit Website</title>
       </Head>
+      {loading && <Loader />}
       <DashboardTopBar />
       <DashboardLayout>
         <DashboardHeader title='Edit your website'>
@@ -102,11 +268,348 @@ const EditWebsitePage = () => {
             <Divider />
             <div className='space-y-5'>
               <Heading h3>Upload images</Heading>
+              <div className='relative focus:outline-none' {...getRootProps()}>
+                <input {...getInputProps()} />
+                <label
+                  htmlFor='couplePictures'
+                  className='bg-white cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-secondary-alternative/50 rounded-[5px]'
+                >
+                  Upload
+                </label>
+                <p className='mt-2 text-red-400 font-light text-sm text-center'>
+                  {errors?.couplePictures?.message}
+                </p>
+              </div>
+              <div className='flex items-center space-x-5'>
+                {uploadedFiles.map(image => (
+                  <motion.div
+                    key={image.public_id}
+                    className='max-w-[150px] md:max-w-[220px] w-full group border-[3px] border-primary rounded-[5px] overflow-hidden relative'
+                    layout
+                    exit={{ opacity: 0 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                  >
+                    <button
+                      type='button'
+                      className='z-50 hidden group-hover:inline-block absolute right-1 top-1 p-1 text-red-400 border border-primary bg-white rounded-full'
+                      onClick={() => handleRemoveImage(image.public_id)}
+                    >
+                      <XIcon className='w-5 h-5' />
+                    </button>
+                    <div className='aspect-w-16 aspect-h-10'>
+                      <Image
+                        cloudName={
+                          process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
+                        }
+                        publicId={image.public_id}
+                        src={!image.public_id ? image.url : null}
+                        width='200'
+                        crop='scale'
+                        className='object-cover w-full'
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
+            <Divider />
+            <div className='space-y-5'>
+              <Heading h3>Pick your wedding date</Heading>
+              <div className='flex items-center space-x-5'>
+                <div>
+                  <DatePicker
+                    selected={selectFirstReception}
+                    // popperPlacement='top-end'
+                    onChange={date => {
+                      setSelectFirstReception(date);
+                      setValue('firstReception', moment(date).format('LL'));
+                    }}
+                    customInput={
+                      <FirstReceptionDatePicker
+                        border='border-secondary-alternative/50'
+                        {...{ errors }}
+                      />
+                    }
+                  />
+                </div>
+                <div>
+                  <DatePicker
+                    selected={selectSecondReception}
+                    // popperPlacement='top-end'
+                    onChange={date => {
+                      setSelectSecondReception(date);
+                      setValue('secondReception', moment(date).format('LL'));
+                    }}
+                    customInput={
+                      <SecondReceptionDatePicker
+                        border='border-secondary-alternative/50'
+                        {...{ errors }}
+                      />
+                    }
+                  />
+                </div>
+              </div>
+            </div>
+            <Divider />
+            <div className='space-y-5'>
+              <div className='flex items-center justify-between space-x-5'>
+                <Heading h3>Our story</Heading>
+                <button className='py-2 px-5'>
+                  <MinusIcon className='w-7' />
+                </button>
+              </div>
+              <textarea
+                cols='30'
+                rows='5'
+                className='focus:ring-0 focus:border-primary w-full rounded-lg border-2 border-gray-200 py-3 px-5 text-base font-normal'
+                placeholder='Write your story here'
+                {...register('ourStory')}
+              ></textarea>
+            </div>
+            <Divider />
+            <div className='space-y-5'>
+              <div className='flex items-center justify-between space-x-5'>
+                <Heading h3>Reception Details</Heading>
+                <button className='py-2 px-5'>
+                  <MinusIcon className='w-7' />
+                </button>
+              </div>
+              <div className='flex items-center'>
+                <input
+                  type='text'
+                  className='w-28 rounded-[5px] border-2 border-r-0 rounded-r-none focus:!border-gray-200 border-gray-200 py-2 px-4 text-base font-bold placeholder-gray-200'
+                  placeholder='12.00 PM'
+                  {...register('receptionTime')}
+                />
+                <input
+                  type='text'
+                  className='w-full rounded-[5px] rounded-l-none border-l-0 border-2 focus:!border-gray-200 border-gray-200 py-2 px-4 text-base font-normal placeholder-gray-300'
+                  placeholder='Details'
+                  {...register('receptionDetails')}
+                />
+              </div>
+            </div>
+            <Divider />
+            <Heading h3>Add Gift Card</Heading>
+            <div className='grid grid-cols-4 gap-10'>
+              <button className='border-2 min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'>
+                <PlusIcon className='w-8 h-8' />
+              </button>
+            </div>
+            <Divider />
+            <div className='space-y-5'>
+              <Heading h3>Connect your registry</Heading>
+              <div className='grid grid-cols-4 gap-10'>
+                <div className='border-2 min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex flex-col items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'>
+                  <Link href='/'>
+                    <a className='py-2 px-6 text-white bg-primary hover:bg-primary/80 rounded-lg text-xs md:text-base mt-5 transition-colors duration-300 whitespace-nowrap'>
+                      Create Registry
+                    </a>
+                  </Link>
+                  <Link href='/'>
+                    <a className='py-2 text-blue-500 text-base font-light font-inter hover:underline'>
+                      Learn more
+                    </a>
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <Divider />
+            <div className='flex items-center space-x-16 w-full'>
+              <div className='space-y-5 w-full'>
+                <Heading h3>Link Groom’s Social Media Account</Heading>
+                <div className='relative'>
+                  <Facebook
+                    color='#1877F2'
+                    className='absolute top-1/2 left-5 -translate-y-1/2'
+                  />
+                  <input
+                    type='text'
+                    className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
+                    placeholder='https://facebook.com/beweddy'
+                    {...register('facebook')}
+                  />
+                </div>
+                <div className='relative'>
+                  <Instagram
+                    color='#E4405F'
+                    className='absolute top-1/2 left-5 -translate-y-1/2'
+                  />
+                  <input
+                    type='text'
+                    className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
+                    placeholder='https://instagram.com/beweddy'
+                    {...register('instagram')}
+                  />
+                </div>
+                <div className='relative'>
+                  <Twitter
+                    color='#1DA1F2'
+                    className='absolute top-1/2 left-5 -translate-y-1/2'
+                  />
+                  <input
+                    type='text'
+                    className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
+                    placeholder='https://twitter.com/beweddy'
+                    {...register('twitter')}
+                  />
+                </div>
+                <div className='relative'>
+                  <Gmail
+                    color='#EA4335'
+                    className='absolute top-1/2 left-5 -translate-y-1/2'
+                  />
+                  <input
+                    type='text'
+                    className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
+                    placeholder='beweddyport@gmail.com'
+                    {...register('gmail')}
+                  />
+                </div>
+                <div className='relative'>
+                  <Linkedin
+                    color='#0A66C2'
+                    className='absolute top-1/2 left-5 -translate-y-1/2'
+                  />
+                  <input
+                    type='text'
+                    className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
+                    placeholder='https://www.linkedin.com/in/beweddy'
+                    {...register('linkedIn')}
+                  />
+                </div>
+                <div className='relative'>
+                  <Youtube
+                    color='#FF0000'
+                    className='absolute top-1/2 left-5 -translate-y-1/2'
+                  />
+                  <input
+                    type='text'
+                    className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
+                    placeholder='https://www.youtube.com/beweddy'
+                    {...register('youTube')}
+                  />
+                </div>
+              </div>
+              <div className='space-y-5 w-full'>
+                <Heading h3>Link Brides’s Social Media Account</Heading>
+                <div className='relative'>
+                  <Facebook
+                    color='#1877F2'
+                    className='absolute top-1/2 left-5 -translate-y-1/2'
+                  />
+                  <input
+                    type='text'
+                    className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
+                    placeholder='https://facebook.com/beweddy'
+                    {...register('facebook')}
+                  />
+                </div>
+                <div className='relative'>
+                  <Instagram
+                    color='#E4405F'
+                    className='absolute top-1/2 left-5 -translate-y-1/2'
+                  />
+                  <input
+                    type='text'
+                    className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
+                    placeholder='https://instagram.com/beweddy'
+                    {...register('instagram')}
+                  />
+                </div>
+                <div className='relative'>
+                  <Twitter
+                    color='#1DA1F2'
+                    className='absolute top-1/2 left-5 -translate-y-1/2'
+                  />
+                  <input
+                    type='text'
+                    className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
+                    placeholder='https://twitter.com/beweddy'
+                    {...register('twitter')}
+                  />
+                </div>
+                <div className='relative'>
+                  <Gmail
+                    color='#EA4335'
+                    className='absolute top-1/2 left-5 -translate-y-1/2'
+                  />
+                  <input
+                    type='text'
+                    className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
+                    placeholder='beweddyport@gmail.com'
+                    {...register('gmail')}
+                  />
+                </div>
+                <div className='relative'>
+                  <Linkedin
+                    color='#0A66C2'
+                    className='absolute top-1/2 left-5 -translate-y-1/2'
+                  />
+                  <input
+                    type='text'
+                    className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
+                    placeholder='https://www.linkedin.com/in/beweddy'
+                    {...register('linkedIn')}
+                  />
+                </div>
+                <div className='relative'>
+                  <Youtube
+                    color='#FF0000'
+                    className='absolute top-1/2 left-5 -translate-y-1/2'
+                  />
+                  <input
+                    type='text'
+                    className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
+                    placeholder='https://www.youtube.com/beweddy'
+                    {...register('youTube')}
+                  />
+                </div>
+              </div>
+            </div>
+            <Divider />
+            <div className='space-y-5'>
+              <Heading h3>First Look or Wedding Video</Heading>
+              <div className='space-y-3'>
+                <label htmlFor='videoTitle' className='block'>
+                  Video Title
+                </label>
+                <input
+                  type='text'
+                  id='videoTitle'
+                  className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal'
+                  placeholder='First Look or Wedding Video 😇'
+                  {...register('videoTitle')}
+                />
+              </div>
+              <div className='relative focus:outline-none' {...getRootProps()}>
+                <input {...getInputProps()} />
+                <label
+                  htmlFor='couplePictures'
+                  className='bg-white cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-secondary-alternative/50 rounded-[5px]'
+                >
+                  Upload Video
+                </label>
+                <p className='mt-2 text-red-400 font-light text-sm text-center'>
+                  {errors?.couplePictures?.message}
+                </p>
+              </div>
+            </div>
+            <Button
+              type='submit'
+              label='Update'
+              className='!rounded-[5px] !mx-0'
+            />
           </form>
         </div>
       </DashboardLayout>
       <Footer hideSocial />
+      <CropImage
+        onSave={onCropSave}
+        selectedFile={selectedImageFile}
+        aspectRatio={16 / 12}
+      />
     </>
   );
 };
