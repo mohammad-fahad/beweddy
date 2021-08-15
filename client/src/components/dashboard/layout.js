@@ -16,7 +16,7 @@ const DashboardLayout = ({ children }) => {
           <DashboardNavLinks />
         </div>
       </div>
-      <div className='w-full container'>{children}</div>
+      <div className='w-full container pr-16 xxl:pr-0'>{children}</div>
     </div>
   );
 };
