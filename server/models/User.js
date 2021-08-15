@@ -9,14 +9,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      min: 3,
+      min: 2,
       max: 20,
     },
     lastName: {
       type: String,
       required: true,
       trim: true,
-      min: 3,
+      min: 2,
       max: 20,
     },
     email: {
@@ -82,6 +82,43 @@ const userSchema = new mongoose.Schema(
         phone: String,
       },
       couplePictures: [],
+    },
+    ourStory: {
+      type: String,
+    },
+    receptionDetails: [
+      {
+        time: String,
+        details: String,
+      },
+    ],
+    giftCards: {
+      type: Array,
+    },
+    registries: {
+      type: Array,
+    },
+    socialAccounts: {
+      groom: {
+        facebook: String,
+        twitter: String,
+        instagram: String,
+        gmail: String,
+        linkedIn: String,
+        youTube: String,
+      },
+      bride: {
+        facebook: String,
+        twitter: String,
+        instagram: String,
+        gmail: String,
+        linkedIn: String,
+        youTube: String,
+      },
+    },
+    weddingVideo: {
+      title: String,
+      video: String,
     },
     role: {
       type: String,

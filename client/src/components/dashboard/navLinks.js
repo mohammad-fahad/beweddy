@@ -11,7 +11,7 @@ const navLinks = [
   },
   {
     label: 'Address & RSVP',
-    href: '/address-and-rsvp',
+    href: '/dashboard/address-and-rsvp',
   },
   {
     label: 'Gift & Registry',

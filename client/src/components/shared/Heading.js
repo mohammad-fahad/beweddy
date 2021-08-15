@@ -8,7 +8,15 @@ const Heading = ({
   lineStyle,
 }) => {
   if (h3) {
-    return <h4 className='text-2xl capitalize font-semibold'>{children}</h4>;
+    return (
+      <h4
+        className={`text-2xl capitalize font-semibold ${
+          className ? className : ''
+        }`}
+      >
+        {children}
+      </h4>
+    );
   }
 
   return (

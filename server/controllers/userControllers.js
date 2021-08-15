@@ -95,6 +95,8 @@ export const activeUser = asyncHandler(async (req, res) => {
     res.status(201).json({
       user: {
         _id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
         fullName: user.fullName,
         coupleName: user.coupleName,
         username: user.username,
@@ -102,6 +104,11 @@ export const activeUser = asyncHandler(async (req, res) => {
         phone: user.phone,
         questions: user.questions,
         avatar: user.avatar,
+        outStory: user.outStory,
+        receptionDetails: user.receptionDetails,
+        giftCards: user.giftCards,
+        registries: user.registries,
+        socialAccounts: user.socialAccounts,
         isAdmin: user.isAdmin,
         role: user.role,
         token: generateIdToken(user._id),
@@ -134,6 +141,8 @@ export const login = asyncHandler(async (req, res) => {
     res.json({
       user: {
         _id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
         fullName: user.fullName,
         coupleName: user.coupleName,
         username: user.username,
@@ -141,6 +150,11 @@ export const login = asyncHandler(async (req, res) => {
         phone: user.phone,
         questions: user.questions,
         avatar: user.avatar,
+        outStory: user.outStory,
+        receptionDetails: user.receptionDetails,
+        giftCards: user.giftCards,
+        registries: user.registries,
+        socialAccounts: user.socialAccounts,
         isAdmin: user.isAdmin,
         role: user.role,
         token: generateIdToken(user._id),
@@ -218,6 +232,8 @@ export const getUserProfile = asyncHandler(async (req, res) => {
     res.json({
       user: {
         _id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
         fullName: user.fullName,
         coupleName: user.coupleName,
         username: user.username,
@@ -225,6 +241,11 @@ export const getUserProfile = asyncHandler(async (req, res) => {
         phone: user.phone,
         questions: user.questions,
         avatar: user.avatar,
+        outStory: user.outStory,
+        receptionDetails: user.receptionDetails,
+        giftCards: user.giftCards,
+        registries: user.registries,
+        socialAccounts: user.socialAccounts,
         isAdmin: user.isAdmin,
         role: user.role,
         token: generateIdToken(user._id),
@@ -242,6 +263,15 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
 
   if (user) {
+    const questions = {
+      firstName: req.body.firstName || user.firstName,
+      lastName: req.body.lastName || user.lastName,
+      spouseFirstName:
+        req.body.spouseFirstName || user.questions.spouseFirstName,
+      spouseLastName: req.body.spouseLastName || user.questions.spouseLastName,
+      couplePictures: req.body.couplePictures || user.questions.couplePictures,
+    };
+
     user.firstName = req.body.firstName || user.firstName;
     user.lastName = req.body.lastName || user.lastName;
     user.avatar = req.body.avatar || user.avatar;
@@ -258,6 +288,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     }
 
     const updateUser = await user.save();
+
     res.json({
       _id: user._id,
       fullName: user.fullName,
@@ -267,6 +298,11 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
       phone: user.phone,
       questions: user.questions,
       avatar: user.avatar,
+      outStory: user.outStory,
+      receptionDetails: user.receptionDetails,
+      giftCards: user.giftCards,
+      registries: user.registries,
+      socialAccounts: user.socialAccounts,
       isAdmin: user.isAdmin,
       role: user.role,
       token: generateIdToken(user._id),
