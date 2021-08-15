@@ -48,19 +48,19 @@ const WebsitePreviewContainer = () => {
         </Swiper>
       </div>
       <div className='flex items-center space-x-5 justify-center'>
-        <Link href='/edit-website'>
+        <Link href='/dashboard/website/edit'>
           <a className='capitalize font-inter font-medium border-4 border-secondary-alternative rounded-[5px] bg-white py-2 px-5 flex items-center space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/5 transition duration-300'>
             <PencilIcon className='w-5 h-5' />
             <span>Edit your website</span>
           </a>
         </Link>
-        <Link href='/edit-website'>
+        <Link href='/'>
           <a className='capitalize font-inter font-medium border-4 border-secondary-alternative rounded-[5px] bg-white py-2 px-5 flex items-center space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/5 transition duration-300'>
             <LinkIcon className='w-5 h-5' />
             <span>Share your website link</span>
           </a>
         </Link>
-        <Link href='/edit-website'>
+        <Link href='/'>
           <a className='capitalize font-inter font-medium border-4 border-secondary-alternative rounded-[5px] bg-white py-2 px-5 flex items-center space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/5 transition duration-300'>
             <LinkIcon className='w-5 h-5' />
             <span>Share your super link</span>

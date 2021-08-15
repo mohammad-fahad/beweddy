@@ -5,4 +5,5 @@ export { default as GiftCards } from './GiftCards';
 export { default as Registries } from './Registries';
 export { default as HowItWork } from './HowItWork';
 export { default as CreateAccount } from './CreateAccount';
+export { default as QRFeature } from './QRFeature';
 export { default as Footer } from './Footer';

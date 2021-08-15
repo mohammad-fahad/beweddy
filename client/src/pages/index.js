@@ -9,6 +9,7 @@ import {
   HowItWork,
   Registries,
   Loader,
+  QRFeature,
 } from '@components/index';
 import Features from '@components/home/Features';
 import { motion } from 'framer-motion';
@@ -38,6 +39,7 @@ const HomePage = () => {
       <Registries />
       <HowItWork />
       {!user && <CreateAccount />}
+      <QRFeature />
       <Footer />
     </motion.div>
   );

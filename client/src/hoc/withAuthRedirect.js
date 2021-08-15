@@ -9,10 +9,10 @@ export const withAuthRedirect = Component => {
 
     useEffect(() => {
       if (user) {
-        Router.push('/');
+        Router.push('/dashboard');
       }
     }, [user]);
-    return !user ? <Component {...props} /> : <RedirectLoader to='Home' />;
+    return !user ? <Component {...props} /> : <RedirectLoader to='Dashboard' />;
   };
   return RequireAuthentication;
 };

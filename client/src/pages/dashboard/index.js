@@ -8,6 +8,7 @@ import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
 import { Footer } from '@components/home';
 import { LinkIcon } from '@heroicons/react/outline';
+import { withAuthRoute } from '@hoc/withAuthRoute';
 import Head from 'next/head';
 import Link from 'next/link';
 
@@ -84,4 +85,4 @@ const DashboardPage = () => {
   );
 };
 
-export default DashboardPage;
+export default withAuthRoute(DashboardPage);
