@@ -583,6 +583,16 @@ const EditWebsitePage = () => {
               </div>
             </form>
           </div>
+          <div className='border-t-4 border-primary py-16 bg-secondary-alternative/40'>
+            <div className='text-center'>
+              <Heading h3 className='!text-3xl !font-medium mb-10'>
+                Eat, Drink, & BeWeddy!
+              </Heading>
+              <div className='max-w-lg mx-auto'>
+                <img src='/images/thank-you.png' alt='' className='rounded-lg' />
+              </div>
+            </div>
+          </div>
         </div>
       </DashboardLayout>
       <Footer hideSocial />
