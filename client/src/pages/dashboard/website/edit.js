@@ -493,7 +493,7 @@ const EditWebsitePage = () => {
                 </div>
               </div>
               <div className='space-y-5 w-full'>
-                <Heading h3>Link Brides’s Social Media Account</Heading>
+                <Heading h3>Link Bride’s Social Media Account</Heading>
                 <div className='relative'>
                   <Facebook
                     color='#1877F2'
