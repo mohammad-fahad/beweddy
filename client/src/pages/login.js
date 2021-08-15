@@ -140,7 +140,7 @@ const LoginPage = () => {
                   </Link>
                   <p className='text-sm md:text-lg font-semibold text-center'>
                     Don't have an account?&nbsp;
-                    <Link href='/signup'>
+                    <Link href='/create-website'>
                       <a className='font-inter font-semibold hover:underline'>
                         Signup here
                       </a>

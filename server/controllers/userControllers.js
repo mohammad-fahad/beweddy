@@ -218,15 +218,58 @@ export const getUserProfile = asyncHandler(async (req, res) => {
     res.json({
       user: {
         _id: user._id,
-        name: user.name,
+        fullName: user.fullName,
+        coupleName: user.coupleName,
+        username: user.username,
         email: user.email,
         phone: user.phone,
-        address: user.address,
-        balance: user.balance,
+        questions: user.questions,
         avatar: user.avatar,
         isAdmin: user.isAdmin,
+        role: user.role,
         token: generateIdToken(user._id),
       },
+    });
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+});
+
+// update user profile
+
+export const updateUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  if (user) {
+    user.firstName = req.body.firstName || user.firstName;
+    user.lastName = req.body.lastName || user.lastName;
+    user.avatar = req.body.avatar || user.avatar;
+    if (req.body.avatar) {
+      user.avatar = req.body.avatar;
+    }
+    if (req.body.newPassword) {
+      if (await user.matchPassword(req.body.oldPassword)) {
+        user.password = req.body.newPassword;
+      } else {
+        res.status(400);
+        throw new Error('Current password is incorrect');
+      }
+    }
+
+    const updateUser = await user.save();
+    res.json({
+      _id: user._id,
+      fullName: user.fullName,
+      coupleName: user.coupleName,
+      username: user.username,
+      email: user.email,
+      phone: user.phone,
+      questions: user.questions,
+      avatar: user.avatar,
+      isAdmin: user.isAdmin,
+      role: user.role,
+      token: generateIdToken(user._id),
     });
   } else {
     res.status(404);
