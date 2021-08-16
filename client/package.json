@@ -20,6 +20,7 @@
     "cloudinary": "^1.26.2",
     "cloudinary-react": "^1.7.0",
     "framer-motion": "^4.1.17",
+    "immer": "^9.0.5",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "next": "11.0.1",
@@ -37,6 +38,7 @@
     "react-youtube": "^7.13.1",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
+    "shortid": "^2.2.16",
     "swiper": "^6.8.0",
     "yup": "^0.32.9"
   },

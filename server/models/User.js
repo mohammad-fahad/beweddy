@@ -67,10 +67,10 @@ const userSchema = new mongoose.Schema(
           type: Boolean,
         },
         firstReception: {
-          type: Date,
+          type: String,
         },
         secondReception: {
-          type: Date,
+          type: String,
         },
       },
       announcement: {
@@ -86,12 +86,9 @@ const userSchema = new mongoose.Schema(
     ourStory: {
       type: String,
     },
-    receptionDetails: [
-      {
-        time: String,
-        details: String,
-      },
-    ],
+    receptionDetails: {
+      type: Array,
+    },
     giftCards: {
       type: Array,
     },

@@ -6,6 +6,7 @@ import {
   register,
   requestResetPassword,
   resetPassword,
+  updateUserProfile,
 } from '../controllers/userControllers.js';
 import { protect } from '../middlewares/auth.js';
 
@@ -17,5 +18,6 @@ router.post('/login', login);
 router.post('/requestResetPassword', requestResetPassword);
 router.post('/resetPassword', resetPassword);
 router.route('/profile').get(protect, getUserProfile);
+router.route('/updateUserProfile').put(protect, updateUserProfile);
 
 export default router;

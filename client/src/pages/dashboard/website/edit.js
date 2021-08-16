@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { produce } from 'immer';
+import { generate } from 'shortid';
 import { Image } from 'cloudinary-react';
 import { DashboardHeader } from '@components/dashboard';
 import DashboardTopBar from '@components/dashboard/header/TopBar';
@@ -25,7 +27,7 @@ import { attemptImageUpload, removeImage } from '@utils/index';
 import { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import { XIcon } from '@heroicons/react/solid';
 import moment from 'moment';
@@ -41,8 +43,10 @@ import {
   Twitter,
   Youtube,
 } from '@icons-pack/react-simple-icons';
+import { attemptUpdateUserProfile } from '@features/user/userActions';
 
 const EditWebsitePage = () => {
+  const dispatch = useDispatch();
   const { user } = useSelector(state => state.user);
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState();
@@ -51,6 +55,19 @@ const EditWebsitePage = () => {
   const [uploadedFiles, setUploadedFiles] = useState(
     user.questions.couplePictures
   );
+
+  const [receptionDetails, setReceptionDetails] = useState(
+    user.receptionDetails.length
+      ? user.receptionDetails
+      : [
+          {
+            id: generate(),
+            time: '',
+            details: '',
+          },
+        ]
+  );
+  const { groom, bride } = user.socialAccounts;
   // First Reception Picker
   const _firstReception = user.questions?.weddingDay?.firstReception
     ? new Date(user.questions?.weddingDay?.firstReception)
@@ -78,7 +95,7 @@ const EditWebsitePage = () => {
     formState: { errors },
   } = useForm({
     mode: 'all',
-    defaultValues: user.questions,
+    defaultValues: { ...user.questions, ourStory: user.ourStory },
     shouldFocusError: false,
     shouldUnregister: true,
   });
@@ -185,6 +202,44 @@ const EditWebsitePage = () => {
     }
   };
 
+  const onSubmit = data => {
+    dispatch(attemptUpdateUserProfile(submitData(data)));
+  };
+
+  const submitData = data => {
+    const socialAccounts = {
+      groom: {
+        facebook: data.groom_facebook,
+        instagram: data.groom_instagram,
+        twitter: data.groom_twitter,
+        linkedIn: data.groom_linkedIn,
+        gmail: data.groom_gmail,
+        youTube: data.groom_youTube,
+      },
+      bride: {
+        facebook: data.bride_facebook,
+        instagram: data.bride_instagram,
+        twitter: data.bride_twitter,
+        linkedIn: data.bride_linkedIn,
+        gmail: data.bride_gmail,
+        youTube: data.bride_youTube,
+      },
+    };
+    const payload = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      firstReception: data.firstReception,
+      secondReception: data.secondReception,
+      spouseFirstName: data.spouseFirstName,
+      spouseLastName: data.spouseLastName,
+      ourStory: data.ourStory,
+      receptionDetails,
+      couplePictures: uploadedFiles,
+      socialAccounts,
+    };
+    return payload;
+  };
+
   return (
     <>
       <Head>
@@ -218,7 +273,7 @@ const EditWebsitePage = () => {
           <h4 className='text-2xl mb-6 font-medium capitalize'>
             Name (you & your spouse name)
           </h4>
-          <form className='space-y-10'>
+          <form className='space-y-10' onSubmit={handleSubmit(onSubmit)}>
             <div className='space-y-2'>
               <div className='flex items-center space-x-3'>
                 <input
@@ -371,24 +426,72 @@ const EditWebsitePage = () => {
             <div className='space-y-5'>
               <div className='flex items-center justify-between space-x-5'>
                 <Heading h3>Reception Details</Heading>
-                <button className='py-2 px-5'>
+                {/* <button className='py-2 px-5'>
                   <MinusIcon className='w-7' />
-                </button>
+                </button> */}
               </div>
-              <div className='flex items-center'>
-                <input
-                  type='text'
-                  className='w-28 rounded-[5px] border-2 border-r-0 rounded-r-none focus:!border-gray-200 border-gray-200 py-2 px-4 text-base font-bold placeholder-gray-200'
-                  placeholder='12.00 PM'
-                  {...register('receptionTime')}
-                />
-                <input
-                  type='text'
-                  className='w-full rounded-[5px] rounded-l-none border-l-0 border-2 focus:!border-gray-200 border-gray-200 py-2 px-4 text-base font-normal placeholder-gray-300'
-                  placeholder='Details'
-                  {...register('receptionDetails')}
-                />
-              </div>
+              {receptionDetails.map((reception, index) => (
+                <div key={reception.id} className='flex items-center'>
+                  <input
+                    type='text'
+                    className='w-28 rounded-[5px] border-2 border-r-0 rounded-r-none focus:!border-gray-200 border-gray-200 py-2 px-4 text-base font-bold placeholder-gray-200'
+                    placeholder='12.00 PM'
+                    value={reception.time}
+                    onChange={e => {
+                      const time = e.target.value;
+                      setReceptionDetails(prev =>
+                        produce(prev, value => {
+                          value[index].time = time;
+                        })
+                      );
+                    }}
+                  />
+                  <div className='relative w-full'>
+                    <input
+                      type='text'
+                      className='w-full rounded-[5px] rounded-l-none border-l-0 border-2 focus:!border-gray-200 border-gray-200 py-2 px-4 text-base font-normal placeholder-gray-300'
+                      placeholder='Details'
+                      value={reception.details}
+                      onChange={e => {
+                        const details = e.target.value;
+                        setReceptionDetails(prev =>
+                          produce(prev, value => {
+                            value[index].details = details;
+                          })
+                        );
+                      }}
+                    />
+                    <button
+                      type='button'
+                      className='absolute top-1/2 right-5 -translate-y-1/2'
+                      onClick={() =>
+                        setReceptionDetails(prev =>
+                          prev.filter(x => x.id !== reception.id)
+                        )
+                      }
+                    >
+                      <MinusIcon className='w-7 h-5' />
+                    </button>
+                  </div>
+                </div>
+              ))}
+              <button
+                type='button'
+                className='font-inter flex items-center space-x-3 rounded-[5px] border-2 focus:!border-gray-200 border-gray-200 py-2 px-4 text-base font-normal placeholder-gray-300'
+                onClick={() =>
+                  setReceptionDetails(prev => [
+                    ...prev,
+                    {
+                      id: generate(),
+                      time: '',
+                      details: '',
+                    },
+                  ])
+                }
+              >
+                <PlusIcon className='w-7 h-5' />
+                <span>Add New</span>
+              </button>
             </div>
             <Divider />
             <Heading h3>Add Gift Card</Heading>
@@ -428,7 +531,8 @@ const EditWebsitePage = () => {
                     type='text'
                     className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
                     placeholder='https://facebook.com/beweddy'
-                    {...register('facebook')}
+                    defaultValue={groom.facebook}
+                    {...register('groom_facebook')}
                   />
                 </div>
                 <div className='relative'>
@@ -440,7 +544,8 @@ const EditWebsitePage = () => {
                     type='text'
                     className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
                     placeholder='https://instagram.com/beweddy'
-                    {...register('instagram')}
+                    defaultValue={groom.instagram}
+                    {...register('groom_instagram')}
                   />
                 </div>
                 <div className='relative'>
@@ -452,7 +557,8 @@ const EditWebsitePage = () => {
                     type='text'
                     className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
                     placeholder='https://twitter.com/beweddy'
-                    {...register('twitter')}
+                    defaultValue={groom.twitter}
+                    {...register('groom_twitter')}
                   />
                 </div>
                 <div className='relative'>
@@ -464,7 +570,8 @@ const EditWebsitePage = () => {
                     type='text'
                     className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
                     placeholder='beweddyport@gmail.com'
-                    {...register('gmail')}
+                    defaultValue={groom.gmail}
+                    {...register('groom_gmail')}
                   />
                 </div>
                 <div className='relative'>
@@ -476,7 +583,8 @@ const EditWebsitePage = () => {
                     type='text'
                     className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
                     placeholder='https://www.linkedin.com/in/beweddy'
-                    {...register('linkedIn')}
+                    defaultValue={groom.linkedIn}
+                    {...register('groom_linkedIn')}
                   />
                 </div>
                 <div className='relative'>
@@ -488,7 +596,8 @@ const EditWebsitePage = () => {
                     type='text'
                     className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
                     placeholder='https://www.youtube.com/beweddy'
-                    {...register('youTube')}
+                    defaultValue={groom.youTube}
+                    {...register('groom_youTube')}
                   />
                 </div>
               </div>
@@ -503,7 +612,8 @@ const EditWebsitePage = () => {
                     type='text'
                     className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
                     placeholder='https://facebook.com/beweddy'
-                    {...register('facebook')}
+                    defaultValue={bride.facebook}
+                    {...register('bride_facebook')}
                   />
                 </div>
                 <div className='relative'>
@@ -515,7 +625,8 @@ const EditWebsitePage = () => {
                     type='text'
                     className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
                     placeholder='https://instagram.com/beweddy'
-                    {...register('instagram')}
+                    defaultValue={bride.instagram}
+                    {...register('bride_instagram')}
                   />
                 </div>
                 <div className='relative'>
@@ -527,7 +638,8 @@ const EditWebsitePage = () => {
                     type='text'
                     className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
                     placeholder='https://twitter.com/beweddy'
-                    {...register('twitter')}
+                    defaultValue={bride.twitter}
+                    {...register('bride_twitter')}
                   />
                 </div>
                 <div className='relative'>
@@ -539,7 +651,8 @@ const EditWebsitePage = () => {
                     type='text'
                     className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
                     placeholder='beweddyport@gmail.com'
-                    {...register('gmail')}
+                    defaultValue={bride.gmail}
+                    {...register('bride_gmail')}
                   />
                 </div>
                 <div className='relative'>
@@ -551,7 +664,8 @@ const EditWebsitePage = () => {
                     type='text'
                     className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
                     placeholder='https://www.linkedin.com/in/beweddy'
-                    {...register('linkedIn')}
+                    defaultValue={bride.linkedIn}
+                    {...register('bride_linkedIn')}
                   />
                 </div>
                 <div className='relative'>
@@ -563,7 +677,8 @@ const EditWebsitePage = () => {
                     type='text'
                     className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
                     placeholder='https://www.youtube.com/beweddy'
-                    {...register('youTube')}
+                    defaultValue={bride.youTube}
+                    {...register('bride_youTube')}
                   />
                 </div>
               </div>

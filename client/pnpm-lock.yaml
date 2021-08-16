@@ -14,6 +14,7 @@ specifiers:
   cloudinary: ^1.26.2
   cloudinary-react: ^1.7.0
   framer-motion: ^4.1.17
+  immer: ^9.0.5
   lodash: ^4.17.21
   moment: ^2.29.1
   next: 11.0.1
@@ -32,6 +33,7 @@ specifiers:
   react-youtube: ^7.13.1
   redux-logger: ^3.0.6
   redux-persist: ^6.0.0
+  shortid: ^2.2.16
   swiper: ^6.8.0
   tailwindcss: ^2.2.4
   yup: ^0.32.9
@@ -49,6 +51,7 @@ dependencies:
   cloudinary: 1.26.2
   cloudinary-react: 1.7.0_lodash@4.17.21+react@17.0.2
   framer-motion: 4.1.17_react-dom@17.0.2+react@17.0.2
+  immer: 9.0.5
   lodash: 4.17.21
   moment: 2.29.1
   next: 11.0.1_react-dom@17.0.2+react@17.0.2
@@ -66,6 +69,7 @@ dependencies:
   react-youtube: 7.13.1_react@17.0.2
   redux-logger: 3.0.6
   redux-persist: 6.0.0
+  shortid: 2.2.16
   swiper: 6.8.0
   yup: 0.32.9
 
@@ -1739,6 +1743,10 @@ packages:
     resolution: {integrity: sha512-wynEP02LmIbLpcYw8uBKpcfF6dmg2vcpKqxeH5UcoKEYdExslsdUA4ugFauuaeYdTB76ez6gJW8XAZ6CgkXYxA==}
     dev: false
 
+  /nanoid/2.1.11:
+    resolution: {integrity: sha512-s/snB+WGm6uwi0WjsZdaVcuf3KJXlfGl2LcxgwkEwJF0D/BWzVWAZW/XY4bFaiR7s0Jk3FPvlnepg1H1b1UwlA==}
+    dev: false
+
   /nanoid/3.1.23:
     resolution: {integrity: sha512-FiB0kzdP0FFVGDKlRLEQ1BgDzU87dy5NnzjeW9YZNt+/c3+q82EQDUwniSAUxp/F0gFNI1ZhKU1FqYsMuqZVnw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
@@ -2592,6 +2600,12 @@ packages:
 
   /shell-quote/1.7.2:
     resolution: {integrity: sha512-mRz/m/JVscCrkMyPqHc/bczi3OQHkLTqXHEFu0zDhK/qfv3UcOA4SVmRCLmos4bhjr9ekVQubj/R7waKapmiQg==}
+    dev: false
+
+  /shortid/2.2.16:
+    resolution: {integrity: sha512-Ugt+GIZqvGXCIItnsL+lvFJOiN7RYqlGy7QE41O3YC1xbNSeDGIRO7xg2JJXIAj1cAGnOeC1r7/T9pgrtQbv4g==}
+    dependencies:
+      nanoid: 2.1.11
     dev: false
 
   /simple-swizzle/0.2.2:
