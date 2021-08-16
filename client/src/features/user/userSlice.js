@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { attemptActivation, attemptLogin } from './userActions';
+import {
+  attemptActivation,
+  attemptLogin,
+  attemptUpdateUserProfile,
+} from './userActions';
 
 const initialState = {
   loading: false,
@@ -42,6 +46,18 @@ const userSlice = createSlice({
         state.error = payload.error;
       })
       .addCase(attemptLogin.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(attemptUpdateUserProfile.pending, state => {
+        state.loading = true;
+      })
+      .addCase(attemptUpdateUserProfile.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.user = payload.user;
+        state.error = payload.error;
+      })
+      .addCase(attemptUpdateUserProfile.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
       });

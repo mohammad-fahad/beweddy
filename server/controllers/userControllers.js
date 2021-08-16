@@ -104,7 +104,7 @@ export const activeUser = asyncHandler(async (req, res) => {
         phone: user.phone,
         questions: user.questions,
         avatar: user.avatar,
-        outStory: user.outStory,
+        ourStory: user.ourStory,
         receptionDetails: user.receptionDetails,
         giftCards: user.giftCards,
         registries: user.registries,
@@ -150,7 +150,7 @@ export const login = asyncHandler(async (req, res) => {
         phone: user.phone,
         questions: user.questions,
         avatar: user.avatar,
-        outStory: user.outStory,
+        ourStory: user.ourStory,
         receptionDetails: user.receptionDetails,
         giftCards: user.giftCards,
         registries: user.registries,
@@ -241,7 +241,7 @@ export const getUserProfile = asyncHandler(async (req, res) => {
         phone: user.phone,
         questions: user.questions,
         avatar: user.avatar,
-        outStory: user.outStory,
+        ourStory: user.ourStory,
         receptionDetails: user.receptionDetails,
         giftCards: user.giftCards,
         registries: user.registries,
@@ -270,11 +270,24 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
         req.body.spouseFirstName || user.questions.spouseFirstName,
       spouseLastName: req.body.spouseLastName || user.questions.spouseLastName,
       couplePictures: req.body.couplePictures || user.questions.couplePictures,
+      weddingDay: {
+        weddingDate:
+          req.body.weddingDate || user.questions.weddingDay.weddingDate,
+        firstReception:
+          req.body.firstReception || user.questions.weddingDay.firstReception,
+        secondReception:
+          req.body.secondReception || user.questions.weddingDay.secondReception,
+      },
     };
 
     user.firstName = req.body.firstName || user.firstName;
     user.lastName = req.body.lastName || user.lastName;
-    user.avatar = req.body.avatar || user.avatar;
+    user.questions = questions || user.questions;
+    // user.avatar = req.body.avatar || user.avatar;
+    user.ourStory = req.body.ourStory || user.ourStory;
+    user.receptionDetails = req.body.receptionDetails || user.receptionDetails;
+    user.socialAccounts = req.body.socialAccounts || user.socialAccounts;
+
     if (req.body.avatar) {
       user.avatar = req.body.avatar;
     }
@@ -290,22 +303,25 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     const updateUser = await user.save();
 
     res.json({
-      _id: user._id,
-      fullName: user.fullName,
-      coupleName: user.coupleName,
-      username: user.username,
-      email: user.email,
-      phone: user.phone,
-      questions: user.questions,
-      avatar: user.avatar,
-      outStory: user.outStory,
-      receptionDetails: user.receptionDetails,
-      giftCards: user.giftCards,
-      registries: user.registries,
-      socialAccounts: user.socialAccounts,
-      isAdmin: user.isAdmin,
-      role: user.role,
-      token: generateIdToken(user._id),
+      user: {
+        _id: updateUser._id,
+        fullName: updateUser.fullName,
+        coupleName: updateUser.coupleName,
+        username: updateUser.username,
+        email: updateUser.email,
+        phone: updateUser.phone,
+        questions: updateUser.questions,
+        avatar: updateUser.avatar,
+        ourStory: updateUser.ourStory,
+        receptionDetails: updateUser.receptionDetails,
+        giftCards: updateUser.giftCards,
+        registries: updateUser.registries,
+        socialAccounts: updateUser.socialAccounts,
+        isAdmin: updateUser.isAdmin,
+        role: updateUser.role,
+        token: generateIdToken(updateUser._id),
+      },
+      message: 'Profile Updated',
     });
   } else {
     res.status(404);
