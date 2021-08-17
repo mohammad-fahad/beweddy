@@ -40,7 +40,6 @@ const HomePage = () => {
       <GiftCards />
       <Registries />
       <HowItWork />
-      {!user && <CreateAccount />}
       <QRFeature />
       <Footer />
     </motion.div>

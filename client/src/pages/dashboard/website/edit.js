@@ -111,13 +111,22 @@ const EditWebsitePage = () => {
   });
 
   // Watch Input Fields
-  watch(['firstReception', 'secondReception']);
+  watch(['weddingDate', 'firstReception', 'secondReception']);
 
   // Input Fields as Variable
+  const weddingDate = getValues('weddingDate');
   const firstReception = getValues('firstReception');
   const secondReception = getValues('secondReception');
 
   useEffect(() => {
+    if (isEmpty(weddingDate) || compareDate(weddingDate)) {
+      clearErrors('weddingDate');
+    } else {
+      setError('weddingDate', {
+        type: 'validate',
+        message: 'Seems like you have selected past date',
+      });
+    }
     if (isEmpty(firstReception) || compareDate(firstReception)) {
       clearErrors('firstReception');
     } else {
@@ -134,7 +143,7 @@ const EditWebsitePage = () => {
         message: 'Seems like you have selected past date',
       });
     }
-  }, [firstReception, secondReception]);
+  }, [weddingDate, firstReception, secondReception]);
 
   // Handle image uploadedFiles
 
@@ -238,6 +247,7 @@ const EditWebsitePage = () => {
     const payload = {
       firstName: data.firstName,
       lastName: data.lastName,
+      weddingDate: data.weddingDate,
       firstReception: data.firstReception,
       secondReception: data.secondReception,
       spouseFirstName: data.spouseFirstName,
@@ -398,6 +408,7 @@ const EditWebsitePage = () => {
                   }
                 />
               </div>
+              <Heading h3>Have 2 Receptions?</Heading>
               <div className='flex items-center space-x-5'>
                 <div>
                   <DatePicker
