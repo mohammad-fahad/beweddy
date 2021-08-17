@@ -1,0 +1,198 @@
+import Head from "next/head";
+import Link from "next/link";
+import { Image } from "cloudinary-react";
+import { DashboardHeader } from "@components/dashboard";
+import DashboardTopBar from "@components/dashboard/header/TopBar";
+import DashboardLayout from "@components/dashboard/layout";
+import { Footer } from "@components/index";
+import {
+  LinkIcon,
+  MinusIcon,
+  PencilIcon,
+  PlusIcon,
+} from "@heroicons/react/outline";
+import SwiperCore, { Lazy, Autoplay } from "swiper";
+import { Fragment } from "react";
+SwiperCore.use([Lazy, Autoplay]);
+
+const data = [
+  {
+    id: 1,
+    title: "Marrage License",
+    buttonText: "Link",
+    link: "https://github.com/sonjoybarmon",
+    color: "#F9D1DE",
+  },
+  {
+    id: 2,
+    title: "Officiant Fee",
+    buttonText: "Link",
+    link: "https://github.com/sonjoybarmon",
+    color: "rgb(221 221 221)",
+  },
+  {
+    id: 3,
+    title: "Wedding Floral",
+    buttonText: "Link",
+    link: "https://github.com/sonjoybarmon",
+    color: "#F9D1DE",
+  },
+  {
+    id: 4,
+    title: "Marrage License",
+    buttonText: "Link",
+    link: "https://github.com/sonjoybarmon",
+    color: "#F9D1DE",
+  },
+  {
+    id: 5,
+    title: "Officiant Fee",
+    buttonText: "Link",
+    link: "https://github.com/sonjoybarmon",
+    color: "#F9D1DE",
+  },
+  {
+    id: 6,
+    title: "Wedding Floral",
+    buttonText: "Link",
+    link: "https://github.com/sonjoybarmon",
+    color: "#F9D1DE",
+  },
+  {
+    id: 7,
+    title: "Marrage License",
+    buttonText: "Link",
+    link: "https://github.com/sonjoybarmon",
+    color: "#F9D1DE",
+  },
+  {
+    id: 8,
+    title: "Officiant Fee",
+    buttonText: "Link",
+    link: "https://github.com/sonjoybarmon",
+    color: "#d6d5d5",
+  },
+  {
+    id: 9,
+    title: "Wedding Floral",
+    buttonText: "Link",
+    link: "https://github.com/sonjoybarmon",
+    color: "#F9D1DE",
+  },
+  {
+    id: 10,
+    title: "Marrage License",
+    buttonText: "Link",
+    link: "https://github.com/sonjoybarmon",
+    color: "#F9D1DE",
+  },
+  {
+    id: 11,
+    title: "Officiant Fee",
+    buttonText: "Link",
+    link: "https://github.com/sonjoybarmon",
+    color: "#DADADA",
+  },
+  {
+    id: 12,
+    title: "Wedding Floral",
+    buttonText: "Link",
+    link: "https://github.com/sonjoybarmon",
+    color: "#F9D1DE",
+  },
+  {
+    id: 13,
+    title: "Marrage License",
+    buttonText: "Link",
+    link: "https://github.com/sonjoybarmon",
+    color: "#F9D1DE",
+  },
+  {
+    id: 14,
+    title: "Officiant Fee",
+    buttonText: "Link",
+    link: "https://github.com/sonjoybarmon",
+    color: "#DADADA",
+  },
+  {
+    id: 15,
+    title: "Wedding Floral",
+    buttonText: "Link",
+    link: "https://github.com/sonjoybarmon",
+    color: "#F9D1DE",
+  },
+];
+
+const Registry = () => {
+  return (
+    <Fragment>
+      <Head>
+        <title>Beweddy | Registry</title>
+      </Head>
+      {/* {loading && <Loader />} */}
+      <DashboardTopBar />
+      <DashboardLayout className="container">
+        <DashboardHeader title="Registry">
+          <Link href="/dashboard/website/edit">
+            <a className="flex items-center space-x-3 py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
+              <PencilIcon className="w-5 h-5" />
+              <span>Edit your website</span>
+            </a>
+          </Link>
+          <Link href="/">
+            <a className="flex items-center space-x-3 py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
+              <LinkIcon className="w-5 h-5" />
+              <span>Share your super link</span>
+            </a>
+          </Link>
+          <Link href="/">
+            <a className="py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
+              Guests Management
+            </a>
+          </Link>
+        </DashboardHeader>
+        <div className="p-6 border-4 border-gray-200 rounded-lg">
+          <div class="grid grid-cols-12 gap-4">
+            {data?.map((el) => (
+              <Link href={el.link}>
+                <div
+                  key={el.id}
+                  className="p-2 border-4 border-gray-200 rounded-lg cursor-pointer lg:col-span-4 md:col-span-4 sm:col-span-6"
+                >
+                  <div
+                    className={`bg-[${el?.color}] h-36 w-full border-3 rounded-lg hover:bg-black transition duration-300 `}
+                  >
+                    <div className="flex items-center justify-center w-full h-full opacity-0 hover:opacity-100">
+                      <img src="/icons/Vector.png" alt="" className="w-9" />
+                    </div>
+                  </div>
+
+                  <div className="py-4 text-center ">
+                    <h3 className="text-2xl font-medium font-inter">
+                      {" "}
+                      {el.title}{" "}
+                    </h3>
+                    <button
+                      className="py-2 px-10 border-gray-900 border-2 rounded-[10px] mt-5 hover:bg-black transition duration-300 
+hover:text-white  font-inter font-medium	"
+                    >
+                      {el.buttonText}
+                    </button>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </DashboardLayout>
+
+      <Footer hideSocial />
+    </Fragment>
+  );
+};
+
+export default Registry;
+
+{
+  /* // export default withAuthRoute(Registry); */
+}
