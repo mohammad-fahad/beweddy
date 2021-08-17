@@ -10,6 +10,7 @@ import {
   Registries,
   Loader,
   QRFeature,
+  WelcomeAlert,
 } from '@components/index';
 import Features from '@components/home/Features';
 import { motion } from 'framer-motion';
@@ -31,6 +32,7 @@ const HomePage = () => {
         <title>BeWeddy | Free All-in-One Wedding Platform</title>
         <meta name='description' content='Free All-in-One Wedding Platform' />
       </Head>
+      <WelcomeAlert />
       <Header />
       <Banner {...{ setImageLoaded }} />
       <CreateWebsite />

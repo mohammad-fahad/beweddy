@@ -19,6 +19,7 @@ specifiers:
   moment: ^2.29.1
   next: 11.0.1
   postcss: ^8.3.5
+  qrcode.react: ^1.0.1
   react: 17.0.2
   react-datepicker: ^4.1.1
   react-day-picker: ^7.4.10
@@ -28,6 +29,7 @@ specifiers:
   react-hot-toast: ^2.1.0
   react-id-swiper: ^4.0.0
   react-image-crop: ^8.6.12
+  react-qrcode-logo: ^2.5.0
   react-redux: ^7.2.4
   react-spinners: ^0.11.0
   react-youtube: ^7.13.1
@@ -55,6 +57,7 @@ dependencies:
   lodash: 4.17.21
   moment: 2.29.1
   next: 11.0.1_react-dom@17.0.2+react@17.0.2
+  qrcode.react: 1.0.1_react@17.0.2
   react: 17.0.2
   react-datepicker: 4.1.1_react-dom@17.0.2+react@17.0.2
   react-day-picker: 7.4.10_react@17.0.2
@@ -64,6 +67,7 @@ dependencies:
   react-hot-toast: 2.1.0_react-dom@17.0.2+react@17.0.2
   react-id-swiper: 4.0.0_34146a6e7538b09058193b63f1601461
   react-image-crop: 8.6.12_react@17.0.2
+  react-qrcode-logo: 2.5.0_react-dom@17.0.2+react@17.0.2
   react-redux: 7.2.4_react-dom@17.0.2+react@17.0.2
   react-spinners: 0.11.0_react-dom@17.0.2+react@17.0.2
   react-youtube: 7.13.1_react@17.0.2
@@ -1642,6 +1646,10 @@ packages:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
     dev: false
 
+  /lodash.isequal/4.5.0:
+    resolution: {integrity: sha1-QVxEePK8wwEgwizhDtMib30+GOA=}
+    dev: false
+
   /lodash.sortby/4.7.0:
     resolution: {integrity: sha1-7dFMgk4sycHgsKG0K7UhBRakJDg=}
     dev: false
@@ -2196,6 +2204,25 @@ packages:
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
     dev: false
 
+  /qr.js/0.0.0:
+    resolution: {integrity: sha1-ys6GOG9ZoNuAUPqQ2baw6IoeNk8=}
+    dev: false
+
+  /qrcode-generator/1.4.4:
+    resolution: {integrity: sha512-HM7yY8O2ilqhmULxGMpcHSF1EhJJ9yBj8gvDEuZ6M+KGJ0YY2hKpnXvRD+hZPLrDVck3ExIGhmPtSdcjC+guuw==}
+    dev: false
+
+  /qrcode.react/1.0.1_react@17.0.2:
+    resolution: {integrity: sha512-8d3Tackk8IRLXTo67Y+c1rpaiXjoz/Dd2HpcMdW//62/x8J1Nbho14Kh8x974t9prsLHN6XqVgcnRiBGFptQmg==}
+    peerDependencies:
+      react: ^15.5.3 || ^16.0.0 || ^17.0.0
+    dependencies:
+      loose-envify: 1.4.0
+      prop-types: 15.7.2
+      qr.js: 0.0.0
+      react: 17.0.2
+    dev: false
+
   /querystring-es3/0.2.1:
     resolution: {integrity: sha1-nsYfeQSYdXB9aUFFlv2Qek1xHnM=}
     engines: {node: '>=0.4.x'}
@@ -2377,6 +2404,18 @@ packages:
       react: 17.0.2
       react-fast-compare: 3.2.0
       warning: 4.0.3
+    dev: false
+
+  /react-qrcode-logo/2.5.0_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-Z+Ywb2Cw3EK5csfkZHuyNpxZl5BiHxrBPAeRE3bB1qERAUMc/tMzBKpfMEb/Olti/Ic04j/DYt6ncYRLa/wFMA==}
+    peerDependencies:
+      react: '>=16.4.1'
+      react-dom: '>=16.4.1'
+    dependencies:
+      lodash.isequal: 4.5.0
+      qrcode-generator: 1.4.4
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
     dev: false
 
   /react-redux/7.2.4_react-dom@17.0.2+react@17.0.2:

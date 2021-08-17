@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-const DashboardActiveLink = ({ href, children }) => {
+const DashboardActiveLink = ({ href, children, className }) => {
   const { pathname } = useRouter();
 
   return (
@@ -9,8 +9,8 @@ const DashboardActiveLink = ({ href, children }) => {
       <a
         // target='_blank'
         className={`text-lg max-w-max text-primary font-inter group hover:text-primary transition-colors duration-300 relative ${
-          pathname === href ? 'font-bold' : 'font-medium'
-        }`}
+          className ? className : ''
+        } ${pathname === href ? 'font-bold' : 'font-medium'}`}
       >
         {children}
         <span

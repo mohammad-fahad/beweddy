@@ -1,14 +1,12 @@
 import Head from 'next/head';
 import Link from 'next/link';
+// import Image from 'next/image';
 import { Image } from 'cloudinary-react';
 import { DashboardHeader } from '@components/dashboard';
 import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
 import {
   Button,
-  CropImage,
-  Divider,
-  FirstReceptionDatePicker,
   Footer,
   Heading,
   Loader,
@@ -44,7 +42,7 @@ const params = {
   },
 };
 
-const EditWebsitePage = () => {
+const AddressRSVP = () => {
   const { user } = useSelector(state => state.user);
   const { countries } = useSelector(state => state.countryList);
 
@@ -82,14 +80,14 @@ const EditWebsitePage = () => {
       {/* {loading && <Loader />} */}
       <DashboardTopBar />
       <DashboardLayout>
-        <DashboardHeader title='Edit your website'>
+        <DashboardHeader title='Address-RSVP'>
           <div className='flex items-center space-x-5'>
-            {/* <Link href='/dashboard/website/edit'>
+            <Link href='/dashboard/website/edit'>
               <a className='flex items-center space-x-3 py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300'>
                 <PencilIcon className='w-5 h-5' />
                 <span>Edit your website</span>
               </a>
-            </Link> */}
+            </Link>
             <Link href='/'>
               <a className='flex items-center space-x-3 py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300'>
                 <LinkIcon className='w-5 h-5' />
@@ -112,7 +110,7 @@ const EditWebsitePage = () => {
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                     publicId={image.public_id}
                     src={!image.public_id ? image.url : null}
-                    width='1000'
+                    width={image.width}
                     crop='scale'
                     className='object-cover'
                   />
@@ -589,7 +587,11 @@ const EditWebsitePage = () => {
                 Eat, Drink, & BeWeddy!
               </Heading>
               <div className='max-w-lg mx-auto'>
-                <img src='/images/thank-you.png' alt='' className='rounded-lg' />
+                <img
+                  src='/images/thank-you.png'
+                  alt=''
+                  className='rounded-lg'
+                />
               </div>
             </div>
           </div>
@@ -600,4 +602,4 @@ const EditWebsitePage = () => {
   );
 };
 
-export default withAuthRoute(EditWebsitePage);
+export default withAuthRoute(AddressRSVP);
