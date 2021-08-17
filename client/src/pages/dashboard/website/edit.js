@@ -16,6 +16,7 @@ import {
   Loader,
   QRCodeGenerator,
   SecondReceptionDatePicker,
+  WeddingDatePicker,
 } from '@components/index';
 import {
   LinkIcon,
@@ -69,6 +70,14 @@ const EditWebsitePage = () => {
         ]
   );
   const { groom, bride } = user.socialAccounts;
+
+  // WeddingDate Picker
+  const _weddingDate = user.questions?.weddingDay?.weddingDate
+    ? new Date(user.questions?.weddingDay?.weddingDate)
+    : '';
+
+  const [selectWeddingDay, setSelectWeddingDay] = useState(_weddingDate);
+
   // First Reception Picker
   const _firstReception = user.questions?.weddingDay?.firstReception
     ? new Date(user.questions?.weddingDay?.firstReception)
@@ -102,13 +111,22 @@ const EditWebsitePage = () => {
   });
 
   // Watch Input Fields
-  watch(['firstReception', 'secondReception']);
+  watch(['weddingDate', 'firstReception', 'secondReception']);
 
   // Input Fields as Variable
+  const weddingDate = getValues('weddingDate');
   const firstReception = getValues('firstReception');
   const secondReception = getValues('secondReception');
 
   useEffect(() => {
+    if (isEmpty(weddingDate) || compareDate(weddingDate)) {
+      clearErrors('weddingDate');
+    } else {
+      setError('weddingDate', {
+        type: 'validate',
+        message: 'Seems like you have selected past date',
+      });
+    }
     if (isEmpty(firstReception) || compareDate(firstReception)) {
       clearErrors('firstReception');
     } else {
@@ -125,7 +143,7 @@ const EditWebsitePage = () => {
         message: 'Seems like you have selected past date',
       });
     }
-  }, [firstReception, secondReception]);
+  }, [weddingDate, firstReception, secondReception]);
 
   // Handle image uploadedFiles
 
@@ -229,6 +247,7 @@ const EditWebsitePage = () => {
     const payload = {
       firstName: data.firstName,
       lastName: data.lastName,
+      weddingDate: data.weddingDate,
       firstReception: data.firstReception,
       secondReception: data.secondReception,
       spouseFirstName: data.spouseFirstName,
@@ -372,6 +391,24 @@ const EditWebsitePage = () => {
             <Divider />
             <div className='space-y-5'>
               <Heading h3>Pick your wedding date</Heading>
+              <div>
+                <DatePicker
+                  selected={selectWeddingDay}
+                  popperPlacement='top-end'
+                  onChange={date => {
+                    setSelectWeddingDay(date);
+                    setValue('weddingDate', moment(date).format('LL'));
+                  }}
+                  customInput={
+                    <WeddingDatePicker
+                      placeholder='Select Wedding Date'
+                      border='border-secondary-alternative/50'
+                      {...{ errors }}
+                    />
+                  }
+                />
+              </div>
+              <Heading h3>Have 2 Receptions?</Heading>
               <div className='flex items-center space-x-5'>
                 <div>
                   <DatePicker
