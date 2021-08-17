@@ -60,7 +60,7 @@ const Features = () => {
                 <img
                   src='/icons/qrLogo.png'
                   alt=''
-                  className='w-10 md:w-12 lg:w-14 ml-auto'
+                  className='w-10 md:w-12 lg:w-14 !ml-auto'
                 />
               </div>
             </div>

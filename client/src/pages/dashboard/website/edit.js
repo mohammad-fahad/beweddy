@@ -16,6 +16,7 @@ import {
   Loader,
   QRCodeGenerator,
   SecondReceptionDatePicker,
+  WeddingDatePicker,
 } from '@components/index';
 import {
   LinkIcon,
@@ -69,6 +70,14 @@ const EditWebsitePage = () => {
         ]
   );
   const { groom, bride } = user.socialAccounts;
+
+  // WeddingDate Picker
+  const _weddingDate = user.questions?.weddingDay?.weddingDate
+    ? new Date(user.questions?.weddingDay?.weddingDate)
+    : '';
+
+  const [selectWeddingDay, setSelectWeddingDay] = useState(_weddingDate);
+
   // First Reception Picker
   const _firstReception = user.questions?.weddingDay?.firstReception
     ? new Date(user.questions?.weddingDay?.firstReception)
@@ -372,6 +381,23 @@ const EditWebsitePage = () => {
             <Divider />
             <div className='space-y-5'>
               <Heading h3>Pick your wedding date</Heading>
+              <div>
+                <DatePicker
+                  selected={selectWeddingDay}
+                  popperPlacement='top-end'
+                  onChange={date => {
+                    setSelectWeddingDay(date);
+                    setValue('weddingDate', moment(date).format('LL'));
+                  }}
+                  customInput={
+                    <WeddingDatePicker
+                      placeholder='Select Wedding Date'
+                      border='border-secondary-alternative/50'
+                      {...{ errors }}
+                    />
+                  }
+                />
+              </div>
               <div className='flex items-center space-x-5'>
                 <div>
                   <DatePicker

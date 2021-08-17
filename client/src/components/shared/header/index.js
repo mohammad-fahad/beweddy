@@ -17,15 +17,15 @@ export const Header = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   return (
     <header className='bg-white relative'>
-      <div className='max-w-[1350px] px-10 xxl:px-0 mx-auto py-5 md:py-10 flex flex-col gap-5'>
-        <div className=' flex items-center lg:gap-16'>
+      <div className='max-w-[1350px] px-10 xxl:px-0 mx-auto py-5 md:py-6 flex flex-col gap-5'>
+        <div className=' flex items-center lg:gap-10'>
           {/* Logo */}
           <Link href='/'>
             <a className='-mt-[0.6rem]'>
               <img
                 src='/images/logo.png'
                 alt=''
-                className='h-14 sm:h-16 md:h-20 md:w-52 object-cover'
+                className='h-14 sm:h-16 md:h-20 md:w-48 object-contain'
               />
             </a>
           </Link>

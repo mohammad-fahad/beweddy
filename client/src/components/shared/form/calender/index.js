@@ -3,16 +3,16 @@ import InputIcon from '../InputIcon';
 import InputText from '../InputText';
 
 export const WeddingDatePicker = forwardRef(
-  ({ value, onClick, errors }, ref) => (
+  ({ value, onClick, errors, border = 'border-primary' }, ref) => (
     <div>
       <button
         ref={ref}
         type='button'
         {...{ onClick }}
-        className='flex items-center min-w-[230px] font-inter bg-white text-sm md:text-base font-medium md:font-semibold py-2 md:py-3 placeholder-primary border-[3px] border-primary rounded-[5px]'
+        className={`flex items-center min-w-[256px] font-inter bg-white text-sm md:text-base font-medium md:font-semibold py-2 md:py-3 placeholder-primary border-[3px] rounded-[5px] ${border}`}
       >
         <InputIcon />
-        <InputText {...{ value }} />
+        <InputText {...{ value }} placeholder='Select Wedding Date' />
       </button>
 
       <p className='mt-2 text-red-400 font-light text-sm h-4 text-center'>
