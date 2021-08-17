@@ -14,6 +14,7 @@ import {
   Footer,
   Heading,
   Loader,
+  QRCodeGenerator,
   SecondReceptionDatePicker,
 } from '@components/index';
 import {
@@ -719,11 +720,13 @@ const EditWebsitePage = () => {
           </form>
         </div>
       </DashboardLayout>
+      <QRCodeGenerator />
       <Footer hideSocial />
+
       <CropImage
         onSave={onCropSave}
         selectedFile={selectedImageFile}
-        aspectRatio={16 / 12}
+        // aspectRatio={16 / 12}
       />
     </>
   );
