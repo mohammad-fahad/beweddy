@@ -276,7 +276,7 @@ const UploadAnnouncement = () => {
             className='opacity-50 !rounded-[10px]'
             onClick={() => push({ query: { step: 2 } })}
           />
-          <Button label='Next' type='submit' className=' !rounded-[10px]' />
+          <Button label='Next' type='submit' className='!rounded-[10px]' />
         </motion.div>
       </motion.form>
       <CropImage

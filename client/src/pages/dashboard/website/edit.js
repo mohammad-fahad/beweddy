@@ -419,7 +419,7 @@ const EditWebsitePage = () => {
                 cols='30'
                 rows='5'
                 className='focus:ring-0 focus:border-primary w-full rounded-lg border-2 border-gray-200 py-3 px-5 text-base font-normal'
-                placeholder='Write your story here'
+                placeholder='We sincerely hope we will have the honor to dine, laugh, and dance with you on our wedding weekend. It would mean the world to us.'
                 {...register('ourStory')}
               ></textarea>
             </div>

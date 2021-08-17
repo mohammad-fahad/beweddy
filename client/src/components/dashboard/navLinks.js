@@ -28,10 +28,10 @@ const DashboardNavLinks = () => {
         </DashboardActiveLink>
       ))}
       <div>
-        <h4 className='text-lg font-medium max-w-max text-primary font-inter group hover:text-primary transition-colors duration-300 mb-3'>
+        <DashboardActiveLink href='/dashboard/invitations'>
           Invitations
-        </h4>
-        <div className='space-y-3'>
+        </DashboardActiveLink>
+        <div className='space-y-3 mt-3'>
           <div className='flex items-center space-x-3'>
             <span className='w-2 h-2 bg-[#F9D1DE] rounded-full inline-block' />
             <span className='text-lg font-medium'>E-invite</span>
