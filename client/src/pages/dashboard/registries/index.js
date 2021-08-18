@@ -7,6 +7,7 @@ import { Footer } from '@components/index';
 import { LinkIcon, PencilIcon } from '@heroicons/react/outline';
 import SwiperCore, { Lazy, Autoplay } from 'swiper';
 import { Fragment } from 'react';
+import { withAuthRoute } from '@hoc/withAuthRoute';
 SwiperCore.use([Lazy, Autoplay]);
 
 const data = [
@@ -186,4 +187,4 @@ hover:text-white  font-inter font-medium	'
   );
 };
 
-export default RegistriesPage;
+export default withAuthRoute(RegistriesPage);

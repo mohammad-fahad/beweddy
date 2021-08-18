@@ -14,6 +14,7 @@ import {
 } from '@heroicons/react/outline';
 import SwiperCore, { Lazy, Autoplay } from 'swiper';
 import { Fragment } from 'react';
+import { withAuthRoute } from '@hoc/withAuthRoute';
 
 SwiperCore.use([Lazy, Autoplay]);
 
@@ -213,10 +214,9 @@ text-white  font-inter font-medium text-center	"
           </div>
         </div>
       </DashboardLayout>
-
       <Footer hideSocial />
     </Fragment>
   );
 };
 
-export default GiftCardPage;
+export default withAuthRoute(GiftCardPage);
