@@ -14,8 +14,12 @@ const navLinks = [
     href: '/dashboard/address-and-rsvp',
   },
   {
-    label: 'Gift & Registry',
-    href: '/gift-and-registry',
+    label: 'Gift Cards',
+    href: '/dashboard/gift-cards',
+  },
+  {
+    label: 'Registries',
+    href: '/dashboard/registries',
   },
 ];
 

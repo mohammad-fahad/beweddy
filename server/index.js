@@ -51,6 +51,9 @@ app.get('/', (_req, res) => {
 app.use(`${API_VERSION}/users`, userRoutes);
 app.use(`${API_VERSION}/upload`, uploadRoutes);
 
+app.use(`${API_VERSION}/gifts`, userRoutes);
+app.use(`${API_VERSION}/registries`, userRoutes);
+
 // Error Handler
 app.use(notFound);
 app.use(errorHandler);
