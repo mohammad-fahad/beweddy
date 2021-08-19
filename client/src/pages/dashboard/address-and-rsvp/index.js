@@ -151,7 +151,7 @@ const AddressRSVP = () => {
               </Link>
             </div>
             <h4 className='text-center text-4xl font-medium'>
-              ✨ Your Invited To Our Wedding! 💍 ✨
+              ✨ Your Are Invited To Our Wedding! 💍 ✨
             </h4>
             <p className='text-center text-2xl font-medium mt-5 mb-16'>
               Thanks for your love and support! We want to send you an
