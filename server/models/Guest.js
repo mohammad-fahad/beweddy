@@ -2,6 +2,10 @@ import mongoose from 'mongoose';
 
 const guestSchema = new mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
     name: {
       type: String,
       required: true,
@@ -56,11 +60,23 @@ const guestSchema = new mongoose.Schema(
       default: 'AT&T',
       required: true,
     },
-    wayOfInvitation: {
-      text: {
+    wayOfInvitations: {
+      text_invite: {
         type: Boolean,
-        
-      }
+        default: false,
+      },
+      email_invite: {
+        type: Boolean,
+        default: true,
+      },
+      mail_invite: {
+        type: Boolean,
+        default: false,
+      },
+      allAbove_invite: {
+        type: Boolean,
+        default: false,
+      },
     },
     rsvp: {
       type: Boolean,

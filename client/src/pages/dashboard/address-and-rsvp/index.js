@@ -5,33 +5,19 @@ import { Image } from 'cloudinary-react';
 import { DashboardHeader } from '@components/dashboard';
 import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
-import {
-  Button,
-  Footer,
-  Heading,
-  Loader,
-  SecondReceptionDatePicker,
-} from '@components/index';
-import {
-  LinkIcon,
-  MinusIcon,
-  PencilIcon,
-  PlusIcon,
-} from '@heroicons/react/outline';
+import { Button, Footer, Heading } from '@components/index';
+import { LinkIcon, PencilIcon } from '@heroicons/react/outline';
 import { withAuthRoute } from '@hoc/withAuthRoute';
-import { attemptImageUpload, removeImage } from '@utils/index';
-import { useCallback, useEffect, useState } from 'react';
-import { useDropzone } from 'react-dropzone';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
-import { compareDate } from '@helpers/index';
-import { isEmpty } from 'lodash';
+import { useDispatch, useSelector } from 'react-redux';
 import Swiper from 'react-id-swiper';
 
 import SwiperCore, { Lazy, Autoplay } from 'swiper';
 import { Listbox, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { CheckIcon } from '@heroicons/react/solid';
+import { addGuest } from '@features/guest/guestSlice';
 SwiperCore.use([Lazy, Autoplay]);
 
 const params = {
@@ -43,6 +29,7 @@ const params = {
 };
 
 const AddressRSVP = () => {
+  const dispatch = useDispatch();
   const { user } = useSelector(state => state.user);
   const { countries } = useSelector(state => state.countryList);
 
@@ -59,19 +46,47 @@ const AddressRSVP = () => {
   const {
     watch,
     register,
-    setError,
-    setValue,
     getValues,
-    clearErrors,
     handleSubmit,
     formState: { errors },
   } = useForm({
     mode: 'all',
-    defaultValues: user.questions,
     shouldFocusError: false,
     shouldUnregister: true,
   });
-  watch('rsvp_estimate_guests');
+  watch('guestEstimate');
+
+  const onSubmit = data => {
+    dispatch(addGuest(submitData(data)));
+  };
+
+  const submitData = data => {
+    const wayOfInvitations = {
+      text_invite: data.text_invite,
+      email_invite: data.email_invite,
+      mail_invite: data.mail_invite,
+      allAbove_invite: data.allAbove_invite,
+    };
+    const address = {
+      street: data.street,
+      providence: data.providence,
+      city: data.city,
+      state: data.state,
+      zip: data.zip,
+    };
+
+    return {
+      address,
+      wayOfInvitations,
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      callingCode: selectedCountry.callingCodes[0],
+      provider: data.provider,
+      rsvp: data.rsvp,
+      guestEstimate: data.guestEstimate,
+    };
+  };
   return (
     <>
       <Head>
@@ -139,7 +154,7 @@ const AddressRSVP = () => {
               Thanks for your love and support! We want to send you an
               invitation!
             </p>
-            <form className='space-y-3 px-20'>
+            <form className='space-y-3 px-20' onSubmit={handleSubmit(onSubmit)}>
               <div className='space-y-3'>
                 <Heading h3 className='!text-[22px] !font-medium'>
                   Your Name Here <span className='text-red-400'>*</span>
@@ -197,25 +212,61 @@ const AddressRSVP = () => {
                   What is your full address? 🏠{' '}
                   <span className='text-red-400'>*</span>
                 </Heading>
-                <div>
-                  <input
-                    type='text'
-                    className='w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
-                    placeholder='Street'
-                    {...register('street', {
-                      required: {
-                        value: true,
-                        message: 'Street is required!',
-                      },
-                    })}
-                  />
-                  {errors?.street && (
+
+                <div className='flex items-center space-x-5'>
+                  <div className='w-full'>
+                    <input
+                      type='text'
+                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
+                      placeholder='Street'
+                      {...register('street', {
+                        required: {
+                          value: true,
+                          message: 'Street is required!',
+                        },
+                      })}
+                    />
+
                     <p className='mt-2 text-red-400 font-light text-sm h-4'>
                       {errors?.street?.message}
                     </p>
-                  )}
+                  </div>
+                  <div className='w-full'>
+                    <input
+                      type='text'
+                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
+                      placeholder='Apt/Suite/Other'
+                      {...register('providence', {
+                        required: {
+                          value: true,
+                          message: 'Providence is required!',
+                        },
+                      })}
+                    />
+
+                    <p className='mt-2 text-red-400 font-light text-sm h-4'>
+                      {errors?.providence?.message}
+                    </p>
+                  </div>
                 </div>
-                <div className='flex items-center space-x-3'>
+                <div className='flex items-center space-x-5'>
+                  <div className='w-full'>
+                    <input
+                      type='text'
+                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
+                      placeholder='City'
+                      {...register('city', {
+                        required: {
+                          value: true,
+                          message: 'City is required!',
+                        },
+                      })}
+                    />
+
+                    <p className='mt-2 text-red-400 font-light text-sm h-4'>
+                      {errors?.city?.message}
+                    </p>
+                  </div>
                   <div className='w-full'>
                     <input
                       type='text'
@@ -228,29 +279,10 @@ const AddressRSVP = () => {
                         },
                       })}
                     />
-                    {errors?.state && (
-                      <p className='mt-2 text-red-400 font-light text-sm h-4'>
-                        {errors?.state?.message}
-                      </p>
-                    )}
-                  </div>
-                  <div className='w-full'>
-                    <input
-                      type='text'
-                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
-                      placeholder='Providence'
-                      {...register('providence', {
-                        required: {
-                          value: true,
-                          message: 'Providence is required!',
-                        },
-                      })}
-                    />
-                    {errors?.providence && (
-                      <p className='mt-2 text-red-400 font-light text-sm h-4'>
-                        {errors?.providence?.message}
-                      </p>
-                    )}
+
+                    <p className='mt-2 text-red-400 font-light text-sm h-4'>
+                      {errors?.state?.message}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -436,14 +468,14 @@ const AddressRSVP = () => {
                   <div className='space-x-3 flex items-center'>
                     <input
                       type='checkbox'
-                      id='all_above_invite'
+                      id='allAbove_invite'
                       value={true}
                       defaultChecked
                       className='text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
-                      {...register('all_above_invite')}
+                      {...register('allAbove_invite')}
                     />
                     <label
-                      htmlFor='all_above_invite'
+                      htmlFor='allAbove_invite'
                       className='font-inter font-light text-lg md:text-lg cursor-pointer'
                     >
                       All The Above - 💯
@@ -455,58 +487,150 @@ const AddressRSVP = () => {
                 <Heading h3 className='!text-[22px] !font-medium'>
                   Who is your phone provider?
                 </Heading>
-                <div className='flex items-center space-x-10'>
-                  <div className='space-x-3 flex items-center'>
+                <div className='grid grid-cols-4 gap-x-10 gap-y-5 max-w-4xl'>
+                  <div className='flex items-center'>
                     <input
-                      type='checkbox'
-                      id='at&t_provider'
-                      value={true}
+                      type='radio'
+                      id='AT&T'
+                      value='AT&T'
                       defaultChecked
-                      className='text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
-                      {...register('at&t_provider')}
+                      className='hidden'
+                      {...register('provider')}
                     />
                     <label
-                      htmlFor='at&t_provider'
-                      className='font-inter font-light text-lg md:text-lg cursor-pointer'
+                      htmlFor='AT&T'
+                      className='flex items-center space-x-3 cursor-pointer'
                     >
-                      AT & T
+                      <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
+                        <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
+                      </div>
+                      <span className='font-inter text-lg font-light'>
+                        AT&T
+                      </span>
                     </label>
                   </div>
-                  <div className='space-x-3 flex items-center'>
+                  <div className='flex items-center'>
                     <input
-                      type='checkbox'
-                      id='tMobile_Provider'
-                      value={true}
-                      defaultChecked
-                      className='text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
-                      {...register('tMobile_Provider')}
+                      type='radio'
+                      id='T-Mobile&Sprint'
+                      value='T-Mobile&Sprint'
+                      className='hidden'
+                      {...register('provider')}
                     />
                     <label
-                      htmlFor='tMobile_Provider'
-                      className='font-inter font-light text-lg md:text-lg cursor-pointer'
+                      htmlFor='T-Mobile&Sprint'
+                      className='flex items-center space-x-3 cursor-pointer'
                     >
-                      T - Mobile & Sprint
+                      <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
+                        <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
+                      </div>
+                      <span className='font-inter text-lg font-light'>
+                        T-Mobile & Sprint
+                      </span>
                     </label>
                   </div>
-                  <div className='space-x-3 flex items-center'>
+                  <div className='flex items-center'>
                     <input
-                      type='checkbox'
-                      id='verizon_provider'
-                      value={true}
-                      className='text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
-                      {...register('verizon_provider')}
+                      type='radio'
+                      id='Verizon'
+                      value='Verizon'
+                      className='hidden'
+                      {...register('provider')}
                     />
                     <label
-                      htmlFor='verizon_provider'
-                      className='font-inter font-light text-lg md:text-lg cursor-pointer'
+                      htmlFor='Verizon'
+                      className='flex items-center space-x-3 cursor-pointer'
                     >
-                      Verizon
+                      <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
+                        <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
+                      </div>
+                      <span className='font-inter text-lg font-light'>
+                        Verizon
+                      </span>
+                    </label>
+                  </div>
+                  <div className='flex items-center'>
+                    <input
+                      type='radio'
+                      id='BoostMobile'
+                      value='BoostMobile'
+                      className='hidden'
+                      {...register('provider')}
+                    />
+                    <label
+                      htmlFor='BoostMobile'
+                      className='flex items-center space-x-3 cursor-pointer'
+                    >
+                      <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
+                        <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
+                      </div>
+                      <span className='font-inter text-lg font-light'>
+                        Boost Mobile
+                      </span>
+                    </label>
+                  </div>
+                  <div className='flex items-center'>
+                    <input
+                      type='radio'
+                      id='CricketWireless'
+                      value='CricketWireless'
+                      className='hidden'
+                      {...register('provider')}
+                    />
+                    <label
+                      htmlFor='CricketWireless'
+                      className='flex items-center space-x-3 cursor-pointer'
+                    >
+                      <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
+                        <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
+                      </div>
+                      <span className='font-inter text-lg font-light'>
+                        Cricket Wireless
+                      </span>
+                    </label>
+                  </div>
+
+                  <div className='flex items-center'>
+                    <input
+                      type='radio'
+                      id='VirginMobile'
+                      value='VirginMobile'
+                      className='hidden'
+                      {...register('provider')}
+                    />
+                    <label
+                      htmlFor='VirginMobile'
+                      className='flex items-center space-x-3 cursor-pointer'
+                    >
+                      <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
+                        <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
+                      </div>
+                      <span className='font-inter text-lg font-light'>
+                        Virgin Mobile
+                      </span>
+                    </label>
+                  </div>
+                  <div className='flex items-center'>
+                    <input
+                      type='radio'
+                      id='Other'
+                      value='Other'
+                      className='hidden'
+                      {...register('provider')}
+                    />
+                    <label
+                      htmlFor='Other'
+                      className='flex items-center space-x-3 cursor-pointer'
+                    >
+                      <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
+                        <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
+                      </div>
+                      <span className='font-inter text-lg font-light'>
+                        Other
+                      </span>
                     </label>
                   </div>
                 </div>
-                <select className='w-28 rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'>
-                  <option value='other'>Other</option>
-                </select>
               </div>
               <div className='space-y-5 !mt-5'>
                 <Heading h3 className='!text-[22px] !font-medium'>
@@ -517,7 +641,7 @@ const AddressRSVP = () => {
                     <input
                       type='radio'
                       id='yes'
-                      value='yes'
+                      value={true}
                       defaultChecked
                       className='hidden'
                       {...register('rsvp')}
@@ -536,7 +660,7 @@ const AddressRSVP = () => {
                     <input
                       type='radio'
                       id='no'
-                      value='no'
+                      value={false}
                       className='hidden'
                       {...register('rsvp')}
                     />
@@ -561,7 +685,7 @@ const AddressRSVP = () => {
                 <input
                   disabled
                   type='text'
-                  value={`1 - ${getValues('rsvp_estimate_guests')}`}
+                  value={`1 - ${getValues('guestEstimate')}`}
                   className='w-28 text-center rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
                 />
                 <input
@@ -569,7 +693,7 @@ const AddressRSVP = () => {
                   min='2'
                   max='100'
                   className='block text-center rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
-                  {...register('rsvp_estimate_guests')}
+                  {...register('guestEstimate')}
                 />
               </div>
               <div className='!mt-10'>
