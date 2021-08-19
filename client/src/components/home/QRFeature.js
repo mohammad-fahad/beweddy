@@ -2,7 +2,7 @@ const { Heading } = require('@components/shared');
 
 const QRFeature = () => {
   return (
-    <div className='py-16'>
+    <div className='py-16 border-t-4 border-primary'>
       <div className='max-w-5xl mx-auto w-full px-10'>
         <Heading label='Personalized QR Codes' />
         <div className='grid md:grid-cols-2 gap-16'>
@@ -14,11 +14,11 @@ const QRFeature = () => {
               Custom QR Code
             </h4>
           </div>
-          <div className='-mb-32'>
+          <div className='-mb-32 lg:mb-[-14rem]'>
             <img
               src='/images/phone-qrcode.png'
               alt=''
-              className='w-56 md:w-80 mx-auto'
+              className='w-56 md:w-80 mx-auto lg:ml-auto lg:mr-0'
             />
           </div>
         </div>
