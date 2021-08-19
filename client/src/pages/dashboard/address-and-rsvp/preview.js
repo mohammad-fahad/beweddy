@@ -31,6 +31,7 @@ const params = {
 const AddressRSVPPreviewPage = () => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.user);
+  const { guest } = useSelector(state => state.rsvp);
   const { countries } = useSelector(state => state.countryList);
 
   const [selectedCountry, setSelectedCountry] = useState({});
@@ -154,8 +155,35 @@ const AddressRSVPPreviewPage = () => {
               Thanks for your love and support! We want to send you an
               invitation!
             </p>
-            <div className="grid grid-cols-3 gap-10">
-              h4.text-xl.font-medium
+            <div className='grid grid-cols-6 gap-10 max-w-3xl mx-auto'>
+              <h4 className='text-xl font-medium col-span-2'>Name</h4>
+              <span>:</span>
+              <h4 className='text-xl font-medium col-span-3'>{guest?.name}</h4>
+              <h4 className='text-xl font-medium col-span-2'>Email</h4>
+              <span>:</span>
+              <h4 className='text-xl font-medium col-span-3'>{guest?.email}</h4>
+              <h4 className='text-xl font-medium col-span-2'>Address</h4>
+              <span>:</span>
+              <h4 className='text-xl font-medium col-span-3'>
+                {guest?.address.street}, {guest?.address.providence},{' '}
+                {guest?.address.city}, {guest?.address.state},{' '}
+                {guest?.address.zip}
+              </h4>
+              <h4 className='text-xl font-medium col-span-2'>Phone Number</h4>
+              <span>:</span>
+              <h4 className='text-xl font-medium col-span-3'>{guest?.phone}</h4>
+              <h4 className='text-xl font-medium col-span-2'>Phone Provider</h4>
+              <span>:</span>
+              <h4 className='text-xl font-medium col-span-3'>{guest?.provider}</h4>
+              <h4 className='text-xl font-medium col-span-2'>Invitation & Reminders</h4>
+              <span>:</span>
+              <h4 className='text-xl font-medium col-span-3'>Text, Email</h4>
+              <h4 className='text-xl font-medium col-span-2'>RSVP Status</h4>
+              <span>:</span>
+              <h4 className='text-xl font-medium col-span-3'>Yes</h4>
+              <h4 className='text-xl font-medium col-span-2'>RSVP Guests</h4>
+              <span>:</span>
+              <h4 className='text-xl font-medium col-span-3'>{guest?.guestEstimate}</h4>
             </div>
           </div>
           <div className='border-t-4 border-primary py-16 bg-secondary-alternative/40'>
