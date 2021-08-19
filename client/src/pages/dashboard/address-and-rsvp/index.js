@@ -90,7 +90,7 @@ const AddressRSVP = () => {
   return (
     <>
       <Head>
-        <title>Beweddy | Edit Website</title>
+        <title>Beweddy | Address & RSVP</title>
       </Head>
       {/* {loading && <Loader />} */}
       <DashboardTopBar />

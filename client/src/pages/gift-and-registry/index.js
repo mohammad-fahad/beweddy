@@ -58,7 +58,7 @@ const GiftRegistryPage = () => {
         }}
       >
         <img
-          src='/images/feature-mobile.png'
+          src='/images/gift.png'
           alt=''
           className='max-h-[395px] lg:max-h-[450px] mx-auto'
         />

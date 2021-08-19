@@ -65,11 +65,11 @@ const Features = () => {
               </div>
             </div>
           </div>
-          <div className='col-span-6 md:col-span-5 mx-auto'>
+          <div className='col-span-6 md:col-span-5 mx-auto self-center'>
             <Image
-              width={288}
-              height={550}
-              src='/images/feature-mobile.jpeg'
+              width={375}
+              height={750}
+              src='/images/feature-mobile.png'
               alt=''
               // className='w-72 mx-auto'
             />
