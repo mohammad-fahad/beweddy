@@ -6,7 +6,7 @@ const WelcomeAlert = () => {
   return close ? null : (
     <div className='border-t-4 border-b-4 border-primary bg-secondary-alternative relative'>
       <button
-        className='px-5 py-2 absolute top-1/2 -translate-y-1/2 right-5'
+        className='px-5 py-2 absolute top-1/2 -translate-y-1/2 right-0'
         onClick={() => setClose(true)}
       >
         <XIcon className='w-6 h-6 text-gray-400 hover:text-primary transition' />
