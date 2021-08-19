@@ -44,7 +44,7 @@ const QRCodeGenerator = () => {
                 logoHeight={50}
                 logoWidth={50}
                 // style={{image}
-                logoImage='https://res.cloudinary.com/muttakinhasib/image/upload/v1611336104/avatar/user_qcrqny.svg'
+                logoImage='https://res.cloudinary.com/muttakinhasib/image/upload/v1621273993/avatar/user_dmy5bs.png'
               />
             </div>
             <button

@@ -174,8 +174,12 @@ const AddressRSVPPreviewPage = () => {
               <h4 className='text-xl font-medium col-span-3'>{guest?.phone}</h4>
               <h4 className='text-xl font-medium col-span-2'>Phone Provider</h4>
               <span>:</span>
-              <h4 className='text-xl font-medium col-span-3'>{guest?.provider}</h4>
-              <h4 className='text-xl font-medium col-span-2'>Invitation & Reminders</h4>
+              <h4 className='text-xl font-medium col-span-3'>
+                {guest?.provider}
+              </h4>
+              <h4 className='text-xl font-medium col-span-2'>
+                Invitation & Reminders
+              </h4>
               <span>:</span>
               <h4 className='text-xl font-medium col-span-3'>Text, Email</h4>
               <h4 className='text-xl font-medium col-span-2'>RSVP Status</h4>
@@ -183,7 +187,22 @@ const AddressRSVPPreviewPage = () => {
               <h4 className='text-xl font-medium col-span-3'>Yes</h4>
               <h4 className='text-xl font-medium col-span-2'>RSVP Guests</h4>
               <span>:</span>
-              <h4 className='text-xl font-medium col-span-3'>{guest?.guestEstimate}</h4>
+              <h4 className='text-xl font-medium col-span-3'>
+                {guest?.guestEstimate}
+              </h4>
+              <div className='flex items-center space-x-5 mt-10'>
+                <Button
+                  type='submit'
+                  label='Done'
+                  className='!rounded-[5px] !mx-0 font-inter font-medium'
+                />
+                <Button
+                  type='button'
+                  label='Edit'
+                  outline
+                  className='!rounded-[5px] !mr-0 !border-secondary-alternative font-inter font-medium'
+                />
+              </div>
             </div>
           </div>
           <div className='border-t-4 border-primary py-16 bg-secondary-alternative/40'>

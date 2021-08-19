@@ -298,7 +298,7 @@ const UploadCouplePicture = () => {
       <CropImage
         onSave={onCropSave}
         selectedFile={selectedImageFile}
-        aspectRatio={16 / 12}
+        // aspectRatio={16 / 12}
       />
     </CreateWebsiteContainer>
   );
