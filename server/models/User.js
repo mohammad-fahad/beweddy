@@ -89,12 +89,18 @@ const userSchema = new mongoose.Schema(
     receptionDetails: {
       type: Array,
     },
-    giftCards: {
-      type: Array,
-    },
-    registries: {
-      type: Array,
-    },
+    giftCards: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Gift',
+      },
+    ],
+    registries: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Registry',
+      },
+    ],
     socialAccounts: {
       groom: {
         facebook: String,

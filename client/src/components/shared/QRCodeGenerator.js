@@ -1,5 +1,6 @@
 import { useCallback, useRef, useState } from 'react';
 import { QRCode } from 'react-qrcode-logo';
+// import QRCode from 'qrcode.react';
 import { useSelector } from 'react-redux';
 import Heading from './Heading';
 
@@ -40,9 +41,10 @@ const QRCodeGenerator = () => {
                   [10, 10, 10, 0], // top/right eye
                   [10, 0, 10, 10], // bottom/left
                 ]}
-                // logoWidth={50}
-                // logoHeight={50}
-                logoImage={user.avatar}
+                logoHeight={50}
+                logoWidth={50}
+                // style={{image}
+                logoImage='/images/logo.png'
               />
             </div>
             <button

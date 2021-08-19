@@ -19,6 +19,7 @@ const WeddingDayCountDown = () => {
       const interval = setInterval(() => {
         const now = new Date().getTime();
         const distance = countDownDate - now;
+        if (distance <= 0) return;
         setDays(Math.floor(distance / (1000 * 60 * 60 * 24)));
         setHours(
           Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))

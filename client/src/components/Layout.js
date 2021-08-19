@@ -7,7 +7,7 @@ const Layout = ({ children }) => {
   const { countries } = useSelector(state => state.countryList);
 
   useEffect(() => {
-    if (!countries.length) {
+    if (!countries?.length) {
       dispatch(attemptFetchCountryList());
     }
   }, [countries]);
