@@ -234,7 +234,9 @@ const EditWebsitePage = () => {
         instagram: data.groom_instagram,
         twitter: data.groom_twitter,
         linkedIn: data.groom_linkedIn,
-        gmail: data.groom_gmail,
+        snapchat: data.groom_snapchat,
+        tiktok: data.groom_tiktok,
+        pinterest: data.groom_pinterest,
         youTube: data.groom_youTube,
       },
       bride: {
@@ -242,7 +244,9 @@ const EditWebsitePage = () => {
         instagram: data.bride_instagram,
         twitter: data.bride_twitter,
         linkedIn: data.bride_linkedIn,
-        gmail: data.bride_gmail,
+        snapchat: data.bride_snapchat,
+        tiktok: data.bride_tiktok,
+        pinterest: data.bride_pinterest,
         youTube: data.bride_youTube,
       },
     };
