@@ -17,6 +17,7 @@ specifiers:
   immer: ^9.0.5
   lodash: ^4.17.21
   moment: ^2.29.1
+  nanoid: ^3.1.25
   next: 11.0.1
   postcss: ^8.3.5
   qrcode.react: ^1.0.1
@@ -56,6 +57,7 @@ dependencies:
   immer: 9.0.5
   lodash: 4.17.21
   moment: 2.29.1
+  nanoid: 3.1.25
   next: 11.0.1_react-dom@17.0.2+react@17.0.2
   qrcode.react: 1.0.1_react@17.0.2
   react: 17.0.2
@@ -1759,6 +1761,12 @@ packages:
     resolution: {integrity: sha512-FiB0kzdP0FFVGDKlRLEQ1BgDzU87dy5NnzjeW9YZNt+/c3+q82EQDUwniSAUxp/F0gFNI1ZhKU1FqYsMuqZVnw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+
+  /nanoid/3.1.25:
+    resolution: {integrity: sha512-rdwtIXaXCLFAQbnfqDRnI6jaRHp9fTcYBjtFKE8eezcZ7LuLjhUaQGNeMXf1HmRoCH32CLz6XwX0TtxEOS/A3Q==}
+    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+    dev: false
 
   /native-url/0.3.4:
     resolution: {integrity: sha512-6iM8R99ze45ivyH8vybJ7X0yekIcPf5GgLV5K0ENCbmRcaRIDoj37BC8iLEmaaBfqqb8enuZ5p0uhY+lVAbAcA==}
