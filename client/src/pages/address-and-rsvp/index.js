@@ -70,7 +70,7 @@ const GiftRegistryPage = () => {
             </div>
             <div className={`self-center md:col-span-1`}>
               <img
-                src='/images/feature-mobile.png'
+                src='/images/rsvp.png'
                 alt=''
                 className='max-h-[395px] lg:max-h-[450px] mx-auto'
               />

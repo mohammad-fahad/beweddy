@@ -7,11 +7,14 @@ import {
   Youtube,
 } from '@icons-pack/react-simple-icons';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import CreateAccount from './CreateAccount';
+import HowItWork from './HowItWork';
 
 const Footer = ({ hideSocial }) => {
-  const {user} = useSelector(state => state.user);
+  const { user } = useSelector(state => state.user);
+  const { pathname } = useRouter();
   return (
     <>
       {!hideSocial && (
@@ -68,6 +71,7 @@ const Footer = ({ hideSocial }) => {
               </a>
             </div>
           </div>
+          {pathname === '/' && <HowItWork hideBorderBottom />}
           {!user && <CreateAccount />}
         </>
       )}

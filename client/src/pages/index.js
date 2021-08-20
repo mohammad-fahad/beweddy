@@ -39,7 +39,6 @@ const HomePage = () => {
       <Features />
       <GiftCards />
       <Registries />
-      <HowItWork />
       <QRFeature />
       <Footer />
     </motion.div>

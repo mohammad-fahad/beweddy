@@ -6,9 +6,13 @@ const opts = {
   height: '400px',
 };
 
-const HowItWork = () => {
+const HowItWork = ({ hideBorderBottom }) => {
   return (
-    <div className='bg-gradient-to-br from-[#FCE3EB] to-white relative overflow-hidden border-t-[5px] border-b-[5px] border-primary'>
+    <div
+      className={`bg-gradient-to-br from-[#FCE3EB] to-white relative overflow-hidden border-t-[5px] border-primary ${
+        hideBorderBottom ? '' : 'border-b-[5px]'
+      }`}
+    >
       <div className='absolute -bottom-5 sm:-bottom-10 lg:-bottom-16 xl:-bottom-20 xxl:-bottom-48  right-0 left-0 w-full'>
         <img
           src='/images/footer-leaf.png'

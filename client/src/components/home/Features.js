@@ -10,7 +10,7 @@ const Features = () => {
           color='bg-secondary-alternative'
         />
         <div className='grid md:grid-cols-12 gap-16 lg:gap-20 max-w-4xl mx-auto'>
-          <div className='col-span-6 md:col-span-7'>
+          <div className='col-span-6 md:col-span-7 self-center'>
             <div className='space-y-5'>
               <div className='pr-8 lg:pr-10 timeline pl-7 lg:pl-8 py-7 lg:py-8 flex items-center space-x-8 lg:space-x-10'>
                 <p className='text-[15px] md:text-lg lg:text-xl font-medium capitalize'>
@@ -53,7 +53,7 @@ const Features = () => {
                   Send a thank you message by Text or E-mail
                 </p>
               </div>
-              <div className='pr-8 lg:pr-10 timeline pl-7 lg:pl-8 py-7 lg:py-8 flex items-center space-x-8 lg:space-x-10'>
+              {/* <div className='pr-8 lg:pr-10 timeline pl-7 lg:pl-8 py-7 lg:py-8 flex items-center space-x-8 lg:space-x-10'>
                 <p className='text-[15px] md:text-lg lg:text-xl font-medium capitalize'>
                   Customized QR Code
                 </p>
@@ -62,14 +62,14 @@ const Features = () => {
                   alt=''
                   className='w-10 md:w-12 lg:w-14 !ml-auto'
                 />
-              </div>
+              </div> */}
             </div>
           </div>
-          <div className='col-span-6 md:col-span-5 mx-auto'>
+          <div className='col-span-6 md:col-span-5 mx-auto self-center'>
             <Image
-              width={288}
-              height={550}
-              src='/images/feature-mobile.jpeg'
+              width={375}
+              height={750}
+              src='/images/feature-mobile.png'
               alt=''
               // className='w-72 mx-auto'
             />

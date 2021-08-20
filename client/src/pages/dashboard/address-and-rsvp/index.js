@@ -18,6 +18,7 @@ import { Listbox, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { CheckIcon } from '@heroicons/react/solid';
 import { addGuest } from '@features/guest/guestSlice';
+import { useRouter } from 'next/router';
 SwiperCore.use([Lazy, Autoplay]);
 
 const params = {
@@ -31,6 +32,7 @@ const params = {
 const AddressRSVP = () => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.user);
+  const { push } = useRouter();
   const { countries } = useSelector(state => state.countryList);
 
   const [selectedCountry, setSelectedCountry] = useState({});
@@ -58,6 +60,7 @@ const AddressRSVP = () => {
 
   const onSubmit = data => {
     dispatch(addGuest(submitData(data)));
+    push('/dashboard/address-and-rsvp/preview');
   };
 
   const submitData = data => {
@@ -90,7 +93,7 @@ const AddressRSVP = () => {
   return (
     <>
       <Head>
-        <title>Beweddy | Edit Website</title>
+        <title>Beweddy | Address & RSVP</title>
       </Head>
       {/* {loading && <Loader />} */}
       <DashboardTopBar />
@@ -148,7 +151,7 @@ const AddressRSVP = () => {
               </Link>
             </div>
             <h4 className='text-center text-4xl font-medium'>
-              ✨ Your Invited To Our Wedding! 💍 ✨
+              ✨ Your Are Invited To Our Wedding! 💍 ✨
             </h4>
             <p className='text-center text-2xl font-medium mt-5 mb-16'>
               Thanks for your love and support! We want to send you an

@@ -23,15 +23,15 @@ const QRCodeGenerator = () => {
   };
 
   return (
-    <div className='border-t-4 border-primary bg-secondary-alternative py-16'>
+    <div className='border-t-4 border-gray-200 bg-gradient-to-br from-[#FCE3EB] to-white py-10'>
       <div className='container'>
-        <div className=' rounded-xl max-w-4xl mx-auto border-gray-200 border-2 bg-white p-10 flex space-x-20'>
+        <div className='p-10 flex space-x-28'>
           <div className='flex flex-col space-y-8'>
             <h4 className='text-xl font-medium'>Demo QR | Your QR Code</h4>
-            <div className='qrCode mx-auto'>
+            <div className='qrCode'>
               <QRCode
                 {...{ value }}
-                size={180}
+                size={200}
                 eyeRadius={[
                   {
                     // top/left eye
@@ -44,11 +44,11 @@ const QRCodeGenerator = () => {
                 logoHeight={50}
                 logoWidth={50}
                 // style={{image}
-                logoImage='/images/logo.png'
+                logoImage='https://res.cloudinary.com/muttakinhasib/image/upload/v1621273993/avatar/user_dmy5bs.png'
               />
             </div>
             <button
-              className='bg-white font-inter cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-secondary-alternative/50 rounded-[5px] transition duration-300 hover:bg-secondary-alternative/30'
+              className='bg-white font-inter cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition duration-300 hover:bg-secondary-alternative/30'
               onClick={download}
             >
               Download
@@ -58,20 +58,23 @@ const QRCodeGenerator = () => {
             <Heading h3>QR Link</Heading>
             <input
               type='text'
-              className='w-full rounded-[5px] border-[3px] border-gray-200 py-3 px-5 text-base font-normal placeholder-gray-300'
+              className='w-96 rounded-[5px] border-[3px] border-secondary/20 py-3 px-5 text-base font-normal placeholder-gray-300'
               placeholder='www.beweddy.com/nateandash'
+              value={link}
               onChange={e => setLink(e.target.value)}
             />
             <Heading h3>Upload Photo</Heading>
-            <button
-              className='bg-white font-inter cursor-pointer text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-secondary-alternative/50 rounded-[5px] transition-colors duration-300 hover:border-primary'
-              onClick={() => alert('Under construction')}
-            >
-              upload Image
-            </button>
             <div>
               <button
-                className='bg-white font-inter cursor-pointer text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-secondary-alternative/50 rounded-[5px] transition-colors duration-300 hover:border-primary'
+                className='bg-white font-inter cursor-pointer text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition-colors duration-300 hover:border-primary'
+                onClick={() => alert('Under construction')}
+              >
+                upload Image
+              </button>
+            </div>
+            <div>
+              <button
+                className='bg-white font-inter cursor-pointer text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition-colors duration-300 hover:border-primary'
                 onClick={() => setValue(link)}
               >
                 Generate
