@@ -99,8 +99,10 @@ const Registries = () => {
             </>
           }
           color='bg-secondary-alternative'
+          lineStyle={{ marginBottom: '40px' }}
         />
-        <div className='my-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full px-5 sm:px-0 mx-auto sm:max-w-full gap-x-3 relative'>
+        <p className='text-center text-xl font-bold'>Crypto Gift Card</p>
+        <div className='mb-20 mt-11 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full px-5 sm:px-0 mx-auto sm:max-w-full gap-x-3 relative'>
           {/* <div className='w-full h-40 flex items-center justify-center p-5 border-4 border-primary rounded-xl overflow-hidden hover:scale-110 transition duration-300 ease-easing'>
             <Image
               width={196}
