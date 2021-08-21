@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { DashboardHeader } from '@components/dashboard';
 import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
-import { Footer } from '@components/index';
+import { Button, Footer } from '@components/index';
 import { LinkIcon, PencilIcon } from '@heroicons/react/outline';
 import SwiperCore, { Lazy, Autoplay } from 'swiper';
 import { Fragment } from 'react';
@@ -148,7 +148,7 @@ const RegistriesPage = () => {
             </Link>
           </div>
         </DashboardHeader>
-        <div className='p-20 border-4 border-gray-200 rounded-lg'>
+        <div className='p-20 border-4 border-gray-200 rounded-lg space-y-10'>
           <div class='grid grid-cols-3 gap-10'>
             {data?.map(el => (
               <Link href={el.link}>
@@ -160,25 +160,33 @@ const RegistriesPage = () => {
                     className={`bg-[${el?.color}] h-48 w-full border-3 rounded-lg hover:bg-black transition duration-300 `}
                   >
                     <div className='flex items-center justify-center w-full h-full opacity-0 hover:opacity-100'>
-                      <img src='/icons/Vector.png' alt='' className='w-9' />
+                      <LinkIcon className='w-8 h-8 text-white' />
                     </div>
                   </div>
 
                   <div className='py-4 text-center '>
                     <h3 className='text-2xl font-medium font-inter'>
-                      {' '}
-                      {el.title}{' '}
+                      {el.title}
                     </h3>
-                    <button
-                      className='py-2 px-10 border-gray-900 border-2 rounded-[10px] mt-5 hover:bg-black transition duration-300 
-hover:text-white  font-inter font-medium	'
-                    >
+                    <button className='py-2 px-10 border-gray-900 border-2 rounded-[5px] mt-5 hover:bg-black transition duration-300 hover:text-white font-inter font-medium	'>
                       {el.buttonText}
                     </button>
                   </div>
                 </a>
               </Link>
             ))}
+          </div>
+          <div className='flex items-center space-x-5 flex-wrap sm:flex-nowrap'>
+            <Button
+              label='Back'
+              className='opacity-50 !rounded-[5px] !py-2 mx-0'
+              onClick={() => push({ query: { step: 1 } })}
+            />
+            <Button
+              label='Next'
+              type='submit'
+              className='mx-0 !py-2 !rounded-[5px]'
+            />
           </div>
         </div>
       </DashboardLayout>

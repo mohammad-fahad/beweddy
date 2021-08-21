@@ -66,8 +66,18 @@ const EditWebsitePage = () => {
       : [
           {
             id: generate(),
-            time: '',
-            details: '',
+            time: '5.00 PM',
+            details: 'Example of event details',
+          },
+          {
+            id: generate(),
+            time: '5.30 PM',
+            details: 'Ceremony',
+          },
+          {
+            id: generate(),
+            time: '6.00 PM',
+            details: 'Ceremony ends/cocktails begin',
           },
         ]
   );
@@ -349,7 +359,7 @@ const EditWebsitePage = () => {
               </div>
               <Divider />
               <div className='space-y-5'>
-                <Heading h3>Upload images</Heading>
+                <Heading h3>Upload 4 images</Heading>
                 <div
                   className='relative focus:outline-none'
                   {...getRootProps()}
@@ -482,7 +492,7 @@ const EditWebsitePage = () => {
                   <div key={reception.id} className='flex items-center'>
                     <input
                       type='text'
-                      className='w-28 rounded-[5px] border-2 border-r-0 rounded-r-none focus:!border-gray-200 border-gray-200 py-2 px-4 text-base font-bold placeholder-gray-200'
+                      className='w-28 rounded-[5px] border-2 rounded-r-none focus:!border-gray-200 border-gray-200 py-2 pl-4 text-base font-bold placeholder-gray-200'
                       placeholder='12.00 PM'
                       value={reception.time}
                       onChange={e => {
@@ -543,10 +553,17 @@ const EditWebsitePage = () => {
               </div>
               <Divider />
               <Heading h3>Add Gift Card</Heading>
-              <div className='grid grid-cols-4 gap-10'>
-                <button className='border-2 min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'>
-                  <PlusIcon className='w-8 h-8' />
-                </button>
+              <div>
+                <div className='grid grid-cols-4 gap-10'>
+                  <button className='border-2 min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'>
+                    <PlusIcon className='w-8 h-8' />
+                  </button>
+                </div>
+                <Link href='/dashboard/gift-cards/'>
+                  <a className='text-sm hover:underline mt-5 font-semibold text-right block font-inter'>
+                    See All Gift Card Options
+                  </a>
+                </Link>
               </div>
               <Divider />
               <div className='space-y-5'>
@@ -565,6 +582,11 @@ const EditWebsitePage = () => {
                     </Link>
                   </div>
                 </div>
+                <Link href='/dashboard/registries'>
+                  <a className='text-sm hover:underline mt-5 font-semibold text-right block font-inter'>
+                    See All Wedding Registry Options
+                  </a>
+                </Link>
               </div>
               <Divider />
               <div className='flex items-center space-x-16 w-full !mb-20'>
@@ -1037,8 +1059,8 @@ const EditWebsitePage = () => {
                   <input
                     type='text'
                     id='videoTitle'
-                    className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal'
-                    placeholder='First Look or Wedding Video 😇'
+                    className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal placeholder-gray-300'
+                    placeholder='Name Your Wedding Video'
                     {...register('videoTitle')}
                   />
                 </div>

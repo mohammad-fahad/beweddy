@@ -1,6 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { nanoid } from 'nanoid';
 
-const initialState = [];
+const initialState = [
+  {
+    id: nanoid(10),
+    isComplete: true,
+    description: 'List No. 1; The Bride is Always Right',
+  },
+  {
+    id: nanoid(10),
+    isComplete: true,
+    description: 'List No. 2; Buy A Beautiful & Expensive Wedding Dress.',
+  },
+  {
+    id: nanoid(10),
+    isComplete: false,
+    description: 'Appointment with The Wedding Planner @HouseOffice At 9:30 AM',
+  },
+];
 
 const todosSlice = createSlice({
   name: 'todos',

@@ -7,7 +7,7 @@ const navLinks = [
     href: '/dashboard/website',
   },
   {
-    label: 'Address & RSVP',
+    label: 'We Need Your Address',
     href: '/dashboard/address-and-rsvp',
   },
   {
@@ -21,7 +21,11 @@ const navLinks = [
 ];
 
 const DashboardNavLinks = () => {
-  const dashboardRoutes = ['/dashboard', '/dashboard/todos'];
+  const dashboardRoutes = [
+    '/dashboard',
+    '/dashboard/todos',
+    '/dashboard/website/edit',
+  ];
   const { pathname } = useRouter();
   return (
     <div className='flex flex-col space-y-10'>

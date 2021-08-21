@@ -41,12 +41,12 @@ const TodoPage = () => {
             <Link href='/'>
               <a className='flex items-center space-x-3 py-2 px-5 border-2 border-primary rounded-[5px] capitalize font-inter font-semibold hover:bg-gray-100 transition duration-300'>
                 <LinkIcon className='w-5 h-5' />
-                <span>Share your super link</span>
+                <span>We need your address</span>
               </a>
             </Link>
             <Link href='/'>
               <a className='py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300'>
-                Guests Management
+                Guests Registry
               </a>
             </Link>
           </div>
@@ -59,6 +59,7 @@ const TodoPage = () => {
               <h4 className='text-2xl font-medium capitalize'>
                 Just to do list
               </h4>
+              <img src='/icons/ring.svg' alt='' className='w-8' />
             </div>
             <form className='space-y-5' onSubmit={handleSubmit(onSubmit)}>
               <button

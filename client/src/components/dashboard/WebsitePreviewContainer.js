@@ -61,9 +61,12 @@ const WebsitePreviewContainer = () => {
           </a>
         </Link>
         <Link href='/'>
-          <a className='capitalize font-inter font-medium border-4 border-secondary-alternative rounded-[5px] bg-white py-2 px-5 flex items-center space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/5 transition duration-300'>
+          <a className='relative capitalize font-inter font-medium border-4 border-secondary-alternative rounded-[5px] bg-white py-2 px-5 flex items-center space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/5 transition duration-300'>
             <LinkIcon className='w-5 h-5' />
-            <span>Share your super link</span>
+            <span>We need your address</span>
+            <span className='absolute -bottom-7 left-[-0.8rem] font-light text-sm text-gray-400 capitalize'>
+              Share with guests
+            </span>
           </a>
         </Link>
       </div>

@@ -209,7 +209,9 @@ const UploadCouplePicture = () => {
             // className='pt-5 md:pt-0'
             lineStyle={{ marginBottom: '40px' }}
           />
+          <p className="text-xl font-medium text-center">U</p>
         </motion.div>
+        
         <motion.div
           className='w-full flex flex-col items-center justify-center gap-8 mb-5'
           variants={fadeInUp}

@@ -98,7 +98,7 @@ const AddressRSVP = () => {
       {/* {loading && <Loader />} */}
       <DashboardTopBar />
       <DashboardLayout>
-        <DashboardHeader title='Address-RSVP'>
+        <DashboardHeader title='Collect Address & RSVP'>
           <div className='flex items-center space-x-5'>
             <Link href='/dashboard/website/edit'>
               <a className='flex items-center space-x-3 py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300'>
