@@ -8,7 +8,7 @@ const ActiveLink = ({ children, href, className }) => {
     <Link href={href} scroll={false}>
       <a
         // target='_blank'
-        className='flex items-center gap-3 text-sm text-primary font-bold font-inter group hover:text-primary transition-colors duration-300 relative'
+        className='flex items-center gap-3 text-sm lg:text-base text-primary font-medium md:font-semibold lg:font-bold font-inter group hover:text-primary transition-colors duration-300 relative'
       >
         {children}
         <span

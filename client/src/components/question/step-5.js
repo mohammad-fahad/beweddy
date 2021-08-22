@@ -207,9 +207,11 @@ const UploadCouplePicture = () => {
             label='Upload your favorite pictures of you two. ❤️'
             color='bg-primary'
             // className='pt-5 md:pt-0'
-            lineStyle={{ marginBottom: '40px' }}
+            lineStyle={{ marginBottom: '25px' }}
           />
+          <p className='text-lg font-semibold text-center'>Up to 4 Images</p>
         </motion.div>
+
         <motion.div
           className='w-full flex flex-col items-center justify-center gap-8 mb-5'
           variants={fadeInUp}

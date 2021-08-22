@@ -11,7 +11,7 @@ const WelcomeAlert = () => {
       >
         <XIcon className='w-6 h-6 text-gray-400 hover:text-primary transition' />
       </button>
-      <div className='max-w-[1350px] py-2 px-10 xxl:px-0 mx-auto flex items-center justify-between space-x-10'>
+      <div className='max-w-[1400px] py-2 px-10 xxl:px-0 mx-auto flex items-center justify-between space-x-10'>
         <p className='text-base text-medium'>Eat, Drink & BeWeddy!</p>
       </div>
     </div>

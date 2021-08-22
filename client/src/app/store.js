@@ -7,7 +7,7 @@ import storage from './storage';
 const persistConfig = {
   key: 'beweddy',
   storage,
-  whitelist: ['question', 'user', 'rsvp', 'countryList'],
+  whitelist: ['question', 'user', 'rsvp', 'todoList', 'countryList'],
   // blacklist: ['auth'],
 };
 

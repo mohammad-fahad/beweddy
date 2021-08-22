@@ -1,16 +1,13 @@
+import { useRouter } from 'next/router';
 import DashboardActiveLink from './DashboardActiveLink';
 
 const navLinks = [
-  {
-    label: 'Dashboard',
-    href: '/dashboard',
-  },
   {
     label: 'Your Website',
     href: '/dashboard/website',
   },
   {
-    label: 'Address & RSVP',
+    label: 'We Need Your Address',
     href: '/dashboard/address-and-rsvp',
   },
   {
@@ -24,8 +21,23 @@ const navLinks = [
 ];
 
 const DashboardNavLinks = () => {
+  const dashboardRoutes = [
+    '/dashboard',
+    '/dashboard/todos',
+    '/dashboard/website/edit',
+  ];
+  const { pathname } = useRouter();
   return (
     <div className='flex flex-col space-y-10'>
+      <DashboardActiveLink
+        href='/dashboard'
+        customActiveLink={dashboardRoutes.includes(pathname) ? 'w-full' : 'w-0'}
+        customFontActiveLink={
+          dashboardRoutes.includes(pathname) ? 'font-bold' : 'font-medium'
+        }
+      >
+        Dashboard
+      </DashboardActiveLink>
       {navLinks.map((link, index) => (
         <DashboardActiveLink href={link.href} key={index}>
           {link.label}

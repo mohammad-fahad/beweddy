@@ -25,6 +25,7 @@ import {
   PlusIcon,
 } from '@heroicons/react/outline';
 import { withAuthRoute } from '@hoc/withAuthRoute';
+import { Popover, Transition } from '@headlessui/react';
 import { attemptImageUpload, removeImage } from '@utils/index';
 import { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
@@ -46,6 +47,7 @@ import {
   Youtube,
 } from '@icons-pack/react-simple-icons';
 import { attemptUpdateUserProfile } from '@features/user/userActions';
+import { Fragment } from 'react';
 
 const EditWebsitePage = () => {
   const dispatch = useDispatch();
@@ -64,8 +66,18 @@ const EditWebsitePage = () => {
       : [
           {
             id: generate(),
-            time: '',
-            details: '',
+            time: '5.00 PM',
+            details: 'Example of event details',
+          },
+          {
+            id: generate(),
+            time: '5.30 PM',
+            details: 'Ceremony',
+          },
+          {
+            id: generate(),
+            time: '6.00 PM',
+            details: 'Ceremony ends/cocktails begin',
           },
         ]
   );
@@ -232,7 +244,9 @@ const EditWebsitePage = () => {
         instagram: data.groom_instagram,
         twitter: data.groom_twitter,
         linkedIn: data.groom_linkedIn,
-        gmail: data.groom_gmail,
+        snapchat: data.groom_snapchat,
+        tiktok: data.groom_tiktok,
+        pinterest: data.groom_pinterest,
         youTube: data.groom_youTube,
       },
       bride: {
@@ -240,7 +254,9 @@ const EditWebsitePage = () => {
         instagram: data.bride_instagram,
         twitter: data.bride_twitter,
         linkedIn: data.bride_linkedIn,
-        gmail: data.bride_gmail,
+        snapchat: data.bride_snapchat,
+        tiktok: data.bride_tiktok,
+        pinterest: data.bride_pinterest,
         youTube: data.bride_youTube,
       },
     };
@@ -343,7 +359,7 @@ const EditWebsitePage = () => {
               </div>
               <Divider />
               <div className='space-y-5'>
-                <Heading h3>Upload images</Heading>
+                <Heading h3>Upload 4 images</Heading>
                 <div
                   className='relative focus:outline-none'
                   {...getRootProps()}
@@ -476,7 +492,7 @@ const EditWebsitePage = () => {
                   <div key={reception.id} className='flex items-center'>
                     <input
                       type='text'
-                      className='w-28 rounded-[5px] border-2 border-r-0 rounded-r-none focus:!border-gray-200 border-gray-200 py-2 px-4 text-base font-bold placeholder-gray-200'
+                      className='w-28 rounded-[5px] border-2 rounded-r-none focus:!border-gray-200 border-gray-200 py-2 pl-4 text-base font-bold placeholder-gray-200'
                       placeholder='12.00 PM'
                       value={reception.time}
                       onChange={e => {
@@ -537,10 +553,17 @@ const EditWebsitePage = () => {
               </div>
               <Divider />
               <Heading h3>Add Gift Card</Heading>
-              <div className='grid grid-cols-4 gap-10'>
-                <button className='border-2 min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'>
-                  <PlusIcon className='w-8 h-8' />
-                </button>
+              <div>
+                <div className='grid grid-cols-4 gap-10'>
+                  <button className='border-2 min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'>
+                    <PlusIcon className='w-8 h-8' />
+                  </button>
+                </div>
+                <Link href='/dashboard/gift-cards/'>
+                  <a className='text-sm hover:underline mt-5 font-semibold text-right block font-inter'>
+                    See All Gift Card Options
+                  </a>
+                </Link>
               </div>
               <Divider />
               <div className='space-y-5'>
@@ -559,170 +582,471 @@ const EditWebsitePage = () => {
                     </Link>
                   </div>
                 </div>
+                <Link href='/dashboard/registries'>
+                  <a className='text-sm hover:underline mt-5 font-semibold text-right block font-inter'>
+                    See All Wedding Registry Options
+                  </a>
+                </Link>
               </div>
               <Divider />
-              <div className='flex items-center space-x-16 w-full'>
-                <div className='space-y-5 w-full'>
+              <div className='flex items-center space-x-16 w-full !mb-20'>
+                <div className='space-y-10 w-full'>
                   <Heading h3>Link Groom’s Social Media Account</Heading>
-                  <div className='relative'>
-                    <Facebook
-                      color='#1877F2'
-                      className='absolute top-1/2 left-5 -translate-y-1/2'
-                    />
-                    <input
-                      type='text'
-                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
-                      placeholder='https://facebook.com/beweddy'
-                      defaultValue={groom.facebook}
-                      {...register('groom_facebook')}
-                    />
-                  </div>
-                  <div className='relative'>
-                    <Instagram
-                      color='#E4405F'
-                      className='absolute top-1/2 left-5 -translate-y-1/2'
-                    />
-                    <input
-                      type='text'
-                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
-                      placeholder='https://instagram.com/beweddy'
-                      defaultValue={groom.instagram}
-                      {...register('groom_instagram')}
-                    />
-                  </div>
-                  <div className='relative'>
-                    <Twitter
-                      color='#1DA1F2'
-                      className='absolute top-1/2 left-5 -translate-y-1/2'
-                    />
-                    <input
-                      type='text'
-                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
-                      placeholder='https://twitter.com/beweddy'
-                      defaultValue={groom.twitter}
-                      {...register('groom_twitter')}
-                    />
-                  </div>
-                  <div className='relative'>
-                    <Gmail
-                      color='#EA4335'
-                      className='absolute top-1/2 left-5 -translate-y-1/2'
-                    />
-                    <input
-                      type='text'
-                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
-                      placeholder='beweddyport@gmail.com'
-                      defaultValue={groom.gmail}
-                      {...register('groom_gmail')}
-                    />
-                  </div>
-                  <div className='relative'>
-                    <Linkedin
-                      color='#0A66C2'
-                      className='absolute top-1/2 left-5 -translate-y-1/2'
-                    />
-                    <input
-                      type='text'
-                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
-                      placeholder='https://www.linkedin.com/in/beweddy'
-                      defaultValue={groom.linkedIn}
-                      {...register('groom_linkedIn')}
-                    />
-                  </div>
-                  <div className='relative'>
-                    <Youtube
-                      color='#FF0000'
-                      className='absolute top-1/2 left-5 -translate-y-1/2'
-                    />
-                    <input
-                      type='text'
-                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
-                      placeholder='https://www.youtube.com/beweddy'
-                      defaultValue={groom.youTube}
-                      {...register('groom_youTube')}
-                    />
-                  </div>
+                  <Popover.Group className='grid grid-cols-8 content-center gap-y-5 mr-8'>
+                    <Popover className='relative'>
+                      <Popover.Button>
+                        <Facebook color='#1877F2' size={35} />
+                      </Popover.Button>
+                      <Transition
+                        as={Fragment}
+                        enter='transition ease-out duration-200'
+                        enterFrom='opacity-0 translate-y-1'
+                        enterTo='opacity-100 translate-y-0'
+                        leave='transition ease-in duration-150'
+                        leaveFrom='opacity-100 translate-y-0'
+                        leaveTo='opacity-0 translate-y-1'
+                      >
+                        <Popover.Panel>
+                          <div className='absolute -bottom-24 left-[-11px]'>
+                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                            <input
+                              type='text'
+                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
+                              placeholder='https://facebook.com/beweddy'
+                              defaultValue={groom.facebook}
+                              {...register('groom_facebook')}
+                            />
+                          </div>
+                        </Popover.Panel>
+                      </Transition>
+                    </Popover>
+                    <Popover className='relative'>
+                      <Popover.Button>
+                        <Instagram color='#E4405F' size={35} />
+                      </Popover.Button>
+                      <Transition
+                        as={Fragment}
+                        enter='transition ease-out duration-200'
+                        enterFrom='opacity-0 translate-y-1'
+                        enterTo='opacity-100 translate-y-0'
+                        leave='transition ease-in duration-150'
+                        leaveFrom='opacity-100 translate-y-0'
+                        leaveTo='opacity-0 translate-y-1'
+                      >
+                        <Popover.Panel>
+                          <div className='absolute -bottom-24 left-[-11px]'>
+                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                            <input
+                              type='text'
+                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
+                              placeholder='https://instagram.com/beweddy'
+                              defaultValue={groom.instagram}
+                              {...register('groom_instagram')}
+                            />
+                          </div>
+                        </Popover.Panel>
+                      </Transition>
+                    </Popover>
+                    <Popover className='relative'>
+                      <Popover.Button>
+                        <Twitter color='#1DA1F2' size={35} />
+                      </Popover.Button>
+                      <Transition
+                        as={Fragment}
+                        enter='transition ease-out duration-200'
+                        enterFrom='opacity-0 translate-y-1'
+                        enterTo='opacity-100 translate-y-0'
+                        leave='transition ease-in duration-150'
+                        leaveFrom='opacity-100 translate-y-0'
+                        leaveTo='opacity-0 translate-y-1'
+                      >
+                        <Popover.Panel>
+                          <div className='absolute -bottom-24 left-[-11px]'>
+                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                            <input
+                              type='text'
+                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
+                              placeholder='https://twitter.com/beweddy'
+                              defaultValue={groom.twitter}
+                              {...register('groom_twitter')}
+                            />
+                          </div>
+                        </Popover.Panel>
+                      </Transition>
+                    </Popover>
+                    <Popover className='relative'>
+                      <Popover.Button>
+                        <Youtube color='#FF0000' size={35} />
+                      </Popover.Button>
+                      <Transition
+                        as={Fragment}
+                        enter='transition ease-out duration-200'
+                        enterFrom='opacity-0 translate-y-1'
+                        enterTo='opacity-100 translate-y-0'
+                        leave='transition ease-in duration-150'
+                        leaveFrom='opacity-100 translate-y-0'
+                        leaveTo='opacity-0 translate-y-1'
+                      >
+                        <Popover.Panel>
+                          <div className='absolute -bottom-24 left-[-11px]'>
+                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                            <input
+                              type='text'
+                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
+                              placeholder='https://www.youtube.com/beweddy'
+                              defaultValue={groom.youTube}
+                              {...register('groom_youTube')}
+                            />
+                          </div>
+                        </Popover.Panel>
+                      </Transition>
+                    </Popover>
+                    <Popover className='relative'>
+                      <Popover.Button>
+                        <Linkedin color='#0A66C2' size={35} />
+                      </Popover.Button>
+                      <Transition
+                        as={Fragment}
+                        enter='transition ease-out duration-200'
+                        enterFrom='opacity-0 translate-y-1'
+                        enterTo='opacity-100 translate-y-0'
+                        leave='transition ease-in duration-150'
+                        leaveFrom='opacity-100 translate-y-0'
+                        leaveTo='opacity-0 translate-y-1'
+                      >
+                        <Popover.Panel>
+                          <div className='absolute -bottom-24 left-[-11px]'>
+                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                            <input
+                              type='text'
+                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
+                              placeholder='https://www.linkedin.com/in/beweddy'
+                              defaultValue={groom.linkedIn}
+                              {...register('groom_linkedIn')}
+                            />
+                          </div>
+                        </Popover.Panel>
+                      </Transition>
+                    </Popover>
+                    <Popover className='relative'>
+                      <Popover.Button>
+                        <img src='/icons/tiktok.svg' alt='' className='w-10' />
+                      </Popover.Button>
+                      <Transition
+                        as={Fragment}
+                        enter='transition ease-out duration-200'
+                        enterFrom='opacity-0 translate-y-1'
+                        enterTo='opacity-100 translate-y-0'
+                        leave='transition ease-in duration-150'
+                        leaveFrom='opacity-100 translate-y-0'
+                        leaveTo='opacity-0 translate-y-1'
+                      >
+                        <Popover.Panel>
+                          <div className='absolute -bottom-24 left-[-11px]'>
+                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                            <input
+                              type='text'
+                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
+                              placeholder='https://www.tiktok.com/beweddy'
+                              defaultValue={groom.tiktok}
+                              {...register('groom_tiktok')}
+                            />
+                          </div>
+                        </Popover.Panel>
+                      </Transition>
+                    </Popover>
+                    <Popover className='relative'>
+                      <Popover.Button>
+                        <img
+                          src='/icons/snapchat.svg'
+                          alt=''
+                          className='w-10'
+                        />
+                      </Popover.Button>
+                      <Transition
+                        as={Fragment}
+                        enter='transition ease-out duration-200'
+                        enterFrom='opacity-0 translate-y-1'
+                        enterTo='opacity-100 translate-y-0'
+                        leave='transition ease-in duration-150'
+                        leaveFrom='opacity-100 translate-y-0'
+                        leaveTo='opacity-0 translate-y-1'
+                      >
+                        <Popover.Panel>
+                          <div className='absolute -bottom-24 left-[-11px]'>
+                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                            <input
+                              type='text'
+                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
+                              placeholder='https://www.snapchat.com/beweddy'
+                              defaultValue={groom.snapchat}
+                              {...register('groom_snapchat')}
+                            />
+                          </div>
+                        </Popover.Panel>
+                      </Transition>
+                    </Popover>
+                    <Popover className='relative'>
+                      <Popover.Button>
+                        <img
+                          src='/icons/pinterest.svg'
+                          alt=''
+                          className='w-10'
+                        />
+                      </Popover.Button>
+                      <Transition
+                        as={Fragment}
+                        enter='transition ease-out duration-200'
+                        enterFrom='opacity-0 translate-y-1'
+                        enterTo='opacity-100 translate-y-0'
+                        leave='transition ease-in duration-150'
+                        leaveFrom='opacity-100 translate-y-0'
+                        leaveTo='opacity-0 translate-y-1'
+                      >
+                        <Popover.Panel>
+                          <div className='absolute -bottom-24 left-[-11px]'>
+                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                            <input
+                              type='text'
+                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
+                              placeholder='https://www.pinterest.com/beweddy'
+                              defaultValue={groom.pinterest}
+                              {...register('groom_pinterest')}
+                            />
+                          </div>
+                        </Popover.Panel>
+                      </Transition>
+                    </Popover>
+                  </Popover.Group>
                 </div>
-                <div className='space-y-5 w-full'>
+                <div className='space-y-10 w-full'>
                   <Heading h3>Link Bride’s Social Media Account</Heading>
-                  <div className='relative'>
-                    <Facebook
-                      color='#1877F2'
-                      className='absolute top-1/2 left-5 -translate-y-1/2'
-                    />
-                    <input
-                      type='text'
-                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
-                      placeholder='https://facebook.com/beweddy'
-                      defaultValue={bride.facebook}
-                      {...register('bride_facebook')}
-                    />
-                  </div>
-                  <div className='relative'>
-                    <Instagram
-                      color='#E4405F'
-                      className='absolute top-1/2 left-5 -translate-y-1/2'
-                    />
-                    <input
-                      type='text'
-                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
-                      placeholder='https://instagram.com/beweddy'
-                      defaultValue={bride.instagram}
-                      {...register('bride_instagram')}
-                    />
-                  </div>
-                  <div className='relative'>
-                    <Twitter
-                      color='#1DA1F2'
-                      className='absolute top-1/2 left-5 -translate-y-1/2'
-                    />
-                    <input
-                      type='text'
-                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
-                      placeholder='https://twitter.com/beweddy'
-                      defaultValue={bride.twitter}
-                      {...register('bride_twitter')}
-                    />
-                  </div>
-                  <div className='relative'>
-                    <Gmail
-                      color='#EA4335'
-                      className='absolute top-1/2 left-5 -translate-y-1/2'
-                    />
-                    <input
-                      type='text'
-                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
-                      placeholder='beweddyport@gmail.com'
-                      defaultValue={bride.gmail}
-                      {...register('bride_gmail')}
-                    />
-                  </div>
-                  <div className='relative'>
-                    <Linkedin
-                      color='#0A66C2'
-                      className='absolute top-1/2 left-5 -translate-y-1/2'
-                    />
-                    <input
-                      type='text'
-                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
-                      placeholder='https://www.linkedin.com/in/beweddy'
-                      defaultValue={bride.linkedIn}
-                      {...register('bride_linkedIn')}
-                    />
-                  </div>
-                  <div className='relative'>
-                    <Youtube
-                      color='#FF0000'
-                      className='absolute top-1/2 left-5 -translate-y-1/2'
-                    />
-                    <input
-                      type='text'
-                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 pl-14 pr-4 text-base font-normal placeholder-gray-300'
-                      placeholder='https://www.youtube.com/beweddy'
-                      defaultValue={bride.youTube}
-                      {...register('bride_youTube')}
-                    />
-                  </div>
+                  <Popover.Group className='grid grid-cols-8 content-center gap-y-5 mr-8'>
+                    <Popover className='relative'>
+                      <Popover.Button>
+                        <Facebook color='#1877F2' size={35} />
+                      </Popover.Button>
+                      <Transition
+                        as={Fragment}
+                        enter='transition ease-out duration-200'
+                        enterFrom='opacity-0 translate-y-1'
+                        enterTo='opacity-100 translate-y-0'
+                        leave='transition ease-in duration-150'
+                        leaveFrom='opacity-100 translate-y-0'
+                        leaveTo='opacity-0 translate-y-1'
+                      >
+                        <Popover.Panel>
+                          <div className='absolute -bottom-24 left-[-11px]'>
+                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                            <input
+                              type='text'
+                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
+                              placeholder='https://facebook.com/beweddy'
+                              defaultValue={bride.facebook}
+                              {...register('bride_facebook')}
+                            />
+                          </div>
+                        </Popover.Panel>
+                      </Transition>
+                    </Popover>
+                    <Popover className='relative'>
+                      <Popover.Button>
+                        <Instagram color='#E4405F' size={35} />
+                      </Popover.Button>
+                      <Transition
+                        as={Fragment}
+                        enter='transition ease-out duration-200'
+                        enterFrom='opacity-0 translate-y-1'
+                        enterTo='opacity-100 translate-y-0'
+                        leave='transition ease-in duration-150'
+                        leaveFrom='opacity-100 translate-y-0'
+                        leaveTo='opacity-0 translate-y-1'
+                      >
+                        <Popover.Panel>
+                          <div className='absolute -bottom-24 left-[-11px]'>
+                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                            <input
+                              type='text'
+                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
+                              placeholder='https://instagram.com/beweddy'
+                              defaultValue={bride.instagram}
+                              {...register('bride_instagram')}
+                            />
+                          </div>
+                        </Popover.Panel>
+                      </Transition>
+                    </Popover>
+                    <Popover className='relative'>
+                      <Popover.Button>
+                        <Twitter color='#1DA1F2' size={35} />
+                      </Popover.Button>
+                      <Transition
+                        as={Fragment}
+                        enter='transition ease-out duration-200'
+                        enterFrom='opacity-0 translate-y-1'
+                        enterTo='opacity-100 translate-y-0'
+                        leave='transition ease-in duration-150'
+                        leaveFrom='opacity-100 translate-y-0'
+                        leaveTo='opacity-0 translate-y-1'
+                      >
+                        <Popover.Panel>
+                          <div className='absolute -bottom-24 left-[-11px]'>
+                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                            <input
+                              type='text'
+                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
+                              placeholder='https://twitter.com/beweddy'
+                              defaultValue={bride.twitter}
+                              {...register('bride_twitter')}
+                            />
+                          </div>
+                        </Popover.Panel>
+                      </Transition>
+                    </Popover>
+                    <Popover className='relative'>
+                      <Popover.Button>
+                        <Youtube color='#FF0000' size={35} />
+                      </Popover.Button>
+                      <Transition
+                        as={Fragment}
+                        enter='transition ease-out duration-200'
+                        enterFrom='opacity-0 translate-y-1'
+                        enterTo='opacity-100 translate-y-0'
+                        leave='transition ease-in duration-150'
+                        leaveFrom='opacity-100 translate-y-0'
+                        leaveTo='opacity-0 translate-y-1'
+                      >
+                        <Popover.Panel>
+                          <div className='absolute -bottom-24 left-[-11px]'>
+                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                            <input
+                              type='text'
+                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
+                              placeholder='https://www.youtube.com/beweddy'
+                              defaultValue={bride.youTube}
+                              {...register('bride_youTube')}
+                            />
+                          </div>
+                        </Popover.Panel>
+                      </Transition>
+                    </Popover>
+                    <Popover className='relative'>
+                      <Popover.Button>
+                        <Linkedin color='#0A66C2' size={35} />
+                      </Popover.Button>
+                      <Transition
+                        as={Fragment}
+                        enter='transition ease-out duration-200'
+                        enterFrom='opacity-0 translate-y-1'
+                        enterTo='opacity-100 translate-y-0'
+                        leave='transition ease-in duration-150'
+                        leaveFrom='opacity-100 translate-y-0'
+                        leaveTo='opacity-0 translate-y-1'
+                      >
+                        <Popover.Panel>
+                          <div className='absolute -bottom-24 left-[-11px]'>
+                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                            <input
+                              type='text'
+                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
+                              placeholder='https://www.linkedin.com/in/beweddy'
+                              defaultValue={bride.linkedIn}
+                              {...register('bride_linkedIn')}
+                            />
+                          </div>
+                        </Popover.Panel>
+                      </Transition>
+                    </Popover>
+                    <Popover className='relative'>
+                      <Popover.Button>
+                        <img src='/icons/tiktok.svg' alt='' className='w-10' />
+                      </Popover.Button>
+                      <Transition
+                        as={Fragment}
+                        enter='transition ease-out duration-200'
+                        enterFrom='opacity-0 translate-y-1'
+                        enterTo='opacity-100 translate-y-0'
+                        leave='transition ease-in duration-150'
+                        leaveFrom='opacity-100 translate-y-0'
+                        leaveTo='opacity-0 translate-y-1'
+                      >
+                        <Popover.Panel>
+                          <div className='absolute -bottom-24 left-[-11px]'>
+                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                            <input
+                              type='text'
+                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
+                              placeholder='https://www.tiktok.com/beweddy'
+                              defaultValue={bride.tiktok}
+                              {...register('bride_tiktok')}
+                            />
+                          </div>
+                        </Popover.Panel>
+                      </Transition>
+                    </Popover>
+                    <Popover className='relative'>
+                      <Popover.Button>
+                        <img
+                          src='/icons/snapchat.svg'
+                          alt=''
+                          className='w-10'
+                        />
+                      </Popover.Button>
+                      <Transition
+                        as={Fragment}
+                        enter='transition ease-out duration-200'
+                        enterFrom='opacity-0 translate-y-1'
+                        enterTo='opacity-100 translate-y-0'
+                        leave='transition ease-in duration-150'
+                        leaveFrom='opacity-100 translate-y-0'
+                        leaveTo='opacity-0 translate-y-1'
+                      >
+                        <Popover.Panel>
+                          <div className='absolute -bottom-24 left-[-11px]'>
+                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                            <input
+                              type='text'
+                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
+                              placeholder='https://www.snapchat.com/beweddy'
+                              defaultValue={bride.snapchat}
+                              {...register('bride_snapchat')}
+                            />
+                          </div>
+                        </Popover.Panel>
+                      </Transition>
+                    </Popover>
+                    <Popover className='relative'>
+                      <Popover.Button>
+                        <img
+                          src='/icons/pinterest.svg'
+                          alt=''
+                          className='w-10'
+                        />
+                      </Popover.Button>
+                      <Transition
+                        as={Fragment}
+                        enter='transition ease-out duration-200'
+                        enterFrom='opacity-0 translate-y-1'
+                        enterTo='opacity-100 translate-y-0'
+                        leave='transition ease-in duration-150'
+                        leaveFrom='opacity-100 translate-y-0'
+                        leaveTo='opacity-0 translate-y-1'
+                      >
+                        <Popover.Panel>
+                          <div className='absolute -bottom-24 left-[-11px]'>
+                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                            <input
+                              type='text'
+                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
+                              placeholder='https://www.pinterest.com/beweddy'
+                              defaultValue={bride.pinterest}
+                              {...register('bride_pinterest')}
+                            />
+                          </div>
+                        </Popover.Panel>
+                      </Transition>
+                    </Popover>
+                  </Popover.Group>
                 </div>
               </div>
               <Divider />
@@ -735,8 +1059,8 @@ const EditWebsitePage = () => {
                   <input
                     type='text'
                     id='videoTitle'
-                    className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal'
-                    placeholder='First Look or Wedding Video 😇'
+                    className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal placeholder-gray-300'
+                    placeholder='Name Your Wedding Video'
                     {...register('videoTitle')}
                   />
                 </div>
@@ -778,3 +1102,102 @@ const EditWebsitePage = () => {
 };
 
 export default withAuthRoute(EditWebsitePage);
+
+{
+  /* <div className='relative'>
+                    <Facebook
+                      color='#1877F2'
+                      className='absolute top-1/2 left-5 -translate-y-1/2'
+                    />
+                    <input
+                      type='text'
+                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal placeholder-gray-300'
+                      placeholder='https://facebook.com/beweddy'
+                      defaultValue={bride.facebook}
+                      {...register('bride_facebook')}
+                    />
+                  </div>
+                  <div className='relative'>
+                    <Instagram
+                      color='#E4405F'
+                      className='absolute top-1/2 left-5 -translate-y-1/2'
+                    />
+                    <input
+                      type='text'
+                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal placeholder-gray-300'
+                      placeholder='https://instagram.com/beweddy'
+                      defaultValue={bride.instagram}
+                      {...register('bride_instagram')}
+                    />
+                  </div>
+                  <div className='relative'>
+                    <Twitter
+                      color='#1DA1F2'
+                      className='absolute top-1/2 left-5 -translate-y-1/2'
+                    />
+                    <input
+                      type='text'
+                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal placeholder-gray-300'
+                      placeholder='https://twitter.com/beweddy'
+                      defaultValue={bride.twitter}
+                      {...register('bride_twitter')}
+                    />
+                  </div>
+                  <div className='relative'>
+                    <Gmail
+                      color='#EA4335'
+                      className='absolute top-1/2 left-5 -translate-y-1/2'
+                    />
+                    <input
+                      type='text'
+                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal placeholder-gray-300'
+                      placeholder='beweddyport@gmail.com'
+                      defaultValue={bride.gmail}
+                      {...register('bride_gmail')}
+                    />
+                  </div>
+                  <div className='relative'>
+                    <Linkedin
+                      color='#0A66C2'
+                      className='absolute top-1/2 left-5 -translate-y-1/2'
+                    />
+                    <input
+                      type='text'
+                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal placeholder-gray-300'
+                      placeholder='https://www.linkedin.com/in/beweddy'
+                      defaultValue={bride.linkedIn}
+                      {...register('bride_linkedIn')}
+                    />
+                  </div>
+                  <div className='relative'>
+                    <Youtube
+                      color='#FF0000'
+                      className='absolute top-1/2 left-5 -translate-y-1/2'
+                    />
+                    <input
+                      type='text'
+                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal placeholder-gray-300'
+                      placeholder='https://www.youtube.com/beweddy'
+                      defaultValue={bride.youTube}
+                      {...register('bride_youTube')}
+                    />
+                  </div> */
+}
+
+{
+  /* 
+                  
+                  <div className='relative'>
+                    <Youtube
+                      color='#FF0000'
+                      className='absolute top-1/2 left-5 -translate-y-1/2'
+                    />
+                    <input
+                      type='text'
+                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal placeholder-gray-300'
+                      placeholder='https://www.youtube.com/beweddy'
+                      defaultValue={groom.youTube}
+                      {...register('groom_youTube')}
+                    />
+                  </div> */
+}
