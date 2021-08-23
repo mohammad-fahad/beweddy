@@ -1,10 +1,11 @@
-import { deleteTodo, toggleTodo } from '@features/todo/todoSlice';
+import { addTodo, deleteTodo, toggleTodo } from '@features/todo/todoSlice';
 import { CheckCircleIcon, TrashIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import DashboardNavLinks from './navLinks';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { nanoid } from 'nanoid';
 
 const DashboardLayout = ({ children }) => {
   const dispatch = useDispatch();
@@ -69,51 +70,54 @@ const DashboardLayout = ({ children }) => {
                 </button>
               </div>
             )}
-            {todos.map(todo => (
-              <div key={todo.id} className='flex space-x-5 group'>
-                <button
-                  type='button'
-                  className='flex items-center justify-center w-6 h-6'
-                  onClick={() =>
-                    dispatch(
-                      toggleTodo({
-                        id: todo.id,
-                        isComplete: !todo.isComplete,
-                      })
-                    )
-                  }
-                >
-                  {todo.isComplete ? (
-                    <CheckCircleIcon className='w-6 h-6' />
-                  ) : (
-                    <div className='w-6 h-6 flex items-center justify-center'>
-                      <span className='block border-2 border-primary w-5 h-5 rounded-full'></span>
-                    </div>
-                  )}
-                </button>
-                <p
-                  className={`text-base font-normal cursor-pointer ${
-                    todo.isComplete ? 'line-through' : ''
-                  }`}
-                  onClick={() =>
-                    dispatch(
-                      toggleTodo({
-                        id: todo.id,
-                        isComplete: !todo.isComplete,
-                      })
-                    )
-                  }
-                >
-                  {todo.description}
-                </p>
-                <button
-                  type='button'
-                  onClick={() => dispatch(deleteTodo(todo.id))}
-                >
-                  <TrashIcon className='opacity-0 invisible group-hover:opacity-100 group-hover:visible w-6 h-6 text-red-300 hover:text-red-500 transition-colors duration-300' />
-                </button>
-              </div>
-            ))}
+            {todos
+              .slice(-6)
+              .reverse()
+              .map(todo => (
+                <div key={todo.id} className='flex space-x-5 group'>
+                  <button
+                    type='button'
+                    className='flex items-center justify-center w-6 h-6'
+                    onClick={() =>
+                      dispatch(
+                        toggleTodo({
+                          id: todo.id,
+                          isComplete: !todo.isComplete,
+                        })
+                      )
+                    }
+                  >
+                    {todo.isComplete ? (
+                      <CheckCircleIcon className='w-6 h-6' />
+                    ) : (
+                      <div className='w-6 h-6 flex items-center justify-center'>
+                        <span className='block border-2 border-primary w-5 h-5 rounded-full'></span>
+                      </div>
+                    )}
+                  </button>
+                  <p
+                    className={`text-base font-normal cursor-pointer ${
+                      todo.isComplete ? 'line-through' : ''
+                    }`}
+                    onClick={() =>
+                      dispatch(
+                        toggleTodo({
+                          id: todo.id,
+                          isComplete: !todo.isComplete,
+                        })
+                      )
+                    }
+                  >
+                    {todo.description}
+                  </p>
+                  <button
+                    type='button'
+                    onClick={() => dispatch(deleteTodo(todo.id))}
+                  >
+                    <TrashIcon className='opacity-0 invisible group-hover:opacity-100 group-hover:visible w-6 h-6 text-red-300 hover:text-red-500 transition-colors duration-300' />
+                  </button>
+                </div>
+              ))}
             <Link href='/dashboard/todos'>
               <a className='text-lg block font-medium capitalize hover:underline'>
                 See all
