@@ -64,7 +64,7 @@ const DashboardLayout = ({ children }) => {
                 />
                 <button
                   type='submit'
-                  className='absolute top-1/2 right-0 -translate-y-1/2 font-inter font-medium py-2 px-5'
+                  className='absolute top-1/2 right-[2px] -translate-y-1/2 font-inter font-medium py-2 px-5 bg-white'
                 >
                   Add
                 </button>
