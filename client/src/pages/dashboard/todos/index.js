@@ -32,7 +32,7 @@ const TodoPage = () => {
   return (
     <>
       <Head>
-        <title>Beweddy | Dashboard</title>
+        <title>Beweddy | Just Todo List</title>
       </Head>
       <DashboardTopBar />
       <DashboardLayout>

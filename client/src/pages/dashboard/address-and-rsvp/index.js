@@ -6,7 +6,7 @@ import { DashboardHeader } from '@components/dashboard';
 import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
 import { Button, Footer, Heading } from '@components/index';
-import { LinkIcon, PencilIcon } from '@heroicons/react/outline';
+import { LinkIcon, PencilIcon, SelectorIcon } from '@heroicons/react/outline';
 import { withAuthRoute } from '@hoc/withAuthRoute';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -29,11 +29,18 @@ const params = {
   },
 };
 
+const otherProviders = [
+  { name: 'Select Provider' },
+  { name: 'Airtel' },
+  { name: 'Robi' },
+];
+
 const AddressRSVP = () => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.user);
   const { push } = useRouter();
   const { countries } = useSelector(state => state.countryList);
+  const [selectedProvider, setSelectedProvider] = useState(otherProviders[0]);
 
   const [selectedCountry, setSelectedCountry] = useState({});
 
@@ -56,7 +63,7 @@ const AddressRSVP = () => {
     shouldFocusError: false,
     shouldUnregister: true,
   });
-  watch('guestEstimate');
+  watch(['guestEstimate', 'provider']);
 
   const onSubmit = data => {
     dispatch(addGuest(submitData(data)));
@@ -634,6 +641,76 @@ const AddressRSVP = () => {
                     </label>
                   </div>
                 </div>
+                {getValues('provider') === 'Other' && (
+                  <Listbox
+                    value={selectedProvider}
+                    onChange={setSelectedProvider}
+                  >
+                    <div className='relative mt-1'>
+                      <Listbox.Button className='relative font-inter w-max rounded-[5px] border-2 border-secondary/20 py-3 pl-5 pr-10 text-base font-semibold'>
+                        <span className='block truncate'>
+                          {selectedProvider.name}
+                        </span>
+                        <span className='absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none'>
+                          <SelectorIcon
+                            className='w-5 h-5 text-gray-400'
+                            aria-hidden='true'
+                          />
+                        </span>
+                      </Listbox.Button>
+                      <Transition
+                        as={Fragment}
+                        leave='transition ease-in duration-100'
+                        leaveFrom='opacity-100'
+                        leaveTo='opacity-0'
+                      >
+                        <Listbox.Options className='absolute min-w-[256px] py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
+                          {otherProviders.map((provider, providerIdx) => (
+                            <Listbox.Option
+                              key={providerIdx}
+                              className={({ active }) =>
+                                `${
+                                  active
+                                    ? 'text-secondary bg-secondary-alternative/50'
+                                    : 'text-gray-900'
+                                }
+                          cursor-pointer select-none relative py-2 pl-10 pr-4 font-medium`
+                              }
+                              value={provider}
+                            >
+                              {({ selected, active }) => (
+                                <>
+                                  <span
+                                    className={`${
+                                      selected ? 'font-semibold' : 'font-medium'
+                                    } block truncate`}
+                                  >
+                                    {provider.name}
+                                  </span>
+                                  {selected ? (
+                                    <span
+                                      className={`${
+                                        active
+                                          ? 'text-amber-600'
+                                          : 'text-amber-600'
+                                      }
+                                absolute inset-y-0 left-0 flex items-center pl-3`}
+                                    >
+                                      <CheckIcon
+                                        className='w-5 h-5'
+                                        aria-hidden='true'
+                                      />
+                                    </span>
+                                  ) : null}
+                                </>
+                              )}
+                            </Listbox.Option>
+                          ))}
+                        </Listbox.Options>
+                      </Transition>
+                    </div>
+                  </Listbox>
+                )}
               </div>
               <div className='space-y-5 !mt-5'>
                 <Heading h3 className='!text-[22px] !font-medium'>
@@ -644,7 +721,7 @@ const AddressRSVP = () => {
                     <input
                       type='radio'
                       id='yes'
-                      value={true}
+                      value='yes'
                       defaultChecked
                       className='hidden'
                       {...register('rsvp')}
@@ -662,8 +739,29 @@ const AddressRSVP = () => {
                   <div className='flex items-center'>
                     <input
                       type='radio'
+                      id='maybe'
+                      value='maybe'
+                      defaultChecked
+                      className='hidden'
+                      {...register('rsvp')}
+                    />
+                    <label
+                      htmlFor='maybe'
+                      className='flex items-center space-x-3 cursor-pointer'
+                    >
+                      <div className='checked-outer border-[3px] rounded-full border-primary w-6 md:w-7 h-6 md:h-7 flex items-center justify-center'>
+                        <div className='checked-inner w-2 md:w-3 h-2 md:h-3 rounded-full'></div>
+                      </div>
+                      <span className='font-inter text-lg font-light'>
+                        Maybe
+                      </span>
+                    </label>
+                  </div>
+                  <div className='flex items-center'>
+                    <input
+                      type='radio'
                       id='no'
-                      value={false}
+                      value='no'
                       className='hidden'
                       {...register('rsvp')}
                     />

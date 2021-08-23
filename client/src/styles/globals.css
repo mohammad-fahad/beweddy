@@ -75,14 +75,14 @@
     background: linear-gradient(120.68deg, #fce3eb 30.04%, #ffffff 100%);
   }
 }
-.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+/* .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
   @apply bg-secondary !important;
 }
 
 .DayPicker:not(.DayPicker--interactionDisabled)
   .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
   @apply bg-secondary-alternative/20 !important;
-}
+} */
 
 @media screen and (min-width: 300px) {
   .banner {
