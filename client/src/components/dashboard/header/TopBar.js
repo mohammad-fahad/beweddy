@@ -2,15 +2,20 @@ import { logout } from '@features/auth/authSlice';
 import { Menu, Transition } from '@headlessui/react';
 import { LogoutIcon, UserIcon, SearchIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-const DashboardTopBar = () => {
+const DashboardTopBar = ({ coupleName }) => {
   const dispatch = useDispatch();
+  const { user } = useSelector(state => state.user);
   return (
     <div className='bg-secondary-alternative border-b-[3px] border-primary'>
-      <div className='max-w-[1440px] mx-auto px-16 xxl:px-0'>
+      <div className='max-w-[1620px] pr-16 xxl:pr-0 ml-14'>
         <div className='flex items-center justify-between'>
-          <p className='text-sm text-medium'>Eat, Drink & BeWeddy!</p>
+          {coupleName ? (
+            <h3 className='text-lg'>👋 Hey {user?.coupleName}!</h3>
+          ) : (
+            <p className='text-sm text-medium'>Eat, Drink & BeWeddy!</p>
+          )}
           <div className='flex items-center space-x-5 py-5'>
             <Link href='/'>
               <a className='flex items-center space-x-3 font-inter text-base text-gray-700 hover:text-primary font-semibold transition duration-300'>
