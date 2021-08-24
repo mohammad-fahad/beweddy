@@ -1,5 +1,5 @@
 import { Listbox, Transition } from '@headlessui/react';
-import { CheckIcon, SelectorIcon } from '@heroicons/react/outline';
+import { CheckIcon, ChevronDownIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import { Fragment, useState } from 'react';
 import DashboardActiveLink from '../DashboardActiveLink';
@@ -36,8 +36,8 @@ const InvitationNavLinks = () => {
             <Listbox.Button className='relative font-inter w-max rounded-[5px] border-2 border-primary py-3 pl-5 pr-10 text-base font-semibold hover:bg-secondary-alternative/50'>
               <span className='block truncate'>{selectComposeMethod.name}</span>
               <span className='absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none'>
-                <SelectorIcon
-                  className='w-5 h-5 text-gray-400'
+                <ChevronDownIcon
+                  className='w-5 h-5 text-primary'
                   aria-hidden='true'
                 />
               </span>
