@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import DashboardActiveLink from './DashboardActiveLink';
 
@@ -28,7 +29,7 @@ const DashboardNavLinks = () => {
   ];
   const { pathname } = useRouter();
   return (
-    <div className='flex flex-col space-y-10'>
+    <div className='flex flex-col space-y-8'>
       <DashboardActiveLink
         href='/dashboard'
         customActiveLink={dashboardRoutes.includes(pathname) ? 'w-full' : 'w-0'}
@@ -44,25 +45,41 @@ const DashboardNavLinks = () => {
         </DashboardActiveLink>
       ))}
       <div>
-        <DashboardActiveLink href='/dashboard/invitations'>
+        <DashboardActiveLink href='/dashboard/invitation'>
           Invitations
         </DashboardActiveLink>
         <div className='space-y-3 mt-3'>
           <div className='flex items-center space-x-3'>
             <span className='w-2 h-2 bg-[#F9D1DE] rounded-full inline-block' />
-            <span className='text-lg font-medium'>E-invite</span>
+            <Link href='/dashboard/invitation/calender'>
+              <a className='capitalize font-inter text-sm inline-block font-medium hover:underline'>
+                Calender invites
+              </a>
+            </Link>
           </div>
           <div className='flex items-center space-x-3'>
             <span className='w-2 h-2 bg-[#F9D1DE] rounded-full inline-block' />
-            <span className='text-lg font-medium'>Email</span>
+            <Link href='/dashboard/invitation/email'>
+              <a className='capitalize font-inter text-sm inline-block font-medium hover:underline'>
+                Email invites
+              </a>
+            </Link>
           </div>
           <div className='flex items-center space-x-3'>
             <span className='w-2 h-2 bg-[#F9D1DE] rounded-full inline-block' />
-            <span className='text-lg font-medium'>Text</span>
+            <Link href='/dashboard/invitation/text'>
+              <a className='capitalize font-inter text-sm inline-block font-medium hover:underline'>
+                Text invites
+              </a>
+            </Link>
           </div>
           <div className='flex items-center space-x-3'>
             <span className='w-2 h-2 bg-[#F9D1DE] rounded-full inline-block' />
-            <span className='text-lg font-medium'>Mail</span>
+            <Link href='/dashboard/invitation/mailout'>
+              <a className='capitalize font-inter text-sm inline-block font-medium hover:underline'>
+                Mailout invites
+              </a>
+            </Link>
           </div>
         </div>
       </div>
