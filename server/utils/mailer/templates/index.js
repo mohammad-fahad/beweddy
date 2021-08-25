@@ -72,7 +72,7 @@ export const activationTemplate = (name, url) => {
     <tr>
       <td align="center">
         <p style="font-weight: 400; line-height: 30px">
-          You just created a new account at BeWeddy. <br />
+          You just created a new account at BeWeddy. 🎉<br />
           All you have to do now is activate it.
         </p>
       </td>
