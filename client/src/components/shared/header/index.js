@@ -37,7 +37,7 @@ export const Header = () => {
               </div>
               {/* Navigation Links Ends */}
               {/* Authentication Links */}
-              <div className='flex items-center ml-auto xl:ml-0 gap-2 min-w-[197px]'>
+              <div className='flex items-center ml-auto xl:ml-0 gap-2 sm:min-w-[197px]'>
                 {user ? (
                   <div className='hidden sm:block ml-auto'>
                     <ProfileLinks {...{ user }} />
