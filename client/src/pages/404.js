@@ -10,7 +10,7 @@ const NotFoundPage = () => {
         The page you've requested is not available
       </h2>
       <Link href='/'>
-        <a className='py-3 px-8 text-white bg-primary font-medium rounded hover:bg-transparent border-[3px] border-primary hover:text-black'>
+        <a className='font-inter py-2 sm:py-3 px-5 sm:px-8 text-white sm:text-sm bg-primary font-medium rounded hover:bg-transparent border-[3px] border-primary hover:text-black'>
           Back to home
         </a>
       </Link>
