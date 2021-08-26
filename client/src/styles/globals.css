@@ -75,6 +75,39 @@
   .gradient {
     background: linear-gradient(120.68deg, #fce3eb 30.04%, #ffffff 100%);
   }
+
+  .pulse > span {
+    animation: pulse-2-5 1s linear infinite;
+    border-radius: 50%;
+    display: block;
+    @apply w-[90px] h-[90px] absolute inset-0 z-[-1] bg-secondary;
+  }
+  .pulse > span > span {
+    border-radius: 50%;
+    display: block;
+    @apply w-[90px] h-[90px] absolute inset-0 z-[-1];
+  }
+  .pulse > span > span:after {
+    animation: pulse-2-5 1s linear infinite;
+    border-radius: 50%;
+    content: '';
+    display: block;
+    @apply w-[90px] h-[90px] absolute inset-0 z-[-1] bg-secondary;
+  }
+  @keyframes pulse-2-5 {
+    0% {
+      opacity: 0.75;
+      transform: scale(1);
+    }
+    25% {
+      opacity: 0.75;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.4);
+    }
+  }
 }
 /* .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
   @apply bg-secondary !important;

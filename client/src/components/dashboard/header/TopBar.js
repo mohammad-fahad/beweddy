@@ -12,7 +12,9 @@ const DashboardTopBar = ({ coupleName }) => {
       <div className='max-w-[1620px] pr-16 xxl:pr-0 ml-14'>
         <div className='flex items-center justify-between'>
           {coupleName ? (
-            <h3 className='text-lg'>👋 Hey {user?.coupleName}!</h3>
+            <h3 className='text-lg capitalize'>
+              👋 Welcome {user?.coupleName}. Let's Eat, drink & BeWeddy !
+            </h3>
           ) : (
             <p className='text-sm text-medium'>Eat, Drink & BeWeddy!</p>
           )}

@@ -1,86 +1,117 @@
+import Head from 'next/head';
+import Link from 'next/link';
+import Image from 'next/image';
 import {
-  DashboardHeader,
   ActivityInfo,
+  DashboardHeader,
   WebsitePreviewContainer,
   WeddingDayCountDown,
 } from '@components/dashboard';
+import { Button, Footer, Heading, Loader } from '@components/index';
+import { withAuthRoute } from '@hoc/withAuthRoute';
 import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
-import { Footer } from '@components/home';
-import { LinkIcon } from '@heroicons/react/outline';
-import { withAuthRoute } from '@hoc/withAuthRoute';
-import Head from 'next/head';
-import Link from 'next/link';
-
-const DashboardPage = () => {
+import { StarIcon } from '@heroicons/react/solid';
+import { useSelector } from 'react-redux';
+import { PlusIcon, SearchIcon } from '@heroicons/react/outline';
+const Dashboard = () => {
+  const { user } = useSelector(state => state.user);
   return (
     <>
       <Head>
-        <title>Beweddy | Dashboard</title>
+        <title>Beweddy | Mailout invites</title>
       </Head>
-      <DashboardTopBar />
-      <DashboardLayout>
-        <DashboardHeader title='Welcome to your Beweddy Dashboard'>
-          <div className='flex items-center space-x-5'>
-            <Link href='/'>
-              <a className='relative flex items-center space-x-3 py-2 px-5 border-2 border-primary rounded-[5px] capitalize font-inter font-semibold hover:bg-gray-100 transition duration-300'>
-                <LinkIcon className='w-5 h-5' />
-                <span>We need your address</span>
-                <span className='absolute -bottom-7 left-[-0.8rem] font-light text-sm text-gray-400 capitalize'>
-                  Share with guests
-                </span>
-              </a>
-            </Link>
-            <Link href='/'>
-              <a className='py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300'>
-                Guests Management
-              </a>
-            </Link>
-            <Link href='/'>
-              <a className='py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300'>
-                Address/RSVP
-              </a>
-            </Link>
-          </div>
-        </DashboardHeader>
-        <ActivityInfo />
-        <WebsitePreviewContainer />
-        <div className='mt-10 flex justify-center w-full space-x-16'>
-          <div>
-            <h4 className='text-[22px] font-medium text-center'>
-              Wedding Day Countdown
-            </h4>
-            <WeddingDayCountDown />
-          </div>
-        </div>
-        <div className='mt-10 grid grid-cols-3 gap-10'>
-          <div className='flex flex-col space-y-8 rounded-lg border-2 border-secondary-alternative bg-secondary-alternative/10 px-10 py-8'>
-            <img src='/icons/gift.svg' alt='' className='w-14 h-14' />
-            <p className='text-2xl font-medium capitalize'>
-              Select gift card <br /> display
-            </p>
-          </div>
-          <div className='flex flex-col space-y-8 rounded-lg border-2 border-secondary-alternative bg-secondary-alternative/10 px-10 py-8'>
-            <img src='/icons/mail_outline.svg' alt='' className='w-14 h-14' />
-            <div>
-              <p className='text-2xl font-medium capitalize'>Invitations</p>
-              <div className='flex items-center space-x-10 mt-2'>
-                <div>
-                  <p className='font-light mb-1'>E-invite</p>
-                  <p className='font-light'>Text</p>
+      {/* {loading && <Loader />} */}
+      <DashboardTopBar coupleName />
+      <DashboardLayout marginBottom='mb-12' shadow>
+        <DashboardHeader title='Dashboard 🎉' hideCoupleName />
+        <div className='shadow-box mt-14 space-y-10'>
+          <div className='max-w-[1300px] w-full'>
+            <div className='pl-12 py-10 pr-0 flex items-center space-x-10 justify-between'>
+              <Heading h3 className='!font-alice !text-4xl !font-light'>
+                <div className='flex items-center space-x-5'>
+                  <Image width={40} height={50} src='/icons/ring-tik.svg' />
+                  <span>All-In-One Wedding Platform.</span>
                 </div>
-                <div>
-                  <p className='font-light mb-1'>Email</p>
-                  <p className='font-light'>Mail</p>
+              </Heading>
+              <div>
+                <h4 className='text-sm font-medium'>Wedding Day Countdown</h4>
+                <WeddingDayCountDown sm />
+              </div>
+            </div>
+            <div className='ml-12'>
+              <div className='p-10 border-2 border-gray-200 rounded-md grid grid-cols-4 gap-x-10 gap-y-20'>
+                <div className='flex items-center justify-center flex-col space-y-5'>
+                  <div className='relative'>
+                    <div className='pulse flex items-center justify-center border-2 border-primary rounded-full p-2 w-[90px] h-[90px] bg-secondary-alternative'>
+                      <Image
+                        width={45}
+                        height={45}
+                        src='/icons/message-notif.svg'
+                      />
+                      <span>
+                        <span></span>
+                      </span>
+                    </div>
+                  </div>
+                  <h4 className='text-xl font-semibold text-center capitalize'>
+                    Text invites
+                  </h4>
+                </div>
+                <div className='flex items-center justify-center flex-col space-y-5'>
+                  <div className='flex items-center justify-center border-2 border-primary rounded-full p-2 w-[90px] h-[90px] bg-secondary-alternative'>
+                    <Image
+                      width={45}
+                      height={45}
+                      src='/icons/message-notif.svg'
+                    />
+                  </div>
+                  <h4 className='text-xl font-semibold text-center capitalize'>
+                    Text invites
+                  </h4>
+                </div>
+                <div className='flex items-center justify-center flex-col space-y-5'>
+                  <div className='flex items-center justify-center border-2 border-primary rounded-full p-2 w-[90px] h-[90px] bg-secondary-alternative'>
+                    <Image
+                      width={45}
+                      height={45}
+                      src='/icons/message-notif.svg'
+                    />
+                  </div>
+                  <h4 className='text-xl font-semibold text-center capitalize'>
+                    Text invites
+                  </h4>
+                </div>
+                <div className='flex items-center justify-center flex-col space-y-5'>
+                  <div className='flex items-center justify-center border-2 border-primary rounded-full p-2 w-[90px] h-[90px] bg-secondary-alternative'>
+                    <Image
+                      width={45}
+                      height={45}
+                      src='/icons/message-notif.svg'
+                    />
+                  </div>
+                  <h4 className='text-xl font-semibold text-center capitalize'>
+                    Text invites
+                  </h4>
+                </div>
+                <div className='flex items-center justify-center flex-col space-y-5'>
+                  <div className='flex items-center justify-center border-2 border-primary rounded-full p-2 w-[90px] h-[90px] bg-secondary-alternative'>
+                    <Image
+                      width={45}
+                      height={45}
+                      src='/icons/message-notif.svg'
+                    />
+                  </div>
+                  <h4 className='text-xl font-semibold text-center capitalize'>
+                    Text invites
+                  </h4>
                 </div>
               </div>
             </div>
-          </div>
-          <div className='flex flex-col space-y-8 rounded-lg border-2 border-secondary-alternative bg-secondary-alternative/10 px-10 py-8'>
-            <img src='/icons/direct.svg' alt='' className='w-14 h-14' />
-            <p className='text-2xl font-medium capitalize'>
-              Collect <br /> Address - RSVP
-            </p>
+            <div className='pl-12 my-10'>
+              <ActivityInfo />
+              <WebsitePreviewContainer minimal />
+            </div>
           </div>
         </div>
       </DashboardLayout>
@@ -89,4 +120,4 @@ const DashboardPage = () => {
   );
 };
 
-export default withAuthRoute(DashboardPage);
+export default withAuthRoute(Dashboard);
