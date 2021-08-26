@@ -8,7 +8,7 @@ import { StarIcon } from '@heroicons/react/solid';
 import { useSelector } from 'react-redux';
 import { PlusIcon, SearchIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
-const MailOutInvitationPage = () => {
+const RSVPGuestManagementPage = () => {
   const { user } = useSelector(state => state.user);
   return (
     <>
@@ -140,4 +140,4 @@ const MailOutInvitationPage = () => {
   );
 };
 
-export default withAuthRoute(MailOutInvitationPage);
+export default withAuthRoute(RSVPGuestManagementPage);
