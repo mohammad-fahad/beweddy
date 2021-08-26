@@ -1,7 +1,4 @@
 import Link from 'next/link';
-
-import { MenuIcon, XIcon } from '@heroicons/react/solid';
-import { SearchIcon } from '@heroicons/react/outline';
 import NavLinks from './NavLinks';
 import AuthLinks from './AuthLinks';
 import SearchBar from './SearchBar';

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Sidebar from './Sidebar';
 
-const DashboardLayout = ({ children, marginBottom }) => {
+const DashboardLayout = ({ children, marginBottom, shadow }) => {
   return (
     <div className='flex space-x-16 py-12'>
       <div className='max-w-xs w-full'>
@@ -14,7 +14,11 @@ const DashboardLayout = ({ children, marginBottom }) => {
         </div>
         <Sidebar />
       </div>
-      <div className='w-full container pr-16 xxl:pr-0'>{children}</div>
+      {shadow ? (
+        <div className='w-full'>{children}</div>
+      ) : (
+        <div className='w-full container pr-16 xxl:pr-0'>{children}</div>
+      )}
     </div>
   );
 };
