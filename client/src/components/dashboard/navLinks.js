@@ -41,7 +41,7 @@ const navLinks = [
 const specialFeatures = [
   {
     label: 'QR Code',
-    href: '/dashboard/features/qr-code',
+    href: '/dashboard/features/qrcode',
   },
   {
     label: 'Super link',

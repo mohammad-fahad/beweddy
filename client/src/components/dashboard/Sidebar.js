@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { useRouter } from 'next/router';
 import { InvitationNavLinks } from './invitation';
+import { QRCodeGenerator } from '@components/shared';
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -124,6 +125,9 @@ const Sidebar = () => {
             </a>
           </Link>
         </form>
+      </div>
+      <div className='flex justify-center mt-10'>
+        <QRCodeGenerator sidebar />
       </div>
     </>
   );
