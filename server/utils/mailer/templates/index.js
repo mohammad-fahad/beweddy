@@ -56,7 +56,7 @@ export const activationTemplate = (name, url) => {
               font-family: Helvetica, arial, sans-serif;
               font-size: 16px;
               max-width: 33% !important;
-              width: 33%;
+              width: 26%;
               height: auto !important;
             " alt="" data-proportionally-constrained="true" data-responsive="true"
           src="http://cdn.mcauto-images-production.sendgrid.net/87928f979ea43fec/6e3fc13c-cdc9-4f50-a73f-1e4fc2614f44/1004x388.png" />
@@ -64,16 +64,15 @@ export const activationTemplate = (name, url) => {
     </tr>
     <tr>
       <td align="center">
-        <h2 style="font-weight: 500; margin-bottom: 0">
-          Hi ${name} Confirm Your Email
+        <h2 style="font-weight: 500;">
+          Congratulations! 🎉
         </h2>
       </td>
     </tr>
     <tr>
       <td align="center">
-        <p style="font-weight: 400; line-height: 30px">
-          You just created a new account at BeWeddy. 🎉<br />
-          All you have to do now is activate it.
+        <p style="font-size: 18px; font-weight: 400;">
+          Hi <strong>${name}</strong> Thank You For Choosing BeWeddy For <br /> Your Wedding Platform! Confirm Your Email and <br /> Lets Get This Party Started!
         </p>
       </td>
     </tr>

@@ -1,7 +1,4 @@
 import Link from 'next/link';
-
-import { MenuIcon, XIcon } from '@heroicons/react/solid';
-import { SearchIcon } from '@heroicons/react/outline';
 import NavLinks from './NavLinks';
 import AuthLinks from './AuthLinks';
 import SearchBar from './SearchBar';
@@ -37,7 +34,7 @@ export const Header = () => {
               </div>
               {/* Navigation Links Ends */}
               {/* Authentication Links */}
-              <div className='flex items-center ml-auto xl:ml-0 gap-2 min-w-[197px]'>
+              <div className='flex items-center ml-auto xl:ml-0 gap-2 sm:min-w-[197px]'>
                 {user ? (
                   <div className='hidden sm:block ml-auto'>
                     <ProfileLinks {...{ user }} />

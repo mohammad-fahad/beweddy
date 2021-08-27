@@ -7,6 +7,7 @@ const DashboardActiveLink = ({
   className,
   customActiveLink,
   customFontActiveLink,
+  disabled,
 }) => {
   const { pathname } = useRouter();
 
@@ -15,8 +16,8 @@ const DashboardActiveLink = ({
       <a
         // target='_blank'
         className={`text-base capitalize max-w-max text-primary font-inter group hover:text-primary transition-colors duration-300 relative ${
-          className ? className : ''
-        } ${
+          disabled ? 'cursor-not-allowed' : 'cursor-pointer'
+        } ${className ? className : ''} ${
           customFontActiveLink
             ? customFontActiveLink
             : pathname === href
@@ -25,15 +26,17 @@ const DashboardActiveLink = ({
         }`}
       >
         {children}
-        <span
-          className={`absolute bottom-[-10px] left-0 h-[3px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300 ${
-            customActiveLink
-              ? customActiveLink
-              : pathname === href
-              ? 'w-full'
-              : 'w-0'
-          }`}
-        ></span>
+        {!disabled && (
+          <span
+            className={`absolute bottom-[-10px] left-0 h-[3px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300 ${
+              customActiveLink
+                ? customActiveLink
+                : pathname === href
+                ? 'w-full'
+                : 'w-0'
+            }`}
+          ></span>
+        )}
       </a>
     </Link>
   );

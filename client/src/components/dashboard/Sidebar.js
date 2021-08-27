@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { useRouter } from 'next/router';
 import { InvitationNavLinks } from './invitation';
+import { QRCodeGenerator } from '@components/shared';
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -27,16 +28,16 @@ const Sidebar = () => {
     setValue('description', '');
   };
 
-  if (pathname.includes('/dashboard/invitation')) {
-    return (
-      <div className='mb-10 border-4 border-[#FCE3EB] border-l-0 rounded-l-none rounded-[20px] bg-[#FFFCFD] py-10 px-14'>
-        <InvitationNavLinks />
-      </div>
-    );
-  }
+  // if (pathname.includes('/dashboard/invitation')) {
+  //   return (
+  //     <div className='mb-10 border-4 border-[#FCE3EB] border-l-0 rounded-l-none rounded-[20px] bg-[#FFFCFD] py-10 px-14'>
+  //       <InvitationNavLinks />
+  //     </div>
+  //   );
+  // }
   return (
     <>
-      <div className='mb-10 border-4 border-[#FCE3EB] border-l-0 rounded-l-none rounded-[20px] bg-[#FFFCFD] py-10 px-14'>
+      <div className='mb-10 border-4 border-[#FCE3EB] border-l-0 rounded-l-none rounded-[20px] bg-[#FFFCFD] py-10 pl-14 pr-5'>
         <DashboardNavLinks />
       </div>
       <div className='border-4 border-[#FCE3EB] border-l-0 rounded-l-none rounded-[20px] bg-[#FFFCFD] py-10 pl-14 pr-5'>
@@ -124,6 +125,9 @@ const Sidebar = () => {
             </a>
           </Link>
         </form>
+      </div>
+      <div className='flex justify-center mt-10'>
+        <QRCodeGenerator sidebar />
       </div>
     </>
   );
