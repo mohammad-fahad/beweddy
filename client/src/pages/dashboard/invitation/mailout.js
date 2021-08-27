@@ -13,8 +13,8 @@ const MailOutInvitationPage = () => {
       </Head>
       {/* {loading && <Loader />} */}
       <DashboardTopBar coupleName />
-      <DashboardLayout marginBottom='mb-12'>
-        <DashboardHeader title='Mailout Invites' hideCoupleName />
+      <DashboardLayout marginBottom='mb-[2.1rem]'>
+        <DashboardHeader title='Mailout Invites' hideCoupleName hideMarginTop />
         <div className='p-10 border-4 border-gray-200 rounded-lg mt-14 space-y-10'>
           <Heading className='!text-4xl' h3>
             Select A Printable Invitation Design{' '}

@@ -5,10 +5,10 @@ const DashboardLayout = ({ children, marginBottom, shadow }) => {
   return (
     <div className='flex space-x-16 py-12'>
       <div className='max-w-xs w-full'>
-        <div className={`px-14 ${marginBottom ? marginBottom : 'mb-20'}`}>
+        <div className={`px-14 ${marginBottom ? marginBottom : 'mb-[3.1rem]'}`}>
           <Link href='/dashboard'>
-            <a>
-              <img src='/images/logo.png' alt='' className='h-14' />
+            <a className={`inline-block ${marginBottom ? 'mt-[-1.3rem]' : ''}`}>
+              <img src='/images/logo.png' alt='' className='h-20' />
             </a>
           </Link>
         </div>

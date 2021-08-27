@@ -17,15 +17,17 @@ const QRCodePage = () => {
       </Head>
       {/* {loading && <Loader />} */}
       <DashboardTopBar coupleName />
-      <DashboardLayout marginBottom='mb-12' shadow>
-        <DashboardHeader title='Personalized QR Code' hideCoupleName />
+      <DashboardLayout marginBottom='mb-[2.1rem]' shadow>
+        <DashboardHeader
+          title='Personalized QR Code'
+          hideCoupleName
+          hideMarginTop
+        />
         <div className='shadow-box mt-14 space-y-10'>
           <div className='max-w-[1300px] w-full'>
             <div className='p-12 pr-0 grid grid-cols-3 gap-10'>
-              <div className="col-span-2">
-                <div className="border-2 border-primary py-10 px-8">
-                  
-                </div>
+              <div className='col-span-2'>
+                <div className='border-2 border-primary py-10 px-8'></div>
               </div>
             </div>
           </div>
