@@ -88,7 +88,7 @@ const Dashboard = () => {
                 <WeddingDayCountDown sm />
               </div>
             </div>
-            <div className='ml-12'>
+            <div className='p-12 xxl:pr-0'>
               <div className='px-10 py-16 border-2 border-gray-200 rounded-md grid grid-cols-3 gap-x-10 gap-y-20'>
                 {navLinks.map((link, index) => (
                   <Link key={index} href={link.route}>
