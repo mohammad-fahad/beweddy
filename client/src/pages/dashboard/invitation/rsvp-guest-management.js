@@ -18,7 +18,11 @@ const RSVPGuestManagementPage = () => {
       {/* {loading && <Loader />} */}
       <DashboardTopBar coupleName />
       <DashboardLayout marginBottom='mb-[2.1rem]' shadow>
-        <DashboardHeader title='Mailout Invites' hideCoupleName hideMarginTop />
+        <DashboardHeader
+          title='Let’s Eat, Drink & BeWeddy.'
+          hideCoupleName
+          hideMarginTop
+        />
         <div className='shadow-box mt-14 space-y-10'>
           <div className='max-w-[1300px] w-full'>
             <div className='p-12 xl:pr-0 flex items-center space-x-10 justify-between'>
