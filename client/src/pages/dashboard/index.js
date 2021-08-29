@@ -68,7 +68,7 @@ const Dashboard = () => {
   return (
     <>
       <Head>
-        <title>Beweddy | Mailout invites</title>
+        <title>Beweddy | Dashboard</title>
       </Head>
       {/* {loading && <Loader />} */}
       <DashboardTopBar coupleName />

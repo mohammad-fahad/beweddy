@@ -21,7 +21,7 @@ const RSVPGuestManagementPage = () => {
         <DashboardHeader title='Mailout Invites' hideCoupleName hideMarginTop />
         <div className='shadow-box mt-14 space-y-10'>
           <div className='max-w-[1300px] w-full'>
-            <div className='p-12 pr-0 flex items-center space-x-10 justify-between'>
+            <div className='p-12 xl:pr-0 flex items-center space-x-10 justify-between'>
               <div>
                 <Heading h3 className='!font-alice !text-4xl !font-light'>
                   {user.coupleName}’s wedding
