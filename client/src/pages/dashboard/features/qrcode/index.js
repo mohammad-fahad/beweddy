@@ -1,17 +1,14 @@
 import Head from 'next/head';
 import { DashboardHeader } from '@components/dashboard';
-import { Button, Footer, Heading, Loader } from '@components/index';
+import { Footer, Heading, Loader } from '@components/index';
 import { withAuthRoute } from '@hoc/withAuthRoute';
 import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
-import { StarIcon } from '@heroicons/react/solid';
-import { useSelector } from 'react-redux';
-import { PlusIcon, SearchIcon } from '@heroicons/react/outline';
-import Link from 'next/link';
+// import { useSelector } from 'react-redux';
 import { QRCode } from 'react-qrcode-logo';
 import { useState } from 'react';
 const QRCodePage = () => {
-  const { user } = useSelector(state => state.user);
+  // const { user } = useSelector(state => state.user);
   const [value, setValue] = useState('https://beweddy-delta.vercel.app/');
   const [link, setLink] = useState('https://beweddy-delta.vercel.app/');
   const download = () => {
