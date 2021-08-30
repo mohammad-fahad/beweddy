@@ -429,7 +429,7 @@ const EditWebsitePage = () => {
               <Divider />
               <div className='space-y-5'>
                 <Heading h3>Pick your wedding date</Heading>
-                <div>
+                <div className='inline-block'>
                   <DatePicker
                     selected={selectWeddingDay}
                     popperPlacement='top-end'
