@@ -1095,7 +1095,7 @@ const EditWebsitePage = () => {
       <CropImage
         onSave={onCropSave}
         selectedFile={selectedImageFile}
-        // aspectRatio={16 / 12}
+        aspectRatio={16 / 12}
       />
     </>
   );
