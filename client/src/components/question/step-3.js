@@ -12,6 +12,7 @@ import { XIcon } from '@heroicons/react/solid';
 import { attemptImageUpload, removeImage } from '@utils/index';
 import { motion } from 'framer-motion';
 import { isEmpty } from 'lodash';
+import axios from 'axios';
 
 const easing = [0.6, -0.05, 0.01, 0.99];
 const fadeInUp = {
@@ -117,19 +118,39 @@ const UploadAnnouncement = () => {
   const onCropSave = async ({ file, preview }) => {
     setPreview(preview);
     setFile(file);
+    setLoading(true);
+    const URL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`;
     try {
-      setLoading(true);
       const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'beweddy_csfhgnsu');
 
-      formData.append('image', file);
-      formData.append(
-        'folder',
-        process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
-      );
-      const data = await attemptImageUpload(formData);
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          // Authorization: `Bearer ${user.token}`,
+        },
+      };
+      const { data } = await axios.post(URL, formData, config);
+      const { public_id, height, width, secure_url, url } = data;
+      // setLoading(true);
+      // const formData = new FormData();
+
+      // formData.append('image', file);
+      // formData.append(
+      //   'folder',
+      //   process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
+      // );
+      // const data = await attemptImageUpload(formData);
       setLoading(false);
-      setValue('uploadAnnouncement', data);
-      setUploadedFile(data);
+      setValue('uploadAnnouncement', {
+        public_id,
+        height,
+        width,
+        secure_url,
+        url,
+      });
+      setUploadedFile({ public_id, height, width, secure_url, url });
       // setLoading(false);
       // setValue('uploadAnnouncement', preview);
       // setUploadedFile(preview);
