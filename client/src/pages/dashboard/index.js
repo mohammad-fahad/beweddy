@@ -73,10 +73,15 @@ const Dashboard = () => {
       {/* {loading && <Loader />} */}
       <DashboardTopBar coupleName />
       <DashboardLayout marginBottom='mb-[2.1rem]' shadow>
-        <DashboardHeader title='Dashboard 🎉' hideCoupleName hideMarginTop />
+        <DashboardHeader title='Dashboard 🎉' hideCoupleName hideMarginTop>
+          <div>
+            <h4 className='text-sm font-medium'>Wedding Day Countdown</h4>
+            <WeddingDayCountDown sm />
+          </div>
+        </DashboardHeader>
         <div className='shadow-box mt-14 space-y-10'>
           <div className='max-w-[1300px] w-full'>
-            <div className='p-12 py-10 xxl:pr-0 flex items-center space-x-10 justify-between'>
+            {/* <div className='p-12 py-10 xxl:pr-0 flex items-center space-x-10 justify-between'>
               <Heading h3 className='!font-alice !text-4xl !font-light'>
                 <div className='flex items-center space-x-5'>
                   <Image width={40} height={50} src='/icons/ring-tik.svg' />
@@ -87,7 +92,7 @@ const Dashboard = () => {
                 <h4 className='text-sm font-medium'>Wedding Day Countdown</h4>
                 <WeddingDayCountDown sm />
               </div>
-            </div>
+            </div> */}
             <div className='p-12 xxl:pr-0'>
               <div className='px-10 py-16 border-2 border-gray-200 rounded-md grid grid-cols-3 gap-x-10 gap-y-20'>
                 {navLinks.map((link, index) => (

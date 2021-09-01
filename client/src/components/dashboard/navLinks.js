@@ -48,10 +48,6 @@ const specialFeatures = [
     href: '/dashboard/features/supper-link',
   },
   {
-    label: 'Just To Do List',
-    href: '/dashboard/features/todo',
-  },
-  {
     label: 'Templates',
     href: '/dashboard/features/templates',
   },
