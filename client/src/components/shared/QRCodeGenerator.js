@@ -43,7 +43,8 @@ const QRCodeGenerator = ({ sidebar }) => {
             logoHeight={50}
             logoWidth={50}
             // style={{image}
-            logoImage='https://res.cloudinary.com/muttakinhasib/image/upload/v1621273993/avatar/user_dmy5bs.png'
+            logoImage='/icons/circle-ring.png'
+            // logoImage='https://res.cloudinary.com/muttakinhasib/image/upload/v1621273993/avatar/user_dmy5bs.png'
           />
         </div>
         <div className='space-y-3 flex flex-col items-center'>
@@ -85,7 +86,7 @@ const QRCodeGenerator = ({ sidebar }) => {
                 logoHeight={50}
                 logoWidth={50}
                 // style={{image}
-                logoImage='https://res.cloudinary.com/muttakinhasib/image/upload/v1621273993/avatar/user_dmy5bs.png'
+                logoImage='/icons/circle-ring.png'
               />
             </div>
             <button

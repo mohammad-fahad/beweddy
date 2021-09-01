@@ -7,6 +7,7 @@ import MobileMenu from './MobileMenu';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import ProfileLinks from './profileLinks';
+import { XIcon } from '@heroicons/react/outline';
 
 export const Header = () => {
   const { user } = useSelector(state => state.user);

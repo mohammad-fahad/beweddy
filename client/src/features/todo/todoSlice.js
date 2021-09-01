@@ -29,6 +29,9 @@ const todosSlice = createSlice({
     toggleTodo: (state, { payload }) => {
       const index = state.findIndex(todo => todo.id === payload.id);
       if (index !== -1) {
+        if (payload.description) {
+          state[index].description = payload.description;
+        }
         state[index].isComplete = payload.isComplete;
       }
     },

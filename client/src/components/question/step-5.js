@@ -146,17 +146,34 @@ const UploadCouplePicture = () => {
     setLoading(true);
     setPreview(preview);
     setFile(file);
+    const URL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`;
     try {
       const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'beweddy_csfhgnsu');
 
-      formData.append('image', file);
-      formData.append(
-        'folder',
-        process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
-      );
-      const data = await attemptImageUpload(formData);
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          // Authorization: `Bearer ${user.token}`,
+        },
+      };
+      const { data } = await axios.post(URL, formData, config);
+      const { public_id, height, width, secure_url, url } = data;
+      // const formData = new FormData();
 
-      setUploadedFiles(prev => [...prev, data]);
+      // formData.append('image', file);
+      // formData.append(
+      //   'folder',
+      //   process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
+      // );
+      // const data = await attemptImageUpload(formData);
+
+      // setUploadedFiles(prev => [...prev, data]);
+      setUploadedFiles(prev => [
+        ...prev,
+        { public_id, height, width, secure_url, url },
+      ]);
 
       setValue('uploadCouplePicture', uploadedFiles);
       clearErrors('uploadCouplePicture');
@@ -233,7 +250,7 @@ const UploadCouplePicture = () => {
                 >
                   <XIcon className='w-5 h-5' />
                 </button>
-                <div className='aspect-w-16 aspect-h-10'>
+                <div className='aspect-w-16 aspect-h-12'>
                   <Image
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                     publicId={image.public_id}
@@ -300,7 +317,7 @@ const UploadCouplePicture = () => {
       <CropImage
         onSave={onCropSave}
         selectedFile={selectedImageFile}
-        // aspectRatio={16 / 12}
+        aspectRatio={16 / 12}
       />
     </CreateWebsiteContainer>
   );

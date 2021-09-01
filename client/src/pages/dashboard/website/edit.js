@@ -48,6 +48,7 @@ import {
 } from '@icons-pack/react-simple-icons';
 import { attemptUpdateUserProfile } from '@features/user/userActions';
 import { Fragment } from 'react';
+import axios from 'axios';
 
 const EditWebsitePage = () => {
   const dispatch = useDispatch();
@@ -188,17 +189,34 @@ const EditWebsitePage = () => {
     setLoading(true);
     setPreview(preview);
     setFile(file);
+    const URL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`;
     try {
       const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', 'beweddy_csfhgnsu');
 
-      formData.append('image', file);
-      formData.append(
-        'folder',
-        process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
-      );
-      const data = await attemptImageUpload(formData);
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          // Authorization: `Bearer ${user.token}`,
+        },
+      };
+      const { data } = await axios.post(URL, formData, config);
+      const { public_id, height, width, secure_url, url } = data;
 
-      setUploadedFiles(prev => [...prev, data]);
+      // const formData = new FormData();
+
+      // formData.append('image', file);
+      // formData.append(
+      //   'folder',
+      //   process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
+      // );
+      // const data = await attemptImageUpload(formData);
+
+      setUploadedFiles(prev => [
+        ...prev,
+        { public_id, height, width, secure_url, url },
+      ]);
 
       setValue('couplePictures', uploadedFiles);
       clearErrors('couplePictures');
@@ -392,7 +410,7 @@ const EditWebsitePage = () => {
                       >
                         <XIcon className='w-5 h-5' />
                       </button>
-                      <div className='aspect-w-16 aspect-h-10'>
+                      <div className='aspect-w-16 aspect-h-12'>
                         <Image
                           cloudName={
                             process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
@@ -411,7 +429,7 @@ const EditWebsitePage = () => {
               <Divider />
               <div className='space-y-5'>
                 <Heading h3>Pick your wedding date</Heading>
-                <div>
+                <div className='inline-block'>
                   <DatePicker
                     selected={selectWeddingDay}
                     popperPlacement='top-end'
@@ -1095,7 +1113,7 @@ const EditWebsitePage = () => {
       <CropImage
         onSave={onCropSave}
         selectedFile={selectedImageFile}
-        // aspectRatio={16 / 12}
+        aspectRatio={16 / 12}
       />
     </>
   );

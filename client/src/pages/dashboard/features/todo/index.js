@@ -3,7 +3,12 @@ import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
 import { Footer } from '@components/home';
 import { addTodo, deleteTodo, toggleTodo } from '@features/todo/todoSlice';
-import { CheckCircleIcon, LinkIcon, TrashIcon } from '@heroicons/react/outline';
+import {
+  CheckCircleIcon,
+  LinkIcon,
+  PencilAltIcon,
+  TrashIcon,
+} from '@heroicons/react/outline';
 import { withAuthRoute } from '@hoc/withAuthRoute';
 import { nanoid } from 'nanoid';
 import Head from 'next/head';
@@ -16,9 +21,25 @@ const TodoPage = () => {
   const dispatch = useDispatch();
   const todos = useSelector(state => state.todoList);
   const [openInput, setOpenInput] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
+  const [updateTodo, setUpdateTodo] = useState('');
+
   const { register, handleSubmit, setValue } = useForm();
 
   const onSubmit = data => {
+    if (openEdit) {
+      dispatch(
+        toggleTodo({
+          id: updateTodo.id,
+          description: data.description,
+          isComplete: updateTodo.isComplete,
+        })
+      );
+      setOpenEdit(false);
+      setOpenInput(false);
+      setValue('description', '');
+      return;
+    }
     dispatch(
       addTodo({
         id: nanoid(10),
@@ -27,6 +48,12 @@ const TodoPage = () => {
       })
     );
     setValue('description', '');
+  };
+  const handleUpdate = todo => {
+    setValue('description', todo.description);
+    setUpdateTodo(todo);
+    setOpenEdit(true);
+    setOpenInput(true);
   };
 
   return (
@@ -68,15 +95,21 @@ const TodoPage = () => {
               <button
                 type='button'
                 className='capitalize border-2 border-gray-200 py-2 px-5 rounded-lg font-inter font-medium hover:bg-secondary-alternative/40 hover:border-primary transition duration-300'
-                onClick={() => setOpenInput(prev => !prev)}
+                onClick={() => {
+                  if (!openEdit) {
+                    setOpenInput(prev => !prev);
+                  }
+                  setOpenEdit(false);
+                  setValue('description', '');
+                }}
               >
                 Add to do
               </button>
               {openInput && (
-                <div className='relative w-full'>
+                <div className='flex items-center'>
                   <input
                     type='text'
-                    className='w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal placeholder-gray-400'
+                    className='w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 border-r-0 rounded-r-none text-base font-normal placeholder-gray-400'
                     placeholder='Enter todo'
                     {...register('description', {
                       required: true,
@@ -84,9 +117,9 @@ const TodoPage = () => {
                   />
                   <button
                     type='submit'
-                    className='absolute top-1/2 right-0 -translate-y-1/2 font-inter font-medium py-2 px-5'
+                    className=' font-inter font-medium py-2 px-4 bg-primary text-white border-4 rounded-r-[5px] border-primary text-sm hover:opacity-70 transition duration-300'
                   >
-                    Add
+                    {openEdit ? 'Update' : 'Add'}
                   </button>
                 </div>
               )}
@@ -114,20 +147,23 @@ const TodoPage = () => {
                     )}
                   </button>
                   <p
-                    className={`text-lg font-normal cursor-pointer ${
+                    className={`text-lg font-normal ${
                       todo.isComplete ? 'line-through' : ''
                     }`}
-                    onClick={() =>
-                      dispatch(
-                        toggleTodo({
-                          id: todo.id,
-                          isComplete: !todo.isComplete,
-                        })
-                      )
-                    }
+                    // onClick={() =>
+                    //   dispatch(
+                    //     toggleTodo({
+                    //       id: todo.id,
+                    //       isComplete: !todo.isComplete,
+                    //     })
+                    //   )
+                    // }
                   >
                     {todo.description}
                   </p>
+                  <button type='button' onClick={() => handleUpdate(todo)}>
+                    <PencilAltIcon className='hidden group-hover:inline-block w-6 h-6 text-blue-300 hover:text-blue-500 transition-colors duration-300' />
+                  </button>
                   <button
                     type='button'
                     onClick={() => dispatch(deleteTodo(todo.id))}

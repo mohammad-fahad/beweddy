@@ -130,7 +130,7 @@ const AddressRSVP = () => {
           <Swiper {...params}>
             {user.questions.couplePictures.map((image, index) => (
               <div className='w-full'>
-                <div className='aspect-w-16 aspect-h-8'>
+                <div className='aspect-w-16 aspect-h-12'>
                   <Image
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                     publicId={image.public_id}
