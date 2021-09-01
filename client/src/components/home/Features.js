@@ -14,7 +14,7 @@ const Features = () => {
             <div className='space-y-5'>
               <div className='pr-8 lg:pr-10 timeline pl-7 lg:pl-8 py-7 lg:py-8 flex items-center space-x-8 lg:space-x-10'>
                 <p className='text-[15px] md:text-lg lg:text-xl font-medium capitalize'>
-                  Text/ Email/ Mail out your invitations & E-invites
+                  Text, Email, and Mail Out Invitations
                 </p>
                 <img
                   src='/icons/mail_outline.svg'
@@ -29,13 +29,13 @@ const Features = () => {
                   className='w-10 md:w-12 lg:w-14'
                 />
                 <p className='text-[15px] md:text-lg lg:text-xl font-medium capitalize'>
-                  Send reminders, updates & collect addresses from the wedding
-                  party
+                  Send Updates, Reminders, and Collect Addresses From Your
+                  Guests
                 </p>
               </div>
               <div className='pr-8 lg:pr-10 timeline pl-7 lg:pl-8 py-7 lg:py-8 flex items-center space-x-8 lg:space-x-10'>
                 <p className='text-[15px] md:text-lg lg:text-xl font-medium capitalize'>
-                  Text your wedding schedule, RSVP & itinerary
+                  Text Out Wedding Itinerary, Calendar Invites, Confirm and RSVP
                 </p>
                 <img
                   src='/icons/archive.svg'
@@ -50,7 +50,8 @@ const Features = () => {
                   className='w-10 md:w-12 lg:w-14'
                 />
                 <p className='text-[15px] md:text-lg lg:text-xl font-medium capitalize'>
-                  Send a thank you message by Text or E-mail
+                  Give Appreciation by Sending a Thank You Message Via Text or
+                  Email
                 </p>
               </div>
               {/* <div className='pr-8 lg:pr-10 timeline pl-7 lg:pl-8 py-7 lg:py-8 flex items-center space-x-8 lg:space-x-10'>
