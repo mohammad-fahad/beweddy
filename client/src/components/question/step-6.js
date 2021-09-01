@@ -99,7 +99,7 @@ const SignupPage = () => {
                       </span>
                     </label>
                   </div>
-                  <div className='flex items-center'>
+                  {/* <div className='flex items-center'>
                     <input
                       type='radio'
                       id='venue'
@@ -118,7 +118,7 @@ const SignupPage = () => {
                         For Venue
                       </span>
                     </label>
-                  </div>
+                  </div> */}
                 </div>
                 <button className='!mb-3 border-2 text-sm md:text-base border-primary py-3 px-4 md:px-12 flex items-center space-x-3 rounded-[100px]'>
                   <img src='/icons/gmail.svg' alt='' className='w-6 h-5' />
