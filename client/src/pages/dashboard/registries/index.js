@@ -35,7 +35,7 @@ const RegistriesPage = () => {
       {/* {loading && <Loader />} */}
       <DashboardTopBar coupleName />
       <DashboardLayout marginBottom='mb-[2.1rem]' shadow>
-        <DashboardHeader title='Just Do It List' />
+        <DashboardHeader title='Registries' />
         <div className='shadow-box space-y-10'>
           <div className='max-w-[1300px] w-full'>
             <div className='p-12 xxl:pr-0 space-y-20'>
