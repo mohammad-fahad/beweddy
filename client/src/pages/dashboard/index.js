@@ -110,6 +110,9 @@ const Dashboard = () => {
         <div className='rounded-tl-none shadow-box space-y-10'>
           <div className='max-w-[1300px] w-full'>
             <div className='pl-12 my-10'>
+              <h4 className='text-center mb-20 text-2xl font-medium underline'>
+                Wedding Status
+              </h4>
               <ActivityInfo />
               <WebsitePreviewContainer minimal />
             </div>

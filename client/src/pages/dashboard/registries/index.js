@@ -82,7 +82,7 @@ const RegistriesPage = () => {
                 <Button
                   label='Back'
                   className='opacity-50 !rounded-[5px] !py-2 mx-0'
-                  onClick={() => push({ query: { step: 1 } })}
+                  // onClick={() => push({ query: { step: 1 } })}
                 />
                 <Button
                   label='Next'
