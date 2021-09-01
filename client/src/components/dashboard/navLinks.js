@@ -1,28 +1,41 @@
+import { MenuIcon } from '@heroicons/react/solid';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import DashboardActiveLink from './DashboardActiveLink';
 
 const navLinks = [
   {
-    label: 'Your Website',
+    label: 'Your Wedding Website',
     href: '/dashboard/website',
   },
   {
-    label: 'Send Email Invites',
-    href: '/dashboard/invitation/email',
+    label: 'We Need Your Address',
+    href: '/dashboard/address-and-rsvp',
   },
   {
-    label: 'Send Text Invites',
+    label: 'Just Do It List',
+    href: '/dashboard/features/todo',
+  },
+  {
+    label: 'QR Code & Links',
+    href: '/dashboard/features/qrcode-and-links',
+  },
+  {
+    label: 'Text Invites',
     href: '/dashboard/invitation/text',
   },
   {
-    label: 'Calender Invites',
-    href: '/dashboard/invitation/calender',
+    label: 'Email Invites',
+    href: '/dashboard/invitation/email',
   },
   {
     label: 'Mailout Invites',
     isComing: true,
     href: '/dashboard/invitation/mailout',
+  },
+  {
+    label: 'Calender Invites',
+    href: '/dashboard/invitation/calender',
   },
   {
     label: 'Gift Cards',
@@ -33,7 +46,7 @@ const navLinks = [
     href: '/dashboard/registries',
   },
   {
-    label: 'RSVP’s & Guest Management',
+    label: 'Guest Management',
     href: '/dashboard/invitation/rsvp-guest-management',
   },
 ];
@@ -59,19 +72,26 @@ const specialFeatures = [
 
 const DashboardNavLinks = () => {
   const dashboardRoutes = ['/dashboard', '/dashboard/website/edit'];
-  const featuresRoutes = ['/dashboard/features'];
+  // const featuresRoutes = ['/dashboard/features'];
   const { pathname } = useRouter();
   return (
     <div className='flex flex-col space-y-5'>
-      <DashboardActiveLink
-        href='/dashboard'
-        customActiveLink={dashboardRoutes.includes(pathname) ? 'w-full' : 'w-0'}
-        customFontActiveLink={
-          dashboardRoutes.includes(pathname) ? 'font-bold' : 'font-medium'
-        }
-      >
-        Dashboard
-      </DashboardActiveLink>
+      <div className='flex items-center justify-between space-x-5'>
+        <DashboardActiveLink
+          href='/dashboard'
+          customActiveLink={
+            dashboardRoutes.includes(pathname) ? 'w-full' : 'w-0'
+          }
+          customFontActiveLink={
+            dashboardRoutes.includes(pathname) ? 'font-bold' : 'font-medium'
+          }
+        >
+          Dashboard
+        </DashboardActiveLink>
+        <button className='px-5 py-3'>
+          <MenuIcon className='w-6 h-6' />
+        </button>
+      </div>
       {navLinks.map((link, index) => (
         <DashboardActiveLink
           href={link.isComing ? '#' : link.href}
@@ -88,7 +108,7 @@ const DashboardNavLinks = () => {
           )}
         </DashboardActiveLink>
       ))}
-      <div className='!mt-10'>
+      {/* <div className='!mt-10'>
         <DashboardActiveLink
           href='/dashboard/features'
           customActiveLink={
@@ -114,7 +134,7 @@ const DashboardNavLinks = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

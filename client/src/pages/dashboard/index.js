@@ -7,39 +7,42 @@ import {
   WebsitePreviewContainer,
   WeddingDayCountDown,
 } from '@components/dashboard';
-import { Button, Footer, Heading, Loader } from '@components/index';
+import { Footer } from '@components/index';
 import { withAuthRoute } from '@hoc/withAuthRoute';
 import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
-import { StarIcon } from '@heroicons/react/solid';
 import { useSelector } from 'react-redux';
-import { PlusIcon, SearchIcon } from '@heroicons/react/outline';
 
 const navLinks = [
   {
     label: 'Text invites',
     route: '/dashboard/invitation/text',
-    icon: '/icons/cil_chat-bubble.svg',
+    icon: '/icons/messages.svg',
   },
   {
     label: 'Email invites',
     route: '/dashboard/invitation/email',
-    icon: '/icons/ic_outline-mark-email-read.svg',
+    icon: '/icons/email_send.svg',
   },
   {
     label: 'Calender invites',
     route: '/dashboard/invitation/calender',
-    icon: '/icons/bi_calendar-event.svg',
+    icon: '/icons/note_tick.svg',
   },
   {
     label: 'Mailout invites',
     route: '/dashboard/invitation/mailout',
-    icon: '/icons/bx_bx-mail-send.svg',
+    icon: '/icons/email_add.svg',
   },
   {
-    label: 'Gift cards & Registry',
+    label: 'Gift cards',
     route: '/dashboard/invitation/gift-cards',
-    icon: '/icons/fluent_gift-card-add-24-regular.svg',
+    icon: '/icons/gift-2.svg',
+  },
+  {
+    label: 'Registry',
+    route: '/dashboard/invitation/gift-cards',
+    icon: '/icons/registry.svg',
   },
   {
     label: 'QR Code & links',
@@ -52,9 +55,9 @@ const navLinks = [
     icon: '/icons/ic_baseline-rsvp.svg',
   },
   {
-    label: 'We need your address',
+    label: 'Need your address',
     route: '/dashboard/address-and-rsvp',
-    icon: '/icons/gg_template.svg',
+    icon: '/icons/location.svg',
   },
   {
     label: 'Just do it list',
@@ -72,49 +75,44 @@ const Dashboard = () => {
       </Head>
       {/* {loading && <Loader />} */}
       <DashboardTopBar coupleName />
-      <DashboardLayout marginBottom='mb-[2.1rem]' shadow>
+      <DashboardLayout shadow>
         <DashboardHeader title='Dashboard 🎉' hideCoupleName hideMarginTop>
-          <div>
-            <h4 className='text-sm font-medium'>Wedding Day Countdown</h4>
+          <div className='py-2'>
+            <h4 className='text-sm text-center font-medium'>
+              Wedding Day Countdown
+            </h4>
             <WeddingDayCountDown sm />
           </div>
         </DashboardHeader>
-        <div className='shadow-box mt-14 space-y-10'>
+        <div className='border rounded-tl-xl border-r-0 border-secondary bg-secondary-alternative/10'>
           <div className='max-w-[1300px] w-full'>
-            {/* <div className='p-12 py-10 xxl:pr-0 flex items-center space-x-10 justify-between'>
-              <Heading h3 className='!font-alice !text-4xl !font-light'>
-                <div className='flex items-center space-x-5'>
-                  <Image width={40} height={50} src='/icons/ring-tik.svg' />
-                  <span>All-In-One Wedding Platform.</span>
-                </div>
-              </Heading>
-              <div>
-                <h4 className='text-sm font-medium'>Wedding Day Countdown</h4>
-                <WeddingDayCountDown sm />
-              </div>
-            </div> */}
-            <div className='p-12 xxl:pr-0'>
-              <div className='px-10 py-16 border-2 border-gray-200 rounded-md grid grid-cols-3 gap-x-10 gap-y-20'>
-                {navLinks.map((link, index) => (
-                  <Link key={index} href={link.route}>
-                    <a className='flex items-center justify-center flex-col space-y-5 group'>
-                      <div className='relative'>
-                        <div className='pulse flex items-center justify-center border-2 border-primary rounded-full p-2 w-[90px] h-[90px] bg-secondary-alternative'>
-                          <Image width={45} height={45} src={link.icon} />
-                          <span className='!hidden group-hover:!inline-block'>
-                            <span></span>
-                          </span>
-                        </div>
+            <div className='p-12 xxl:pr-0 grid lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 gap-10 justify-center'>
+              {navLinks.map((link, index) => (
+                <Link key={index} href={link.route}>
+                  <a className='flex items-center justify-center flex-col space-y-5 group'>
+                    <div className='relative'>
+                      <div className='pulse flex items-center justify-center border-2 border-transparent group-hover:border-primary rounded-full p-2 w-[90px] h-[90px] group-hover:bg-[#FCE0EB]'>
+                        <Image width={45} height={45} src={link.icon} />
+                        <span className='!hidden group-hover:!inline-block'>
+                          <span></span>
+                        </span>
                       </div>
-                      <h4 className='text-xl font-semibold text-center capitalize'>
-                        {link.label}
-                      </h4>
-                    </a>
-                  </Link>
-                ))}
-              </div>
+                    </div>
+                    <h4 className='text-lg font-medium text-center capitalize'>
+                      {link.label}
+                    </h4>
+                  </a>
+                </Link>
+              ))}
             </div>
+          </div>
+        </div>
+        <div className='rounded-tl-none shadow-box space-y-10'>
+          <div className='max-w-[1300px] w-full'>
             <div className='pl-12 my-10'>
+              <h4 className='text-center mb-20 text-2xl font-medium underline'>
+                Wedding Status
+              </h4>
               <ActivityInfo />
               <WebsitePreviewContainer minimal />
             </div>

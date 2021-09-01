@@ -153,64 +153,41 @@ const GiftCardPage = () => {
       </Head>
       {/* {loading && <Loader />} */}
       <DashboardTopBar />
-      <DashboardLayout className='container'>
-        <DashboardHeader title='Gift Cards'>
-          <div className='flex items-center space-x-5'>
-            <Link href='/dashboard/website/edit'>
-              <a className='flex items-center space-x-3 py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300'>
-                <PencilIcon className='w-5 h-5' />
-                <span>Edit your website</span>
-              </a>
-            </Link>
-            <Link href='/'>
-              <a className='flex items-center space-x-3 py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300'>
-                <LinkIcon className='w-5 h-5' />
-                <span>Share your super link</span>
-              </a>
-            </Link>
-            <Link href='/'>
-              <a className='py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300'>
-                Guests Management
-              </a>
-            </Link>
-          </div>
-        </DashboardHeader>
-        <div className='p-10 border-4 border-gray-200 rounded-lg'>
-          <>
-            <h1 className='mb-3 text-2xl relative inline-block'>
-              Add Your Gift Cards
-              <div className='absolute -bottom-2 w-full h-[2px] md:h-[4px] bg-[#F9D1DE]' />
-            </h1>
-          </>
-
-          <div class='grid grid-cols-12 gap-5 my-12 '>
-            {giftCards?.map(el => (
-              <div className='relative col-span-3 overflow-hidden transition-transform duration-300 cursor-pointer rounded-xl ease-easing'>
-                <Image
-                  width={287}
-                  height={150}
-                  src={el.image}
-                  alt={el.name}
-                  className='w-full h-full'
-                />
-                {/* <div className="flex items-center justify-center w-full h-full opacity-0 hover:opacity-100"> */}
-                <div className='absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center opacity-0 bg-primary/80 hover:opacity-100'>
-                  {/* <img src="/icons/plus.png" alt="" className="text-white w-9" /> */}
-                  <PlusIcon className='w-12 text-white h-12' />
-                </div>
-              </div>
-            ))}
-            {/* <button
+      <DashboardLayout shadow>
+        <DashboardHeader title='Gift Cards' />
+        <div className='shadow-box space-y-10'>
+          <div className='max-w-[1300px] w-full'>
+            <div className='p-12 xxl:pr-0'>
+              <div class='grid grid-cols-12 gap-5 mb-12 '>
+                {giftCards?.map(el => (
+                  <div className='relative col-span-3 overflow-hidden transition-transform duration-300 cursor-pointer rounded-xl ease-easing'>
+                    <Image
+                      width={287}
+                      height={150}
+                      src={el.image}
+                      alt={el.name}
+                      className='w-full h-full'
+                    />
+                    {/* <div className="flex items-center justify-center w-full h-full opacity-0 hover:opacity-100"> */}
+                    <div className='absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center opacity-0 bg-primary/80 hover:opacity-100'>
+                      {/* <img src="/icons/plus.png" alt="" className="text-white w-9" /> */}
+                      <PlusIcon className='w-12 text-white h-12' />
+                    </div>
+                  </div>
+                ))}
+                {/* <button
               className="py-2 px-10 border-2 rounded-[10px] mt-5 bg-black transition duration-300 
 text-white  font-inter font-medium text-center	"
             > */}
-          </div>
-          <div>
-            <Button
-              label='SAVE'
-              type='submit'
-              className='!rounded-[5px] !mx-0'
-            />
+              </div>
+              <div>
+                <Button
+                  label='SAVE'
+                  type='submit'
+                  className='!rounded-[5px] !mx-0'
+                />
+              </div>
+            </div>
           </div>
         </div>
       </DashboardLayout>
