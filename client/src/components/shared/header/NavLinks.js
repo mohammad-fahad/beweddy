@@ -1,3 +1,4 @@
+import { HeartIcon } from '@heroicons/react/outline';
 import ActiveLink from '../ActiveLink';
 
 const NavLinks = ({ className }) => {
@@ -5,8 +6,12 @@ const NavLinks = ({ className }) => {
     <div
       className={`flex md:items-center md:gap-5 ${className ? className : ''}`}
     >
-      <ActiveLink href='/wedding-website'>
+      <ActiveLink href='/'>
         <img src='/icons/home.svg' alt='' className='w-5 h-5' />
+        <span>Home</span>
+      </ActiveLink>
+      <ActiveLink href='/wedding-website'>
+        <HeartIcon className='w-5 h-5' />
         <span>Wedding Website</span>
       </ActiveLink>
       <ActiveLink href='/invitations'>

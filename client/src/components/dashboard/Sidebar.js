@@ -1,0 +1,172 @@
+import DashboardNavLinks from './navLinks';
+import { addTodo, deleteTodo, toggleTodo } from '@features/todo/todoSlice';
+import {
+  CheckCircleIcon,
+  PencilAltIcon,
+  TrashIcon,
+} from '@heroicons/react/outline';
+import Link from 'next/link';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { nanoid } from 'nanoid';
+import { useRouter } from 'next/router';
+import { InvitationNavLinks } from './invitation';
+import { QRCodeGenerator } from '@components/shared';
+
+const Sidebar = () => {
+  const dispatch = useDispatch();
+  const todos = useSelector(state => state.todoList);
+  const [openInput, setOpenInput] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
+  const [updateTodo, setUpdateTodo] = useState('');
+
+  const { register, handleSubmit, setValue } = useForm();
+
+  const onSubmit = data => {
+    if (openEdit) {
+      dispatch(
+        toggleTodo({
+          id: updateTodo.id,
+          description: data.description,
+          isComplete: updateTodo.isComplete,
+        })
+      );
+      setOpenEdit(false);
+      setOpenInput(false);
+      setValue('description', '');
+      return;
+    }
+    dispatch(
+      addTodo({
+        id: nanoid(10),
+        isComplete: false,
+        ...data,
+      })
+    );
+    setValue('description', '');
+  };
+  const handleUpdate = todo => {
+    setValue('description', todo.description);
+    setUpdateTodo(todo);
+    setOpenEdit(true);
+    setOpenInput(true);
+  };
+
+  // if (pathname.includes('/dashboard/invitation')) {
+  //   return (
+  //     <div className='mb-10 border-4 border-[#FCE3EB] border-l-0 rounded-l-none rounded-[20px] bg-[#FFFCFD] py-10 px-14'>
+  //       <InvitationNavLinks />
+  //     </div>
+  //   );
+  // }
+  return (
+    <>
+      <div className='mb-10 border-4 border-[#FCE3EB] border-l-0 rounded-l-none rounded-[20px] bg-[#FFFCFD] py-10 pl-14 pr-5'>
+        <DashboardNavLinks />
+      </div>
+      <div className='border-4 border-[#FCE3EB] border-l-0 rounded-l-none rounded-[20px] bg-[#FFFCFD] py-10 pl-14 pr-5'>
+        <form className='space-y-5' onSubmit={handleSubmit(onSubmit)}>
+          <div className='flex items-center space-x-5'>
+            <img src='/icons/ring-tik.svg' alt='' className='w-8' />
+            <h4 className='text-2xl font-medium capitalize'>Just to do list</h4>
+          </div>
+          <button
+            type='button'
+            className='capitalize border-2 border-secondary-alternative/40 py-2 px-5 rounded-lg font-inter bg-secondary-alternative/20 font-medium hover:bg-secondary-alternative/40 hover:border-primary transition duration-300'
+            onClick={() => {
+              if (!openEdit) {
+                setOpenInput(prev => !prev);
+              }
+              setOpenEdit(false);
+              setValue('description', '');
+            }}
+          >
+            Add to do
+          </button>
+          {openInput && (
+            <div className='flex items-center'>
+              <input
+                type='text'
+                className='w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 border-r-0 rounded-r-none text-base font-normal placeholder-gray-400'
+                placeholder='Enter todo'
+                {...register('description', {
+                  required: true,
+                })}
+              />
+              <button
+                type='submit'
+                className=' font-inter font-medium py-2 px-4 bg-primary text-white border-4 rounded-r-[5px] border-primary text-sm hover:opacity-70 transition duration-300'
+              >
+                {openEdit ? 'Update' : 'Add'}
+              </button>
+            </div>
+          )}
+          {todos
+            .slice(-6)
+            .reverse()
+            .map(todo => (
+              <div key={todo.id} className='flex space-x-5 group relative'>
+                <button
+                  type='button'
+                  className='flex items-center justify-center w-6 h-6'
+                  onClick={() =>
+                    dispatch(
+                      toggleTodo({
+                        id: todo.id,
+                        isComplete: !todo.isComplete,
+                      })
+                    )
+                  }
+                >
+                  {todo.isComplete ? (
+                    <CheckCircleIcon className='w-6 h-6' />
+                  ) : (
+                    <div className='w-6 h-6 flex items-center justify-center'>
+                      <span className='block border-2 border-primary w-5 h-5 rounded-full'></span>
+                    </div>
+                  )}
+                </button>
+                <p
+                  className={`text-base font-normal break-words ${
+                    todo.isComplete ? 'line-through' : ''
+                  }`}
+                  // onClick={() =>
+                  //   dispatch(
+                  //     toggleTodo({
+                  //       id: todo.id,
+                  //       isComplete: !todo.isComplete,
+                  //     })
+                  //   )
+                  // }
+                >
+                  {todo.description}
+                </p>
+                <div className='opacity-0 invisible group-hover:opacity-100 group-hover:visible flex items-center space-x-2 py-1 px-2 bg-white absolute top-0 right-0'>
+                  <button type='button' onClick={() => handleUpdate(todo)}>
+                    <PencilAltIcon className='w-6 h-6 text-blue-300 hover:text-blue-500 transition-colors duration-300' />
+                  </button>
+                  <button
+                    type='button'
+                    onClick={() => dispatch(deleteTodo(todo.id))}
+                  >
+                    <TrashIcon className='w-6 h-6 text-red-300 hover:text-red-500 transition-colors duration-300' />
+                  </button>
+                </div>
+              </div>
+            ))}
+          <Link href='/dashboard/features/todo'>
+            <a className='text-lg block font-medium capitalize hover:underline'>
+              See all
+            </a>
+          </Link>
+        </form>
+      </div>
+      <div className='flex justify-center mt-10'>
+        <QRCodeGenerator sidebar />
+      </div>
+    </>
+  );
+};
+
+export default Sidebar;

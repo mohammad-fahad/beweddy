@@ -1,11 +1,13 @@
 import { LinkButton, Heading } from '@components/index';
 import Link from 'next/link';
 import Swiper from 'react-id-swiper';
+import { useSelector } from 'react-redux';
 
 import SwiperCore, { Lazy, Autoplay } from 'swiper';
 SwiperCore.use([Lazy, Autoplay]);
 
 const CreateWebsite = () => {
+  const {user} = useSelector(state => state.user);
   const params = {
     loop: true,
     autoplay: {
@@ -61,13 +63,15 @@ const CreateWebsite = () => {
             </div>
           </Swiper>
         </div>
-        <div className='mt-8 text-center'>
-          <LinkButton
-            label='Create Your Wedding Website'
-            className='!rounded-[100px] !px-10'
-            href='/create-website'
-          />
-        </div>
+        {!user && (
+          <div className='mt-8 text-center'>
+            <LinkButton
+              label='Create Your Wedding Website'
+              className='!rounded-[100px] !px-10'
+              href='/create-website'
+            />
+          </div>
+        )}
       </div>
     </div>
   );

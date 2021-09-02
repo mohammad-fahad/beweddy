@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-const WeddingDayCountDown = () => {
+const WeddingDayCountDown = ({ sm }) => {
   const { user } = useSelector(state => state.user);
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
@@ -19,6 +19,7 @@ const WeddingDayCountDown = () => {
       const interval = setInterval(() => {
         const now = new Date().getTime();
         const distance = countDownDate - now;
+        if (distance <= 0) return;
         setDays(Math.floor(distance / (1000 * 60 * 60 * 24)));
         setHours(
           Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
@@ -32,30 +33,52 @@ const WeddingDayCountDown = () => {
   }, []);
 
   return (
-    <div className='flex items-center space-x-5 mt-8'>
-      <div className='flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg w-28 py-5'>
-        <h4 className='text-2xl font-medium'>
+    <div className={`flex items-center space-x-5 ${sm ? 'mt-3' : 'mt-8'}`}>
+      <div
+        className={`flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg ${
+          sm ? 'w-[60px] py-3' : 'w-28 py-5'
+        }`}
+      >
+        <h4 className={`${sm ? 'text-[15px]' : 'text-2xl'} font-bold`}>
           {days < 10 ? `0${days}` : days}
         </h4>
-        <p className='text-base font-normal'>Days</p>
+        <p className={`${sm ? 'text-[9px]' : 'text-base'} font-normal`}>Days</p>
       </div>
-      <div className='flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg w-28 py-5'>
-        <h4 className='text-2xl font-medium'>
+      <div
+        className={`flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg ${
+          sm ? 'w-[60px] py-3' : 'w-28 py-5'
+        }`}
+      >
+        <h4 className={`${sm ? 'text-[15px]' : 'text-2xl'} font-bold`}>
           {hours < 10 ? `0${hours}` : hours}
         </h4>
-        <p className='text-base font-normal'>Hours</p>
+        <p className={`${sm ? 'text-[9px]' : 'text-base'} font-normal`}>
+          Hours
+        </p>
       </div>
-      <div className='flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg w-28 py-5'>
-        <h4 className='text-2xl font-medium'>
+      <div
+        className={`flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg ${
+          sm ? 'w-[60px] py-3' : 'w-28 py-5'
+        }`}
+      >
+        <h4 className={`${sm ? 'text-[15px]' : 'text-2xl'} font-bold`}>
           {minutes < 10 ? `0${minutes}` : minutes}
         </h4>
-        <p className='text-base font-normal'>Minutes</p>
+        <p className={`${sm ? 'text-[9px]' : 'text-base'} font-normal`}>
+          Minutes
+        </p>
       </div>
-      <div className='flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg w-28 py-5'>
-        <h4 className='text-2xl font-medium'>
+      <div
+        className={`flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg ${
+          sm ? 'w-[60px] py-3' : 'w-28 py-5'
+        }`}
+      >
+        <h4 className={`${sm ? 'text-[15px]' : 'text-2xl'} font-bold`}>
           {seconds < 10 ? `0${seconds}` : seconds}
         </h4>
-        <p className='text-base font-normal'>Seconds</p>
+        <p className={`${sm ? 'text-[9px]' : 'text-base'} font-normal`}>
+          Seconds
+        </p>
       </div>
     </div>
   );

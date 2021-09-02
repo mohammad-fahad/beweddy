@@ -1,39 +1,24 @@
 import Head from 'next/head';
 import Link from 'next/link';
+// import Image from 'next/image';
 import { Image } from 'cloudinary-react';
 import { DashboardHeader } from '@components/dashboard';
 import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
-import {
-  Button,
-  CropImage,
-  Divider,
-  FirstReceptionDatePicker,
-  Footer,
-  Heading,
-  Loader,
-  SecondReceptionDatePicker,
-} from '@components/index';
-import {
-  LinkIcon,
-  MinusIcon,
-  PencilIcon,
-  PlusIcon,
-} from '@heroicons/react/outline';
+import { Button, Footer, Heading } from '@components/index';
+import { LinkIcon, PencilIcon, SelectorIcon } from '@heroicons/react/outline';
 import { withAuthRoute } from '@hoc/withAuthRoute';
-import { attemptImageUpload, removeImage } from '@utils/index';
-import { useCallback, useEffect, useState } from 'react';
-import { useDropzone } from 'react-dropzone';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
-import { compareDate } from '@helpers/index';
-import { isEmpty } from 'lodash';
+import { useDispatch, useSelector } from 'react-redux';
 import Swiper from 'react-id-swiper';
 
 import SwiperCore, { Lazy, Autoplay } from 'swiper';
 import { Listbox, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { CheckIcon } from '@heroicons/react/solid';
+import { addGuest } from '@features/guest/guestSlice';
+import { useRouter } from 'next/router';
 SwiperCore.use([Lazy, Autoplay]);
 
 const params = {
@@ -44,9 +29,18 @@ const params = {
   },
 };
 
-const EditWebsitePage = () => {
+const otherProviders = [
+  { name: 'Select Provider' },
+  { name: 'Airtel' },
+  { name: 'Robi' },
+];
+
+const AddressRSVP = () => {
+  const dispatch = useDispatch();
   const { user } = useSelector(state => state.user);
+  const { push } = useRouter();
   const { countries } = useSelector(state => state.countryList);
+  const [selectedProvider, setSelectedProvider] = useState(otherProviders[0]);
 
   const [selectedCountry, setSelectedCountry] = useState({});
 
@@ -61,35 +55,64 @@ const EditWebsitePage = () => {
   const {
     watch,
     register,
-    setError,
-    setValue,
     getValues,
-    clearErrors,
     handleSubmit,
     formState: { errors },
   } = useForm({
     mode: 'all',
-    defaultValues: user.questions,
     shouldFocusError: false,
     shouldUnregister: true,
   });
-  watch('rsvp_estimate_guests');
+  watch(['guestEstimate', 'provider']);
+
+  const onSubmit = data => {
+    dispatch(addGuest(submitData(data)));
+    push('/dashboard/address-and-rsvp/preview');
+  };
+
+  const submitData = data => {
+    const wayOfInvitations = {
+      text_invite: data.text_invite,
+      email_invite: data.email_invite,
+      mail_invite: data.mail_invite,
+      allAbove_invite: data.allAbove_invite,
+    };
+    const address = {
+      street: data.street,
+      providence: data.providence,
+      city: data.city,
+      state: data.state,
+      zip: data.zip,
+    };
+
+    return {
+      address,
+      wayOfInvitations,
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      callingCode: selectedCountry.callingCodes[0],
+      provider: data.provider,
+      rsvp: data.rsvp,
+      guestEstimate: data.guestEstimate,
+    };
+  };
   return (
     <>
       <Head>
-        <title>Beweddy | Edit Website</title>
+        <title>Beweddy | Address & RSVP</title>
       </Head>
       {/* {loading && <Loader />} */}
       <DashboardTopBar />
       <DashboardLayout>
-        <DashboardHeader title='Edit your website'>
+        <DashboardHeader title='Collect Address & RSVP'>
           <div className='flex items-center space-x-5'>
-            {/* <Link href='/dashboard/website/edit'>
+            <Link href='/dashboard/website/edit'>
               <a className='flex items-center space-x-3 py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300'>
                 <PencilIcon className='w-5 h-5' />
                 <span>Edit your website</span>
               </a>
-            </Link> */}
+            </Link>
             <Link href='/'>
               <a className='flex items-center space-x-3 py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300'>
                 <LinkIcon className='w-5 h-5' />
@@ -107,12 +130,12 @@ const EditWebsitePage = () => {
           <Swiper {...params}>
             {user.questions.couplePictures.map((image, index) => (
               <div className='w-full'>
-                <div className='aspect-w-16 aspect-h-8'>
+                <div className='aspect-w-16 aspect-h-12'>
                   <Image
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                     publicId={image.public_id}
                     src={!image.public_id ? image.url : null}
-                    width='1000'
+                    width={image.width}
                     crop='scale'
                     className='object-cover'
                   />
@@ -135,13 +158,13 @@ const EditWebsitePage = () => {
               </Link>
             </div>
             <h4 className='text-center text-4xl font-medium'>
-              ✨ Your Invited To Our Wedding! 💍 ✨
+              ✨ Your Are Invited To Our Wedding! 💍 ✨
             </h4>
             <p className='text-center text-2xl font-medium mt-5 mb-16'>
               Thanks for your love and support! We want to send you an
               invitation!
             </p>
-            <form className='space-y-3 px-20'>
+            <form className='space-y-3 px-20' onSubmit={handleSubmit(onSubmit)}>
               <div className='space-y-3'>
                 <Heading h3 className='!text-[22px] !font-medium'>
                   Your Name Here <span className='text-red-400'>*</span>
@@ -199,25 +222,61 @@ const EditWebsitePage = () => {
                   What is your full address? 🏠{' '}
                   <span className='text-red-400'>*</span>
                 </Heading>
-                <div>
-                  <input
-                    type='text'
-                    className='w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
-                    placeholder='Street'
-                    {...register('street', {
-                      required: {
-                        value: true,
-                        message: 'Street is required!',
-                      },
-                    })}
-                  />
-                  {errors?.street && (
+
+                <div className='flex items-center space-x-5'>
+                  <div className='w-full'>
+                    <input
+                      type='text'
+                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
+                      placeholder='Street'
+                      {...register('street', {
+                        required: {
+                          value: true,
+                          message: 'Street is required!',
+                        },
+                      })}
+                    />
+
                     <p className='mt-2 text-red-400 font-light text-sm h-4'>
                       {errors?.street?.message}
                     </p>
-                  )}
+                  </div>
+                  <div className='w-full'>
+                    <input
+                      type='text'
+                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
+                      placeholder='Apt/Suite/Other'
+                      {...register('providence', {
+                        required: {
+                          value: true,
+                          message: 'Providence is required!',
+                        },
+                      })}
+                    />
+
+                    <p className='mt-2 text-red-400 font-light text-sm h-4'>
+                      {errors?.providence?.message}
+                    </p>
+                  </div>
                 </div>
-                <div className='flex items-center space-x-3'>
+                <div className='flex items-center space-x-5'>
+                  <div className='w-full'>
+                    <input
+                      type='text'
+                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
+                      placeholder='City'
+                      {...register('city', {
+                        required: {
+                          value: true,
+                          message: 'City is required!',
+                        },
+                      })}
+                    />
+
+                    <p className='mt-2 text-red-400 font-light text-sm h-4'>
+                      {errors?.city?.message}
+                    </p>
+                  </div>
                   <div className='w-full'>
                     <input
                       type='text'
@@ -230,29 +289,10 @@ const EditWebsitePage = () => {
                         },
                       })}
                     />
-                    {errors?.state && (
-                      <p className='mt-2 text-red-400 font-light text-sm h-4'>
-                        {errors?.state?.message}
-                      </p>
-                    )}
-                  </div>
-                  <div className='w-full'>
-                    <input
-                      type='text'
-                      className='w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
-                      placeholder='Providence'
-                      {...register('providence', {
-                        required: {
-                          value: true,
-                          message: 'Providence is required!',
-                        },
-                      })}
-                    />
-                    {errors?.providence && (
-                      <p className='mt-2 text-red-400 font-light text-sm h-4'>
-                        {errors?.providence?.message}
-                      </p>
-                    )}
+
+                    <p className='mt-2 text-red-400 font-light text-sm h-4'>
+                      {errors?.state?.message}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -438,14 +478,14 @@ const EditWebsitePage = () => {
                   <div className='space-x-3 flex items-center'>
                     <input
                       type='checkbox'
-                      id='all_above_invite'
+                      id='allAbove_invite'
                       value={true}
                       defaultChecked
                       className='text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
-                      {...register('all_above_invite')}
+                      {...register('allAbove_invite')}
                     />
                     <label
-                      htmlFor='all_above_invite'
+                      htmlFor='allAbove_invite'
                       className='font-inter font-light text-lg md:text-lg cursor-pointer'
                     >
                       All The Above - 💯
@@ -457,58 +497,220 @@ const EditWebsitePage = () => {
                 <Heading h3 className='!text-[22px] !font-medium'>
                   Who is your phone provider?
                 </Heading>
-                <div className='flex items-center space-x-10'>
-                  <div className='space-x-3 flex items-center'>
+                <div className='grid grid-cols-4 gap-x-10 gap-y-5 max-w-4xl'>
+                  <div className='flex items-center'>
                     <input
-                      type='checkbox'
-                      id='at&t_provider'
-                      value={true}
+                      type='radio'
+                      id='AT&T'
+                      value='AT&T'
                       defaultChecked
-                      className='text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
-                      {...register('at&t_provider')}
+                      className='hidden'
+                      {...register('provider')}
                     />
                     <label
-                      htmlFor='at&t_provider'
-                      className='font-inter font-light text-lg md:text-lg cursor-pointer'
+                      htmlFor='AT&T'
+                      className='flex items-center space-x-3 cursor-pointer'
                     >
-                      AT & T
+                      <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
+                        <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
+                      </div>
+                      <span className='font-inter text-lg font-light'>
+                        AT&T
+                      </span>
                     </label>
                   </div>
-                  <div className='space-x-3 flex items-center'>
+                  <div className='flex items-center'>
                     <input
-                      type='checkbox'
-                      id='tMobile_Provider'
-                      value={true}
-                      defaultChecked
-                      className='text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
-                      {...register('tMobile_Provider')}
+                      type='radio'
+                      id='T-Mobile&Sprint'
+                      value='T-Mobile&Sprint'
+                      className='hidden'
+                      {...register('provider')}
                     />
                     <label
-                      htmlFor='tMobile_Provider'
-                      className='font-inter font-light text-lg md:text-lg cursor-pointer'
+                      htmlFor='T-Mobile&Sprint'
+                      className='flex items-center space-x-3 cursor-pointer'
                     >
-                      T - Mobile & Sprint
+                      <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
+                        <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
+                      </div>
+                      <span className='font-inter text-lg font-light'>
+                        T-Mobile & Sprint
+                      </span>
                     </label>
                   </div>
-                  <div className='space-x-3 flex items-center'>
+                  <div className='flex items-center'>
                     <input
-                      type='checkbox'
-                      id='verizon_provider'
-                      value={true}
-                      className='text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
-                      {...register('verizon_provider')}
+                      type='radio'
+                      id='Verizon'
+                      value='Verizon'
+                      className='hidden'
+                      {...register('provider')}
                     />
                     <label
-                      htmlFor='verizon_provider'
-                      className='font-inter font-light text-lg md:text-lg cursor-pointer'
+                      htmlFor='Verizon'
+                      className='flex items-center space-x-3 cursor-pointer'
                     >
-                      Verizon
+                      <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
+                        <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
+                      </div>
+                      <span className='font-inter text-lg font-light'>
+                        Verizon
+                      </span>
+                    </label>
+                  </div>
+                  <div className='flex items-center'>
+                    <input
+                      type='radio'
+                      id='BoostMobile'
+                      value='BoostMobile'
+                      className='hidden'
+                      {...register('provider')}
+                    />
+                    <label
+                      htmlFor='BoostMobile'
+                      className='flex items-center space-x-3 cursor-pointer'
+                    >
+                      <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
+                        <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
+                      </div>
+                      <span className='font-inter text-lg font-light'>
+                        Boost Mobile
+                      </span>
+                    </label>
+                  </div>
+                  <div className='flex items-center'>
+                    <input
+                      type='radio'
+                      id='CricketWireless'
+                      value='CricketWireless'
+                      className='hidden'
+                      {...register('provider')}
+                    />
+                    <label
+                      htmlFor='CricketWireless'
+                      className='flex items-center space-x-3 cursor-pointer'
+                    >
+                      <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
+                        <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
+                      </div>
+                      <span className='font-inter text-lg font-light'>
+                        Cricket Wireless
+                      </span>
+                    </label>
+                  </div>
+
+                  <div className='flex items-center'>
+                    <input
+                      type='radio'
+                      id='VirginMobile'
+                      value='VirginMobile'
+                      className='hidden'
+                      {...register('provider')}
+                    />
+                    <label
+                      htmlFor='VirginMobile'
+                      className='flex items-center space-x-3 cursor-pointer'
+                    >
+                      <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
+                        <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
+                      </div>
+                      <span className='font-inter text-lg font-light'>
+                        Virgin Mobile
+                      </span>
+                    </label>
+                  </div>
+                  <div className='flex items-center'>
+                    <input
+                      type='radio'
+                      id='Other'
+                      value='Other'
+                      className='hidden'
+                      {...register('provider')}
+                    />
+                    <label
+                      htmlFor='Other'
+                      className='flex items-center space-x-3 cursor-pointer'
+                    >
+                      <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
+                        <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
+                      </div>
+                      <span className='font-inter text-lg font-light'>
+                        Other
+                      </span>
                     </label>
                   </div>
                 </div>
-                <select className='w-28 rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'>
-                  <option value='other'>Other</option>
-                </select>
+                {getValues('provider') === 'Other' && (
+                  <Listbox
+                    value={selectedProvider}
+                    onChange={setSelectedProvider}
+                  >
+                    <div className='relative mt-1'>
+                      <Listbox.Button className='relative font-inter w-max rounded-[5px] border-2 border-secondary/20 py-3 pl-5 pr-10 text-base font-semibold'>
+                        <span className='block truncate'>
+                          {selectedProvider.name}
+                        </span>
+                        <span className='absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none'>
+                          <SelectorIcon
+                            className='w-5 h-5 text-gray-400'
+                            aria-hidden='true'
+                          />
+                        </span>
+                      </Listbox.Button>
+                      <Transition
+                        as={Fragment}
+                        leave='transition ease-in duration-100'
+                        leaveFrom='opacity-100'
+                        leaveTo='opacity-0'
+                      >
+                        <Listbox.Options className='absolute min-w-[256px] py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
+                          {otherProviders.map((provider, providerIdx) => (
+                            <Listbox.Option
+                              key={providerIdx}
+                              className={({ active }) =>
+                                `${
+                                  active
+                                    ? 'text-secondary bg-secondary-alternative/50'
+                                    : 'text-gray-900'
+                                }
+                          cursor-pointer select-none relative py-2 pl-10 pr-4 font-medium`
+                              }
+                              value={provider}
+                            >
+                              {({ selected, active }) => (
+                                <>
+                                  <span
+                                    className={`${
+                                      selected ? 'font-semibold' : 'font-medium'
+                                    } block truncate`}
+                                  >
+                                    {provider.name}
+                                  </span>
+                                  {selected ? (
+                                    <span
+                                      className={`${
+                                        active
+                                          ? 'text-amber-600'
+                                          : 'text-amber-600'
+                                      }
+                                absolute inset-y-0 left-0 flex items-center pl-3`}
+                                    >
+                                      <CheckIcon
+                                        className='w-5 h-5'
+                                        aria-hidden='true'
+                                      />
+                                    </span>
+                                  ) : null}
+                                </>
+                              )}
+                            </Listbox.Option>
+                          ))}
+                        </Listbox.Options>
+                      </Transition>
+                    </div>
+                  </Listbox>
+                )}
               </div>
               <div className='space-y-5 !mt-5'>
                 <Heading h3 className='!text-[22px] !font-medium'>
@@ -532,6 +734,27 @@ const EditWebsitePage = () => {
                         <div className='checked-inner w-2 md:w-3 h-2 md:h-3 rounded-full'></div>
                       </div>
                       <span className='font-inter text-lg font-light'>Yes</span>
+                    </label>
+                  </div>
+                  <div className='flex items-center'>
+                    <input
+                      type='radio'
+                      id='maybe'
+                      value='maybe'
+                      defaultChecked
+                      className='hidden'
+                      {...register('rsvp')}
+                    />
+                    <label
+                      htmlFor='maybe'
+                      className='flex items-center space-x-3 cursor-pointer'
+                    >
+                      <div className='checked-outer border-[3px] rounded-full border-primary w-6 md:w-7 h-6 md:h-7 flex items-center justify-center'>
+                        <div className='checked-inner w-2 md:w-3 h-2 md:h-3 rounded-full'></div>
+                      </div>
+                      <span className='font-inter text-lg font-light'>
+                        Maybe
+                      </span>
                     </label>
                   </div>
                   <div className='flex items-center'>
@@ -563,7 +786,7 @@ const EditWebsitePage = () => {
                 <input
                   disabled
                   type='text'
-                  value={`1 - ${getValues('rsvp_estimate_guests')}`}
+                  value={`1 - ${getValues('guestEstimate')}`}
                   className='w-28 text-center rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
                 />
                 <input
@@ -571,7 +794,7 @@ const EditWebsitePage = () => {
                   min='2'
                   max='100'
                   className='block text-center rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
-                  {...register('rsvp_estimate_guests')}
+                  {...register('guestEstimate')}
                 />
               </div>
               <div className='!mt-10'>
@@ -589,7 +812,11 @@ const EditWebsitePage = () => {
                 Eat, Drink, & BeWeddy!
               </Heading>
               <div className='max-w-lg mx-auto'>
-                <img src='/images/thank-you.png' alt='' className='rounded-lg' />
+                <img
+                  src='/images/thank-you.png'
+                  alt=''
+                  className='rounded-lg'
+                />
               </div>
             </div>
           </div>
@@ -600,4 +827,4 @@ const EditWebsitePage = () => {
   );
 };
 
-export default withAuthRoute(EditWebsitePage);
+export default withAuthRoute(AddressRSVP);

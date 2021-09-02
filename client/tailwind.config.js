@@ -6,14 +6,14 @@ module.exports = {
     screens: {
       sm: '576px',
       md: '768px',
-      lg: '992px',
-      xl: '1300px',
+      lg: '1024px',
+      xl: '1400px',
       xxl: '1700px',
     },
     container: {
       center: true,
       padding: '1rem',
-      screens: { sm: '576px', md: '768px', lg: '992px', xl: '1300px' },
+      screens: { sm: '576px', md: '768px', lg: '1024px', xl: '1400px' },
     },
     extend: {
       fontFamily: {

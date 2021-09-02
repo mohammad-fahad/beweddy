@@ -39,9 +39,10 @@
     @apply focus:outline-none;
   }
 
-  /* .shadow-box {
-    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.06);
-  } */
+  .shadow-box {
+    box-shadow: -3px 4px 4px 2px rgba(0, 0, 0, 0.05);
+    @apply border border-r-0 border-[#eee] rounded-[10px] rounded-r-none;
+  }
 
   input:not([type='radio']):focus {
     @apply outline-none ring-0 focus:border-primary;
@@ -74,15 +75,48 @@
   .gradient {
     background: linear-gradient(120.68deg, #fce3eb 30.04%, #ffffff 100%);
   }
+
+  .pulse > span {
+    animation: pulse-2-5 1s linear infinite;
+    border-radius: 50%;
+    display: block;
+    @apply w-[90px] h-[90px] absolute inset-0 z-[-1] bg-secondary;
+  }
+  .pulse > span > span {
+    border-radius: 50%;
+    display: block;
+    @apply w-[90px] h-[90px] absolute inset-0 z-[-1];
+  }
+  .pulse > span > span:after {
+    animation: pulse-2-5 1s linear infinite;
+    border-radius: 50%;
+    content: '';
+    display: block;
+    @apply w-[90px] h-[90px] absolute inset-0 z-[-1] bg-secondary;
+  }
+  @keyframes pulse-2-5 {
+    0% {
+      opacity: 0.75;
+      transform: scale(1);
+    }
+    25% {
+      opacity: 0.75;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.4);
+    }
+  }
 }
-.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+/* .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
   @apply bg-secondary !important;
 }
 
 .DayPicker:not(.DayPicker--interactionDisabled)
   .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
   @apply bg-secondary-alternative/20 !important;
-}
+} */
 
 @media screen and (min-width: 300px) {
   .banner {

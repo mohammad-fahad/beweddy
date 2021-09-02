@@ -305,6 +305,8 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     res.json({
       user: {
         _id: updateUser._id,
+        firstName: updateUser.firstName,
+        lastName: updateUser.lastName,
         fullName: updateUser.fullName,
         coupleName: updateUser.coupleName,
         username: updateUser.username,

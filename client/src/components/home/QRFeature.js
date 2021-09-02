@@ -2,23 +2,21 @@ const { Heading } = require('@components/shared');
 
 const QRFeature = () => {
   return (
-    <div className='py-16'>
-      <div className='max-w-5xl mx-auto w-full px-10'>
+    <div className='py-16 border-t-4 border-primary'>
+      <div className='max-w-6xl mx-auto w-full px-10'>
         <Heading label='Personalized QR Codes' />
-        <div className='grid md:grid-cols-2 gap-16'>
-          <div className='self-center text-center md:text-left'>
-            <p className='text-xl sm:text-2xl font-medium'>
-              Invite friends and family by link or
+        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-10 lg:gap-16'>
+          <div className='lg:col-span-2 self-center text-center md:text-left border-2 border-gray-200 rounded-lg p-5 md:p-10'>
+            <p className='md:text-2xl lg:text-3xl font-medium md:leading-relaxed lg:leading-loose'>
+              Custom QR Codes Help Any Guest Find and Support Your Wedding
+              Platform Right From Their Phone!
             </p>
-            <h4 className='text-2xl sm:text-3xl font-semibold mt-2'>
-              Custom QR Code
-            </h4>
           </div>
-          <div className='-mb-32'>
+          <div className='-mb-32 lg:mb-[-14rem]'>
             <img
               src='/images/phone-qrcode.png'
               alt=''
-              className='w-56 md:w-80 mx-auto'
+              className='w-56 md:w-80 mx-auto lg:ml-auto lg:mr-0'
             />
           </div>
         </div>

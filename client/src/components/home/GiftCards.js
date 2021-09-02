@@ -102,13 +102,21 @@ const giftCards = [
     // amount: 25.6,
   },
   {
-    name: 'Disney',
-    image: '/images/disney.png',
-    description:
-      "*Disney is not a sponsor of the rewards or otherwise affiliated with the reward program. The logos and other identifying marks attached are trademarks of and owned by each represented company and/or its affiliates. Please visit each company's website for additional terms and conditions.",
+    name: 'Crypto Gift Card',
+    image: '/images/crypto-card.png',
+    // description:
+    //   "*Disney is not a sponsor of the rewards or otherwise affiliated with the reward program. The logos and other identifying marks attached are trademarks of and owned by each represented company and/or its affiliates. Please visit each company's website for additional terms and conditions.",
     // currency: 'USD',
     // amount: 25.6,
   },
+  // {
+  //   name: 'Disney',
+  //   image: '/images/disney.png',
+  //   description:
+  //     "*Disney is not a sponsor of the rewards or otherwise affiliated with the reward program. The logos and other identifying marks attached are trademarks of and owned by each represented company and/or its affiliates. Please visit each company's website for additional terms and conditions.",
+  //   // currency: 'USD',
+  //   // amount: 25.6,
+  // },
   {
     name: 'Nordstrom',
     image: '/images/nordstrom.png',
@@ -162,7 +170,12 @@ const GiftCards = () => {
   };
 
   return (
-    <div className='bg-gradient-to-br from-[#FCE3EB] to-white'>
+    <div className='bg-gradient-to-br from-[#FCE3EB] to-white relative'>
+      <img
+        src='/icons/safe-checkout.png'
+        alt=''
+        className='absolute right-5 sm:right-12 bottom-5 sm:bottom-10 w-16 sm:w-20 h-10 sm:h-16'
+      />
       <div className='container py-20'>
         <Heading label='Collect Gifts With The Best 100+ Gift Card Registry ' />
         <div className='my-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full px-5 sm:px-0 mx-auto sm:max-w-full gap-x-5 sm:gap-x-10 relative'>

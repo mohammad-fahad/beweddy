@@ -1,82 +1,121 @@
+import Head from 'next/head';
+import Link from 'next/link';
+import Image from 'next/image';
 import {
-  DashboardHeader,
   ActivityInfo,
+  DashboardHeader,
   WebsitePreviewContainer,
   WeddingDayCountDown,
 } from '@components/dashboard';
+import { Footer } from '@components/index';
+import { withAuthRoute } from '@hoc/withAuthRoute';
 import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
-import { Footer } from '@components/home';
-import { LinkIcon } from '@heroicons/react/outline';
-import { withAuthRoute } from '@hoc/withAuthRoute';
-import Head from 'next/head';
-import Link from 'next/link';
+import { useSelector } from 'react-redux';
 
-const DashboardPage = () => {
+const navLinks = [
+  {
+    label: 'Text invites',
+    route: '/dashboard/invitation/text',
+    icon: '/icons/messages.svg',
+  },
+  {
+    label: 'Email invites',
+    route: '/dashboard/invitation/email',
+    icon: '/icons/email_send.svg',
+  },
+  {
+    label: 'Calender invites',
+    route: '/dashboard/invitation/calender',
+    icon: '/icons/note_tick.svg',
+  },
+  {
+    label: 'Mailout invites',
+    route: '/dashboard/invitation/mailout',
+    icon: '/icons/email_add.svg',
+  },
+  {
+    label: 'Gift cards',
+    route: '/dashboard/invitation/gift-cards',
+    icon: '/icons/gift-2.svg',
+  },
+  {
+    label: 'Registry',
+    route: '/dashboard/invitation/gift-cards',
+    icon: '/icons/registry.svg',
+  },
+  {
+    label: 'QR Code & links',
+    route: '/dashboard/features/qrcode',
+    icon: '/icons/qrcode.svg',
+  },
+  {
+    label: 'Guest management',
+    route: '/dashboard/invitation/guest-management',
+    icon: '/icons/ic_baseline-rsvp.svg',
+  },
+  {
+    label: 'Need your address',
+    route: '/dashboard/address-and-rsvp',
+    icon: '/icons/location.svg',
+  },
+  {
+    label: 'Just do it list',
+    route: '/dashboard/features/todo',
+    icon: '/icons/ring-tik.svg',
+  },
+];
+
+const Dashboard = () => {
+  const { user } = useSelector(state => state.user);
   return (
     <>
       <Head>
         <title>Beweddy | Dashboard</title>
       </Head>
-      <DashboardTopBar />
-      <DashboardLayout>
-        <DashboardHeader title='Welcome to your Beweddy Dashboard'>
-          <div className='flex items-center space-x-5'>
-            <Link href='/'>
-              <a className='flex items-center space-x-3 py-2 px-5 border-2 border-primary rounded-[5px] capitalize font-inter font-semibold hover:bg-gray-100 transition duration-300'>
-                <LinkIcon className='w-5 h-5' />
-                <span>Share your super link</span>
-              </a>
-            </Link>
-            <Link href='/'>
-              <a className='py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300'>
-                Guests Management
-              </a>
-            </Link>
+      {/* {loading && <Loader />} */}
+      <DashboardTopBar coupleName />
+      <DashboardLayout shadow>
+        <DashboardHeader title='Dashboard 🎉' hideCoupleName hideMarginTop>
+          <div className='py-2'>
+            <h4 className='text-sm text-center font-medium'>
+              Wedding Day Countdown
+            </h4>
+            <WeddingDayCountDown sm />
           </div>
         </DashboardHeader>
-        <ActivityInfo />
-        <WebsitePreviewContainer />
-        <div className='mt-10 flex w-full space-x-16'>
-          <div>
-            <h4 className='text-xl font-medium'>Wedding Day Countdown</h4>
-            <WeddingDayCountDown />
-          </div>
-          <button className='font-inter flex items-center justify-center space-x-5 py-8 px-16 rounded-lg border-2 border-secondary/20 bg-secondary-alternative/20 hover:bg-secondary-alternative/5 w-full transition duration-300'>
-            <img src='/icons/direct.svg' alt='Registry' className='w-10' />
-            <p className='text-xl font-medium capitalize'>
-              Build your registry
-            </p>
-          </button>
-        </div>
-        <div className='mt-10 grid grid-cols-3 gap-10'>
-          <div className='flex flex-col space-y-8 rounded-lg border-2 border-secondary-alternative bg-secondary-alternative/10 px-10 py-8'>
-            <img src='/icons/gift.svg' alt='' className='w-14 h-14' />
-            <p className='text-2xl font-medium capitalize'>
-              Select gift card <br /> display
-            </p>
-          </div>
-          <div className='flex flex-col space-y-8 rounded-lg border-2 border-secondary-alternative bg-secondary-alternative/10 px-10 py-8'>
-            <img src='/icons/mail_outline.svg' alt='' className='w-14 h-14' />
-            <div>
-              <p className='text-2xl font-medium capitalize'>Invitations</p>
-              <div className='flex items-center space-x-10 mt-2'>
-                <div>
-                  <p className='font-light mb-1'>E-invite</p>
-                  <p className='font-light'>Text</p>
-                </div>
-                <div>
-                  <p className='font-light mb-1'>Email</p>
-                  <p className='font-light'>Mail</p>
-                </div>
-              </div>
+        <div className='border rounded-tl-xl border-r-0 border-secondary bg-secondary-alternative/10'>
+          <div className='max-w-[1300px] w-full'>
+            <div className='p-12 xxl:pr-0 grid lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 gap-10 justify-center'>
+              {navLinks.map((link, index) => (
+                <Link key={index} href={link.route}>
+                  <a className='flex items-center justify-center flex-col space-y-5 group'>
+                    <div className='relative'>
+                      <div className='pulse flex items-center justify-center border-2 border-transparent group-hover:border-primary rounded-full p-2 w-[90px] h-[90px] group-hover:bg-[#FCE0EB]'>
+                        <Image width={45} height={45} src={link.icon} />
+                        <span className='!hidden group-hover:!inline-block'>
+                          <span></span>
+                        </span>
+                      </div>
+                    </div>
+                    <h4 className='text-lg font-medium text-center capitalize'>
+                      {link.label}
+                    </h4>
+                  </a>
+                </Link>
+              ))}
             </div>
           </div>
-          <div className='flex flex-col space-y-8 rounded-lg border-2 border-secondary-alternative bg-secondary-alternative/10 px-10 py-8'>
-            <img src='/icons/direct.svg' alt='' className='w-14 h-14' />
-            <p className='text-2xl font-medium capitalize'>
-              Collect <br /> Address - RSVP
-            </p>
+        </div>
+        <div className='rounded-tl-none shadow-box space-y-10'>
+          <div className='max-w-[1300px] w-full'>
+            <div className='pl-12 my-10'>
+              <h4 className='text-center mb-20 text-2xl font-medium underline'>
+                Wedding Status
+              </h4>
+              <ActivityInfo />
+              <WebsitePreviewContainer minimal />
+            </div>
           </div>
         </div>
       </DashboardLayout>
@@ -85,4 +124,4 @@ const DashboardPage = () => {
   );
 };
 
-export default withAuthRoute(DashboardPage);
+export default withAuthRoute(Dashboard);

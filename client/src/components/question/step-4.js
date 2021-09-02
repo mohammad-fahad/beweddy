@@ -274,7 +274,7 @@ const SentInvitation = () => {
                 htmlFor='mail_out_invite'
                 className='font-inter font-light text-sm md:text-lg cursor-pointer'
               >
-                Mail out Invitation ($1.25 for prints, envelopes & postage 💌)
+                Mail Out Invitation (Pricing will depend quantity. 💌)
               </label>
             </motion.div>
             <motion.div
@@ -292,7 +292,7 @@ const SentInvitation = () => {
                 htmlFor='all_the_above'
                 className='font-inter font-light text-sm md:text-lg cursor-pointer'
               >
-                All the above 💯 ($1.25 per invite mailed)
+                All The Above 💯 (Invite Mailed)
               </label>
             </motion.div>
           </motion.div>

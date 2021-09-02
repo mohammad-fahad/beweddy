@@ -3,7 +3,7 @@ import Link from 'next/link';
 const Banner = ({ setImageLoaded }) => {
   return (
     <div
-      className='pt-14 xxl:pt-28 pb-32 w-full relative'
+      className='pt-14 xxl:pt-28 pb-32 w-full relative border-b-4 border-primary'
       style={{
         background: `linear-gradient(to right, rgba(0,0,0,.7),rgba(0,0,0,.7)) ,url('/images/banner.png')`,
         backgroundRepeat: 'no-repeat',

@@ -1,7 +1,4 @@
 import Link from 'next/link';
-
-import { MenuIcon, XIcon } from '@heroicons/react/solid';
-import { SearchIcon } from '@heroicons/react/outline';
 import NavLinks from './NavLinks';
 import AuthLinks from './AuthLinks';
 import SearchBar from './SearchBar';
@@ -10,6 +7,7 @@ import MobileMenu from './MobileMenu';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import ProfileLinks from './profileLinks';
+import { XIcon } from '@heroicons/react/outline';
 
 export const Header = () => {
   const { user } = useSelector(state => state.user);
@@ -17,19 +15,19 @@ export const Header = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   return (
     <header className='bg-white relative'>
-      <div className='max-w-[1350px] px-10 xxl:px-0 mx-auto py-5 md:py-10 flex flex-col gap-5'>
-        <div className=' flex items-center lg:gap-16'>
+      <div className='max-w-[1400px] px-10 xxl:px-0 mx-auto py-5 md:py-6 flex flex-col gap-5'>
+        <div className='flex items-center justify-between lg:gap-10'>
           {/* Logo */}
           <Link href='/'>
             <a className='-mt-[0.6rem]'>
               <img
                 src='/images/logo.png'
                 alt=''
-                className='h-14 sm:h-16 md:h-20 md:w-52 object-cover'
+                className='h-14 sm:h-16 md:h-20 md:w-48 object-contain'
               />
             </a>
           </Link>
-          <div className='space-y-8 xl:space-y-10 flex-1 xl:flex-none ml-auto'>
+          <div className='space-y-8 xl:space-y-10 flex-1 xl:flex-none'>
             {/* Navigation Links Start */}
             <div className='flex items-center justify-between flex-1 gap-20'>
               <div className='hidden xl:block'>
@@ -37,9 +35,9 @@ export const Header = () => {
               </div>
               {/* Navigation Links Ends */}
               {/* Authentication Links */}
-              <div className='flex items-center ml-auto xl:ml-0 gap-2'>
+              <div className='flex items-center ml-auto xl:ml-0 gap-2 sm:min-w-[197px]'>
                 {user ? (
-                  <div className='hidden sm:block'>
+                  <div className='hidden sm:block ml-auto'>
                     <ProfileLinks {...{ user }} />
                   </div>
                 ) : (

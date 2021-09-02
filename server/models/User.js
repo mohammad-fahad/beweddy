@@ -89,18 +89,26 @@ const userSchema = new mongoose.Schema(
     receptionDetails: {
       type: Array,
     },
-    giftCards: {
-      type: Array,
-    },
-    registries: {
-      type: Array,
-    },
+    giftCards: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Gift',
+      },
+    ],
+    registries: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Registry',
+      },
+    ],
     socialAccounts: {
       groom: {
         facebook: String,
         twitter: String,
         instagram: String,
-        gmail: String,
+        snapchat: String,
+        tiktok: String,
+        pinterest: String,
         linkedIn: String,
         youTube: String,
       },
@@ -108,7 +116,9 @@ const userSchema = new mongoose.Schema(
         facebook: String,
         twitter: String,
         instagram: String,
-        gmail: String,
+        snapchat: String,
+        tiktok: String,
+        pinterest: String,
         linkedIn: String,
         youTube: String,
       },
