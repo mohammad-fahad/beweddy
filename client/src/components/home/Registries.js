@@ -110,7 +110,7 @@ const Registries = () => {
                   {registry.title}
                 </h3>
                 <div>
-                  <button className='py-2 inline-block px-8 border-gray-900 border-2 rounded-[5px] mt-5 hover:bg-black transition duration-300 hover:text-white font-inter font-medium	'>
+                  <button className='py-2 inline-block px-8 border-gray-900 border-2 rounded-[5px] mt-5 hover:bg-black transition duration-300 hover:text-white font-inter font-semibold'>
                     Link
                   </button>
                 </div>
