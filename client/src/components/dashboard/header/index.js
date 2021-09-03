@@ -9,7 +9,7 @@ const DashboardHeader = ({
   const { user } = useSelector(state => state.user);
   return (
     <div
-      className={`max-w-[1300px] w-full min-h-[151.2px] flex`}
+      className={`max-w-[1300px] w-full min-h-[151.2px] flex pr-12 xxl:pr-0`}
     >
       {/* {!hideCoupleName && (
         <h3 className='text-2xl'>👋 Hey {user?.coupleName}!</h3>
