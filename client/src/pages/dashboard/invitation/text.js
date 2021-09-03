@@ -3,7 +3,7 @@ import { DashboardHeader } from '@components/dashboard';
 import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
 import { Footer, Heading } from '@components/index';
-
+import Image from 'next/image';
 import Select from 'react-select/creatable';
 import makeAnimated from 'react-select/animated';
 import { Fragment, useEffect, useState } from 'react';
@@ -69,9 +69,10 @@ const TextInvitesPage = () => {
           <div className='max-w-[1300px] w-full'>
             <div className='p-12 xxl:pr-0'>
               <div className='mb-5'>
-                <h3 className='text-4xl pb-2'>
-                  📲 Send Text & Superlink Invites
-                </h3>
+                <div className='flex items-center space-x-3 pb-2'>
+                  <Image src='/icons/messages.svg' width={46} height={46} />
+                  <h3 className='text-4xl'>Send Text & Superlink Invites</h3>
+                </div>
                 <span className='h-[4px] inline-block max-w-[215px] w-full bg-secondary-alternative'></span>
               </div>
               <div className='grid md:grid-cols-3 gap-10'>
@@ -223,6 +224,43 @@ const TextInvitesPage = () => {
                       {/* <p className='mt-2 text-red-400 font-light text-sm h-4'>
                         {errors?.phone?.message}
                       </p> */}
+                    </div>
+                    <div className='space-y-3'>
+                      <Heading h3>Compose</Heading>
+                      <div className='relative'>
+                        <textarea
+                          cols='30'
+                          rows='10'
+                          className='rounded-[20px] p-10 w-full'
+                          placeholder='We would like to invite you to our wedding! Please come celebrate with us. Here is a link to our gift registry and website. We Need your Address Thank you for your support. Love, Ashley and Nate! '
+                        ></textarea>
+                        <svg
+                          className='absolute bottom-0 right-0'
+                          width='115'
+                          height='59'
+                          viewBox='0 0 115 59'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <path
+                            d='M114.155 57.7614L1 1H114.155V57.7614Z'
+                            stroke='black'
+                          />
+                        </svg>
+                        <svg
+                          className='absolute bottom-0 right-0'
+                          width='114'
+                          height='57'
+                          viewBox='0 0 114 57'
+                          fill='none'
+                          xmlns='http://www.w3.org/2000/svg'
+                        >
+                          <path
+                            d='M113.155 56.7614L0 0H113.155V56.7614Z'
+                            fill='white'
+                          />
+                        </svg>
+                      </div>
                     </div>
                   </div>
                 </div>
