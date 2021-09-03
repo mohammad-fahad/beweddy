@@ -85,8 +85,8 @@ const Footer = ({ hideSocial }) => {
           </p>
           <div className='flex items-center justify-center sm:justify-between flex-wrap gap-3 sm:gap-6'>
             <Link href='/'>
-              <a className='text-primary font-medium font-inter group hover:text-primary transition-colors duration-300 relative'>
-                <span>About us</span>
+              <a className='text-primary font-semibold font-inter group hover:text-primary transition-colors duration-300 relative'>
+                <span>About BeWeddy!</span>
                 <span
                   className={`absolute bottom-[-6px] left-0 w-full h-[2px] bg-primary group-hover:w-full transition-all duration-300`}
                 ></span>
