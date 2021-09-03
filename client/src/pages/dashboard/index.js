@@ -76,14 +76,7 @@ const Dashboard = () => {
       {/* {loading && <Loader />} */}
       <DashboardTopBar coupleName />
       <DashboardLayout shadow>
-        <DashboardHeader title='Dashboard 🎉' hideCoupleName hideMarginTop>
-          <div className='py-2'>
-            <h4 className='text-sm text-center font-medium'>
-              Wedding Day Countdown
-            </h4>
-            <WeddingDayCountDown sm />
-          </div>
-        </DashboardHeader>
+        <DashboardHeader title='Dashboard 🎉' />
         <div className='border rounded-tl-xl border-r-0 border-secondary bg-secondary-alternative/10'>
           <div className='max-w-[1300px] w-full'>
             <div className='p-12 xxl:pr-0 grid lg:grid-cols-4 xl:grid-cols-5 gap-10 justify-center'>

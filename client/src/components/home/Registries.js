@@ -79,7 +79,7 @@ const Registries = () => {
           color='bg-secondary-alternative'
           // lineStyle={{ marginBottom: '40px' }}
         />
-        <div class='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mb-16'>
+        <div class='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto w-full mb-16'>
           {registries?.map(registry => (
             <div
               key={registry.id}
