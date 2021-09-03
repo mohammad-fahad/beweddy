@@ -22,7 +22,7 @@ const VerifyEmail = () => {
       </Link>
       <Heading
         label='E-Mail Sent to verify'
-        color='bg-secondary'
+        color='bg-[#F9D1DE]'
         // className='pt-5 md:pt-0'
         lineStyle={{ marginBottom: '45px' }}
       />

@@ -25,7 +25,7 @@ const SyncNowPage = () => {
           </div>
           <Heading
             label='We looked around a little...And it seems you already have store registries'
-            color='bg-secondary-alternative'
+            color='bg-[#F9D1DE]'
             lineStyle={{ marginBottom: '45px' }}
           />
           <h4 className='text-xl text-center font-medium'>

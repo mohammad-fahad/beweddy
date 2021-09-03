@@ -56,7 +56,7 @@ const LoginPage = () => {
               </div>
               <Heading
                 label='Welcome Back!'
-                color='bg-secondary-alternative'
+                color='bg-[#F9D1DE]'
                 className='!pb-5'
                 lineStyle={{ marginBottom: '30px' }}
               />

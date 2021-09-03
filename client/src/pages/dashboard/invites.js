@@ -26,7 +26,7 @@ const InvitesPage = () => {
           </div>
           <Heading
             label='Invites'
-            color='bg-secondary-alternative'
+            color='bg-[#F9D1DE]'
             lineStyle={{ marginBottom: '45px' }}
           />
           <h4 className='text-xl text-center font-medium'>
@@ -48,7 +48,7 @@ const InvitesPage = () => {
             <div className='my-16'>
               <Heading
                 label='Featured Stores'
-                color='bg-secondary-alternative'
+                color='bg-[#F9D1DE]'
                 lineStyle={{ marginBottom: '45px' }}
               />
               <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-10 w-full mb-10'>

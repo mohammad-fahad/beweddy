@@ -67,7 +67,7 @@ const Registries = () => {
   };
 
   return (
-    <div className='bg-white border-t-[5px] border-primary min-h-screen'>
+    <div className='bg-[#FCFCFC] border-t-[5px] border-primary min-h-screen'>
       <div className='container py-32'>
         <Heading
           label={
@@ -75,15 +75,15 @@ const Registries = () => {
               Link & Sync Your Gift Registries <br /> All In One Place!
             </>
           }
-          className='pb-10'
-          color='bg-secondary-alternative'
-          // lineStyle={{ marginBottom: '40px' }}
+          className='!pb-20'
+          color='bg-[#F9D1DE]'
+          lineStyle={{ marginBottom: '50px' }}
         />
-        <div class='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto w-full mb-16'>
+        <div class='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-[1193px] mx-auto w-full mb-16'>
           {registries?.map(registry => (
             <div
               key={registry.id}
-              className='p-4 border-4 border-gray-200 hover:border-primary transition duration-300 max-w-xs w-full mx-auto'
+              className='p-4 max-w-[280px] bg-white border-4 border-gray-200 hover:border-primary transition duration-300 w-full mx-auto'
             >
               <div
                 className={`border-2 border-primary flex items-center justify-center h-[140px] w-full rounded-[10px] transition duration-300 relative group p-3`}
@@ -91,7 +91,7 @@ const Registries = () => {
                 <Link href={registry.link}>
                   <a
                     target='_blank'
-                    className='rounded-lg flex items-center justify-center w-full h-full opacity-0 hover:opacity-100 absolute inset-0 z-50 group-hover:bg-black/50'
+                    className='max-w-[273px] rounded-lg flex items-center justify-center w-full h-full opacity-0 hover:opacity-100 absolute inset-0 z-50 group-hover:bg-black/50'
                   >
                     <LinkIcon className='w-8 h-8 text-white' />
                   </a>
@@ -106,11 +106,11 @@ const Registries = () => {
               </div>
 
               <div className='py-4 text-center flex flex-col'>
-                <h3 className='text-lg font-medium font-inter'>
+                <h3 className='text-lg font-semibold font-inter'>
                   {registry.title}
                 </h3>
                 <div>
-                  <button className='py-2 inline-block px-8 border-gray-900 border-2 rounded-[5px] mt-5 hover:bg-black transition duration-300 hover:text-white font-inter font-semibold'>
+                  <button className='py-2 inline-block px-8 border-gray-900 border-2 rounded-[5px] mt-5 hover:bg-black transition duration-300 hover:text-white font-inter font-bold'>
                     Link
                   </button>
                 </div>
