@@ -5,11 +5,10 @@ import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
 import { Button, Footer } from '@components/index';
 import { LinkIcon, PencilIcon } from '@heroicons/react/outline';
-import SwiperCore, { Lazy, Autoplay } from 'swiper';
 import { Fragment } from 'react';
 import { withAuthRoute } from '@hoc/withAuthRoute';
 import Image from 'next/image';
-SwiperCore.use([Lazy, Autoplay]);
+
 
 const registries = [
   {

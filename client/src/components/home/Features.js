@@ -68,7 +68,7 @@ const Features = () => {
           </div>
           <div className='col-span-6 md:col-span-5 mx-auto self-center'>
             <Image
-              width={375}
+              width={365}
               height={750}
               src='/images/feature-mobile.png'
               alt=''
