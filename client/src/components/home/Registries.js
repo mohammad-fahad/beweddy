@@ -29,10 +29,10 @@ const registries = [
   },
   {
     id: 4,
-    title: 'Cabela’s Wedding Registry',
+    title: 'Bass Pro Shops',
     buttonText: 'Link',
     link: 'https://github.com/muttakinhasib',
-    image: '/images/registries/cabelas.png',
+    image: '/images/registries/bass-pro-shops.png',
   },
 ];
 
