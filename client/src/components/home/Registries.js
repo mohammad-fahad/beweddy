@@ -1,61 +1,38 @@
 import { LinkButton, Heading } from '@components/shared';
+import { LinkIcon } from '@heroicons/react/outline';
 import { XIcon } from '@heroicons/react/solid';
 import { useMediaQuery } from '@react-hook/media-query';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState, Fragment } from 'react';
 
-const registriesCards = [
+const registries = [
   {
-    name: 'Amazon',
-    image: '/images/amazon-registry.png',
-    description:
-      'Use your Amazon.com Gift Card* towards Books, Electronics, Music, and more. The Amazon.com web site is the place to find and discover almost any thing you want to buy online at a great price.',
-    // currency: 'USD',
-    // amount: 25.6,
+    id: 1,
+    title: 'Amazon Wedding Registry',
+    link: 'https://github.com/muttakinhasib',
+    image: '/images/registries/Amazon.png',
   },
   {
-    name: 'Gift',
-    image: '/images/bloomingdale.png',
-    description:
-      'Gift-giving has never been easier with the 1-800-FLOWERS.COM® Gift Card! Browse a wide selection of fresh flowers, delicious gourmet treats and desserts, beautiful plants, stunning gift baskets and more – and then choose exactly what you want!',
+    id: 2,
+    title: 'Bed Bath & Beyond',
+    buttonText: 'Link',
+    link: 'https://github.com/muttakinhasib',
+    image: '/images/registries/bbbLogo.png',
   },
   {
-    name: 'Air',
-    image: '/images/traveler.png',
-    description:
-      'Unforgettable travel experiences start with Airbnb. Find travel adventures and new places to go far away or near to you, and access vacation home rentals, new experiences, and places to visit all around the world.',
+    id: 3,
+    title: 'Target Wedding Registry',
+    buttonText: 'Link',
+    link: 'https://github.com/muttakinhasib',
+    image: '/images/registries/target.png',
   },
   {
-    name: 'Amazon',
-    image: '/images/amazon-registry.png',
-    description:
-      'Use your Amazon.com Gift Card* towards Books, Electronics, Music, and more. The Amazon.com web site is the place to find and discover almost any thing you want to buy online at a great price.',
-    // currency: 'USD',
-    // amount: 25.6,
-  },
-  {
-    name: 'Amazon',
-    image: '/images/amazon-registry.png',
-    description:
-      'Use your Amazon.com Gift Card* towards Books, Electronics, Music, and more. The Amazon.com web site is the place to find and discover almost any thing you want to buy online at a great price.',
-    // currency: 'USD',
-    // amount: 25.6,
-  },
-  {
-    name: 'Gift',
-    image: '/images/bloomingdale.png',
-    description:
-      'Gift-giving has never been easier with the 1-800-FLOWERS.COM® Gift Card! Browse a wide selection of fresh flowers, delicious gourmet treats and desserts, beautiful plants, stunning gift baskets and more – and then choose exactly what you want!',
-  },
-  {
-    isComponent: true,
-  },
-  {
-    name: 'Air',
-    image: '/images/traveler.png',
-    description:
-      'Unforgettable travel experiences start with Airbnb. Find travel adventures and new places to go far away or near to you, and access vacation home rentals, new experiences, and places to visit all around the world.',
+    id: 4,
+    title: 'Cabela’s Wedding Registry',
+    buttonText: 'Link',
+    link: 'https://github.com/muttakinhasib',
+    image: '/images/registries/cabelas.png',
   },
 ];
 
@@ -95,119 +72,51 @@ const Registries = () => {
         <Heading
           label={
             <>
-              Sync Your Registries <br /> All in One Place!
+              Link & Sync Your Gift Registries <br /> All In One Place!
             </>
           }
+          className='pb-10'
           color='bg-secondary-alternative'
-          lineStyle={{ marginBottom: '40px' }}
+          // lineStyle={{ marginBottom: '40px' }}
         />
-        <p className='text-center text-xl font-bold'>Crypto Gift Card</p>
-        <div className='mb-20 mt-11 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full px-5 sm:px-0 mx-auto sm:max-w-full gap-x-3 relative'>
-          {/* <div className='w-full h-40 flex items-center justify-center p-5 border-4 border-primary rounded-xl overflow-hidden hover:scale-110 transition duration-300 ease-easing'>
-            <Image
-              width={196}
-              height={53}
-              src='/images/amazon-registry.png'
-              alt='amazon'
-            />
-          </div> */}
-          {registriesCards.map((registriesCard, index) => {
-            return (
-              <Fragment key={index}>
-                {registriesCard.isComponent ? (
-                  <div className='w-full h-40 bg-secondary-alternative flex flex-col items-center justify-center p-5 border-2 border-transparent rounded-xl overflow-hidden hover:scale-105 transition duration-300 ease-easing my-2'>
-                    <Link href='/'>
-                      <a className='py-2 px-6 text-white bg-primary hover:bg-primary/80 rounded-lg text-xs md:text-base mt-5 transition-colors duration-300 whitespace-nowrap'>
-                        Create Registry
-                      </a>
-                    </Link>
-                    <Link href='/'>
-                      <a className='py-2 text-blue-500 text-base font-light font-inter hover:underline'>
-                        Learn more
-                      </a>
-                    </Link>
-                  </div>
-                ) : (
-                  <div
-                    className={`py-2 relative transition-transform duration-300 ease-easing cursor-pointer ${
-                      selected === index ? '' : 'hover:scale-105'
-                    }`}
+        <div class='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mb-16'>
+          {registries?.map(registry => (
+            <div
+              key={registry.id}
+              className='p-4 border-4 border-gray-200 hover:border-primary transition duration-300 max-w-xs w-full mx-auto'
+            >
+              <div
+                className={`border-2 border-primary flex items-center justify-center h-[140px] w-full rounded-[10px] transition duration-300 relative group p-3`}
+              >
+                <Link href={registry.link}>
+                  <a
+                    target='_blank'
+                    className='rounded-lg flex items-center justify-center w-full h-full opacity-0 hover:opacity-100 absolute inset-0 z-50 group-hover:bg-black/50'
                   >
-                    <div
-                      className={`w-full h-40 flex items-center justify-center p-5 border-2 border-gray-200 rounded-xl overflow-hidden`}
-                      onClick={() => {
-                        handleTooltip(index + 1);
-                        setTooltip(registriesCard);
-                      }}
-                    >
-                      {selected === index && (
-                        <>
-                          <div className='absolute bottom-[-18px] left-6 h-8 w-8 border-4 border-gray-200 border-t-transparent border-r-transparent rotate-[135deg] z-10 bg-white'></div>
-                          <div className='absolute bottom-[-21px] left-6 h-8 w-8 border-4 border-transparent rotate-[135deg] z-30 bg-white'></div>
-                        </>
-                      )}
-                      <Image
-                        width={196}
-                        height={53}
-                        src={registriesCard.image}
-                        alt={registriesCard.name}
-                        className='w-full'
-                      />
-                    </div>
-                  </div>
-                )}
-                {index + 1 === pushItemTo && showTooltip && (
-                  <div className='bg-white col-span-full border-2 border-gray-200 px-14 py-12 rounded-lg relative z-20'>
-                    <div className='absolute right-5 top-5'>
-                      <button
-                        onClick={() => {
-                          setShowTooltip(prev => !prev);
-                          setSelected(null);
-                        }}
-                      >
-                        <XIcon className='w-6 h-6 hover:text-gray-500 transition duration-300' />
-                      </button>
-                    </div>
-                    <div className='flex md:divide-x divide-gray-100 md:flex-row'>
-                      <img
-                        src={tooltip.image}
-                        alt={tooltip.name}
-                        className='h-8 object-cover md:mr-10 hidden md:block'
-                      />
-                      <div className='md:pl-10'>
-                        <h4 className='text-2xl md:text-3xl font-medium text-[#f16521]'>
-                          {tooltip.name}
-                        </h4>
-                        <p className='mt-3 text-sm font-light text-gray-600'>
-                          {tooltip.description}
-                        </p>
-                      </div>
-                    </div>
-                    {(tooltip.currency || tooltip.amount) && (
-                      <div className='mt-16 flex items-center space-x-16'>
-                        {tooltip.currency && (
-                          <p className='text-sm'>
-                            <strong className='font-semibold uppercase'>
-                              Currency
-                            </strong>
-                            : {tooltip.currency}
-                          </p>
-                        )}
-                        {tooltip.amount && (
-                          <p className='text-sm'>
-                            <strong className='font-semibold uppercase'>
-                              Amount
-                            </strong>
-                            : ${tooltip.amount}
-                          </p>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </Fragment>
-            );
-          })}
+                    <LinkIcon className='w-8 h-8 text-white' />
+                  </a>
+                </Link>
+                <div>
+                  <Image
+                    width={200}
+                    height={80}
+                    src={registry.image || '/images/registries/Amazon.png'}
+                  />
+                </div>
+              </div>
+
+              <div className='py-4 text-center flex flex-col'>
+                <h3 className='text-lg font-medium font-inter'>
+                  {registry.title}
+                </h3>
+                <div>
+                  <button className='py-2 inline-block px-8 border-gray-900 border-2 rounded-[5px] mt-5 hover:bg-black transition duration-300 hover:text-white font-inter font-medium	'>
+                    Link
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
         <div className='text-center'>
           <LinkButton label='See More' href='/' outline />

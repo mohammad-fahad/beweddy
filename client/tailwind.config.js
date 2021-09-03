@@ -7,13 +7,13 @@ module.exports = {
       sm: '576px',
       md: '768px',
       lg: '1024px',
-      xl: '1400px',
+      xl: '1350px',
       xxl: '1700px',
     },
     container: {
       center: true,
       padding: '1rem',
-      screens: { sm: '576px', md: '768px', lg: '1024px', xl: '1400px' },
+      screens: { sm: '576px', md: '768px', lg: '1024px', xl: '1350px' },
     },
     extend: {
       fontFamily: {

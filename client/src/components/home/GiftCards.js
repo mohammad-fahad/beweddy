@@ -257,7 +257,12 @@ const GiftCards = () => {
           })}
         </div>
         <div className='text-center'>
-          <LinkButton label='See More' outline href='/' />
+          <LinkButton
+            className='!max-w-[360px] !w-full !font-inter !font-medium'
+            label='Gift Card Options'
+            outline
+            href='/create-website'
+          />
         </div>
       </div>
     </div>
