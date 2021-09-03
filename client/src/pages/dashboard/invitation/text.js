@@ -131,7 +131,7 @@ const TextInvitesPage = () => {
                               <img
                                 src={selectedCountry.flag}
                                 alt={selectedCountry.name}
-                                className='w-7 h-7 object-cover rounded-full mr-8 md:mr-4'
+                                className='w-7 h-7 object-cover rounded-full mr-8 md:mr-5'
                               />
                               <span className='absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none'>
                                 <svg

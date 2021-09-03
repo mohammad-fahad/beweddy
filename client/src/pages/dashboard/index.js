@@ -86,7 +86,7 @@ const Dashboard = () => {
         </DashboardHeader>
         <div className='border rounded-tl-xl border-r-0 border-secondary bg-secondary-alternative/10'>
           <div className='max-w-[1300px] w-full'>
-            <div className='p-12 xxl:pr-0 grid lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 gap-10 justify-center'>
+            <div className='p-12 xxl:pr-0 grid lg:grid-cols-4 xl:grid-cols-5 gap-10 justify-center'>
               {navLinks.map((link, index) => (
                 <Link key={index} href={link.route}>
                   <a className='flex items-center justify-center flex-col space-y-5 group'>
@@ -110,7 +110,7 @@ const Dashboard = () => {
         <div className='rounded-tl-none shadow-box space-y-10'>
           <div className='max-w-[1300px] w-full'>
             <div className='pl-12 my-10'>
-              <h4 className='text-center mb-20 text-2xl font-medium underline'>
+              <h4 className='text-center mb-16 text-2xl font-medium underline'>
                 Wedding Status
               </h4>
               <ActivityInfo />
