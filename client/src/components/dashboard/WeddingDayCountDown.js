@@ -9,7 +9,7 @@ const WeddingDayCountDown = ({ sm }) => {
   const [seconds, setSeconds] = useState(0);
   const {
     weddingDay: { weddingDate },
-  } = user.questions;
+  } = user && user.questions;
 
   useEffect(() => {
     if (weddingDate) {
