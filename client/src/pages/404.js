@@ -1,11 +1,24 @@
 import Link from 'next/link';
-
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 const NotFoundPage = () => {
   return (
-    <div className='gradient'>
+    <motion.div
+      className='gradient'
+      exit={{ opacity: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
       <div className='container py-16 min-h-screen flex flex-col space-y-8 items-center justify-center'>
         <div className='max-w-lg mx-auto'>
-          <img src='/images/404.svg' alt='' className='w-80' />
+          {/* <img src='/images/404.svg' alt='' className='w-80' /> */}
+          <Image
+            src='/images/404.svg'
+            alt=''
+            className='w-80'
+            width={320}
+            height={173}
+          />
         </div>
         <h2 className='text-lg md:text-3xl text-center'>
           The page you've requested is not available
@@ -16,7 +29,7 @@ const NotFoundPage = () => {
           </a>
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
