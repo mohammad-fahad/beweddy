@@ -129,13 +129,13 @@ const AddressRSVP = () => {
         <div className='border-4 border-gray-200 rounded-lg'>
           <Swiper {...params}>
             {user.questions.couplePictures.map((image, index) => (
-              <div className='w-full'>
-                <div className='aspect-w-16 aspect-h-12'>
+              <div className='w-full' key={image.public_id} >
+                <div className='aspect-w-16 aspect-h-9'>
                   <Image
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                     publicId={image.public_id}
                     src={!image.public_id ? image.url : null}
-                    width={image.width}
+                    // width={image.width}
                     crop='scale'
                     className='object-cover'
                   />
