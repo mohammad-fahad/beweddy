@@ -12,16 +12,20 @@ const DashboardHeader = ({ title, children }) => {
       )} */}
       <div className={`flex items-center justify-between w-full`}>
         <h2 className='capitalize text-4xl font-medium'>{title}</h2>
-        <div className='py-2 space-y-3'>
-          <h4 className='text-sm text-right font-medium'>
-            Your Wedding Day Countdown
-          </h4>
-          <WeddingDayCountDown sm />
-          <h3 className='text-base text-right font-medium'>
-            Let’s Eat, Drink & BeWeddy!
-          </h3>
-        </div>
-        {children}
+
+        {children ? (
+          children
+        ) : (
+          <div className='py-[20px] space-y-3'>
+            <h4 className='text-[12px] text-right font-semibold'>
+              Your Wedding Day Countdown
+            </h4>
+            <WeddingDayCountDown sm />
+            <h3 className='text-base text-right font-normal'>
+              Let’s Eat, Drink & BeWeddy!
+            </h3>
+          </div>
+        )}
       </div>
     </div>
   );

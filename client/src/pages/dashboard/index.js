@@ -15,6 +15,21 @@ import { useSelector } from 'react-redux';
 
 const navLinks = [
   {
+    label: 'Need your address',
+    route: '/dashboard/address-and-rsvp',
+    icon: '/icons/location.svg',
+  },
+  {
+    label: 'Just do it list',
+    route: '/dashboard/features/todo',
+    icon: '/icons/ring-tik.svg',
+  },
+  {
+    label: 'QR Code & links',
+    route: '/dashboard/features/qrcode',
+    icon: '/icons/qrcode.svg',
+  },
+  {
     label: 'Text invites',
     route: '/dashboard/invitation/text',
     icon: '/icons/messages.svg',
@@ -25,15 +40,16 @@ const navLinks = [
     icon: '/icons/email_send.svg',
   },
   {
-    label: 'Calender invites',
-    route: '/dashboard/invitation/calender',
-    icon: '/icons/note_tick.svg',
-  },
-  {
     label: 'Mailout invites',
     route: '/dashboard/invitation/mailout',
     icon: '/icons/email_add.svg',
   },
+  {
+    label: 'Calender invites',
+    route: '/dashboard/invitation/calender',
+    icon: '/icons/note_tick.svg',
+  },
+
   {
     label: 'Gift cards',
     route: '/dashboard/invitation/gift-cards',
@@ -44,25 +60,11 @@ const navLinks = [
     route: '/dashboard/invitation/gift-cards',
     icon: '/icons/registry.svg',
   },
-  {
-    label: 'QR Code & links',
-    route: '/dashboard/features/qrcode',
-    icon: '/icons/qrcode.svg',
-  },
+
   {
     label: 'Guest management',
     route: '/dashboard/invitation/guest-management',
     icon: '/icons/ic_baseline-rsvp.svg',
-  },
-  {
-    label: 'Need your address',
-    route: '/dashboard/address-and-rsvp',
-    icon: '/icons/location.svg',
-  },
-  {
-    label: 'Just do it list',
-    route: '/dashboard/features/todo',
-    icon: '/icons/ring-tik.svg',
   },
 ];
 
@@ -77,33 +79,40 @@ const Dashboard = () => {
       <DashboardTopBar coupleName />
       <DashboardLayout shadow>
         <DashboardHeader title='Dashboard 🎉' />
-        <div className='border rounded-tl-xl border-r-0 border-secondary bg-secondary-alternative/10'>
+        {/* <div className='border rounded-tl-xl border-r-0 border-secondary bg-secondary-alternative/10'>
           <div className='max-w-[1300px] w-full'>
-            <div className='p-12 xxl:pr-0 grid lg:grid-cols-4 xl:grid-cols-5 gap-10 justify-center'>
-              {navLinks.map((link, index) => (
-                <Link key={index} href={link.route}>
-                  <a className='flex items-center justify-center flex-col space-y-5 group'>
-                    <div className='relative'>
-                      <div className='pulse flex items-center justify-center border-2 border-transparent group-hover:border-primary rounded-full p-2 w-[90px] h-[90px] group-hover:bg-[#FCE0EB]'>
-                        <Image width={45} height={45} src={link.icon} />
-                        <span className='!hidden group-hover:!inline-block'>
-                          <span></span>
-                        </span>
-                      </div>
-                    </div>
-                    <h4 className='text-lg font-medium text-center capitalize'>
-                      {link.label}
-                    </h4>
-                  </a>
-                </Link>
-              ))}
-            </div>
+            
           </div>
-        </div>
-        <div className='rounded-tl-none shadow-box space-y-10'>
+        </div> */}
+        <div className='shadow-box space-y-10'>
           <div className='max-w-[1300px] w-full'>
             <div className='pl-12 my-10'>
-              <h4 className='text-center mb-16 text-2xl font-medium underline'>
+              <div className='text-center mb-[53px]'>
+                <h3 className='relative inline-block text-2xl font-normal'>
+                  <span className='absolute inline-block w-full mx-auto bottom-[-12px] left-1/2 h-[2px] max-w-[52px] -translate-x-1/2 bg-primary'></span>
+                  Your Apps
+                </h3>
+              </div>
+              <div className='grid lg:grid-cols-4 xl:grid-cols-5 gap-10 justify-center'>
+                {navLinks.map((link, index) => (
+                  <Link key={index} href={link.route}>
+                    <a className='flex items-center justify-center flex-col space-y-5 group'>
+                      <div className='relative'>
+                        <div className='pulse flex items-center justify-center border-2 border-transparent group-hover:border-primary rounded-full p-2 w-[90px] h-[90px] group-hover:bg-[#FCE0EB]'>
+                          <Image width={46} height={46} src={link.icon} />
+                          <span className='!hidden group-hover:!inline-block'>
+                            <span></span>
+                          </span>
+                        </div>
+                      </div>
+                      <h4 className='text-lg font-medium text-center capitalize'>
+                        {link.label}
+                      </h4>
+                    </a>
+                  </Link>
+                ))}
+              </div>
+              <h4 className='text-center my-16 text-2xl font-medium underline'>
                 Wedding Status
               </h4>
               <ActivityInfo />
