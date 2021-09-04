@@ -16,9 +16,15 @@ const params = {
 const WebsitePreviewContainer = ({ minimal }) => {
   return (
     <div
-      className={`mt-10 flex flex-col justify-center space-y-10 rounded-xl p-16 ${
+      className={`mt-10 flex flex-col justify-center space-y-10 rounded-xl ${
         minimal ? '' : 'border-4 border-secondary-alternative gradient'
       }`}
+      style={{
+        background: "url('/images/footer-leaf.png')",
+        backgroundPosition: '50% 50%',
+        backgroundSize: '110%',
+        backgroundRepeat: 'no-repeat',
+      }}
     >
       {!minimal && (
         <h3 className='text-3xl text-center capitalize'>
@@ -31,7 +37,7 @@ const WebsitePreviewContainer = ({ minimal }) => {
             <img
               src='/images/wedding-laptop.png'
               alt=''
-              className='md:max-h-[395px] mx-auto swiper-lazy'
+              className='md:max-h-[444px] mx-auto swiper-lazy'
             />
             <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
           </div>
@@ -47,13 +53,13 @@ const WebsitePreviewContainer = ({ minimal }) => {
             <img
               src='/images/wedding-macbook.png'
               alt=''
-              className='max-h-[250px] md:max-h-[395px] mx-auto swiper-lazy'
+              className='max-h-[250px] md:max-h-[444px] mx-auto swiper-lazy'
             />
             <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
           </div>
         </Swiper>
       </div>
-      <div className='flex items-center space-x-5 justify-center'>
+      {/* <div className='flex items-center space-x-5 justify-center'>
         {minimal && (
           <Link href='/dashboard/website'>
             <a
@@ -95,7 +101,7 @@ const WebsitePreviewContainer = ({ minimal }) => {
             </Link>
           </>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
