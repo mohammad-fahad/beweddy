@@ -7,7 +7,7 @@ const Features = () => {
       <div className='container py-20'>
         <Heading
           label='Core Features of Website'
-          // color='bg-secondary-alternative'
+          // color='bg-[#F9D1DE]'
           className='lg:!text-4xl'
           // lineStyle={{ marginBottom: '45px' }}
         />

@@ -72,7 +72,7 @@ const SignupPage = () => {
               </div>
               <Heading
                 label='Create Your Account'
-                color='bg-secondary-alternative'
+                color='bg-[#F9D1DE]'
                 className='!pb-5 md:!text-[2.55rem]'
                 lineStyle={{ marginBottom: '30px' }}
               />

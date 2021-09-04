@@ -15,7 +15,7 @@ const DashboardActiveLink = ({
     <Link href={href} scroll={false}>
       <a
         // target='_blank'
-        className={`text-base capitalize max-w-max text-primary font-inter group hover:text-primary transition-colors duration-300 relative ${
+        className={`text-sm capitalize max-w-max text-primary font-inter group hover:text-primary transition-colors duration-300 relative ${
           disabled ? 'cursor-not-allowed' : 'cursor-pointer'
         } ${className ? className : ''} ${
           customFontActiveLink
