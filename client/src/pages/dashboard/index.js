@@ -127,7 +127,7 @@ const Dashboard = () => {
             <div className='flex items-center space-x-5 justify-center my-[50px]'>
               <Link href='/dashboard/website/edit'>
                 <a
-                  className={`capitalize font-inter font-semibold border-2 border-primary rounded-[5px] bg-secondary-alternative py-2 px-5 flex items-center space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
+                  className={`capitalize font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-5 flex items-center space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
                 >
                   <PencilIcon className='w-5 h-5' />
                   <span>Edit your website</span>
@@ -135,7 +135,7 @@ const Dashboard = () => {
               </Link>
               <Link href='/dashboard/website'>
                 <a
-                  className={`capitalize font-inter font-semibold border-2 border-primary rounded-[5px] bg-secondary-alternative py-2 px-5 flex items-center space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
+                  className={`capitalize font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-5 flex items-center space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
                 >
                   <GlobeAltIcon className='w-5 h-5' />
                   <span>Preview Website</span>
@@ -143,7 +143,7 @@ const Dashboard = () => {
               </Link>
               <Link href='/'>
                 <a
-                  className={`capitalize font-inter font-semibold border-2 border-primary rounded-[5px] bg-secondary-alternative py-2 px-5 flex items-center space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
+                  className={`capitalize font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-5 flex items-center space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
                 >
                   <LinkIcon className='w-5 h-5' />
                   <span>Superlink</span>

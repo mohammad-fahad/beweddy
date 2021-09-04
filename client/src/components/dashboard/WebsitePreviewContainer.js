@@ -21,7 +21,7 @@ const WebsitePreviewContainer = ({ minimal }) => {
       }`}
       style={{
         background: "url('/images/footer-leaf.png')",
-        backgroundPosition: '50% 50%',
+        backgroundPosition: 'bottom',
         backgroundSize: '110%',
         backgroundRepeat: 'no-repeat',
       }}
