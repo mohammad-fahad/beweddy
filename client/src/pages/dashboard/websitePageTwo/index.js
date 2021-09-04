@@ -1,10 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { DashboardHeader, WeddingDayCountDown } from '@components/dashboard';
-import DashboardTopBar from '@components/dashboard/header/TopBar';
-import DashboardLayout from '@components/dashboard/layout';
 import { Footer } from '@components/index';
-import { LinkIcon } from '@heroicons/react/outline';
 import WebsiteNav from '@components/dashboard/Website/WebsiteNav';
 import { useSelector } from 'react-redux';
 import WebsiteGiftCards from '@components/dashboard/Website/WebsiteGiftCard';
@@ -38,7 +35,7 @@ const WebsitePageOne = () => {
         <title>Beweddy | {user?.coupleName}'s Wedding</title>
       </Head>
 
-      <div className='border-4 border-gray-200 rounded-lg'>
+      <div className=''>
         <WebsiteNav />
         {/* banner image */}
         <Swiper {...params}>
