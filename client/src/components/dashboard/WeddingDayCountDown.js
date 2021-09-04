@@ -36,7 +36,7 @@ const WeddingDayCountDown = ({ sm }) => {
     <div className={`flex items-center space-x-5`}>
       <div
         className={`flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg ${
-          sm ? 'min-w-[60px] py-[7px]' : 'min-w-28 py-5'
+          sm ? 'min-w-[60px] py-[7px]' : 'min-w-[103px] py-5'
         }`}
       >
         <h4 className={`${sm ? 'text-[16px]' : 'text-2xl'} font-bold`}>
@@ -46,7 +46,7 @@ const WeddingDayCountDown = ({ sm }) => {
       </div>
       <div
         className={`flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg ${
-          sm ? 'min-w-[60px] py-[7px]' : 'min-w-28 py-5'
+          sm ? 'min-w-[60px] py-[7px]' : 'min-w-[103px] py-5'
         }`}
       >
         <h4 className={`${sm ? 'text-[16px]' : 'text-2xl'} font-bold`}>
@@ -58,7 +58,7 @@ const WeddingDayCountDown = ({ sm }) => {
       </div>
       <div
         className={`flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg ${
-          sm ? 'min-w-[60px] py-[7px]' : 'min-w-28 py-5'
+          sm ? 'min-w-[60px] py-[7px]' : 'min-w-[103px] py-5'
         }`}
       >
         <h4 className={`${sm ? 'text-[16px]' : 'text-2xl'} font-bold`}>
@@ -70,7 +70,7 @@ const WeddingDayCountDown = ({ sm }) => {
       </div>
       <div
         className={`flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg ${
-          sm ? 'min-w-[60px] py-[7px]' : 'min-w-28 py-5'
+          sm ? 'min-w-[60px] py-[7px]' : 'min-w-[103px] py-5'
         }`}
       >
         <h4 className={`${sm ? 'text-[16px]' : 'text-2xl'} font-bold`}>
