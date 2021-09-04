@@ -150,12 +150,12 @@ const WebsitePageOne = () => {
           {/* timeline section */}
           <div class='grid grid-cols-12 gap-4 w-full mt-5'>
             <div class='col-start-2 col-span-10 p-5'>
-              <h2 className='text-2xl font-semibold'>Timeline</h2>
-              <ul>
+              <h4 className='text-[26px] font-medium mb-2'>Timeline</h4>
+              <ul className='space-y-3'>
                 {user?.receptionDetails?.map(el => (
-                  <li className='w-full p-3 my-2 border-2 border-gray-300 cursor-pointer'>
-                    <span className='text-2xl font-bold'>{el?.time}</span>
-                    {el?.details}
+                  <li className='w-full px-7 py-2 space-x-5 border border-[#D5D5D5] hover:border-primary cursor-pointer'>
+                    <span className='text-lg font-bold'>{el?.time}</span>
+                    <span className='text-lg font-normal'>{el?.details}</span>
                   </li>
                 ))}
               </ul>
