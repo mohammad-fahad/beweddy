@@ -13,10 +13,24 @@ import SocialSection from '@components/dashboard/Website/SocialSection';
 import { useState } from 'react';
 import { QRCode } from 'react-qrcode-logo';
 import WebsiteVideo from '@components/dashboard/Website/WebsiteVideo';
+import Swiper from 'react-id-swiper';
+import { Image } from 'cloudinary-react';
+import SwiperCore, { Lazy, Autoplay } from 'swiper';
+
+SwiperCore.use([Lazy, Autoplay]);
+
+const params = {
+  loop: true,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false,
+  },
+};
+
 const WebsitePageOne = () => {
   const { user } = useSelector(state => state.user);
   const [value, setValue] = useState('https://beweddy-delta.vercel.app/');
-  console.log(user?.questions);
+
   return (
     <>
       <Head>
@@ -49,13 +63,23 @@ const WebsitePageOne = () => {
         <div className='border-4 border-gray-200 rounded-lg'>
           <WebsiteNav />
           {/* banner image */}
-          <div>
-            <img
-              src='/images/website-banner1.png'
-              alt='banner'
-              className='w-full h-auto bg-center bg-no-repeat bg-cover border-b-[3px] border-primary'
-            />
-          </div>
+          <Swiper {...params}>
+            {user.questions.couplePictures.map((image, index) => (
+              <div className='w-full'>
+                <div className='aspect-w-16 aspect-h-9'>
+                  <Image
+                    cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
+                    publicId={image.public_id}
+                    src={!image.public_id ? image.url : null}
+                    width={image.width}
+                    crop='scale'
+                    className='object-cover'
+                  />
+                </div>
+                <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
+              </div>
+            ))}
+          </Swiper>
           {/* date and Countdown section */}
           <div className='flex flex-col items-center py-6 mt-[36px]'>
             <h1 className='font-inter text-4xl xl:text-5xl font-medium'>
