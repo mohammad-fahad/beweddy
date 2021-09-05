@@ -20,12 +20,11 @@ const Footer = ({ hideSocial }) => {
       {!hideSocial && (
         <>
           <div className='bg-gray-50 pb-16 py-20'>
-            <Heading
-              label='Follow BeWeddy'
-              color='bg-secondary-alternative'
-              className='lg:!text-4xl'
-              lineStyle={{ marginBottom: '30px' }}
-            />
+            <div className='text-center mb-[53px]'>
+              <h4 className='inline-block mx-auto text-[30px] font-medium pb-3 border-b-4 border-[#FFB1B6]'>
+                Follow BeWeddy
+              </h4>
+            </div>
             <div className='flex items-center justify-center gap-8 md:gap-14 flex-wrap'>
               <a href='#'>
                 <Facebook
@@ -85,8 +84,8 @@ const Footer = ({ hideSocial }) => {
           </p>
           <div className='flex items-center justify-center sm:justify-between flex-wrap gap-3 sm:gap-6'>
             <Link href='/'>
-              <a className='text-primary font-medium font-inter group hover:text-primary transition-colors duration-300 relative'>
-                <span>About us</span>
+              <a className='text-primary font-semibold font-inter group hover:text-primary transition-colors duration-300 relative'>
+                <span>About BeWeddy!</span>
                 <span
                   className={`absolute bottom-[-6px] left-0 w-full h-[2px] bg-primary group-hover:w-full transition-all duration-300`}
                 ></span>

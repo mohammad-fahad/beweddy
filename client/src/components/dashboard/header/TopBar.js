@@ -11,13 +11,7 @@ const DashboardTopBar = ({ coupleName }) => {
     <div className='bg-secondary-alternative border-b-[3px] border-primary'>
       <div className='max-w-[1620px] pr-16 xxl:pr-0 ml-14'>
         <div className='flex items-center justify-between'>
-          {coupleName ? (
-            <h3 className='text-lg capitalize'>
-              👋 Welcome {user?.coupleName}. Let's Eat, drink & BeWeddy !
-            </h3>
-          ) : (
-            <p className='text-sm text-medium'>Eat, Drink & BeWeddy!</p>
-          )}
+          <h3 className='text-lg capitalize'>👋 Welcome {user?.coupleName}!</h3>
           <div className='flex items-center space-x-5 py-5'>
             <Link href='/'>
               <a className='flex items-center space-x-3 font-inter text-base text-gray-700 hover:text-primary font-semibold transition duration-300'>

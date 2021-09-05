@@ -32,7 +32,7 @@ const ProfileLinks = ({ user }) => {
             <Menu.Items
               // static
               // className='origin-top-right z-50 absolute right-0 mt-2 w-52 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none'
-              className='absolute z-50 right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'
+              className='absolute z-[100] right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'
             >
               <Menu.Item>
                 {({ active }) => (
