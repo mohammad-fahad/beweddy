@@ -78,7 +78,7 @@ const Sidebar = () => {
                 Just to do list
               </h4>
             </div>
-            <div className='hidden lg:space-y-5'>
+            <div className='hidden lg:block lg:space-y-5'>
               <button
                 type='button'
                 className='capitalize border-2 border-secondary-alternative/40 py-2 px-5 rounded-lg font-inter bg-secondary-alternative/20 font-medium hover:bg-secondary-alternative/40 hover:border-primary transition duration-300'
