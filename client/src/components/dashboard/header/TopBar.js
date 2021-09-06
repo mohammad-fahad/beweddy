@@ -9,10 +9,10 @@ const DashboardTopBar = ({ coupleName }) => {
   const { user } = useSelector(state => state.user);
   return (
     <div className='bg-secondary-alternative border-b-[3px] border-primary'>
-      <div className='max-w-[1620px] pr-16 xxl:pr-0 ml-14'>
-        <div className='flex items-center justify-between'>
+      <div className='max-w-[1620px] pr-12 md:pr-16 xxl:pr-0 ml-6 sm:ml-14'>
+        <div className='flex items-center justify-between py-5 flex-wrap space-x-5'>
           <h3 className='text-lg capitalize'>👋 Welcome {user?.coupleName}!</h3>
-          <div className='flex items-center space-x-5 py-5'>
+          <div className='flex items-center space-x-5'>
             <Link href='/'>
               <a className='flex items-center space-x-3 font-inter text-base text-gray-700 hover:text-primary font-semibold transition duration-300'>
                 <img src='/icons/lifebuoy.svg' alt='help' className='w-6 h-6' />

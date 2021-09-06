@@ -77,9 +77,9 @@ const DashboardNavLinks = () => {
       <div className='flex items-center justify-between space-x-5'>
         <DashboardActiveLink
           href='/dashboard'
-          className='!text-lg !font-semibold'
+          className='text-sm md:!text-base lg:!text-lg !font-semibold'
           customActiveLink={
-            dashboardRoutes.includes(pathname) ? 'w-full' : 'w-0'
+            dashboardRoutes.includes(pathname) ? 'lg:w-full' : 'w-0'
           }
           customFontActiveLink={
             dashboardRoutes.includes(pathname) ? 'font-bold' : 'font-medium'
@@ -87,11 +87,11 @@ const DashboardNavLinks = () => {
         >
           Dashboard
         </DashboardActiveLink>
-        <button className='px-5 py-3'>
+        <button className='sm:pl-5 md:pr-0 py-2 lg:py-3'>
           <svg
             width='20'
             height='15'
-            className='w-6 h-6'
+            className='w-4 lg:w-6 h-4 lg:h-6'
             viewBox='0 0 20 15'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
@@ -111,22 +111,24 @@ const DashboardNavLinks = () => {
           </svg>
         </button>
       </div>
-      {navLinks.map((link, index) => (
-        <DashboardActiveLink
-          href={link.isComing ? '#' : link.href}
-          key={index}
-          disabled={link.isComing}
-        >
-          {link.isComing ? (
-            <p className='space-x-2'>
-              <span className='opacity-30'>{link.label}</span>
-              <small className='text-secondary opacity-50'>Coming Soon</small>
-            </p>
-          ) : (
-            link.label
-          )}
-        </DashboardActiveLink>
-      ))}
+      <div className='hidden lg:flex flex-col space-y-5'>
+        {navLinks.map((link, index) => (
+          <DashboardActiveLink
+            href={link.isComing ? '#' : link.href}
+            key={index}
+            disabled={link.isComing}
+          >
+            {link.isComing ? (
+              <p className='space-x-2'>
+                <span className='opacity-30'>{link.label}</span>
+                <small className='text-secondary opacity-50'>Coming Soon</small>
+              </p>
+            ) : (
+              link.label
+            )}
+          </DashboardActiveLink>
+        ))}
+      </div>
       {/* <div className='!mt-10'>
         <DashboardActiveLink
           href='/dashboard/features'

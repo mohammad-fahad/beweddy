@@ -28,11 +28,11 @@ const DashboardActiveLink = ({
         {children}
         {!disabled && (
           <span
-            className={`absolute bottom-[-10px] left-0 h-[3px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300 ${
+            className={`absolute bottom-[-10px] left-0 h-[3px] bg-[#FFB1B6] lg:group-hover:w-full transition-all duration-300 ${
               customActiveLink
                 ? customActiveLink
                 : pathname === href
-                ? 'w-full'
+                ? 'lg:w-full'
                 : 'w-0'
             }`}
           ></span>
