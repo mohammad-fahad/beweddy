@@ -13,12 +13,12 @@ const DashboardTopBar = ({ coupleName }) => {
         <div className='flex md:items-center justify-between py-5 flex-col md:flex-row space-y-3 md:space-y-0'>
           <h3 className='text-xl capitalize'>👋 Welcome {user?.coupleName}!</h3>
           <div className='flex items-center space-x-5'>
-            <Link href='/'>
+            {/* <Link href='/'>
               <a className='flex items-center space-x-2 md:space-x-3 font-inter text-sm md:text-base text-gray-700 hover:text-primary font-semibold transition duration-300'>
                 <SearchIcon className='w-5 h-5 sm:w-6 sm:h-6' />
                 <span>Search</span>
               </a>
-            </Link>
+            </Link> */}
             <Link href='/'>
               <a className='flex items-center space-x-2 md:space-x-3 font-inter text-sm md:text-base text-gray-700 hover:text-primary font-semibold transition duration-300'>
                 <img
