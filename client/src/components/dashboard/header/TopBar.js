@@ -10,7 +10,7 @@ const DashboardTopBar = ({ coupleName }) => {
   return (
     <div className='bg-secondary-alternative border-b-[3px] border-primary'>
       <div className='max-w-[1620px] pr-12 md:pr-16 xxl:pr-0 ml-6 sm:ml-14'>
-        <div className='flex md:items-center justify-between py-5 flex-col md:flex-row space-y-3 md:space-y-0'>
+        <div className='flex md:items-center justify-between py-5 flex-col sm:flex-row space-y-3 sm:space-y-0'>
           <h3 className='text-xl capitalize'>👋 Welcome {user?.coupleName}!</h3>
           <div className='flex items-center space-x-5'>
             {/* <Link href='/'>
@@ -94,7 +94,7 @@ const DashboardTopBar = ({ coupleName }) => {
               )}
             </Menu>
             <Link href='/'>
-              <a className='relative font-inter text-sm md:text-base text-gray-700 hover:text-primary font-semibold transition duration-300'>
+              <a className='!ml-auto sm:!ml-5 relative font-inter text-sm md:text-base text-gray-700 hover:text-primary font-semibold transition duration-300'>
                 <img
                   src='/icons/notification.svg'
                   alt='notification'
