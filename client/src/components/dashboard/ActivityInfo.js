@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 const ActivityInfo = () => {
   return (
-    <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 xl:gap-6'>
+    <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 xl:gap-6'>
       <div className='p-5 flex flex-col justify-center items-center space-y-2 transition duration-300 text-center'>
         <Image
           src='/icons/message-notif.svg'

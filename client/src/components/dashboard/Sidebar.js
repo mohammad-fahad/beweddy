@@ -172,7 +172,7 @@ const Sidebar = () => {
           </form>
         </div>
       </div>
-      <div className='hidden lg:flex justify-center mt-10'>
+      <div className='hidden lg:flex justify-center mt-10 w-full'>
         <QRCodeGenerator sidebar />
       </div>
     </div>
