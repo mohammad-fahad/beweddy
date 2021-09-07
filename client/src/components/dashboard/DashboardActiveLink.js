@@ -8,6 +8,7 @@ const DashboardActiveLink = ({
   customActiveLink,
   customFontActiveLink,
   disabled,
+  onClick,
 }) => {
   const { pathname } = useRouter();
 
@@ -24,6 +25,7 @@ const DashboardActiveLink = ({
             ? 'font-bold'
             : 'font-medium'
         }`}
+        {...{ onClick }}
       >
         {children}
         {!disabled && (

@@ -72,13 +72,21 @@ const Sidebar = () => {
       <div className='w-full'>
         <div className='w-full xs:w-max lg:w-full border-2 lg:border-4 border-[#FCE3EB] lg:border-l-0 lg:rounded-l-none rounded-[5px] lg:rounded-[20px] bg-[#FFFCFD] py-2 px-4 sm:px-5 lg:py-10 lg:pl-14 lg:pr-5'>
           <form className='space-y-5' onSubmit={handleSubmit(onSubmit)}>
-            <div className='flex items-center space-x-3 lg:space-x-5'>
+            <Link href='/dashboard/features/todo'>
+              <a className='flex lg:hidden items-center space-x-3 lg:space-x-5'>
+                <img src='/icons/ring-tik.svg' alt='' className='w-7 lg:w-8' />
+                <h4 className='text-sm sm:text-base lg:text-lg font-semibold capitalize'>
+                  Just to do list
+                </h4>
+              </a>
+            </Link>
+            <div className='hidden lg:flex items-center space-x-3 lg:space-x-5'>
               <img src='/icons/ring-tik.svg' alt='' className='w-7 lg:w-8' />
               <h4 className='text-sm sm:text-base lg:text-lg font-semibold capitalize'>
                 Just to do list
               </h4>
             </div>
-            <div className='hidden lg:space-y-5'>
+            <div className='hidden lg:block lg:space-y-5'>
               <button
                 type='button'
                 className='capitalize border-2 border-secondary-alternative/40 py-2 px-5 rounded-lg font-inter bg-secondary-alternative/20 font-medium hover:bg-secondary-alternative/40 hover:border-primary transition duration-300'

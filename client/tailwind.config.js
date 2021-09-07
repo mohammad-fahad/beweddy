@@ -8,7 +8,7 @@ module.exports = {
       sm: '576px',
       md: '768px',
       lg: '1024px',
-      xl: '1350px',
+      xl: '1450px',
       xxl: '1700px',
     },
     container: {
@@ -19,7 +19,7 @@ module.exports = {
         sm: '576px',
         md: '768px',
         lg: '1024px',
-        xl: '1350px',
+        xl: '1450px',
       },
     },
     extend: {
