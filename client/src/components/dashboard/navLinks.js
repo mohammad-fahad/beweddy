@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import DashboardActiveLink from './DashboardActiveLink';
+import Drawer from './drawer';
 
 const navLinks = [
   {
@@ -69,11 +71,14 @@ const specialFeatures = [
 ];
 
 const DashboardNavLinks = () => {
+  const [open, setOpen] = useState(false);
   const dashboardRoutes = ['/dashboard', '/dashboard/website/edit'];
   // const featuresRoutes = ['/dashboard/features'];
   const { pathname } = useRouter();
+
   return (
     <div className='flex flex-col space-y-5'>
+      <Drawer {...{ open, setOpen }} />
       <div className='flex items-center justify-between space-x-5'>
         <DashboardActiveLink
           href='/dashboard'
@@ -87,7 +92,10 @@ const DashboardNavLinks = () => {
         >
           Dashboard
         </DashboardActiveLink>
-        <button className='sm:pl-5 md:pr-0 py-2 lg:py-3'>
+        <button
+          className='sm:pl-5 md:pr-0 py-2 lg:py-3'
+          onClick={() => setOpen(prev => !prev)}
+        >
           <svg
             width='20'
             height='15'

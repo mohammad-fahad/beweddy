@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Drawer from './drawer';
 import Sidebar from './Sidebar';
 
 const DashboardLayout = ({ children, shadow }) => {
