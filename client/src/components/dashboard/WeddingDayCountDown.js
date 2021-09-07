@@ -9,7 +9,7 @@ const WeddingDayCountDown = ({ sm }) => {
   const [seconds, setSeconds] = useState(0);
   const {
     weddingDay: { weddingDate },
-  } = user.questions;
+  } = user && user.questions;
 
   useEffect(() => {
     if (weddingDate) {
@@ -33,23 +33,23 @@ const WeddingDayCountDown = ({ sm }) => {
   }, []);
 
   return (
-    <div className={`flex items-center space-x-5 ${sm ? 'mt-3' : 'mt-8'}`}>
+    <div className={`flex items-center space-x-5`}>
       <div
         className={`flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg ${
-          sm ? 'w-[60px] py-3' : 'w-28 py-5'
+          sm ? 'min-w-[60px] py-[7px]' : 'min-w-[103px] py-5'
         }`}
       >
-        <h4 className={`${sm ? 'text-[15px]' : 'text-2xl'} font-bold`}>
+        <h4 className={`${sm ? 'text-[16px]' : 'text-2xl'} font-bold`}>
           {days < 10 ? `0${days}` : days}
         </h4>
         <p className={`${sm ? 'text-[9px]' : 'text-base'} font-normal`}>Days</p>
       </div>
       <div
         className={`flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg ${
-          sm ? 'w-[60px] py-3' : 'w-28 py-5'
+          sm ? 'min-w-[60px] py-[7px]' : 'min-w-[103px] py-5'
         }`}
       >
-        <h4 className={`${sm ? 'text-[15px]' : 'text-2xl'} font-bold`}>
+        <h4 className={`${sm ? 'text-[16px]' : 'text-2xl'} font-bold`}>
           {hours < 10 ? `0${hours}` : hours}
         </h4>
         <p className={`${sm ? 'text-[9px]' : 'text-base'} font-normal`}>
@@ -58,10 +58,10 @@ const WeddingDayCountDown = ({ sm }) => {
       </div>
       <div
         className={`flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg ${
-          sm ? 'w-[60px] py-3' : 'w-28 py-5'
+          sm ? 'min-w-[60px] py-[7px]' : 'min-w-[103px] py-5'
         }`}
       >
-        <h4 className={`${sm ? 'text-[15px]' : 'text-2xl'} font-bold`}>
+        <h4 className={`${sm ? 'text-[16px]' : 'text-2xl'} font-bold`}>
           {minutes < 10 ? `0${minutes}` : minutes}
         </h4>
         <p className={`${sm ? 'text-[9px]' : 'text-base'} font-normal`}>
@@ -70,10 +70,10 @@ const WeddingDayCountDown = ({ sm }) => {
       </div>
       <div
         className={`flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg ${
-          sm ? 'w-[60px] py-3' : 'w-28 py-5'
+          sm ? 'min-w-[60px] py-[7px]' : 'min-w-[103px] py-5'
         }`}
       >
-        <h4 className={`${sm ? 'text-[15px]' : 'text-2xl'} font-bold`}>
+        <h4 className={`${sm ? 'text-[16px]' : 'text-2xl'} font-bold`}>
           {seconds < 10 ? `0${seconds}` : seconds}
         </h4>
         <p className={`${sm ? 'text-[9px]' : 'text-base'} font-normal`}>

@@ -250,7 +250,7 @@ const UploadCouplePicture = () => {
                 >
                   <XIcon className='w-5 h-5' />
                 </button>
-                <div className='aspect-w-16 aspect-h-12'>
+                <div className='aspect-w-16 aspect-h-9'>
                   <Image
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                     publicId={image.public_id}
@@ -317,7 +317,7 @@ const UploadCouplePicture = () => {
       <CropImage
         onSave={onCropSave}
         selectedFile={selectedImageFile}
-        aspectRatio={16 / 12}
+        aspectRatio={16 / 9}
       />
     </CreateWebsiteContainer>
   );

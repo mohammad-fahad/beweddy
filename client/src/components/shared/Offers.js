@@ -6,7 +6,7 @@ const Offers = ({ offers, className, title }) => {
       <div className='container py-20'>
         <Heading
           label={title}
-          color='bg-secondary-alternative'
+          color='bg-[#F9D1DE]'
           className='!max-w-4xl drop-shadow-2xl'
           // lineStyle={{ marginBottom: '45px' }}
         />

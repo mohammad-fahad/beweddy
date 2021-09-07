@@ -6,11 +6,21 @@ const QRFeature = () => {
       <div className='max-w-6xl mx-auto w-full px-10'>
         <Heading label='Personalized QR Codes' />
         <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-10 lg:gap-16'>
-          <div className='lg:col-span-2 self-center text-center md:text-left border-2 border-gray-200 rounded-lg p-5 md:p-10'>
-            <p className='md:text-2xl lg:text-3xl font-medium md:leading-relaxed lg:leading-loose'>
+          <div className='relative lg:col-span-2 self-center text-center md:text-left bg-[#F8F8F8] p-5 md:px-[55px] md:py-[46px] max-w-2xl w-full mx-auto'>
+            <p className='text-lg md:text-xl lg:text-[26px] font-normal !leading-[150.5%] max-w-[567px] w-full'>
               Custom QR Codes Help Any Guest Find and Support Your Wedding
               Platform Right From Their Phone!
             </p>
+            <svg
+              className='absolute -bottom-7 right-10'
+              width='66'
+              height='34'
+              viewBox='0 0 66 34'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path d='M66 34L0.5 0H66V34Z' fill='#F8F8F8' />
+            </svg>
           </div>
           <div className='-mb-32 lg:mb-[-14rem]'>
             <img

@@ -19,17 +19,20 @@ export const Header = () => {
         <div className='flex items-center justify-between lg:gap-10'>
           {/* Logo */}
           <Link href='/'>
-            <a className='-mt-[0.6rem]'>
+            <a className='-mt-[0.6rem] inline-block space-y-2'>
               <img
                 src='/images/logo.png'
                 alt=''
                 className='h-14 sm:h-16 md:h-20 md:w-48 object-contain'
               />
+              <h3 className='text-base font-medium'>
+                All-In-One Wedding Platform.
+              </h3>
             </a>
           </Link>
-          <div className='space-y-8 xl:space-y-10 flex-1 xl:flex-none'>
+          <div className='space-y-8 flex-1 xl:flex-none'>
             {/* Navigation Links Start */}
-            <div className='flex items-center justify-between flex-1 gap-20'>
+            <div className='flex items-center justify-between flex-1 gap-16'>
               <div className='hidden xl:block'>
                 <NavLinks />
               </div>
@@ -83,7 +86,7 @@ export const Header = () => {
                 {/* <MenuIcon className='w-8 h-8' /> */}
               </div>
             </div>
-            <div className='hidden xl:flex items-center justify-between flex-1 gap-10 xl:gap-20'>
+            <div className='hidden xl:flex items-center justify-between flex-1 gap-10 xl:gap-16'>
               {/* Search Bar Area */}
               <SearchBar />
               {/* Search Bar Area End */}

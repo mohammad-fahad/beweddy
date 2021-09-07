@@ -25,7 +25,7 @@ const SyncRegistries = () => {
           </div>
           <Heading
             label='Link All Your Wedding Registries You Want Below!'
-            color='bg-secondary-alternative'
+            color='bg-[#F9D1DE]'
             lineStyle={{ marginBottom: '45px' }}
           />
           <h4 className='text-xl text-center font-medium'>My Syncs</h4>
@@ -42,7 +42,7 @@ const SyncRegistries = () => {
           </div>
           <Heading
             label='Featured Stores'
-            color='bg-secondary-alternative'
+            color='bg-[#F9D1DE]'
             lineStyle={{ marginBottom: '45px' }}
           />
           <div className='max-w-sm mx-auto md:max-w-5xl mb-16'>
@@ -76,7 +76,7 @@ const SyncRegistries = () => {
           </div>
           <Heading
             label='Other Stores I Can Sync'
-            color='bg-secondary-alternative'
+            color='bg-[#F9D1DE]'
             lineStyle={{ marginBottom: '45px' }}
           />
           <div className='mb-20 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-xs mx-auto sm:max-w-full gap-6'>

@@ -9,30 +9,34 @@ const DashboardTopBar = ({ coupleName }) => {
   const { user } = useSelector(state => state.user);
   return (
     <div className='bg-secondary-alternative border-b-[3px] border-primary'>
-      <div className='max-w-[1620px] pr-16 xxl:pr-0 ml-14'>
-        <div className='flex items-center justify-between'>
-          {coupleName ? (
-            <h3 className='text-lg capitalize'>
-              👋 Welcome {user?.coupleName}. Let's Eat, drink & BeWeddy !
-            </h3>
-          ) : (
-            <p className='text-sm text-medium'>Eat, Drink & BeWeddy!</p>
-          )}
-          <div className='flex items-center space-x-5 py-5'>
+      <div className='max-w-[1620px] pr-12 md:pr-16 xxl:pr-0 ml-6 sm:ml-14'>
+        <div className='flex md:items-center justify-between py-5 flex-col sm:flex-row space-y-3 sm:space-y-0'>
+          <h3 className='text-xl capitalize'>👋 Welcome {user?.coupleName}!</h3>
+          <div className='flex items-center space-x-5'>
+            {/* <Link href='/'>
+              <a className='flex items-center space-x-2 md:space-x-3 font-inter text-sm md:text-base text-gray-700 hover:text-primary font-semibold transition duration-300'>
+                <SearchIcon className='w-5 h-5 sm:w-6 sm:h-6' />
+                <span>Search</span>
+              </a>
+            </Link> */}
             <Link href='/'>
-              <a className='flex items-center space-x-3 font-inter text-base text-gray-700 hover:text-primary font-semibold transition duration-300'>
-                <img src='/icons/lifebuoy.svg' alt='help' className='w-6 h-6' />
+              <a className='flex items-center space-x-2 md:space-x-3 font-inter text-sm md:text-base text-gray-700 hover:text-primary font-semibold transition duration-300'>
+                <img
+                  src='/icons/lifebuoy.svg'
+                  alt='help'
+                  className='w-5 h-5 sm:w-6 sm:h-6'
+                />
                 <span>Help</span>
               </a>
             </Link>
             <Menu as='div' className='relative'>
               {({ open }) => (
                 <>
-                  <Menu.Button className='flex items-center space-x-3 font-inter text-base text-gray-700 hover:text-primary font-semibold transition duration-300'>
+                  <Menu.Button className='flex items-center space-x-2 md:space-x-3 font-inter text-sm md:text-base text-gray-700 hover:text-primary font-semibold transition duration-300'>
                     <img
                       src='/icons/profile-2user.svg'
                       alt='account'
-                      className='w-6 h-6'
+                      className='w-5 h-5 sm:w-6 sm:h-6'
                     />
                     <span>Account</span>
                   </Menu.Button>
@@ -84,78 +88,21 @@ const DashboardTopBar = ({ coupleName }) => {
                           </button>
                         )}
                       </Menu.Item>
-
-                      {/* <Menu.Item>
-                      {({ active }) => (
-                        <>
-                          <Link href='/account'>
-                            <a
-                              className={
-                                'block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100'
-                              }
-                            >
-                              My Account
-                            </a>
-                          </Link>
-                          <Link href='/account/orders'>
-                            <a
-                              className={
-                                'block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100'
-                              }
-                            >
-                              My Order
-                            </a>
-                          </Link>
-                          <Link href='/account/wishlist'>
-                            <a
-                              className={
-                                'block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100'
-                              }
-                            >
-                              My Wishlist
-                            </a>
-                          </Link>
-                          <Link href='/cart'>
-                            <a
-                              className={
-                                'block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100'
-                              }
-                            >
-                              My Cart
-                            </a>
-                          </Link>
-                          <button
-                            className={
-                              'block focus:outline-none px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100'
-                            }
-                          >
-                            Log out
-                          </button>
-                        </>
-                      )}
-                    </Menu.Item> */}
                     </Menu.Items>
                   </Transition>
                 </>
               )}
             </Menu>
             <Link href='/'>
-              <a className='font-inter text-base text-gray-700 hover:text-primary font-semibold transition duration-300'>
-                <SearchIcon className='w-6 h-6' />
-              </a>
-            </Link>
-            <Link href='/'>
-              <a className='font-inter text-base text-gray-700 hover:text-primary font-semibold transition duration-300'>
+              <a className='!ml-auto sm:!ml-5 relative font-inter text-sm md:text-base text-gray-700 hover:text-primary font-semibold transition duration-300'>
                 <img
                   src='/icons/notification.svg'
                   alt='notification'
-                  className='w-6 h-6'
+                  className='w-5 h-5 sm:w-6 sm:h-6'
                 />
-              </a>
-            </Link>
-            <Link href='/'>
-              <a className='font-inter text-base text-gray-700 hover:text-primary font-semibold transition duration-300'>
-                <img src='/icons/bag.svg' alt='cart' className='w-6 h-6' />
+                <span className='absolute top-[-13px] right-[-25px] w-[25px] h-[25px] text-[7px] flex items-center justify-center bg-[#FFB1B6] rounded-full'>
+                  1
+                </span>
               </a>
             </Link>
           </div>
