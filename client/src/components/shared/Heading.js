@@ -10,7 +10,7 @@ const Heading = ({
   if (h3) {
     return (
       <h4
-        className={`text-2xl capitalize font-semibold ${
+        className={`md:text-xl md:text-left lg:text-2xl capitalize font-semibold ${
           className ? className : ''
         }`}
       >

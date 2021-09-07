@@ -13,7 +13,7 @@ const DashboardHeader = ({ title, children }) => {
       <div
         className={`flex flex-col-reverse sm:flex-row items-center justify-center sm:space-x-5 sm:justify-between flex-wrap w-full`}
       >
-        <h2 className='capitalize text-4xl font-medium mt-5 sm:mt-0'>
+        <h2 className='capitalize text-3xl md:text-4xl font-medium mt-5 sm:mt-0'>
           {title}
         </h2>
 

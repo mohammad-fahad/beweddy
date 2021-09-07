@@ -35,28 +35,28 @@ const QRCodePage = () => {
         <DashboardHeader title='Personalized QR Code' />
         <div className='shadow-box space-y-10'>
           <div className='max-w-[1300px] w-full'>
-            <div className='p-12 xl:pr-0 grid xl:grid-cols-3 gap-10'>
+            <div className='p-6 sm:p-12 xl:pr-0 grid md:grid-cols-2 lg:grid-cols-none xl:grid-cols-3 gap-10'>
               <div className='xl:col-span-2'>
                 <div className='border-2 border-primary py-10 px-8'>
                   <div className='flex flex-col space-y-5'>
                     <Heading h3>Create Your Customize QR Code</Heading>
                     <input
                       type='text'
-                      className='w-96 rounded-[5px] border-[3px] border-gray-300 py-3 px-5 text-base font-normal placeholder-gray-300'
+                      className='max-w-sm w-full rounded-[5px] border-[3px] border-gray-300 py-3 px-5 text-base font-normal placeholder-gray-300'
                       placeholder='www.beweddy.com/nateandash'
                       value={link}
                       onChange={e => setLink(e.target.value)}
                     />
                     <Heading h3>Upload QR Image</Heading>
-                    <div className='flex items-center space-x-5'>
+                    <div className='flex items-center gap-2 lg:space-x-5 flex-wrap'>
                       <button
-                        className='bg-white font-inter cursor-pointer text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition-colors duration-300 hover:border-primary'
+                        className='w-full sm:w-max bg-white font-inter cursor-pointer text-center text-sm md:text-base font-medium md:font-semibold py-3 px-6 lg:px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition-colors duration-300 hover:border-primary'
                         onClick={() => alert('Under construction')}
                       >
                         upload Image
                       </button>
                       <button
-                        className='bg-white font-inter cursor-pointer text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition-colors duration-300 hover:border-primary'
+                        className='w-full sm:w-max bg-white font-inter cursor-pointer text-center text-sm md:text-base font-medium md:font-semibold py-3 px-6 lg:px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition-colors duration-300 hover:border-primary'
                         onClick={() => setValue(link)}
                       >
                         Generate
@@ -64,7 +64,7 @@ const QRCodePage = () => {
                     </div>
                     <div className='!mt-10'>
                       <button
-                        className='bg-secondary-alternative/40 font-inter cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition duration-300 hover:bg-secondary-alternative/30 hover:border-primary'
+                        className='w-full sm:w-max bg-secondary-alternative/40 font-inter cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-5 lg:px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition duration-300 hover:bg-secondary-alternative/30 hover:border-primary'
                         onClick={download}
                       >
                         Download Your QR Code
@@ -78,7 +78,7 @@ const QRCodePage = () => {
                   <h4 className='text-xl text-center font-medium'>
                     Demo QR | Your QR Code
                   </h4>
-                  <div className='relative w-80 mx-auto'>
+                  <div className='relative max-w-xs w-full mx-auto'>
                     <img
                       src='/images/qrcode-mock.png'
                       alt=''
@@ -107,8 +107,8 @@ const QRCodePage = () => {
                 </div>
               </div>
             </div>
-            <div className='p-12 xl:pr-0 grid xl:grid-cols-3 gap-10'>
-              <div className='xl:col-span-1'>
+            <div className='p-6 sm:p-12 xl:pr-0 grid md:grid-cols-2 xl:grid-cols-3 gap-10'>
+              <div className='justify-self-center md:justify-self-stretch'>
                 <div className='space-y-8'>
                   <div className='space-y-3'>
                     <Heading h3 className='!font-medium !text-lg'>
@@ -122,7 +122,7 @@ const QRCodePage = () => {
                       />
                     </div>
                   </div>
-                  <div>
+                  <div className='max-w-[330px]'>
                     <Image
                       width={330}
                       height={660}
@@ -131,7 +131,7 @@ const QRCodePage = () => {
                   </div>
                 </div>
               </div>
-              <div className='xl:col-span-2'>
+              <div className='justify-self-center md:justify-self-stretch max-w-[400px] w-full'>
                 <div className='space-y-10'>
                   <div className='space-y-3'>
                     <Heading h3 className='!font-medium !text-lg'>
