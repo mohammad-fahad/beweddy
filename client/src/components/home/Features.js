@@ -19,7 +19,7 @@ const Features = () => {
                 <img
                   src='/icons/mail_outline.svg'
                   alt=''
-                  className='w-10 md:w-12 lg:w-14 !ml-auto'
+                  className='w-10 md:w-12 lg:w-14 !ml-auto lg:!ml-10'
                 />
               </div>
               <div className='pl-8 lg:pl-10 timeline pr-7 lg:pr-8 py-7 lg:py-8 flex items-center space-x-8 lg:space-x-10'>

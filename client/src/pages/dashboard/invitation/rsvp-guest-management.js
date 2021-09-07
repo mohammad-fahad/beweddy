@@ -1,10 +1,9 @@
 import Head from 'next/head';
 import { DashboardHeader } from '@components/dashboard';
-import { Button, Footer, Heading, Loader } from '@components/index';
+import { Footer, Heading, Loader } from '@components/index';
 import { withAuthRoute } from '@hoc/withAuthRoute';
 import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
-import { StarIcon } from '@heroicons/react/solid';
 import { useSelector } from 'react-redux';
 import { PlusIcon, SearchIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
@@ -13,7 +12,7 @@ const RSVPGuestManagementPage = () => {
   return (
     <>
       <Head>
-        <title>Beweddy | Mailout invites</title>
+        <title>Beweddy | Guest Management</title>
       </Head>
       {/* {loading && <Loader />} */}
       <DashboardTopBar coupleName />
