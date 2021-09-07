@@ -124,10 +124,10 @@ const Drawer = ({ open, setOpen }) => {
                     {/* Replace with your content */}
                     <div className='absolute inset-0 px-4 sm:px-6'>
                       <div
-                        className='h-full border-2 border-dashed border-gray-200'
+                        className='h-full border-2 border-dashed border-gray-200 overflow-y-auto'
                         aria-hidden='true'
                       >
-                        <div className='flex flex-col space-y-5 px-10 py-5'>
+                        <div className='flex flex-col space-y-4 xs:space-y-5 px-5 xs:px-10 py-5'>
                           <DashboardActiveLink
                             href='/dashboard'
                             className='text-sm md:!text-base lg:!text-lg !font-semibold hover:opacity-70'

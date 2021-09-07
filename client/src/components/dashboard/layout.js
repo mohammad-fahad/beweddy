@@ -13,8 +13,12 @@ const DashboardLayout = ({ children, shadow }) => {
           >
             <Link href='/dashboard'>
               <a className={`inline-block space-y-2`}>
-                <img src='/images/logo.png' alt='' className='h-[4.5rem]' />
-                <h3 className='text-lg font-medium'>
+                <img
+                  src='/images/logo.png'
+                  alt=''
+                  className='h-14 md:h-[4.5rem]'
+                />
+                <h3 className='text-base md:text-lg font-medium'>
                   All-In-One Wedding Platform.
                 </h3>
               </a>
