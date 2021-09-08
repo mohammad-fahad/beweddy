@@ -12,7 +12,7 @@ import connectDB from './configs/db.js';
 import guestRoutes from './routes/guestRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
-import sendRoutes from './routes/sendRoutes.js';
+import invitationRoutes from './routes/invitationRoutes.js';
 
 // Connect MongoDB
 connectDB();
@@ -56,7 +56,7 @@ app.use(`${API_VERSION}/guests`, guestRoutes);
 
 app.use(`${API_VERSION}/gifts`, userRoutes);
 app.use(`${API_VERSION}/registries`, userRoutes);
-app.use(`${API_VERSION}/send`, sendRoutes);
+app.use(`${API_VERSION}/invitation`, invitationRoutes);
 
 // Error Handler
 app.use(notFound);
