@@ -79,8 +79,12 @@ const guestSchema = new mongoose.Schema(
       },
     },
     rsvp: {
-      type: Boolean,
-      default: false,
+      type: String,
+      default: "no",
+      enum: [
+        "yes", "maybe", "no"
+      ],
+
     },
     guestEstimate: {
       type: Number,
