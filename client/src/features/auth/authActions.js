@@ -26,17 +26,3 @@ export const attemptSignup = createAsyncThunk(
   }
 );
 
-export const attemptGoogleSignIn = createAsyncThunk(
-  'auth/attemptGoogleSignIn',
-  async token => {
-    try {
-      const { data } = await axios.post(`/api/auth/google`, token, config);
-      successAlert(data.message);
-      errorAlert(data.error);
-      return data;
-    } catch (err) {
-      errorAlert(handleErrorMessage(err));
-      return handleErrorMessage(err);
-    }
-  }
-);
