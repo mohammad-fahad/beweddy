@@ -17,6 +17,7 @@ export const createGuest = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('Guest already exists');
   }
+
   const guest = await Guest.create({
     user: req.user._id,
     ...req.body,

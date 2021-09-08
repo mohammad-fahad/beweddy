@@ -4,8 +4,13 @@ import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
-import { attemptLogin } from '@features/user/userActions';
+import {
+  attemptGoogleAuth as attemptGoogleSignUp,
+  attemptGoogleSignIn,
+  attemptLogin,
+} from '@features/user/userActions';
 import { withAuthRedirect } from '@hoc/withAuthRedirect';
+import { useGoogleLogin } from 'react-google-login';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -18,10 +23,24 @@ const LoginPage = () => {
   } = useForm({ mode: 'all' });
 
   const onSubmit = data => {
+    console.log(data);
     if (data) {
       dispatch(attemptLogin(data));
     }
   };
+
+  const onSuccess = async res => {
+    dispatch(attemptGoogleSignIn({ idToken: res.tokenId }));
+  };
+
+  const onFailure = async res => {};
+
+  const { signIn } = useGoogleLogin({
+    clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+    onSuccess,
+    onFailure,
+    accessType: 'offline',
+  });
 
   return (
     <>
@@ -61,7 +80,11 @@ const LoginPage = () => {
                 lineStyle={{ marginBottom: '30px' }}
               />
               <div className='flex flex-col items-center justify-center space-y-6'>
-                <button className='border-2 text-sm md:text-base border-primary py-3 px-4 md:px-12 flex items-center space-x-3 rounded-[100px]'>
+                <button
+                  type='button'
+                  className='border-2 text-sm md:text-base border-primary py-3 px-4 md:px-12 flex items-center space-x-3 rounded-[100px]'
+                  onClick={signIn}
+                >
                   <img src='/icons/gmail.svg' alt='' className='w-5 h-5' />
                   <span>Start with Google</span>
                 </button>

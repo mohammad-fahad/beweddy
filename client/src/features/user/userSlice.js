@@ -1,6 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
   attemptActivation,
+  attemptGoogleAuth,
+  attemptGoogleSignIn,
+  attemptGoogleSignUp,
   attemptLogin,
   attemptUpdateUserProfile,
 } from './userActions';
@@ -60,20 +63,31 @@ const userSlice = createSlice({
       .addCase(attemptUpdateUserProfile.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
-      });
-    // .addCase(attemptGoogleSignIn.pending, state => {
-    //   state.loading = true;
-    // })
-    // .addCase(attemptGoogleSignIn.fulfilled, (state, { payload }) => {
-    //   state.loading = false;
-    //   state.success = true;
-    //   state.user = payload.user;
-    //   state.error = payload.error;
-    // })
-    // .addCase(attemptGoogleSignIn.rejected, (state, { payload }) => {
-    //   state.loading = false;
-    //   state.error = payload;
-    // })
+      })
+      .addCase(attemptGoogleSignUp.pending, state => {
+        state.loading = true;
+      })
+      .addCase(attemptGoogleSignUp.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.user = payload.user;
+        state.error = payload.error;
+      })
+      .addCase(attemptGoogleSignUp.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(attemptGoogleSignIn.pending, state => {
+        state.loading = true;
+      })
+      .addCase(attemptGoogleSignIn.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.user = payload.user;
+        state.error = payload.error;
+      })
+      .addCase(attemptGoogleSignIn.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
     // .addCase(attemptFacebookSignIn.pending, state => {
     //   state.loading = true;
     // })

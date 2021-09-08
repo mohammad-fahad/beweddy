@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { attemptSignup } from '@features/auth/authActions';
 import { useEffect } from 'react';
 import { resetQuestions } from '@features/question/questionSlice';
+import { useGoogleLogin } from 'react-google-login';
+import { attemptGoogleSignUp } from '@features/user/userActions';
 
 const SignupPage = () => {
   const dispatch = useDispatch();
@@ -41,6 +43,18 @@ const SignupPage = () => {
       push({ query: { step: 7 } });
     }
   }, [success]);
+
+  const onSuccess = async res => {
+    dispatch(attemptGoogleSignUp({ idToken: res.tokenId, questions }));
+  };
+  const onFailure = async res => {};
+
+  const { signIn } = useGoogleLogin({
+    clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+    onSuccess,
+    onFailure,
+    accessType: 'offline',
+  });
 
   return (
     <>
@@ -77,7 +91,7 @@ const SignupPage = () => {
                 lineStyle={{ marginBottom: '30px' }}
               />
               <div className='flex flex-col items-center justify-center space-y-3 md:space-y-5'>
-                <div className='flex items-center gap-3 sm:space-x-4 justify-center flex-wrap mb-3'>
+                {/* <div className='flex items-center gap-3 sm:space-x-4 justify-center flex-wrap mb-3'>
                   <div className='flex items-center'>
                     <input
                       type='radio'
@@ -99,7 +113,7 @@ const SignupPage = () => {
                       </span>
                     </label>
                   </div>
-                  {/* <div className='flex items-center'>
+                  <div className='flex items-center'>
                     <input
                       type='radio'
                       id='venue'
@@ -118,9 +132,13 @@ const SignupPage = () => {
                         For Venue
                       </span>
                     </label>
-                  </div> */}
-                </div>
-                <button className='!mb-3 border-2 text-sm md:text-base border-primary py-3 px-4 md:px-12 flex items-center space-x-3 rounded-[100px]'>
+                  </div>
+                </div> */}
+                <button
+                  type='button'
+                  className='!mb-3 border-2 text-sm md:text-base border-primary py-3 px-4 md:px-12 flex items-center space-x-3 rounded-[100px]'
+                  onClick={signIn}
+                >
                   <img src='/icons/gmail.svg' alt='' className='w-6 h-5' />
                   <span>Start with Google</span>
                 </button>

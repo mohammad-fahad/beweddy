@@ -26,6 +26,7 @@ specifiers:
   react-day-picker: ^7.4.10
   react-dom: 17.0.2
   react-dropzone: ^11.3.4
+  react-google-login: ^5.2.2
   react-hook-form: ^7.11.1
   react-hot-toast: ^2.1.0
   react-id-swiper: ^4.0.0
@@ -66,6 +67,7 @@ dependencies:
   react-day-picker: 7.4.10_react@17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-dropzone: 11.3.4_react@17.0.2
+  react-google-login: 5.2.2_react-dom@17.0.2+react@17.0.2
   react-hook-form: 7.13.0_react@17.0.2
   react-hot-toast: 2.1.1_react-dom@17.0.2+react@17.0.2
   react-id-swiper: 4.0.0_402ed3ae5b84a2e6c1565ef8ac1fb15b
@@ -2372,6 +2374,18 @@ packages:
 
   /react-fast-compare/3.2.0:
     resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
+    dev: false
+
+  /react-google-login/5.2.2_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-JUngfvaSMcOuV0lFff7+SzJ2qviuNMQdqlsDJkUM145xkGPVIfqWXq9Ui+2Dr6jdJWH5KYdynz9+4CzKjI5u6g==}
+    peerDependencies:
+      react: ^16 || ^17
+      react-dom: ^16 || ^17
+    dependencies:
+      '@types/react': 17.0.19
+      prop-types: 15.7.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
     dev: false
 
   /react-hook-form/7.13.0_react@17.0.2:
