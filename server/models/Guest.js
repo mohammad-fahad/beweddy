@@ -80,8 +80,8 @@ const guestSchema = new mongoose.Schema(
     },
     rsvp: {
       type: String,
-      enum: ['yes', 'maybe', 'no'],
-      default: 'no',
+      enum: ['yes', 'maybe', 'no', 'pending'],
+      default: 'pending',
     },
     guestEstimate: {
       type: Number,
