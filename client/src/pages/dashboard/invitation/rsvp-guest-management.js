@@ -31,10 +31,8 @@ const AttendingStatus = ({ status }) => {
 
 const RSVPGuestManagementPage = () => {
   const { user } = useSelector(state => state.user);
-  const { data: guests, isLoading } = useQuery(
-    ['guests', user.token],
-    getGuests
-  );
+  const { data, isLoading } = useQuery(['guests', user.token], getGuests);
+  // const countAttending = guests?.filter(guest => guest.rsvp === 'yes').length;
 
   return (
     <>
@@ -53,7 +51,7 @@ const RSVPGuestManagementPage = () => {
                   {user.coupleName}’s wedding
                 </Heading>
                 <p className='text-base text-gray-700 mt-2'>
-                  Number of Your RSVP: <strong>{guests?.length}</strong>
+                  Number of Your RSVP: <strong>{data?.guests?.length}</strong>
                 </p>
               </div>
               <button className='flex my-3 text-base font-semibold font-inter items-center space-x-3 border-2 border-gray-500 py-2 px-5 bg-secondary-alternative text-primary hover:bg-secondary-alternative/50 transition duration-300 rounded-md'>
@@ -81,23 +79,31 @@ const RSVPGuestManagementPage = () => {
                   <SearchIcon className='w-5 h-5 absolute top-1/2 right-4 -translate-y-1/2 bg-white p-2 box-content' />
                 </div>
               </div>
-              <div className='grid grid-cols-4 gap-10'>
+              <div className='grid grid-cols-3 gap-10'>
                 <div className='flex flex-col items-center space-y-5'>
-                  <h4 className='text-3xl lg:text-4xl font-semibold'>0</h4>
+                  <h4 className='text-3xl lg:text-4xl font-semibold'>
+                    {data?.countAttending}
+                  </h4>
                   <p className='text-sm lg:text-base font-normal'>Attending</p>
                 </div>
                 <div className='flex flex-col items-center space-y-5'>
-                  <h4 className='text-3xl lg:text-4xl font-semibold'>0</h4>
+                  <h4 className='text-3xl lg:text-4xl font-semibold'>
+                    {data?.countDeclined}
+                  </h4>
                   <p className='text-sm lg:text-base font-normal'>Declined</p>
                 </div>
                 <div className='flex flex-col items-center space-y-5'>
-                  <h4 className='text-3xl lg:text-4xl font-semibold'>0</h4>
+                  <h4 className='text-3xl lg:text-4xl font-semibold'>
+                    {data?.countMaybe}
+                  </h4>
                   <p className='text-sm lg:text-base font-normal'>Maybe</p>
                 </div>
-                <div className='flex flex-col items-center space-y-5'>
-                  <h4 className='text-3xl lg:text-4xl font-semibold'>0</h4>
+                {/* <div className='flex flex-col items-center space-y-5'>
+                  <h4 className='text-3xl lg:text-4xl font-semibold'>
+                    {data?.countPending}
+                  </h4>
                   <p className='text-sm lg:text-base font-normal'>Pending</p>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className='w-full overflow-x-auto mb-20'>
@@ -117,7 +123,7 @@ const RSVPGuestManagementPage = () => {
                   </tr>
                 </thead>
                 <tbody className='bg-white'>
-                  {guests?.map(guest => (
+                  {data?.guests?.map(guest => (
                     <tr className='text-gray-700' key={guest?._id}>
                       <td className='pl-12 pr-4 pb-3 pt-6 font-medium'>
                         {guest?.name}
