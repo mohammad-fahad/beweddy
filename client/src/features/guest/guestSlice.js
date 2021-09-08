@@ -4,8 +4,6 @@ import { attemptCreateGuest } from './guestActions';
 const initialState = {
   loading: false,
   success: false,
-  guest: null,
-  guests: [],
   message: null,
 };
 
@@ -29,9 +27,8 @@ const guestSlice = createSlice({
       .addCase(attemptCreateGuest.pending, state => {
         state.loading = true;
       })
-      .addCase(attemptCreateGuest.fulfilled, state => {
+      .addCase(attemptCreateGuest.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.error = payload.error;
       })
       .addCase(attemptCreateGuest.rejected, (state, { payload }) => {
         state.loading = false;

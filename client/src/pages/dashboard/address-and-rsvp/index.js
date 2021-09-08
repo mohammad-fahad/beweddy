@@ -17,8 +17,9 @@ import SwiperCore, { Lazy, Autoplay } from 'swiper';
 import { Listbox, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { CheckIcon } from '@heroicons/react/solid';
-import { addGuest } from '@features/guest/guestSlice';
 import { useRouter } from 'next/router';
+import { attemptCreateGuest } from '@features/guest/guestActions';
+import { client } from 'pages/_app';
 SwiperCore.use([Lazy, Autoplay]);
 
 const params = {
@@ -65,9 +66,10 @@ const AddressRSVP = () => {
   });
   watch(['guestEstimate', 'provider']);
 
-  const onSubmit = data => {
-    dispatch(addGuest(submitData(data)));
-    push('/dashboard/address-and-rsvp/preview');
+  const onSubmit = async data => {
+    dispatch(attemptCreateGuest(submitData(data)));
+    await client.invalidateQueries('guests');
+    push('/dashboard/invitation/rsvp-guest-management');
   };
 
   const submitData = data => {
@@ -119,7 +121,7 @@ const AddressRSVP = () => {
                 <span>Share your super link</span>
               </a>
             </Link>
-            <Link href='/'>
+            <Link href='/dashboard/invitation/rsvp-guest-management'>
               <a className='py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300'>
                 Guests Management
               </a>
@@ -128,8 +130,8 @@ const AddressRSVP = () => {
         </DashboardHeader>
         <div className='border-4 border-gray-200 rounded-lg'>
           <Swiper {...params}>
-            {user.questions.couplePictures.map((image, index) => (
-              <div className='w-full' key={image.public_id} >
+            {user?.questions?.couplePictures?.map((image, index) => (
+              <div className='w-full' key={image.public_id}>
                 <div className='aspect-w-16 aspect-h-9'>
                   <Image
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
@@ -786,12 +788,12 @@ const AddressRSVP = () => {
                 <input
                   disabled
                   type='text'
-                  value={`1 - ${getValues('guestEstimate')}`}
+                  value={`${getValues('guestEstimate')}`}
                   className='w-28 text-center rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
                 />
                 <input
                   type='range'
-                  min='2'
+                  min='1'
                   max='100'
                   className='block text-center rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
                   {...register('guestEstimate')}

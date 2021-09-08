@@ -93,7 +93,7 @@ const DashboardNavLinks = () => {
           Dashboard
         </DashboardActiveLink>
         <button
-          className='sm:pl-5 md:pr-0 py-2 lg:py-3'
+          className='sm:pl-5 pr-0 md:pr-5 py-2 lg:py-3'
           onClick={() => setOpen(prev => !prev)}
         >
           <svg
