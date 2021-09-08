@@ -19,6 +19,8 @@ import { Fragment } from 'react';
 import { CheckIcon } from '@heroicons/react/solid';
 import { addGuest } from '@features/guest/guestSlice';
 import { useRouter } from 'next/router';
+import { attemptCreateGuest } from '@features/guest/guestActions';
+import { client } from 'pages/_app';
 SwiperCore.use([Lazy, Autoplay]);
 
 const params = {
@@ -65,9 +67,9 @@ const AddressRSVP = () => {
   });
   watch(['guestEstimate', 'provider']);
 
-  const onSubmit = data => {
-    dispatch(addGuest(submitData(data)));
-    push('/dashboard/address-and-rsvp/preview');
+  const onSubmit = async data => {
+    dispatch(attemptCreateGuest(submitData(data)));
+    await client.invalidateQueries('guests');
   };
 
   const submitData = data => {
@@ -129,7 +131,7 @@ const AddressRSVP = () => {
         <div className='border-4 border-gray-200 rounded-lg'>
           <Swiper {...params}>
             {user.questions.couplePictures.map((image, index) => (
-              <div className='w-full' key={image.public_id} >
+              <div className='w-full' key={image.public_id}>
                 <div className='aspect-w-16 aspect-h-9'>
                   <Image
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}

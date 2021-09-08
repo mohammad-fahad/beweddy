@@ -18,6 +18,7 @@ export const attemptActivation = createAsyncThunk(
         { token },
         config
       );
+      localStorage.setItem('beweddy_token', JSON.stringify(data));
       successAlert(data.message);
       errorAlert(data.error);
       return data;
@@ -66,6 +67,46 @@ export const attemptUpdateUserProfile = createAsyncThunk(
         config
       );
       successAlert(data.message);
+      return data;
+    } catch (err) {
+      errorAlert(handleErrorMessage(err));
+      return handleErrorMessage(err);
+    }
+  }
+);
+
+export const attemptGoogleSignUp = createAsyncThunk(
+  'auth/attemptGoogleSignUp',
+  async signupData => {
+    try {
+      const { data } = await axios.post(
+        `${API_URL}/users/googleSignUp`,
+        signupData,
+        config
+      );
+
+      successAlert(data.message);
+      errorAlert(data.error);
+      return data;
+    } catch (err) {
+      errorAlert(handleErrorMessage(err));
+      return handleErrorMessage(err);
+    }
+  }
+);
+
+export const attemptGoogleSignIn = createAsyncThunk(
+  'auth/attemptGoogleSignIn',
+  async signInData => {
+    try {
+      const { data } = await axios.post(
+        `${API_URL}/users/googleSignIn`,
+        signInData,
+        config
+      );
+
+      successAlert(data.message);
+      errorAlert(data.error);
       return data;
     } catch (err) {
       errorAlert(handleErrorMessage(err));
