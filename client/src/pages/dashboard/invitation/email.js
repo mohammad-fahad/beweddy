@@ -2,14 +2,18 @@ import Head from 'next/head';
 import { DashboardHeader } from '@components/dashboard';
 import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
-import { Footer, Heading } from '@components/index';
+import { Button, Footer, Heading } from '@components/index';
 import Image from 'next/image';
 import Select from 'react-select/creatable';
 import makeAnimated from 'react-select/animated';
 import { Fragment, useEffect, useState } from 'react';
 import { withAuthRoute } from '@hoc/withAuthRoute';
 import { Listbox, Transition } from '@headlessui/react';
-import { ArrowRightIcon, CheckIcon } from '@heroicons/react/outline';
+import {
+  ArrowRightIcon,
+  ArrowSmRightIcon,
+  CheckIcon,
+} from '@heroicons/react/outline';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
@@ -45,7 +49,7 @@ const customStyles = {
   }),
 };
 
-const TextInvitesPage = () => {
+const EmailInvitesPage = () => {
   const { countries } = useSelector(state => state.countryList);
   const { user } = useSelector(state => state.user);
 
@@ -65,26 +69,26 @@ const TextInvitesPage = () => {
   return (
     <Fragment>
       <Head>
-        <title>Beweddy | Text Invites</title>
+        <title>Beweddy | Email Invites</title>
       </Head>
       {/* {loading && <Loader />} */}
       <DashboardTopBar />
       <DashboardLayout shadow>
-        <DashboardHeader title='Text Invites' />
+        <DashboardHeader title='Email Invites' />
         <div className='shadow-box space-y-10'>
           <div className='max-w-[1300px] w-full'>
             <div className='p-12 xxl:pr-0'>
               <div className='mb-5'>
                 <div className='flex items-center space-x-3 pb-2'>
-                  <Image src='/icons/messages.svg' width={46} height={46} />
-                  <h3 className='text-2xl'>Send Text & Superlink Invites</h3>
+                  <Image src='/icons/email_send.svg' width={46} height={46} />
+                  <h3 className='text-2xl'>Send Email Invites</h3>
                 </div>
                 <span className='h-[4px] inline-block max-w-[215px] w-full bg-secondary-alternative'></span>
               </div>
               <div className='grid md:grid-cols-3 gap-12'>
                 <div className='md:col-span-2'>
                   <div className='space-y-6'>
-                    <div className='flex justify-between'>
+                    {/* <div className='flex justify-between'>
                       <Heading h3 className='!text-2xl'>
                         New Message
                       </Heading>
@@ -113,7 +117,7 @@ const TextInvitesPage = () => {
                           Add or input contacts
                         </h4>
                       </div>
-                    </div>
+                    </div> 
                     <div className='flex items-center space-x-5'>
                       <div className='flex items-center'>
                         <input
@@ -156,7 +160,7 @@ const TextInvitesPage = () => {
                           </span>
                         </label>
                       </div>
-                    </div>
+                    </div>*/}
                     <div className='flex justify-between'>
                       <Heading h3 className='!text-sm xl:!text-base !font-bold'>
                         To
@@ -176,115 +180,14 @@ const TextInvitesPage = () => {
                     <Heading h3 className='!text-sm xl:!text-base !font-bold'>
                       From
                     </Heading>
-                    <div>
-                      <div className='flex items-center'>
-                        <Listbox
-                          value={selectedCountry}
-                          onChange={setSelectedCountry}
-                        >
-                          <div className='relative -mr-2'>
-                            <Listbox.Button className='bg-white cursor-pointer inline-block font-semibold py-[6px] md:py-[10px] px-4 placeholder-gray-400 border border-primary rounded-[5px] -mr-1'>
-                              <img
-                                src={selectedCountry.flag}
-                                alt={selectedCountry.name}
-                                className='w-7 h-7 object-cover rounded-full mr-8 md:mr-5'
-                              />
-                              <span className='absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none'>
-                                <svg
-                                  width='13'
-                                  height='13'
-                                  viewBox='0 0 13 13'
-                                  fill='none'
-                                  className='w-4 h-4 text-gray-400'
-                                  xmlns='http://www.w3.org/2000/svg'
-                                >
-                                  <path
-                                    d='M6.05473 10.6C6.10442 10.6722 6.17091 10.7312 6.24848 10.772C6.32604 10.8128 6.41235 10.8341 6.49998 10.8341C6.58761 10.8341 6.67392 10.8128 6.75148 10.772C6.82905 10.7312 6.89554 10.6722 6.94523 10.6L11.8202 3.55837C11.8767 3.47715 11.9097 3.38202 11.9159 3.28332C11.9221 3.18461 11.9011 3.0861 11.8552 2.9985C11.8093 2.9109 11.7402 2.83755 11.6556 2.78642C11.5709 2.73529 11.4739 2.70834 11.375 2.7085H1.62498C1.52631 2.7089 1.42962 2.7362 1.34531 2.78745C1.26099 2.8387 1.19224 2.91197 1.14646 2.99937C1.10067 3.08677 1.07957 3.185 1.08543 3.28349C1.09129 3.38199 1.1239 3.47702 1.17973 3.55837L6.05473 10.6Z'
-                                    fill='#C4C4C4'
-                                  />
-                                </svg>
-                              </span>
-                            </Listbox.Button>
-                            <Transition
-                              as={Fragment}
-                              leave='transition ease-in duration-100'
-                              leaveFrom='opacity-100'
-                              leaveTo='opacity-0'
-                            >
-                              <Listbox.Options className='absolute z-50 max-w-xs py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
-                                {countries?.map((country, countryIdx) => (
-                                  <Listbox.Option
-                                    key={countryIdx}
-                                    className={({ active }) =>
-                                      `${
-                                        active
-                                          ? 'text-amber-900 bg-secondary-alternative/20'
-                                          : 'text-gray-900'
-                                      }
-                          cursor-pointer select-none relative py-2 pl-10 pr-4`
-                                    }
-                                    value={country}
-                                  >
-                                    {({ selected, active }) => (
-                                      <>
-                                        <span
-                                          className={`${
-                                            selected
-                                              ? 'font-medium'
-                                              : 'font-normal'
-                                          } block truncate`}
-                                        >
-                                          {country.name}
-                                        </span>
-                                        {selected ? (
-                                          <span
-                                            className={`${
-                                              active
-                                                ? 'text-amber-600'
-                                                : 'text-amber-600'
-                                            }
-                                absolute inset-y-0 left-0 flex items-center pl-3`}
-                                          >
-                                            <CheckIcon
-                                              className='w-5 h-5'
-                                              aria-hidden='true'
-                                            />
-                                          </span>
-                                        ) : null}
-                                      </>
-                                    )}
-                                  </Listbox.Option>
-                                ))}
-                              </Listbox.Options>
-                            </Transition>
-                          </div>
-                        </Listbox>
-                        <input
-                          id='phone'
-                          type='tel'
-                          className='w-full focus:!border-primary bg-white inline-block font-normal py-2 md:py-3 px-4 pl-5 placeholder-gray-400 border border-primary rounded-[5px]'
-                          placeholder='Enter phone number'
-                          // {...register('phone', {
-                          //   required: {
-                          //     value: true,
-                          //     message: 'Phone numbers are required!',
-                          //   },
-                          //   pattern: {
-                          //     value: /^([0-9\(\)\/\+ \-]*)$/,
-                          //     message: 'Must be a valid phone number',
-                          //   },
-                          // })}
-                        />
-                      </div>
-                      {/* <p className='mt-2 text-red-400 font-light text-sm h-4'>
-                        {errors?.phone?.message}
-                      </p> */}
-                    </div>
-                    {getValues('compose') === 'Picture' && (
-                      <button className='py-3 px-8 text-sm md:text-base font-bold md:font-semibold border border-[#7F7F7F] rounded-[5px] bg-secondary-alternative hover:bg-secondary-alternative/50 transition duration-300'>
-                        Upload Your Photo/Video
-                      </button>
-                    )}
+                    <input
+                      type='text'
+                      className='border border-primary py-3 px-5 text-sm font-semibold w-full rounded-[5px]'
+                      placeholder='team.nate@gmail.com'
+                    />
+                    <button className='py-3 px-8 text-sm md:text-base font-bold md:font-semibold border border-[#7F7F7F] rounded-[5px] bg-secondary-alternative hover:bg-secondary-alternative/50 transition duration-300'>
+                      Upload Photo/Video
+                    </button>
                     <div className='space-y-3'>
                       <Heading h3 className='!text-sm xl:!text-base !font-bold'>
                         Compose
@@ -316,15 +219,13 @@ const TextInvitesPage = () => {
                         <span className='absolute bottom-0 right-0 w-52 h-10 bg-white'></span> */}
                       </div>
                     </div>
-                    <Link href='/'>
-                      <a className='flex items-center justify-end !mt-10 space-x-3 text-sm md:text-base font-bold text-right'>
-                        <span>Submit For Preview</span>
-                        <ArrowRightIcon className='w-6 h-6' />
-                      </a>
-                    </Link>
+                    <button className='py-3 px-8 font-inter font-bold text-base rounded-[5px] border-[3px] border-primary flex items-center text-center space-x-2 bg-[#F3F3F3] text-primary hover:bg-primary hover:text-white transition duration-300'>
+                      <span>Preview</span>
+                      <ArrowSmRightIcon className='w-6 h-6' />
+                    </button>
                   </div>
                 </div>
-                <div className='mx-auto'>
+                {/* <div className='mx-auto'>
                   <div className='relative'>
                     <img
                       src='/images/mobile-template.svg'
@@ -404,7 +305,7 @@ const TextInvitesPage = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -415,4 +316,4 @@ const TextInvitesPage = () => {
   );
 };
 
-export default withAuthRoute(TextInvitesPage);
+export default withAuthRoute(EmailInvitesPage);

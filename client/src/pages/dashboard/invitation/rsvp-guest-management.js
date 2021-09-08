@@ -21,7 +21,7 @@ const RSVPGuestManagementPage = () => {
         <DashboardHeader title='Guest Management' />
         <div className='shadow-box space-y-10'>
           <div className='max-w-[1300px] w-full'>
-            <div className='p-12 xxl:pr-0 flex items-center space-x-10 justify-between'>
+            <div className='p-12 xxl:pr-0 flex items-center  justify-between flex-wrap'>
               <div>
                 <Heading h3 className='!font-alice !text-4xl !font-light'>
                   {user.coupleName}’s wedding
@@ -30,104 +30,116 @@ const RSVPGuestManagementPage = () => {
                   Number of Your RSVP: 14
                 </p>
               </div>
-              <div className='grid grid-cols-4 gap-10'>
-                <div className='flex flex-col items-center space-y-5'>
-                  <h4 className='text-4xl font-semibold'>0</h4>
-                  <p className='text-base font-normal'>Attending</p>
-                </div>
-                <div className='flex flex-col items-center space-y-5'>
-                  <h4 className='text-4xl font-semibold'>0</h4>
-                  <p className='text-base font-normal'>Declined</p>
-                </div>
-                <div className='flex flex-col items-center space-y-5'>
-                  <h4 className='text-4xl font-semibold'>0</h4>
-                  <p className='text-base font-normal'>Maybe</p>
-                </div>
-                <div className='flex flex-col items-center space-y-5'>
-                  <h4 className='text-4xl font-semibold'>0</h4>
-                  <p className='text-base font-normal'>Pending</p>
-                </div>
-              </div>
-            </div>
-            <div className='px-12 py-5 bg-gray-100 flex items-center space-x-5'>
-              <Link href='#'>
-                <a className='max-w-[210px] w-full font-inter font-medium py-2 px-4 bg-white rounded-md flex items-center space-x-3 border-2 border-white hover:border-primary transition duration-300'>
-                  <PlusIcon className='w-5 h-5' />
-                  <span>New Manual RSVP</span>
-                </a>
-              </Link>
-              <div className='relative'>
-                <input
-                  type='text'
-                  className='max-w-[210px] w-full font-inter font-medium py-2 px-4 bg-white rounded-md border-2 border-white hover:border-primary transition duration-300 placeholder-primary'
-                  placeholder='Search'
-                />
-                <SearchIcon className='w-5 h-5 absolute top-1/2 right-4 -translate-y-1/2 bg-white p-2 box-content' />
-              </div>
-              <button className='max-w-[210px] w-full font-inter font-medium py-2 px-4 bg-white rounded-md border-2 border-white hover:border-primary transition duration-300'>
-                Export RSVP’s
+              <button className='flex my-3 text-base font-semibold font-inter items-center space-x-3 border-2 border-gray-500 py-2 px-5 bg-secondary-alternative text-primary hover:bg-secondary-alternative/50 transition duration-300 rounded-md'>
+                <PlusIcon className='w-5 h-5' />
+                <span>Invite Guests</span>
               </button>
             </div>
-            <div class='w-full overflow-x-auto mb-20'>
-              <table class='w-full'>
+            <div className='px-12 py-5 bg-gray-100 flex space-y-5 xl:space-y-0 xl:items-center justify-between flex-col xl:flex-row'>
+              <div className='flex-wrap flex items-center gap-x-5 gap-y-3'>
+                <Link href='#'>
+                  <a className='w-full sm:w-max text-sm xl:text-base font-inter font-medium py-2 px-4 bg-white rounded-md flex items-center space-x-3 border-2 border-white hover:border-primary transition duration-300'>
+                    <PlusIcon className='w-5 h-5' />
+                    <span>Add Guest</span>
+                  </a>
+                </Link>
+                <button className='w-full sm:w-max text-sm xl:text-base font-inter font-medium py-2 px-4 bg-white rounded-md border-2 border-white hover:border-primary transition duration-300'>
+                  Export RSVP’s
+                </button>
+                <div className='relative w-full sm:w-max '>
+                  <input
+                    type='text'
+                    className='w-full text-sm xl:text-base font-inter font-medium py-2 px-4 bg-white rounded-md border-2 border-white hover:border-primary transition duration-300 placeholder-primary'
+                    placeholder='Search'
+                  />
+                  <SearchIcon className='w-5 h-5 absolute top-1/2 right-4 -translate-y-1/2 bg-white p-2 box-content' />
+                </div>
+              </div>
+              <div className='grid grid-cols-4 gap-10'>
+                <div className='flex flex-col items-center space-y-5'>
+                  <h4 className='text-3xl lg:text-4xl font-semibold'>0</h4>
+                  <p className='text-sm lg:text-base font-normal'>Attending</p>
+                </div>
+                <div className='flex flex-col items-center space-y-5'>
+                  <h4 className='text-3xl lg:text-4xl font-semibold'>0</h4>
+                  <p className='text-sm lg:text-base font-normal'>Declined</p>
+                </div>
+                <div className='flex flex-col items-center space-y-5'>
+                  <h4 className='text-3xl lg:text-4xl font-semibold'>0</h4>
+                  <p className='text-sm lg:text-base font-normal'>Maybe</p>
+                </div>
+                <div className='flex flex-col items-center space-y-5'>
+                  <h4 className='text-3xl lg:text-4xl font-semibold'>0</h4>
+                  <p className='text-sm lg:text-base font-normal'>Pending</p>
+                </div>
+              </div>
+            </div>
+            <div className='w-full overflow-x-auto mb-20'>
+              <table className='w-full overflow-x-auto'>
                 <thead>
-                  <tr class='text-md font-semibold tracking-wide text-left text-gray-900 bg-[#FCE0EB] capitalize'>
-                    <th class='pl-12 pr-4 py-3'>Name</th>
-                    <th class='px-4 py-3'>Phone</th>
-                    <th class='px-4 py-3'>Email</th>
-                    <th class='px-4 py-3' align='center'>
+                  <tr className='text-md font-semibold tracking-wide text-left text-gray-900 bg-[#FCE0EB] capitalize'>
+                    <th className='pl-12 pr-4 py-3'>Name</th>
+                    <th className='px-4 py-3'>Phone</th>
+                    <th className='px-4 py-3'>Email</th>
+                    <th className='px-4 py-3' align='center'>
                       Attending?
                     </th>
-                    <th class='px-4 py-3' align='center'>
-                      Number of Guests
+                    <th className='px-4 py-3' align='center'>
+                      Confirmed Guests
                     </th>
-                    <th class='px-4 py-3'>Action</th>
+                    <th className='px-4 py-3'>Action</th>
                   </tr>
                 </thead>
-                <tbody class='bg-white'>
-                  <tr class='text-gray-700'>
-                    <td class='pl-12 pr-4 pb-3 pt-6 font-medium'>
+                <tbody className='bg-white'>
+                  <tr className='text-gray-700'>
+                    <td className='pl-12 pr-4 pb-3 pt-6 font-medium'>
                       Nate Sampson
                     </td>
-                    <td class='px-4 pb-3 pt-6 text-sm'>+1 234 567</td>
-                    <td class='px-4 pb-3 pt-6 text-sm'>team.nate@gmail.com</td>
-                    <td class='px-4 pb-3 pt-6 text-sm' align='center'>
-                      <span class='min-w-[85px] inline-block px-5 border border-green-400 py-1 font-semibold leading-tight bg-green-100 rounded-sm text-green-800'>
+                    <td className='px-4 pb-3 pt-6 text-sm'>+1 234 567</td>
+                    <td className='px-4 pb-3 pt-6 text-sm'>
+                      team.nate@gmail.com
+                    </td>
+                    <td className='px-4 pb-3 pt-6 text-sm' align='center'>
+                      <span className='min-w-[85px] inline-block px-5 border border-green-400 py-1 font-semibold leading-tight bg-green-100 rounded-sm text-green-800'>
                         Yes
                       </span>
                     </td>
-                    <td class='px-4 pb-3 pt-6 text-sm' align='center'>
+                    <td className='px-4 pb-3 pt-6 text-sm' align='center'>
                       1-5
                     </td>
-                    <td class='px-4 pb-3 pt-6 text-sm'>Send Invite</td>
+                    <td className='px-4 pb-3 pt-6 text-sm'>Send Invite</td>
                   </tr>
-                  <tr class='text-gray-700'>
-                    <td class='pl-12 pr-4 py-3 font-medium'>Nate Sampson</td>
-                    <td class='px-4 py-3 text-sm'>+1 234 567</td>
-                    <td class='px-4 py-3 text-sm'>team.nate@gmail.com</td>
-                    <td class='px-4 py-3 text-sm' align='center'>
-                      <span class='min-w-[85px] inline-block px-5 border border-yellow-400 py-1 font-semibold leading-tight bg-yellow-100 rounded-sm'>
+                  <tr className='text-gray-700'>
+                    <td className='pl-12 pr-4 py-3 font-medium'>
+                      Nate Sampson
+                    </td>
+                    <td className='px-4 py-3 text-sm'>+1 234 567</td>
+                    <td className='px-4 py-3 text-sm'>team.nate@gmail.com</td>
+                    <td className='px-4 py-3 text-sm' align='center'>
+                      <span className='min-w-[85px] inline-block px-5 border border-yellow-400 py-1 font-semibold leading-tight bg-yellow-100 rounded-sm'>
                         Maybe
                       </span>
                     </td>
-                    <td class='px-4 py-3 text-sm' align='center'>
+                    <td className='px-4 py-3 text-sm' align='center'>
                       1-5
                     </td>
-                    <td class='px-4 py-3 text-sm'>Send Invite</td>
+                    <td className='px-4 py-3 text-sm'>Send Invite</td>
                   </tr>
-                  <tr class='text-gray-700'>
-                    <td class='pl-12 pr-4 py-3 font-medium'>Nate Sampson</td>
-                    <td class='px-4 py-3 text-sm'>+1 234 567</td>
-                    <td class='px-4 py-3 text-sm'>team.nate@gmail.com</td>
-                    <td class='px-4 py-3 text-sm' align='center'>
-                      <span class='min-w-[85px] inline-block px-5 border border-secondary py-1 font-semibold leading-tight bg-secondary-alternative rounded-sm'>
+                  <tr className='text-gray-700'>
+                    <td className='pl-12 pr-4 py-3 font-medium'>
+                      Nate Sampson
+                    </td>
+                    <td className='px-4 py-3 text-sm'>+1 234 567</td>
+                    <td className='px-4 py-3 text-sm'>team.nate@gmail.com</td>
+                    <td className='px-4 py-3 text-sm' align='center'>
+                      <span className='min-w-[85px] inline-block px-5 border border-secondary py-1 font-semibold leading-tight bg-secondary-alternative rounded-sm'>
                         No
                       </span>
                     </td>
-                    <td class='px-4 py-3 text-sm' align='center'>
+                    <td className='px-4 py-3 text-sm' align='center'>
                       1-5
                     </td>
-                    <td class='px-4 py-3 text-sm'>Send Invite</td>
+                    <td className='px-4 py-3 text-sm'>Send Invite</td>
                   </tr>
                 </tbody>
               </table>
