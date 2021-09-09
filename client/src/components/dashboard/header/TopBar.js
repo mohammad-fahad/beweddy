@@ -4,7 +4,7 @@ import { LogoutIcon, UserIcon, SearchIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 
-const DashboardTopBar = ({ coupleName }) => {
+const DashboardTopBar = () => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.user);
   return (
@@ -59,8 +59,9 @@ const DashboardTopBar = ({ coupleName }) => {
                         {({ active }) => (
                           <Link href='/'>
                             <a
-                              className={`group font-inter ${active ? 'bg-gray-100' : 'hover:bg-gray-100'
-                                } hover:bg-gray-100 text-gray-600 flex items-center w-full px-3 py-2 text-base transition duration-300`}
+                              className={`group font-inter ${
+                                active ? 'bg-gray-100' : 'hover:bg-gray-100'
+                              } hover:bg-gray-100 text-gray-600 flex items-center w-full px-3 py-2 text-base transition duration-300`}
                             >
                               <UserIcon
                                 className='w-5 h-5 mr-2'
@@ -74,8 +75,9 @@ const DashboardTopBar = ({ coupleName }) => {
                       <Menu.Item>
                         {({ active }) => (
                           <button
-                            className={`group font-inter ${active ? 'bg-gray-100' : 'hover:bg-gray-100'
-                              } text-gray-600 flex items-center w-full px-3 py-2 text-base transition duration-300`}
+                            className={`group font-inter ${
+                              active ? 'bg-gray-100' : 'hover:bg-gray-100'
+                            } text-gray-600 flex items-center w-full px-3 py-2 text-base transition duration-300`}
                             onClick={() => dispatch(logout())}
                           >
                             <LogoutIcon
