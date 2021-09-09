@@ -13,6 +13,8 @@ import { ArrowRightIcon, CheckIcon } from '@heroicons/react/outline';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
+import { useQuery } from 'react-query';
+import { getGuests } from '@services/GuestManagement';
 
 const animatedComponents = makeAnimated();
 
@@ -48,7 +50,14 @@ const customStyles = {
 const TextInvitesPage = () => {
   const { countries } = useSelector(state => state.countryList);
   const { user } = useSelector(state => state.user);
+  const { data, isLoading } = useQuery(['guests', user.token], getGuests);
 
+  const phones = data?.guests?.map(guest => ({
+    label: guest.phone,
+    value: guest.phone,
+  }));
+
+  console.log(phones);
   const [selectedCountry, setSelectedCountry] = useState({});
   const { handleSubmit, register, getValues, watch } = useForm({ mode: 'all' });
   watch(['message', 'compose']);
@@ -171,7 +180,7 @@ const TextInvitesPage = () => {
                       // defaultValue={[colourOptions[4], colourOptions[5]]}
                       isMulti
                       styles={customStyles}
-                      // options={colourOptions}
+                      options={phones}
                     />
                     <Heading h3 className='!text-sm xl:!text-base !font-bold'>
                       From
