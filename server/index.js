@@ -11,10 +11,10 @@ import { errorHandler, notFound } from './middlewares/error.js';
 import connectDB from './configs/db.js';
 import guestRoutes from './routes/guestRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import todoRoutes from './routes/todoRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import RegistryRoutes from './routes/registryRoutes.js';
 import invitationRoutes from './routes/invitationRoutes.js';
-
 
 // Connect MongoDB
 connectDB();
@@ -57,9 +57,9 @@ app.use(`${API_VERSION}/upload`, uploadRoutes);
 app.use(`${API_VERSION}/guests`, guestRoutes);
 
 app.use(`${API_VERSION}/gifts`, userRoutes);
+app.use(`${API_VERSION}/todos`, todoRoutes);
 app.use(`${API_VERSION}/registries`, RegistryRoutes);
 app.use(`${API_VERSION}/invitation`, invitationRoutes);
-
 
 // Error Handler
 app.use(notFound);
