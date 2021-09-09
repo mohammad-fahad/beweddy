@@ -1,5 +1,4 @@
 import DashboardNavLinks from './navLinks';
-import { addTodo, deleteTodo, toggleTodo } from '@features/todo/todoSlice';
 import {
   CheckCircleIcon,
   PencilAltIcon,
@@ -9,57 +8,72 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { nanoid } from 'nanoid';
-import { useRouter } from 'next/router';
-import { InvitationNavLinks } from './invitation';
 import { QRCodeGenerator } from '@components/shared';
+import { useMutation, useQuery } from 'react-query';
+import { attemptUpdateTodo, createTodo, deleteTodo, getTodos } from '@services/Todo';
+import { client } from 'pages/_app';
 
 const Sidebar = () => {
   const dispatch = useDispatch();
-  const todos = useSelector(state => state.todoList);
+  const { user } = useSelector(state => state.user);
+  // const todos = useSelector(state => state.todoList);
   const [openInput, setOpenInput] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [updateTodo, setUpdateTodo] = useState('');
+  const { data: todos, isLoading } = useQuery(['todos', user.token], getTodos);
+  const { mutateAsync: createRequest, isLoading: isCreating } =
+    useMutation(createTodo);
+  const { mutateAsync, isLoading: isMutating } = useMutation(attemptUpdateTodo);
+  const { mutateAsync: deleteRequest, isLoading: isDeleting } =
+    useMutation(deleteTodo);
 
   const { register, handleSubmit, setValue } = useForm();
 
-  const onSubmit = data => {
+  const onSubmit = async data => {
     if (openEdit) {
-      dispatch(
-        toggleTodo({
-          id: updateTodo.id,
-          description: data.description,
-          isComplete: updateTodo.isComplete,
-        })
-      );
+      await mutateAsync({
+        token: user.token,
+        id: updateTodo._id,
+        description: data.description,
+        isComplete: updateTodo.isComplete,
+      });
+      await client.invalidateQueries('todos');
+
       setOpenEdit(false);
       setOpenInput(false);
       setValue('description', '');
       return;
     }
-    dispatch(
-      addTodo({
-        id: nanoid(10),
-        isComplete: false,
-        ...data,
-      })
-    );
+
+    await createRequest({
+      token: user.token,
+      isComplete: false,
+      ...data,
+    });
+    await client.invalidateQueries('todos');
     setValue('description', '');
   };
+
   const handleUpdate = todo => {
     setValue('description', todo.description);
     setUpdateTodo(todo);
     setOpenEdit(true);
     setOpenInput(true);
   };
+  const handleToggle = async ({ id, isComplete }) => {
+    await mutateAsync({
+      token: user.token,
+      id,
+      isComplete,
+    });
+    await client.invalidateQueries('todos');
+  };
 
-  // if (pathname.includes('/dashboard/invitation')) {
-  //   return (
-  //     <div className='mb-10 border-4 border-[#FCE3EB] border-l-0 rounded-l-none rounded-[20px] bg-[#FFFCFD] py-10 px-14'>
-  //       <InvitationNavLinks />
-  //     </div>
-  //   );
-  // }
+  const handleDelete = async id => {
+    await deleteRequest({ token: user.token, id });
+    await client.invalidateQueries('todos');
+  };
+
   return (
     <div className='flex flex-col xs:flex-row lg:flex-col items-center lg:items-start space-y-3 xs:space-y-0 xs:space-x-3 md:space-x-5 lg:space-x-0 lg:space-y-10 w-full xs:w-auto lg:w-full'>
       {/* // <div className='grid gap-5 lg:gap-10 grid-cols-2 lg:grid-cols-none lg:w-full'> */}
@@ -119,20 +133,18 @@ const Sidebar = () => {
                 </div>
               )}
               {todos
-                .slice(-6)
-                .reverse()
+                ?.slice(-6)
+                ?.reverse()
                 .map(todo => (
-                  <div key={todo.id} className='flex space-x-5 group relative'>
+                  <div key={todo._id} className='flex space-x-5 group relative'>
                     <button
                       type='button'
                       className='flex items-center justify-center w-6 h-6'
                       onClick={() =>
-                        dispatch(
-                          toggleTodo({
-                            id: todo.id,
-                            isComplete: !todo.isComplete,
-                          })
-                        )
+                        handleToggle({
+                          id: todo._id,
+                          isComplete: !todo.isComplete,
+                        })
                       }
                     >
                       {todo.isComplete ? (
@@ -164,7 +176,7 @@ const Sidebar = () => {
                       </button>
                       <button
                         type='button'
-                        onClick={() => dispatch(deleteTodo(todo.id))}
+                        onClick={() => handleDelete(todo._id)}
                       >
                         <TrashIcon className='w-6 h-6 text-red-300 hover:text-red-500 transition-colors duration-300' />
                       </button>

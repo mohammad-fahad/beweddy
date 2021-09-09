@@ -146,21 +146,20 @@ const WebsitePageOne = () => {
           </h2>
 
           <div class='grid grid-cols-12 gap-4 w-full mt-5'>
-            <div class='col-start-2 col-span-5 p-5 text-lg font-semibold'>
-              {couple?.questions?.weddingDay?.firstReception && (
-                <>
-                  <h4 className='text-lg'>Receptions</h4>
-                  <h6>
-                    Date 1 : {couple?.questions?.weddingDay?.firstReception}{' '}
-                  </h6>
-                </>
-              )}
-              {couple?.questions?.weddingDay?.secondReception && (
+            {couple?.questions?.weddingDay?.firstReception && (
+              <div class='col-start-2 col-span-5 p-5 text-lg font-semibold'>
+                <h4 className='text-lg'>Receptions</h4>
                 <h6>
-                  Date 2 : {couple?.questions?.weddingDay?.secondReception}
+                  Date 1 : {couple?.questions?.weddingDay?.firstReception}{' '}
                 </h6>
-              )}
-            </div>
+
+                {couple?.questions?.weddingDay?.secondReception && (
+                  <h6>
+                    Date 2 : {couple?.questions?.weddingDay?.secondReception}
+                  </h6>
+                )}
+              </div>
+            )}
             <div class='col-span-5 p-5 flex justify-end'>
               <div>
                 <h2 className='text-lg'>Locations</h2>

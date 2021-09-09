@@ -463,13 +463,30 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
 // update user profile
 
 export const getCouple = asyncHandler(async (req, res) => {
-  const user = await User.findOne({ username: req.params.username }).select(
-    '-password'
-  );
+  const user = await User.findOne({ username: req.params.username })
+    .populate('gift')
+    .populate('registry');
+
   if (!user) {
     res.status(404);
     throw new Error('User not found');
   }
 
-  res.status(200).json(user);
+  res.status(200).json({
+    _id: user._id,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    fullName: user.fullName,
+    coupleName: user.coupleName,
+    username: user.username,
+    email: user.email,
+    phone: user.phone,
+    questions: user.questions,
+    avatar: user.avatar,
+    ourStory: user.ourStory,
+    receptionDetails: user.receptionDetails,
+    giftCards: user.giftCards,
+    registries: user.registries,
+    socialAccounts: user.socialAccounts,
+  });
 });
