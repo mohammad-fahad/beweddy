@@ -1,4 +1,3 @@
-
 import mongoose from 'mongoose';
 
 //creating user schema for user admin

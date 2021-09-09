@@ -79,8 +79,9 @@ const guestSchema = new mongoose.Schema(
       },
     },
     rsvp: {
-      type: Boolean,
-      default: false,
+      type: String,
+      enum: ['yes', 'maybe', 'no', 'pending'],
+      default: 'pending',
     },
     guestEstimate: {
       type: Number,

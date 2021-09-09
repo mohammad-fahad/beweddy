@@ -26,6 +26,12 @@ const userSchema = new mongoose.Schema(
       trim: true,
       lowercase: true,
     },
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+    },
     password: {
       type: String,
       required: true,
@@ -160,12 +166,6 @@ userSchema.virtual('fullName').get(function () {
 
 userSchema.virtual('coupleName').get(function () {
   return `${this.questions.firstName} & ${this.questions.spouseFirstName}`;
-});
-
-userSchema.virtual('username').get(function () {
-  return `${this.questions.firstName}${this.questions.lastName}_${nanoid(
-    4
-  )}`.toLowerCase();
 });
 
 userSchema.methods.matchPassword = async function (enteredPassword) {

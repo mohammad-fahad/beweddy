@@ -8,7 +8,21 @@ import Select from 'react-select/creatable';
 import makeAnimated from 'react-select/animated';
 import { Fragment, useEffect, useState } from 'react';
 import { withAuthRoute } from '@hoc/withAuthRoute';
-import { Listbox, Transition } from '@headlessui/react';
+import { EditorState, convertToRaw } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
+// import htmlToDraft from 'html-to-draftjs';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import dynamic from 'next/dynamic';
+
+const Editor = dynamic(
+  () => import('react-draft-wysiwyg').then(mod => mod.Editor),
+  { ssr: false }
+);
+const htmlToDraft = dynamic(
+  () => import('html-to-draftjs').then(mod => mod.htmlToDraft),
+  { ssr: false }
+);
+
 import {
   ArrowRightIcon,
   ArrowSmRightIcon,
@@ -52,7 +66,7 @@ const customStyles = {
 const EmailInvitesPage = () => {
   const { countries } = useSelector(state => state.countryList);
   const { user } = useSelector(state => state.user);
-
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [selectedCountry, setSelectedCountry] = useState({});
   const { handleSubmit, register, getValues, watch } = useForm({ mode: 'all' });
   watch(['message', 'compose']);
@@ -65,7 +79,9 @@ const EmailInvitesPage = () => {
       );
     }
   }, [countries]);
-  const val = `Hello, Hasib \n\nWe would like to invite you to our wedding! Please come celebrate with us. Here is a link to our gift registry and website.\n\nWe Need your Address \n\nThank you for your support. Love, ${user.coupleName} !\n\nVisit Our Wedding Website \nwww.beweddy.com/nateandash\n\n`;
+
+  const onEditorStateChange = editorState => setEditorState(editorState);
+
   return (
     <Fragment>
       <Head>
@@ -88,79 +104,6 @@ const EmailInvitesPage = () => {
               <div className='grid md:grid-cols-3 gap-12'>
                 <div className='md:col-span-2'>
                   <div className='space-y-6'>
-                    {/* <div className='flex justify-between'>
-                      <Heading h3 className='!text-2xl'>
-                        New Message
-                      </Heading>
-                      <div className='flex items-center space-x-3'>
-                        <svg
-                          width='25'
-                          height='25'
-                          viewBox='0 0 25 25'
-                          fill='none'
-                          xmlns='http://www.w3.org/2000/svg'
-                        >
-                          <path
-                            d='M19.6226 3.97388H8.62256C6.96856 3.97388 5.62256 5.31988 5.62256 6.97388V7.97388H4.62256C4.35734 7.97388 4.10299 8.07923 3.91545 8.26677C3.72792 8.45431 3.62256 8.70866 3.62256 8.97388C3.62256 9.23909 3.72792 9.49345 3.91545 9.68098C4.10299 9.86852 4.35734 9.97388 4.62256 9.97388H5.62256V11.9739H4.62256C4.35734 11.9739 4.10299 12.0792 3.91545 12.2668C3.72792 12.4543 3.62256 12.7087 3.62256 12.9739C3.62256 13.2391 3.72792 13.4934 3.91545 13.681C4.10299 13.8685 4.35734 13.9739 4.62256 13.9739H5.62256V15.9739H4.62256C4.35734 15.9739 4.10299 16.0792 3.91545 16.2668C3.72792 16.4543 3.62256 16.7087 3.62256 16.9739C3.62256 17.2391 3.72792 17.4934 3.91545 17.681C4.10299 17.8685 4.35734 17.9739 4.62256 17.9739H5.62256V18.9739C5.62256 20.6279 6.96856 21.9739 8.62256 21.9739H19.6226C21.2766 21.9739 22.6226 20.6279 22.6226 18.9739V6.97388C22.6226 5.31988 21.2766 3.97388 19.6226 3.97388ZM7.62256 6.97388C7.62256 6.42288 8.07156 5.97388 8.62256 5.97388V7.97388H7.62256V6.97388ZM7.62256 9.97388H8.62256V11.9739H7.62256V9.97388ZM7.62256 13.9739H8.62256V15.9739H7.62256V13.9739ZM7.62256 18.9739V17.9739H8.62256V19.9739C8.07156 19.9739 7.62256 19.5249 7.62256 18.9739ZM20.6226 18.9739C20.6226 19.5249 20.1736 19.9739 19.6226 19.9739H9.62256V5.97388H19.6226C20.1736 5.97388 20.6226 6.42288 20.6226 6.97388V18.9739Z'
-                            fill='black'
-                          />
-                          <path
-                            d='M14.6226 13.4739C15.7271 13.4739 16.6226 12.5784 16.6226 11.4739C16.6226 10.3693 15.7271 9.47388 14.6226 9.47388C13.518 9.47388 12.6226 10.3693 12.6226 11.4739C12.6226 12.5784 13.518 13.4739 14.6226 13.4739Z'
-                            fill='black'
-                          />
-                          <path
-                            d='M14.6226 14.3299C13.0606 14.3299 12.1226 15.0449 12.1226 15.7589C12.1226 16.1159 13.0606 16.4739 14.6226 16.4739C16.0886 16.4739 17.1226 16.1169 17.1226 15.7589C17.1226 15.0449 16.1426 14.3299 14.6226 14.3299Z'
-                            fill='black'
-                          />
-                        </svg>
-                        <h4 className='text-sm xl:text-base font-bold'>
-                          Add or input contacts
-                        </h4>
-                      </div>
-                    </div> 
-                    <div className='flex items-center space-x-5'>
-                      <div className='flex items-center'>
-                        <input
-                          type='radio'
-                          id='Text'
-                          value='Text'
-                          className='hidden'
-                          defaultChecked
-                          {...register('compose')}
-                        />
-                        <label
-                          htmlFor='Text'
-                          className='flex items-center space-x-3 cursor-pointer'
-                        >
-                          <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
-                            <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
-                          </div>
-                          <span className='font-inter text-lg font-light'>
-                            Text
-                          </span>
-                        </label>
-                      </div>
-                      <div className='flex items-center'>
-                        <input
-                          type='radio'
-                          id='Picture'
-                          value='Picture'
-                          className='hidden'
-                          {...register('compose')}
-                        />
-                        <label
-                          htmlFor='Picture'
-                          className='flex items-center space-x-3 cursor-pointer'
-                        >
-                          <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
-                            <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
-                          </div>
-                          <span className='font-inter text-lg font-light'>
-                            Picture
-                          </span>
-                        </label>
-                      </div>
-                    </div>*/}
                     <div className='flex justify-between'>
                       <Heading h3 className='!text-sm xl:!text-base !font-bold'>
                         To
@@ -193,14 +136,26 @@ const EmailInvitesPage = () => {
                         Compose
                       </Heading>
                       <div className='relative'>
-                        <textarea
+                        {/* <Editor
+                          editorState={editorState}
+                          wrapperClassName='demo-wrapper'
+                          editorClassName='demo-editor'
+                          onEditorStateChange={this.onEditorStateChange}
+                        /> */}
+                        <Editor
+                          editorState={editorState}
+                          wrapperClassName='border-2 border-primary rounded-[5px] overflow-hidden'
+                          editorClassName='px-5 py-2 min-h-[300px]'
+                          onEditorStateChange={onEditorStateChange}
+                        />
+                        {/* <textarea
                           cols='30'
                           rows='10'
                           className='rounded-[20px] p-10 w-full placeholder-primary font-medium text-lg'
                           defaultValue={val}
                           placeholder=''
                           {...register('message')}
-                        ></textarea>
+                        ></textarea> */}
                         {/* <svg
                           className='absolute bottom-0 right-0'
                           width='114'
@@ -225,7 +180,7 @@ const EmailInvitesPage = () => {
                     </button>
                   </div>
                 </div>
-                {/* <div className='mx-auto'>
+                <div className='mx-auto'>
                   <div className='relative'>
                     <img
                       src='/images/mobile-template.svg'
@@ -285,7 +240,11 @@ const EmailInvitesPage = () => {
                           </div>
                           <div className='relative w-full text-white font-medium text-sm rounded-[10px] px-5 py-3 bg-[#1788Fe]'>
                             <div
-                              dangerouslySetInnerHTML={{ __html: message }}
+                              dangerouslySetInnerHTML={{
+                                __html: draftToHtml(
+                                  convertToRaw(editorState.getCurrentContent())
+                                ),
+                              }}
                             />
                             <svg
                               width='41'
@@ -305,7 +264,7 @@ const EmailInvitesPage = () => {
                       </div>
                     </div>
                   </div>
-                </div> */}
+                </div>
               </div>
             </div>
           </div>

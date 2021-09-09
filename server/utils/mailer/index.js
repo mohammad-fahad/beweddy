@@ -3,16 +3,12 @@ import sgMail from '@sendgrid/mail';
 import {
   activationTemplate,
   passwordResetTemplate,
+  sendEmailInvitesTemplate,
 } from './templates/index.js';
-
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const {
-  EMAIL_FROM,
-  SITE_NAME,
-  CLIENT_URL,
-} = process.env;
+const { EMAIL_FROM, SITE_NAME, CLIENT_URL } = process.env;
 
 /**
  * @param  {String} name
@@ -26,6 +22,32 @@ export const sendActivationEmail = async (name, email, url) => {
     to: email,
     subject: `Signup to ${CLIENT_URL}`,
     html: activationTemplate(name, url),
+  };
+
+  // const result = await transport.sendMail(mailOptions);
+  const result = await sgMail.send(mailOptions);
+  if (!result) {
+    throw new Error('Something went wrong');
+  }
+};
+
+export const sendEmailInvites = async (emails, coupleName, image, message) => {
+  const mailOptions = {
+    from: `${SITE_NAME} <${EMAIL_FROM}>`,
+    // to: '8019197212@vtext.com',
+    // to: '8019197212@vzwpix.com',
+    to: emails,
+    // to: 'azimaahmed36@gmail.com',
+    subject: 'BeWeddy',
+    html: sendEmailInvitesTemplate(coupleName, image, message),
+    // attachments: [
+    //   {
+    //     content: base64.replace('data:image/png;base64,', ''),
+    //     filename: 'attachment.png',
+    //     type: 'image/png',
+    //     disposition: 'attachment',
+    //   },
+    // ],
   };
 
   // const result = await transport.sendMail(mailOptions);

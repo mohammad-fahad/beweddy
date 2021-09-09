@@ -11,11 +11,13 @@ import {
   sendActivationEmail,
   sendPasswordResetEmail,
 } from '../utils/mailer/index.js';
+import { client } from '../lib/google.js';
+import { nanoid } from 'nanoid';
 
 // Register New User
 
 export const register = asyncHandler(async (req, res) => {
-  const { email, phone, password, questions, role } = req.body;
+  const { email, password, questions, role } = req.body;
   const { firstName, lastName } = questions;
 
   const userExists = await User.findOne({ email });
@@ -24,14 +26,18 @@ export const register = asyncHandler(async (req, res) => {
     throw new Error('User already exists');
   }
 
+  const username = `${questions.firstName}_${
+    questions.spouseFirstName
+  }_${nanoid(4)}`.toLowerCase();
   // Create new user
   const user = await User.create({
     firstName,
     lastName,
     email,
-    phone,
+    // phone,
     password,
     questions,
+    username,
     role,
   });
 
@@ -60,6 +66,124 @@ export const register = asyncHandler(async (req, res) => {
 // });
 
 // Active User
+
+export const googleSignUp = asyncHandler(async (req, res) => {
+  const { idToken, questions } = req.body;
+
+  // Verify Google ID token
+  const verify = await client.verifyIdToken({
+    idToken,
+    audience: process.env.GOOGLE_CLIENT_ID,
+  });
+
+  // By Google
+  const { email, email_verified, picture } = verify.payload;
+
+  const { firstName, lastName } = questions;
+
+  // Check if email is verified
+  if (email_verified) {
+    const userExists = await User.findOne({ email });
+
+    if (userExists) {
+      res.status(400);
+      throw new Error('User already exists');
+    }
+    const username = `${questions.firstName}_${
+      questions.spouseFirstName
+    }_${nanoid(4)}`.toLowerCase();
+    // If not user exists then create new user
+    const user = await User.create({
+      firstName,
+      lastName,
+      email,
+      password: email + process.env.GOOGLE_CLIENT_ID,
+      avatar: picture,
+      emailVerified: email_verified,
+      username,
+      questions,
+    });
+
+    if (user) {
+      res.json({
+        user: {
+          _id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          fullName: user.fullName,
+          coupleName: user.coupleName,
+          username: user.username,
+          email: user.email,
+          phone: user.phone,
+          questions: user.questions,
+          avatar: user.avatar,
+          ourStory: user.ourStory,
+          receptionDetails: user.receptionDetails,
+          giftCards: user.giftCards,
+          registries: user.registries,
+          socialAccounts: user.socialAccounts,
+          isAdmin: user.isAdmin,
+          role: user.role,
+          token: generateIdToken(user._id),
+        },
+        message: `Welcome to Beweddy, ${user.fullName}`,
+      });
+    }
+  } else {
+    res.status(400);
+    throw new Error('Google sign up failed, Email is not verified');
+  }
+});
+
+export const googleSignIn = asyncHandler(async (req, res) => {
+  const { idToken } = req.body;
+
+  // Verify Google ID token
+  const verify = await client.verifyIdToken({
+    idToken,
+    audience: process.env.GOOGLE_CLIENT_ID,
+  });
+
+  // By Google
+  const { email, email_verified } = verify.payload;
+
+  // Check if email is verified
+  if (email_verified) {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      res.status(404);
+      throw new Error('Please sign up we did not recognize this email');
+    }
+
+    res.json({
+      user: {
+        _id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        fullName: user.fullName,
+        coupleName: user.coupleName,
+        username: user.username,
+        email: user.email,
+        phone: user.phone,
+        questions: user.questions,
+        avatar: user.avatar,
+        ourStory: user.ourStory,
+        receptionDetails: user.receptionDetails,
+        giftCards: user.giftCards,
+        registries: user.registries,
+        socialAccounts: user.socialAccounts,
+        isAdmin: user.isAdmin,
+        role: user.role,
+        token: generateIdToken(user._id),
+      },
+      message: `Welcome back ${user.fullName}`,
+    });
+  } else {
+    res.status(400);
+    throw new Error('Google sign up failed, Email is not verified');
+  }
+});
 
 export const activeUser = asyncHandler(async (req, res) => {
   const { token } = req.body;
@@ -125,7 +249,12 @@ export const login = asyncHandler(async (req, res) => {
 
   const user = await User.findOne({ email });
 
-  if (user && !user.emailVerified) {
+  if (!user) {
+    res.status(404);
+    throw new Error('Please sign up we did not recognize this email');
+  }
+
+  if (!user.emailVerified) {
     const activationToken = generateActivationToken(user._id);
     const url = `${process.env.CLIENT_URL}/activation/${activationToken}`;
     await sendActivationEmail(user.fullName, email, url);
@@ -137,7 +266,7 @@ export const login = asyncHandler(async (req, res) => {
   }
 
   // Check if user & password matches
-  if (user && (await user.matchPassword(password))) {
+  if (await user.matchPassword(password)) {
     res.json({
       user: {
         _id: user._id,
@@ -163,7 +292,7 @@ export const login = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(401);
-    throw new Error('Invalid email or phone or password');
+    throw new Error('Invalid password');
   }
 });
 
@@ -329,4 +458,18 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error('User not found');
   }
+});
+
+// update user profile
+
+export const getCouple = asyncHandler(async (req, res) => {
+  const user = await User.findOne({ username: req.params.username }).select(
+    '-password'
+  );
+  if (!user) {
+    res.status(404);
+    throw new Error('User not found');
+  }
+
+  res.status(200).json(user);
 });

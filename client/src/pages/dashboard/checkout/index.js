@@ -398,7 +398,6 @@ const index = () => {
                         {...register("guestEstimate")}
                       />
                     </div>
-                   
                   </div>
                 </div>
 
@@ -480,7 +479,6 @@ const index = () => {
                       className="rounded-[5px] p-3 w-[476px] placeholder-[#BDBDBD] font-medium text-lg"
                       defaultValue=""
                       placeholder={`Hope you enjoy this gift! I am so happy and excited for you
-
 - Love the Smith Family`}
                       {...register("message")}
                     />
