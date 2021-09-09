@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-const WeddingDayCountDown = ({ sm, user }) => {
-  // const { user } = useSelector(state => state.user);
+const WeddingDayCountDown = ({ sm, couple }) => {
+  const { user: userCouple } = useSelector(state => state.user);
+  const user = couple || userCouple;
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -10,7 +11,7 @@ const WeddingDayCountDown = ({ sm, user }) => {
   const {
     weddingDay: { weddingDate },
   } = user && user?.questions;
-  console.log(user);
+
   useEffect(() => {
     if (weddingDate) {
       const countDownDate = new Date(weddingDate).getTime();

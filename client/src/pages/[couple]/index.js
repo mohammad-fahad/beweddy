@@ -30,12 +30,12 @@ const params = {
 
 const WebsitePageOne = () => {
   const { query } = useRouter();
-  const { data: user, isLoading } = useQuery(
+  const { data: couple, isLoading } = useQuery(
     ['couple', query.couple],
     getCouple
   );
   const [value, setValue] = useState(
-    `https://beweddy-delta.vercel.app/${user?.username}`
+    `https://beweddy-delta.vercel.app/${couple?.username}`
   );
 
   if (isLoading) return <Loader />;
@@ -43,14 +43,14 @@ const WebsitePageOne = () => {
   return (
     <>
       <Head>
-        <title>Beweddy | {user?.coupleName}'s Wedding</title>
+        <title>Beweddy | {couple?.coupleName}'s Wedding</title>
       </Head>
 
       <div className=''>
         <WebsiteNav />
         {/* banner image */}
         <Swiper {...params}>
-          {user?.questions?.couplePictures.map((image, index) => (
+          {couple?.questions?.couplePictures.map((image, index) => (
             <div className='w-full'>
               <div className='aspect-w-16 aspect-h-9'>
                 <Image
@@ -77,7 +77,7 @@ const WebsitePageOne = () => {
               <h4 className='text-[22px] font-medium text-center mb-5'>
                 Wedding Day Countdown
               </h4>
-              {user && <WeddingDayCountDown {...{ user }} />}
+              <WeddingDayCountDown {...{ couple }} />
             </div>
           </div>
 
@@ -85,7 +85,7 @@ const WebsitePageOne = () => {
 
           <div className='my-[40px] space-y-[26px]'>
             <div className='w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB]' />
-            <Link href='/'>
+            <Link href={`/${couple?.username}/rsvp`}>
               <a className='w-96 flex items-center justify-center space-x-3 py-4 px-5 border-2 border-primary bg-[#F9D1DE] rounded-[5px] capitalize font-inter font-bold text-sm hover:bg-secondary/5 transition duration-300'>
                 {/* <LinkIcon className="w-5 h-5" /> */}
                 <svg
@@ -128,15 +128,17 @@ const WebsitePageOne = () => {
             <div className='w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB]' />
           </div>
           {/* our story */}
-          <div>
-            <h2 className='text-4xl font-medium text-center'>Our Story </h2>
-            <p className='mt-5 text-2xl font-normal text-center'>
-              We met in the 3rd grade and have been best friends ever since! You
-              can say it was love at first sight. we call it destiny. we hope
-              you will have the honor to dine, laugh, and dance with us. come
-              celebrate!
-            </p>
-          </div>
+          {
+            <div>
+              <h2 className='text-4xl font-medium text-center'>Our Story </h2>
+              <p className='mt-5 text-2xl font-normal text-center'>
+                We met in the 3rd grade and have been best friends ever since!
+                You can say it was love at first sight. we call it destiny. we
+                hope you will have the honor to dine, laugh, and dance with us.
+                come celebrate!
+              </p>
+            </div>
+          }
           <div className='w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-10' />
           {/* Reception Details */}
           <h2 className='text-4xl font-medium text-center mt-[17px]'>
@@ -145,16 +147,18 @@ const WebsitePageOne = () => {
 
           <div class='grid grid-cols-12 gap-4 w-full mt-5'>
             <div class='col-start-2 col-span-5 p-5 text-lg font-semibold'>
-              {user?.questions?.weddingDay?.firstReception && (
+              {couple?.questions?.weddingDay?.firstReception && (
                 <>
                   <h4 className='text-lg'>Receptions</h4>
                   <h6>
-                    Date 1 : {user?.questions?.weddingDay?.firstReception}{' '}
+                    Date 1 : {couple?.questions?.weddingDay?.firstReception}{' '}
                   </h6>
                 </>
               )}
-              {user?.questions?.weddingDay?.secondReception && (
-                <h6>Date 2 : {user?.questions?.weddingDay?.secondReception}</h6>
+              {couple?.questions?.weddingDay?.secondReception && (
+                <h6>
+                  Date 2 : {couple?.questions?.weddingDay?.secondReception}
+                </h6>
               )}
             </div>
             <div class='col-span-5 p-5 flex justify-end'>
@@ -171,7 +175,7 @@ const WebsitePageOne = () => {
             <div class='col-start-2 col-span-10 p-5'>
               <h4 className='text-[26px] font-medium mb-2'>Timeline</h4>
               <ul className='space-y-3'>
-                {user?.receptionDetails?.map(el => (
+                {couple?.receptionDetails?.map(el => (
                   <li className='w-full px-7 py-2 space-x-5 border border-[#D5D5D5] hover:border-primary cursor-pointer'>
                     <span className='text-lg font-bold'>{el?.time}</span>
                     <span className='text-lg font-normal'>{el?.details}</span>
@@ -205,10 +209,10 @@ const WebsitePageOne = () => {
           <div className='container'>
             <div class='grid grid-cols-12 gap-4 w-full mt-5'>
               <div class='col-span-6 p-5'>
-                <SocialSection name={user?.questions?.firstName} />
+                <SocialSection name={couple?.questions?.firstName} />
               </div>
               <div class='col-span-6 p-5'>
-                <SocialSection name={user?.questions?.spouseFirstName} />
+                <SocialSection name={couple?.questions?.spouseFirstName} />
               </div>
             </div>
           </div>
