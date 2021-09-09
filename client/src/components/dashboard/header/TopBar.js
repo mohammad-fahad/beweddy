@@ -19,7 +19,7 @@ const DashboardTopBar = ({ coupleName }) => {
                 <span>Search</span>
               </a>
             </Link> */}
-            <Link href='/'>
+            <Link href='#'>
               <a className='flex items-center space-x-2 md:space-x-3 font-inter text-sm md:text-base text-gray-700 hover:text-primary font-semibold transition duration-300'>
                 <img
                   src='/icons/lifebuoy.svg'
@@ -59,9 +59,8 @@ const DashboardTopBar = ({ coupleName }) => {
                         {({ active }) => (
                           <Link href='/'>
                             <a
-                              className={`group font-inter ${
-                                active ? 'bg-gray-100' : 'hover:bg-gray-100'
-                              } hover:bg-gray-100 text-gray-600 flex items-center w-full px-3 py-2 text-base transition duration-300`}
+                              className={`group font-inter ${active ? 'bg-gray-100' : 'hover:bg-gray-100'
+                                } hover:bg-gray-100 text-gray-600 flex items-center w-full px-3 py-2 text-base transition duration-300`}
                             >
                               <UserIcon
                                 className='w-5 h-5 mr-2'
@@ -75,9 +74,8 @@ const DashboardTopBar = ({ coupleName }) => {
                       <Menu.Item>
                         {({ active }) => (
                           <button
-                            className={`group font-inter ${
-                              active ? 'bg-gray-100' : 'hover:bg-gray-100'
-                            } text-gray-600 flex items-center w-full px-3 py-2 text-base transition duration-300`}
+                            className={`group font-inter ${active ? 'bg-gray-100' : 'hover:bg-gray-100'
+                              } text-gray-600 flex items-center w-full px-3 py-2 text-base transition duration-300`}
                             onClick={() => dispatch(logout())}
                           >
                             <LogoutIcon
@@ -93,7 +91,7 @@ const DashboardTopBar = ({ coupleName }) => {
                 </>
               )}
             </Menu>
-            <Link href='/'>
+            <Link href='#'>
               <a className='!ml-auto sm:!ml-5 relative font-inter text-sm md:text-base text-gray-700 hover:text-primary font-semibold transition duration-300'>
                 <img
                   src='/icons/notification.svg'
@@ -101,7 +99,7 @@ const DashboardTopBar = ({ coupleName }) => {
                   className='w-5 h-5 sm:w-6 sm:h-6'
                 />
                 <span className='absolute top-[-13px] right-[-25px] w-[25px] h-[25px] text-[7px] flex items-center justify-center bg-[#FFB1B6] rounded-full'>
-                  1
+                  0
                 </span>
               </a>
             </Link>

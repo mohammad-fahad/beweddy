@@ -82,7 +82,7 @@ const Dashboard = () => {
         <DashboardHeader title='Dashboard 🎉' />
         {/* <div className='border rounded-tl-xl border-r-0 border-secondary bg-secondary-alternative/10'>
           <div className='max-w-[1300px] w-full'>
-            
+
           </div>
         </div> */}
         <div className='shadow-box space-y-10'>
@@ -148,7 +148,7 @@ const Dashboard = () => {
                   <span>Preview Website</span>
                 </a>
               </Link>
-              <Link href='/'>
+              <Link href='/dashboard/features/qrcode-and-links'>
                 <a
                   className={`mt-3 xs:mt-0 capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
                 >
