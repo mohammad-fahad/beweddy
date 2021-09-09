@@ -1,6 +1,7 @@
 import express from 'express';
 import {
   activeUser,
+  getCouple,
   getUserProfile,
   googleSignIn,
   googleSignUp,
@@ -22,6 +23,7 @@ router.post('/googleSignIn', googleSignIn);
 router.post('/requestResetPassword', requestResetPassword);
 router.post('/resetPassword', resetPassword);
 router.route('/profile').get(protect, getUserProfile);
+router.route('/:username').get(getCouple);
 router.route('/updateUserProfile').put(protect, updateUserProfile);
 
 export default router;
