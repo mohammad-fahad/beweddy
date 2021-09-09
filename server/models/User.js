@@ -107,6 +107,12 @@ const userSchema = new mongoose.Schema(
         ref: 'Registry',
       },
     ],
+    todos: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Todo',
+      },
+    ],
     socialAccounts: {
       groom: {
         facebook: String,
