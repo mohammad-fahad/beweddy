@@ -3,6 +3,7 @@ import sgMail from '@sendgrid/mail';
 import {
   activationTemplate,
   passwordResetTemplate,
+  sendEmailInvitesTemplate,
 } from './templates/index.js';
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -30,19 +31,15 @@ export const sendActivationEmail = async (name, email, url) => {
   }
 };
 
-export const sendText = async base64 => {
-  console.log(base64);
+export const sendEmailInvites = async (emails, coupleName, image, message) => {
   const mailOptions = {
     from: `${SITE_NAME} <${EMAIL_FROM}>`,
     // to: '8019197212@vtext.com',
     // to: '8019197212@vzwpix.com',
-    to: 'hasibmolla28@gmail.com',
+    to: emails,
     // to: 'azimaahmed36@gmail.com',
     subject: 'BeWeddy',
-    // html: activationTemplate(name, url),
-    // text: 'We are beweddy squad. Invitation System Attempt with MMS',
-    text: 'We are beweddy squad. Invitation System Attempt 3rd time',
-    html: `<img src='${base64}'/>`,
+    html: sendEmailInvitesTemplate(coupleName, image, message),
     // attachments: [
     //   {
     //     content: base64.replace('data:image/png;base64,', ''),
