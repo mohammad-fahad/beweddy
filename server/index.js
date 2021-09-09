@@ -13,6 +13,7 @@ import guestRoutes from './routes/guestRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import RegistryRoutes from './routes/registryRoutes.js';
+import GiftRoutes from './routes/giftRoutes.js';
 import invitationRoutes from './routes/invitationRoutes.js';
 
 
@@ -55,8 +56,7 @@ app.get('/', (_req, res) => {
 app.use(`${API_VERSION}/users`, userRoutes);
 app.use(`${API_VERSION}/upload`, uploadRoutes);
 app.use(`${API_VERSION}/guests`, guestRoutes);
-
-app.use(`${API_VERSION}/gifts`, userRoutes);
+app.use(`${API_VERSION}/gifts`, GiftRoutes);
 app.use(`${API_VERSION}/registries`, RegistryRoutes);
 app.use(`${API_VERSION}/invitation`, invitationRoutes);
 

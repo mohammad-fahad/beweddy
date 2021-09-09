@@ -3,7 +3,7 @@ import Gift from '../models/Gift.js';
 
 // Get All Gifts
 export const getGifts = asyncHandler(async (req, res) => {
-  const gifts = Gift.find({});
+  const gifts = await Gift.find({});
 
   res.status(200).json({ gifts });
 });
@@ -11,7 +11,7 @@ export const getGifts = asyncHandler(async (req, res) => {
 // Create New Gift
 export const createGift = asyncHandler(async (req, res) => {
   const { title, description, link, image } = req.body;
-  const gift = Gift.create({ title, description, link, image });
+  const gift = await Gift.create({ title, description, link, image });
 
   if (gift) {
     res.status(201).json({ message: 'Gift created successfully' });
