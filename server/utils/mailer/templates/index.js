@@ -96,7 +96,7 @@ export const activationTemplate = (name, url) => {
       <td align="center">
         <p style="font-weight: 600; font-size: 13px; line-height: 30px">
           Need help, contact support at
-          <a style="color: #333" href="mailto:beweddy1@gmail.com">beweddyport@gmail.com</a>
+          <a style="color: #333" href="mailto:beweddy1@gmail.com">nate@beweddy.com</a>
         </p>
       </td>
     </tr>
@@ -144,7 +144,7 @@ export const passwordResetTemplate = url => {
     <tr>
       <td>
         <a style='background: rgb(0, 116, 255); color:#fff; padding:10px 25px;display: inline-block; text-decoration: none; border-radius: 4px; margin: 25px 0; margin-bottom: 30px' href="${url}">Reset your password</a>
-      </td>    
+      </td>
     </tr>
     <tr>
       <td>
@@ -153,7 +153,7 @@ export const passwordResetTemplate = url => {
         </p>
     </td>
     </tr>
-      
+
     </table>
 </body>
   `;
