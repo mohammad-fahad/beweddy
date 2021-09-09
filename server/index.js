@@ -13,6 +13,7 @@ import guestRoutes from './routes/guestRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import sendRoutes from './routes/sendRoutes.js';
+import RegistryRoutes from './routes/registryRoutes.js';
 
 // Connect MongoDB
 connectDB();
@@ -55,7 +56,8 @@ app.use(`${API_VERSION}/upload`, uploadRoutes);
 app.use(`${API_VERSION}/guests`, guestRoutes);
 
 app.use(`${API_VERSION}/gifts`, userRoutes);
-app.use(`${API_VERSION}/registries`, userRoutes);
+// app.use(`${API_VERSION}/registries`, userRoutes);
+app.use(`${API_VERSION}/registries`, RegistryRoutes);
 app.use(`${API_VERSION}/send`, sendRoutes);
 
 // Error Handler
