@@ -10,11 +10,16 @@ import { Fragment, useEffect, useState } from 'react';
 import { withAuthRoute } from '@hoc/withAuthRoute';
 import { EditorState, convertToRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
+// import htmlToDraft from 'html-to-draftjs';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import dynamic from 'next/dynamic';
 
 const Editor = dynamic(
   () => import('react-draft-wysiwyg').then(mod => mod.Editor),
+  { ssr: false }
+);
+const htmlToDraft = dynamic(
+  () => import('html-to-draftjs').then(mod => mod.htmlToDraft),
   { ssr: false }
 );
 

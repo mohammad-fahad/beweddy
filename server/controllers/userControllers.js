@@ -12,6 +12,7 @@ import {
   sendPasswordResetEmail,
 } from '../utils/mailer/index.js';
 import { client } from '../lib/google.js';
+import { nanoid } from 'nanoid';
 
 // Register New User
 
@@ -25,6 +26,9 @@ export const register = asyncHandler(async (req, res) => {
     throw new Error('User already exists');
   }
 
+  const username = `${questions.firstName}_${
+    questions.spouseFirstName
+  }_${nanoid(4)}`.toLowerCase();
   // Create new user
   const user = await User.create({
     firstName,
@@ -33,6 +37,7 @@ export const register = asyncHandler(async (req, res) => {
     // phone,
     password,
     questions,
+    username,
     role,
   });
 
@@ -84,6 +89,9 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       res.status(400);
       throw new Error('User already exists');
     }
+    const username = `${questions.firstName}_${
+      questions.spouseFirstName
+    }_${nanoid(4)}`.toLowerCase();
     // If not user exists then create new user
     const user = await User.create({
       firstName,
@@ -92,6 +100,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       password: email + process.env.GOOGLE_CLIENT_ID,
       avatar: picture,
       emailVerified: email_verified,
+      username,
       questions,
     });
 
@@ -449,4 +458,18 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error('User not found');
   }
+});
+
+// update user profile
+
+export const getCouple = asyncHandler(async (req, res) => {
+  const user = await User.findOne({ username: req.params.username }).select(
+    '-password'
+  );
+  if (!user) {
+    res.status(404);
+    throw new Error('User not found');
+  }
+
+  res.status(200).json(user);
 });
