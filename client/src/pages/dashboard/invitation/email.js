@@ -33,16 +33,16 @@ const customStyles = {
       borderColor: theme.colors.neutral70,
     },
   }),
-  valueContainer: style => ({
+  valueContainer: (style) => ({
     ...style,
     padding: '6px 16px',
   }),
-  placeholder: style => ({
+  placeholder: (style) => ({
     ...style,
     color: 'rgba(156, 163, 175, 1)',
     fontSize: '14px',
   }),
-  input: style => ({
+  input: (style) => ({
     ...style,
     outline: 'none',
     border: 'none',
@@ -50,8 +50,8 @@ const customStyles = {
 };
 
 const EmailInvitesPage = () => {
-  const { countries } = useSelector(state => state.countryList);
-  const { user } = useSelector(state => state.user);
+  const { countries } = useSelector((state) => state.countryList);
+  const { user } = useSelector((state) => state.user);
 
   const [selectedCountry, setSelectedCountry] = useState({});
   const { handleSubmit, register, getValues, watch } = useForm({ mode: 'all' });
@@ -61,7 +61,7 @@ const EmailInvitesPage = () => {
   useEffect(() => {
     if (countries?.length) {
       setSelectedCountry(
-        countries.find(country => country.alpha3Code === 'USA')
+        countries.find((country) => country.alpha3Code === 'USA')
       );
     }
   }, [countries]);
@@ -74,20 +74,20 @@ const EmailInvitesPage = () => {
       {/* {loading && <Loader />} */}
       <DashboardTopBar />
       <DashboardLayout shadow>
-        <DashboardHeader title='Email Invites' />
-        <div className='shadow-box space-y-10'>
-          <div className='max-w-[1300px] w-full'>
-            <div className='p-12 xxl:pr-0'>
-              <div className='mb-5'>
-                <div className='flex items-center space-x-3 pb-2'>
-                  <Image src='/icons/email_send.svg' width={46} height={46} />
-                  <h3 className='text-2xl'>Send Email Invites</h3>
+        <DashboardHeader title="Email Invites" />
+        <div className="space-y-10 shadow-box">
+          <div className="max-w-[1300px] w-full">
+            <div className="p-12 xxl:pr-0">
+              <div className="mb-5">
+                <div className="flex items-center pb-2 space-x-3">
+                  <Image src="/icons/email_send.svg" width={46} height={46} />
+                  <h3 className="text-2xl">Send Email Invites</h3>
                 </div>
-                <span className='h-[4px] inline-block max-w-[215px] w-full bg-secondary-alternative'></span>
+                <span className="h-[4px] inline-block max-w-[215px] w-full bg-secondary-alternative"></span>
               </div>
-              <div className='grid md:grid-cols-3 gap-12'>
-                <div className='md:col-span-2'>
-                  <div className='space-y-6'>
+              <div className="grid gap-12 md:grid-cols-3">
+                <div className="md:col-span-2">
+                  <div className="space-y-6">
                     {/* <div className='flex justify-between'>
                       <Heading h3 className='!text-2xl'>
                         New Message
@@ -113,7 +113,7 @@ const EmailInvitesPage = () => {
                             fill='black'
                           />
                         </svg>
-                        <h4 className='text-sm xl:text-base font-bold'>
+                        <h4 className='text-sm font-bold xl:text-base'>
                           Add or input contacts
                         </h4>
                       </div>
@@ -135,7 +135,7 @@ const EmailInvitesPage = () => {
                           <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
                             <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
                           </div>
-                          <span className='font-inter text-lg font-light'>
+                          <span className='text-lg font-light font-inter'>
                             Text
                           </span>
                         </label>
@@ -155,17 +155,17 @@ const EmailInvitesPage = () => {
                           <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
                             <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
                           </div>
-                          <span className='font-inter text-lg font-light'>
+                          <span className='text-lg font-light font-inter'>
                             Picture
                           </span>
                         </label>
                       </div>
                     </div>*/}
-                    <div className='flex justify-between'>
-                      <Heading h3 className='!text-sm xl:!text-base !font-bold'>
+                    <div className="flex justify-between">
+                      <Heading h3 className="!text-sm xl:!text-base !font-bold">
                         To
                       </Heading>
-                      <h5 className='xl:text-[12px] xxl:text-base font-bold'>
+                      <h5 className="xl:text-[12px] xxl:text-base font-bold">
                         Recipients: 13
                       </h5>
                     </div>
@@ -177,28 +177,28 @@ const EmailInvitesPage = () => {
                       styles={customStyles}
                       // options={colourOptions}
                     />
-                    <Heading h3 className='!text-sm xl:!text-base !font-bold'>
+                    <Heading h3 className="!text-sm xl:!text-base !font-bold">
                       From
                     </Heading>
                     <input
-                      type='text'
-                      className='border border-primary py-3 px-5 text-sm font-semibold w-full rounded-[5px]'
-                      placeholder='team.nate@gmail.com'
+                      type="text"
+                      className="border border-primary py-3 px-5 text-sm font-semibold w-full rounded-[5px]"
+                      placeholder="team.nate@gmail.com"
                     />
-                    <button className='py-3 px-8 text-sm md:text-base font-bold md:font-semibold border border-[#7F7F7F] rounded-[5px] bg-secondary-alternative hover:bg-secondary-alternative/50 transition duration-300'>
+                    <button className="py-3 px-8 text-sm md:text-base font-bold md:font-semibold border border-[#7F7F7F] rounded-[5px] bg-secondary-alternative hover:bg-secondary-alternative/50 transition duration-300">
                       Upload Photo/Video
                     </button>
-                    <div className='space-y-3'>
-                      <Heading h3 className='!text-sm xl:!text-base !font-bold'>
+                    <div className="space-y-3">
+                      <Heading h3 className="!text-sm xl:!text-base !font-bold">
                         Compose
                       </Heading>
-                      <div className='relative'>
+                      <div className="relative">
                         <textarea
-                          cols='30'
-                          rows='10'
-                          className='rounded-[20px] p-10 w-full placeholder-primary font-medium text-lg'
+                          cols="30"
+                          rows="10"
+                          className="rounded-[20px] p-10 w-full placeholder-primary font-medium text-lg scroll-design"
                           defaultValue={val}
-                          placeholder=''
+                          placeholder=""
                           {...register('message')}
                         ></textarea>
                         {/* <svg
@@ -216,12 +216,12 @@ const EmailInvitesPage = () => {
                           />
                         </svg>
 
-                        <span className='absolute bottom-0 right-0 w-52 h-10 bg-white'></span> */}
+                        <span className='absolute bottom-0 right-0 h-10 bg-white w-52'></span> */}
                       </div>
                     </div>
-                    <button className='py-3 px-8 font-inter font-bold text-base rounded-[5px] border-[3px] border-primary flex items-center text-center space-x-2 bg-[#F3F3F3] text-primary hover:bg-primary hover:text-white transition duration-300'>
+                    <button className="py-3 px-8 font-inter font-bold text-base rounded-[5px] border-[3px] border-primary flex items-center text-center space-x-2 bg-[#F3F3F3] text-primary hover:bg-primary hover:text-white transition duration-300">
                       <span>Preview</span>
-                      <ArrowSmRightIcon className='w-6 h-6' />
+                      <ArrowSmRightIcon className="w-6 h-6" />
                     </button>
                   </div>
                 </div>
@@ -248,7 +248,7 @@ const EmailInvitesPage = () => {
                               fill='#007AFF'
                             />
                           </svg>
-                          <div className='flex items-center flex-col space-y-2 h-20'>
+                          <div className='flex flex-col items-center h-20 space-y-2'>
                             <div className='w-[50px] h-[50px] rounded-full'>
                               <Image
                                 src={`${
@@ -258,7 +258,7 @@ const EmailInvitesPage = () => {
                                 width={50}
                               />
                             </div>
-                            <h4 className='text-sm text-center font-bold'>
+                            <h4 className='text-sm font-bold text-center'>
                               {user.firstName}
                             </h4>
                           </div>

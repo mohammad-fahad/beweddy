@@ -13,59 +13,59 @@ import CreateAccount from './CreateAccount';
 import HowItWork from './HowItWork';
 
 const Footer = ({ hideSocial }) => {
-  const { user } = useSelector(state => state.user);
+  const { user } = useSelector((state) => state.user);
   const { pathname } = useRouter();
   return (
     <>
       {!hideSocial && (
         <>
-          <div className='bg-gray-50 pb-16 py-20'>
-            <div className='text-center mb-[53px]'>
-              <h4 className='inline-block mx-auto text-[30px] font-medium pb-3 border-b-4 border-[#FFB1B6]'>
+          <div className="py-20 pb-16 bg-gray-50">
+            <div className="text-center mb-[53px]">
+              <h4 className="inline-block mx-auto text-[30px] font-medium pb-3 border-b-4 border-[#FFB1B6]">
                 Follow BeWeddy
               </h4>
             </div>
-            <div className='flex items-center justify-center gap-8 md:gap-14 flex-wrap'>
-              <a href='#'>
+            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14">
+              <a href="#">
                 <Facebook
                   size={35}
-                  color='#1877F2'
-                  className='hover:scale-125 transition duration-300'
+                  color="#1877F2"
+                  className="transition duration-300 hover:scale-125"
                 />
               </a>
-              <a href='#'>
+              <a href="#">
                 <Twitter
                   size={35}
-                  color='#1DA1F2'
-                  className='hover:scale-125 transition duration-300'
+                  color="#1DA1F2"
+                  className="transition duration-300 hover:scale-125"
                 />
               </a>
-              <a href='#'>
+              <a href="#">
                 <Instagram
                   size={35}
-                  color='#E4355F'
-                  className='hover:scale-125 transition duration-300'
+                  color="#E4355F"
+                  className="transition duration-300 hover:scale-125"
                 />
               </a>
-              <a href='#'>
+              <a href="#">
                 <Linkedin
                   size={35}
-                  color='#0A66C2'
-                  className='hover:scale-125 transition duration-300'
+                  color="#0A66C2"
+                  className="transition duration-300 hover:scale-125"
                 />
               </a>
-              <a href='#' title='google'>
+              <a href="#" title="google">
                 <img
-                  src='/icons/gmail.svg'
-                  alt='gmail'
-                  className='w-[35px] h-[35px] hover:scale-125 transition duration-300'
+                  src="/icons/gmail.svg"
+                  alt="gmail"
+                  className="w-[35px] h-[35px] hover:scale-125 transition duration-300"
                 />
               </a>
-              <a href='#'>
+              <a href="#">
                 <Youtube
-                  color='#FF0000'
+                  color="#FF0000"
                   size={35}
-                  className='hover:scale-125 transition duration-300'
+                  className="transition duration-300 hover:scale-125"
                 />
               </a>
             </div>
@@ -74,39 +74,42 @@ const Footer = ({ hideSocial }) => {
           {!user && <CreateAccount />}
         </>
       )}
-      <div className='py-8 bg-gradient-to-br from-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary'>
-        <div className='container flex items-center justify-center sm:justify-between gap-5 flex-wrap'>
-          <p className='text-base'>
-            <strong className='font-semibold'>
+
+      <div className="py-8 bg-gradient-to-br from-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary">
+        {/* <div className="container flex flex-wrap items-center justify-center gap-5 sm:flex-wrap-reverse sm:justify-between"> */}
+        <div className="container flex flex-col-reverse flex-wrap items-center justify-center gap-5 md:flex-row sm:justify-between">
+          <p className="text-base">
+            <strong className="font-semibold">
               &copy; {new Date().getFullYear()} BeWeddy.
             </strong>{' '}
             All rights reserved.
           </p>
-          <div className='flex items-center justify-center sm:justify-between flex-wrap gap-3 sm:gap-6'>
-            <Link href='/'>
-              <a className='text-primary font-semibold font-inter group hover:text-primary transition-colors duration-300 relative'>
+          {/* <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-between sm:gap-6"> */}
+          <div className="flex flex-col items-center justify-center gap-3 md:flex-row sm:justify-between sm:gap-6">
+            <Link href="/">
+              <a className="relative font-semibold transition-colors duration-300 text-primary font-inter group hover:text-primary">
                 <span>About BeWeddy!</span>
                 <span
-                  className={`absolute bottom-[-6px] left-0 w-full h-[2px] bg-primary group-hover:w-full transition-all duration-300`}
+                  className={`absolute bottom-[-6px] left-0 w-full h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300`}
                 ></span>
               </a>
             </Link>
-            <Link href='/'>
-              <a className='text-primary/60 font-medium font-inter group hover:text-primary transition-colors duration-300 relative'>
+            <Link href="/">
+              <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
                 <span>Privacy Policy</span>
-                <span className='absolute bottom-[-6px] left-0 w-0 h-[2px] bg-primary group-hover:w-full transition-all duration-300'></span>
+                <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300"></span>
               </a>
             </Link>
-            <Link href='/'>
-              <a className='text-primary/60 font-medium font-inter group hover:text-primary transition-colors duration-300 relative'>
+            <Link href="/">
+              <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
                 <span>Terms & conditions</span>
-                <span className='absolute bottom-[-6px] left-0 w-0 h-[2px] bg-primary group-hover:w-full transition-all duration-300'></span>
+                <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300"></span>
               </a>
             </Link>
-            <Link href='/'>
-              <a className='text-primary/60 font-medium font-inter group hover:text-primary transition-colors duration-300 relative'>
+            <Link href="/">
+              <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
                 <span>Contact us</span>
-                <span className='absolute bottom-[-6px] left-0 w-0 h-[2px] bg-primary group-hover:w-full transition-all duration-300'></span>
+                <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300"></span>
               </a>
             </Link>
           </div>
