@@ -27,7 +27,7 @@ const navLinks = [
   },
   {
     label: 'QR Code & links',
-    route: '/dashboard/features/qrcode',
+    route: '/dashboard/features/qrcode-and-links',
     icon: '/icons/qrcode.svg',
   },
   {
@@ -53,18 +53,18 @@ const navLinks = [
 
   {
     label: 'Gift cards',
-    route: '/dashboard/invitation/gift-cards',
+    route: '/dashboard/gift-cards',
     icon: '/icons/gift-2.svg',
   },
   {
     label: 'Registry',
-    route: '/dashboard/invitation/gift-cards',
+    route: '/dashboard/registries',
     icon: '/icons/registry.svg',
   },
 
   {
     label: 'Guest management',
-    route: '/dashboard/invitation/guest-management',
+    route: '/dashboard/invitation/rsvp-guest-management',
     icon: '/icons/ic_baseline-rsvp.svg',
   },
 ];
