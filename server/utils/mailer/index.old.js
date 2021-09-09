@@ -1,9 +1,9 @@
-import sgMail from "@sendgrid/mail";
+import sgMail from '@sendgrid/mail';
 
 import {
   activationTemplate,
   passwordResetTemplate,
-} from "./templates/index.js";
+} from './templates/index.js';
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
@@ -26,23 +26,23 @@ export const sendActivationEmail = async (name, email, url) => {
   // const result = await transport.sendMail(mailOptions);
   const result = await sgMail.send(mailOptions);
   if (!result) {
-    throw new Error("Something went wrong");
+    throw new Error('Something went wrong');
   }
 };
 
-export const sendText = async (base64) => {
+export const sendText = async base64 => {
   console.log(base64);
   const mailOptions = {
     from: `${SITE_NAME} <${EMAIL_FROM}>`,
     // to: '8019197212@vtext.com',
     // to: '8019197212@vzwpix.com',
-    to: "arif.swfu@outlook.com",
+    to: 'arif.swfu@outlook.com',
     // to: 'hasibmolla28@gmail.com',
     // to: 'azimaahmed36@gmail.com',
-    subject: "BeWeddy",
+    subject: 'BeWeddy',
     // html: activationTemplate(name, url),
     // text: 'We are beweddy squad. Invitation System Attempt with MMS',
-    text: "We are beweddy squad. Invitation System Attempt 3rd time",
+    text: 'We are beweddy squad. Invitation System Attempt 3rd time',
     // html: `<img src='${base64}'/>`,
     // attachments: [
     //   {
@@ -57,7 +57,7 @@ export const sendText = async (base64) => {
   // const result = await transport.sendMail(mailOptions);
   const result = await sgMail.send(mailOptions);
   if (!result) {
-    throw new Error("Something went wrong");
+    throw new Error('Something went wrong');
   }
 };
 
@@ -78,6 +78,6 @@ export const sendPasswordResetEmail = async (email, url) => {
   // const result = await transport.sendMail(mailOptions);
 
   if (!result) {
-    throw new Error("Something went wrong");
+    throw new Error('Something went wrong');
   }
 };

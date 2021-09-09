@@ -1,18 +1,19 @@
 // Config DotEnv
-import './env.js';
+import "./env.js";
 
-import 'colors';
-import path from 'path';
-import express from 'express';
-import morgan from 'morgan';
-import cors from 'cors';
-import fileUpload from 'express-fileupload';
-import { errorHandler, notFound } from './middlewares/error.js';
-import connectDB from './configs/db.js';
-import guestRoutes from './routes/guestRoutes.js';
-import userRoutes from './routes/userRoutes.js';
-import uploadRoutes from './routes/uploadRoutes.js';
-import sendRoutes from './routes/sendRoutes.js';
+import "colors";
+import path from "path";
+import express from "express";
+import morgan from "morgan";
+import cors from "cors";
+import fileUpload from "express-fileupload";
+import { errorHandler, notFound } from "./middlewares/error.js";
+import connectDB from "./configs/db.js";
+import guestRoutes from "./routes/guestRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
+import sendRoutes from "./routes/sendRoutes.js";
+import inviteRoutes from "./routes/inviteRoutes.js";
 
 // Connect MongoDB
 connectDB();
@@ -21,7 +22,7 @@ const app = express();
 // Port
 const port = process.env.PORT || 5000;
 // API URL
-const API_VERSION = process.env.API_VERSION || '/api/v1';
+const API_VERSION = process.env.API_VERSION || "/api/v1";
 // Bypass cors
 app.use(cors());
 
@@ -34,8 +35,8 @@ app.use(cors());
 //   });
 // }
 
-if (process.env.NODE_ENV !== 'production') {
-  app.use(morgan('dev'));
+if (process.env.NODE_ENV !== "production") {
+  app.use(morgan("dev"));
 }
 
 app.use(express.json());
@@ -46,8 +47,8 @@ app.use(
 );
 
 // Routes
-app.get('/', (_req, res) => {
-  res.json({ message: 'Welcome to Beweddy.' });
+app.get("/", (_req, res) => {
+  res.json({ message: "Welcome to Beweddy." });
 });
 
 app.use(`${API_VERSION}/users`, userRoutes);
@@ -57,6 +58,9 @@ app.use(`${API_VERSION}/guests`, guestRoutes);
 app.use(`${API_VERSION}/gifts`, userRoutes);
 app.use(`${API_VERSION}/registries`, userRoutes);
 app.use(`${API_VERSION}/send`, sendRoutes);
+app.use(`${API_VERSION}/invite`, inviteRoutes);
+
+
 
 // Error Handler
 app.use(notFound);
