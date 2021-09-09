@@ -152,7 +152,7 @@ const TodoPage = () => {
                       })
                     }
                   >
-                    {todo.isComplete ? (
+                    {todo?.isComplete ? (
                       <CheckCircleIcon className='w-6 h-6' />
                     ) : (
                       <span className='inline-block w-5 h-5 border-2 rounded-full border-primary'></span>
@@ -162,14 +162,6 @@ const TodoPage = () => {
                     className={`text-base md:text-lg font-normal ${
                       todo.isComplete ? 'line-through' : ''
                     }`}
-                    // onClick={() =>
-                    //   dispatch(
-                    //     toggleTodo({
-                    //       id: todo.id,
-                    //       isComplete: !todo.isComplete,
-                    //     })
-                    //   )
-                    // }
                   >
                     {todo.description}
                   </p>
