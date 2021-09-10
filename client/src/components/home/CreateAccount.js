@@ -1,23 +1,25 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 const CreateAccount = () => {
   return (
-    <div className='bg-primary py-10 flex items-center justify-center text-white'>
-      <Link href='/create-website'>
-        <a className='space-x-5 sm:text-lg md:text-2xl font-inter font-semibold flex items-center hover:underline'>
-          <span>Create Your Free Account</span>
+    <div className="flex items-center justify-center py-10 text-white bg-primary">
+      <Link href="/create-website">
+        <a className="flex items-center space-x-5 font-semibold sm:text-lg md:text-2xl font-inter hover:underline">
+          <span className="text-2xl font-semibold">
+            Create Your Free Account
+          </span>
           <svg
-            xmlns='http://www.w3.org/2000/svg'
-            className='h-8 w-8'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke='currentColor'
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-8 h-8"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
             <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
+              strokeLinecap="round"
+              strokeLinejoin="round"
               strokeWidth={2}
-              d='M14 5l7 7m0 0l-7 7m7-7H3'
+              d="M14 5l7 7m0 0l-7 7m7-7H3"
             />
           </svg>
         </a>

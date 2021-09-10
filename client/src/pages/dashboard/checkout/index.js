@@ -21,12 +21,14 @@ const index = () => {
     register,
     handleSubmit,
     watch,
+    getValues,
     formState: { errors },
   } = useForm({
     mode: "all",
     shouldFocusError: false,
     shouldUnregister: true,
   });
+  watch(["guestEstimate", "provider"]);
   const onSubmit = (data) => console.log(data);
   return (
     <div>
@@ -200,18 +202,203 @@ const index = () => {
 
                 {/* target section */}
                 <div>
-                  <h1 className="text-4xl leading-[44px] text-[#1f1f1f]">Target </h1>
+                  <h1 className="text-4xl leading-[44px] text-[#1f1f1f]">
+                    Target{" "}
+                  </h1>
                   <h1 className="text-4xl leading-[44px] text-[#1f1f1f] font-bold my-3">
                     $25-$500
                   </h1>
-                  <h2 className="text-lg text-[#000000] my-3">See full gift card information and terms</h2>
+                  <h2 className="text-lg text-[#000000] my-3">
+                    See full gift card information and terms
+                  </h2>
 
-                  <div> 
-
-                  <h2 className="text-lg text-[#000000] my-3">Choose Amount</h2>
+                  <div className="my-8">
+                    <h2 className="text-lg text-[#000000] my-3">
+                      Choose Amount
+                    </h2>
+                    <div className="flex gap-3">
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          id="no"
+                          value="no"
+                          className="hidden"
+                          {...register("rsvp")}
+                        />
+                        <label
+                          htmlFor="no"
+                          className="flex items-center space-x-3 cursor-pointer"
+                        >
+                          <div className="checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center">
+                            <span className="text-lg font-light font-inter">
+                              $20
+                            </span>
+                          </div>
+                        </label>
+                      </div>
+                      {/* 2nd part */}
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          id="no"
+                          value="no"
+                          className="hidden"
+                          {...register("rsvp")}
+                        />
+                        <label
+                          htmlFor="no"
+                          className="flex items-center space-x-3 cursor-pointer"
+                        >
+                          <div className="checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center">
+                            <span className="text-lg font-light font-inter">
+                              $25
+                            </span>
+                          </div>
+                        </label>
+                      </div>
+                      {/* 3rd part */}
+                      {/* <span className="">$20</span> */}
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          id="no"
+                          value="no"
+                          className="hidden"
+                          {...register("rsvp")}
+                        />
+                        <label
+                          htmlFor="no"
+                          className="flex items-center space-x-3 cursor-pointer"
+                        >
+                          <div className="checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center">
+                            <span className="text-lg font-light font-inter">
+                              $50
+                            </span>
+                          </div>
+                        </label>
+                      </div>
+                      {/* 4th radio button */}
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          id="no"
+                          value="no"
+                          className="hidden"
+                          {...register("rsvp")}
+                        />
+                        <label
+                          htmlFor="no"
+                          className="flex items-center space-x-3 cursor-pointer"
+                        >
+                          <div className="checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center">
+                            <span className="text-lg font-light font-inter">
+                              $100
+                            </span>
+                          </div>
+                        </label>
+                      </div>
                     </div>
 
-                  
+                    {/* 2nd button group start here */}
+                    <div className="flex gap-3 my-4">
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          id="no"
+                          value="no"
+                          className="hidden"
+                          {...register("rsvp")}
+                        />
+                        <label
+                          htmlFor="no"
+                          className="flex items-center space-x-3 cursor-pointer"
+                        >
+                          <div className="checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center">
+                            <span className="text-lg font-light font-inter">
+                              $150
+                            </span>
+                          </div>
+                        </label>
+                      </div>
+                      {/* 2nd part */}
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          id="no"
+                          value="no"
+                          className="hidden"
+                          {...register("rsvp")}
+                        />
+                        <label
+                          htmlFor="no"
+                          className="flex items-center space-x-3 cursor-pointer"
+                        >
+                          <div className="checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center">
+                            <span className="text-lg font-light font-inter">
+                              $200
+                            </span>
+                          </div>
+                        </label>
+                      </div>
+                      {/* 3rd part */}
+                      {/* <span className="">$20</span> */}
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          id="no"
+                          value="no"
+                          className="hidden"
+                          {...register("rsvp")}
+                        />
+                        <label
+                          htmlFor="no"
+                          className="flex items-center space-x-3 cursor-pointer"
+                        >
+                          <div className="checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center">
+                            <span className="text-lg font-light font-inter">
+                              $250
+                            </span>
+                          </div>
+                        </label>
+                      </div>
+                      {/* 4th radio button */}
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          id="no"
+                          value="no"
+                          className="hidden"
+                          {...register("rsvp")}
+                        />
+                        <label
+                          htmlFor="no"
+                          className="flex items-center space-x-3 cursor-pointer"
+                        >
+                          <div className="checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center">
+                            <span className="text-lg font-light font-inter">
+                              $500
+                            </span>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                    {/* radio button */}
+                    <div className="space-y-3 !mt-2">
+                      <input
+                        disabled
+                        type="text"
+                        value={`${getValues("guestEstimate")}`}
+                        className="w-28 text-center rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
+                      />
+                      <input
+                        type="range"
+                        min="2"
+                        max="2000"
+                        className="block text-center rounded-[5px] border-2 w-[230px] border-gray-200 py-3 px-5 text-base font-normal"
+                        {...register("guestEstimate")}
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 {/* input field */}
@@ -292,7 +479,6 @@ const index = () => {
                       className="rounded-[5px] p-3 w-[476px] placeholder-[#BDBDBD] font-medium text-lg"
                       defaultValue=""
                       placeholder={`Hope you enjoy this gift! I am so happy and excited for you
-
 - Love the Smith Family`}
                       {...register("message")}
                     />
