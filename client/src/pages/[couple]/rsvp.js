@@ -825,4 +825,4 @@ const RSVPage = () => {
   );
 };
 
-export default withAuthRoute(RSVPage);
+export default RSVPage;

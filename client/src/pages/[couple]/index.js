@@ -29,7 +29,7 @@ const params = {
   },
 };
 
-const WebsitePageOne = () => {
+const CoupleWebsitePage = () => {
   const { query } = useRouter();
   const { data: couple, isLoading } = useQuery(
     ['couple', query.couple],
@@ -282,4 +282,4 @@ const WebsitePageOne = () => {
   );
 };
 
-export default WebsitePageOne;
+export default CoupleWebsitePage;
