@@ -21,7 +21,7 @@ const Footer = ({ hideSocial }) => {
         <>
           <div className="py-20 pb-16 bg-gray-50">
             <div className="text-center mb-[53px]">
-              <h4 className="inline-block mx-auto text-[30px] font-medium pb-3 border-b-4 border-[#FFB1B6]">
+              <h4 className="inline-block mx-auto text-[24px] font-medium pb-3 border-b-4 border-[#FFB1B6]">
                 Follow BeWeddy
               </h4>
             </div>

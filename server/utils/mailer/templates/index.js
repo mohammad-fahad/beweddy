@@ -96,7 +96,7 @@ export const activationTemplate = (name, url) => {
       <td align="center">
         <p style="font-weight: 600; font-size: 13px; line-height: 30px">
           Need help, contact support at
-          <a style="color: #333" href="mailto:beweddy1@gmail.com">beweddyport@gmail.com</a>
+          <a style="color: #333" href="mailto:beweddy1@gmail.com">nate@beweddy.com</a>
         </p>
       </td>
     </tr>
@@ -144,7 +144,7 @@ export const passwordResetTemplate = url => {
     <tr>
       <td>
         <a style='background: rgb(0, 116, 255); color:#fff; padding:10px 25px;display: inline-block; text-decoration: none; border-radius: 4px; margin: 25px 0; margin-bottom: 30px' href="${url}">Reset your password</a>
-      </td>    
+      </td>
     </tr>
     <tr>
       <td>
@@ -153,8 +153,180 @@ export const passwordResetTemplate = url => {
         </p>
     </td>
     </tr>
-      
+
     </table>
 </body>
   `;
 };
+
+export const sendEmailInvitesTemplate = (coupleName, image, message) => `
+<html>
+    <head>
+      <title>Beweddy - Email Invites</title>
+      <link rel='preconnect' href='https://fonts.googleapis.com' />
+          <link
+            rel='preconnect'
+            href='https://fonts.gstatic.com'
+            crossOrigin='true'
+          />
+          <link
+            href='https://fonts.googleapis.com/css2?family=Alice&family=Inter:wght@100;200;300;400;500;600;700&family=Poppins:wght@700&display=swap'
+            rel='stylesheet'
+          />
+      <style>
+      * {
+          box-sizing: border-box;
+        }
+        body {
+            font-family: 'inter';
+            box-sizing: border-box;
+            background: #f4f4f4;
+        }
+        .root {
+          background: #f4f4f4;
+          width: 100%;
+          padding: 4rem;
+        }
+        .container{
+          max-width: 1018px;
+          margin: 0 auto;
+          width: 100%;
+          padding: 5rem 6rem;
+          background: #fff;
+        }
+        .header{
+          width: 100%;
+          display: grid;
+          grid-template-columns: repeat(12, minmax(0, 1fr));
+          gap: 1rem;
+        }
+        .logo-container {
+          grid-column: span 4 / span 4;
+        }
+        .logo-container img {
+          width: 100px;
+          height: 40px;
+        }
+        .header-middle {
+           grid-column: span 6 / span 6;
+        }
+        .header-middle h1 {
+           display: flex;
+           align-items: center;
+           text-align: center;
+           font-size: 16px;
+            font-family: 'Alice';
+           line-height: 1.25rem;
+        }
+        .subtitle {
+            margin-top: 3rem;
+            background: #FCE0EB;
+            padding: 1rem .5rem;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .banner-container {
+            margin: 1.5rem 0;
+        }
+        .banner-container img {
+            height: auto;
+            max-width: 100%;
+            border-radius: 4px;
+        }
+        .heading h1 {
+            font-size: 2.25rem;
+            margin: 2.5rem 0;
+            font-family: 'Alice';
+            text-align: center;
+            line-height: 2.5rem;
+        }
+        .divider {
+            width: 256px;
+            height: 5px;
+            margin: 0 auto;
+            background: #FCE0EB;
+            margin-top: -0.5rem;
+        }
+        .message {
+            max-width: 600px;
+            width: 100%;
+            margin: 3rem auto 0 auto;
+        }
+        @media screen and (max-width: 768px){
+          .root {
+            padding: 2rem;
+          }
+          .container {
+            padding: 4.5rem;
+          }
+            .header{
+                 /*grid-template-columns: repeat(1, minmax(0, 1fr));*/
+                 gap: .3rem;
+            }
+            .heading h1 {
+            font-size: 20px;
+            margin: 2rem 0;
+            font-family: 'Alice';
+            text-align: center;
+            line-height: 2rem;
+            }
+            .subtitle {
+                font-size: 12px;
+            }
+            .divider {
+            width: 156px;
+            height: 3px;
+            margin-top: -1rem;
+        }
+        }
+        @media screen and (max-width: 500px){
+          .root{
+            padding: 1rem;
+          }
+          .container {
+            padding: 1rem;
+          }
+             .header{
+                 grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+                 gap: .3rem;
+            }
+        }
+      </style>
+    </head>
+    <body>
+    <div class='root'>
+      <div class="container">
+        <div class="header">
+            <div class="logo-container p-5">
+            <img src="https://beweddy-delta.vercel.app/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75" alt='logo' />
+            </div>
+            <div class="header-middle">
+                <h1>Let’s Eat, Drink & BeWeddy. 🎉</h1>
+            </div>
+        </div>
+        <div class="subtitle">
+            <span>You have Received an Email Invitaion for ${coupleName}’s Wedding. 💯
+            </span>
+        </div>
+        <div class="banner-container">
+            <img
+            src="${image}"
+            alt=""
+            
+            />
+        </div>
+        <div class="heading">
+            <h1>
+                You’re Invited to Our Wedding
+            </h1>
+            <div class="divider"></div>
+        </div>
+        <div class="message">
+        ${message}
+        </div>
+      </div>
+      </div>
+    </body>
+    </html>
+`;

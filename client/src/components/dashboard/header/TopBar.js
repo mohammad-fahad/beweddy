@@ -4,7 +4,7 @@ import { LogoutIcon, UserIcon, SearchIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 
-const DashboardTopBar = ({ coupleName }) => {
+const DashboardTopBar = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
 
@@ -20,7 +20,7 @@ const DashboardTopBar = ({ coupleName }) => {
                 <span>Search</span>
               </a>
             </Link> */}
-            <Link href="/">
+            <Link href="#">
               <a className="flex items-center space-x-2 text-sm font-semibold text-gray-700 transition duration-300 md:space-x-3 font-inter md:text-base hover:text-primary">
                 <img
                   src="/icons/lifebuoy.svg"
@@ -94,7 +94,7 @@ const DashboardTopBar = ({ coupleName }) => {
                 </>
               )}
             </Menu>
-            <Link href="/">
+            <Link href="#">
               <a className="!ml-auto sm:!ml-5 relative font-inter text-sm md:text-base text-gray-700 hover:text-primary font-semibold transition duration-300">
                 <img
                   src="/icons/notification.svg"
@@ -102,7 +102,7 @@ const DashboardTopBar = ({ coupleName }) => {
                   className="w-5 h-5 sm:w-6 sm:h-6"
                 />
                 <span className="absolute top-[-13px] right-[-25px] w-[25px] h-[25px] text-[7px] flex items-center justify-center bg-[#FFB1B6] rounded-full">
-                  1
+                  0
                 </span>
               </a>
             </Link>
