@@ -1,7 +1,7 @@
 const Modal = ({ children, modalIsOpen, setModalIsOpen, onSave }) => {
   return (
     <div
-      className={`absolute inset-0 w-full min-h-screen items-center justify-center transition-opacity duration-300
+      className={`fixed z-[6000] inset-0 w-full min-h-screen items-center justify-center transition-opacity duration-300
     ${modalIsOpen ? 'flex' : 'hidden'}
     `}
     >

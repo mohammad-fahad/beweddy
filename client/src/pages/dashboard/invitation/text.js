@@ -71,7 +71,9 @@ const TextInvitesPage = () => {
       );
     }
   }, [countries]);
+
   const val = `Hello, Hasib \n\nWe would like to invite you to our wedding! Please come celebrate with us. Here is a link to our gift registry and website.\n\nWe Need your Address \n\nThank you for your support. Love, ${user.coupleName} !\n\nVisit Our Wedding Website \nwww.beweddy.com/nateandash\n\n`;
+  
   return (
     <Fragment>
       <Head>
