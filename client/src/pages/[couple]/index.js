@@ -215,15 +215,14 @@ const WebsitePageOne = () => {
           {(couple?.socialAccounts?.groom || couple?.socialAccounts?.bride) && (
             <div className='container'>
               <div class='grid grid-cols-12 gap-4 w-full mt-5'>
-                {couple?.socialAccounts?.groom &&
-                  Object?.keys(couple?.socialAccounts?.groom)?.length !== 0 && (
-                    <div class='col-span-6 p-5'>
-                      <SocialSection
-                        name={couple?.questions?.firstName}
-                        links={couple?.socialAccounts?.groom}
-                      />
-                    </div>
-                  )}
+                {couple?.socialAccounts?.groom && (
+                  <div class='col-span-6 p-5'>
+                    <SocialSection
+                      name={couple?.questions?.firstName}
+                      links={couple?.socialAccounts?.groom}
+                    />
+                  </div>
+                )}
                 {couple?.socialAccounts?.bride &&
                   Object?.keys(couple?.socialAccounts?.bride)?.length !== 0 && (
                     <div class='col-span-6 p-5'>

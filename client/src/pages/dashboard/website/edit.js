@@ -107,6 +107,26 @@ const EditWebsitePage = () => {
   const [selectSecondReception, setSelectSecondReception] =
     useState(_secondReception);
 
+  const socialAccounts = {
+    groom_facebook: groom.facebook,
+    groom_instagram: groom.instagram,
+    groom_twitter: groom.twitter,
+    groom_linkedIn: groom.linkedIn,
+    groom_snapchat: groom.snapchat,
+    groom_tiktok: groom.tiktok,
+    groom_pinterest: groom.pinterest,
+    groom_youTube: groom.youTube,
+
+    bride_facebook: bride.facebook,
+    bride_instagram: bride.instagram,
+    bride_twitter: bride.twitter,
+    bride_linkedIn: bride.linkedIn,
+    bride_snapchat: bride.snapchat,
+    bride_tiktok: bride.tiktok,
+    bride_pinterest: bride.pinterest,
+    bride_youTube: bride.youTube,
+  };
+
   const {
     watch,
     register,
@@ -118,7 +138,11 @@ const EditWebsitePage = () => {
     formState: { errors },
   } = useForm({
     mode: 'all',
-    defaultValues: { ...user.questions, ourStory: user.ourStory },
+    defaultValues: {
+      ...user.questions,
+      ourStory: user.ourStory,
+      ...socialAccounts,
+    },
     shouldFocusError: false,
     shouldUnregister: true,
   });
@@ -278,6 +302,7 @@ const EditWebsitePage = () => {
         youTube: data.bride_youTube,
       },
     };
+    console.log(socialAccounts);
     const payload = {
       firstName: data.firstName,
       lastName: data.lastName,
@@ -573,9 +598,11 @@ const EditWebsitePage = () => {
               <Heading h3>Add Gift Card</Heading>
               <div>
                 <div className='grid grid-cols-4 gap-10'>
-                  <button className='border-2 min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'>
-                    <PlusIcon className='w-8 h-8' />
-                  </button>
+                  <Link href='/dashboard/gift-cards'>
+                    <a className='border-2 min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'>
+                      <PlusIcon className='w-8 h-8' />
+                    </a>
+                  </Link>
                 </div>
                 <Link href='/dashboard/gift-cards/'>
                   <a className='text-sm hover:underline mt-5 font-semibold text-right block font-inter'>
