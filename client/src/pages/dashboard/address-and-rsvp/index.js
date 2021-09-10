@@ -88,6 +88,7 @@ const AddressRSVP = () => {
     };
 
     return {
+      id: user?._id,
       address,
       wayOfInvitations,
       name: data.name,

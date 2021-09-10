@@ -8,6 +8,7 @@ import {
 } from '@icons-pack/react-simple-icons';
 
 const SocialSection = ({ name, links }) => {
+  console.log(links?.instagram);
   return (
     <div>
       <h2 className='text-2xl font-medium capitalize'>Follow {name && name}</h2>
@@ -31,8 +32,8 @@ const SocialSection = ({ name, links }) => {
             />
           </a>
         )}
-        {links?.twitter && (
-          <a href={links?.twitter}>
+        {links?.instagram && (
+          <a href={links?.instagram}>
             <Instagram
               size={35}
               color='#E4355F'
@@ -49,20 +50,30 @@ const SocialSection = ({ name, links }) => {
             />
           </a>
         )}
-        <a href='#' title='google'>
-          <img
-            src='/icons/gmail.svg'
-            alt='gmail'
-            className='w-[35px] h-[35px] hover:scale-125 transition duration-300'
-          />
-        </a>
-        <a href='#'>
-          <Youtube
-            color='#FF0000'
-            size={35}
-            className='transition duration-300 hover:scale-125'
-          />
-        </a>
+        {links?.youTube && (
+          <a href={links?.youTube}>
+            <Youtube
+              color='#FF0000'
+              size={35}
+              className='transition duration-300 hover:scale-125'
+            />
+          </a>
+        )}
+        {links?.tiktok && (
+          <a href={links?.tiktok} title='TikTok'>
+            <img src='/icons/tiktok.svg' alt='' className='w-10' />
+          </a>
+        )}
+        {links?.snapchat && (
+          <a href={links?.snapchat} title='Snapchat'>
+            <img src='/icons/snapchat.svg' alt='' className='w-10' />
+          </a>
+        )}
+        {links?.pinterest && (
+          <a href={links?.pinterest} title='Snapchat'>
+            <img src='/icons/pinterest.svg' alt='' className='w-10' />
+          </a>
+        )}
       </div>
     </div>
   );

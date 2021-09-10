@@ -140,8 +140,9 @@ const Dashboard = () => {
                   <span>Edit your website</span>
                 </a>
               </Link>
-              <Link href='/dashboard/website'>
+              <Link href={`/${user?.username}`}>
                 <a
+                  target='_blank'
                   className={`capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
                 >
                   <GlobeAltIcon className='w-5 h-5 hidden sm:inline-block' />

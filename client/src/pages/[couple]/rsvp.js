@@ -19,6 +19,8 @@ import { Fragment } from 'react';
 import { CheckIcon } from '@heroicons/react/solid';
 import { addGuest } from '@features/guest/guestSlice';
 import { useRouter } from 'next/router';
+import { attemptCreateGuest } from '@features/guest/guestActions';
+import { client } from 'pages/_app';
 SwiperCore.use([Lazy, Autoplay]);
 
 const params = {
@@ -38,7 +40,7 @@ const otherProviders = [
 const RSVPage = () => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.user);
-  const { push } = useRouter();
+  const { push, query } = useRouter();
   const { countries } = useSelector(state => state.countryList);
   const [selectedProvider, setSelectedProvider] = useState(otherProviders[0]);
 
@@ -65,9 +67,9 @@ const RSVPage = () => {
   });
   watch(['guestEstimate', 'provider']);
 
-  const onSubmit = data => {
-    dispatch(addGuest(submitData(data)));
-    push('/dashboard/address-and-rsvp/preview');
+  const onSubmit = async data => {
+    dispatch(attemptCreateGuest(submitData(data)));
+    await client.invalidateQueries('guests');
   };
 
   const submitData = data => {
@@ -86,6 +88,7 @@ const RSVPage = () => {
     };
 
     return {
+      username: query?.couple,
       address,
       wayOfInvitations,
       name: data.name,
