@@ -4,7 +4,7 @@ import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
 import { Footer, Heading } from '@components/index';
 import Image from 'next/image';
-import Select from 'react-select/creatable';
+import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import { Fragment, useEffect, useState } from 'react';
 import { withAuthRoute } from '@hoc/withAuthRoute';
