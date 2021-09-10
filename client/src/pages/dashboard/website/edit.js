@@ -116,6 +116,7 @@ const EditWebsitePage = () => {
     groom_tiktok: groom.tiktok,
     groom_pinterest: groom.pinterest,
     groom_youTube: groom.youTube,
+
     bride_facebook: bride.facebook,
     bride_instagram: bride.instagram,
     bride_twitter: bride.twitter,
@@ -657,6 +658,7 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://facebook.com/beweddy'
+                              defaultValue={groom.facebook}
                               {...register('groom_facebook')}
                             />
                           </div>
@@ -683,6 +685,7 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://instagram.com/beweddy'
+                              defaultValue={groom.instagram}
                               {...register('groom_instagram')}
                             />
                           </div>
@@ -709,6 +712,7 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://twitter.com/beweddy'
+                              defaultValue={groom.twitter}
                               {...register('groom_twitter')}
                             />
                           </div>
@@ -735,6 +739,7 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.youtube.com/beweddy'
+                              defaultValue={groom.youTube}
                               {...register('groom_youTube')}
                             />
                           </div>
@@ -761,6 +766,7 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.linkedin.com/in/beweddy'
+                              defaultValue={groom.linkedIn}
                               {...register('groom_linkedIn')}
                             />
                           </div>
@@ -787,6 +793,7 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.tiktok.com/beweddy'
+                              defaultValue={groom.tiktok}
                               {...register('groom_tiktok')}
                             />
                           </div>
@@ -817,6 +824,7 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.snapchat.com/beweddy'
+                              defaultValue={groom.snapchat}
                               {...register('groom_snapchat')}
                             />
                           </div>
@@ -847,6 +855,7 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.pinterest.com/beweddy'
+                              defaultValue={groom.pinterest}
                               {...register('groom_pinterest')}
                             />
                           </div>
@@ -878,6 +887,7 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://facebook.com/beweddy'
+                              defaultValue={bride.facebook}
                               {...register('bride_facebook')}
                             />
                           </div>
@@ -904,6 +914,7 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://instagram.com/beweddy'
+                              defaultValue={bride.instagram}
                               {...register('bride_instagram')}
                             />
                           </div>
@@ -930,6 +941,7 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://twitter.com/beweddy'
+                              defaultValue={bride.twitter}
                               {...register('bride_twitter')}
                             />
                           </div>
@@ -956,6 +968,7 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.youtube.com/beweddy'
+                              defaultValue={bride.youTube}
                               {...register('bride_youTube')}
                             />
                           </div>
@@ -982,6 +995,7 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.linkedin.com/in/beweddy'
+                              defaultValue={bride.linkedIn}
                               {...register('bride_linkedIn')}
                             />
                           </div>
@@ -1008,6 +1022,7 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.tiktok.com/beweddy'
+                              defaultValue={bride.tiktok}
                               {...register('bride_tiktok')}
                             />
                           </div>
@@ -1038,6 +1053,7 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.snapchat.com/beweddy'
+                              defaultValue={bride.snapchat}
                               {...register('bride_snapchat')}
                             />
                           </div>
@@ -1068,6 +1084,7 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.pinterest.com/beweddy'
+                              defaultValue={bride.pinterest}
                               {...register('bride_pinterest')}
                             />
                           </div>
