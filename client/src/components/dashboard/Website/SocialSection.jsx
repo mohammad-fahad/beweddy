@@ -8,6 +8,7 @@ import {
 } from '@icons-pack/react-simple-icons';
 
 const SocialSection = ({ name, links }) => {
+  console.log(links?.instagram);
   return (
     <div>
       <h2 className='text-2xl font-medium capitalize'>Follow {name && name}</h2>
@@ -31,8 +32,8 @@ const SocialSection = ({ name, links }) => {
             />
           </a>
         )}
-        {links?.twitter && (
-          <a href={links?.twitter}>
+        {links?.instagram && (
+          <a href={links?.instagram}>
             <Instagram
               size={35}
               color='#E4355F'
