@@ -107,6 +107,25 @@ const EditWebsitePage = () => {
   const [selectSecondReception, setSelectSecondReception] =
     useState(_secondReception);
 
+  const socialAccounts = {
+    groom_facebook: groom.facebook,
+    groom_instagram: groom.instagram,
+    groom_twitter: groom.twitter,
+    groom_linkedIn: groom.linkedIn,
+    groom_snapchat: groom.snapchat,
+    groom_tiktok: groom.tiktok,
+    groom_pinterest: groom.pinterest,
+    groom_youTube: groom.youTube,
+    bride_facebook: bride.facebook,
+    bride_instagram: bride.instagram,
+    bride_twitter: bride.twitter,
+    bride_linkedIn: bride.linkedIn,
+    bride_snapchat: bride.snapchat,
+    bride_tiktok: bride.tiktok,
+    bride_pinterest: bride.pinterest,
+    bride_youTube: bride.youTube,
+  };
+
   const {
     watch,
     register,
@@ -118,7 +137,11 @@ const EditWebsitePage = () => {
     formState: { errors },
   } = useForm({
     mode: 'all',
-    defaultValues: { ...user.questions, ourStory: user.ourStory },
+    defaultValues: {
+      ...user.questions,
+      ourStory: user.ourStory,
+      ...socialAccounts,
+    },
     shouldFocusError: false,
     shouldUnregister: true,
   });
@@ -278,6 +301,7 @@ const EditWebsitePage = () => {
         youTube: data.bride_youTube,
       },
     };
+    console.log(socialAccounts);
     const payload = {
       firstName: data.firstName,
       lastName: data.lastName,
@@ -573,9 +597,11 @@ const EditWebsitePage = () => {
               <Heading h3>Add Gift Card</Heading>
               <div>
                 <div className='grid grid-cols-4 gap-10'>
-                  <button className='border-2 min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'>
-                    <PlusIcon className='w-8 h-8' />
-                  </button>
+                  <Link href='/dashboard/gift-cards'>
+                    <a className='border-2 min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'>
+                      <PlusIcon className='w-8 h-8' />
+                    </a>
+                  </Link>
                 </div>
                 <Link href='/dashboard/gift-cards/'>
                   <a className='text-sm hover:underline mt-5 font-semibold text-right block font-inter'>
@@ -631,7 +657,6 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://facebook.com/beweddy'
-                              defaultValue={groom.facebook}
                               {...register('groom_facebook')}
                             />
                           </div>
@@ -658,7 +683,6 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://instagram.com/beweddy'
-                              defaultValue={groom.instagram}
                               {...register('groom_instagram')}
                             />
                           </div>
@@ -685,7 +709,6 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://twitter.com/beweddy'
-                              defaultValue={groom.twitter}
                               {...register('groom_twitter')}
                             />
                           </div>
@@ -712,7 +735,6 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.youtube.com/beweddy'
-                              defaultValue={groom.youTube}
                               {...register('groom_youTube')}
                             />
                           </div>
@@ -739,7 +761,6 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.linkedin.com/in/beweddy'
-                              defaultValue={groom.linkedIn}
                               {...register('groom_linkedIn')}
                             />
                           </div>
@@ -766,7 +787,6 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.tiktok.com/beweddy'
-                              defaultValue={groom.tiktok}
                               {...register('groom_tiktok')}
                             />
                           </div>
@@ -797,7 +817,6 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.snapchat.com/beweddy'
-                              defaultValue={groom.snapchat}
                               {...register('groom_snapchat')}
                             />
                           </div>
@@ -828,7 +847,6 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.pinterest.com/beweddy'
-                              defaultValue={groom.pinterest}
                               {...register('groom_pinterest')}
                             />
                           </div>
@@ -860,7 +878,6 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://facebook.com/beweddy'
-                              defaultValue={bride.facebook}
                               {...register('bride_facebook')}
                             />
                           </div>
@@ -887,7 +904,6 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://instagram.com/beweddy'
-                              defaultValue={bride.instagram}
                               {...register('bride_instagram')}
                             />
                           </div>
@@ -914,7 +930,6 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://twitter.com/beweddy'
-                              defaultValue={bride.twitter}
                               {...register('bride_twitter')}
                             />
                           </div>
@@ -941,7 +956,6 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.youtube.com/beweddy'
-                              defaultValue={bride.youTube}
                               {...register('bride_youTube')}
                             />
                           </div>
@@ -968,7 +982,6 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.linkedin.com/in/beweddy'
-                              defaultValue={bride.linkedIn}
                               {...register('bride_linkedIn')}
                             />
                           </div>
@@ -995,7 +1008,6 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.tiktok.com/beweddy'
-                              defaultValue={bride.tiktok}
                               {...register('bride_tiktok')}
                             />
                           </div>
@@ -1026,7 +1038,6 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.snapchat.com/beweddy'
-                              defaultValue={bride.snapchat}
                               {...register('bride_snapchat')}
                             />
                           </div>
@@ -1057,7 +1068,6 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.pinterest.com/beweddy'
-                              defaultValue={bride.pinterest}
                               {...register('bride_pinterest')}
                             />
                           </div>

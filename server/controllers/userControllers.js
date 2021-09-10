@@ -415,7 +415,10 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     // user.avatar = req.body.avatar || user.avatar;
     user.ourStory = req.body.ourStory || user.ourStory;
     user.receptionDetails = req.body.receptionDetails || user.receptionDetails;
-    user.socialAccounts = req.body.socialAccounts || user.socialAccounts;
+    user.socialAccounts.groom =
+      req.body.socialAccounts.groom || user.socialAccounts.groom;
+    user.socialAccounts.bride =
+      req.body.socialAccounts.bride || user.socialAccounts.bride;
 
     if (req.body.avatar) {
       user.avatar = req.body.avatar;
