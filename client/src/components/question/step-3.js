@@ -192,7 +192,7 @@ const UploadAnnouncement = () => {
           <Heading
             label='Upload Wedding invite & announcement!'
             color='bg-primary'
-            className='lg:!text-[40px]'
+            className='!text-[36px]'
             lineStyle={{ marginBottom: '37px' }}
           />
         </motion.div>
@@ -294,7 +294,7 @@ const UploadAnnouncement = () => {
         >
           <Button
             label='Back'
-            className='opacity-50 !rounded-[10px]'
+            className='opacity-50 !bg-[#bebebe] !rounded-[10px]'
             onClick={() => push({ query: { step: 2 } })}
           />
           <Button label='Next' type='submit' className='!rounded-[10px]' />

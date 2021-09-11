@@ -1,13 +1,8 @@
-import { logout } from '@features/auth/authSlice';
-import { Menu, Transition } from '@headlessui/react';
-import { LogoutIcon, UserIcon, SearchIcon } from '@heroicons/react/outline';
-import Link from 'next/link';
-import { useDispatch, useSelector } from 'react-redux';
+import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const WebsiteNav = ({ coupleName }) => {
-  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-  // console.log(user);
   return (
     <div className="bg-[#ffffff] border-b-[3px] border-primary">
       <div className=" xxl:pr-0 ml-14">
@@ -15,7 +10,6 @@ const WebsiteNav = ({ coupleName }) => {
           <h3 className="flex text-lg capitalize">
             <img src="/apple-touch-icon.png" alt="help" className="w-7 h-7" />
             <span className="pl-2 text-2xl font-medium">
-              {' '}
               {user?.coupleName}
             </span>
           </h3>
