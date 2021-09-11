@@ -12,6 +12,7 @@ coverage
 # production
 /client/build
 uploads
+api-test
 
 # misc
 .env

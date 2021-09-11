@@ -8,136 +8,37 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_CLOUD_API_KEY,
   api_secret: process.env.CLOUDINARY_CLOUD_API_SECRET,
 });
-// import emailjs from 'emailjs-com';
-// import sgMail from "@sendgrid/mail";
-
-// sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const { EMAIL_USER, EMAIL_PASS } = process.env;
-// const { EMAIL_FROM, SITE_NAME, CLIENT_URL } = process.env;
 
-// Invite sms to phone
-// export const inviteSMS2 = async (req) => {
-//   // console.log(req.body);
-//   const { phone, provider, subject, message, to } = req.body;
-//   const mailOptions = {
-//     // from: `${SITE_NAME} <${phone}>`,
-//     from: `${SITE_NAME} <${EMAIL_FROM}>`,
-//     // to: `${phone}@${provider}.com`,
-//     // to: 'arif.swfu@outlook.com',
-//     to: to,
-//     subject: subject,
-//     text: message,
-//     // html: `<img src='${base64}'/>`,
-//     // attachments: [
-//     //   {
-//     //     content: base64.replace('data:image/png;base64,', ''),
-//     //     filename: 'attachment.png',
-//     //     type: 'image/png',
-//     //     disposition: 'attachment',
-//     //   },
-//     // ],
-//   };
-
-//   // console.log(mailOptions);
-
-//   // const result = await transport.sendMail(mailOptions);
-//   // const result = await sgMail.send(mailOptions);
-//   // console.log("result", result);
-
-//   // if (!result) {
-//   //     throw new Error('Something went wrong');
-//   // }
-
-//   try {
-//     const result = await sgMail.send(mailOptions);
-//     console.log("result", result);
-//     if (!result) {
-//       throw new Error("Something went wrong");
-//     }
-//   } catch (error) {
-//     throw new Error(error);
-//   }
-
-//   // const serviceID = 'service_beweddy';
-//   // const templateID = 'template_93mcnzh';
-//   // // const templateParams = {
-//   // //     name: req.body.name,
-//   // //     phone: req.body.phone,
-//   // //     email: req.body.email,
-//   // //     message: req.body.message
-//   // // };
-//   // const templateParams = {
-//   //     name: 'Arif',
-//   //     email: 'arif.swfu@outlook.com',
-//   //     message: 'Check this out!'
-//   // };
-//   // const userId = 'user_y3r1bXNWhKhlyCF7ne1fK';
-
-//   // console.log(serviceID, templateID, templateParams, userId)
-
-//   // emailjs.send(serviceID, templateID, templateParams, userId)
-//   // .then(function(response) {
-
-//   //     console.log('SUCCESS!', response.status, response.text);
-//   //     // res.status(200).json({
-//   //     //     success: true,
-//   //     //     data: "SMS sent successfully"
-//   //     // });
-//   //  }, function(error) {
-//   // console.log('invite sms failed')
-
-//   //     console.log('FAILED...', error);
-//   //  });
-// };
-
-// const test = (base64) => {
-//   const smtpTransport = nodemailer.createTransport(
-//     smtpTransport({
-//       host: "smtp.gmail.com",
-//       secureConnection: false,
-//       port: 587,
-//       auth: {
-//         user: E, // your actual email
-//         pass: EMAIL_PASS, // your actual password
-//       },
-//     })
-//   );
-
-//   // send email without attachment
-//   var mailOptionsNoAttachment = {
-//     from: E,
-//     to: "arif.swfu@outlook.com",
-//     bcc: "devarif.me@gmail.com", // bcc is optional.
-//     subject: "email without attachment",
-//     text: "This is the body part",
-//   };
-
-//   try {
-//       smtpTransport.sendMail(mailOptionsNoAttachment, function (error, response) {
-//         if (error) {
-//           //console.log(error);
-//           res.end("error");
-//         } else {
-//           //console.log("Message sent: " + response.message);
-//           res.end("sent");
-//         }
-//       });
-//   } catch (error) {
-//       console.log(error);
-//   }
-// };
-
+/**
+ * @param  {Array} phone list of phone numbers ['8019197212', '8019197212']
+ * @param  {String} from user email
+ * @param  {Array} provider list of providers ['vzwpix', 'vzwpix']
+ * @param  {String} subject email subject
+ * @param  {String} message message to be sent
+ * @desc    Send an sms to the users
+ * @route   POST /api/v1/invite/sms
+ * @access  Private
+ * @returns {object} 200 - Success
+ * @returns {object} 400 - Bad request
+ */
 export const inviteSMS = asyncHandler(async (req, res) => {
-  const { phone, to, provider, subject, message } = req.body;
-  const mail = `${phone}@${provider}.com`;
+  const { phone, from, provider, subject, message } = req.body;
 
-  const mailOptions = {
-    // to: to,
-    to: mail,
-    subject: subject,
-    text: message,
-  };
+  let mailOptions = [];
+  if (phone) {
+    phone.forEach((_phone, i) => {
+      mailOptions.push({
+        from: from || EMAIL_USER,
+        replyTo: from || EMAIL_USER,
+        to: `${_phone}@${provider[i]}.com`,
+        subject: `${subject} <${phone}>`,
+        // subject: `${subject} <${from}>`,
+        text: message,
+      });
+    });
+  }
 
   const smtpTransport = nodemailer.createTransport({
     service: "gmail",
@@ -148,52 +49,71 @@ export const inviteSMS = asyncHandler(async (req, res) => {
     },
   });
 
-  // console.log(mailOptions);
-  smtpTransport.sendMail(mailOptions, function (error, response) {
-    if (error) {
-      res.status(200).json({ message: "Error", error: error.message });
-      // res.end("error");
-    } else {
-      res
-        .status(200)
-        .json({ message: "Invite sent", response: response.message });
+  mailOptions.forEach((mailOption) => {
+    try {
+      smtpTransport.sendMail(mailOption, function (error, response) {
+        if (error) {
+          console.log("error", error);
+        } else {
+          console.log("Message sent: " + response.message);
+        }
+      });
+    } catch (error) {
+      console.log(error);
     }
   });
+
+  res.status(200).json({ message: "Invite sent" });
 });
 
 // Invite mms to phone
+/**
+ * @param  {Array} phone list of phone numbers ['8019197212', '8019197212']
+ * @param  {String} from user email
+ * @param  {Array} provider list of providers ['vzwpix', 'vzwpix']
+ * @param  {String} subject email subject
+ * @param  {String} message message to be sent
+ * @param  {file} image image
+ * @desc    Send an sms to the users
+ * @route   POST /api/v1/invite/mms
+ * @access  Private
+ * @returns {object} 200 - Success
+ * @returns {object} 400 - Bad request
+ */
 export const inviteMMS = asyncHandler(async (req, res) => {
-  const { phone, to, provider, subject, message } = req.body;
+  const { phone, from, provider, subject, message } = req.body;
   const file = req.files.image;
   const result = await cloudinary.uploader.upload(file.tempFilePath, {
     folder: "emailImg",
   });
-
-  // const { public_id, height, width, secure_url, url } = result;
 
   if (result) {
     fs.unlink(file.tempFilePath, (err) => {
       console.log(err);
     });
 
-    const mailOptions = {
-      // to: to,
-      // to: `${phone}@${provider}.com`,
-      to: `${phone}@${provider}.com, ${to}`,
-      subject: `${subject} <${phone}>`,
-      text: message,
-      html: `<div style="text-align: center;"><img src="${result.url}" height="100px" width="100px"/></div><br /><p>${message}</p>`,
-      attachment: [
-        {
-          filename: "attachment.png",
-          content: result.url.replace("data:image/png;base64,", ""),
-          type: "image/png",
-          disposition: "attachment",
-        },
-      ],
-    };
+    const filenameArr = result.url.split("/");
+    const filename = filenameArr[filenameArr.length - 1];
 
-    console.log(mailOptions);
+    let mailOptions = [];
+    if (phone) {
+      phone.forEach((_phone, i) => {
+        mailOptions.push({
+          from: from || EMAIL_USER,
+          replyTo: from || EMAIL_USER,
+          to: `${_phone}@${provider[i]}.com`,
+          subject: `${subject} <${phone}>`,
+          // subject: `${subject} <${from}>`,
+          text: message,
+          attachments: [
+            {
+              filename: filename,
+              path: result.url,
+            },
+          ],
+        });
+      });
+    }
 
     const smtpTransport = nodemailer.createTransport({
       service: "gmail",
@@ -204,17 +124,21 @@ export const inviteMMS = asyncHandler(async (req, res) => {
       },
     });
 
-    // console.log(mailOptions);
-    smtpTransport.sendMail(mailOptions, function (error, response) {
-      if (error) {
-        res.status(200).json({ message: "Error", error: error.message });
-        // res.end("error");
-      } else {
-        res
-          .status(200)
-          .json({ message: "Invite sent", response: response.message });
+    mailOptions.forEach((mailOption) => {
+      try {
+        smtpTransport.sendMail(mailOption, function (error, response) {
+          if (error) {
+            console.log("error", error);
+          } else {
+            console.log("Message sent: " + response.message);
+          }
+        });
+      } catch (error) {
+        console.log(error);
       }
     });
+
+    res.status(200).json({ message: "Invite sent" });
   } else {
     res.status(400);
     throw new Error("Something went wrong");
