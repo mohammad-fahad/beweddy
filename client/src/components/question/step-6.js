@@ -87,7 +87,7 @@ const SignupPage = () => {
               <Heading
                 label='Create Your Account'
                 color='bg-[#F9D1DE]'
-                className='!pb-5 md:!text-[2.55rem]'
+                className='!pb-5 md:!text-[36px]'
                 lineStyle={{ marginBottom: '30px' }}
               />
               <div className='flex flex-col items-center justify-center space-y-3 md:space-y-5'>
@@ -208,7 +208,7 @@ const SignupPage = () => {
                 </div>
                 <div className='max-w-xs w-full mx-auto h-[2px] bg-gray-200'></div> */}
                 <div className='w-full'>
-                  <p className='font-light text-sm md:text-base'>
+                  <p className='font-light text-[14px]'>
                     By creating an account you accept our{' '}
                     <Link href='/'>
                       <a className='font-inter font-semibold hover:underline'>

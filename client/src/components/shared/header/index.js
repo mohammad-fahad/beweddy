@@ -23,7 +23,7 @@ export const Header = () => {
               <img
                 src="/images/logo.png"
                 alt=""
-                className="object-contain h-14 sm:h-16 md:h-20 md:w-[235px] w-[235px] "
+                className="object-contain h-14 sm:h-16 md:h-20 md:w-[200px] w-[235px] "
               />
             </a>
           </Link>

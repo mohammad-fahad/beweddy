@@ -3,6 +3,7 @@ import { XIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 import { Fragment, useEffect, useState } from "react";
 import { useMediaQuery } from "@react-hook/media-query";
+import Link from 'next/link'
 
 const giftCards = [
   {
@@ -182,8 +183,6 @@ const GiftCards = () => {
         </h2>
         <div className="w-48 mx-auto h-[2px] md:h-[4px] mb-16 bg-primary" />
 
-
-
         <div className="relative grid w-full grid-cols-2 px-5 mx-auto my-20 md:grid-cols-3 lg:grid-cols-4 sm:px-0 sm:max-w-full gap-x-5 sm:gap-x-10">
           {giftCards.map((giftCard, index) => {
             return (
@@ -262,13 +261,20 @@ const GiftCards = () => {
             );
           })}
         </div>
-        <div className="text-center">
+        {/* <div className="text-center">
           <LinkButton
             className="md:!text-xl !font-inter !font-semibold"
             label="Gift Card Options"
             outline
             href="/create-website"
           />
+        </div> */}
+        <div className="absolute z-20 mx-auto transition duration-200 left-2/4 -translate-x-2/4 -bottom-3 hover:scale-110">
+          <Link href="/create-website">
+            <a className="px-20 py-5 !text-2xl !w-[319px] !h-[68px] bg-[#ffffff] border-2 whitespace-nowrap  border-primary text-primary rounded-full">
+              See More
+            </a>
+          </Link>
         </div>
       </div>
     </div>

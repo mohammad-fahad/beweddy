@@ -11,7 +11,7 @@ const Heading = ({
     return (
       <h4
         className={`md:text-xl lg:text-2xl capitalize font-semibold ${
-          className ? className : ''
+          className ? className : ""
         }`}
       >
         {children}
@@ -22,8 +22,8 @@ const Heading = ({
   return (
     <>
       <h2
-        className={`text-2xl md:text-4xl lg:text-5xl max-w-3xl mx-auto text-center pb-8 capitalize ${
-          className ? className : ''
+        className={`text-2xl md:text-4xl lg:text-5xl mx-auto text-center pb-8 capitalize ${
+          className ? className : ""
         }`}
         style={{ lineHeight: 1.3, ...style }}
       >
@@ -31,7 +31,7 @@ const Heading = ({
       </h2>
       <div
         className={`w-48 mx-auto h-[2px] md:h-[4px] mb-16 ${
-          color ? color : 'bg-primary'
+          color ? color : "bg-primary"
         }`}
         style={lineStyle}
       />

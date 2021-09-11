@@ -5,17 +5,17 @@ import {
   WeddingDatePicker,
   FirstReceptionDatePicker,
   SecondReceptionDatePicker,
-} from '@components/index';
-import { addWeddingDay } from '@features/question/questionSlice';
-import moment from 'moment';
-import { useRouter } from 'next/router';
-import { useForm } from 'react-hook-form';
-import DatePicker from 'react-datepicker';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { isEmpty } from 'lodash';
-import { compareDate } from '@helpers/index';
+} from "@components/index";
+import { addWeddingDay } from "@features/question/questionSlice";
+import moment from "moment";
+import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
+import DatePicker from "react-datepicker";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { isEmpty } from "lodash";
+import { compareDate } from "@helpers/index";
 
 const easing = [0.6, -0.05, 0.01, 0.99];
 const fadeInUp = {
@@ -43,20 +43,20 @@ const stagger = {
 
 const WeddingDay = () => {
   const dispatch = useDispatch();
-  const { questions } = useSelector(state => state.question);
+  const { questions } = useSelector((state) => state.question);
   const { push } = useRouter();
 
   // WeddingDate Picker
   const _weddingDate = questions?.weddingDay?.weddingDate
     ? new Date(questions?.weddingDay?.weddingDate)
-    : '';
+    : "";
 
   const [selectWeddingDay, setSelectWeddingDay] = useState(_weddingDate);
 
   // First Reception Picker
   const _firstReception = questions?.weddingDay?.firstReception
     ? new Date(questions?.weddingDay?.firstReception)
-    : '';
+    : "";
 
   const [selectFirstReception, setSelectFirstReception] =
     useState(_firstReception);
@@ -64,7 +64,7 @@ const WeddingDay = () => {
   // Second Reception Picker
   const _secondReception = questions?.weddingDay?.secondReception
     ? new Date(questions?.weddingDay?.secondReception)
-    : '';
+    : "";
 
   const [selectSecondReception, setSelectSecondReception] =
     useState(_secondReception);
@@ -81,7 +81,7 @@ const WeddingDay = () => {
     clearErrors,
     formState: { errors },
   } = useForm({
-    mode: 'all',
+    mode: "all",
     defaultValues: questions.weddingDay,
     shouldFocusError: false,
     shouldUnregister: true,
@@ -89,61 +89,61 @@ const WeddingDay = () => {
 
   // Watch Input Fields
   watch([
-    'have2Reception',
-    'tba',
-    'weddingDate',
-    'firstReception',
-    'secondReception',
+    "have2Reception",
+    "tba",
+    "weddingDate",
+    "firstReception",
+    "secondReception",
   ]);
 
   // Input Fields as Variable
-  const tba = getValues('tba');
-  const have2Reception = getValues('have2Reception');
-  const weddingDate = getValues('weddingDate');
-  const firstReception = getValues('firstReception');
-  const secondReception = getValues('secondReception');
+  const tba = getValues("tba");
+  const have2Reception = getValues("have2Reception");
+  const weddingDate = getValues("weddingDate");
+  const firstReception = getValues("firstReception");
+  const secondReception = getValues("secondReception");
 
   // Register & set values
   useEffect(() => {
-    register('weddingDate', {
+    register("weddingDate", {
       required: {
         value: !tba,
-        message: 'Please pick your date',
+        message: "Please pick your date",
       },
     });
 
-    setValue('weddingDate', selectWeddingDay);
+    setValue("weddingDate", selectWeddingDay);
 
     if (have2Reception) {
-      register('firstReception', {
+      register("firstReception", {
         required: {
           value: have2Reception,
-          message: 'First reception date is required!',
+          message: "First reception date is required!",
         },
       });
-      register('secondReception');
-      setValue('firstReception', selectFirstReception);
-      setValue('secondReception', selectSecondReception);
+      register("secondReception");
+      setValue("firstReception", selectFirstReception);
+      setValue("secondReception", selectSecondReception);
     } else {
-      unregister('firstReception');
-      unregister('secondReception');
+      unregister("firstReception");
+      unregister("secondReception");
     }
   }, [register, unregister, tba, have2Reception]);
 
   // Form submit handler
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     if (!tba && !compareDate(data.weddingDate)) {
-      setError('weddingDate', {
-        type: 'validate',
-        message: 'Seems like you have selected past date',
+      setError("weddingDate", {
+        type: "validate",
+        message: "Seems like you have selected past date",
       });
       return;
     }
 
     if (!compareDate(data.firstReception)) {
-      setError('firstReception', {
-        type: 'validate',
-        message: 'Seems like you have selected past date',
+      setError("firstReception", {
+        type: "validate",
+        message: "Seems like you have selected past date",
       });
       return;
     }
@@ -156,7 +156,7 @@ const WeddingDay = () => {
     // }
 
     let values;
-    if (getValues('tba')) {
+    if (getValues("tba")) {
       values = {
         ...values,
         tba: data.tba,
@@ -164,7 +164,7 @@ const WeddingDay = () => {
     } else {
       values = { ...values, weddingDate: moment(data.weddingDate) };
     }
-    if (getValues('have2Reception')) {
+    if (getValues("have2Reception")) {
       values = {
         ...values,
         have2Reception: data.have2Reception,
@@ -183,28 +183,28 @@ const WeddingDay = () => {
 
   useEffect(() => {
     if (isEmpty(weddingDate) || compareDate(weddingDate)) {
-      clearErrors('weddingDate');
+      clearErrors("weddingDate");
     } else {
-      setError('weddingDate', {
-        type: 'validate',
-        message: 'Seems like you have selected past date',
+      setError("weddingDate", {
+        type: "validate",
+        message: "Seems like you have selected past date",
       });
     }
 
     if (isEmpty(firstReception) || compareDate(firstReception)) {
-      clearErrors('firstReception');
+      clearErrors("firstReception");
     } else {
-      setError('firstReception', {
-        type: 'validate',
-        message: 'Seems like you have selected past date',
+      setError("firstReception", {
+        type: "validate",
+        message: "Seems like you have selected past date",
       });
     }
     if (isEmpty(secondReception) || compareDate(secondReception)) {
-      clearErrors('secondReception');
+      clearErrors("secondReception");
     } else {
-      setError('secondReception', {
-        type: 'validate',
-        message: 'Seems like you have selected past date',
+      setError("secondReception", {
+        type: "validate",
+        message: "Seems like you have selected past date",
       });
     }
   }, [weddingDate, firstReception, secondReception]);
@@ -212,13 +212,13 @@ const WeddingDay = () => {
   useEffect(() => {
     if (tba) {
       setSelectWeddingDay(null);
-      clearErrors('weddingDate');
-      setValue('weddingDate', '');
+      clearErrors("weddingDate");
+      setValue("weddingDate", "");
     }
   }, [tba]);
 
   return (
-    <CreateWebsiteContainer seo={{ title: 'Wedding Day' }} page='2'>
+    <CreateWebsiteContainer seo={{ title: "Wedding Day" }} page="2">
       <motion.form
         className={`flex flex-col w-full h-full items-center justify-center -mt-9 sm:mt-0`}
         onSubmit={handleSubmit(onSubmit)}
@@ -228,24 +228,25 @@ const WeddingDay = () => {
         <motion.div variants={fadeInUp}>
           <Heading
             label="When's Your Special Wedding Day?"
-            color='bg-primary'
-            lineStyle={{ marginBottom: '40px' }}
+            color="bg-primary"
+            lineStyle={{ marginBottom: "40px" }}
+            className="text-[36px]"
           />
         </motion.div>
         <motion.div
           variants={fadeInUp}
-          className='w-full flex flex-col items-center justify-center gap-3 md:gap-5 mb-5 md:mb-10'
+          className="flex flex-col items-center justify-center w-full gap-3 mb-5 md:gap-5 md:mb-10"
         >
           <div>
             <DatePicker
               selected={selectWeddingDay}
-              popperPlacement='top-end'
-              onChange={date => {
+              popperPlacement="top-end"
+              onChange={(date) => {
                 setSelectWeddingDay(date);
-                setValue('weddingDate', moment(date).format('LL'));
+                setValue("weddingDate", moment(date).format("LL"));
 
                 if (tba) {
-                  setValue('tba', false);
+                  setValue("tba", false);
                 }
               }}
               customInput={<WeddingDatePicker {...{ errors }} />}
@@ -253,18 +254,18 @@ const WeddingDay = () => {
           </div>
           <motion.div
             variants={fadeInUp}
-            className='flex items-center space-x-3'
+            className="flex items-center space-x-3"
           >
             <input
-              type='checkbox'
-              id='tba'
+              type="checkbox"
+              id="tba"
               value={true}
-              className='text-sm md:text-base text-primary rounded-md border-2 border-primary w-[25px] h-[25px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
-              {...register('tba')}
+              className="text-sm md:text-base text-primary rounded-md border-2 border-primary w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+              {...register("tba")}
             />
             <label
-              htmlFor='tba'
-              className='font-inter text-sm md:text-lg font-normal cursor-pointer'
+              htmlFor="tba"
+              className="font-inter !text-lg font-normal cursor-pointer"
             >
               We're still deciding (TBA)
             </label>
@@ -274,33 +275,34 @@ const WeddingDay = () => {
           variants={fadeInUp}
           className={`w-48 mx-auto h-[2px] md:h-[3px] mb-5 md:mb-10 bg-primary`}
         />
-        <motion.div variants={fadeInUp} className='flex items-center space-x-3'>
+        <motion.div variants={fadeInUp} className="flex items-center space-x-3">
           <input
-            type='checkbox'
-            id='have2Reception'
+            type="checkbox"
+            id="have2Reception"
             value={true}
-            className='text-sm md:text-base text-primary rounded-md border-2 border-primary w-[25px] h-[25px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
-            {...register('have2Reception')}
+            className="text-sm md:text-base text-primary rounded-md border-2 border-primary w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+            {...register("have2Reception")}
           />
           <label
-            htmlFor='have2Reception'
-            className='font-inter text-sm md:text-lg font-normal cursor-pointer'
+            htmlFor="have2Reception"
+            className="text-[24px] font-normal cursor-pointer font-inter flex gap-3 "
           >
             Reception and wedding not on the same day?
+            <img src="/Emoji.png" alt="emoji" />
           </label>
         </motion.div>
-        {getValues('have2Reception') && (
+        {getValues("have2Reception") && (
           <motion.div
             variants={fadeInUp}
-            className='w-full flex items-center justify-center gap-3 md:gap-5 mt-6 mb-5 flex-wrap'
+            className="flex flex-wrap items-center justify-center w-full gap-3 mt-6 mb-5 md:gap-5"
           >
             <div>
               <DatePicker
                 selected={selectFirstReception}
                 // popperPlacement='top-end'
-                onChange={date => {
+                onChange={(date) => {
                   setSelectFirstReception(date);
-                  setValue('firstReception', moment(date).format('LL'));
+                  setValue("firstReception", moment(date).format("LL"));
                 }}
                 customInput={<FirstReceptionDatePicker {...{ errors }} />}
               />
@@ -310,9 +312,9 @@ const WeddingDay = () => {
               <DatePicker
                 selected={selectSecondReception}
                 // popperPlacement='top-end'
-                onChange={date => {
+                onChange={(date) => {
                   setSelectSecondReception(date);
-                  setValue('secondReception', moment(date).format('LL'));
+                  setValue("secondReception", moment(date).format("LL"));
                 }}
                 customInput={<SecondReceptionDatePicker {...{ errors }} />}
               />
@@ -321,14 +323,14 @@ const WeddingDay = () => {
         )}
         <motion.div
           variants={fadeInUp}
-          className='my-2 md:my-10 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'
+          className="flex flex-wrap items-center gap-5 my-2 text-center md:my-10 sm:flex-nowrap"
         >
           <Button
-            label='Back'
-            className='opacity-50 !rounded-[10px]'
+            label="Back"
+            className="opacity-50 !bg-[#bebebe] !rounded-[10px]"
             onClick={() => push({ query: { step: 1 } })}
           />
-          <Button label='Next' type='submit' className=' !rounded-[10px]' />
+          <Button label="Next" type="submit" className=" !rounded-[10px]" />
         </motion.div>
       </motion.form>
     </CreateWebsiteContainer>
