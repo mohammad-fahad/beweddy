@@ -8,6 +8,7 @@
       "@features/*": ["features/*"],
       "@helpers/*": ["helpers/*"],
       "@hoc/*": ["hoc/*"],
+      "@hooks/*": ["hooks/*"],
       "@services/*": ["services/*"],
       "@utils/*": ["utils/*"],
       "@styles/*": ["styles/*"]

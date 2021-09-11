@@ -1,9 +1,10 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 const ActivityInfo = () => {
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5 xl:gap-6">
-      <div className="flex flex-col items-center justify-center p-5 space-y-2 text-center transition duration-300">
+    // <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5 xl:gap-6">
+    <div className="flex flex-wrap items-center justify-center gap-x-10">
+      <div className="flex w-[150px] flex-col items-center justify-center p-5 space-y-2 text-center transition duration-300">
         <Image
           src="/icons/message-notif.svg"
           alt="Text Invitation"
@@ -11,9 +12,11 @@ const ActivityInfo = () => {
           width={38}
         />
         <h4 className="text-2xl font-medium">280</h4>
-        <p className="text-sm font-medium whitespace-nowrap">Text Invitation</p>
+        <p className="text-sm font-medium whitespace-nowrap">
+          Text Invitations
+        </p>
       </div>
-      <div className="flex flex-col items-center justify-center p-5 space-y-2 text-center transition duration-300">
+      <div className="flex w-[150px] flex-col items-center justify-center p-5 space-y-2 text-center transition duration-300">
         <Image
           src="/icons/sms-edit.svg"
           alt="Email Invitations"
@@ -25,7 +28,7 @@ const ActivityInfo = () => {
           Email Invitations
         </p>
       </div>
-      <div className="flex flex-col items-center justify-center p-5 space-y-2 text-center transition duration-300">
+      <div className="flex w-[150px] flex-col items-center justify-center p-5 space-y-2 text-center transition duration-300">
         <Image
           src="/icons/sms-tracking.svg"
           alt="Mail Out Invitations"
@@ -34,10 +37,10 @@ const ActivityInfo = () => {
         />
         <h4 className="text-2xl font-medium">400</h4>
         <p className="text-sm font-medium whitespace-nowrap">
-          Mail Out Invitation
+          Mail Out Invitations
         </p>
       </div>
-      <div className="flex flex-col items-center justify-center p-5 space-y-2 text-center transition duration-300">
+      <div className="flex w-[150px] flex-col items-center justify-center p-5 space-y-2 text-center transition duration-300">
         <Image
           src="/icons/location-tick.svg"
           alt="Addresses Collected"
@@ -49,7 +52,7 @@ const ActivityInfo = () => {
           Addresses Collected
         </p>
       </div>
-      <div className="flex flex-col items-center justify-center p-5 space-y-2 text-center transition duration-300">
+      <div className="flex w-[150px] flex-col items-center justify-center p-5 space-y-2 text-center transition duration-300">
         <Image
           src="/icons/directbox-notif.svg"
           alt="RSVP"
