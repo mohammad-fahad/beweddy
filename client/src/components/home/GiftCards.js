@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Fragment, useEffect, useState } from "react";
 import { useMediaQuery } from "@react-hook/media-query";
 import Link from "next/link";
+import StartedButton from "@components/shared/StartedButton";
 
 const giftCards = [
   {
@@ -273,28 +274,21 @@ const GiftCards = () => {
             </a>
           </Link>
         </div>
-        {/* <div className="text-center">
-          <LinkButton
-            className="md:!text-xl !font-inter !font-semibold"
-            label="Gift Card Options"
-            outline
-            href="/create-website"
-          />
-        </div> */}
         {/* <div className="absolute z-20 mx-auto transition duration-200 left-2/4 -translate-x-2/4 -bottom-3 hover:scale-110">
-          <Link href="/create-website">
-            <a className="px-20 py-5 !text-2xl bg-[#ffffff] border-2 whitespace-nowrap  border-primary text-primary rounded-full">
-              See More
-            </a>
-          </Link>
-        </div> */}
-        <div className="absolute z-20 mx-auto transition duration-200 left-2/4 -translate-x-2/4 -bottom-3 hover:scale-110">
           <Link href="/create-website">
             <a className="py-3 text-base bg-[#ffffff] border-2 px-14 whitespace-nowrap md:px-14 border-primary text-primary rounded-3xl">
               See More
             </a>
           </Link>
-        </div>
+        </div> */}
+        {/* <div className="absolute z-20 mx-auto transition duration-200 left-2/4 -translate-x-2/4 -bottom-3 hover:scale-110">
+          <Link href="/create-website">
+            <a className="py-3 text-base font-bold bg-white border-2 p-11 whitespace-nowrap border-primary text-primary rounded-3xl">
+              Let's Get Started
+            </a>
+          </Link>
+        </div> */}
+        <StartedButton className="-bottom-3" />
       </div>
     </div>
   );

@@ -227,7 +227,12 @@ const WeddingDay = () => {
       >
         <motion.div variants={fadeInUp}>
           <Heading
-            label="When's Your Special Wedding Day?"
+            label={
+              <span className="flex align-center">
+                When's Your Special Wedding Day?
+                <img src="/Emoji.png" alt="emoji" />
+              </span>
+            }
             color="bg-primary"
             lineStyle={{ marginBottom: "40px" }}
             className="text-[36px] commonTitle"
@@ -260,12 +265,12 @@ const WeddingDay = () => {
               type="checkbox"
               id="tba"
               value={true}
-              className="text-sm md:text-base text-primary rounded-md border-2 border-primary w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+              className="text-sm md:text-base text-primary rounded-md border-2 border-primary w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary customLabel"
               {...register("tba")}
             />
             <label
               htmlFor="tba"
-              className="font-inter !text-lg font-normal cursor-pointer"
+              className="font-inter !text-lg font-normal cursor-pointer customLabel"
             >
               We're still deciding (TBA)
             </label>
@@ -280,15 +285,14 @@ const WeddingDay = () => {
             type="checkbox"
             id="have2Reception"
             value={true}
-            className="text-sm md:text-base text-primary rounded-md border-2 border-primary w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+            className="text-sm md:text-base text-primary rounded-md border-2 border-primary w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary customLabel"
             {...register("have2Reception")}
           />
           <label
             htmlFor="have2Reception"
-            className="text-[24px] font-normal cursor-pointer font-inter flex gap-3 subTitle"
+            className="text-[24px] font-normal cursor-pointer font-inter flex gap-3 customLabel"
           >
             Reception and wedding not on the same day?
-            <img src="/Emoji.png" alt="emoji" />
           </label>
         </motion.div>
         {getValues("have2Reception") && (
