@@ -13,6 +13,9 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import Swiper from 'react-id-swiper';
 
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+
 import SwiperCore, { Lazy, Autoplay } from 'swiper';
 import { Listbox, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
@@ -20,6 +23,7 @@ import { CheckIcon } from '@heroicons/react/solid';
 import { useRouter } from 'next/router';
 import { attemptCreateGuest } from '@features/guest/guestActions';
 import { client } from 'pages/_app';
+
 SwiperCore.use([Lazy, Autoplay]);
 
 const params = {
@@ -133,7 +137,7 @@ const AddressRSVP = () => {
         </DashboardHeader>
 
         <div className="border-4 border-gray-200 rounded-lg">
-          <Swiper {...params}>
+          {/* <Swiper {...params}>
             {user?.questions?.couplePictures?.map((image, index) => (
               <div className="w-full" key={image.public_id}>
                 <div className="aspect-w-16 aspect-h-9">
@@ -149,7 +153,31 @@ const AddressRSVP = () => {
                 <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
               </div>
             ))}
-          </Swiper>
+          </Swiper> */}
+
+          <Carousel
+            autoPlay
+            infiniteLoop
+            showStatus={false}
+            showIndicators={false}
+            showThumbs={false}
+            interval={3000}
+          >
+            {user.questions.couplePictures.map((image, index) => (
+              <div className="w-full">
+                <div className="aspect-w-16 aspect-h-9">
+                  <Image
+                    cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
+                    publicId={image.public_id}
+                    src={!image.public_id ? image.url : null}
+                    width={image.width}
+                    crop="scale"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            ))}
+          </Carousel>
 
           <div className="px-2 py-10 lg:px-10 lg:py-10">
             <h5 className="text-2xl font-medium text-center">
