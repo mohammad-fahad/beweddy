@@ -1,9 +1,12 @@
 import express from 'express';
-import { createRegistry, getRegistry } from '../controllers/registryController.js';
+import {
+  createRegistry,
+  getRegistry,
+} from '../controllers/registryController.js';
 
 const router = express.Router();
 
-router.post('/create', createRegistry);
 router.get('/', getRegistry);
+router.post('/create', createRegistry);
 
 export default router;

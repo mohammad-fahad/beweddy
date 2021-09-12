@@ -4,7 +4,7 @@ import { LogoutIcon, UserIcon, SearchIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 
-const DashboardTopBar = ({ coupleName }) => {
+const DashboardTopBar = () => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.user);
   return (

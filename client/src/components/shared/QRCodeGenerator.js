@@ -48,7 +48,7 @@ const QRCodeGenerator = ({ sidebar }) => {
           />
         </div>
         <div className='space-y-3 flex flex-col items-center'>
-          <Link href='/dashboard/features/qrcode'>
+          <Link href='/dashboard/features/qrcode-and-links'>
             <a className='bg-secondary-alternative font-inter cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-primary rounded-[5px] transition duration-300 hover:bg-secondary-alternative/30'>
               Generate
             </a>
