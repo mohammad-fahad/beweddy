@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useSelector } from 'react-redux';
 const Banner = ({ setImageLoaded }) => {
   const { user } = useSelector(state => state.user);
+
   return (
     <div
       className='relative w-full pb-32 border-b-4 pt-14 xxl:pt-28 border-primary'
@@ -24,10 +25,10 @@ const Banner = ({ setImageLoaded }) => {
       />
       <div className='container relative z-50'>
         <div className='mb-28'>
-          <h1 className='!text-[60px] sm:text-5xl md:text-6xl lg:text-[60px] text-white text-center font-normal'>
+          <h1 className='text-[60px] !sm:text-[36px] lg:text-[60px] text-white text-center font-normal headerTitle '>
             <span className='text-[#F9D1DE] relative inline-block mr-1'>
               Free{' '}
-              <div className='absolute top-[-27px] lg:top-[-27px] left-[-60px] xl:left-[-60px] xxl:left-[-60px] w-[110px] sm:w-[128px] md:w-[150px] h-[150px] lg:w-[164px] lg:h-[164px] xl:w-48 xl:h-48'>
+              <div className='absolute top-[-27px] lg:top-[-27px] left-[-60px] xl:left-[-60px] xxl:left-[-60px] w-[110px] sm:w-[128px] md:w-[150px] h-[150px] lg:w-[164px] lg:h-[164px] xl:w-48 xl:h-48 headerTitleImage '>
                 <img
                   src='/images/banner_circle.svg'
                   alt=''

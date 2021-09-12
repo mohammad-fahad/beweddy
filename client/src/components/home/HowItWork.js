@@ -21,7 +21,7 @@ const HowItWork = ({ hideBorderBottom }) => {
         />
       </div>
       <div className="container relative z-20 pt-20 pb-20 md:pb-32">
-        <Heading label="How It Works" className="text-[36px]" />
+        <Heading label="How It Works" className="text-[36px] commonTitle" />
         <div className="max-w-3xl mx-auto">
           <div className="relative w-full overflow-hidden transition duration-300 rounded-2xl hover:scale-95">
             <YouTube
