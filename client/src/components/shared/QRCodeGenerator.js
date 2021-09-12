@@ -1,21 +1,26 @@
-import Link from "next/link";
-import { useCallback, useRef, useState } from "react";
-import { QRCodeImg } from "@cheprasov/react-qrcode";
-import { useSelector } from "react-redux";
-import Heading from "./Heading";
+
+import Link from 'next/link';
+import { useCallback, useRef, useState } from 'react';
+// import { QRCode } from 'react-qrcode-logo';
+import { QRCodeImg } from '@cheprasov/react-qrcode';
+// import QRCode from 'qrcode.react';
+import { useSelector } from 'react-redux';
+import Heading from './Heading';
+
 
 const QRCodeGenerator = ({ sidebar }) => {
   const { user } = useSelector((state) => state.user);
   const [value, setValue] = useState("https://beweddy-delta.vercel.app/");
   const [link, setLink] = useState("https://beweddy-delta.vercel.app/");
   const download = () => {
-    const canvas = document.querySelector(".qrCode > img").src;
+    const canvas = document.querySelector('.qrCode > img').src
     // const pngUrl = canvas
     //   .toDataURL('image/png')
     //   .replace('image/png', 'image/octet-stream');
-    let downloadLink = document.createElement("a");
+    let downloadLink = document.createElement('a');
     downloadLink.href = canvas;
-    downloadLink.download = "beweddy.png";
+    downloadLink.download = 'beweddy.png';
+
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
@@ -23,18 +28,20 @@ const QRCodeGenerator = ({ sidebar }) => {
 
   if (sidebar) {
     return (
-      <div className="flex flex-col items-center justify-center space-y-5">
-        <h4 className="text-xl font-medium">Personalized QR Code</h4>
-        <div className="qrCode">
+      <div className='flex flex-col justify-center items-center space-y-5'>
+        <h4 className='text-xl font-medium'>Personalized QR Code</h4>
+        <div className='qrCode'>
+
           <QRCodeImg
             {...{ value }}
             size={200}
             image={{
-              source: "/icons/circle-ring.png",
-              width: "20%",
-              height: "20%",
-              x: "center",
-              y: "center",
+
+              source: '/icons/circle-ring.png',
+              width: '20%',
+              height: '20%',
+              x: 'center',
+              y: 'center',
             }}
           />
           {/* <QRCode
@@ -74,21 +81,25 @@ const QRCodeGenerator = ({ sidebar }) => {
   }
 
   return (
-    <div className="border-t-4 border-gray-200 bg-gradient-to-br from-[#FCE3EB] to-white py-10">
-      <div className="container">
-        <div className="flex flex-wrap items-center justify-center gap-5 p-5 md:gap-8 lg:p-10">
-          <div className="flex flex-col space-y-8">
-            <h4 className="text-xl font-medium">Demo QR | Your QR Code</h4>
-            <div className="qrCode">
+
+    <div className='border-t-4 border-gray-200 bg-gradient-to-br from-[#FCE3EB] to-white py-10'>
+      <div className='container'>
+        <div className='p-10 flex space-x-28'>
+          <div className='flex flex-col space-y-8'>
+            <h4 className='text-xl font-medium'>Demo QR | Your QR Code</h4>
+            <div className='qrCode'>
+
               <QRCodeImg
                 {...{ value }}
                 size={200}
                 image={{
-                  source: "/icons/circle-ring.png",
-                  width: "20%",
-                  height: "20%",
-                  x: "center",
-                  y: "center",
+
+                  source: '/icons/circle-ring.png',
+                  width: '20%',
+                  height: '20%',
+                  x: 'center',
+                  y: 'center',
+
                 }}
               />
               {/* <QRCode
