@@ -1,23 +1,21 @@
-import Link from 'next/link';
-import { useCallback, useRef, useState } from 'react';
-// import { QRCode } from 'react-qrcode-logo';
-import { QRCodeImg } from '@cheprasov/react-qrcode';
-// import QRCode from 'qrcode.react';
-import { useSelector } from 'react-redux';
-import Heading from './Heading';
+import Link from "next/link";
+import { useCallback, useRef, useState } from "react";
+import { QRCodeImg } from "@cheprasov/react-qrcode";
+import { useSelector } from "react-redux";
+import Heading from "./Heading";
 
 const QRCodeGenerator = ({ sidebar }) => {
   const { user } = useSelector((state) => state.user);
-  const [value, setValue] = useState('https://beweddy-delta.vercel.app/');
-  const [link, setLink] = useState('https://beweddy-delta.vercel.app/');
+  const [value, setValue] = useState("https://beweddy-delta.vercel.app/");
+  const [link, setLink] = useState("https://beweddy-delta.vercel.app/");
   const download = () => {
-    const canvas = document.querySelector('.qrCode > img').src;
+    const canvas = document.querySelector(".qrCode > img").src;
     // const pngUrl = canvas
     //   .toDataURL('image/png')
     //   .replace('image/png', 'image/octet-stream');
-    let downloadLink = document.createElement('a');
+    let downloadLink = document.createElement("a");
     downloadLink.href = canvas;
-    downloadLink.download = 'beweddy.png';
+    downloadLink.download = "beweddy.png";
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
@@ -32,11 +30,11 @@ const QRCodeGenerator = ({ sidebar }) => {
             {...{ value }}
             size={200}
             image={{
-              source: '/icons/circle-ring.png',
-              width: '20%',
-              height: '20%',
-              x: 'center',
-              y: 'center',
+              source: "/icons/circle-ring.png",
+              width: "20%",
+              height: "20%",
+              x: "center",
+              y: "center",
             }}
           />
           {/* <QRCode
@@ -86,11 +84,11 @@ const QRCodeGenerator = ({ sidebar }) => {
                 {...{ value }}
                 size={200}
                 image={{
-                  source: '/icons/circle-ring.png',
-                  width: '20%',
-                  height: '20%',
-                  x: 'center',
-                  y: 'center',
+                  source: "/icons/circle-ring.png",
+                  width: "20%",
+                  height: "20%",
+                  x: "center",
+                  y: "center",
                 }}
               />
               {/* <QRCode
@@ -131,7 +129,7 @@ const QRCodeGenerator = ({ sidebar }) => {
             <div>
               <button
                 className="bg-white font-inter cursor-pointer text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition-colors duration-300 hover:border-primary"
-                onClick={() => alert('Under construction')}
+                onClick={() => alert("Under construction")}
               >
                 upload Image
               </button>

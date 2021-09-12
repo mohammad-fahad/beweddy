@@ -230,7 +230,7 @@ const WeddingDay = () => {
             label="When's Your Special Wedding Day?"
             color="bg-primary"
             lineStyle={{ marginBottom: "40px" }}
-            className="text-[36px]"
+            className="text-[36px] commonTitle"
           />
         </motion.div>
         <motion.div
@@ -285,7 +285,7 @@ const WeddingDay = () => {
           />
           <label
             htmlFor="have2Reception"
-            className="text-[24px] font-normal cursor-pointer font-inter flex gap-3 "
+            className="text-[24px] font-normal cursor-pointer font-inter flex gap-3 subTitle"
           >
             Reception and wedding not on the same day?
             <img src="/Emoji.png" alt="emoji" />
