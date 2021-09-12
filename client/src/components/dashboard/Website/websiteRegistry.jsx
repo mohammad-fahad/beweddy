@@ -38,22 +38,22 @@ const WebsiteRegistry = () => {
   const [selected, setSelected] = useState(null);
 
   return (
-    <div className=' from-[#FCE3EB] to-white relative'>
-      <div class='grid sm:grid-cols-2 md:grid-cols-3 gap-6 mx-auto w-full mb-5'>
-        {registries?.map(registry => (
+    <div className=" from-[#FCE3EB] to-white relative">
+      <div class="flex flex-wrap justify-center items-center gap-x-5 gap-y-3 w-full mb-5">
+        {registries?.map((registry) => (
           <div
             key={registry.id}
-            className='p-4 max-w-[280px] bg-white border-4 border-gray-200 hover:border-primary transition duration-300 w-full mx-auto'
+            className="p-4 max-w-[280px] bg-white border-4 border-gray-200 hover:border-primary transition duration-300 w-full mx-auto"
           >
             <div
               className={`border-2 border-primary flex items-center justify-center h-[140px] w-full rounded-[10px] transition duration-300 relative group p-3`}
             >
               <Link href={registry.link}>
                 <a
-                  target='_blank'
-                  className='max-w-[273px] rounded-lg flex items-center justify-center w-full h-full opacity-0 hover:opacity-100 absolute inset-0 z-50 group-hover:bg-black/50'
+                  target="_blank"
+                  className="max-w-[273px] rounded-lg flex items-center justify-center w-full h-full opacity-0 hover:opacity-100 absolute inset-0 z-50 group-hover:bg-black/50"
                 >
-                  <LinkIcon className='w-8 h-8 text-white' />
+                  <LinkIcon className="w-8 h-8 text-white" />
                 </a>
               </Link>
               <div>
@@ -65,8 +65,8 @@ const WebsiteRegistry = () => {
               </div>
             </div>
 
-            <div className='py-4 text-center flex flex-col'>
-              <h3 className='text-lg font-medium font-inter'>
+            <div className="flex flex-col py-4 text-center">
+              <h3 className="text-lg font-medium font-inter">
                 {registry.title}
               </h3>
               {/* <div>
@@ -79,9 +79,9 @@ const WebsiteRegistry = () => {
         ))}
       </div>
 
-      <div className='flex justify-end'>
-        <Link href='/'>
-          <a className='font-semibold font-inter text-lg hover:underline'>
+      <div className="flex justify-end pr-2">
+        <Link href="/">
+          <a className="text-lg font-semibold font-inter hover:underline">
             See All Registries
           </a>
         </Link>

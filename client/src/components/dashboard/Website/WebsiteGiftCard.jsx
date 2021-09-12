@@ -78,7 +78,7 @@ const WebsiteGiftCards = () => {
     }
   }, [isSmallDevice, isMediumDevice, isLargeDevice]);
 
-  const handleTooltip = index => {
+  const handleTooltip = (index) => {
     const itemRowNumber = Math.ceil(index / col);
     setPushItemTo(itemRowNumber * col - index + index);
     setShowTooltip(true);
@@ -86,13 +86,13 @@ const WebsiteGiftCards = () => {
   };
 
   return (
-    <div className=' from-[#FCE3EB] to-white relative'>
-      <div className='relative grid grid-cols-2 px-5 md:grid-cols-3 lg:grid-cols-3 sm:px-0 gap-x-5 sm:gap-x-10'>
+    <div className=" from-[#FCE3EB] to-white relative">
+      <div className="relative flex flex-wrap items-center justify-center gap-x-5 gap-y-3">
         {giftCards.map((giftCard, index) => {
           return (
             <Fragment key={index}>
               <div
-                className={`w-full mx-auto py-5 rounded-xl overflow-hidden cursor-pointer transition-transform duration-300 ease-easing relative ${
+                className={`mx-auto py-5 rounded-xl overflow-hidden cursor-pointer transition-transform duration-300 ease-easing relative ${
                   selected === index ? '' : 'hover:scale-110'
                 }`}
                 onClick={() => {
@@ -102,8 +102,8 @@ const WebsiteGiftCards = () => {
               >
                 {selected === index && (
                   <>
-                    <div className='absolute bottom-[-12px] left-6 h-8 w-8 border-4 border-gray-200 border-t-transparent border-r-transparent rotate-[135deg] z-10 bg-white'></div>
-                    <div className='absolute bottom-[-1rem] left-6 h-8 w-8 border-4 border-transparent rotate-[135deg] z-30 bg-white'></div>
+                    <div className="absolute bottom-[-12px] left-6 h-8 w-8 border-4 border-gray-200 border-t-transparent border-r-transparent rotate-[135deg] z-10 bg-white"></div>
+                    <div className="absolute bottom-[-1rem] left-6 h-8 w-8 border-4 border-transparent rotate-[135deg] z-30 bg-white"></div>
                   </>
                 )}
                 <Image
@@ -111,49 +111,49 @@ const WebsiteGiftCards = () => {
                   height={157}
                   src={giftCard.image}
                   alt={giftCard.name}
-                  className='w-full'
+                  className="w-full"
                 />
               </div>
               {index + 1 === pushItemTo && showTooltip && (
-                <div className='relative z-20 py-12 -mt-3 bg-white border-2 border-gray-200 rounded-lg col-span-full px-14'>
-                  <div className='absolute right-5 top-5'>
+                <div className="relative z-20 py-12 -mt-3 bg-white border-2 border-gray-200 rounded-lg col-span-full px-14">
+                  <div className="absolute right-5 top-5">
                     <button
                       onClick={() => {
-                        setShowTooltip(prev => !prev);
+                        setShowTooltip((prev) => !prev);
                         setSelected(null);
                       }}
                     >
-                      <XIcon className='w-6 h-6 transition duration-300 hover:text-gray-500' />
+                      <XIcon className="w-6 h-6 transition duration-300 hover:text-gray-500" />
                     </button>
                   </div>
-                  <div className='flex divide-gray-100 md:divide-x md:flex-row'>
+                  <div className="flex divide-gray-100 md:divide-x md:flex-row">
                     <img
                       src={tooltip.image}
                       alt={tooltip.name}
-                      className='hidden object-cover w-64 h-40 md:mr-10 md:block'
+                      className="hidden object-cover w-64 h-40 md:mr-10 md:block"
                     />
-                    <div className='md:pl-10'>
-                      <h4 className='text-2xl md:text-3xl font-medium text-[#f16521]'>
+                    <div className="md:pl-10">
+                      <h4 className="text-2xl md:text-3xl font-medium text-[#f16521]">
                         {tooltip.name}
                       </h4>
-                      <p className='mt-3 text-sm font-light text-gray-600'>
+                      <p className="mt-3 text-sm font-light text-gray-600">
                         {tooltip.description}
                       </p>
                     </div>
                   </div>
                   {(tooltip.currency || tooltip.amount) && (
-                    <div className='flex items-center mt-16 space-x-16'>
+                    <div className="flex items-center mt-16 space-x-16">
                       {tooltip.currency && (
-                        <p className='text-sm'>
-                          <strong className='font-semibold uppercase'>
+                        <p className="text-sm">
+                          <strong className="font-semibold uppercase">
                             Currency
                           </strong>
                           : {tooltip.currency}
                         </p>
                       )}
                       {tooltip.amount && (
-                        <p className='text-sm'>
-                          <strong className='font-semibold'>Amount</strong>: any
+                        <p className="text-sm">
+                          <strong className="font-semibold">Amount</strong>: any
                         </p>
                       )}
                     </div>
@@ -165,9 +165,9 @@ const WebsiteGiftCards = () => {
         })}
       </div>
 
-      <div className='flex justify-end'>
-        <Link href='/'>
-          <a className='font-semibold font-inter text-lg hover:underline'>
+      <div className="flex justify-end pr-2">
+        <Link href="/">
+          <a className="text-lg font-semibold font-inter hover:underline">
             See All Gift Cards
           </a>
         </Link>
