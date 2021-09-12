@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 const Banner = ({ setImageLoaded }) => {
   const { user } = useSelector((state) => state.user);
+
   return (
     <div
       className="relative w-full pb-32 border-b-4 pt-14 xxl:pt-28 border-primary"

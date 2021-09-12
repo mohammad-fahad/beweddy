@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useCallback, useRef, useState } from "react";
-import { QRCodeImg } from "@cheprasov/react-qrcode";
+import { QRCode } from "react-qrcode-logo";
+// import QRCode from 'qrcode.react';
 import { useSelector } from "react-redux";
 import Heading from "./Heading";
 
@@ -9,35 +10,36 @@ const QRCodeGenerator = ({ sidebar }) => {
   const [value, setValue] = useState("https://beweddy-delta.vercel.app/");
   const [link, setLink] = useState("https://beweddy-delta.vercel.app/");
   const download = () => {
-    const canvas = document.querySelector(".qrCode > img").src;
-    // const pngUrl = canvas
-    //   .toDataURL('image/png')
-    //   .replace('image/png', 'image/octet-stream');
+    const canvas = document.querySelector(".qrCode > canvas");
+
+    const pngUrl = canvas
+      .toDataURL("image/png")
+      .replace("image/png", "image/octet-stream");
     let downloadLink = document.createElement("a");
-    downloadLink.href = canvas;
+    downloadLink.href = pngUrl;
     downloadLink.download = "beweddy.png";
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
   };
-
   if (sidebar) {
     return (
       <div className="flex flex-col items-center justify-center space-y-5">
         <h4 className="text-xl font-medium">Personalized QR Code</h4>
         <div className="qrCode">
-          <QRCodeImg
+          {/* <QRCodeImg
             {...{ value }}
             size={200}
             image={{
-              source: "/icons/circle-ring.png",
-              width: "20%",
-              height: "20%",
-              x: "center",
-              y: "center",
+
+              source: '/icons/circle-ring.png',
+              width: '20%',
+              height: '20%',
+              x: 'center',
+              y: 'center',
             }}
-          />
-          {/* <QRCode
+          /> */}
+          <QRCode
             {...{ value }}
             size={200}
             eyeRadius={[
@@ -54,7 +56,7 @@ const QRCodeGenerator = ({ sidebar }) => {
             // style={{image}
             logoImage="/icons/circle-ring.png"
             // logoImage='https://res.cloudinary.com/muttakinhasib/image/upload/v1621273993/avatar/user_dmy5bs.png'
-          /> */}
+          />
         </div>
         <div className="flex flex-col items-center space-y-3">
           <Link href="/dashboard/features/qrcode-and-links">
@@ -76,22 +78,24 @@ const QRCodeGenerator = ({ sidebar }) => {
   return (
     <div className="border-t-4 border-gray-200 bg-gradient-to-br from-[#FCE3EB] to-white py-10">
       <div className="container">
-        <div className="flex flex-wrap items-center justify-center gap-5 p-5 md:gap-8 lg:p-10">
+        <div className="flex p-10 space-x-28">
           <div className="flex flex-col space-y-8">
             <h4 className="text-xl font-medium">Demo QR | Your QR Code</h4>
             <div className="qrCode">
-              <QRCodeImg
+              {/* <QRCodeImg
                 {...{ value }}
                 size={200}
                 image={{
-                  source: "/icons/circle-ring.png",
-                  width: "20%",
-                  height: "20%",
-                  x: "center",
-                  y: "center",
+
+                  source: '/icons/circle-ring.png',
+                  width: '20%',
+                  height: '20%',
+                  x: 'center',
+                  y: 'center',
+
                 }}
-              />
-              {/* <QRCode
+              /> */}
+              <QRCode
                 {...{ value }}
                 size={200}
                 eyeRadius={[
@@ -106,8 +110,8 @@ const QRCodeGenerator = ({ sidebar }) => {
                 logoHeight={50}
                 logoWidth={50}
                 // style={{image}
-                logoImage='/icons/circle-ring.png'
-              /> */}
+                logoImage="/icons/circle-ring.png"
+              />
             </div>
             <button
               className="bg-white font-inter cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition duration-300 hover:bg-secondary-alternative/30"

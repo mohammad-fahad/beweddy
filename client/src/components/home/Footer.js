@@ -1,4 +1,3 @@
-import { Heading } from "@components/index";
 import {
   Facebook,
   Instagram,
