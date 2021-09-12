@@ -1,4 +1,4 @@
-import { HeartIcon } from "@heroicons/react/outline";
+
 import ActiveLink from "../ActiveLink";
 
 const NavLinks = ({ className }) => {
@@ -21,7 +21,7 @@ const NavLinks = ({ className }) => {
           className="w-5 h-5"
         />
         {/* <span>Text-Email-Mail Invites</span> */}
-        <span>Invitation</span>
+        <span>Invitations</span>
       </ActiveLink>
       <ActiveLink href="/gift-and-registry">
         <img src="/icons/gift.svg" alt="Registry" className="w-5 h-5" />
