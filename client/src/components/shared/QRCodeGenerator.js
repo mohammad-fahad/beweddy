@@ -11,13 +11,12 @@ const QRCodeGenerator = ({ sidebar }) => {
   const [value, setValue] = useState('https://beweddy-delta.vercel.app/');
   const [link, setLink] = useState('https://beweddy-delta.vercel.app/');
   const download = () => {
-    const canvas = document.querySelector('.qrCode > canvas');
-
-    const pngUrl = canvas
-      .toDataURL('image/png')
-      .replace('image/png', 'image/octet-stream');
+    const canvas = document.querySelector('.qrCode > img').src
+    // const pngUrl = canvas
+    //   .toDataURL('image/png')
+    //   .replace('image/png', 'image/octet-stream');
     let downloadLink = document.createElement('a');
-    downloadLink.href = pngUrl;
+    downloadLink.href = canvas;
     downloadLink.download = 'beweddy.png';
     document.body.appendChild(downloadLink);
     downloadLink.click();
@@ -31,6 +30,7 @@ const QRCodeGenerator = ({ sidebar }) => {
         <div className='qrCode'>
           <QRCodeImg
             {...{ value }}
+            size={200}
             image={{
               source: '/icons/circle-ring.png',
               width: '20%',
@@ -84,6 +84,7 @@ const QRCodeGenerator = ({ sidebar }) => {
             <div className='qrCode'>
               <QRCodeImg
                 {...{ value }}
+                size={200}
                 image={{
                   source: '/icons/circle-ring.png',
                   width: '20%',
