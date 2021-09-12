@@ -29,7 +29,7 @@ const CoupleName = () => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <h2
-          className="pb-8 mx-auto text-[36px] text-center "
+          className="pb-8 mx-auto text-[36px] text-center commonTitle"
         >
           What's your name? & Who's your lucky spouse-to-be?
         </h2>

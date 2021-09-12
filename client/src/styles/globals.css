@@ -219,3 +219,37 @@
 .react-datepicker__year-text--in-range {
   @apply bg-secondary !important;
 }
+
+
+.headerTitleImage{
+  left: -55px !important;
+  top : 1px !important;
+}
+
+
+@media screen and (max-width: 599px) {
+  .headerTitle {
+    font-size: 36px !important;
+}
+.headerTitleImage{
+  left: -28px !important;
+  top : 0 !important;
+}
+.commonTitle {
+  font-size : 24px !important
+}
+.commonTitle1{
+  font-size : 23px !important
+}
+.subTitle {
+  font-size : 15px !important
+}
+.customBox{
+    height: 87px !important;
+  }
+           
+  .socialGap {
+gap: 21px !important;
+  }
+}
+

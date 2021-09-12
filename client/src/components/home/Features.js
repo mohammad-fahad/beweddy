@@ -10,7 +10,7 @@ const Features = () => {
           color="bg-[#F9D1DE]"
           className="!text-4xl"
         /> */}
-        <h2 className="max-w-3xl pb-8 mx-auto text-4xl text-center capitalize">
+        <h2 className="max-w-3xl pb-8 mx-auto text-4xl text-center capitalize commonTitle">
           The Only Free Text Messaging <br /> Wedding Platform
         </h2>
         <div className="w-48 mx-auto h-[2px] md:h-[4px] mb-16 bg-[#F9D1DE]" />

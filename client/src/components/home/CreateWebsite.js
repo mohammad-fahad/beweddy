@@ -28,13 +28,16 @@ const CreateWebsite = () => {
     >
       <div className="absolute z-20 mx-auto transition duration-200 left-2/4 -translate-x-2/4 -top-3 hover:scale-110">
         <Link href="/create-website">
-          <a className="px-20 py-3 text-base bg-white border-2 whitespace-nowrap md:px-28 border-primary text-primary rounded-3xl">
+          <a className="px-16 py-3 text-base bg-white border-2 whitespace-nowrap md:px-28 border-primary text-primary rounded-3xl">
             Let's Get Started
           </a>
         </Link>
       </div>
       <div className="container py-20">
-        <Heading label="Create Your BeWeddy Website" className="!text-4xl" />
+        <Heading
+          label="Create Your BeWeddy Website"
+          className="!text-4xl commonTitle"
+        />
         <div className="container">
           <Swiper {...params}>
             <div>
@@ -64,20 +67,20 @@ const CreateWebsite = () => {
           </Swiper>
         </div>
         {!user && (
-          // <div className="mt-8 text-center">
-          //   <LinkButton
-          //     label="Create Your Wedding Website"
-          //     className="!rounded-[100px] !px-10"
-          //     href="/create-website"
-          //   />
-          // </div>
           <div className="absolute z-20 mx-auto transition duration-200 left-2/4 -translate-x-2/4 -bottom-3 hover:scale-110">
             <Link href="/create-website">
-              <a className="px-20 py-5 !text-2xl !w-[455px] !h-[80px] bg-[#F9D1DE] border-2 whitespace-nowrap  border-primary text-primary rounded-full">
+              <a className="py-3 text-base bg-[#F9D1DE] border-2 px-14 whitespace-nowrap md:px-14 border-primary text-primary rounded-3xl">
                 Create Your Wedding Website
               </a>
             </Link>
           </div>
+          // <div className="absolute z-20 mx-auto transition duration-200 left-2/4 -translate-x-2/4 -top-3 hover:scale-110">
+          //   <Link href="/create-website">
+          //     <a className="px-20 py-3 text-base bg-white border-2 whitespace-nowrap md:px-28 border-primary text-primary rounded-3xl">
+          //       Create Your Wedding Website
+          //     </a>
+          //   </Link>
+          // </div>
         )}
       </div>
     </div>

@@ -178,7 +178,7 @@ const GiftCards = () => {
         className="absolute w-16 h-10 right-5 sm:right-12 bottom-5 sm:bottom-10 sm:w-20 sm:h-16"
       />
       <div className="container py-20">
-        <h2 className="max-w-3xl pb-8 mx-auto text-4xl text-center capitalize">
+        <h2 className="max-w-3xl pb-8 mx-auto text-4xl text-center capitalize commonTitle">
           Receive Gifts With The Best <br /> Gift Card Registry
         </h2>
         <div className="w-48 mx-auto h-[2px] md:h-[4px] mb-16 bg-primary" />
@@ -207,7 +207,7 @@ const GiftCards = () => {
                     height={170}
                     src={giftCard.image}
                     alt={giftCard.name}
-                    className="w-full"
+                    className="w-full h-full"
                   />
                 </div>
                 {index + 1 === pushItemTo && showTooltip && (
@@ -260,6 +260,18 @@ const GiftCards = () => {
               </Fragment>
             );
           })}
+          <Link href="/">
+            <a className="flex items-center">
+              <div className="flex flex-col items-center justify-center w-[287px] h-[170px] py-5 overflow-hidden transition-transform duration-300 border-2 cursor-pointer border-primary rounded-xl ease-easing customBox">
+                <h1 className="text-[64px] relative commonTitle">
+                  100+
+                  <span className="text-[18px] absolute -bottom-3 right-0 subTitle ">
+                    See All
+                  </span>
+                </h1>
+              </div>
+            </a>
+          </Link>
         </div>
         {/* <div className="text-center">
           <LinkButton
@@ -269,9 +281,16 @@ const GiftCards = () => {
             href="/create-website"
           />
         </div> */}
+        {/* <div className="absolute z-20 mx-auto transition duration-200 left-2/4 -translate-x-2/4 -bottom-3 hover:scale-110">
+          <Link href="/create-website">
+            <a className="px-20 py-5 !text-2xl bg-[#ffffff] border-2 whitespace-nowrap  border-primary text-primary rounded-full">
+              See More
+            </a>
+          </Link>
+        </div> */}
         <div className="absolute z-20 mx-auto transition duration-200 left-2/4 -translate-x-2/4 -bottom-3 hover:scale-110">
           <Link href="/create-website">
-            <a className="px-20 py-5 !text-2xl !w-[319px] !h-[68px] bg-[#ffffff] border-2 whitespace-nowrap  border-primary text-primary rounded-full">
+            <a className="py-3 text-base bg-[#ffffff] border-2 px-14 whitespace-nowrap md:px-14 border-primary text-primary rounded-3xl">
               See More
             </a>
           </Link>
