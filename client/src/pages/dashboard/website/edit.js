@@ -228,8 +228,6 @@ const EditWebsitePage = () => {
       const { data } = await axios.post(URL, formData, config);
       const { public_id, height, width, secure_url, url } = data;
 
-      // const formData = new FormData();
-
       // formData.append('image', file);
       // formData.append(
       //   'folder',
@@ -237,10 +235,7 @@ const EditWebsitePage = () => {
       // );
       // const data = await attemptImageUpload(formData);
 
-      setUploadedFiles((prev) => [
-        ...prev,
-        { public_id, height, width, secure_url, url },
-      ]);
+      setUploadedFiles((prev) => []);
 
       setValue('couplePictures', uploadedFiles);
       clearErrors('couplePictures');
