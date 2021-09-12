@@ -73,7 +73,7 @@ const CreateWebsite = () => {
           // </div>
           <div className="absolute z-20 mx-auto transition duration-200 left-2/4 -translate-x-2/4 -bottom-3 hover:scale-110">
             <Link href="/create-website">
-              <a className="px-20 py-5 !text-2xl bg-[#F9D1DE] border-2 whitespace-nowrap md:px-28 border-primary text-primary rounded-full">
+              <a className="px-20 py-5 !text-2xl !w-[455px] !h-[80px] bg-[#F9D1DE] border-2 whitespace-nowrap  border-primary text-primary rounded-full">
                 Create Your Wedding Website
               </a>
             </Link>

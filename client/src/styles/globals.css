@@ -76,6 +76,10 @@
     background: linear-gradient(120.68deg, #fce3eb 30.04%, #ffffff 100%);
   }
 
+  .scroll-design::-webkit-scrollbar {
+    display: none;
+  }
+
   .pulse > span {
     animation: pulse-2-5 1s linear infinite;
     border-radius: 50%;

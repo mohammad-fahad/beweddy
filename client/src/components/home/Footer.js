@@ -74,39 +74,42 @@ const Footer = ({ hideSocial }) => {
           {!user && <CreateAccount />}
         </>
       )}
+
       <div className="py-8 bg-gradient-to-br from-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary">
-        <div className="container flex flex-wrap items-center justify-center gap-5 sm:justify-between">
+        {/* <div className="container flex flex-wrap items-center justify-center gap-5 sm:flex-wrap-reverse sm:justify-between"> */}
+        <div className="container flex flex-col-reverse flex-wrap items-center justify-center gap-5 md:flex-row sm:justify-between">
           <p className="text-base">
             <strong className="font-semibold">
               &copy; {new Date().getFullYear()} BeWeddy.
             </strong>{" "}
             All rights reserved.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-between sm:gap-6">
-            <Link href="#">
+          {/* <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-between sm:gap-6"> */}
+          <div className="flex flex-col items-center justify-center gap-3 md:flex-row sm:justify-between sm:gap-6">
+            <Link href="/">
               <a className="relative font-semibold transition-colors duration-300 text-primary font-inter group hover:text-primary">
                 <span>About BeWeddy!</span>
                 <span
-                  className={`absolute bottom-[-6px] left-0 w-full h-[2px] bg-primary group-hover:w-full transition-all duration-300`}
+                  className={`absolute bottom-[-6px] left-0 w-full h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300`}
                 ></span>
               </a>
             </Link>
-            <Link href="#">
+            <Link href="/">
               <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
                 <span>Privacy Policy</span>
-                <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-primary group-hover:w-full transition-all duration-300"></span>
+                <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300"></span>
               </a>
             </Link>
-            <Link href="#">
+            <Link href="/">
               <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
                 <span>Terms & conditions</span>
-                <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-primary group-hover:w-full transition-all duration-300"></span>
+                <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300"></span>
               </a>
             </Link>
-            <Link href="#">
+            <Link href="/">
               <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
                 <span>Contact us</span>
-                <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-primary group-hover:w-full transition-all duration-300"></span>
+                <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300"></span>
               </a>
             </Link>
           </div>
