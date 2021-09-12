@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@cheprasov/react-qrcode': ^1.0.1
   '@headlessui/react': ^1.3.0
   '@heroicons/react': ^1.0.2
   '@hookform/resolvers': ^2.6.1
@@ -38,6 +39,7 @@ specifiers:
   react-qrcode-logo: ^2.5.0
   react-query: ^3.23.0
   react-redux: ^7.2.4
+  react-responsive-carousel: ^3.2.21
   react-select: ^4.3.1
   react-spinners: ^0.11.0
   react-youtube: ^7.13.1
@@ -49,6 +51,7 @@ specifiers:
   yup: ^0.32.9
 
 dependencies:
+  '@cheprasov/react-qrcode': 1.0.1_react-dom@17.0.2+react@17.0.2
   '@headlessui/react': 1.4.0_react-dom@17.0.2+react@17.0.2
   '@heroicons/react': 1.0.4_react@17.0.2
   '@hookform/resolvers': 2.8.0_react-hook-form@7.13.0
@@ -84,6 +87,7 @@ dependencies:
   react-qrcode-logo: 2.5.0_react-dom@17.0.2+react@17.0.2
   react-query: 3.23.0_react-dom@17.0.2+react@17.0.2
   react-redux: 7.2.4_react-dom@17.0.2+react@17.0.2
+  react-responsive-carousel: 3.2.21
   react-select: 4.3.1_react-dom@17.0.2+react@17.0.2
   react-spinners: 0.11.0_react-dom@17.0.2+react@17.0.2
   react-youtube: 7.13.1_react@17.0.2
@@ -144,6 +148,25 @@ packages:
       esutils: 2.0.3
       lodash: 4.17.21
       to-fast-properties: 2.0.0
+    dev: false
+
+  /@cheprasov/qrcode/0.1.0:
+    resolution: {integrity: sha512-26//xIE/Vt+v9WBiSIEhdvbGJkrkVWFu6IAYRgB4zlg2h6wRVnfQLBsrakJJQhSVUhSSIDQ09Imhy0Jw5reVgQ==}
+    dependencies:
+      qr.js: 0.0.0
+    dev: false
+
+  /@cheprasov/react-qrcode/1.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-vnsQ10RmmZHgULyg61TGaGu4mX9Bo4knf3LGVGen3iJ5iNQwfhuPolpWYBnRowQaSS/AdXQNmfzu71qxdZcNNg==}
+    peerDependencies:
+      '@types/react': ^16.9.1
+      '@types/react-dom': ^16.8.5
+      react: ^16.9.0
+      react-dom: ^16.9.0
+    dependencies:
+      '@cheprasov/qrcode': 0.1.0
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
     dev: false
 
   /@emotion/cache/11.4.0:
@@ -2517,6 +2540,13 @@ packages:
       react: 17.0.2
     dev: false
 
+  /react-easy-swipe/0.0.21:
+    resolution: {integrity: sha512-OeR2jAxdoqUMHIn/nS9fgreI5hSpgGoL5ezdal4+oO7YSSgJR8ga+PkYGJrSrJ9MKlPcQjMQXnketrD7WNmNsg==}
+    engines: {node: '>= 6'}
+    dependencies:
+      prop-types: 15.7.2
+    dev: false
+
   /react-fast-compare/3.2.0:
     resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
     dev: false
@@ -2674,6 +2704,14 @@ packages:
   /react-refresh/0.8.3:
     resolution: {integrity: sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==}
     engines: {node: '>=0.10.0'}
+    dev: false
+
+  /react-responsive-carousel/3.2.21:
+    resolution: {integrity: sha512-y2ueGqv/yo6HQJi9IbrJVRJobp4EOrNe6BQOC61CoADg3wUjq0gqAcrtSsLQIRLtbt6nCo7cTPRX4wAkSwdiTA==}
+    dependencies:
+      classnames: 2.3.1
+      prop-types: 15.7.2
+      react-easy-swipe: 0.0.21
     dev: false
 
   /react-select/4.3.1_react-dom@17.0.2+react@17.0.2:
