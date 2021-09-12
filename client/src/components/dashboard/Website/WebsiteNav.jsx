@@ -6,7 +6,7 @@ const WebsiteNav = ({ coupleName }) => {
   return (
     <div className="bg-[#ffffff] border-b-[3px] border-primary">
       {/* <div className="xxl:pr-0"> */}
-      <div className="flex flex-col flex-wrap items-center justify-center px-5 md:flex-row md:justify-between">
+      <div className="flex flex-col flex-wrap items-center justify-center px-5 py-3 md:py-0 md:flex-row md:justify-between">
         <h3 className="flex text-lg capitalize">
           <img src="/apple-touch-icon.png" alt="help" className="w-7 h-7" />
           <span className="pl-2 text-2xl font-medium">{user?.coupleName}</span>

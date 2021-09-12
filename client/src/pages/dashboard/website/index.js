@@ -83,7 +83,7 @@ const WebsitePageOne = () => {
           </Swiper>
           {/* date and Countdown section */}
           <div className="flex flex-col items-center py-6 mt-[36px]">
-            <h1 className="text-4xl font-medium font-inter xl:text-5xl">
+            <h1 className="text-2xl font-medium md:text-3xl font-inter xl:text-4xl">
               02/27/2021
             </h1>
             <div className="max-w-[222px] w-full mx-auto h-[2px] md:h-[4px]  bg-[#FCE0EB] mt-4" />
@@ -146,7 +146,9 @@ const WebsitePageOne = () => {
             {/* our story */}
             {user?.ourStory && (
               <div>
-                <h2 className="text-4xl font-medium text-center">Our Story </h2>
+                <h2 className="text-3xl font-medium text-center md:text-4xl">
+                  Our Story
+                </h2>
                 <p className="w-10/12 m-auto mt-5 text-2xl font-normal text-center">
                   {user?.ourStory}
                 </p>
@@ -156,7 +158,7 @@ const WebsitePageOne = () => {
               <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-10" />
             )}
             {/* Reception Details */}
-            <h2 className="text-4xl font-medium text-center mt-[17px]">
+            <h2 className="text-3xl md:text-4xl font-medium text-center mt-[17px]">
               Reception Details
             </h2>
 
@@ -187,7 +189,7 @@ const WebsitePageOne = () => {
             {/* timeline section */}
             <div class="grid grid-cols-12 gap-4 w-full mt-5">
               <div class="col-start-2 col-span-10 p-5">
-                <h4 className="text-[26px] font-medium mb-2">Timeline</h4>
+                <h4 className="text-[24px] font-medium mb-2">Timeline</h4>
                 <ul className="space-y-3">
                   {user?.receptionDetails?.map((el) => (
                     <li className="w-full px-7 py-2 space-x-5 border border-[#D5D5D5] hover:border-primary cursor-pointer">
@@ -201,7 +203,7 @@ const WebsitePageOne = () => {
 
             {/* 😇 Bless us with a Gift Card section */}
             <div className="w-full px-2 mx-auto mt-5">
-              <h2 className="text-4xl font-medium text-center">
+              <h2 className="text-3xl font-medium text-center md:text-4xl">
                 😇 Bless us with a Gift Card
               </h2>
               <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-[28px] mb-[50px]" />
@@ -211,7 +213,9 @@ const WebsitePageOne = () => {
 
               {/* our Registry section */}
 
-              <h2 className="text-4xl font-medium text-center">Our Registry</h2>
+              <h2 className="mt-3 text-3xl font-medium text-center md:text-4xl">
+                Our Registry
+              </h2>
               <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-[28px] mb-[50px]" />
               <div>
                 <WebsiteRegistry />
@@ -242,7 +246,7 @@ const WebsitePageOne = () => {
             <div className="p-3 bg-white border-4 border-gray-200 rounded-lg">
               <div class="flex items-center justify-center flex-wrap gap-4 w-full mt-5">
                 <div class="p-5 flex justify-center items-center ">
-                  <h1 className="text-4xl font-normal">
+                  <h1 className="text-3xl font-normal md:text-4xl">
                     Your Personalized <span className="font-bold">QR Code</span>
                   </h1>
                 </div>

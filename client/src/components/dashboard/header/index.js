@@ -11,7 +11,7 @@ const DashboardHeader = ({ title, children }) => {
       <div
         className={`flex items-center flex-col sm:flex-row justify-center sm:justify-between flex-wrap w-full`}
       >
-        <h2 className="mt-5 text-3xl font-medium capitalize xl:text-4xl sm:mt-0">
+        <h2 className="mt-5 text-3xl font-medium capitalize md:text-4xl sm:mt-0">
           {title}
         </h2>
 
