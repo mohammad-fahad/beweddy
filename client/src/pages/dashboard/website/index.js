@@ -17,14 +17,17 @@ import Swiper from 'react-id-swiper';
 import { Image } from 'cloudinary-react';
 import SwiperCore, { Lazy, Autoplay } from 'swiper';
 
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+
 SwiperCore.use([Lazy, Autoplay]);
 
 const params = {
   loop: true,
-  autoplay: {
-    delay: 5000,
-    disableOnInteraction: false,
-  },
+  // autoplay: {
+  //   delay: 5000,
+  //   disableOnInteraction: false,
+  // },
 };
 
 const WebsitePageOne = () => {
@@ -63,8 +66,36 @@ const WebsitePageOne = () => {
 
         <div className="border-4 border-gray-200 rounded-lg">
           <WebsiteNav />
+
           {/* banner image */}
-          <Swiper {...params}>
+          {/* <div className="w-full">
+            <Swiper {...params}>
+              {user.questions.couplePictures.map((image, index) => (
+                <div className="w-full">
+                  <div className="aspect-w-16 aspect-h-9">
+                    <Image
+                      cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
+                      publicId={image.public_id}
+                      src={!image.public_id ? image.url : null}
+                      // width={image.width}
+                      crop="scale"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
+                </div>
+              ))}
+            </Swiper>
+          </div> */}
+
+          <Carousel
+            autoPlay
+            infiniteLoop
+            showStatus={false}
+            showIndicators={false}
+            showThumbs={false}
+            interval={3000}
+          >
             {user.questions.couplePictures.map((image, index) => (
               <div className="w-full">
                 <div className="aspect-w-16 aspect-h-9">
@@ -77,10 +108,10 @@ const WebsitePageOne = () => {
                     className="object-cover"
                   />
                 </div>
-                <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
               </div>
             ))}
-          </Swiper>
+          </Carousel>
+
           {/* date and Countdown section */}
           <div className="flex flex-col items-center py-6 mt-[36px]">
             <h1 className="text-2xl font-medium md:text-3xl font-inter xl:text-4xl">
