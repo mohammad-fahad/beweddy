@@ -1,8 +1,7 @@
 
 import Link from 'next/link';
 import { useCallback, useRef, useState } from 'react';
-// import { QRCode } from 'react-qrcode-logo';
-import { QRCodeImg } from '@cheprasov/react-qrcode';
+import { QRCode } from 'react-qrcode-logo';
 // import QRCode from 'qrcode.react';
 import { useSelector } from 'react-redux';
 import Heading from './Heading';
@@ -13,26 +12,25 @@ const QRCodeGenerator = ({ sidebar }) => {
   const [value, setValue] = useState("https://beweddy-delta.vercel.app/");
   const [link, setLink] = useState("https://beweddy-delta.vercel.app/");
   const download = () => {
-    const canvas = document.querySelector('.qrCode > img').src
-    // const pngUrl = canvas
-    //   .toDataURL('image/png')
-    //   .replace('image/png', 'image/octet-stream');
-    let downloadLink = document.createElement('a');
-    downloadLink.href = canvas;
-    downloadLink.download = 'beweddy.png';
+    const canvas = document.querySelector('.qrCode > canvas');
 
+    const pngUrl = canvas
+      .toDataURL('image/png')
+      .replace('image/png', 'image/octet-stream');
+    let downloadLink = document.createElement('a');
+    downloadLink.href = pngUrl;
+    downloadLink.download = 'beweddy.png';
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
   };
-
   if (sidebar) {
     return (
       <div className='flex flex-col justify-center items-center space-y-5'>
         <h4 className='text-xl font-medium'>Personalized QR Code</h4>
         <div className='qrCode'>
 
-          <QRCodeImg
+          {/* <QRCodeImg
             {...{ value }}
             size={200}
             image={{
@@ -43,8 +41,8 @@ const QRCodeGenerator = ({ sidebar }) => {
               x: 'center',
               y: 'center',
             }}
-          />
-          {/* <QRCode
+          /> */}
+          <QRCode
             {...{ value }}
             size={200}
             eyeRadius={[
@@ -61,7 +59,7 @@ const QRCodeGenerator = ({ sidebar }) => {
             // style={{image}
             logoImage="/icons/circle-ring.png"
             // logoImage='https://res.cloudinary.com/muttakinhasib/image/upload/v1621273993/avatar/user_dmy5bs.png'
-          /> */}
+          />
         </div>
         <div className="flex flex-col items-center space-y-3">
           <Link href="/dashboard/features/qrcode-and-links">
@@ -89,7 +87,7 @@ const QRCodeGenerator = ({ sidebar }) => {
             <h4 className='text-xl font-medium'>Demo QR | Your QR Code</h4>
             <div className='qrCode'>
 
-              <QRCodeImg
+              {/* <QRCodeImg
                 {...{ value }}
                 size={200}
                 image={{
@@ -101,8 +99,8 @@ const QRCodeGenerator = ({ sidebar }) => {
                   y: 'center',
 
                 }}
-              />
-              {/* <QRCode
+              /> */}
+              <QRCode
                 {...{ value }}
                 size={200}
                 eyeRadius={[
@@ -118,7 +116,7 @@ const QRCodeGenerator = ({ sidebar }) => {
                 logoWidth={50}
                 // style={{image}
                 logoImage='/icons/circle-ring.png'
-              /> */}
+              />
             </div>
             <button
               className="bg-white font-inter cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition duration-300 hover:bg-secondary-alternative/30"
