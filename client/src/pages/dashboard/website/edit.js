@@ -228,15 +228,6 @@ const EditWebsitePage = () => {
       const { data } = await axios.post(URL, formData, config);
       const { public_id, height, width, secure_url, url } = data;
 
-      // const formData = new FormData();
-
-      // formData.append('image', file);
-      // formData.append(
-      //   'folder',
-      //   process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
-      // );
-      // const data = await attemptImageUpload(formData);
-
       setUploadedFiles((prev) => [
         ...prev,
         { public_id, height, width, secure_url, url },
