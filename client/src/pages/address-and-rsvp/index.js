@@ -45,48 +45,60 @@ const GiftRegistryPage = () => {
     <>
       <Head>
         <title>BeWeddy | Address & RSVP</title>
-        <meta name='description' content='Collect Addresses & RSVP' />
+        <meta name="description" content="Collect Addresses & RSVP" />
       </Head>
+
       <Header />
-      <PageTitle title='Address & RSVP' />
-      <div className='gradient'>
-        <div className='container py-20'>
+
+      <PageTitle title="Address & RSVP" />
+
+      <div className="gradient">
+        <div className="container py-20">
           <div className={`grid gap-10 md:grid-cols-3`}>
             <div className={`self-center md:col-span-2`}>
-              <SectionHeading className='text-center md:!text-left'>
+              <SectionHeading className="text-center md:!text-left">
                 Collect Addresses & RSVP
               </SectionHeading>
-              <Paragraph className='text-center mx-auto md:!mx-0 md:text-left'>
+
+              <Paragraph className="text-center mx-auto md:!mx-0 md:text-left">
                 With these fun features you can, Text E-mail and even DM your
                 wedding party to gather addresses.
               </Paragraph>
-              <div className='flex items-center justify-center md:justify-start'>
+
+              <div className="flex items-center justify-center md:justify-start">
                 <LinkButton
-                  href='/create-website'
-                  label='Create Your Wedding Website'
-                  className='!rounded-[5px] !py-3 !px-7 !m-0 md:!mr-auto'
+                  href="/create-website"
+                  label="Create Your Wedding Website"
+                  className="!rounded-[5px] !py-3 !px-7 !m-0 md:!mr-auto"
                 />
               </div>
             </div>
+
             <div className={`self-center md:col-span-1`}>
               <img
-                src='/images/rsvp.png'
-                alt=''
-                className='max-h-[395px] lg:max-h-[450px] mx-auto'
+                src="/images/rsvp.png"
+                alt=""
+                className="max-h-[395px] lg:max-h-[450px] mx-auto"
               />
             </div>
           </div>
         </div>
       </div>
+
       <Offers
-        title='How Address & RSVP Works'
-        className='border-b-4'
+        title="How Address & RSVP Works"
+        className="border-b-4"
         {...{ offers }}
       />
+
       <GiftCards />
+
       <Registries />
+
       <HowItWork />
+
       <CreateAccount />
+
       <Footer />
     </>
   );

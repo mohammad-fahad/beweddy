@@ -84,7 +84,7 @@ const Dashboard = () => {
           <DashboardHeader
             title={
               <h1 className="flex gap-2 text-2xl">
-                Dashboard <img src="/Emoji.png" alt="dashboard" />{" "}
+                Dashboard <img src="/Emoji.png" alt="dashboard" />
               </h1>
             }
           />
