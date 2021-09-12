@@ -1,6 +1,6 @@
-import Link from "next/link";
-import Drawer from "./drawer";
-import Sidebar from "./Sidebar";
+import Link from 'next/link';
+import Drawer from './drawer';
+import Sidebar from './Sidebar';
 
 const DashboardLayout = ({ children, shadow }) => {
   return (
@@ -13,11 +13,7 @@ const DashboardLayout = ({ children, shadow }) => {
           >
             <Link href="/dashboard">
               <a className={`inline-block space-y-2`}>
-                <img
-                  src="/images/logo.png"
-                  alt=""
-                  className="h-[88px]"
-                />
+                <img src="/images/logo.png" alt="" className="h-[88px]" />
                 <h3 className="text-base font-medium ">
                   All-In-One Wedding Platform.
                 </h3>
@@ -32,7 +28,7 @@ const DashboardLayout = ({ children, shadow }) => {
       {shadow ? (
         <div className="w-full">{children}</div>
       ) : (
-        <div className="container w-full pr-16 xxl:pr-0">{children}</div>
+        <div className="w-full px-3">{children}</div>
       )}
     </div>
   );
