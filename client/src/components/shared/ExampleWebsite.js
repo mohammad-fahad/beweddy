@@ -47,8 +47,9 @@ const ExampleWebsite = ({ label, href, seo }) => {
             className="flex flex-col items-center justify-center w-full -mt-9 sm:mt-0"
           >
             <motion.div variants={fadeInUp}>
-              <h2 className="max-w-3xl pb-8 mx-auto text-[36px] text-center capitalize">
-                Link & Sync Your Gift Registries <br /> All In One Place!
+              <h2 className=" pb-8 mx-auto text-[36px] text-center capitalize commonTitle1">
+                {/* Link & Sync Your Gift Registries <br /> All In One Place! */}
+                Wedding Website Preview
               </h2>
               <div className="w-48 mx-auto h-[2px] md:h-[4px] mb-16 bg-primary mt-6" />
             </motion.div>
