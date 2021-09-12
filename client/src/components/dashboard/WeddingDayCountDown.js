@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const WeddingDayCountDown = ({ sm, couple }) => {
-  const { user: userCouple } = useSelector(state => state.user);
+  const { user: userCouple } = useSelector((state) => state.user);
   const user = couple || userCouple;
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
@@ -34,7 +34,7 @@ const WeddingDayCountDown = ({ sm, couple }) => {
   }, []);
 
   return (
-    <div className={`flex items-center space-x-5`}>
+    <div className={`flex items-center justify-center flex-wrap gap-3`}>
       <div
         className={`flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg ${
           sm ? 'min-w-[60px] py-[7px]' : 'min-w-[103px] py-5'
