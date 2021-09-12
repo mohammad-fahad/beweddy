@@ -3,7 +3,7 @@ import { XIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 import { Fragment, useEffect, useState } from "react";
 import { useMediaQuery } from "@react-hook/media-query";
-import Link from 'next/link'
+import Link from "next/link";
 
 const giftCards = [
   {
@@ -184,7 +184,7 @@ const GiftCards = () => {
         <div className="w-48 mx-auto h-[2px] md:h-[4px] mb-16 bg-primary" />
 
         <div className="relative grid w-full grid-cols-2 px-5 mx-auto my-20 md:grid-cols-3 lg:grid-cols-4 sm:px-0 sm:max-w-full gap-x-5 sm:gap-x-10">
-          {giftCards.map((giftCard, index) => {
+          {giftCards.slice(0, -1).map((giftCard, index) => {
             return (
               <Fragment key={index}>
                 <div

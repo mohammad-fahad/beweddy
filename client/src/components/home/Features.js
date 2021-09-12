@@ -75,10 +75,17 @@ const Features = () => {
             <Image
               width={365}
               height={750}
-              src="/images/feature-mobile.png"
+              src="/images/homePageMoble.png"
               alt=""
               // className='mx-auto w-72'
             />
+            {/* <Image
+              width={365}
+              height={750}
+              src="/images/feature-mobile.png"
+              alt=""
+              // className='mx-auto w-72'
+            /> */}
           </div>
         </div>
       </div>

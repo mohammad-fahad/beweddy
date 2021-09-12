@@ -99,11 +99,9 @@ export const Header = () => {
         </div>
         {/* {isSearchOpen && <SearchBar />} */}
         {/* <div className='items-center justify-between flex-1 hidden gap-10 xl:hidden sm:flex xl:gap-20'> */}
-        <div className="flex items-center justify-between flex-1 gap-10 xl:hidden xl:gap-20">
+        <div className="flex items-center justify-between gap-10 xl:hidden xl:gap-20">
           {/* Search Bar Area */}
-
-          <SearchBar />
-
+            <SearchBar />
           {/* Search Bar Area End */}
           {/* Social Links */}
           <div className="hidden md:block">
