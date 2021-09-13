@@ -115,6 +115,12 @@ const Footer = ({ hideSocial }) => {
                 <span>About BeWeddy!</span>
               </a>
             </Link>
+            <Link href="/howItWork">
+              <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
+                <span>How it Works?</span>
+                {/* <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300"></span> */}
+              </a>
+            </Link>
             <Link href="/terms">
               <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
                 <span>Terms of Uses</span>
@@ -123,7 +129,7 @@ const Footer = ({ hideSocial }) => {
             </Link>
             <Link href="/privacuPolicy">
               <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
-                <span>Privacy Policy</span>
+                <span>Privacy & Policy</span>
                 {/* <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300"></span> */}
               </a>
             </Link>

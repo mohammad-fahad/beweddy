@@ -1,28 +1,28 @@
-import Head from 'next/head';
-import Link from 'next/link';
+import Head from "next/head";
+import Link from "next/link";
 // import Image from 'next/image';
-import { Image } from 'cloudinary-react';
-import { DashboardHeader } from '@components/dashboard';
-import DashboardTopBar from '@components/dashboard/header/TopBar';
-import DashboardLayout from '@components/dashboard/layout';
-import { Button, Footer, Heading } from '@components/index';
-import { LinkIcon, PencilIcon, SelectorIcon } from '@heroicons/react/outline';
-import { withAuthRoute } from '@hoc/withAuthRoute';
-import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import Swiper from 'react-id-swiper';
+import { Image } from "cloudinary-react";
+import { DashboardHeader } from "@components/dashboard";
+import DashboardTopBar from "@components/dashboard/header/TopBar";
+import DashboardLayout from "@components/dashboard/layout";
+import { Button, Footer, Heading } from "@components/index";
+import { LinkIcon, PencilIcon, SelectorIcon } from "@heroicons/react/outline";
+import { withAuthRoute } from "@hoc/withAuthRoute";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import Swiper from "react-id-swiper";
 
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
-import SwiperCore, { Lazy, Autoplay } from 'swiper';
-import { Listbox, Transition } from '@headlessui/react';
-import { Fragment } from 'react';
-import { CheckIcon } from '@heroicons/react/solid';
-import { useRouter } from 'next/router';
-import { attemptCreateGuest } from '@features/guest/guestActions';
-import { client } from 'pages/_app';
+import SwiperCore, { Lazy, Autoplay } from "swiper";
+import { Listbox, Transition } from "@headlessui/react";
+import { Fragment } from "react";
+import { CheckIcon } from "@heroicons/react/solid";
+import { useRouter } from "next/router";
+import { attemptCreateGuest } from "@features/guest/guestActions";
+import { client } from "pages/_app";
 
 SwiperCore.use([Lazy, Autoplay]);
 
@@ -35,9 +35,9 @@ const params = {
 };
 
 const otherProviders = [
-  { name: 'Select Provider' },
-  { name: 'Airtel' },
-  { name: 'Robi' },
+  { name: "Select Provider" },
+  { name: "Airtel" },
+  { name: "Robi" },
 ];
 
 const providers = {
@@ -80,19 +80,19 @@ const AddressRSVP = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    mode: 'all',
+    mode: "all",
     shouldFocusError: false,
     shouldUnregister: true,
   });
-  watch(['guestEstimate', 'provider', 'allAbove_invite']);
+  watch(["guestEstimate", "provider", "allAbove_invite"]);
 
-  const allAbove = getValues('allAbove_invite');
+  const allAbove = getValues("allAbove_invite");
 
   useEffect(() => {
     if (allAbove) {
-      setValue('text_invite', true);
-      setValue('email_invite', true);
-      setValue('mail_invite', true);
+      setValue("text_invite", true);
+      setValue("email_invite", true);
+      setValue("mail_invite", true);
     }
   }, [allAbove]);
   const onSubmit = async data => {
@@ -241,7 +241,7 @@ const AddressRSVP = () => {
                     {...register('name', {
                       required: {
                         value: true,
-                        message: 'Name is required!',
+                        message: "Name is required!",
                       },
                     })}
                   />
@@ -262,12 +262,12 @@ const AddressRSVP = () => {
                     {...register('email', {
                       required: {
                         value: true,
-                        message: 'Email is required!',
+                        message: "Email is required!",
                       },
                       pattern: {
                         value:
                           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                        message: 'Must be a valid email address',
+                        message: "Must be a valid email address",
                       },
                     })}
                   />
@@ -296,7 +296,7 @@ const AddressRSVP = () => {
                       {...register('street', {
                         required: {
                           value: true,
-                          message: 'Street is required!',
+                          message: "Street is required!",
                         },
                       })}
                     />
@@ -313,7 +313,7 @@ const AddressRSVP = () => {
                       {...register('providence', {
                         required: {
                           value: true,
-                          message: 'Providence is required!',
+                          message: "Providence is required!",
                         },
                       })}
                     />
@@ -332,7 +332,7 @@ const AddressRSVP = () => {
                       {...register('city', {
                         required: {
                           value: true,
-                          message: 'City is required!',
+                          message: "City is required!",
                         },
                       })}
                     />
@@ -349,7 +349,7 @@ const AddressRSVP = () => {
                       {...register('state', {
                         required: {
                           value: true,
-                          message: 'State is required!',
+                          message: "State is required!",
                         },
                       })}
                     />
@@ -369,7 +369,7 @@ const AddressRSVP = () => {
                     {...register('zip', {
                       required: {
                         value: true,
-                        message: 'Zip is required!',
+                        message: "Zip is required!",
                       },
                     })}
                   />
@@ -426,8 +426,8 @@ const AddressRSVP = () => {
                                 className={({ active }) =>
                                   `${
                                     active
-                                      ? 'text-amber-900 bg-secondary-alternative/20'
-                                      : 'text-gray-900'
+                                      ? "text-amber-900 bg-secondary-alternative/20"
+                                      : "text-gray-900"
                                   }
                           cursor-pointer select-none relative py-2 pl-10 pr-4`
                                 }
@@ -437,7 +437,7 @@ const AddressRSVP = () => {
                                   <>
                                     <span
                                       className={`${
-                                        selected ? 'font-medium' : 'font-normal'
+                                        selected ? "font-medium" : "font-normal"
                                       } block truncate`}
                                     >
                                       {country.name}
@@ -446,8 +446,8 @@ const AddressRSVP = () => {
                                       <span
                                         className={`${
                                           active
-                                            ? 'text-amber-600'
-                                            : 'text-amber-600'
+                                            ? "text-amber-600"
+                                            : "text-amber-600"
                                         }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                       >
@@ -473,11 +473,11 @@ const AddressRSVP = () => {
                       {...register('phone', {
                         required: {
                           value: true,
-                          message: 'Phone numbers are required!',
+                          message: "Phone numbers are required!",
                         },
                         pattern: {
                           value: /^([0-9\(\)\/\+ \-]*)$/,
-                          message: 'Must be a valid phone number',
+                          message: "Must be a valid phone number",
                         },
                       })}
                     />
@@ -638,7 +638,7 @@ const AddressRSVP = () => {
                   </div>
                 </div>
 
-                {getValues('provider') === 'Other' && (
+                {getValues("provider") === "Other" && (
                   <Listbox
                     value={selectedProvider}
                     onChange={setSelectedProvider}
@@ -668,8 +668,8 @@ const AddressRSVP = () => {
                               className={({ active }) =>
                                 `${
                                   active
-                                    ? 'text-secondary bg-secondary-alternative/50'
-                                    : 'text-gray-900'
+                                    ? "text-secondary bg-secondary-alternative/50"
+                                    : "text-gray-900"
                                 }
                           cursor-pointer select-none relative py-2 pl-10 pr-4 font-medium`
                               }
@@ -679,7 +679,7 @@ const AddressRSVP = () => {
                                 <>
                                   <span
                                     className={`${
-                                      selected ? 'font-semibold' : 'font-medium'
+                                      selected ? "font-semibold" : "font-medium"
                                     } block truncate`}
                                   >
                                     {provider.name}
@@ -688,8 +688,8 @@ const AddressRSVP = () => {
                                     <span
                                       className={`${
                                         active
-                                          ? 'text-amber-600'
-                                          : 'text-amber-600'
+                                          ? "text-amber-600"
+                                          : "text-amber-600"
                                       }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                     >
