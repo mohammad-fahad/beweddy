@@ -496,7 +496,7 @@ const TextInvitesPage = () => {
                           </div>
                           <span></span>
                         </div>
-                        <div className='phone-layout flex flex-col justify-between max-h-[calc(540px-88px)] min-h-[calc(540px-88px)] h-full ml-3 mt-2 pb-2'>
+                        <div className='phone-layout flex flex-col justify-end space-y-5 max-h-[calc(540px-88px)] min-h-[calc(540px-88px)] h-full ml-3 mt-2 pb-2'>
                           <style jsx>
                             {`
                               .phone-layout: {
@@ -509,16 +509,12 @@ const TextInvitesPage = () => {
                             `}
                           </style>
                           <div className='ml-auto'>
-                            <Image
-                              width={150}
-                              height={230}
-                              src='/images/nate&ash.png'
-                            />
+                            {uploadedFile && (
+                              <img src={uploadedFile.url} alt='' />
+                            )}
                           </div>
                           <div className='relative w-full text-white font-medium text-sm rounded-[10px] px-5 py-3 bg-[#1788Fe]'>
-                            <div
-                              dangerouslySetInnerHTML={{ __html: message }}
-                            />
+                            <div className='break-words'>{message}</div>
                             <svg
                               width='41'
                               height='29'
@@ -546,7 +542,7 @@ const TextInvitesPage = () => {
       <CropImage
         onSave={onCropSave}
         selectedFile={selectedImageFile}
-        aspectRatio={16 / 9}
+        // aspectRatio={16 / 9}
       />
       <Footer hideSocial />
     </Fragment>
