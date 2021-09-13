@@ -142,7 +142,6 @@ export const Header = () => {
         </div>
        
         <div className="flex items-center justify-between gap-10 xl:hidden xl:gap-20">
-
             <SearchBar />
           <div className="hidden md:block">
             <SocialLinks />

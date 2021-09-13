@@ -189,9 +189,8 @@ const GiftCards = () => {
             return (
               <Fragment key={index}>
                 <div
-                  className={`w-full py-5 rounded-xl overflow-hidden cursor-pointer transition-transform duration-300 ease-easing relative ${
-                    selected === index ? "" : "hover:scale-110"
-                  }`}
+                  className={`w-full py-5 rounded-xl overflow-hidden cursor-pointer transition-transform duration-300 ease-easing relative ${selected === index ? "" : "hover:scale-110"
+                    }`}
                   onClick={() => {
                     handleTooltip(index + 1);
                     setTooltip(giftCard);
