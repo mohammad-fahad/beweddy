@@ -851,7 +851,11 @@ const AddressRSVP = () => {
                   type="range"
                   min="1"
                   max="100"
+<<<<<<< HEAD
                   className="block cursor-pointer text-center rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal !w-[322px] "
+=======
+                  className="block cursor-pointer text-center rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
+>>>>>>> ff09768adaf80f5c39a1fab76042548e8377e4cd
                   {...register("guestEstimate")}
                 />
               </div>

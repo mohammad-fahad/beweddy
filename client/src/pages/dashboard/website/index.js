@@ -242,8 +242,12 @@ const WebsitePageOne = () => {
                 <ul className="space-y-3">
                   {user?.receptionDetails?.map((el) => (
                     <li className="w-full px-7 py-2 space-x-5 border border-[#D5D5D5] hover:border-primary cursor-pointer">
-                      <span className="text-lg font-bold subTitle mr-2 ">{el?.time}</span>
-                      <span className="text-lg font-normal miniTitle">{el?.details}</span>
+                      <span className="mr-2 text-lg font-bold subTitle ">
+                        {el?.time}
+                      </span>
+                      <span className="text-lg font-normal miniTitle">
+                        {el?.details}
+                      </span>
                     </li>
                   ))}
                 </ul>
