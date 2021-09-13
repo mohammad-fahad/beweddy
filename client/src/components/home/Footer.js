@@ -1,4 +1,3 @@
-import { Heading } from "@components/index";
 import {
   Facebook,
   Instagram,
@@ -26,42 +25,67 @@ const Footer = ({ hideSocial }) => {
               </h4>
             </div>
             <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14 socialGap ">
-              <a href="#">
+              <a
+                target="_blank"
+                href="https://facebook.com/"
+                rel="noopener noreferrer"
+              >
                 <Facebook
                   size={35}
                   color="#1877F2"
                   className="transition duration-300 hover:scale-125"
                 />
               </a>
-              <a href="#">
+              <a
+                target="_blank"
+                href="https://twitter.com/"
+                rel="noopener noreferrer"
+              >
                 <Twitter
                   size={35}
                   color="#1DA1F2"
                   className="transition duration-300 hover:scale-125"
                 />
               </a>
-              <a href="#">
+              <a
+                target="_blank"
+                href="https://instagram.com/"
+                rel="noopener noreferrer"
+              >
                 <Instagram
                   size={35}
                   color="#E4355F"
                   className="transition duration-300 hover:scale-125"
                 />
               </a>
-              <a href="#">
+              <a
+                target="_blank"
+                href="https://linkedin.com/"
+                rel="noopener noreferrer"
+              >
                 <Linkedin
                   size={35}
                   color="#0A66C2"
                   className="transition duration-300 hover:scale-125"
                 />
               </a>
-              <a href="#" title="google">
+              <a
+                target="_blank"
+                href="https://gmail.com/"
+                rel="noopener noreferrer"
+                title="google"
+              >
                 <img
                   src="/icons/gmail.svg"
                   alt="gmail"
                   className="w-[35px] h-[35px] hover:scale-125 transition duration-300"
                 />
               </a>
-              <a href="#">
+              <a
+                target="_blank"
+                href="https://youtube.com/"
+                rel="noopener noreferrer"
+              >
                 <Youtube
                   color="#FF0000"
                   size={35}
@@ -76,8 +100,8 @@ const Footer = ({ hideSocial }) => {
       )}
 
       <div className="py-8 bg-gradient-to-br from-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary">
-        {/* <div className="container flex flex-wrap items-center justify-center gap-5 sm:flex-wrap-reverse sm:justify-between"> */}
-        <div className="container flex flex-col-reverse flex-wrap items-center justify-center gap-5 md:flex-row sm:justify-between">
+        {/* <div className="container flex flex-col-reverse flex-wrap items-center justify-center gap-5 !md:flex-row sm:justify-between"> */}
+        <div className="container flex !flex-row flex-wrap items-center justify-center gap-5  sm:justify-between footerWrapper">
           <p className="text-base">
             <strong className="font-semibold">
               &copy; {new Date().getFullYear()} BeWeddy.
@@ -85,14 +109,8 @@ const Footer = ({ hideSocial }) => {
             All rights reserved.
           </p>
           {/* <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-between sm:gap-6"> */}
-          <div className="flex flex-col items-center justify-center gap-3 md:flex-row sm:justify-between sm:gap-6">
+          <div className="flex flex-col flex-wrap items-center justify-center gap-3 md:flex-row sm:justify-between sm:gap-6">
             <Link href="/about">
-              {/* <a className="relative font-semibold transition-colors duration-300 text-primary font-inter group hover:text-primary">
-                <span>About BeWeddy!</span>
-                {/* <span
-                  className={`absolute bottom-[-6px] left-0 w-full h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300`}
-                ></span>
-              </a> */}
               <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
                 <span>About BeWeddy!</span>
               </a>
