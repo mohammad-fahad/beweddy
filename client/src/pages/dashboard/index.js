@@ -70,21 +70,21 @@ const navLinks = [
 ];
 
 const Dashboard = () => {
-  const { user } = useSelector((state) => state.user);
+  const { user } = useSelector(state => state.user);
   return (
     <>
       <Head>
         <title>Beweddy | Dashboard</title>
       </Head>
 
-      <div className="m-auto">
+      <div className='m-auto'>
         {/* {loading && <Loader />} */}
         <DashboardTopBar coupleName />
         <DashboardLayout shadow>
           <DashboardHeader
             title={
-              <h1 className="flex gap-2 text-2xl">
-                Dashboard <img src="/Emoji.png" alt="dashboard" />
+              <h1 className='flex gap-2 text-2xl'>
+                Dashboard <img src='/Emoji.png' alt='dashboard' />
               </h1>
             }
           />
@@ -93,12 +93,12 @@ const Dashboard = () => {
 
           </div>
         </div> */}
-          <div className="space-y-10 shadow-box">
-            <div className="max-w-[1300px] w-full">
-              <div className="px-6 my-10 sm:px-12 xxl:pr-0">
-                <div className="text-center mb-[53px]">
-                  <h3 className="relative inline-block text-2xl font-normal">
-                    <span className="absolute inline-block w-full mx-auto bottom-[-12px] left-1/2 h-[2px] max-w-[52px] -translate-x-1/2 bg-primary"></span>
+          <div className='space-y-10 shadow-box'>
+            <div className='max-w-[1300px] w-full'>
+              <div className='px-6 my-10 sm:px-12 xxl:pr-0'>
+                <div className='text-center mb-[53px]'>
+                  <h3 className='relative inline-block text-2xl font-normal'>
+                    <span className='absolute inline-block w-full mx-auto bottom-[-12px] left-1/2 h-[2px] max-w-[52px] -translate-x-1/2 bg-primary'></span>
                     Your Apps
                   </h3>
                 </div>
@@ -107,23 +107,23 @@ const Dashboard = () => {
                 <div className="flex mb-[50px]  gap-x-5 gap-y-5 sm:gap-5 justify-center items-center flex-wrap">
                   {navLinks.map((link, index) => (
                     <Link key={index} href={link.route}>
-                      <a className="flex w-[150px] flex-col items-center justify-center space-y-5 group">
-                        <div className="relative">
-                          <div className="pulse flex items-center justify-center border-2 border-transparent group-hover:border-primary rounded-full p-2 w-[90px] h-[90px] group-hover:bg-[#FCE0EB]">
-                            <div className="w-[42px] h-[42px] sm:w-[46px] sm:h-[46px] relative">
+                      <a className='flex w-[150px] flex-col items-center justify-center space-y-5 group'>
+                        <div className='relative'>
+                          <div className='pulse flex items-center justify-center border-2 border-transparent group-hover:border-primary rounded-full p-2 w-[90px] h-[90px] group-hover:bg-[#FCE0EB]'>
+                            <div className='w-[42px] h-[42px] sm:w-[46px] sm:h-[46px] relative'>
                               {/* <Image width={46} height={46} src={link.icon} /> */}
                               <Image
-                                layout="fill"
+                                layout='fill'
                                 src={link.icon}
-                                className="relative object-contain w-full"
+                                className='relative object-contain w-full'
                               />
                             </div>
-                            <span className="!hidden group-hover:!inline-block">
+                            <span className='!hidden group-hover:!inline-block'>
                               <span></span>
                             </span>
                           </div>
                         </div>
-                        <h4 className="text-sm font-semibold text-center capitalize whitespace-nowrap">
+                        <h4 className='text-sm font-semibold text-center capitalize whitespace-nowrap'>
                           {link.label}
                         </h4>
                       </a>
@@ -132,38 +132,40 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              <div className="relative w-full border-t-4 border-b-4 gradient border-primary">
-                <div className="text-center my-[50px]">
-                  <h3 className="relative inline-block text-2xl font-normal">
-                    <span className="absolute inline-block w-full mx-auto bottom-[-12px] left-1/2 h-[2px] max-w-[52px] -translate-x-1/2 bg-primary"></span>
+              <div className='relative w-full border-t-4 border-b-4 gradient border-primary'>
+                <div className='text-center my-[50px]'>
+                  <h3 className='relative inline-block text-2xl font-normal'>
+                    <span className='absolute inline-block w-full mx-auto bottom-[-12px] left-1/2 h-[2px] max-w-[52px] -translate-x-1/2 bg-primary'></span>
                     Your Wedding Stats
                   </h3>
                 </div>
                 <ActivityInfo />
                 <WebsitePreviewContainer minimal />
               </div>
-              <div className="flex items-center flex-wrap px-[1.15rem] xs:space-y-0 space-x-3 md:space-x-5 justify-center my-[50px]">
-                <Link href="/dashboard/website/edit">
+              <div className='flex items-center flex-wrap px-[1.15rem] xs:space-y-0 space-x-3 md:space-x-5 justify-center my-[50px]'>
+                <Link href='/dashboard/website/edit'>
                   <a
                     className={`capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
                   >
-                    <PencilIcon className="hidden w-5 h-5 sm:inline-block" />
+                    <PencilIcon className='hidden w-5 h-5 sm:inline-block' />
                     <span>Edit your website</span>
                   </a>
                 </Link>
-                <Link href="/dashboard/website">
+                <Link href={`/${user?.username}`}>
                   <a
+                    target="_blank"
+
                     className={`capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
                   >
-                    <GlobeAltIcon className="hidden w-5 h-5 sm:inline-block" />
+                    <GlobeAltIcon className='hidden w-5 h-5 sm:inline-block' />
                     <span>Preview Website</span>
                   </a>
                 </Link>
-                <Link href="/">
+                <Link href='/'>
                   <a
                     className={`mt-3 xs:mt-0 capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
                   >
-                    <LinkIcon className="hidden w-5 h-5 sm:inline-block" />
+                    <LinkIcon className='hidden w-5 h-5 sm:inline-block' />
                     <span>Superlink</span>
                   </a>
                 </Link>

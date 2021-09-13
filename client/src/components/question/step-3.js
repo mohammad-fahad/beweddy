@@ -277,17 +277,6 @@ const UploadAnnouncement = () => {
             </label>
           </motion.div>
         </motion.div>
-        <motion.p
-          className='font-light max-w-lg text-center !-mt-5 md:mt-0'
-          variants={fadeInUp}
-        >
-          Don’t have one yet? we recommend Esty <br />
-          <Link href='/'>
-            <a className='font-inter text-blue-500 font-semibold hover:underline mt-3 block'>
-              Etsy.com/beweddy
-            </a>
-          </Link>
-        </motion.p>
         <motion.div
           className='my-1 md:my-5 text-center flex items-center gap-5 flex-wrap sm:flex-nowrap'
           variants={fadeInUp}

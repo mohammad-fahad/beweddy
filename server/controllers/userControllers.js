@@ -13,8 +13,24 @@ import {
 } from '../utils/mailer/index.js';
 import { client } from '../lib/google.js';
 import { nanoid } from 'nanoid';
+import Todo from '../models/Todo.js';
 
 // Register New User
+
+const defaultTodos = [
+  {
+    isComplete: true,
+    description: 'List No. 1; The Bride is Always Right',
+  },
+  {
+    isComplete: true,
+    description: 'List No. 2; Buy A Beautiful & Expensive Wedding Dress.',
+  },
+  {
+    isComplete: false,
+    description: 'Appointment with The Wedding Planner @HouseOffice At 9:30 AM',
+  },
+];
 
 export const register = asyncHandler(async (req, res) => {
   const { email, password, questions, role } = req.body;
@@ -42,6 +58,13 @@ export const register = asyncHandler(async (req, res) => {
   });
 
   if (user) {
+    defaultTodos.forEach(async todo => {
+      await Todo.create({
+        user: user._id,
+        ...todo,
+      });
+    });
+
     const activationToken = generateActivationToken(user._id);
     const url = `${process.env.CLIENT_URL}/activation/${activationToken}`;
     await sendActivationEmail(user.fullName, email, url);
@@ -105,6 +128,12 @@ export const googleSignUp = asyncHandler(async (req, res) => {
     });
 
     if (user) {
+      defaultTodos.forEach(async todo => {
+        await Todo.create({
+          user: user._id,
+          ...todo,
+        });
+      });
       res.json({
         user: {
           _id: user._id,

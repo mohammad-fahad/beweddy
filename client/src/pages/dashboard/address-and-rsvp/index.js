@@ -60,6 +60,7 @@ const AddressRSVP = () => {
   const {
     watch,
     register,
+    setValue,
     getValues,
     handleSubmit,
     formState: { errors },
@@ -68,8 +69,17 @@ const AddressRSVP = () => {
     shouldFocusError: false,
     shouldUnregister: true,
   });
-  watch(['guestEstimate', 'provider']);
+  watch(['guestEstimate', 'provider', 'allAbove_invite']);
 
+  const allAbove = getValues('allAbove_invite');
+
+  useEffect(() => {
+    if (allAbove) {
+      setValue('text_invite', true);
+      setValue('email_invite', true);
+      setValue('mail_invite', true);
+    }
+  }, [allAbove]);
   const onSubmit = async (data) => {
     dispatch(attemptCreateGuest(submitData(data)));
     await client.invalidateQueries('guests');
@@ -823,7 +833,10 @@ const AddressRSVP = () => {
                 </div>
               </div>
 
-              <div className="space-y-3 !mt-10">
+              <div
+                className="space-y-3 !mt-10 "
+                title="Please include yourself"
+              >
                 <Heading h3 className="!text-[22px] !font-medium">
                   RSVP Estimate Guests
                 </Heading>
