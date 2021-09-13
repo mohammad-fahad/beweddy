@@ -228,7 +228,6 @@ const EditWebsitePage = () => {
       const { data } = await axios.post(URL, formData, config);
       const { public_id, height, width, secure_url, url } = data;
 
-
       setUploadedFiles((prev) => [
         ...prev,
         { public_id, height, width, secure_url, url },
@@ -519,6 +518,9 @@ const EditWebsitePage = () => {
               <div className="space-y-5">
                 <div className="flex items-center justify-between space-x-5">
                   <Heading h3>Our story</Heading>
+                  <button className="px-5 py-2">
+                    <MinusIcon className="w-7" />
+                  </button>
                 </div>
                 <textarea
                   cols="30"

@@ -1,23 +1,23 @@
-import Link from "next/link";
-import { useCallback, useRef, useState } from "react";
-import { QRCode } from "react-qrcode-logo";
+import Link from 'next/link';
+import { useCallback, useRef, useState } from 'react';
+import { QRCode } from 'react-qrcode-logo';
 // import QRCode from 'qrcode.react';
-import { useSelector } from "react-redux";
-import Heading from "./Heading";
+import { useSelector } from 'react-redux';
+import Heading from './Heading';
 
 const QRCodeGenerator = ({ sidebar }) => {
   const { user } = useSelector((state) => state.user);
-  const [value, setValue] = useState("https://beweddy-delta.vercel.app/");
-  const [link, setLink] = useState("https://beweddy-delta.vercel.app/");
+  const [value, setValue] = useState('https://beweddy-delta.vercel.app/');
+  const [link, setLink] = useState('https://beweddy-delta.vercel.app/');
   const download = () => {
-    const canvas = document.querySelector(".qrCode > canvas");
+    const canvas = document.querySelector('.qrCode > canvas');
 
     const pngUrl = canvas
-      .toDataURL("image/png")
-      .replace("image/png", "image/octet-stream");
-    let downloadLink = document.createElement("a");
+      .toDataURL('image/png')
+      .replace('image/png', 'image/octet-stream');
+    let downloadLink = document.createElement('a');
     downloadLink.href = pngUrl;
-    downloadLink.download = "beweddy.png";
+    downloadLink.download = 'beweddy.png';
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
@@ -78,7 +78,7 @@ const QRCodeGenerator = ({ sidebar }) => {
   return (
     <div className="border-t-4 border-gray-200 bg-gradient-to-br from-[#FCE3EB] to-white py-10">
       <div className="container">
-        <div className="flex p-10 space-x-28">
+        <div className="flex flex-wrap items-center justify-center gap-5 p-5 md:gap-8 lg:p-10">
           <div className="flex flex-col space-y-8">
             <h4 className="text-xl font-medium">Demo QR | Your QR Code</h4>
             <div className="qrCode">
@@ -133,7 +133,7 @@ const QRCodeGenerator = ({ sidebar }) => {
             <div>
               <button
                 className="bg-white font-inter cursor-pointer text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition-colors duration-300 hover:border-primary"
-                onClick={() => alert("Under construction")}
+                onClick={() => alert('Under construction')}
               >
                 upload Image
               </button>
