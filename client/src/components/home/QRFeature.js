@@ -4,10 +4,13 @@ const QRFeature = () => {
   return (
     <div className="py-16 border-t-4 border-primary">
       <div className="w-full max-w-6xl px-10 mx-auto">
-        <Heading label="Personalized QR Codes" className="!text-[36px] commonTitle" />
+        <Heading
+          label="Personalized QR Codes"
+          className="!text-[36px] commonTitle"
+        />
         <div className="grid gap-16 md:grid-cols-2 lg:grid-cols-3 md:gap-10 lg:gap-16">
           <div className="relative lg:col-span-2 self-center text-center md:text-left bg-[#F8F8F8] p-5 md:px-[55px] md:py-[46px] max-w-2xl w-full mx-auto">
-            <p className="text-[22px] font-normal !leading-[150.5%] max-w-[567px] w-full subTitle">
+            <p className="text-[20px] font-normal !leading-[150.5%] max-w-[567px] w-full subTitle">
               Custom QR Codes Help Any Guest Find and Support Your Wedding
               Platform Right From Their Phone!
             </p>

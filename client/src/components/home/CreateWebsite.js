@@ -1,4 +1,5 @@
 import { LinkButton, Heading } from "@components/index";
+import StartedButton from "@components/shared/StartedButton";
 import Link from "next/link";
 import Swiper from "react-id-swiper";
 import { useSelector } from "react-redux";
@@ -26,13 +27,8 @@ const CreateWebsite = () => {
         backgroundColor: "#FEDFF2",
       }}
     >
-      <div className="absolute z-20 mx-auto transition duration-200 left-2/4 -translate-x-2/4 -top-3 hover:scale-110">
-        <Link href="/create-website">
-          <a className="px-16 py-3 text-base bg-white border-2 whitespace-nowrap md:px-28 border-primary text-primary rounded-3xl">
-            Let's Get Started
-          </a>
-        </Link>
-      </div>
+      <StartedButton className="-top-3" />
+
       <div className="container py-20">
         <Heading
           label="Create Your BeWeddy Website"
@@ -67,9 +63,9 @@ const CreateWebsite = () => {
           </Swiper>
         </div>
         {!user && (
-          <div className="absolute z-20 mx-auto transition duration-200 left-2/4 -translate-x-2/4 -bottom-3 hover:scale-110">
+          <div className="absolute z-20 mx-auto transition duration-200 left-2/4 -translate-x-2/4 -bottom-5 hover:scale-110">
             <Link href="/create-website">
-              <a className="py-3 text-base bg-[#F9D1DE] border-2 px-14 whitespace-nowrap md:px-14 border-primary text-primary rounded-3xl">
+              <a className="py-5 text-[24px]  bg-[#ffffff] border-2 px-14 whitespace-nowrap border-primary text-primary rounded-full createButton ">
                 Create Your Wedding Website
               </a>
             </Link>
