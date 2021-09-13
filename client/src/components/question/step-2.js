@@ -228,7 +228,7 @@ const WeddingDay = () => {
         <motion.div variants={fadeInUp}>
           <Heading
             label={
-              <span className="flex align-center">
+              <span className="flex align-center commonTitle !text-[36px]">
                 When's Your Special Wedding Day?
                 <img src="/Emoji.png" alt="emoji" />
               </span>
@@ -276,10 +276,10 @@ const WeddingDay = () => {
             </label>
           </motion.div>
         </motion.div>
-        <motion.div
+        {/* <motion.div
           variants={fadeInUp}
           className={`w-48 mx-auto h-[2px] md:h-[3px] mb-5 md:mb-10 bg-primary`}
-        />
+        /> */}
         <motion.div variants={fadeInUp} className="flex items-center space-x-3">
           <input
             type="checkbox"
@@ -290,7 +290,7 @@ const WeddingDay = () => {
           />
           <label
             htmlFor="have2Reception"
-            className="text-[24px] font-normal cursor-pointer font-inter flex gap-3 customLabel"
+            className="flex gap-3 text-lg font-normal cursor-pointer font-inter customLabel"
           >
             Reception and wedding not on the same day?
           </label>

@@ -224,7 +224,7 @@ const UploadCouplePicture = () => {
         >
           <Heading
             label="Upload your favorite pictures of you two. ❤️"
-            color="bg-primary text-[36px] "
+            color="bg-primary !text-[36px] commonTitle"
             // className='pt-5 md:pt-0'
             lineStyle={{ marginBottom: "25px" }}
           />
@@ -296,7 +296,7 @@ const UploadCouplePicture = () => {
           />
           <label
             htmlFor="do_this_later_upload_couple"
-            className="text-2xl font-normal cursor-pointer font-inter"
+            className="text-2xl font-normal cursor-pointer font-inter subTitle"
           >
             I will do this later
           </label>
