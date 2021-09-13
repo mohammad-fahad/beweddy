@@ -24,7 +24,7 @@ export const Header = () => {
               <img
                 src='/images/logo.png'
                 alt=''
-                className='object-contain h-14 sm:h-16 md:h-20 md:w-[200px] w-[235px] '
+                className='object-contain h-16 md:h-20 w-[155px] md:w-[200px]'
               />
             </a>
           </Link>
@@ -32,8 +32,10 @@ export const Header = () => {
             <NavLinks />
             <SearchBar />
           </div>
-          <div className='flex flex-row items-center 2lg:flex-col 2lg:space-y-[30px]'>
-            {user ? <ProfileLinks {...{ user }} /> : <AuthLinks />}
+          <div className='flex flex-row items-center 2lg:flex-col space-x-3 2lg:space-x-0 2lg:space-y-[30px]'>
+            <div className='hidden sm:block'>
+              {user ? <ProfileLinks {...{ user }} /> : <AuthLinks />}
+            </div>
             <button
               className='inline-block 2lg:hidden text-sm font-bold transition-colors duration-300 font-inter group hover:text-primary'
               onClick={() => {
@@ -42,14 +44,14 @@ export const Header = () => {
               }}
             >
               {isOpen ? (
-                <XIcon className='w-8 h-8 text-gray-700' />
+                <XIcon className='w-10 sm:w-14 h-10 sm:h-14 text-gray-700' />
               ) : (
                 <svg
                   width='68'
                   height='68'
                   viewBox='0 0 68 68'
                   fill='none'
-                  className='w-8 h-8 text-gray-700'
+                  className='w-10 sm:w-14 h-10 sm:h-14 text-gray-700'
                   xmlns='http://www.w3.org/2000/svg'
                 >
                   <path
@@ -59,12 +61,15 @@ export const Header = () => {
                 </svg>
               )}
             </button>
-            <div className='hidden 2lg:block'>
+            <div className='hidden 2lg:block w-full'>
               <SocialLinks />
             </div>
           </div>
         </div>
-        <div className='block 2lg:!hidden'>
+        <div className='block 2lg:!hidden space-y-[15px]'>
+          <div className='sm:hidden block'>
+            {user ? <ProfileLinks {...{ user }} /> : <AuthLinks />}
+          </div>
           <SearchBar />
         </div>
       </div>
