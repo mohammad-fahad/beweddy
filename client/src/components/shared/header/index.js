@@ -13,7 +13,7 @@ export const Header = () => {
   const { user } = useSelector((state) => state.user);
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  
+
   return (
     <header className="relative bg-white">
       <div className="max-w-[1400px] px-10 xxl:px-0 mx-auto py-5 md:py-6 flex flex-col gap-5">
@@ -100,7 +100,7 @@ export const Header = () => {
         </div>
         {/* {isSearchOpen && <SearchBar />} */}
         {/* <div className='items-center justify-between flex-1 hidden gap-10 xl:hidden sm:flex xl:gap-20'> */}
-        <div className="flex items-center justify-between flex-1 gap-10 xl:hidden xl:gap-20">
+        <div className="flex items-center justify-between gap-10 xl:hidden xl:gap-20">
           {/* Search Bar Area */}
           <SearchBar />
           {/* Search Bar Area End */}

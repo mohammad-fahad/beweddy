@@ -228,6 +228,7 @@ const EditWebsitePage = () => {
       const { data } = await axios.post(URL, formData, config);
       const { public_id, height, width, secure_url, url } = data;
 
+
       setUploadedFiles((prev) => [
         ...prev,
         { public_id, height, width, secure_url, url },
@@ -352,7 +353,7 @@ const EditWebsitePage = () => {
             </h4>
             <form className="space-y-10" onSubmit={handleSubmit(onSubmit)}>
               <div className="space-y-2">
-                <div className="flex flex-wrap items-center justify-center gap-5">
+                <div className="flex flex-wrap items-center gap-5">
                   <input
                     type="text"
                     className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal"
@@ -375,7 +376,7 @@ const EditWebsitePage = () => {
                   />
                 </div>
 
-                <div className="flex flex-wrap items-center justify-center gap-5">
+                <div className="flex flex-wrap items-center gap-5">
                   <input
                     type="text"
                     className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal"
@@ -418,7 +419,7 @@ const EditWebsitePage = () => {
                     {errors?.couplePictures?.message}
                   </p>
                 </div>
-                <div className="flex flex-wrap items-center justify-center gap-5">
+                <div className="flex flex-wrap items-center gap-5">
                   {uploadedFiles.map((image) => (
                     <motion.div
                       key={image.public_id}
@@ -456,7 +457,7 @@ const EditWebsitePage = () => {
 
               <div className="space-y-5">
                 <Heading h3>Pick your wedding date</Heading>
-                <div className="flex items-center justify-center md:flex-start">
+                <div className="inline-block">
                   <DatePicker
                     selected={selectWeddingDay}
                     popperPlacement="top-end"
@@ -476,7 +477,7 @@ const EditWebsitePage = () => {
 
                 <Heading h3>Have 2 Receptions?</Heading>
 
-                <div className="flex flex-wrap items-center justify-center gap-3 md:justify-between">
+                <div className="flex flex-wrap items-center gap-5">
                   <div>
                     <DatePicker
                       selected={selectFirstReception}
@@ -518,9 +519,6 @@ const EditWebsitePage = () => {
               <div className="space-y-5">
                 <div className="flex items-center justify-between space-x-5">
                   <Heading h3>Our story</Heading>
-                  <button className="px-5 py-2">
-                    <MinusIcon className="w-7" />
-                  </button>
                 </div>
                 <textarea
                   cols="30"
@@ -611,7 +609,7 @@ const EditWebsitePage = () => {
               <Heading h3>Add Gift Card</Heading>
 
               <div>
-                <div className="flex items-center justify-center gap-3 md:justify-between md:gap-10">
+                <div className="flex items-center gap-3 md:gap-10">
                   <Link href="/dashboard/gift-cards">
                     <a className="w-[170px] border-2 min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300">
                       <PlusIcon className="w-8 h-8" />
@@ -629,7 +627,7 @@ const EditWebsitePage = () => {
 
               <div className="space-y-5">
                 <Heading h3>Connect your registry</Heading>
-                <div className="flex items-center justify-center gap-3 md:justify-between">
+                <div className="flex items-center gap-3">
                   <div className="border-2 w-[200px] min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex flex-col items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300">
                     <Link href="/">
                       <a className="px-6 py-2 mt-5 text-xs text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap">

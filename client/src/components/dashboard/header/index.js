@@ -9,7 +9,7 @@ const DashboardHeader = ({ title, children }) => {
         <h3 className='text-2xl'>👋 Hey {user?.coupleName}!</h3>
       )} */}
       <div
-        className={`flex px-2 items-center flex-col sm:flex-row justify-center sm:justify-between flex-wrap w-full`}
+        className={`flex px-3 items-center flex-col sm:flex-row justify-center sm:justify-between flex-wrap w-full`}
       >
         <h2 className="mt-5 text-3xl font-medium capitalize md:text-4xl sm:mt-0">
           {title}

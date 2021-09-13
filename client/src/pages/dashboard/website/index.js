@@ -132,7 +132,7 @@ const WebsitePageOne = () => {
 
             <div className="my-[40px] space-y-[26px]">
               <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB]" />
-              <Link href="/">
+              <Link href="/dashboard/address-and-rsvp">
                 <a className="w-full flex items-center justify-center space-x-3 py-4 px-5 border-2 border-primary bg-[#F9D1DE] rounded-[5px] capitalize font-inter font-bold text-sm hover:bg-secondary/5 transition duration-300">
                   {/* <LinkIcon className="w-5 h-5" /> */}
                   <svg
