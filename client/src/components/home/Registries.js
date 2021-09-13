@@ -1,4 +1,5 @@
 import { LinkButton, Heading } from "@components/shared";
+import StartedButton from "@components/shared/StartedButton";
 import { LinkIcon } from "@heroicons/react/outline";
 import { XIcon } from "@heroicons/react/solid";
 import { useMediaQuery } from "@react-hook/media-query";
@@ -67,22 +68,12 @@ const Registries = () => {
   };
 
   return (
-    <div className="bg-[#FCFCFC] border-t-[5px] border-primary min-h-screen relative">
+    <div className="bg-[#FCFCFC] border-t-[5px] border-primary relative">
       <div className="container py-32 ">
-        <h2 className="max-w-3xl pb-8 mx-auto text-4xl text-center capitalize">
+        <h2 className="pb-8 mx-auto text-4xl text-center capitalize commonTitle1">
           Link & Sync Your Gift Registries <br /> All In One Place!
         </h2>
         <div className="w-48 mx-auto h-[2px] md:h-[4px] mb-16 bg-[#F9D1DE] mt-6" />
-        {/* <Heading
-          label={
-            <>
-              <br />
-            </>
-          }
-          className="!pb-20"
-          color="bg-[#F9D1DE]"
-          lineStyle={{ marginBottom: "50px" }}
-        /> */}
         <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-[1193px] mx-auto w-full">
           {registries?.map((registry) => (
             <div
@@ -110,28 +101,21 @@ const Registries = () => {
               </div>
 
               <div className="flex flex-col py-4 text-center">
-                <h3 className="text-lg font-semibold font-inter">
+                <h3 className="text-lg font-semibold font-inter subTitle1">
                   {registry.title}
                 </h3>
                 <div>
-                  <button className="py-2 inline-block px-8 border-gray-900 border-2 rounded-[5px] mt-5 hover:bg-black transition duration-300 hover:text-white font-inter font-bold">
-                    Link
-                  </button>
+                  <Link href="/create-website">
+                    <button className="py-2 inline-block px-8 border-gray-900 border-2 rounded-[5px] mt-5 hover:bg-black transition duration-300 hover:text-white font-inter font-bold">
+                      Link
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
           ))}
         </div>
-        <div className="absolute z-20 mx-auto transition duration-200 left-2/4 -translate-x-2/4 -bottom-3 hover:scale-110">
-          <Link href="/">
-            <a className="px-20 py-5 !text-[16px] bg-[#ffffff] border-2 whitespace-nowrap md:px-28 border-primary text-primary rounded-full">
-              See More
-            </a>
-          </Link>
-        </div>
-        {/* <div className="text-center">
-          <LinkButton label="See More" href="/" outline />
-        </div> */}
+        <StartedButton className="-bottom-3" />
       </div>
     </div>
   );

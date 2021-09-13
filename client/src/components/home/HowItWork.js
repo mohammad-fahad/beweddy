@@ -21,7 +21,10 @@ const HowItWork = ({ hideBorderBottom }) => {
         />
       </div>
       <div className="container relative z-20 pt-20 pb-20 md:pb-32">
-        <Heading label="How It Works" className="text-[36px]" />
+        <Heading
+          label="How It Works"
+          className="!text-[36px] !font-normal commonTitle"
+        />
         <div className="max-w-3xl mx-auto">
           <div className="relative w-full overflow-hidden transition duration-300 rounded-2xl hover:scale-95">
             <YouTube
@@ -40,7 +43,7 @@ const HowItWork = ({ hideBorderBottom }) => {
           <a
             target="_blank"
             href="https://www.youtube.com/watch?v=ALad4ovPbDc"
-            className="flex items-center mt-8 space-x-5 transition duration-300 hover:opacity-50"
+            className="flex items-center mt-8 mb-[40px] space-x-5 transition duration-300 hover:opacity-50"
           >
             <Youtube color="#FF0000" size={45} />
             <h4 className="font-semibold tex-sm">Watch it on YouTube</h4>
