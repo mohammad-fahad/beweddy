@@ -51,7 +51,7 @@ const WebsitePageOne = () => {
               </a>
             </Link>
             <Link href="/">
-              <a className="flex white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
+              <a className="flex space-x-3 white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
                 <LinkIcon className="w-5 h-5" />
                 <span>Share your super link</span>
               </a>
