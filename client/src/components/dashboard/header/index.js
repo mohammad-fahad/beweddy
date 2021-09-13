@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 const DashboardHeader = ({ title, children }) => {
   const { user } = useSelector((state) => state.user);
   return (
-    <div className={`max-w-[1300px] w-full min-h-[155.2px] flex md:pb-0 pt-6`}>
+    <div className={`max-w-[1300px] w-full min-h-[155.2px] flex md:pb-0`}>
       {/* {!hideCoupleName && (
         <h3 className='text-2xl'>👋 Hey {user?.coupleName}!</h3>
       )} */}

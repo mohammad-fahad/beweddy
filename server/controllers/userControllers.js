@@ -114,7 +114,9 @@ export const googleSignUp = asyncHandler(async (req, res) => {
     }
     const username = `${questions.firstName}_${
       questions.spouseFirstName
-    }_${nanoid(4)}`.toLowerCase();
+    }_${nanoid(4)}`
+      .toLowerCase()
+      .replace(/\s/g, '');
     // If not user exists then create new user
     const user = await User.create({
       firstName,
