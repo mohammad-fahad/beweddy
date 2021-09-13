@@ -140,7 +140,11 @@ const RSVPGuestManagementPage = () => {
                       <td className='px-4 pb-3 pt-6 text-sm' align='center'>
                         {guest?.guestEstimate}
                       </td>
-                      <td className='px-4 pb-3 pt-6 text-sm'>Send Invite</td>
+                      <td className='px-4 pb-3 pt-6 text-sm'>
+                        <Link href='/dashboard/invitation/text'>
+                          <a className='hover:underline'>Send Invite</a>
+                        </Link>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
