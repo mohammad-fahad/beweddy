@@ -1,41 +1,54 @@
-import Link from "next/link";
-import NavLinks from "./NavLinks";
-import AuthLinks from "./AuthLinks";
-import SearchBar from "./SearchBar";
-import SocialLinks from "./SocialLinks";
-import MobileMenu from "./MobileMenu";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import ProfileLinks from "./profileLinks";
-import { XIcon } from "@heroicons/react/outline";
+import Link from 'next/link';
+import NavLinks from './NavLinks';
+import AuthLinks from './AuthLinks';
+import SearchBar from './SearchBar';
+import SocialLinks from './SocialLinks';
+import MobileMenu from './MobileMenu';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import ProfileLinks from './profileLinks';
+import { XIcon } from '@heroicons/react/outline';
 
 export const Header = () => {
-  const { user } = useSelector((state) => state.user);
+  const { user } = useSelector(state => state.user);
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  
+
   return (
-    <header className="relative bg-white">
-      <div className="max-w-[1400px] px-10 xxl:px-0 mx-auto py-5 md:py-6 flex flex-col gap-5">
-        <div className="flex items-center justify-between lg:gap-10">
+    <header className='relative bg-white'>
+      <div className='max-w-[1400px] px-10 xxl:px-0 mx-auto py-5 md:py-6 flex flex-col gap-5'>
+        <div className='flex items-center justify-between'>
           {/* Logo */}
-          <Link href="/">
-            <a className="-mt-[0.6rem] inline-block space-y-2">
+          <Link href='/'>
+            <a className='-mt-[0.6rem] inline-block space-y-2'>
               <img
-                src="/images/logo.png"
-                alt=""
-                className="object-contain h-14 sm:h-16 md:h-20 md:w-[200px] w-[235px] "
+                src='/images/logo.png'
+                alt=''
+                className='object-contain h-14 sm:h-16 md:h-20 md:w-[200px] w-[235px] '
               />
             </a>
           </Link>
-          <div className="flex-1 space-y-8 xl:flex-none ">
-            {/* Navigation Links Start */}
+          <div className='flex flex-col space-y-[30px]'>
+            <NavLinks />
+            <SearchBar />
+          </div>
+          <div className='flex flex-col space-y-[30px]'>
+            {user ? <ProfileLinks {...{ user }} /> : <AuthLinks />}
+            <SocialLinks />
+          </div>
+        </div>
+      </div>
+      {isOpen && <MobileMenu />}
+    </header>
+  );
+};
+
+{
+  /* <div className="flex-1 space-y-8 xl:flex-none ">
+
             <div className="flex items-center justify-between flex-1 gap-16">
               <div className="hidden xl:block pr-[130px]">
-                <NavLinks />
               </div>
-              {/* Navigation Links Ends */}
-              {/* Authentication Links */}
               <div className="flex items-center ml-auto xl:ml-0 gap-2 sm:min-w-[197px]">
                 {user ? (
                   <div className="hidden ml-auto sm:block">
@@ -46,8 +59,10 @@ export const Header = () => {
                     <AuthLinks />
                   </div>
                 )}
-                {/* Menu Button */}
-                {/* <button
+                {/* Menu Button */
+}
+{
+  /* <button
                   className='inline-block ml-5 text-sm font-bold transition-colors duration-300 sm:hidden font-inter group hover:text-primary'
                   onClick={() => {
                     setIsSearchOpen(prev => !prev);
@@ -55,7 +70,7 @@ export const Header = () => {
                   }}
                 >
                   <SearchIcon className='w-8 h-8 text-gray-700' />
-                </button> */}
+                </button> 
                 <button
                   className="inline-block ml-5 text-sm font-bold transition-colors duration-300 xl:hidden font-inter group hover:text-primary"
                   onClick={() => {
@@ -81,36 +96,26 @@ export const Header = () => {
                     </svg>
                   )}
                 </button>
-                {/* <MenuIcon className='w-8 h-8' /> */}
+
               </div>
             </div>
             <div className="items-center justify-between flex-1 hidden gap-10 xl:flex xl:gap-16">
-              {/* Search Bar Area */}
+
               <SearchBar />
-              {/* Search Bar Area End */}
-              {/* Social Links */}
-              {/* <div className='hidden xl:block'> */}
               <SocialLinks />
-              {/* </div> */}
+
             </div>
           </div>
         </div>
         <div className="flex items-center gap-2 sm:hidden">
           {user ? <ProfileLinks {...{ user }} /> : <AuthLinks />}
         </div>
-        {/* {isSearchOpen && <SearchBar />} */}
-        {/* <div className='items-center justify-between flex-1 hidden gap-10 xl:hidden sm:flex xl:gap-20'> */}
+       
         <div className="flex items-center justify-between gap-10 xl:hidden xl:gap-20">
-          {/* Search Bar Area */}
+
             <SearchBar />
-          {/* Search Bar Area End */}
-          {/* Social Links */}
           <div className="hidden md:block">
             <SocialLinks />
           </div>
-        </div>
-      </div>
-      {isOpen && <MobileMenu />}
-    </header>
-  );
-};
+        </div> */
+}
