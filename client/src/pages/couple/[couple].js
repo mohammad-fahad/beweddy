@@ -291,7 +291,7 @@ const CoupleWebsitePage = () => {
                           outer: [10, 10, 0, 10],
                           inner: [0, 10, 10, 10],
                         },
-                        [10, 10, 10, 0], // top/right eye
+                        [10, 10, 10, 0], // top/right eye//new
                         [10, 0, 10, 10], // bottom/left
                       ]}
                       logoHeight={50}
