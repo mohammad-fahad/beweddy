@@ -103,10 +103,8 @@ const Dashboard = () => {
                   </h3>
                 </div>
 
-
                 {/* <div className="grid mb-[50px] grid-cols-2 md:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 gap-x-5 gap-y-5 sm:gap-10"> */}
-                <div className="flex mb-[50px]  gap-x-5 gap-y-5 sm:gap-5 justify-center items-center flex-wrap">
-
+                <div className='flex mb-[50px]  gap-x-5 gap-y-5 sm:gap-5 justify-center items-center flex-wrap'>
                   {navLinks.map((link, index) => (
                     <Link key={index} href={link.route}>
                       <a className='flex w-[150px] flex-col items-center justify-center space-y-5 group'>
@@ -153,11 +151,9 @@ const Dashboard = () => {
                     <span>Edit your website</span>
                   </a>
                 </Link>
-                <Link href={`/${user?.username}`}>
+                <Link href={`/couple/${user?.username}`}>
                   <a
-
-                    target="_blank"
-
+                    target='_blank'
                     className={`capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
                   >
                     <GlobeAltIcon className='hidden w-5 h-5 sm:inline-block' />

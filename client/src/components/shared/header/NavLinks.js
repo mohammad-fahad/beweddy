@@ -4,7 +4,7 @@ import ActiveLink from "../ActiveLink";
 const NavLinks = ({ className }) => {
   return (
     <div
-      className={`flex md:items-center md:gap-5 ${className ? className : ""}`}
+      className={`flex md:items-center md:gap-5  ${className ? className : ""}`}
     >
       <ActiveLink href="/">
         <img src="/icons/home.svg" alt="" className="w-5 h-5" />
