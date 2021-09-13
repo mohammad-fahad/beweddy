@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import { useSelector } from 'react-redux';
+import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const WebsiteNav = ({ coupleName }) => {
   const { user } = useSelector((state) => state.user);
@@ -17,11 +17,11 @@ const WebsiteNav = ({ coupleName }) => {
               <span>Need your Address- RSVP</span>
             </a>
           </Link>
-          <Link href="/">
+          {/* <Link href="/">
             <a className="flex items-center space-x-3 text-base font-semibold text-gray-700 transition duration-300 whitespace-nowrap font-inter hover:text-primary">
               <span>Back to Dashboard</span>
             </a>
-          </Link>
+          </Link> */}
           <Link href="/">
             <a className="flex items-center space-x-3 text-base font-semibold text-gray-700 transition duration-300 whitespace-nowrap font-inter hover:text-primary">
               <span>Contact</span>

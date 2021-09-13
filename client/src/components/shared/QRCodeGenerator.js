@@ -42,15 +42,7 @@ const QRCodeGenerator = ({ sidebar }) => {
           <QRCode
             {...{ value }}
             size={200}
-            eyeRadius={[
-              {
-                // top/left eye
-                outer: [10, 10, 0, 10],
-                inner: [0, 10, 10, 10],
-              },
-              [10, 10, 10, 0], // top/right eye
-              [10, 0, 10, 10], // bottom/left
-            ]}
+            eyeRadius={0}
             logoHeight={50}
             logoWidth={50}
             // style={{image}

@@ -51,7 +51,7 @@ const WebsitePageOne = () => {
               </a>
             </Link>
             <Link href="/">
-              <a className="flex white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
+              <a className="flex space-x-3 white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
                 <LinkIcon className="w-5 h-5" />
                 <span>Share your super link</span>
               </a>
@@ -132,7 +132,7 @@ const WebsitePageOne = () => {
 
             <div className="my-[40px] space-y-[26px]">
               <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB]" />
-              <Link href="/">
+              <Link href="/dashboard/address-and-rsvp">
                 <a className="w-full flex items-center justify-center space-x-3 py-4 px-5 border-2 border-primary bg-[#F9D1DE] rounded-[5px] capitalize font-inter font-bold text-sm hover:bg-secondary/5 transition duration-300">
                   {/* <LinkIcon className="w-5 h-5" /> */}
                   <svg
