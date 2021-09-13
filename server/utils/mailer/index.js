@@ -31,13 +31,20 @@ export const sendActivationEmail = async (name, email, url) => {
   }
 };
 
-export const sendEmailInvites = async (emails, coupleName, image, message) => {
+export const sendEmailInvites = async (
+  emails,
+  coupleName,
+  image,
+  message,
+  from
+) => {
   const mailOptions = {
     from: `${SITE_NAME} <${EMAIL_FROM}>`,
     // to: '8019197212@vtext.com',
     // to: '8019197212@vzwpix.com',
     to: emails,
     // to: 'azimaahmed36@gmail.com',
+    replyTo: from,
     subject: 'BeWeddy',
     html: sendEmailInvitesTemplate(coupleName, image, message),
     // attachments: [
