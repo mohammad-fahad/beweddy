@@ -12,7 +12,7 @@ const WebsiteNav = ({ coupleName }) => {
           <span className="pl-2 text-2xl font-medium">{user?.coupleName}</span>
         </h3>
         <div className="flex flex-col flex-wrap items-center py-5 space-x-5 md:flex-row">
-          <Link href="/">
+          <Link href={`/${couple?.username}/rsvp`}>
             <a className="flex items-center space-x-3 text-base font-semibold text-gray-700 transition duration-300 whitespace-nowrap font-inter hover:text-primary">
               <span>Need your Address- RSVP</span>
             </a>
@@ -22,12 +22,12 @@ const WebsiteNav = ({ coupleName }) => {
               <span>Back to Dashboard</span>
             </a>
           </Link> */}
-          <Link href="/">
+          <Link href="#">
             <a className="flex items-center space-x-3 text-base font-semibold text-gray-700 transition duration-300 whitespace-nowrap font-inter hover:text-primary">
               <span>Contact</span>
             </a>
           </Link>
-          <Link href="/">
+          <Link href="#">
             <a className="flex items-center space-x-3 text-base font-semibold text-gray-700 transition duration-300 whitespace-nowrap font-inter hover:text-primary">
               <span>Follow us</span>
             </a>
