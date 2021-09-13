@@ -28,14 +28,44 @@ export const Header = () => {
               />
             </a>
           </Link>
-          <div className='flex flex-col space-y-[30px]'>
+          <div className='hidden 2lg:flex flex-col space-y-[30px]'>
             <NavLinks />
             <SearchBar />
           </div>
-          <div className='flex flex-col space-y-[30px]'>
+          <div className='flex flex-row items-center 2lg:flex-col 2lg:space-y-[30px]'>
             {user ? <ProfileLinks {...{ user }} /> : <AuthLinks />}
-            <SocialLinks />
+            <button
+              className='inline-block 2lg:hidden text-sm font-bold transition-colors duration-300 font-inter group hover:text-primary'
+              onClick={() => {
+                setIsOpen(prev => !prev);
+                setIsSearchOpen(false);
+              }}
+            >
+              {isOpen ? (
+                <XIcon className='w-8 h-8 text-gray-700' />
+              ) : (
+                <svg
+                  width='68'
+                  height='68'
+                  viewBox='0 0 68 68'
+                  fill='none'
+                  className='w-8 h-8 text-gray-700'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    d='M11.3335 31.1667H45.3335V36.8333H11.3335V31.1667ZM11.3335 17H56.6668V22.6667H11.3335V17ZM11.3335 51H31.8327V45.3333H11.3335V51Z'
+                    fill='black'
+                  />
+                </svg>
+              )}
+            </button>
+            <div className='hidden 2lg:block'>
+              <SocialLinks />
+            </div>
           </div>
+        </div>
+        <div className='block 2lg:!hidden'>
+          <SearchBar />
         </div>
       </div>
       {isOpen && <MobileMenu />}
