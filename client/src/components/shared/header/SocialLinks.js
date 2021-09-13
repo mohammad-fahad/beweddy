@@ -7,7 +7,7 @@ import {
 
 const SocialLinks = () => {
   return (
-    <div className='flex items-center justify-between space-x-5'>
+    <div className='flex items-center justify-between space-x-5 max-w-[215px] w-full'>
       <a href='#' target='_blank'>
         <Facebook
           size={25}

@@ -26,6 +26,10 @@ class MyDocument extends Document {
             href='https://fonts.gstatic.com'
             crossOrigin='true'
           />
+          <script
+            src="https://apis.google.com/js/api.js"
+            type="text/javascript"
+          ></script>
           <link
             href='https://fonts.googleapis.com/css2?family=Alice&family=Inter:wght@100;200;300;400;500;600;700&family=Poppins:wght@700&display=swap'
             rel='stylesheet'
