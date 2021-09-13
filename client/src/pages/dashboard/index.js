@@ -132,7 +132,7 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              <div className="relative w-full border-t-4 border-b-4 gradient border-primary">
+              <div className="relative w-full px-6 border-t-4 border-b-4 md:px-10 gradient border-primary">
                 <div className="text-center my-[50px]">
                   <h3 className="relative inline-block text-2xl font-normal">
                     <span className="absolute inline-block w-full mx-auto bottom-[-12px] left-1/2 h-[2px] max-w-[52px] -translate-x-1/2 bg-primary"></span>
@@ -147,20 +147,16 @@ const Dashboard = () => {
                   <a
                     className={`capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
                   >
-                    <PencilIcon className="hidden w-5 h-5 sm:inline-block" />
+                    {/* <PencilIcon className='hidden w-5 h-5 sm:inline-block' /> */}
                     <span>Edit your website</span>
                   </a>
                 </Link>
                 <Link href={`/couple/${user?.username}`}>
                   <a
-<<<<<<< HEAD
                     target="_blank"
-=======
-                    target='_blank'
->>>>>>> 62524ba1c136495c05daa6d89897007ce3107004
                     className={`capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
                   >
-                    <GlobeAltIcon className="hidden w-5 h-5 sm:inline-block" />
+                    {/* <GlobeAltIcon className='hidden w-5 h-5 sm:inline-block' /> */}
                     <span>Preview Website</span>
                   </a>
                 </Link>
