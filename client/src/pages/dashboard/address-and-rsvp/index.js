@@ -1,28 +1,28 @@
-import Head from 'next/head';
-import Link from 'next/link';
+import Head from "next/head";
+import Link from "next/link";
 // import Image from 'next/image';
-import { Image } from 'cloudinary-react';
-import { DashboardHeader } from '@components/dashboard';
-import DashboardTopBar from '@components/dashboard/header/TopBar';
-import DashboardLayout from '@components/dashboard/layout';
-import { Button, Footer, Heading } from '@components/index';
-import { LinkIcon, PencilIcon, SelectorIcon } from '@heroicons/react/outline';
-import { withAuthRoute } from '@hoc/withAuthRoute';
-import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import Swiper from 'react-id-swiper';
+import { Image } from "cloudinary-react";
+import { DashboardHeader } from "@components/dashboard";
+import DashboardTopBar from "@components/dashboard/header/TopBar";
+import DashboardLayout from "@components/dashboard/layout";
+import { Button, Footer, Heading } from "@components/index";
+import { LinkIcon, PencilIcon, SelectorIcon } from "@heroicons/react/outline";
+import { withAuthRoute } from "@hoc/withAuthRoute";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import Swiper from "react-id-swiper";
 
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
-import SwiperCore, { Lazy, Autoplay } from 'swiper';
-import { Listbox, Transition } from '@headlessui/react';
-import { Fragment } from 'react';
-import { CheckIcon } from '@heroicons/react/solid';
-import { useRouter } from 'next/router';
-import { attemptCreateGuest } from '@features/guest/guestActions';
-import { client } from 'pages/_app';
+import SwiperCore, { Lazy, Autoplay } from "swiper";
+import { Listbox, Transition } from "@headlessui/react";
+import { Fragment } from "react";
+import { CheckIcon } from "@heroicons/react/solid";
+import { useRouter } from "next/router";
+import { attemptCreateGuest } from "@features/guest/guestActions";
+import { client } from "pages/_app";
 
 SwiperCore.use([Lazy, Autoplay]);
 
@@ -35,9 +35,9 @@ const params = {
 };
 
 const otherProviders = [
-  { name: 'Select Provider' },
-  { name: 'Airtel' },
-  { name: 'Robi' },
+  { name: "Select Provider" },
+  { name: "Airtel" },
+  { name: "Robi" },
 ];
 
 const AddressRSVP = () => {
@@ -52,7 +52,7 @@ const AddressRSVP = () => {
   useEffect(() => {
     if (countries?.length) {
       setSelectedCountry(
-        countries.find((country) => country.alpha3Code === 'USA')
+        countries.find((country) => country.alpha3Code === "USA")
       );
     }
   }, [countries]);
@@ -65,25 +65,25 @@ const AddressRSVP = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    mode: 'all',
+    mode: "all",
     shouldFocusError: false,
     shouldUnregister: true,
   });
-  watch(['guestEstimate', 'provider', 'allAbove_invite']);
+  watch(["guestEstimate", "provider", "allAbove_invite"]);
 
-  const allAbove = getValues('allAbove_invite');
+  const allAbove = getValues("allAbove_invite");
 
   useEffect(() => {
     if (allAbove) {
-      setValue('text_invite', true);
-      setValue('email_invite', true);
-      setValue('mail_invite', true);
+      setValue("text_invite", true);
+      setValue("email_invite", true);
+      setValue("mail_invite", true);
     }
   }, [allAbove]);
   const onSubmit = async (data) => {
     dispatch(attemptCreateGuest(submitData(data)));
-    await client.invalidateQueries('guests');
-    push('/dashboard/invitation/rsvp-guest-management');
+    await client.invalidateQueries("guests");
+    push("/dashboard/invitation/rsvp-guest-management");
   };
 
   const submitData = (data) => {
@@ -223,10 +223,10 @@ const AddressRSVP = () => {
                     type="text"
                     className="w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
                     placeholder="Enter Your Full Name"
-                    {...register('name', {
+                    {...register("name", {
                       required: {
                         value: true,
-                        message: 'Name is required!',
+                        message: "Name is required!",
                       },
                     })}
                   />
@@ -244,15 +244,15 @@ const AddressRSVP = () => {
                     type="email"
                     className="w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
                     placeholder="Enter Your Valid Email"
-                    {...register('email', {
+                    {...register("email", {
                       required: {
                         value: true,
-                        message: 'Email is required!',
+                        message: "Email is required!",
                       },
                       pattern: {
                         value:
                           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                        message: 'Must be a valid email address',
+                        message: "Must be a valid email address",
                       },
                     })}
                   />
@@ -278,10 +278,10 @@ const AddressRSVP = () => {
                       type="text"
                       className="w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
                       placeholder="Street"
-                      {...register('street', {
+                      {...register("street", {
                         required: {
                           value: true,
-                          message: 'Street is required!',
+                          message: "Street is required!",
                         },
                       })}
                     />
@@ -295,10 +295,10 @@ const AddressRSVP = () => {
                       type="text"
                       className="w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
                       placeholder="Apt/Suite/Other"
-                      {...register('providence', {
+                      {...register("providence", {
                         required: {
                           value: true,
-                          message: 'Providence is required!',
+                          message: "Providence is required!",
                         },
                       })}
                     />
@@ -314,10 +314,10 @@ const AddressRSVP = () => {
                       type="text"
                       className="w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
                       placeholder="City"
-                      {...register('city', {
+                      {...register("city", {
                         required: {
                           value: true,
-                          message: 'City is required!',
+                          message: "City is required!",
                         },
                       })}
                     />
@@ -331,10 +331,10 @@ const AddressRSVP = () => {
                       type="text"
                       className="w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
                       placeholder="State"
-                      {...register('state', {
+                      {...register("state", {
                         required: {
                           value: true,
-                          message: 'State is required!',
+                          message: "State is required!",
                         },
                       })}
                     />
@@ -351,10 +351,10 @@ const AddressRSVP = () => {
                     type="text"
                     className="w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
                     placeholder="Zip"
-                    {...register('zip', {
+                    {...register("zip", {
                       required: {
                         value: true,
-                        message: 'Zip is required!',
+                        message: "Zip is required!",
                       },
                     })}
                   />
@@ -411,8 +411,8 @@ const AddressRSVP = () => {
                                 className={({ active }) =>
                                   `${
                                     active
-                                      ? 'text-amber-900 bg-secondary-alternative/20'
-                                      : 'text-gray-900'
+                                      ? "text-amber-900 bg-secondary-alternative/20"
+                                      : "text-gray-900"
                                   }
                           cursor-pointer select-none relative py-2 pl-10 pr-4`
                                 }
@@ -422,7 +422,7 @@ const AddressRSVP = () => {
                                   <>
                                     <span
                                       className={`${
-                                        selected ? 'font-medium' : 'font-normal'
+                                        selected ? "font-medium" : "font-normal"
                                       } block truncate`}
                                     >
                                       {country.name}
@@ -431,8 +431,8 @@ const AddressRSVP = () => {
                                       <span
                                         className={`${
                                           active
-                                            ? 'text-amber-600'
-                                            : 'text-amber-600'
+                                            ? "text-amber-600"
+                                            : "text-amber-600"
                                         }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                       >
@@ -455,14 +455,14 @@ const AddressRSVP = () => {
                       type="tel"
                       className="w-full focus:!border-gray-200 bg-white inline-block font-normal py-2 md:py-3 px-4 pl-5 placeholder-gray-400 border-[3px] border-gray-200 rounded-[5px]"
                       placeholder="Enter phone number"
-                      {...register('phone', {
+                      {...register("phone", {
                         required: {
                           value: true,
-                          message: 'Phone numbers are required!',
+                          message: "Phone numbers are required!",
                         },
                         pattern: {
                           value: /^([0-9\(\)\/\+ \-]*)$/,
-                          message: 'Must be a valid phone number',
+                          message: "Must be a valid phone number",
                         },
                       })}
                     />
@@ -484,7 +484,7 @@ const AddressRSVP = () => {
                       value={true}
                       defaultChecked
                       className="text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-                      {...register('text_invite')}
+                      {...register("text_invite")}
                     />
                     <label
                       htmlFor="text_invite"
@@ -500,7 +500,7 @@ const AddressRSVP = () => {
                       value={true}
                       defaultChecked
                       className="text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-                      {...register('email_invite')}
+                      {...register("email_invite")}
                     />
                     <label
                       htmlFor="email_invite"
@@ -515,7 +515,7 @@ const AddressRSVP = () => {
                       id="mail_invite"
                       value={true}
                       className="text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-                      {...register('mail_invite')}
+                      {...register("mail_invite")}
                     />
                     <label
                       htmlFor="mail_invite"
@@ -531,7 +531,7 @@ const AddressRSVP = () => {
                       value={true}
                       defaultChecked
                       className="text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-                      {...register('allAbove_invite')}
+                      {...register("allAbove_invite")}
                     />
                     <label
                       htmlFor="allAbove_invite"
@@ -556,7 +556,7 @@ const AddressRSVP = () => {
                       value="AT&T"
                       defaultChecked
                       className="hidden"
-                      {...register('provider')}
+                      {...register("provider")}
                     />
                     <label
                       htmlFor="AT&T"
@@ -576,7 +576,7 @@ const AddressRSVP = () => {
                       id="T-Mobile&Sprint"
                       value="T-Mobile&Sprint"
                       className="hidden"
-                      {...register('provider')}
+                      {...register("provider")}
                     />
                     <label
                       htmlFor="T-Mobile&Sprint"
@@ -596,7 +596,7 @@ const AddressRSVP = () => {
                       id="Verizon"
                       value="Verizon"
                       className="hidden"
-                      {...register('provider')}
+                      {...register("provider")}
                     />
                     <label
                       htmlFor="Verizon"
@@ -616,7 +616,7 @@ const AddressRSVP = () => {
                       id="BoostMobile"
                       value="BoostMobile"
                       className="hidden"
-                      {...register('provider')}
+                      {...register("provider")}
                     />
                     <label
                       htmlFor="BoostMobile"
@@ -636,7 +636,7 @@ const AddressRSVP = () => {
                       id="CricketWireless"
                       value="CricketWireless"
                       className="hidden"
-                      {...register('provider')}
+                      {...register("provider")}
                     />
                     <label
                       htmlFor="CricketWireless"
@@ -657,7 +657,7 @@ const AddressRSVP = () => {
                       id="VirginMobile"
                       value="VirginMobile"
                       className="hidden"
-                      {...register('provider')}
+                      {...register("provider")}
                     />
                     <label
                       htmlFor="VirginMobile"
@@ -677,7 +677,7 @@ const AddressRSVP = () => {
                       id="Other"
                       value="Other"
                       className="hidden"
-                      {...register('provider')}
+                      {...register("provider")}
                     />
                     <label
                       htmlFor="Other"
@@ -693,7 +693,7 @@ const AddressRSVP = () => {
                   </div>
                 </div>
 
-                {getValues('provider') === 'Other' && (
+                {getValues("provider") === "Other" && (
                   <Listbox
                     value={selectedProvider}
                     onChange={setSelectedProvider}
@@ -723,8 +723,8 @@ const AddressRSVP = () => {
                               className={({ active }) =>
                                 `${
                                   active
-                                    ? 'text-secondary bg-secondary-alternative/50'
-                                    : 'text-gray-900'
+                                    ? "text-secondary bg-secondary-alternative/50"
+                                    : "text-gray-900"
                                 }
                           cursor-pointer select-none relative py-2 pl-10 pr-4 font-medium`
                               }
@@ -734,7 +734,7 @@ const AddressRSVP = () => {
                                 <>
                                   <span
                                     className={`${
-                                      selected ? 'font-semibold' : 'font-medium'
+                                      selected ? "font-semibold" : "font-medium"
                                     } block truncate`}
                                   >
                                     {provider.name}
@@ -743,8 +743,8 @@ const AddressRSVP = () => {
                                     <span
                                       className={`${
                                         active
-                                          ? 'text-amber-600'
-                                          : 'text-amber-600'
+                                          ? "text-amber-600"
+                                          : "text-amber-600"
                                       }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                     >
@@ -777,7 +777,7 @@ const AddressRSVP = () => {
                       value="yes"
                       defaultChecked
                       className="hidden"
-                      {...register('rsvp')}
+                      {...register("rsvp")}
                     />
                     <label
                       htmlFor="yes"
@@ -796,7 +796,7 @@ const AddressRSVP = () => {
                       value="maybe"
                       defaultChecked
                       className="hidden"
-                      {...register('rsvp')}
+                      {...register("rsvp")}
                     />
                     <label
                       htmlFor="maybe"
@@ -816,7 +816,7 @@ const AddressRSVP = () => {
                       id="no"
                       value="no"
                       className="hidden"
-                      {...register('rsvp')}
+                      {...register("rsvp")}
                     />
                     <label
                       htmlFor="no"
@@ -844,7 +844,7 @@ const AddressRSVP = () => {
                 <input
                   disabled
                   type="text"
-                  value={`${getValues('guestEstimate')}`}
+                  value={`${getValues("guestEstimate")}`}
                   className="w-28 text-center rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
                 />
                 <input
@@ -852,7 +852,7 @@ const AddressRSVP = () => {
                   min="1"
                   max="100"
                   className="block cursor-pointer text-center rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
-                  {...register('guestEstimate')}
+                  {...register("guestEstimate")}
                 />
               </div>
               <div className="!mt-10">
