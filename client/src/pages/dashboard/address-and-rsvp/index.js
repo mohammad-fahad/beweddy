@@ -124,22 +124,22 @@ const AddressRSVP = () => {
       <DashboardTopBar />
 
       <DashboardLayout>
-        <DashboardHeader title="Collect Address & RSVP">
-          <div className="flex flex-wrap items-center gap-5 py-5">
+        <DashboardHeader title={<h1 className='!text-[30px] commonTitle' > We Need Your Address & RSVP</h1>} >
+          <div className="flex flex-wrap items-center gap-5 py-5 ">
             <Link href="/dashboard/website/edit">
               <a className="flex space-x-3 white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
                 <PencilIcon className="w-5 h-5" />
-                <span>Edit your website</span>
+                <span className='customLabel' >Edit your website</span>
               </a>
             </Link>
             <Link href="/">
               <a className="flex space-x-3 white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
                 <LinkIcon className="w-5 h-5" />
-                <span>Share your super link</span>
+                <span className='customLabel' >Share your super link</span>
               </a>
             </Link>
             <Link href="/dashboard/invitation/rsvp-guest-management">
-              <a className="flex white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
+              <a className="flex white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300 customLabel">
                 Guests Management
               </a>
             </Link>
@@ -198,14 +198,14 @@ const AddressRSVP = () => {
               <Link href="/">
                 <a className="flex justify-center items-center space-x-3 py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
                   <LinkIcon className="w-5 h-5" />
-                  <span>Share your super link</span>
+                  <span className='customLabel' >Wedding Wedding Link</span>
                 </a>
               </Link>
             </div>
-            <h4 className="text-2xl font-medium text-center md:text-3xl">
+            <h4 className="text-2xl font-medium text-center md:text-3xl mudiumTitle">
               ✨ Your Are Invited To Our Wedding! 💍 ✨
             </h4>
-            <p className="mt-5 mb-16 font-medium text-center text-md">
+            <p className="mt-5 mb-16 font-medium text-center text-md subTitle">
               Thanks for your love and support! We want to send you an
               invitation!
             </p>
@@ -215,7 +215,7 @@ const AddressRSVP = () => {
               onSubmit={handleSubmit(onSubmit)}
             >
               <div className="space-y-3">
-                <Heading h3 className="!text-[22px] !font-medium">
+                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
                   Your Name Here <span className="text-red-400">*</span>
                 </Heading>
                 <div>
@@ -236,7 +236,7 @@ const AddressRSVP = () => {
                 </div>
               </div>
               <div className="space-y-3">
-                <Heading h3 className="!text-[22px] !font-medium">
+                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
                   Email <span className="text-red-400">*</span>
                 </Heading>
                 <div>
@@ -267,7 +267,7 @@ const AddressRSVP = () => {
                 </div>
               </div>
               <div className="space-y-3">
-                <Heading h3 className="!text-[22px] !font-medium">
+                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
                   What is your full address? 🏠
                   <span className="text-red-400">*</span>
                 </Heading>
@@ -366,7 +366,7 @@ const AddressRSVP = () => {
                 <div className="w-full" />
               </div>
               <div className="space-y-3">
-                <Heading h3 className="!text-[22px] !font-medium">
+                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
                   What is your phone number? 📲
                 </Heading>
                 <div>
@@ -473,8 +473,8 @@ const AddressRSVP = () => {
                 </div>
               </div>
               <div className="space-y-5">
-                <Heading h3 className="!text-[22px] !font-medium">
-                  How do you want your invitation & Reminders Sent? 📲-🖥-💌
+                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
+                  How do you want your invitation & Reminders Sent?
                 </Heading>
                 <div className="flex flex-row flex-wrap items-center gap-3">
                   <div className="flex items-center gap-3">
@@ -488,7 +488,7 @@ const AddressRSVP = () => {
                     />
                     <label
                       htmlFor="text_invite"
-                      className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg"
+                      className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg customLabel"
                     >
                       Text - 📲
                     </label>
@@ -504,7 +504,7 @@ const AddressRSVP = () => {
                     />
                     <label
                       htmlFor="email_invite"
-                      className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg"
+                      className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg customLabel"
                     >
                       E-mail - 🖥
                     </label>
@@ -519,7 +519,7 @@ const AddressRSVP = () => {
                     />
                     <label
                       htmlFor="mail_invite"
-                      className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg"
+                      className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg customLabel"
                     >
                       Mail - 💌
                     </label>
@@ -535,7 +535,7 @@ const AddressRSVP = () => {
                     />
                     <label
                       htmlFor="allAbove_invite"
-                      className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg"
+                      className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg customLabel"
                     >
                       All The Above - 💯
                     </label>
@@ -544,7 +544,7 @@ const AddressRSVP = () => {
               </div>
 
               <div className="space-y-5 !mt-5">
-                <Heading h3 className="!text-[22px] !font-medium">
+                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
                   Who is your phone provider?
                 </Heading>
 
@@ -565,7 +565,7 @@ const AddressRSVP = () => {
                       <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
                         <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
                       </div>
-                      <span className="text-lg font-light whitespace-nowrap font-inter">
+                      <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
                         AT&T
                       </span>
                     </label>
@@ -585,7 +585,7 @@ const AddressRSVP = () => {
                       <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
                         <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
                       </div>
-                      <span className="text-lg font-light whitespace-nowrap font-inter">
+                      <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
                         T-Mobile & Sprint
                       </span>
                     </label>
@@ -605,7 +605,7 @@ const AddressRSVP = () => {
                       <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
                         <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
                       </div>
-                      <span className="text-lg font-light whitespace-nowrap font-inter">
+                      <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
                         Verizon
                       </span>
                     </label>
@@ -625,7 +625,7 @@ const AddressRSVP = () => {
                       <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
                         <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
                       </div>
-                      <span className="text-lg font-light whitespace-nowrap font-inter">
+                      <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
                         Boost Mobile
                       </span>
                     </label>
@@ -645,7 +645,7 @@ const AddressRSVP = () => {
                       <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
                         <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
                       </div>
-                      <span className="text-lg font-light whitespace-nowrap font-inter">
+                      <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
                         Cricket Wireless
                       </span>
                     </label>
@@ -666,7 +666,7 @@ const AddressRSVP = () => {
                       <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
                         <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
                       </div>
-                      <span className="text-lg font-light whitespace-nowrap font-inter">
+                      <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
                         Virgin Mobile
                       </span>
                     </label>
@@ -686,7 +686,7 @@ const AddressRSVP = () => {
                       <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
                         <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
                       </div>
-                      <span className="text-lg font-light whitespace-nowrap font-inter">
+                      <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
                         Other
                       </span>
                     </label>
@@ -766,7 +766,7 @@ const AddressRSVP = () => {
               </div>
 
               <div className="space-y-5 !mt-5">
-                <Heading h3 className="!text-[22px] !font-medium">
+                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
                   Can you make it? Please RSVP
                 </Heading>
                 <div className="flex flex-wrap items-center gap-3">
@@ -786,7 +786,7 @@ const AddressRSVP = () => {
                       <div className="checked-outer border-[3px] rounded-full border-primary w-6 md:w-7 h-6 md:h-7 flex items-center justify-center">
                         <div className="w-2 h-2 rounded-full checked-inner md:w-3 md:h-3"></div>
                       </div>
-                      <span className="text-lg font-light font-inter">Yes</span>
+                      <span className="text-lg font-light font-inter customLabel">Yes</span>
                     </label>
                   </div>
                   <div className="flex items-center">
@@ -805,7 +805,7 @@ const AddressRSVP = () => {
                       <div className="checked-outer border-[3px] rounded-full border-primary w-6 md:w-7 h-6 md:h-7 flex items-center justify-center">
                         <div className="w-2 h-2 rounded-full checked-inner md:w-3 md:h-3"></div>
                       </div>
-                      <span className="text-lg font-light font-inter">
+                      <span className="text-lg font-light font-inter customLabel">
                         Maybe
                       </span>
                     </label>
@@ -825,7 +825,7 @@ const AddressRSVP = () => {
                       <div className="checked-outer border-[3px] rounded-full border-primary w-6 md:w-7 h-6 md:h-7 flex items-center justify-center">
                         <div className="w-2 h-2 rounded-full checked-inner md:w-3 md:h-3"></div>
                       </div>
-                      <span className="text-lg font-light font-inter">
+                      <span className="text-lg font-light font-inter customLabel">
                         No, we send our best.
                       </span>
                     </label>
@@ -837,7 +837,7 @@ const AddressRSVP = () => {
                 className="space-y-3 !mt-10 "
                 title="Please include yourself"
               >
-                <Heading h3 className="!text-[22px] !font-medium">
+                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
                   RSVP Estimate Guests
                 </Heading>
 
@@ -851,7 +851,7 @@ const AddressRSVP = () => {
                   type="range"
                   min="1"
                   max="100"
-                  className="block cursor-pointer text-center rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
+                  className="block cursor-pointer text-center rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal !w-[322px] "
                   {...register("guestEstimate")}
                 />
               </div>
@@ -867,7 +867,7 @@ const AddressRSVP = () => {
 
           <div className="py-16 border-t-4 border-primary bg-secondary-alternative/40">
             <div className="text-center">
-              <Heading h3 className="!text-3xl !font-medium mb-10">
+              <Heading h3 className="!text-[36px] !font-medium mb-10 commonTitle">
                 Eat, Drink, & BeWeddy!
               </Heading>
               <div className="max-w-lg mx-auto">

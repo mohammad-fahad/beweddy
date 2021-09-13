@@ -256,6 +256,9 @@
   .commonTitle1 {
     font-size: 23px !important;
   }
+  .mudiumTitle{
+    font-size : 18px !important;
+  }
   .subTitle {
     font-size: 15px !important;
   }
@@ -274,5 +277,19 @@
   }
   .customStep{
     width: 50px !important;
+  }
+  .miniTitle {
+    font-size: 12px !important;
+    padding : 0 !important;
+    margin : 0 !important;
+  }
+  .customGap{
+    margin: 0 !important;
+    padding : 0 !important;
+  }
+  .customSocialIcon{
+    font-size : 10px !important;
+    width : 25px !important;
+    height : 25px !important;
   }
 }
