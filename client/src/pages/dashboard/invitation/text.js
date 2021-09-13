@@ -496,38 +496,40 @@ const TextInvitesPage = () => {
                           </div>
                           <span></span>
                         </div>
-                        <div className='phone-layout flex flex-col justify-end space-y-5 max-h-[calc(540px-88px)] min-h-[calc(540px-88px)] h-full ml-3 mt-2 pb-2'>
-                          <style jsx>
-                            {`
-                              .phone-layout: {
-                                -ms-overflow-style: none;
-                                scrollbar-width: none;
-                              }
-                              .phone-layout::-webkit-scrollbar {
-                                display: none;
-                              }
-                            `}
-                          </style>
-                          <div className='ml-auto'>
-                            {uploadedFile && (
-                              <img src={uploadedFile.url} alt='' />
-                            )}
-                          </div>
-                          <div className='relative w-full text-white font-medium text-sm rounded-[10px] px-5 py-3 bg-[#1788Fe]'>
-                            <div className='break-words'>{message}</div>
-                            <svg
-                              width='41'
-                              height='29'
-                              viewBox='0 0 41 29'
-                              fill='none'
-                              className='absolute bottom-[-20px] right-0'
-                              xmlns='http://www.w3.org/2000/svg'
-                            >
-                              <path
-                                d='M37.8251 27.77L1.65628 3.91393C0.000161409 2.8216 0.773555 0.244385 2.75747 0.244385H38.9263C40.0309 0.244385 40.9263 1.13982 40.9263 2.24439V26.1004C40.9263 27.6933 39.1548 28.647 37.8251 27.77Z'
-                                fill='#1788FE'
-                              />
-                            </svg>
+                        <div className='overflow-hidden'>
+                          <div className='phone-layout flex flex-col justify-end space-y-5 max-h-[calc(540px-88px)] min-h-[calc(540px-88px)] h-full ml-3 mt-2 pb-2'>
+                            <style jsx>
+                              {`
+                                .phone-layout: {
+                                  -ms-overflow-style: none;
+                                  scrollbar-width: none;
+                                }
+                                .phone-layout::-webkit-scrollbar {
+                                  display: none;
+                                }
+                              `}
+                            </style>
+                            <div className='ml-auto'>
+                              {uploadedFile && (
+                                <img src={uploadedFile.url} alt='' />
+                              )}
+                            </div>
+                            <div className='relative w-full text-white font-medium text-sm rounded-[10px] px-5 py-3 bg-[#1788Fe]'>
+                              <div className='break-words'>{message}</div>
+                              <svg
+                                width='41'
+                                height='29'
+                                viewBox='0 0 41 29'
+                                fill='none'
+                                className='absolute bottom-[-20px] right-0'
+                                xmlns='http://www.w3.org/2000/svg'
+                              >
+                                <path
+                                  d='M37.8251 27.77L1.65628 3.91393C0.000161409 2.8216 0.773555 0.244385 2.75747 0.244385H38.9263C40.0309 0.244385 40.9263 1.13982 40.9263 2.24439V26.1004C40.9263 27.6933 39.1548 28.647 37.8251 27.77Z'
+                                  fill='#1788FE'
+                                />
+                              </svg>
+                            </div>
                           </div>
                         </div>
                       </div>
