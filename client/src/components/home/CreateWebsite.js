@@ -65,7 +65,7 @@ const CreateWebsite = () => {
         {!user && (
           <div className="absolute z-20 mx-auto transition duration-200 left-2/4 -translate-x-2/4 -bottom-5 hover:scale-110">
             <Link href="/create-website">
-              <a className="py-5 text-[24px]  bg-[#ffffff] border-2 px-14 whitespace-nowrap border-primary text-primary rounded-full createButton ">
+              <a className="py-5 font-bold text-[24px] bg-[#ffffff] border-4 px-12 whitespace-nowrap border-primary text-primary rounded-full createButton">
                 Create Your Wedding Website
               </a>
             </Link>
