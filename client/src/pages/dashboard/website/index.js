@@ -1,24 +1,24 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import { DashboardHeader, WeddingDayCountDown } from '@components/dashboard';
-import DashboardTopBar from '@components/dashboard/header/TopBar';
-import DashboardLayout from '@components/dashboard/layout';
-import { Footer } from '@components/index';
-import { LinkIcon } from '@heroicons/react/outline';
-import WebsiteNav from '@components/dashboard/Website/WebsiteNav';
-import { useSelector } from 'react-redux';
-import WebsiteGiftCards from '@components/dashboard/Website/WebsiteGiftCard';
-import WebsiteRegistry from '@components/dashboard/Website/websiteRegistry';
-import SocialSection from '@components/dashboard/Website/SocialSection';
-import { useState } from 'react';
-import { QRCode } from 'react-qrcode-logo';
-import WebsiteVideo from '@components/dashboard/Website/WebsiteVideo';
-import Swiper from 'react-id-swiper';
-import { Image } from 'cloudinary-react';
-import SwiperCore, { Lazy, Autoplay } from 'swiper';
+import Head from "next/head";
+import Link from "next/link";
+import { DashboardHeader, WeddingDayCountDown } from "@components/dashboard";
+import DashboardTopBar from "@components/dashboard/header/TopBar";
+import DashboardLayout from "@components/dashboard/layout";
+import { Footer } from "@components/index";
+import { LinkIcon } from "@heroicons/react/outline";
+import WebsiteNav from "@components/dashboard/Website/WebsiteNav";
+import { useSelector } from "react-redux";
+import WebsiteGiftCards from "@components/dashboard/Website/WebsiteGiftCard";
+import WebsiteRegistry from "@components/dashboard/Website/websiteRegistry";
+import SocialSection from "@components/dashboard/Website/SocialSection";
+import { useState } from "react";
+import { QRCode } from "react-qrcode-logo";
+import WebsiteVideo from "@components/dashboard/Website/WebsiteVideo";
+import Swiper from "react-id-swiper";
+import { Image } from "cloudinary-react";
+import SwiperCore, { Lazy, Autoplay } from "swiper";
 
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
 SwiperCore.use([Lazy, Autoplay]);
 
@@ -32,7 +32,7 @@ const params = {
 
 const WebsitePageOne = () => {
   const { user } = useSelector((state) => state.user);
-  const [value, setValue] = useState('https://beweddy-delta.vercel.app/');
+  const [value, setValue] = useState("https://beweddy-delta.vercel.app/");
 
   return (
     <>
@@ -42,7 +42,19 @@ const WebsitePageOne = () => {
 
       <DashboardTopBar />
       <DashboardLayout>
-        <DashboardHeader title="your website" customPadding>
+        <DashboardHeader
+          title={
+            <h2 className="flex align-center gap-2 !text-[30px] items-center">
+              your website{" "}
+              <img
+                src="/icons/website.png"
+                alt="your website"
+                className="w-[20px] h-[20px]"
+              />
+            </h2>
+          }
+          customPadding
+        >
           <div className="flex flex-wrap items-center gap-5 py-5">
             <Link href="/dashboard/website/edit">
               <a className="flex white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
@@ -97,7 +109,7 @@ const WebsitePageOne = () => {
             interval={3000}
           >
             {user.questions.couplePictures.map((image, index) => (
-              <div className="w-full">
+              <div className="relative w-full">
                 <div className="aspect-w-16 aspect-h-9">
                   <Image
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
@@ -108,6 +120,13 @@ const WebsitePageOne = () => {
                     className="object-cover"
                   />
                 </div>
+
+                <Link href='/dashboard/website/edit' >
+                <div className="absolute !right-[20px] !top-[20px] cursor-pointer">
+                  Edit Photo{" "}
+                </div>
+                 </Link>
+                
               </div>
             ))}
           </Carousel>
@@ -180,7 +199,7 @@ const WebsitePageOne = () => {
                 <h2 className="text-3xl font-medium text-center md:text-4xl">
                   Our Story
                 </h2>
-                <p className="w-10/12 m-auto mt-5 text-2xl font-normal text-center">
+                <p className="w-10/12 m-auto mt-5 text-2xl font-normal text-center subTitle">
                   {user?.ourStory}
                 </p>
               </div>
@@ -195,10 +214,10 @@ const WebsitePageOne = () => {
 
             <div class="grid grid-cols-12 gap-4 w-full mt-5">
               {user?.questions?.weddingDay?.firstReception && (
-                <div class="col-start-2 col-span-5 p-5 text-lg font-semibold">
+                <div class="col-start-2 col-span-5 p-5 text-lg font-semibold subTitle">
                   <h4 className="text-lg">Receptions</h4>
                   <h6>
-                    Date 1 : {user?.questions?.weddingDay?.firstReception}{' '}
+                    Date 1 : {user?.questions?.weddingDay?.firstReception}{" "}
                   </h6>
 
                   {user?.questions?.weddingDay?.secondReception && (
