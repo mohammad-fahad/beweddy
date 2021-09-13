@@ -44,27 +44,27 @@ export const CreateWebsiteContainer = ({ seo, page, children }) => {
             {/* {page} / 5 */}
             <div className="flex justify-center w-full gap-4">
               <div
-                className={`w-[71px] h-[5px] ${
+                className={`w-[71px] h-[5px] customStep ${
                   page == 1 ? "bg-primary" : " bg-[#cccccc]"
                 } `}
               />
               <div
-                className={`w-[71px] h-[5px] ${
+                className={`w-[71px] h-[5px] customStep ${
                   page == 2 ? "bg-primary" : " bg-[#cccccc]"
                 } `}
               />
               <div
-                className={`w-[71px] h-[5px] ${
+                className={`w-[71px] h-[5px] customStep ${
                   page == 3 ? "bg-primary" : " bg-[#cccccc]"
                 } `}
               />
               <div
-                className={`w-[71px] h-[5px] ${
+                className={`w-[71px] h-[5px] customStep ${
                   page == 4 ? "bg-primary" : " bg-[#cccccc]"
                 } `}
               />
               <div
-                className={`w-[71px] h-[5px] ${
+                className={`w-[71px] h-[5px] customStep ${
                   page == 5 ? "bg-primary" : " bg-[#cccccc]"
                 } `}
               />

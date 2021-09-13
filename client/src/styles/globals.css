@@ -272,4 +272,7 @@
     padding: 15px 25px !important;
     font-size: 16px !important;
   }
+  .customStep{
+    width: 50px !important;
+  }
 }
