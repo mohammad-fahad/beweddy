@@ -1,10 +1,10 @@
-import fs from "fs";
-import asyncHandler from "express-async-handler";
+import fs from 'fs';
+import asyncHandler from 'express-async-handler';
 
 export const uploader = asyncHandler(async (req, res, next) => {
   if (!req.files || Object.keys(req.files).length === 0) {
     res.status(400);
-    throw new Error("No files were uploaded");
+    throw new Error('No files were uploaded');
   }
   const file = req.files.image;
 
@@ -14,13 +14,13 @@ export const uploader = asyncHandler(async (req, res, next) => {
   if (!mimetype) {
     removeTemp(file.tempFilePath);
     res.status(400);
-    throw new Error("File format not supported");
+    throw new Error('File format not supported');
   }
   next();
 });
 
-export const removeTemp = (path) => {
-  fs.unlink(path, (err) => {
+export const removeTemp = path => {
+  fs.unlink(path, err => {
     console.log(err);
   });
 };

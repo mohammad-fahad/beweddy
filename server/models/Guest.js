@@ -40,25 +40,11 @@ const guestSchema = new mongoose.Schema(
       },
     },
     phone: {
-      type: String,
+      type: Object,
       required: true,
     },
     callingCode: {
       type: String,
-    },
-    provider: {
-      type: String,
-      enum: [
-        'AT&T',
-        'T-Mobile&Sprint',
-        'Verizon',
-        'BoostMobile',
-        'CricketWireless',
-        'VirginMobile',
-        'Other',
-      ],
-      default: 'AT&T',
-      required: true,
     },
     wayOfInvitations: {
       text_invite: {

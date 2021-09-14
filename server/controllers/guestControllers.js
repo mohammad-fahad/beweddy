@@ -39,8 +39,12 @@ export const createGuest = asyncHandler(async (req, res) => {
   );
 
   if (guestExists) {
-    res.status(400);
-    throw new Error('Guest already exists');
+    const updated = await Guest.findByIdAndUpdate(guestExists._id, {
+      ...req.body,
+    });
+    if (updated) {
+      res.json({ message: 'Thank you' });
+    }
   }
 
   if (req.body.id || user) {
