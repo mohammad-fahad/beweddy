@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import Head from "next/head";
 import {
   CreateAccount,
   Footer,
@@ -8,35 +8,35 @@ import {
   HowItWork,
   PageTitle,
   Registries,
-} from '@components/index';
-import { LinkButton, Offers } from '@components/shared/index';
-import SectionHeading from '@components/shared/HeroSection/SectionHeading';
-import Paragraph from '@components/shared/HeroSection/Paragraph';
+} from "@components/index";
+import { LinkButton, Offers } from "@components/shared/index";
+import SectionHeading from "@components/shared/HeroSection/SectionHeading";
+import Paragraph from "@components/shared/HeroSection/Paragraph";
 
 const offers = [
   {
-    icon: '/icons/menu-board.svg',
-    title: 'RSVP',
+    icon: "/icons/menu-board.svg",
+    title: "RSVP",
     paragraph:
-      'RSVP to help make arrangements for potential food, beverages, seating, and more.',
+      "RSVP to help make arrangements for potential food, beverages, seating, and more.",
   },
   {
-    icon: '/icons/note-favorite.svg',
-    title: 'Send Calendar Invites & Reminders',
+    icon: "/icons/note-favorite.svg",
+    title: "Send Calendar Invites & Reminders",
     paragraph:
-      'Calender Invites help guests remember the date of your wedding. Also reminds them to come celebrate with you.',
+      "Calender Invites help guests remember the date of your wedding. Also reminds them to come celebrate with you.",
   },
   {
-    icon: '/icons/document-text.svg',
-    title: 'Customizable Forms',
+    icon: "/icons/document-text.svg",
+    title: "Customizable Forms",
     paragraph:
-      'Customizable forms to ask your wedding party to help you prepare for your big day.',
+      "Customizable forms to ask your wedding party to help you prepare for your big day.",
   },
   {
-    icon: '/icons/link-2.svg',
-    title: 'Super Link',
+    icon: "/icons/link-2.svg",
+    title: "Super Link",
     paragraph:
-      'Share your custom link so people can visit your site to see your website, registries, and RSVP.',
+      "Share your custom link so people can visit your site to see your website, registries, and RSVP.",
   },
 ];
 
@@ -45,19 +45,20 @@ const GiftRegistryPage = () => {
     <>
       <Head>
         <title>BeWeddy | Address & RSVP</title>
-        <meta name="description" content="Collect Addresses & RSVP" />
+        <meta name="description" content="We Need Your Address & RSVP" />
       </Head>
 
       <Header />
 
-      <PageTitle title="Address & RSVP" />
+      <PageTitle title="We Need Your Address & RSVP" />
 
       <div className="gradient">
         <div className="container py-20">
           <div className={`grid gap-10 md:grid-cols-3`}>
             <div className={`self-center md:col-span-2`}>
               <SectionHeading className="text-center md:!text-left">
-                Collect Addresses & RSVP
+                {/* Collect Addresses & RSVP */}
+                We Need Your Address
               </SectionHeading>
 
               <Paragraph className="text-center mx-auto md:!mx-0 md:text-left">
