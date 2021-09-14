@@ -1248,7 +1248,7 @@ const EditWebsitePage = () => {
               />
             </form>
           </div>
-          <QRCodeGenerator />
+          {/* <QRCodeGenerator /> */}
         </div>
       </DashboardLayout>
 

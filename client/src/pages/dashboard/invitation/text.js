@@ -182,6 +182,7 @@ const TextInvitesPage = () => {
       <DashboardLayout shadow>
         <DashboardHeader title="Text Invites" />
 
+<<<<<<< HEAD
         <div className="space-y-10 shadow-box">
           <div className="max-w-[1300px] w-full">
             <div className="p-12 xxl:pr-0">
@@ -189,6 +190,15 @@ const TextInvitesPage = () => {
                 <div className="flex items-center pb-2 space-x-3">
                   <Image src="/icons/messages.svg" width={46} height={46} />
                   <h3 className="text-2xl">Send Text & Superlink Invites</h3>
+=======
+        <div className='space-y-10 shadow-box'>
+          <div className='max-w-[1300px] w-full'>
+            <div className='p-12 xxl:pr-0'>
+              <div className='mb-5'>
+                <div className='flex items-center pb-2 space-x-3'>
+                  <Image src='/icons/messages.svg' width={46} height={46} />
+                  <h3 className='text-2xl'>Send Text & MMS Invites</h3>
+>>>>>>> d6bb85e4696ecfc19aabfeb245e40fa453594be2
                 </div>
                 <span className="h-[4px] inline-block max-w-[215px] w-full bg-secondary-alternative"></span>
               </div>
@@ -349,10 +359,16 @@ const TextInvitesPage = () => {
                                   <Listbox.Option
                                     key={countryIdx}
                                     className={({ active }) =>
+<<<<<<< HEAD
                                       `${
                                         active
                                           ? "text-amber-900 bg-secondary-alternative/20"
                                           : "text-gray-900"
+=======
+                                      `${active
+                                        ? 'text-amber-900 bg-secondary-alternative/20'
+                                        : 'text-gray-900'
+>>>>>>> d6bb85e4696ecfc19aabfeb245e40fa453594be2
                                       }
                                       cursor-pointer select-none relative py-2 pl-10 pr-4`
                                     }
@@ -361,21 +377,35 @@ const TextInvitesPage = () => {
                                     {({ selected, active }) => (
                                       <>
                                         <span
+<<<<<<< HEAD
                                           className={`${
                                             selected
                                               ? "font-medium"
                                               : "font-normal"
                                           } block truncate`}
+=======
+                                          className={`${selected
+                                              ? 'font-medium'
+                                              : 'font-normal'
+                                            } block truncate`}
+>>>>>>> d6bb85e4696ecfc19aabfeb245e40fa453594be2
                                         >
                                           {country.name}
                                         </span>
                                         {selected ? (
                                           <span
+<<<<<<< HEAD
                                             className={`${
                                               active
                                                 ? "text-amber-600"
                                                 : "text-amber-600"
                                             }
+=======
+                                            className={`${active
+                                                ? 'text-amber-600'
+                                                : 'text-amber-600'
+                                              }
+>>>>>>> d6bb85e4696ecfc19aabfeb245e40fa453594be2
                                              inset-y-0 left-0 flex items-center pl-3`}
                                           >
                                             <CheckIcon
@@ -503,9 +533,14 @@ const TextInvitesPage = () => {
                           <div className="flex flex-col items-center h-20 space-y-2">
                             <div className="w-[50px] h-[50px] rounded-full">
                               <Image
+<<<<<<< HEAD
                                 src={`${
                                   user.avatar ? user.avatar : "/images/user.png"
                                 }`}
+=======
+                                src={`${user.avatar ? user.avatar : '/images/user.png'
+                                  }`}
+>>>>>>> d6bb85e4696ecfc19aabfeb245e40fa453594be2
                                 height={50}
                                 width={50}
                               />
@@ -564,7 +599,7 @@ const TextInvitesPage = () => {
       <CropImage
         onSave={onCropSave}
         selectedFile={selectedImageFile}
-        // aspectRatio={16 / 9}
+      // aspectRatio={16 / 9}
       />
       <Footer hideSocial />
     </Fragment>

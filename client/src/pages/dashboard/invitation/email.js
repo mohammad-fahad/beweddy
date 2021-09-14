@@ -24,6 +24,7 @@ const htmlToDraft = dynamic(
   { ssr: false }
 );
 
+<<<<<<< HEAD
 import { ArrowSmRightIcon } from "@heroicons/react/outline";
 import { useSelector } from "react-redux";
 import EmailPreview from "@components/dashboard/EmailPreview/EmailPreview";
@@ -32,6 +33,17 @@ import { useQuery } from "react-query";
 import { useDropzone } from "react-dropzone";
 import toast from "react-hot-toast";
 import { sendEmailInvites } from "@services/Invitation/email";
+=======
+import { ArrowSmRightIcon } from '@heroicons/react/outline';
+import { useSelector } from 'react-redux';
+import EmailPreview from '@components/dashboard/EmailPreview/EmailPreview';
+import { getGuests } from '@services/GuestManagement';
+import { useQuery } from 'react-query';
+import { useDropzone } from 'react-dropzone';
+import toast from 'react-hot-toast';
+import { sendEmailInvites } from '@services/Invitation/email';
+import { fileUploader } from '@services/Uploader';
+>>>>>>> d6bb85e4696ecfc19aabfeb245e40fa453594be2
 
 const animatedComponents = makeAnimated();
 
@@ -137,7 +149,12 @@ const EmailInvitesPage = () => {
       setToEmails(null);
     }
   };
+<<<<<<< HEAD
   const onDrop = useCallback((acceptedFiles) => {
+=======
+
+  const onDrop = useCallback(acceptedFiles => {
+>>>>>>> d6bb85e4696ecfc19aabfeb245e40fa453594be2
     const fileDropped = acceptedFiles[0];
     if (fileDropped["type"].split("/")[0] === "image") {
       setSelectedImageFile(fileDropped);
@@ -158,8 +175,8 @@ const EmailInvitesPage = () => {
     setPreview(preview);
     setFile(file);
     setLoading(true);
-    const URL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`;
     try {
+<<<<<<< HEAD
       const formData = new FormData();
       formData.append("file", file);
       formData.append("upload_preset", "beweddy_csfhgnsu");
@@ -175,18 +192,13 @@ const EmailInvitesPage = () => {
       const { public_id, height, width, secure_url, url } = data;
       // setLoading(true);
       // const formData = new FormData();
+=======
+      const result = await fileUploader(file);
+      toast.success('Image uploaded successfully');
+>>>>>>> d6bb85e4696ecfc19aabfeb245e40fa453594be2
 
-      // formData.append('image', file);
-      // formData.append(
-      //   'folder',
-      //   process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
-      // );
-      // const data = await attemptImageUpload(formData);
       setLoading(false);
-      setUploadedFile({ public_id, height, width, secure_url, url });
-      // setLoading(false);
-      // setValue('uploadAnnouncement', preview);
-      // setUploadedFile(preview);
+      setUploadedFile(result);
     } catch (err) {
       setLoading(false);
       console.error(err.message);

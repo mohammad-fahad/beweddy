@@ -19,6 +19,9 @@ import { getCouple } from "@services/Couple";
 import { useRouter } from "next/router";
 import { getRegistries } from "@services/Registry";
 
+import Error from "next/error";
+import NotFoundPage from "pages/404";
+
 SwiperCore.use([Lazy, Autoplay]);
 
 const params = {
@@ -31,15 +34,16 @@ const params = {
 
 const CoupleWebsitePage = () => {
   const { query } = useRouter();
-  const { data: couple, isLoading } = useQuery(
-    ["couple", query.couple],
-    getCouple
-  );
+  const {
+    data: couple,
+    isLoading,
+    isError,
+  } = useQuery(["couple", query.couple], getCouple);
   const { data: registries, isLoading: isRegistriesLoading } = useQuery(
     "registries",
     getRegistries
   );
-
+  // console.log(isError);
   const [value, setValue] = useState(
     `https://beweddy-delta.vercel.app/${couple?.username}`
   );
@@ -51,7 +55,8 @@ const CoupleWebsitePage = () => {
   // console.log("sonjoy", user.socialAccounts?.bride);
   // console.log("sree", user.socialAccounts?.groom);
   // console.log(couple?.socialAccounts?.bride);
-  console.log("couple", couple);
+
+  if (query.couple && !couple) return <NotFoundPage />;
 
   return (
     <>

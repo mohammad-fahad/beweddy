@@ -43,3 +43,7 @@ export const removeImage = async public_id => {
     console.error(err.message);
   }
 };
+
+export const downloadQRCode = () => {
+  // return pngUrl;
+};
