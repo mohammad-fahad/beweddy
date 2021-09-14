@@ -394,7 +394,7 @@ const TextInvitesPage = () => {
                       <div {...getRootProps()}>
                         <input {...getInputProps()} />
                         <button className='py-3 px-8 text-sm md:text-base font-bold md:font-semibold border border-[#7F7F7F] rounded-[5px] bg-secondary-alternative hover:bg-secondary-alternative/50 transition duration-300'>
-                          Upload Your Photo/Video
+                          Upload Photo/Video
                         </button>
                       </div>
                     )}
