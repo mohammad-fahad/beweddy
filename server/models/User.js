@@ -167,6 +167,16 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    QRCode: {
+      type: Object,
+      default: {
+        avatar: {
+          public_id: 'circle-ring_tbmyjw.png',
+          format: 'png',
+          version: '1631619815',
+        },
+      },
+    },
     phone: {
       type: String,
     },

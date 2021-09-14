@@ -6,7 +6,7 @@ const MobileMenu = () => {
   return (
     <div className='bg-white'>
       <div className='max-w-[1400px] px-10 space-y-10 mt-5 pb-16'>
-        <NavLinks className='flex-col md:flex-row !space-x-0 sm:!space-x-8 !space-y-6 sm:!space-y-0 !items-start' />
+        <NavLinks className='flex-col md:flex-row !space-x-0 md:!space-x-8 !space-y-6 md:!space-y-0 !items-start' />
         <div className='md:hidden'>
           {/* <div className='flex items-center gap-5 mb-8'>
             <AuthLinks />
