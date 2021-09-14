@@ -30,13 +30,31 @@ const QRCodePage = () => {
     `https://beweddy-delta.vercel.app/couple/${user?.username}`
   );
 
-  const generateQRCode = () => {
-    const canvas = document.querySelector('.code > canvas');
+  const generateQRCode = async () => {
+    try {
+      const canvas = document.querySelector('.code > canvas');
 
-    const pngUrl = canvas
-      .toDataURL('image/png')
-      .replace('image/png', 'image/octet-stream');
-    console.log(pngUrl);
+      const base64 = canvas
+        .toDataURL('image/png')
+        .replace('image/png', 'image/octet-stream');
+
+      if (base64) {
+        setLoading(true);
+        const result = await fileUploader(base64);
+        dispatch(
+          attemptUpdateUserProfile({
+            QRCode: {
+              image: result.url,
+            },
+          })
+        );
+
+        setLoading(true);
+      }
+    } catch (err) {
+      setLoading(false);
+      console.error(err);
+    }
   };
 
   const download = () => {};
@@ -122,6 +140,7 @@ const QRCodePage = () => {
                     </div>
 
                     <button
+                      type='button'
                       className='w-full sm:w-max bg-white font-inter cursor-pointer text-center text-sm md:text-base font-medium md:font-semibold py-3 px-6 lg:px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition-colors duration-300 hover:border-primary'
                       onClick={generateQRCode}
                     >
@@ -156,6 +175,7 @@ const QRCodePage = () => {
                     <QRCode
                       {...{ value }}
                       size={165}
+                      id='qrcode'
                       eyeRadius={0}
                       logoHeight={50}
                       logoWidth={50}
