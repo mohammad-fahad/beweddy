@@ -47,7 +47,7 @@ const RSVPGuestManagementPage = () => {
           <div className='max-w-[1300px] w-full'>
             <div className='p-12 xxl:pr-0 flex items-center  justify-between flex-wrap'>
               <div>
-                <Heading h3 className='!font-alice !text-4xl !font-light'>
+                <Heading h3 className='!font-alice !text-4xl !font-light commonTitle1'>
                   {user.coupleName}’s wedding
                 </Heading>
                 <p className='text-base text-gray-700 mt-2'>
@@ -112,35 +112,35 @@ const RSVPGuestManagementPage = () => {
               <table className='w-full overflow-x-auto'>
                 <thead>
                   <tr className='text-md font-semibold tracking-wide text-left text-gray-900 bg-[#FCE0EB] capitalize'>
-                    <th className='pl-12 pr-4 py-3'>Name</th>
-                    <th className='px-4 py-3'>Phone</th>
-                    <th className='px-4 py-3'>Email</th>
-                    <th className='px-4 py-3' align='center'>
+                    <th className='pl-12 pr-4 py-3 customLabel'>Name</th>
+                    <th className='px-4 py-3 customLabel'>Phone</th>
+                    <th className='px-4 py-3 customLabel'>Email</th>
+                    <th className='px-4 py-3 customLabel' align='center'>
                       Attending?
                     </th>
-                    <th className='px-4 py-3' align='center'>
+                    <th className='px-4 py-3 customLabel' align='center'>
                       Confirmed Guests
                     </th>
-                    <th className='px-4 py-3'>Action</th>
+                    <th className='px-4 py-3 customLabel'>Action</th>
                   </tr>
                 </thead>
                 <tbody className='bg-white'>
                   {data?.guests?.map(guest => (
                     <tr className='text-gray-700' key={guest?._id}>
-                      <td className='pl-12 pr-4 pb-3 pt-6 font-medium'>
+                      <td className='pl-12 pr-4 pb-3 pt-6 font-medium customLabel'>
                         {guest?.name}
                       </td>
-                      <td className='px-4 pb-3 pt-6 text-sm'>
+                      <td className='px-4 pb-3 pt-6 text-sm customLabel'>
                         {guest?.phone?.number}
                       </td>
-                      <td className='px-4 pb-3 pt-6 text-sm'>{guest?.email}</td>
-                      <td className='px-4 pb-3 pt-6 text-sm' align='center'>
+                      <td className='px-4 pb-3 pt-6 text-sm customLabel'>{guest?.email}</td>
+                      <td className='px-4 pb-3 pt-6 text-sm customLabel' align='center'>
                         <AttendingStatus status={guest?.rsvp} />
                       </td>
-                      <td className='px-4 pb-3 pt-6 text-sm' align='center'>
+                      <td className='px-4 pb-3 pt-6 text-sm customLabel' align='center'>
                         {guest?.guestEstimate}
                       </td>
-                      <td className='px-4 pb-3 pt-6 text-sm'>
+                      <td className='px-4 pb-3 pt-6 text-sm customLabel'>
                         <Link href='/dashboard/invitation/text'>
                           <a className='hover:underline'>Send Invite</a>
                         </Link>
