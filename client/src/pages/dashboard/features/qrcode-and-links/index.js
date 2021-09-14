@@ -39,10 +39,20 @@ const QRCodePage = () => {
         .replace('image/png', 'image/octet-stream');
 
       if (base64) {
+        setLoading(true);
         const result = await fileUploader(base64);
-        console.log(result);
+        dispatch(
+          attemptUpdateUserProfile({
+            QRCode: {
+              image: result.url,
+            },
+          })
+        );
+
+        setLoading(true);
       }
     } catch (err) {
+      setLoading(false);
       console.error(err);
     }
   };
