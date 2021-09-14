@@ -21,7 +21,7 @@ const QRCodeGenerator = () => {
           eyeRadius={0}
           logoHeight={50}
           logoWidth={50}
-          logoImage={user?.QRCode?.avatar}
+          // logoImage={user?.QRCode?.avatar}
         />
       </div>
       <div className='flex flex-col items-center space-y-3'>

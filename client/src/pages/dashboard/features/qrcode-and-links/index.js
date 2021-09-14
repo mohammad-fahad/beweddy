@@ -33,18 +33,27 @@ const QRCodePage = () => {
   const generateQRCode = async () => {
     try {
       const canvas = document.querySelector('.code > canvas');
+      console.log(canvas);
+      // return;
 
       const base64 = canvas
         .toDataURL('image/png')
         .replace('image/png', 'image/octet-stream');
 
       if (base64) {
+        const coupleName =
+          `${user?.firstName}-${user?.questions?.spouseFirstName}`
+            .toLowerCase()
+            .replace(/\s/g, '');
         setLoading(true);
         const result = await fileUploader(base64);
+
+        const URL = `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/f_auto,fl_attachment:${coupleName}/v${result.version}/${result.public_id}.${result.format}`;
+
         dispatch(
           attemptUpdateUserProfile({
             QRCode: {
-              image: result.url,
+              image: URL,
             },
           })
         );
@@ -56,8 +65,6 @@ const QRCodePage = () => {
       console.error(err);
     }
   };
-
-  const download = () => {};
 
   const onDrop = useCallback(acceptedFiles => {
     const fileDropped = acceptedFiles[0];
@@ -147,15 +154,24 @@ const QRCodePage = () => {
                       Generate
                     </button>
                   </div>
-                  <div className='!mt-10'>
-                    {/* bg-secondary-alternative/40 */}
-                    <button
-                      className='w-full sm:w-max  font-inter cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-5 lg:px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition duration-300 hover:bg-secondary-alternative/30 hover:border-primary'
-                      onClick={download}
-                    >
-                      Download Your QR Code
-                    </button>
-                  </div>
+                  {user?.QRCode?.image && (
+                    <div className='!mt-10'>
+                      {/* bg-secondary-alternative/40 */}
+                      <a
+                        href={user?.QRCode?.image}
+                        download={`${user?.coupleName}`}
+                        className='w-full sm:w-max  font-inter cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-5 lg:px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition duration-300 hover:bg-secondary-alternative/30 hover:border-primary'
+                        // onClick={download}
+                      >
+                        <img
+                          src={user?.QRCode?.image}
+                          alt=''
+                          className='hidden'
+                        />
+                        Download Your QR Code
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -180,7 +196,7 @@ const QRCodePage = () => {
                       logoHeight={50}
                       logoWidth={50}
                       // style={{image}
-                      logoImage={user?.QRCode?.avatar}
+                      // logoImage={user?.QRCode?.avatar}
                     />
                   </div>
                 </div>
