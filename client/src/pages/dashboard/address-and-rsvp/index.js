@@ -40,6 +40,21 @@ const otherProviders = [
   { name: "Robi" },
 ];
 
+const providers = {
+  "at&t": { sms: "txt.att.net", mms: "mms.att.net" },
+  tmobile: { sms: "tmomail.net", mms: "tmomail.net" },
+  verizon: { sms: "vtext.com", mms: "vzwpix.com" },
+  boostmobile: {
+    sms: "sms.myboostmobile.com",
+    mms: "myboostmobile.com",
+  },
+  cricketwireless: {
+    sms: "sms.cricketwireless.net",
+    mms: "mms.cricketwireless.net",
+  },
+  virginmobile: { sms: "vmobl.com", mms: "vmpix.com" },
+};
+
 const AddressRSVP = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
@@ -82,6 +97,7 @@ const AddressRSVP = () => {
   }, [allAbove]);
   const onSubmit = async (data) => {
     dispatch(attemptCreateGuest(submitData(data)));
+    // console.log(submitData(data));
     await client.invalidateQueries("guests");
     push("/dashboard/invitation/rsvp-guest-management");
   };
@@ -107,39 +123,45 @@ const AddressRSVP = () => {
       wayOfInvitations,
       name: data.name,
       email: data.email,
-      phone: data.phone,
+      phone: { number: data.phone, provider: providers[data.provider] },
       callingCode: selectedCountry.callingCodes[0],
-      provider: data.provider,
       rsvp: data.rsvp,
       guestEstimate: data.guestEstimate,
     };
   };
+
   return (
     <>
       <Head>
         <title>Beweddy | Address & RSVP</title>
       </Head>
-      {/* {loading && <Loader />} */}
 
       <DashboardTopBar />
 
       <DashboardLayout>
-        <DashboardHeader title="Collect Address & RSVP">
-          <div className="flex flex-wrap items-center gap-5 py-5">
+        <DashboardHeader
+          title={
+            <h1 className="!text-[30px] commonTitle">
+              {" "}
+              We Need Your Address & RSVP
+            </h1>
+          }
+        >
+          <div className="flex flex-wrap items-center gap-5 py-5 ">
             <Link href="/dashboard/website/edit">
               <a className="flex space-x-3 white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
                 <PencilIcon className="w-5 h-5" />
-                <span>Edit your website</span>
+                <span className="customLabel">Edit your website</span>
               </a>
             </Link>
             <Link href="/">
               <a className="flex space-x-3 white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
                 <LinkIcon className="w-5 h-5" />
-                <span>Share your super link</span>
+                <span className="customLabel">Share your super link</span>
               </a>
             </Link>
             <Link href="/dashboard/invitation/rsvp-guest-management">
-              <a className="flex white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
+              <a className="flex white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300 customLabel">
                 Guests Management
               </a>
             </Link>
@@ -198,14 +220,14 @@ const AddressRSVP = () => {
               <Link href="/">
                 <a className="flex justify-center items-center space-x-3 py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
                   <LinkIcon className="w-5 h-5" />
-                  <span>Share your super link</span>
+                  <span className="customLabel">Wedding Wedding Link</span>
                 </a>
               </Link>
             </div>
-            <h4 className="text-2xl font-medium text-center md:text-3xl">
+            <h4 className="text-2xl font-medium text-center md:text-3xl mudiumTitle">
               ✨ Your Are Invited To Our Wedding! 💍 ✨
             </h4>
-            <p className="mt-5 mb-16 font-medium text-center text-md">
+            <p className="mt-5 mb-16 font-medium text-center text-md subTitle">
               Thanks for your love and support! We want to send you an
               invitation!
             </p>
@@ -215,7 +237,7 @@ const AddressRSVP = () => {
               onSubmit={handleSubmit(onSubmit)}
             >
               <div className="space-y-3">
-                <Heading h3 className="!text-[22px] !font-medium">
+                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
                   Your Name Here <span className="text-red-400">*</span>
                 </Heading>
                 <div>
@@ -236,7 +258,7 @@ const AddressRSVP = () => {
                 </div>
               </div>
               <div className="space-y-3">
-                <Heading h3 className="!text-[22px] !font-medium">
+                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
                   Email <span className="text-red-400">*</span>
                 </Heading>
                 <div>
@@ -267,7 +289,7 @@ const AddressRSVP = () => {
                 </div>
               </div>
               <div className="space-y-3">
-                <Heading h3 className="!text-[22px] !font-medium">
+                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
                   What is your full address? 🏠
                   <span className="text-red-400">*</span>
                 </Heading>
@@ -366,115 +388,113 @@ const AddressRSVP = () => {
                 <div className="w-full" />
               </div>
               <div className="space-y-3">
-                <Heading h3 className="!text-[22px] !font-medium">
+                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
                   What is your phone number? 📲
                 </Heading>
-                <div>
-                  <div className="flex items-center">
-                    <Listbox
-                      value={selectedCountry}
-                      onChange={setSelectedCountry}
-                    >
-                      <div className="relative -mr-2">
-                        <Listbox.Button className="bg-white cursor-pointer inline-block font-semibold py-[6px] md:py-[10px] px-4 placeholder-gray-400 border-[3px] border-gray-200 rounded-[5px] -mr-1">
-                          <img
-                            src={selectedCountry.flag}
-                            alt={selectedCountry.name}
-                            className="object-cover mr-8 rounded-full w-7 h-7 md:mr-4"
-                          />
-                          <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                            <svg
-                              width="13"
-                              height="13"
-                              viewBox="0 0 13 13"
-                              fill="none"
-                              className="w-4 h-4 text-gray-400"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M6.05473 10.6C6.10442 10.6722 6.17091 10.7312 6.24848 10.772C6.32604 10.8128 6.41235 10.8341 6.49998 10.8341C6.58761 10.8341 6.67392 10.8128 6.75148 10.772C6.82905 10.7312 6.89554 10.6722 6.94523 10.6L11.8202 3.55837C11.8767 3.47715 11.9097 3.38202 11.9159 3.28332C11.9221 3.18461 11.9011 3.0861 11.8552 2.9985C11.8093 2.9109 11.7402 2.83755 11.6556 2.78642C11.5709 2.73529 11.4739 2.70834 11.375 2.7085H1.62498C1.52631 2.7089 1.42962 2.7362 1.34531 2.78745C1.26099 2.8387 1.19224 2.91197 1.14646 2.99937C1.10067 3.08677 1.07957 3.185 1.08543 3.28349C1.09129 3.38199 1.1239 3.47702 1.17973 3.55837L6.05473 10.6Z"
-                                fill="#C4C4C4"
-                              />
-                            </svg>
-                          </span>
-                        </Listbox.Button>
-                        <Transition
-                          as={Fragment}
-                          leave="transition ease-in duration-100"
-                          leaveFrom="opacity-100"
-                          leaveTo="opacity-0"
-                        >
-                          <Listbox.Options className="absolute z-50 max-w-xs py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                            {countries?.map((country, countryIdx) => (
-                              <Listbox.Option
-                                key={countryIdx}
-                                className={({ active }) =>
-                                  `${
-                                    active
-                                      ? "text-amber-900 bg-secondary-alternative/20"
-                                      : "text-gray-900"
-                                  }
-                          cursor-pointer select-none relative py-2 pl-10 pr-4`
+                <div className="flex items-center">
+                  <Listbox
+                    value={selectedCountry}
+                    onChange={setSelectedCountry}
+                  >
+                    <div className="relative -mr-2">
+                      <Listbox.Button className="bg-white cursor-pointer inline-block font-semibold py-[6px] md:py-[10px] px-4 placeholder-gray-400 border-[3px] border-gray-200 rounded-[5px] -mr-1">
+                        <img
+                          src={selectedCountry.flag}
+                          alt={selectedCountry.name}
+                          className="object-cover mr-8 rounded-full w-7 h-7 md:mr-4"
+                        />
+                        <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                          <svg
+                            width="13"
+                            height="13"
+                            viewBox="0 0 13 13"
+                            fill="none"
+                            className="w-4 h-4 text-gray-400"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M6.05473 10.6C6.10442 10.6722 6.17091 10.7312 6.24848 10.772C6.32604 10.8128 6.41235 10.8341 6.49998 10.8341C6.58761 10.8341 6.67392 10.8128 6.75148 10.772C6.82905 10.7312 6.89554 10.6722 6.94523 10.6L11.8202 3.55837C11.8767 3.47715 11.9097 3.38202 11.9159 3.28332C11.9221 3.18461 11.9011 3.0861 11.8552 2.9985C11.8093 2.9109 11.7402 2.83755 11.6556 2.78642C11.5709 2.73529 11.4739 2.70834 11.375 2.7085H1.62498C1.52631 2.7089 1.42962 2.7362 1.34531 2.78745C1.26099 2.8387 1.19224 2.91197 1.14646 2.99937C1.10067 3.08677 1.07957 3.185 1.08543 3.28349C1.09129 3.38199 1.1239 3.47702 1.17973 3.55837L6.05473 10.6Z"
+                              fill="#C4C4C4"
+                            />
+                          </svg>
+                        </span>
+                      </Listbox.Button>
+                      <Transition
+                        as={Fragment}
+                        leave="transition ease-in duration-100"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                      >
+                        <Listbox.Options className="absolute z-50 max-w-xs py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                          {countries?.map((country, countryIdx) => (
+                            <Listbox.Option
+                              key={countryIdx}
+                              className={({ active }) =>
+                                `${
+                                  active
+                                    ? "text-amber-900 bg-secondary-alternative/20"
+                                    : "text-gray-900"
                                 }
-                                value={country}
-                              >
-                                {({ selected, active }) => (
-                                  <>
+                          cursor-pointer select-none relative py-2 pl-10 pr-4`
+                              }
+                              value={country}
+                            >
+                              {({ selected, active }) => (
+                                <>
+                                  <span
+                                    className={`${
+                                      selected ? "font-medium" : "font-normal"
+                                    } block truncate`}
+                                  >
+                                    {country.name}
+                                  </span>
+                                  {selected ? (
                                     <span
                                       className={`${
-                                        selected ? "font-medium" : "font-normal"
-                                      } block truncate`}
-                                    >
-                                      {country.name}
-                                    </span>
-                                    {selected ? (
-                                      <span
-                                        className={`${
-                                          active
-                                            ? "text-amber-600"
-                                            : "text-amber-600"
-                                        }
+                                        active
+                                          ? "text-amber-600"
+                                          : "text-amber-600"
+                                      }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
-                                      >
-                                        <CheckIcon
-                                          className="w-5 h-5"
-                                          aria-hidden="true"
-                                        />
-                                      </span>
-                                    ) : null}
-                                  </>
-                                )}
-                              </Listbox.Option>
-                            ))}
-                          </Listbox.Options>
-                        </Transition>
-                      </div>
-                    </Listbox>
-                    <input
-                      id="phone"
-                      type="tel"
-                      className="w-full focus:!border-gray-200 bg-white inline-block font-normal py-2 md:py-3 px-4 pl-5 placeholder-gray-400 border-[3px] border-gray-200 rounded-[5px]"
-                      placeholder="Enter phone number"
-                      {...register("phone", {
-                        required: {
-                          value: true,
-                          message: "Phone numbers are required!",
-                        },
-                        pattern: {
-                          value: /^([0-9\(\)\/\+ \-]*)$/,
-                          message: "Must be a valid phone number",
-                        },
-                      })}
-                    />
-                  </div>
-                  <p className="h-4 mt-2 text-sm font-light text-red-400">
-                    {errors?.phone?.message}
-                  </p>
+                                    >
+                                      <CheckIcon
+                                        className="w-5 h-5"
+                                        aria-hidden="true"
+                                      />
+                                    </span>
+                                  ) : null}
+                                </>
+                              )}
+                            </Listbox.Option>
+                          ))}
+                        </Listbox.Options>
+                      </Transition>
+                    </div>
+                  </Listbox>
+                  <input
+                    id="phone"
+                    type="tel"
+                    className="w-full focus:!border-gray-200 bg-white inline-block font-normal py-2 md:py-3 px-4 pl-5 placeholder-gray-400 border-[3px] border-gray-200 rounded-[5px]"
+                    placeholder="Enter phone number"
+                    {...register("phone", {
+                      required: {
+                        value: true,
+                        message: "Phone numbers are required!",
+                      },
+                      pattern: {
+                        value: /^([0-9\(\)\/\+ \-]*)$/,
+                        message: "Must be a valid phone number",
+                      },
+                    })}
+                  />
                 </div>
+                <p className="h-4 mt-2 text-sm font-light text-red-400">
+                  {errors?.phone?.message}
+                </p>
               </div>
               <div className="space-y-5">
-                <Heading h3 className="!text-[22px] !font-medium">
-                  How do you want your invitation & Reminders Sent? 📲-🖥-💌
+                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
+                  How do you want your invitation & Reminders Sent?
                 </Heading>
                 <div className="flex flex-row flex-wrap items-center gap-3">
                   <div className="flex items-center gap-3">
@@ -488,7 +508,7 @@ const AddressRSVP = () => {
                     />
                     <label
                       htmlFor="text_invite"
-                      className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg"
+                      className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg customLabel"
                     >
                       Text - 📲
                     </label>
@@ -504,7 +524,7 @@ const AddressRSVP = () => {
                     />
                     <label
                       htmlFor="email_invite"
-                      className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg"
+                      className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg customLabel"
                     >
                       E-mail - 🖥
                     </label>
@@ -519,7 +539,7 @@ const AddressRSVP = () => {
                     />
                     <label
                       htmlFor="mail_invite"
-                      className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg"
+                      className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg customLabel"
                     >
                       Mail - 💌
                     </label>
@@ -535,7 +555,7 @@ const AddressRSVP = () => {
                     />
                     <label
                       htmlFor="allAbove_invite"
-                      className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg"
+                      className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg customLabel"
                     >
                       All The Above - 💯
                     </label>
@@ -544,7 +564,7 @@ const AddressRSVP = () => {
               </div>
 
               <div className="space-y-5 !mt-5">
-                <Heading h3 className="!text-[22px] !font-medium">
+                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
                   Who is your phone provider?
                 </Heading>
 
@@ -553,7 +573,7 @@ const AddressRSVP = () => {
                     <input
                       type="radio"
                       id="AT&T"
-                      value="AT&T"
+                      value="at&t"
                       defaultChecked
                       className="hidden"
                       {...register("provider")}
@@ -565,7 +585,7 @@ const AddressRSVP = () => {
                       <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
                         <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
                       </div>
-                      <span className="text-lg font-light whitespace-nowrap font-inter">
+                      <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
                         AT&T
                       </span>
                     </label>
@@ -574,7 +594,7 @@ const AddressRSVP = () => {
                     <input
                       type="radio"
                       id="T-Mobile&Sprint"
-                      value="T-Mobile&Sprint"
+                      value="tmobile"
                       className="hidden"
                       {...register("provider")}
                     />
@@ -585,7 +605,7 @@ const AddressRSVP = () => {
                       <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
                         <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
                       </div>
-                      <span className="text-lg font-light whitespace-nowrap font-inter">
+                      <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
                         T-Mobile & Sprint
                       </span>
                     </label>
@@ -594,7 +614,7 @@ const AddressRSVP = () => {
                     <input
                       type="radio"
                       id="Verizon"
-                      value="Verizon"
+                      value="verizon"
                       className="hidden"
                       {...register("provider")}
                     />
@@ -605,7 +625,7 @@ const AddressRSVP = () => {
                       <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
                         <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
                       </div>
-                      <span className="text-lg font-light whitespace-nowrap font-inter">
+                      <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
                         Verizon
                       </span>
                     </label>
@@ -614,7 +634,7 @@ const AddressRSVP = () => {
                     <input
                       type="radio"
                       id="BoostMobile"
-                      value="BoostMobile"
+                      value="boostmobile"
                       className="hidden"
                       {...register("provider")}
                     />
@@ -625,7 +645,7 @@ const AddressRSVP = () => {
                       <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
                         <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
                       </div>
-                      <span className="text-lg font-light whitespace-nowrap font-inter">
+                      <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
                         Boost Mobile
                       </span>
                     </label>
@@ -634,7 +654,7 @@ const AddressRSVP = () => {
                     <input
                       type="radio"
                       id="CricketWireless"
-                      value="CricketWireless"
+                      value="cricketwireless"
                       className="hidden"
                       {...register("provider")}
                     />
@@ -645,7 +665,7 @@ const AddressRSVP = () => {
                       <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
                         <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
                       </div>
-                      <span className="text-lg font-light whitespace-nowrap font-inter">
+                      <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
                         Cricket Wireless
                       </span>
                     </label>
@@ -655,7 +675,7 @@ const AddressRSVP = () => {
                     <input
                       type="radio"
                       id="VirginMobile"
-                      value="VirginMobile"
+                      value="virginmobile"
                       className="hidden"
                       {...register("provider")}
                     />
@@ -666,7 +686,7 @@ const AddressRSVP = () => {
                       <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
                         <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
                       </div>
-                      <span className="text-lg font-light whitespace-nowrap font-inter">
+                      <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
                         Virgin Mobile
                       </span>
                     </label>
@@ -686,7 +706,7 @@ const AddressRSVP = () => {
                       <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
                         <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
                       </div>
-                      <span className="text-lg font-light whitespace-nowrap font-inter">
+                      <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
                         Other
                       </span>
                     </label>
@@ -766,7 +786,7 @@ const AddressRSVP = () => {
               </div>
 
               <div className="space-y-5 !mt-5">
-                <Heading h3 className="!text-[22px] !font-medium">
+                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
                   Can you make it? Please RSVP
                 </Heading>
                 <div className="flex flex-wrap items-center gap-3">
@@ -786,7 +806,9 @@ const AddressRSVP = () => {
                       <div className="checked-outer border-[3px] rounded-full border-primary w-6 md:w-7 h-6 md:h-7 flex items-center justify-center">
                         <div className="w-2 h-2 rounded-full checked-inner md:w-3 md:h-3"></div>
                       </div>
-                      <span className="text-lg font-light font-inter">Yes</span>
+                      <span className="text-lg font-light font-inter customLabel">
+                        Yes
+                      </span>
                     </label>
                   </div>
                   <div className="flex items-center">
@@ -805,7 +827,7 @@ const AddressRSVP = () => {
                       <div className="checked-outer border-[3px] rounded-full border-primary w-6 md:w-7 h-6 md:h-7 flex items-center justify-center">
                         <div className="w-2 h-2 rounded-full checked-inner md:w-3 md:h-3"></div>
                       </div>
-                      <span className="text-lg font-light font-inter">
+                      <span className="text-lg font-light font-inter customLabel">
                         Maybe
                       </span>
                     </label>
@@ -825,7 +847,7 @@ const AddressRSVP = () => {
                       <div className="checked-outer border-[3px] rounded-full border-primary w-6 md:w-7 h-6 md:h-7 flex items-center justify-center">
                         <div className="w-2 h-2 rounded-full checked-inner md:w-3 md:h-3"></div>
                       </div>
-                      <span className="text-lg font-light font-inter">
+                      <span className="text-lg font-light font-inter customLabel">
                         No, we send our best.
                       </span>
                     </label>
@@ -837,7 +859,7 @@ const AddressRSVP = () => {
                 className="space-y-3 !mt-10 "
                 title="Please include yourself"
               >
-                <Heading h3 className="!text-[22px] !font-medium">
+                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
                   RSVP Estimate Guests
                 </Heading>
 
@@ -848,6 +870,11 @@ const AddressRSVP = () => {
                   className="w-28 text-center rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
                 />
                 <input
+                  type="range"
+                  min="1"
+                  max="100"
+                  className="block cursor-pointer text-center rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal !w-[322px] "
+                  {...register("guestEstimate")}
                   type="range"
                   min="1"
                   max="100"
@@ -867,7 +894,10 @@ const AddressRSVP = () => {
 
           <div className="py-16 border-t-4 border-primary bg-secondary-alternative/40">
             <div className="text-center">
-              <Heading h3 className="!text-3xl !font-medium mb-10">
+              <Heading
+                h3
+                className="!text-[36px] !font-medium mb-10 commonTitle"
+              >
                 Eat, Drink, & BeWeddy!
               </Heading>
               <div className="max-w-lg mx-auto">

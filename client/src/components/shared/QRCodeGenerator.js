@@ -7,8 +7,12 @@ import Heading from './Heading';
 
 const QRCodeGenerator = ({ sidebar }) => {
   const { user } = useSelector((state) => state.user);
-  const [value, setValue] = useState('https://beweddy-delta.vercel.app/');
-  const [link, setLink] = useState('https://beweddy-delta.vercel.app/');
+  const [value, setValue] = useState(
+    `https://beweddy-delta.vercel.app/couple/${user?.username}`
+  );
+  const [link, setLink] = useState(
+    `https://beweddy-delta.vercel.app/couple/${user?.username}`
+  );
   const download = () => {
     const canvas = document.querySelector('.qrCode > canvas');
 

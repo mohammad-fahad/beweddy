@@ -1,8 +1,14 @@
 import express from 'express';
-import { sendEmail } from '../controllers/invitationControllers.js';
+import {
+  inviteEmail,
+  inviteMMS,
+  inviteSMS,
+} from '../controllers/invitationControllers.js';
 
 const router = express.Router();
 
-router.route('/email').post(sendEmail);
+router.route('/email').post(inviteEmail);
+router.post('/sms', inviteSMS);
+router.post('/mms', inviteMMS);
 
 export default router;
