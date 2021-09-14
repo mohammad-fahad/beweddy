@@ -72,9 +72,11 @@ const EmailInvitesPage = () => {
   const content = {
     blocks: [
       {
+
         key: "637gr",
         text: `Hello, \nWe would like to invite you to our wedding! Please come celebrate with us. Here is a link to our gift registry and website. \n\nWe Need your Address\n\nThank you for your support. Love, Ashley and Nate! \nVisit Our Wedding Website\nwww.beweddy.com/couple/${user?.username}\n\nBless Us With A Gift Card:  \nGift & Registry`,
         type: "unstyled",
+
         depth: 0,
         inlineStyleRanges: [],
         entityRanges: [
@@ -98,7 +100,10 @@ const EmailInvitesPage = () => {
         mutability: "MUTABLE",
         data: {
           url: `https://beweddy-delta.vercel.app/couple/${user?.username}/rsvp`,
+
           targetOption: "_self",
+
+
         },
       },
       1: {
@@ -106,7 +111,9 @@ const EmailInvitesPage = () => {
         mutability: "MUTABLE",
         data: {
           url: `https://beweddy-delta.vercel.app/couple/${user?.username}`,
+
           targetOption: "_self",
+
         },
       },
     },
