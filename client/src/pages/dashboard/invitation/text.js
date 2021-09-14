@@ -188,7 +188,7 @@ const TextInvitesPage = () => {
               <div className='mb-5'>
                 <div className='flex items-center pb-2 space-x-3'>
                   <Image src='/icons/messages.svg' width={46} height={46} />
-                  <h3 className='text-2xl'>Send Text & Superlink Invites</h3>
+                  <h3 className='text-2xl'>Send Text & MMS Invites</h3>
                 </div>
                 <span className='h-[4px] inline-block max-w-[215px] w-full bg-secondary-alternative'></span>
               </div>
@@ -329,9 +329,10 @@ const TextInvitesPage = () => {
                                   <Listbox.Option
                                     key={countryIdx}
                                     className={({ active }) =>
-                                      `${active
-                                        ? 'text-amber-900 bg-secondary-alternative/20'
-                                        : 'text-gray-900'
+                                      `${
+                                        active
+                                          ? 'text-amber-900 bg-secondary-alternative/20'
+                                          : 'text-gray-900'
                                       }
                                       cursor-pointer select-none relative py-2 pl-10 pr-4`
                                     }
@@ -340,19 +341,21 @@ const TextInvitesPage = () => {
                                     {({ selected, active }) => (
                                       <>
                                         <span
-                                          className={`${selected
+                                          className={`${
+                                            selected
                                               ? 'font-medium'
                                               : 'font-normal'
-                                            } block truncate`}
+                                          } block truncate`}
                                         >
                                           {country.name}
                                         </span>
                                         {selected ? (
                                           <span
-                                            className={`${active
+                                            className={`${
+                                              active
                                                 ? 'text-amber-600'
                                                 : 'text-amber-600'
-                                              }
+                                            }
                                              inset-y-0 left-0 flex items-center pl-3`}
                                           >
                                             <CheckIcon
@@ -394,7 +397,7 @@ const TextInvitesPage = () => {
                       <div {...getRootProps()}>
                         <input {...getInputProps()} />
                         <button className='py-3 px-8 text-sm md:text-base font-bold md:font-semibold border border-[#7F7F7F] rounded-[5px] bg-secondary-alternative hover:bg-secondary-alternative/50 transition duration-300'>
-                          Upload Your Photo/Video
+                          Upload Photo/Video
                         </button>
                       </div>
                     )}
@@ -480,8 +483,9 @@ const TextInvitesPage = () => {
                           <div className='flex flex-col items-center h-20 space-y-2'>
                             <div className='w-[50px] h-[50px] rounded-full'>
                               <Image
-                                src={`${user.avatar ? user.avatar : '/images/user.png'
-                                  }`}
+                                src={`${
+                                  user.avatar ? user.avatar : '/images/user.png'
+                                }`}
                                 height={50}
                                 width={50}
                               />
@@ -540,7 +544,7 @@ const TextInvitesPage = () => {
       <CropImage
         onSave={onCropSave}
         selectedFile={selectedImageFile}
-      // aspectRatio={16 / 9}
+        // aspectRatio={16 / 9}
       />
       <Footer hideSocial />
     </Fragment>

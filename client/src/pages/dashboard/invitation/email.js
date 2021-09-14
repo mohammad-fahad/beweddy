@@ -32,6 +32,7 @@ import { useQuery } from 'react-query';
 import { useDropzone } from 'react-dropzone';
 import toast from 'react-hot-toast';
 import { sendEmailInvites } from '@services/Invitation/email';
+import { fileUploader } from '@services/Uploader';
 
 const animatedComponents = makeAnimated();
 
@@ -137,6 +138,7 @@ const EmailInvitesPage = () => {
       setToEmails(null);
     }
   };
+  
   const onDrop = useCallback(acceptedFiles => {
     const fileDropped = acceptedFiles[0];
     if (fileDropped['type'].split('/')[0] === 'image') {
@@ -158,35 +160,12 @@ const EmailInvitesPage = () => {
     setPreview(preview);
     setFile(file);
     setLoading(true);
-    const URL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`;
     try {
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('upload_preset', 'beweddy_csfhgnsu');
-
-      const config = {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          // Authorization: `Bearer ${user.token}`,
-        },
-      };
-      const { data } = await axios.post(URL, formData, config);
+      const result = await fileUploader(file);
       toast.success('Image uploaded successfully');
-      const { public_id, height, width, secure_url, url } = data;
-      // setLoading(true);
-      // const formData = new FormData();
 
-      // formData.append('image', file);
-      // formData.append(
-      //   'folder',
-      //   process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
-      // );
-      // const data = await attemptImageUpload(formData);
       setLoading(false);
-      setUploadedFile({ public_id, height, width, secure_url, url });
-      // setLoading(false);
-      // setValue('uploadAnnouncement', preview);
-      // setUploadedFile(preview);
+      setUploadedFile(result);
     } catch (err) {
       setLoading(false);
       console.error(err.message);
@@ -265,7 +244,7 @@ const EmailInvitesPage = () => {
                     <div {...getRootProps()}>
                       <input {...getInputProps()} />
                       <button className='py-3 px-8 text-sm md:text-base font-bold md:font-semibold border border-[#7F7F7F] rounded-[5px] bg-secondary-alternative hover:bg-secondary-alternative/50 transition duration-300'>
-                        Upload Your Photo/Video
+                        Upload Photo/Video
                       </button>
                     </div>
                     <div className='space-y-3'>
