@@ -5,10 +5,14 @@ import { withAuthRoute } from '@hoc/withAuthRoute';
 import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
 import DashboardContainer from '@components/dashboard/DashboardContainer';
-import { StarIcon } from '@heroicons/react/solid';
+import { useSelector } from 'react-redux';
+import Image from 'next/image';
 
 const CalendarPage = () => {
+  //redux state section
+  const { user } = useSelector(state => state.user);
 
+  //calendar Section
   let gapi = window.gapi
   let CLIENT_ID = "658735256071-bhacjo0eesuoin4duputhn3bkt7nle56.apps.googleusercontent.com";
   let API_KEY = "AIzaSyB4aFvm7Ev-v_edhfUhqj7mmyuRzKP8bcg";
@@ -99,11 +103,74 @@ const CalendarPage = () => {
       <DashboardLayout shadow>
         <DashboardHeader title='Calender Invites' />
         <DashboardContainer>
-          <div className="flex justify-start items-center">
-            <img src="/icons/logos_google-calendar.png" alt="" />
-            <h3 onClick={handleClick} className="text-3xl pl-8 cursor-pointer">Calendar Invites</h3>
+          <div>
+
+            <div className='mb-5'>
+              <div className='flex items-center pb-2 space-x-3'>
+                <Image src='/icons/uil_calender.png' width={46} height={46} />
+                <h3 className='text-2xl'>Calendar Invites</h3>
+              </div>
+              <span className='h-[4px] inline-block max-w-[215px] w-full bg-secondary-alternative'></span>
+            </div>
+            <div className="my-5">
+              <h2
+                style={{
+                  fontFamily: 'Inter',
+                  fontStyle: 'normal',
+                  fontWeight: '500',
+                  fontSize: '24px',
+                }}>{`${user.coupleName}'s Wedding Day`}</h2>
+              <p
+                style={{
+                  color: "#ADADAD",
+                  fontSize: '14px',
+                }} >Edit Title</p>
+            </div>
+            <div className="my-5">
+
+              <Heading h3 className='!text-sm xl:!text-base !font-bold'>
+                Description
+              </Heading>
+              <input
+                required
+                type='text'
+                className='border mt-2 border-primary py-3 px-5 text-sm font-semibold w-full rounded-[5px]'
+                placeholder='team.nate@gmail.com'
+              // value={fromEmail}
+              // onChange={e => setFromEmail(e.target.value)}
+              />
+            </div>
+            <div className="flex justify-start items-center my-5">
+              <Image src='/icons/calendar__location.png' width={20} height={20} />
+              <Heading h3 className='!text-sm xl:!text-base !font-bold'>
+                Auto Generated
+              </Heading>
+            </div>
+
+            <div className="flex justify-start items-center my-5">
+              <div className="flex justify-start items-center">
+                <Image src='/icons/clock__icon.svg' width={20} height={20} />
+                <Heading h3 className='!text-sm xl:!text-base !font-bold'>
+                  Start
+                </Heading>
+              </div>
+              <div className="flex justify-start items-center">
+                <Image src='/icons/clock__icon.svg' width={20} height={20} />
+                <Heading h3 className='!text-sm xl:!text-base !font-bold'>
+                  End
+                </Heading>
+              </div>
+            </div>
+            <div className="flex justify-start items-center my-5">
+              <Image src='/icons/attendee.svg' width={20} height={20} />
+              <Heading h3 className='!text-sm xl:!text-base !font-bold'>
+                Attendees
+              </Heading>
+            </div>
+            <button onClick={handleClick} className='py-3 px-8 text-sm md:text-base font-bold md:font-semibold border border-[#7F7F7F] rounded-[5px] bg-secondary-alternative hover:bg-secondary-alternative/50 transition duration-300'>
+              Add Event
+            </button>
           </div>
-          {/* <button className="w-100 h-8 border-2 border-indigo-600 p-2" onClick={handleClick}>Add Event</button> */}
         </DashboardContainer>
       </DashboardLayout>
       <Footer hideSocial />
