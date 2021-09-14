@@ -1,28 +1,28 @@
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import { LinkIcon } from '@heroicons/react/outline';
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { LinkIcon } from "@heroicons/react/outline";
 
 const registries = [
   {
     id: 1,
-    title: 'Amazon Wedding Registry',
-    link: 'https://github.com/muttakinhasib',
-    image: '/images/registries/Amazon.png',
+    title: "Amazon Wedding Registry",
+    link: "https://github.com/muttakinhasib",
+    image: "/images/registries/Amazon.png",
   },
   {
     id: 2,
-    title: 'Bed Bath & Beyond',
-    buttonText: 'Link',
-    link: 'https://github.com/muttakinhasib',
-    image: '/images/registries/bbbLogo.png',
+    title: "Bed Bath & Beyond",
+    buttonText: "Link",
+    link: "https://github.com/muttakinhasib",
+    image: "/images/registries/bbbLogo.png",
   },
   {
     id: 3,
-    title: 'Target Wedding Registry',
-    buttonText: 'Link',
-    link: 'https://github.com/muttakinhasib',
-    image: '/images/registries/target.png',
+    title: "Target Wedding Registry",
+    buttonText: "Link",
+    link: "https://github.com/muttakinhasib",
+    image: "/images/registries/target.png",
   },
   // {
   //   id: 4,
@@ -60,7 +60,7 @@ const WebsiteRegistry = () => {
                 <Image
                   width={200}
                   height={80}
-                  src={registry.image || '/images/registries/Amazon.png'}
+                  src={registry.image || "/images/registries/Amazon.png"}
                 />
               </div>
             </div>
@@ -81,7 +81,7 @@ const WebsiteRegistry = () => {
 
       <div className="flex justify-end pr-2">
         <Link href="/">
-          <a className="text-lg font-semibold font-inter hover:underline">
+          <a className="text-lg font-semibold font-inter hover:underline customLabel">
             See All Registries
           </a>
         </Link>
