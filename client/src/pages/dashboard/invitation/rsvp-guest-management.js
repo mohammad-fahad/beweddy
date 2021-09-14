@@ -54,10 +54,12 @@ const RSVPGuestManagementPage = () => {
                   Number of Your RSVP: <strong>{data?.guests?.length}</strong>
                 </p>
               </div>
-              <button className='flex my-3 text-base font-semibold font-inter items-center space-x-3 border-2 border-gray-500 py-2 px-5 bg-secondary-alternative text-primary hover:bg-secondary-alternative/50 transition duration-300 rounded-md'>
-                <PlusIcon className='w-5 h-5' />
-                <span>Invite Guests</span>
-              </button>
+              <Link href='/dashboard/invitation/text'>
+                <a className='flex my-3 text-base font-semibold font-inter items-center space-x-3 border-2 border-gray-500 py-2 px-5 bg-secondary-alternative text-primary hover:bg-secondary-alternative/50 transition duration-300 rounded-md'>
+                  <PlusIcon className='w-5 h-5' />
+                  <span>Invite Guests</span>
+                </a>
+              </Link>
             </div>
             <div className='px-12 py-5 bg-gray-100 flex space-y-5 xl:space-y-0 xl:items-center justify-between flex-col xl:flex-row'>
               <div className='flex-wrap flex items-center gap-x-5 gap-y-3'>
@@ -128,7 +130,9 @@ const RSVPGuestManagementPage = () => {
                       <td className='pl-12 pr-4 pb-3 pt-6 font-medium'>
                         {guest?.name}
                       </td>
-                      <td className='px-4 pb-3 pt-6 text-sm'>{guest?.phone}</td>
+                      <td className='px-4 pb-3 pt-6 text-sm'>
+                        {guest?.phone?.number}
+                      </td>
                       <td className='px-4 pb-3 pt-6 text-sm'>{guest?.email}</td>
                       <td className='px-4 pb-3 pt-6 text-sm' align='center'>
                         <AttendingStatus status={guest?.rsvp} />
@@ -136,7 +140,11 @@ const RSVPGuestManagementPage = () => {
                       <td className='px-4 pb-3 pt-6 text-sm' align='center'>
                         {guest?.guestEstimate}
                       </td>
-                      <td className='px-4 pb-3 pt-6 text-sm'>Send Invite</td>
+                      <td className='px-4 pb-3 pt-6 text-sm'>
+                        <Link href='/dashboard/invitation/text'>
+                          <a className='hover:underline'>Send Invite</a>
+                        </Link>
+                      </td>
                     </tr>
                   ))}
                 </tbody>

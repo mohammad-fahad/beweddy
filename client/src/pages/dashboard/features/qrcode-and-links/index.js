@@ -6,16 +6,16 @@ import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
 import Image from 'next/image';
 import { QRCode } from 'react-qrcode-logo';
+import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import DashboardContainer from '@components/dashboard/DashboardContainer';
 
 const QRCodePage = () => {
-  // const { user } = useSelector(state => state.user);
+  const { user } = useSelector(state => state.user);
   const [value, setValue] = useState('https://beweddy-delta.vercel.app/');
-  const [link, setLink] = useState('https://beweddy-delta.vercel.app/');
+  const [link, setLink] = useState(`https://beweddy-delta.vercel.app/couple/${user?.username}`);
   const download = () => {
     const canvas = document.querySelector('.qrCode > canvas');
-
     const pngUrl = canvas
       .toDataURL('image/png')
       .replace('image/png', 'image/octet-stream');

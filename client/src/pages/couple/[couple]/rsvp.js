@@ -37,6 +37,21 @@ const otherProviders = [
   { name: 'Robi' },
 ];
 
+const providers = {
+  'at&t': { sms: 'txt.att.net', mms: 'mms.att.net' },
+  tmobile: { sms: 'tmomail.net', mms: 'tmomail.net' },
+  verizon: { sms: 'vtext.com', mms: 'vzwpix.com' },
+  boostmobile: {
+    sms: 'sms.myboostmobile.com',
+    mms: 'myboostmobile.com',
+  },
+  cricketwireless: {
+    sms: 'sms.cricketwireless.net',
+    mms: 'mms.cricketwireless.net',
+  },
+  virginmobile: { sms: 'vmobl.com', mms: 'vmpix.com' },
+};
+
 const RSVPage = () => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.user);
@@ -57,6 +72,7 @@ const RSVPage = () => {
   const {
     watch,
     register,
+    setValue,
     getValues,
     handleSubmit,
     formState: { errors },
@@ -65,8 +81,8 @@ const RSVPage = () => {
     shouldFocusError: false,
     shouldUnregister: true,
   });
-
   watch(['guestEstimate', 'provider', 'allAbove_invite']);
+
   const allAbove = getValues('allAbove_invite');
 
   useEffect(() => {
@@ -76,10 +92,9 @@ const RSVPage = () => {
       setValue('mail_invite', true);
     }
   }, [allAbove]);
-
-
   const onSubmit = async data => {
     dispatch(attemptCreateGuest(submitData(data)));
+    // console.log(submitData(data));
     await client.invalidateQueries('guests');
   };
 
@@ -99,18 +114,18 @@ const RSVPage = () => {
     };
 
     return {
-      username: query?.couple,
+      id: user?._id,
       address,
       wayOfInvitations,
       name: data.name,
       email: data.email,
-      phone: data.phone,
+      phone: { number: data.phone, provider: providers[data.provider] },
       callingCode: selectedCountry.callingCodes[0],
-      provider: data.provider,
       rsvp: data.rsvp,
       guestEstimate: data.guestEstimate,
     };
   };
+
   return (
     <>
       <Head>
@@ -368,9 +383,10 @@ const RSVPage = () => {
                               <Listbox.Option
                                 key={countryIdx}
                                 className={({ active }) =>
-                                  `${active
-                                    ? 'text-amber-900 bg-secondary-alternative/20'
-                                    : 'text-gray-900'
+                                  `${
+                                    active
+                                      ? 'text-amber-900 bg-secondary-alternative/20'
+                                      : 'text-gray-900'
                                   }
                             cursor-pointer select-none relative py-2 pl-10 pr-4`
                                 }
@@ -379,17 +395,19 @@ const RSVPage = () => {
                                 {({ selected, active }) => (
                                   <>
                                     <span
-                                      className={`${selected ? 'font-medium' : 'font-normal'
-                                        } block truncate`}
+                                      className={`${
+                                        selected ? 'font-medium' : 'font-normal'
+                                      } block truncate`}
                                     >
                                       {country.name}
                                     </span>
                                     {selected ? (
                                       <span
-                                        className={`${active
-                                          ? 'text-amber-600'
-                                          : 'text-amber-600'
-                                          }
+                                        className={`${
+                                          active
+                                            ? 'text-amber-600'
+                                            : 'text-amber-600'
+                                        }
                                   absolute inset-y-0 left-0 flex items-center pl-3`}
                                       >
                                         <CheckIcon
@@ -428,87 +446,17 @@ const RSVPage = () => {
                   </p>
                 </div>
               </div>
-              <div className='space-y-5'>
-                <Heading h3 className='!text-[22px] !font-medium'>
-                  How do you want your invitation & Reminders Sent? 📲-🖥-💌
-                </Heading>
-                <div className='flex flex-row flex-wrap items-center gap-3'>
-                  <div className='flex items-center gap-3'>
-                    <input
-                      type='checkbox'
-                      id='text_invite'
-                      value={true}
-                      defaultChecked
-                      className='text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
-                      {...register('text_invite')}
-                    />
-                    <label
-                      htmlFor='text_invite'
-                      className='text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg'
-                    >
-                      Text - 📲
-                    </label>
-                  </div>
-                  <div className='flex items-center gap-3'>
-                    <input
-                      type='checkbox'
-                      id='email_invite'
-                      value={true}
-                      defaultChecked
-                      className='text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
-                      {...register('email_invite')}
-                    />
-                    <label
-                      htmlFor='email_invite'
-                      className='text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg'
-                    >
-                      E-mail - 🖥
-                    </label>
-                  </div>
-                  <div className='flex items-center gap-3'>
-                    <input
-                      type='checkbox'
-                      id='mail_invite'
-                      value={true}
-                      className='text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
-                      {...register('mail_invite')}
-                    />
-                    <label
-                      htmlFor='mail_invite'
-                      className='text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg'
-                    >
-                      Mail - 💌
-                    </label>
-                  </div>
-                  <div className='flex items-center gap-3'>
-                    <input
-                      type='checkbox'
-                      id='allAbove_invite'
-                      value={true}
-                      defaultChecked
-                      className='text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
-                      {...register('allAbove_invite')}
-                    />
-                    <label
-                      htmlFor='allAbove_invite'
-                      className='text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg'
-                    >
-                      All The Above - 💯
-                    </label>
-                  </div>
-                </div>
-              </div>
-
               <div className='space-y-5 !mt-5'>
                 <Heading h3 className='!text-[22px] !font-medium'>
                   Who is your phone provider?
                 </Heading>
-                <div className='grid max-w-4xl grid-cols-4 gap-x-10 gap-y-5'>
+
+                <div className='flex flex-wrap gap-3'>
                   <div className='flex items-center'>
                     <input
                       type='radio'
                       id='AT&T'
-                      value='AT&T'
+                      value='at&t'
                       defaultChecked
                       className='hidden'
                       {...register('provider')}
@@ -520,7 +468,7 @@ const RSVPage = () => {
                       <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
                         <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
                       </div>
-                      <span className='text-lg font-light font-inter'>
+                      <span className='text-lg font-light whitespace-nowrap font-inter'>
                         AT&T
                       </span>
                     </label>
@@ -529,7 +477,7 @@ const RSVPage = () => {
                     <input
                       type='radio'
                       id='T-Mobile&Sprint'
-                      value='T-Mobile&Sprint'
+                      value='tmobile'
                       className='hidden'
                       {...register('provider')}
                     />
@@ -540,7 +488,7 @@ const RSVPage = () => {
                       <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
                         <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
                       </div>
-                      <span className='text-lg font-light font-inter'>
+                      <span className='text-lg font-light whitespace-nowrap font-inter'>
                         T-Mobile & Sprint
                       </span>
                     </label>
@@ -549,7 +497,7 @@ const RSVPage = () => {
                     <input
                       type='radio'
                       id='Verizon'
-                      value='Verizon'
+                      value='verizon'
                       className='hidden'
                       {...register('provider')}
                     />
@@ -560,7 +508,7 @@ const RSVPage = () => {
                       <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
                         <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
                       </div>
-                      <span className='text-lg font-light font-inter'>
+                      <span className='text-lg font-light whitespace-nowrap font-inter'>
                         Verizon
                       </span>
                     </label>
@@ -569,7 +517,7 @@ const RSVPage = () => {
                     <input
                       type='radio'
                       id='BoostMobile'
-                      value='BoostMobile'
+                      value='boostmobile'
                       className='hidden'
                       {...register('provider')}
                     />
@@ -580,7 +528,7 @@ const RSVPage = () => {
                       <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
                         <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
                       </div>
-                      <span className='text-lg font-light font-inter'>
+                      <span className='text-lg font-light whitespace-nowrap font-inter'>
                         Boost Mobile
                       </span>
                     </label>
@@ -589,7 +537,7 @@ const RSVPage = () => {
                     <input
                       type='radio'
                       id='CricketWireless'
-                      value='CricketWireless'
+                      value='cricketwireless'
                       className='hidden'
                       {...register('provider')}
                     />
@@ -600,7 +548,7 @@ const RSVPage = () => {
                       <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
                         <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
                       </div>
-                      <span className='text-lg font-light font-inter'>
+                      <span className='text-lg font-light whitespace-nowrap font-inter'>
                         Cricket Wireless
                       </span>
                     </label>
@@ -610,7 +558,7 @@ const RSVPage = () => {
                     <input
                       type='radio'
                       id='VirginMobile'
-                      value='VirginMobile'
+                      value='virginmobile'
                       className='hidden'
                       {...register('provider')}
                     />
@@ -621,7 +569,7 @@ const RSVPage = () => {
                       <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
                         <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
                       </div>
-                      <span className='text-lg font-light font-inter'>
+                      <span className='text-lg font-light whitespace-nowrap font-inter'>
                         Virgin Mobile
                       </span>
                     </label>
@@ -641,12 +589,83 @@ const RSVPage = () => {
                       <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
                         <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
                       </div>
-                      <span className='text-lg font-light font-inter'>
+                      <span className='text-lg font-light whitespace-nowrap font-inter'>
                         Other
                       </span>
                     </label>
                   </div>
                 </div>
+                <div className='space-y-5'>
+                  <Heading h3 className='!text-[22px] !font-medium'>
+                    How do you want your invitation & Reminders Sent? 📲-🖥-💌
+                  </Heading>
+                  <div className='flex flex-row flex-wrap items-center gap-3'>
+                    <div className='flex items-center gap-3'>
+                      <input
+                        type='checkbox'
+                        id='text_invite'
+                        value={true}
+                        defaultChecked
+                        className='text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+                        {...register('text_invite')}
+                      />
+                      <label
+                        htmlFor='text_invite'
+                        className='text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg'
+                      >
+                        Text - 📲
+                      </label>
+                    </div>
+                    <div className='flex items-center gap-3'>
+                      <input
+                        type='checkbox'
+                        id='email_invite'
+                        value={true}
+                        defaultChecked
+                        className='text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+                        {...register('email_invite')}
+                      />
+                      <label
+                        htmlFor='email_invite'
+                        className='text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg'
+                      >
+                        E-mail - 🖥
+                      </label>
+                    </div>
+                    <div className='flex items-center gap-3'>
+                      <input
+                        type='checkbox'
+                        id='mail_invite'
+                        value={true}
+                        className='text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+                        {...register('mail_invite')}
+                      />
+                      <label
+                        htmlFor='mail_invite'
+                        className='text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg'
+                      >
+                        Mail - 💌
+                      </label>
+                    </div>
+                    <div className='flex items-center gap-3'>
+                      <input
+                        type='checkbox'
+                        id='allAbove_invite'
+                        value={true}
+                        defaultChecked
+                        className='text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+                        {...register('allAbove_invite')}
+                      />
+                      <label
+                        htmlFor='allAbove_invite'
+                        className='text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg'
+                      >
+                        All The Above - 💯
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
                 {getValues('provider') === 'Other' && (
                   <Listbox
                     value={selectedProvider}
@@ -675,9 +694,10 @@ const RSVPage = () => {
                             <Listbox.Option
                               key={providerIdx}
                               className={({ active }) =>
-                                `${active
-                                  ? 'text-secondary bg-secondary-alternative/50'
-                                  : 'text-gray-900'
+                                `${
+                                  active
+                                    ? 'text-secondary bg-secondary-alternative/50'
+                                    : 'text-gray-900'
                                 }
                             cursor-pointer select-none relative py-2 pl-10 pr-4 font-medium`
                               }
@@ -686,17 +706,19 @@ const RSVPage = () => {
                               {({ selected, active }) => (
                                 <>
                                   <span
-                                    className={`${selected ? 'font-semibold' : 'font-medium'
-                                      } block truncate`}
+                                    className={`${
+                                      selected ? 'font-semibold' : 'font-medium'
+                                    } block truncate`}
                                   >
                                     {provider.name}
                                   </span>
                                   {selected ? (
                                     <span
-                                      className={`${active
-                                        ? 'text-amber-600'
-                                        : 'text-amber-600'
-                                        }
+                                      className={`${
+                                        active
+                                          ? 'text-amber-600'
+                                          : 'text-amber-600'
+                                      }
                                   absolute inset-y-0 left-0 flex items-center pl-3`}
                                     >
                                       <CheckIcon
