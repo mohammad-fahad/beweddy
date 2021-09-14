@@ -696,7 +696,11 @@ const EditWebsitePage = () => {
                   <Popover.Group className="flex flex-wrap items-center gap-3">
                     <Popover className="relative">
                       <Popover.Button>
-                        <Facebook color="#1877F2" size={35} className='customSocialIcon' />
+                        <Facebook
+                          color="#1877F2"
+                          size={35}
+                          className="customSocialIcon"
+                        />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -724,7 +728,11 @@ const EditWebsitePage = () => {
 
                     <Popover className="relative">
                       <Popover.Button>
-                        <Instagram color="#E4405F" size={35} className='customSocialIcon' />
+                        <Instagram
+                          color="#E4405F"
+                          size={35}
+                          className="customSocialIcon"
+                        />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -751,7 +759,11 @@ const EditWebsitePage = () => {
                     </Popover>
                     <Popover className="relative">
                       <Popover.Button>
-                        <Twitter color="#1DA1F2" size={35} className='customSocialIcon'/>
+                        <Twitter
+                          color="#1DA1F2"
+                          size={35}
+                          className="customSocialIcon"
+                        />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -778,7 +790,11 @@ const EditWebsitePage = () => {
                     </Popover>
                     <Popover className="relative">
                       <Popover.Button>
-                        <Youtube color="#FF0000" size={35} className='customSocialIcon'/>
+                        <Youtube
+                          color="#FF0000"
+                          size={35}
+                          className="customSocialIcon"
+                        />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -836,7 +852,11 @@ const EditWebsitePage = () => {
                     </Popover>
                     <Popover className="relative">
                       <Popover.Button>
-                        <img src="/icons/tiktok.svg" alt="" className="w-10" className='customSocialIcon' />
+                        <img
+                          src="/icons/tiktok.svg"
+                          alt=""
+                          className="w-10 customSocialIcon"
+                        />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -866,8 +886,7 @@ const EditWebsitePage = () => {
                         <img
                           src="/icons/snapchat.svg"
                           alt=""
-                          className="w-10"
-                          className='customSocialIcon'
+                          className="w-10 customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
@@ -898,8 +917,7 @@ const EditWebsitePage = () => {
                         <img
                           src="/icons/pinterest.svg"
                           alt=""
-                          className="w-10"
-                          className='customSocialIcon'
+                          className="w-10 customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
@@ -935,7 +953,11 @@ const EditWebsitePage = () => {
                   <Popover.Group className="flex flex-wrap items-center gap-3">
                     <Popover className="relative">
                       <Popover.Button>
-                        <Facebook color="#1877F2" size={35} className='customSocialIcon' />
+                        <Facebook
+                          color="#1877F2"
+                          size={35}
+                          className="customSocialIcon"
+                        />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -963,7 +985,11 @@ const EditWebsitePage = () => {
 
                     <Popover className="relative">
                       <Popover.Button>
-                        <Instagram color="#E4405F" size={35} className='customSocialIcon' />
+                        <Instagram
+                          color="#E4405F"
+                          size={35}
+                          className="customSocialIcon"
+                        />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -991,7 +1017,11 @@ const EditWebsitePage = () => {
 
                     <Popover className="relative">
                       <Popover.Button>
-                        <Twitter color="#1DA1F2" size={35} className='customSocialIcon'/>
+                        <Twitter
+                          color="#1DA1F2"
+                          size={35}
+                          className="customSocialIcon"
+                        />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -1019,7 +1049,11 @@ const EditWebsitePage = () => {
 
                     <Popover className="relative">
                       <Popover.Button>
-                        <Youtube color="#FF0000" size={35} className='customSocialIcon'/>
+                        <Youtube
+                          color="#FF0000"
+                          size={35}
+                          className="customSocialIcon"
+                        />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -1046,7 +1080,11 @@ const EditWebsitePage = () => {
                     </Popover>
                     <Popover className="relative">
                       <Popover.Button>
-                        <Linkedin color="#0A66C2" size={35} className='customSocialIcon' />
+                        <Linkedin
+                          color="#0A66C2"
+                          size={35}
+                          className="customSocialIcon"
+                        />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -1073,7 +1111,11 @@ const EditWebsitePage = () => {
                     </Popover>
                     <Popover className="relative">
                       <Popover.Button>
-                        <img src="/icons/tiktok.svg" alt="" className="w-10" className='customSocialIcon' />
+                        <img
+                          src="/icons/tiktok.svg"
+                          alt=""
+                          className="w-10 customSocialIcon"
+                        />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -1103,8 +1145,7 @@ const EditWebsitePage = () => {
                         <img
                           src="/icons/snapchat.svg"
                           alt=""
-                          className="w-10"
-                          className='customSocialIcon'
+                          className="w-10 customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
@@ -1136,7 +1177,6 @@ const EditWebsitePage = () => {
                           src="/icons/pinterest.svg"
                           alt=""
                           className="w-10"
-                          className='customSocialIcon'
                         />
                       </Popover.Button>
                       <Transition

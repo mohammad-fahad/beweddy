@@ -239,7 +239,7 @@ const UploadCouplePicture = () => {
             {uploadedFiles.map((image) => (
               <motion.div
                 key={image.public_id}
-                className="max-w-[150px] md:max-w-[220px] w-full group border-[3px] border-primary rounded-[5px] overflow-hidden relative"
+                className="max-w-[200px] md:max-w-[190px] w-full group border-[3px] border-primary rounded-[5px] overflow-hidden mt-9 relative"
                 layout
                 exit={{ opacity: 0 }}
                 initial={{ opacity: 0 }}
@@ -252,14 +252,17 @@ const UploadCouplePicture = () => {
                 >
                   <XIcon className="w-5 h-5" />
                 </button>
-                <div className="aspect-w-16 aspect-h-9">
+                {/* <div className="!aspect-w-16 !aspect-h-9"> */}
+                <div>
                   <Image
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                     publicId={image.public_id}
                     src={!image.public_id ? image.url : null}
-                    width="200"
+                    // width="200"
+                    height="200"
                     crop="scale"
-                    className="object-cover w-full"
+                    // className="object-cover !bg-center !bg-cover w-full"
+                    className="object-cover w-full]"
                   />
                 </div>
               </motion.div>

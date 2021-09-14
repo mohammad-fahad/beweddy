@@ -93,7 +93,7 @@ const WebsiteGiftCards = () => {
             <Fragment key={index}>
               <div
                 className={`mx-auto py-5 rounded-xl overflow-hidden cursor-pointer transition-transform duration-300 ease-easing relative ${
-                  selected === index ? '' : 'hover:scale-110'
+                  selected === index ? "" : "hover:scale-110"
                 }`}
                 onClick={() => {
                   handleTooltip(index + 1);
@@ -167,7 +167,7 @@ const WebsiteGiftCards = () => {
 
       <div className="flex justify-end pr-2">
         <Link href="/">
-          <a className="text-lg font-semibold font-inter hover:underline">
+          <a className="text-lg font-semibold font-inter hover:underline customLabel">
             See All Gift Cards
           </a>
         </Link>
