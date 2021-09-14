@@ -30,13 +30,13 @@ const QRCodeGenerator = () => {
             Generate
           </a>
         </Link>
-        <button
+        <a
+          href={user?.QRCode?.image}
+          download={`${user?.coupleName}`}
           className='bg-secondary-alternative font-inter cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-primary rounded-[5px] transition duration-300 hover:bg-secondary-alternative/30'
-          // onClick={download}
-          onClick={() => alert('Under construction')}
         >
           Download
-        </button>
+        </a>
       </div>
     </div>
   );
