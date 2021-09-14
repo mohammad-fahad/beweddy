@@ -188,7 +188,7 @@ const TextInvitesPage = () => {
               <div className='mb-5'>
                 <div className='flex items-center pb-2 space-x-3'>
                   <Image src='/icons/messages.svg' width={46} height={46} />
-                  <h3 className='text-2xl'>Send Text & Superlink Invites</h3>
+                  <h3 className='text-2xl'>Send Text & MMS Invites</h3>
                 </div>
                 <span className='h-[4px] inline-block max-w-[215px] w-full bg-secondary-alternative'></span>
               </div>

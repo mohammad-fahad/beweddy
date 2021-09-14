@@ -167,6 +167,14 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    QRCode: {
+      type: Object,
+      default: {
+        image: null,
+        avatar:
+          'https://res.cloudinary.com/beweddy/image/upload/v1631619815/utils/circle-ring_tbmyjw.png',
+      },
+    },
     phone: {
       type: String,
     },
