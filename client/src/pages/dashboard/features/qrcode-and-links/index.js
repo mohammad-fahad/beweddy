@@ -49,7 +49,7 @@ const QRCodePage = () => {
           })
         );
 
-        setLoading(true);
+        setLoading(false);
       }
     } catch (err) {
       setLoading(false);
