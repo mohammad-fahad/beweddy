@@ -227,18 +227,7 @@ const CalendarPage = () => {
                   Description
                 </Heading>
                 <div className="w-full my-3">
-                  {/* <textarea
-                    rows="4" cols="50" maxLength="200"
-                    type="text"
-                    className="w-full max-w-[592px] text-sm md:text-lg font-normal py-2 md:py-3 px-4 md:px-6 placeholder-gray-400 border-[2px] border-primary rounded-lg"
-                    placeholder="Add Description"
-                    {...register('description', {
-                      required: {
-                        value: true,
-                        message: 'description is required!',
-                      },
-                    })}
-                  /> */}
+
                   <textarea
                     cols='10'
                     rows='8'
@@ -249,7 +238,7 @@ const CalendarPage = () => {
                        scroll-design'
                     defaultValue={val}
                     placeholder=''
-                    {...register('message', {
+                    {...register('description', {
                       required: {
                         value: true,
                         message: 'Compose message is required!',
