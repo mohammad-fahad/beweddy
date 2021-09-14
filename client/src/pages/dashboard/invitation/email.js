@@ -138,7 +138,7 @@ const EmailInvitesPage = () => {
       setToEmails(null);
     }
   };
-  
+
   const onDrop = useCallback(acceptedFiles => {
     const fileDropped = acceptedFiles[0];
     if (fileDropped['type'].split('/')[0] === 'image') {
