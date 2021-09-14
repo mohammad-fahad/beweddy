@@ -44,7 +44,9 @@ export const register = asyncHandler(async (req, res) => {
 
   const username = `${questions.firstName}_${
     questions.spouseFirstName
-  }_${nanoid(4)}`.toLowerCase();
+  }_${nanoid(4)}`
+    .toLowerCase()
+    .replace(/\s/g, '');
   // Create new user
   const user = await User.create({
     firstName,
@@ -455,8 +457,13 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     //   req.body.socialAccounts.groom || user.socialAccounts.groom;
     // user.socialAccounts.bride =
     //   req.body.socialAccounts.bride || user.socialAccounts.bride;
-    user.QRCode.avatar = req.body.QRCode.avatar || user.QRCode.avatar;
-    user.QRCode.image = req.body.QRCode.image || user.QRCode.image;
+    // user.QRCode.avatar = req.body.QRCode.avatar || user.QRCode.avatar;
+    // user.QRCode.image = req.body.QRCode.image || user.QRCode.image;
+    user.QRCode = {
+      image: req.body.QRCode.image || user.QRCode.image,
+      avatar: req.body.QRCode.avatar || user.QRCode.avatar,
+    };
+
     if (req.body.avatar) {
       user.avatar = req.body.avatar;
     }
