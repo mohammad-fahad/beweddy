@@ -14,11 +14,11 @@ import toast from 'react-hot-toast';
 import { useDropzone } from 'react-dropzone';
 import { attemptUpdateUserProfile } from '@features/user/userActions';
 import { downloadQRCode } from '@utils/index';
+import useCopyClipboard from 'react-use-clipboard';
 
 const QRCodePage = () => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.user);
-  const [uploadedFile, setUploadedFile] = useState();
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState();
   const [preview, setPreview] = useState();
@@ -29,6 +29,12 @@ const QRCodePage = () => {
   const [link, setLink] = useState(
     `https://beweddy-delta.vercel.app/couple/${user?.username}`
   );
+
+  const [isCopied, setCopied] = useCopyClipboard(value, {
+    successDuration: 1500,
+  });
+
+  isCopied && toast.success('Wedding website link copied!');
 
   const generateQRCode = async () => {
     try {
@@ -136,6 +142,7 @@ const QRCodePage = () => {
                     placeholder='www.beweddy.com/nateandash'
                     value={link}
                     onChange={e => setLink(e.target.value)}
+                    onClick={setCopied}
                   />
                   <Heading h3>Upload QR Image</Heading>
                   <div className='flex flex-wrap items-center gap-2 lg:space-x-5'>
