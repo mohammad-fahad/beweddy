@@ -12,8 +12,12 @@ import DashboardContainer from '@components/dashboard/DashboardContainer';
 
 const QRCodePage = () => {
   const { user } = useSelector(state => state.user);
-  const [value, setValue] = useState('https://beweddy-delta.vercel.app/');
-  const [link, setLink] = useState(`https://beweddy-delta.vercel.app/couple/${user?.username}`);
+  const [value, setValue] = useState(
+    `https://beweddy-delta.vercel.app/couple/${user?.username}`
+  );
+  const [link, setLink] = useState(
+    `https://beweddy-delta.vercel.app/couple/${user?.username}`
+  );
   const download = () => {
     const canvas = document.querySelector('.qrCode > canvas');
     const pngUrl = canvas
@@ -74,8 +78,9 @@ const QRCodePage = () => {
                     </button>
                   </div>
                   <div className='!mt-10'>
+                    {/* bg-secondary-alternative/40 */}
                     <button
-                      className='w-full sm:w-max bg-secondary-alternative/40 font-inter cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-5 lg:px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition duration-300 hover:bg-secondary-alternative/30 hover:border-primary'
+                      className='w-full sm:w-max  font-inter cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-5 lg:px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition duration-300 hover:bg-secondary-alternative/30 hover:border-primary'
                       onClick={download}
                     >
                       Download Your QR Code
@@ -88,7 +93,7 @@ const QRCodePage = () => {
             <div className='hidden mx-auto xl:col-span-1 md:block'>
               <div className='space-y-10'>
                 <h4 className='text-xl font-medium text-center'>
-                  Demo QR | Your QR Code
+                  Demo | Your QR Code
                 </h4>
                 <div className='relative w-full max-w-xs mx-auto'>
                   <img

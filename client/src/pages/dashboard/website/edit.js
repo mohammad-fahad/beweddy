@@ -1,11 +1,11 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import { produce } from 'immer';
-import { generate } from 'shortid';
-import { Image } from 'cloudinary-react';
-import { DashboardHeader } from '@components/dashboard';
-import DashboardTopBar from '@components/dashboard/header/TopBar';
-import DashboardLayout from '@components/dashboard/layout';
+import Head from "next/head";
+import Link from "next/link";
+import { produce } from "immer";
+import { generate } from "shortid";
+import { Image } from "cloudinary-react";
+import { DashboardHeader } from "@components/dashboard";
+import DashboardTopBar from "@components/dashboard/header/TopBar";
+import DashboardLayout from "@components/dashboard/layout";
 import {
   Button,
   CropImage,
@@ -17,26 +17,26 @@ import {
   QRCodeGenerator,
   SecondReceptionDatePicker,
   WeddingDatePicker,
-} from '@components/index';
+} from "@components/index";
 import {
   LinkIcon,
   MinusIcon,
   PencilIcon,
   PlusIcon,
-} from '@heroicons/react/outline';
-import { withAuthRoute } from '@hoc/withAuthRoute';
-import { Popover, Transition } from '@headlessui/react';
-import { attemptImageUpload, removeImage } from '@utils/index';
-import { useCallback, useEffect, useState } from 'react';
-import { useDropzone } from 'react-dropzone';
-import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { motion } from 'framer-motion';
-import { XIcon } from '@heroicons/react/solid';
-import moment from 'moment';
-import DatePicker from 'react-datepicker';
-import { compareDate } from '@helpers/index';
-import { isEmpty } from 'lodash';
+} from "@heroicons/react/outline";
+import { withAuthRoute } from "@hoc/withAuthRoute";
+import { Popover, Transition } from "@headlessui/react";
+import { attemptImageUpload, removeImage } from "@utils/index";
+import { useCallback, useEffect, useState } from "react";
+import { useDropzone } from "react-dropzone";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { motion } from "framer-motion";
+import { XIcon } from "@heroicons/react/solid";
+import moment from "moment";
+import DatePicker from "react-datepicker";
+import { compareDate } from "@helpers/index";
+import { isEmpty } from "lodash";
 import {
   Facebook,
   Gmail,
@@ -45,10 +45,10 @@ import {
   Linkedin,
   Twitter,
   Youtube,
-} from '@icons-pack/react-simple-icons';
-import { attemptUpdateUserProfile } from '@features/user/userActions';
-import { Fragment } from 'react';
-import axios from 'axios';
+} from "@icons-pack/react-simple-icons";
+import { attemptUpdateUserProfile } from "@features/user/userActions";
+import { Fragment } from "react";
+import axios from "axios";
 
 const EditWebsitePage = () => {
   const dispatch = useDispatch();
@@ -67,18 +67,18 @@ const EditWebsitePage = () => {
       : [
           {
             id: generate(),
-            time: '5.00 PM',
-            details: 'Example of event details',
+            time: "5.00 PM",
+            details: "Example of event details",
           },
           {
             id: generate(),
-            time: '5.30 PM',
-            details: 'Ceremony',
+            time: "5.30 PM",
+            details: "Ceremony",
           },
           {
             id: generate(),
-            time: '6.00 PM',
-            details: 'Ceremony ends/cocktails begin',
+            time: "6.00 PM",
+            details: "Ceremony ends/cocktails begin",
           },
         ]
   );
@@ -87,14 +87,14 @@ const EditWebsitePage = () => {
   // WeddingDate Picker
   const _weddingDate = user.questions?.weddingDay?.weddingDate
     ? new Date(user.questions?.weddingDay?.weddingDate)
-    : '';
+    : "";
 
   const [selectWeddingDay, setSelectWeddingDay] = useState(_weddingDate);
 
   // First Reception Picker
   const _firstReception = user.questions?.weddingDay?.firstReception
     ? new Date(user.questions?.weddingDay?.firstReception)
-    : '';
+    : "";
 
   const [selectFirstReception, setSelectFirstReception] =
     useState(_firstReception);
@@ -102,7 +102,7 @@ const EditWebsitePage = () => {
   // Second Reception Picker
   const _secondReception = user.questions?.weddingDay?.secondReception
     ? new Date(user.questions?.weddingDay?.secondReception)
-    : '';
+    : "";
 
   const [selectSecondReception, setSelectSecondReception] =
     useState(_secondReception);
@@ -137,7 +137,7 @@ const EditWebsitePage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    mode: 'all',
+    mode: "all",
     defaultValues: {
       ...user.questions,
       ourStory: user.ourStory,
@@ -148,36 +148,36 @@ const EditWebsitePage = () => {
   });
 
   // Watch Input Fields
-  watch(['weddingDate', 'firstReception', 'secondReception']);
+  watch(["weddingDate", "firstReception", "secondReception"]);
 
   // Input Fields as Variable
-  const weddingDate = getValues('weddingDate');
-  const firstReception = getValues('firstReception');
-  const secondReception = getValues('secondReception');
+  const weddingDate = getValues("weddingDate");
+  const firstReception = getValues("firstReception");
+  const secondReception = getValues("secondReception");
 
   useEffect(() => {
     if (isEmpty(weddingDate) || compareDate(weddingDate)) {
-      clearErrors('weddingDate');
+      clearErrors("weddingDate");
     } else {
-      setError('weddingDate', {
-        type: 'validate',
-        message: 'Seems like you have selected past date',
+      setError("weddingDate", {
+        type: "validate",
+        message: "Seems like you have selected past date",
       });
     }
     if (isEmpty(firstReception) || compareDate(firstReception)) {
-      clearErrors('firstReception');
+      clearErrors("firstReception");
     } else {
-      setError('firstReception', {
-        type: 'validate',
-        message: 'Seems like you have selected past date',
+      setError("firstReception", {
+        type: "validate",
+        message: "Seems like you have selected past date",
       });
     }
     if (isEmpty(secondReception) || compareDate(secondReception)) {
-      clearErrors('secondReception');
+      clearErrors("secondReception");
     } else {
-      setError('secondReception', {
-        type: 'validate',
-        message: 'Seems like you have selected past date',
+      setError("secondReception", {
+        type: "validate",
+        message: "Seems like you have selected past date",
       });
     }
   }, [weddingDate, firstReception, secondReception]);
@@ -186,15 +186,15 @@ const EditWebsitePage = () => {
 
   const onDrop = useCallback((acceptedFiles) => {
     if (uploadedFiles.length === 4) {
-      setError('couplePictures', {
-        type: 'maxLength',
-        message: 'Maximum number of files uploaded',
+      setError("couplePictures", {
+        type: "maxLength",
+        message: "Maximum number of files uploaded",
       });
       return;
     }
 
     const fileDropped = acceptedFiles[0];
-    if (fileDropped['type'].split('/')[0] === 'image') {
+    if (fileDropped["type"].split("/")[0] === "image") {
       setSelectedImageFile(fileDropped);
       return;
     }
@@ -205,7 +205,7 @@ const EditWebsitePage = () => {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: 'image/*',
+    accept: "image/*",
     multiple: false,
   });
 
@@ -216,12 +216,12 @@ const EditWebsitePage = () => {
     const URL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`;
     try {
       const formData = new FormData();
-      formData.append('file', file);
-      formData.append('upload_preset', 'beweddy_csfhgnsu');
+      formData.append("file", file);
+      formData.append("upload_preset", "beweddy_csfhgnsu");
 
       const config = {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
           // Authorization: `Bearer ${user.token}`,
         },
       };
@@ -233,8 +233,8 @@ const EditWebsitePage = () => {
         { public_id, height, width, secure_url, url },
       ]);
 
-      setValue('couplePictures', uploadedFiles);
-      clearErrors('couplePictures');
+      setValue("couplePictures", uploadedFiles);
+      clearErrors("couplePictures");
       setLoading(false);
     } catch (err) {
       setLoading(false);
@@ -251,15 +251,15 @@ const EditWebsitePage = () => {
         prev.filter((image) => image.public_id !== id)
       );
       if (uploadedFiles.length === 0) {
-        setError('couplePictures', {
-          type: 'required',
-          message: 'Please upload couple picture file or check do this later',
+        setError("couplePictures", {
+          type: "required",
+          message: "Please upload couple picture file or check do this later",
         });
-        setValue('couplePictures', undefined, {
+        setValue("couplePictures", undefined, {
           shouldValidate: true,
         });
       } else {
-        setValue('couplePictures', uploadedFiles);
+        setValue("couplePictures", uploadedFiles);
       }
       setLoading(false);
     } catch (err) {
@@ -347,7 +347,7 @@ const EditWebsitePage = () => {
 
         <div className="border-4 border-gray-200 rounded-lg">
           <div className="px-2 py-10 lg:py-10 lg:px-10">
-            <h4 className="mb-6 text-2xl font-medium capitalize lg:text-3xl xl:text-4xl">
+            <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
               Name (you & your spouse name)
             </h4>
             <form className="space-y-10" onSubmit={handleSubmit(onSubmit)}>
@@ -356,20 +356,20 @@ const EditWebsitePage = () => {
                   <input
                     type="text"
                     className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal"
-                    {...register('firstName', {
+                    {...register("firstName", {
                       required: {
                         value: true,
-                        message: 'First name is required!',
+                        message: "First name is required!",
                       },
                     })}
                   />
                   <input
                     type="text"
                     className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal"
-                    {...register('lastName', {
+                    {...register("lastName", {
                       required: {
                         value: true,
-                        message: 'Last name is required!',
+                        message: "Last name is required!",
                       },
                     })}
                   />
@@ -379,30 +379,36 @@ const EditWebsitePage = () => {
                   <input
                     type="text"
                     className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal"
-                    {...register('spouseFirstName', {
+                    {...register("spouseFirstName", {
                       required: {
                         value: true,
-                        message: 'Spouse first name is required!',
+                        message: "Spouse first name is required!",
                       },
                     })}
                   />
                   <input
                     type="text"
                     className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal"
-                    {...register('spouseLastName', {
+                    {...register("spouseLastName", {
                       required: {
                         value: true,
-                        message: 'Spouse last name is required!',
+                        message: "Spouse last name is required!",
                       },
                     })}
                   />
+                </div>
+
+                <div>
+                  <button type="submit">Save</button>
                 </div>
               </div>
 
               <Divider />
 
               <div className="space-y-5">
-                <Heading h3>Upload 4 images</Heading>
+                <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
+                  Upload 4 images
+                </h4>
                 <div
                   className="relative focus:outline-none"
                   {...getRootProps()}
@@ -450,19 +456,25 @@ const EditWebsitePage = () => {
                     </motion.div>
                   ))}
                 </div>
+                <button type="submit">Save</button>
               </div>
 
               <Divider />
 
               <div className="space-y-5">
-                <Heading h3>Pick your wedding date</Heading>
+                {/* <Heading h3>Pick your wedding date</Heading> */}
+
+                <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
+                  Pick your wedding date
+                </h4>
+
                 <div className="inline-block">
                   <DatePicker
                     selected={selectWeddingDay}
                     popperPlacement="top-end"
                     onChange={(date) => {
                       setSelectWeddingDay(date);
-                      setValue('weddingDate', moment(date).format('LL'));
+                      setValue("weddingDate", moment(date).format("LL"));
                     }}
                     customInput={
                       <WeddingDatePicker
@@ -474,8 +486,9 @@ const EditWebsitePage = () => {
                   />
                 </div>
 
-                <Heading h3>Have 2 Receptions?</Heading>
-
+                <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
+                  Pick your Reception date
+                </h4>
                 <div className="flex flex-wrap items-center gap-5">
                   <div>
                     <DatePicker
@@ -483,7 +496,7 @@ const EditWebsitePage = () => {
                       // popperPlacement='top-end'
                       onChange={(date) => {
                         setSelectFirstReception(date);
-                        setValue('firstReception', moment(date).format('LL'));
+                        setValue("firstReception", moment(date).format("LL"));
                       }}
                       customInput={
                         <FirstReceptionDatePicker
@@ -500,7 +513,7 @@ const EditWebsitePage = () => {
                       // popperPlacement='top-end'
                       onChange={(date) => {
                         setSelectSecondReception(date);
-                        setValue('secondReception', moment(date).format('LL'));
+                        setValue("secondReception", moment(date).format("LL"));
                       }}
                       customInput={
                         <SecondReceptionDatePicker
@@ -511,13 +524,20 @@ const EditWebsitePage = () => {
                     />
                   </div>
                 </div>
+                <div>
+                  {" "}
+                  <button type="submit">Save</button>
+                </div>
               </div>
 
               <Divider />
 
               <div className="space-y-5">
                 <div className="flex items-center justify-between space-x-5">
-                  <Heading h3>Our story</Heading>
+                  {/* <Heading h3></Heading> */}
+                  <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
+                    Our story
+                  </h4>
                   <button className="px-5 py-2">
                     <MinusIcon className="w-7" />
                   </button>
@@ -527,15 +547,19 @@ const EditWebsitePage = () => {
                   rows="5"
                   className="w-full px-5 py-3 text-base font-normal border-2 border-gray-200 rounded-lg focus:ring-0 focus:border-primary"
                   placeholder="We sincerely hope we will have the honor to dine, laugh, and dance with you on our wedding weekend. It would mean the world to us."
-                  {...register('ourStory')}
+                  {...register("ourStory")}
                 ></textarea>
+
+                <button type="submit">Save</button>
               </div>
 
               <Divider />
 
               <div className="space-y-5">
                 <div className="flex items-center justify-between space-x-5">
-                  <Heading h3>Reception Details</Heading>
+                  <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
+                    Reception Details
+                  </h4>
                   {/* <button className='px-5 py-2'>
                   <MinusIcon className='w-7' />
                 </button> */}
@@ -595,8 +619,8 @@ const EditWebsitePage = () => {
                       ...prev,
                       {
                         id: generate(),
-                        time: '',
-                        details: '',
+                        time: "",
+                        details: "",
                       },
                     ])
                   }
@@ -604,11 +628,15 @@ const EditWebsitePage = () => {
                   <PlusIcon className="h-5 w-7" />
                   <span>Add New</span>
                 </button>
+                <button type="submit">Save</button>
               </div>
 
               <Divider />
 
-              <Heading h3>Add Gift Card</Heading>
+              <Heading h3></Heading>
+              <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
+                Add Gift Card
+              </h4>
 
               <div>
                 <div className="flex items-center gap-3 md:gap-10">
@@ -625,10 +653,15 @@ const EditWebsitePage = () => {
                 </Link>
               </div>
 
+              <button type="submit"> Save </button>
+
               <Divider />
 
               <div className="space-y-5">
-                <Heading h3>Connect your registry</Heading>
+                {/* <Heading h3></Heading> */}
+                <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
+                  Connect your registry
+                </h4>
                 <div className="flex items-center gap-3">
                   <div className="border-2 w-[200px] min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex flex-col items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300">
                     <Link href="/">
@@ -648,17 +681,22 @@ const EditWebsitePage = () => {
                     See All Wedding Registry Options
                   </a>
                 </Link>
+                <div>
+                  <button type="submit">Save</button>
+                </div>
               </div>
 
               <Divider />
 
               <div className="flex items-center flex-col md:flex-row justify-center gap-5 w-full !mb-20">
                 <div className="w-full space-y-10">
-                  <Heading h3>Link Groom’s Social Media Account</Heading>
+                  <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
+                    Follow "Groom"
+                  </h4>
                   <Popover.Group className="flex flex-wrap items-center gap-3">
                     <Popover className="relative">
                       <Popover.Button>
-                        <Facebook color="#1877F2" size={35} />
+                        <Facebook color="#1877F2" size={35} className='customSocialIcon' />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -677,7 +715,7 @@ const EditWebsitePage = () => {
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://facebook.com/beweddy"
                               defaultValue={groom.facebook}
-                              {...register('groom_facebook')}
+                              {...register("groom_facebook")}
                             />
                           </div>
                         </Popover.Panel>
@@ -686,7 +724,7 @@ const EditWebsitePage = () => {
 
                     <Popover className="relative">
                       <Popover.Button>
-                        <Instagram color="#E4405F" size={35} />
+                        <Instagram color="#E4405F" size={35} className='customSocialIcon' />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -705,7 +743,7 @@ const EditWebsitePage = () => {
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://instagram.com/beweddy"
                               defaultValue={groom.instagram}
-                              {...register('groom_instagram')}
+                              {...register("groom_instagram")}
                             />
                           </div>
                         </Popover.Panel>
@@ -713,7 +751,7 @@ const EditWebsitePage = () => {
                     </Popover>
                     <Popover className="relative">
                       <Popover.Button>
-                        <Twitter color="#1DA1F2" size={35} />
+                        <Twitter color="#1DA1F2" size={35} className='customSocialIcon'/>
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -732,7 +770,7 @@ const EditWebsitePage = () => {
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://twitter.com/beweddy"
                               defaultValue={groom.twitter}
-                              {...register('groom_twitter')}
+                              {...register("groom_twitter")}
                             />
                           </div>
                         </Popover.Panel>
@@ -740,7 +778,7 @@ const EditWebsitePage = () => {
                     </Popover>
                     <Popover className="relative">
                       <Popover.Button>
-                        <Youtube color="#FF0000" size={35} />
+                        <Youtube color="#FF0000" size={35} className='customSocialIcon'/>
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -759,7 +797,7 @@ const EditWebsitePage = () => {
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://www.youtube.com/beweddy"
                               defaultValue={groom.youTube}
-                              {...register('groom_youTube')}
+                              {...register("groom_youTube")}
                             />
                           </div>
                         </Popover.Panel>
@@ -767,7 +805,11 @@ const EditWebsitePage = () => {
                     </Popover>
                     <Popover className="relative">
                       <Popover.Button>
-                        <Linkedin color="#0A66C2" size={35} />
+                        <Linkedin
+                          color="#0A66C2"
+                          size={35}
+                          className="customSocialIcon"
+                        />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -786,7 +828,7 @@ const EditWebsitePage = () => {
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://www.linkedin.com/in/beweddy"
                               defaultValue={groom.linkedIn}
-                              {...register('groom_linkedIn')}
+                              {...register("groom_linkedIn")}
                             />
                           </div>
                         </Popover.Panel>
@@ -794,7 +836,7 @@ const EditWebsitePage = () => {
                     </Popover>
                     <Popover className="relative">
                       <Popover.Button>
-                        <img src="/icons/tiktok.svg" alt="" className="w-10" />
+                        <img src="/icons/tiktok.svg" alt="" className="w-10" className='customSocialIcon' />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -813,7 +855,7 @@ const EditWebsitePage = () => {
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://www.tiktok.com/beweddy"
                               defaultValue={groom.tiktok}
-                              {...register('groom_tiktok')}
+                              {...register("groom_tiktok")}
                             />
                           </div>
                         </Popover.Panel>
@@ -825,6 +867,7 @@ const EditWebsitePage = () => {
                           src="/icons/snapchat.svg"
                           alt=""
                           className="w-10"
+                          className='customSocialIcon'
                         />
                       </Popover.Button>
                       <Transition
@@ -844,7 +887,7 @@ const EditWebsitePage = () => {
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://www.snapchat.com/beweddy"
                               defaultValue={groom.snapchat}
-                              {...register('groom_snapchat')}
+                              {...register("groom_snapchat")}
                             />
                           </div>
                         </Popover.Panel>
@@ -856,6 +899,7 @@ const EditWebsitePage = () => {
                           src="/icons/pinterest.svg"
                           alt=""
                           className="w-10"
+                          className='customSocialIcon'
                         />
                       </Popover.Button>
                       <Transition
@@ -875,7 +919,7 @@ const EditWebsitePage = () => {
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://www.pinterest.com/beweddy"
                               defaultValue={groom.pinterest}
-                              {...register('groom_pinterest')}
+                              {...register("groom_pinterest")}
                             />
                           </div>
                         </Popover.Panel>
@@ -885,11 +929,13 @@ const EditWebsitePage = () => {
                 </div>
 
                 <div className="w-full space-y-10">
-                  <Heading h3>Link Bride’s Social Media Account</Heading>
+                  <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
+                    Follow "Bride"
+                  </h4>
                   <Popover.Group className="flex flex-wrap items-center gap-3">
                     <Popover className="relative">
                       <Popover.Button>
-                        <Facebook color="#1877F2" size={35} />
+                        <Facebook color="#1877F2" size={35} className='customSocialIcon' />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -908,7 +954,7 @@ const EditWebsitePage = () => {
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://facebook.com/beweddy"
                               defaultValue={bride.facebook}
-                              {...register('bride_facebook')}
+                              {...register("bride_facebook")}
                             />
                           </div>
                         </Popover.Panel>
@@ -917,7 +963,7 @@ const EditWebsitePage = () => {
 
                     <Popover className="relative">
                       <Popover.Button>
-                        <Instagram color="#E4405F" size={35} />
+                        <Instagram color="#E4405F" size={35} className='customSocialIcon' />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -936,7 +982,7 @@ const EditWebsitePage = () => {
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://instagram.com/beweddy"
                               defaultValue={bride.instagram}
-                              {...register('bride_instagram')}
+                              {...register("bride_instagram")}
                             />
                           </div>
                         </Popover.Panel>
@@ -945,7 +991,7 @@ const EditWebsitePage = () => {
 
                     <Popover className="relative">
                       <Popover.Button>
-                        <Twitter color="#1DA1F2" size={35} />
+                        <Twitter color="#1DA1F2" size={35} className='customSocialIcon'/>
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -964,7 +1010,7 @@ const EditWebsitePage = () => {
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://twitter.com/beweddy"
                               defaultValue={bride.twitter}
-                              {...register('bride_twitter')}
+                              {...register("bride_twitter")}
                             />
                           </div>
                         </Popover.Panel>
@@ -973,7 +1019,7 @@ const EditWebsitePage = () => {
 
                     <Popover className="relative">
                       <Popover.Button>
-                        <Youtube color="#FF0000" size={35} />
+                        <Youtube color="#FF0000" size={35} className='customSocialIcon'/>
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -992,7 +1038,7 @@ const EditWebsitePage = () => {
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://www.youtube.com/beweddy"
                               defaultValue={bride.youTube}
-                              {...register('bride_youTube')}
+                              {...register("bride_youTube")}
                             />
                           </div>
                         </Popover.Panel>
@@ -1000,7 +1046,7 @@ const EditWebsitePage = () => {
                     </Popover>
                     <Popover className="relative">
                       <Popover.Button>
-                        <Linkedin color="#0A66C2" size={35} />
+                        <Linkedin color="#0A66C2" size={35} className='customSocialIcon' />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -1019,7 +1065,7 @@ const EditWebsitePage = () => {
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://www.linkedin.com/in/beweddy"
                               defaultValue={bride.linkedIn}
-                              {...register('bride_linkedIn')}
+                              {...register("bride_linkedIn")}
                             />
                           </div>
                         </Popover.Panel>
@@ -1027,7 +1073,7 @@ const EditWebsitePage = () => {
                     </Popover>
                     <Popover className="relative">
                       <Popover.Button>
-                        <img src="/icons/tiktok.svg" alt="" className="w-10" />
+                        <img src="/icons/tiktok.svg" alt="" className="w-10" className='customSocialIcon' />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -1046,7 +1092,7 @@ const EditWebsitePage = () => {
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://www.tiktok.com/beweddy"
                               defaultValue={bride.tiktok}
-                              {...register('bride_tiktok')}
+                              {...register("bride_tiktok")}
                             />
                           </div>
                         </Popover.Panel>
@@ -1058,6 +1104,7 @@ const EditWebsitePage = () => {
                           src="/icons/snapchat.svg"
                           alt=""
                           className="w-10"
+                          className='customSocialIcon'
                         />
                       </Popover.Button>
                       <Transition
@@ -1077,7 +1124,7 @@ const EditWebsitePage = () => {
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://www.snapchat.com/beweddy"
                               defaultValue={bride.snapchat}
-                              {...register('bride_snapchat')}
+                              {...register("bride_snapchat")}
                             />
                           </div>
                         </Popover.Panel>
@@ -1089,6 +1136,7 @@ const EditWebsitePage = () => {
                           src="/icons/pinterest.svg"
                           alt=""
                           className="w-10"
+                          className='customSocialIcon'
                         />
                       </Popover.Button>
                       <Transition
@@ -1108,7 +1156,7 @@ const EditWebsitePage = () => {
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://www.pinterest.com/beweddy"
                               defaultValue={bride.pinterest}
-                              {...register('bride_pinterest')}
+                              {...register("bride_pinterest")}
                             />
                           </div>
                         </Popover.Panel>
@@ -1116,6 +1164,9 @@ const EditWebsitePage = () => {
                     </Popover>
                   </Popover.Group>
                 </div>
+              </div>
+              <div>
+                <button type="submit">Save</button>
               </div>
 
               <Divider />
@@ -1131,7 +1182,7 @@ const EditWebsitePage = () => {
                     id="videoTitle"
                     className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal placeholder-gray-300"
                     placeholder="Name Your Wedding Video"
-                    {...register('videoTitle')}
+                    {...register("videoTitle")}
                   />
                 </div>
                 <div

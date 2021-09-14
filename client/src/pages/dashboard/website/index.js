@@ -121,12 +121,11 @@ const WebsitePageOne = () => {
                   />
                 </div>
 
-                <Link href='/dashboard/website/edit' >
-                <div className="absolute !right-[20px] !top-[20px] cursor-pointer">
-                  Edit Photo{" "}
-                </div>
-                 </Link>
-                
+                <Link href="/dashboard/website/edit">
+                  <div className="absolute !right-[20px] !top-[20px] cursor-pointer">
+                    Edit Photo{" "}
+                  </div>
+                </Link>
               </div>
             ))}
           </Carousel>
@@ -216,12 +215,12 @@ const WebsitePageOne = () => {
               {user?.questions?.weddingDay?.firstReception && (
                 <div class="col-start-2 col-span-5 p-5 text-lg font-semibold subTitle">
                   <h4 className="text-lg">Receptions</h4>
-                  <h6>
+                  <h6 className="miniTitle">
                     Date 1 : {user?.questions?.weddingDay?.firstReception}{" "}
                   </h6>
 
                   {user?.questions?.weddingDay?.secondReception && (
-                    <h6>
+                    <h6 className="miniTitle">
                       Date 2 : {user?.questions?.weddingDay?.secondReception}
                     </h6>
                   )}
@@ -230,8 +229,8 @@ const WebsitePageOne = () => {
               <div class="col-span-5 p-5 flex justify-end">
                 <div>
                   <h2 className="text-lg">Locations</h2>
-                  <h6>Utah Convention Hall</h6>
-                  <h6>Utah, USA</h6>
+                  <h6 className="miniTitle">Utah Convention Hall</h6>
+                  <h6 className="miniTitle">Utah, USA</h6>
                 </div>
               </div>
             </div>
@@ -243,8 +242,12 @@ const WebsitePageOne = () => {
                 <ul className="space-y-3">
                   {user?.receptionDetails?.map((el) => (
                     <li className="w-full px-7 py-2 space-x-5 border border-[#D5D5D5] hover:border-primary cursor-pointer">
-                      <span className="text-lg font-bold">{el?.time}</span>
-                      <span className="text-lg font-normal">{el?.details}</span>
+                      <span className="mr-2 text-lg font-bold subTitle ">
+                        {el?.time}
+                      </span>
+                      <span className="text-lg font-normal miniTitle">
+                        {el?.details}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -253,7 +256,7 @@ const WebsitePageOne = () => {
 
             {/* 😇 Bless us with a Gift Card section */}
             <div className="w-full px-2 mx-auto mt-5">
-              <h2 className="text-3xl font-medium text-center md:text-4xl">
+              <h2 className="text-3xl font-medium text-center md:text-4xl commonTitle">
                 😇 Bless us with a Gift Card
               </h2>
               <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-[28px] mb-[50px]" />
@@ -296,7 +299,7 @@ const WebsitePageOne = () => {
             <div className="p-3 bg-white border-4 border-gray-200 rounded-lg">
               <div class="flex items-center justify-center flex-wrap gap-4 w-full mt-5">
                 <div class="p-5 flex justify-center items-center ">
-                  <h1 className="text-3xl font-normal md:text-4xl">
+                  <h1 className="text-3xl font-normal md:text-4xl commonTitle">
                     Your Personalized <span className="font-bold">QR Code</span>
                   </h1>
                 </div>
