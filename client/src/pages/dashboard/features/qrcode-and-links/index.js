@@ -12,8 +12,12 @@ import DashboardContainer from '@components/dashboard/DashboardContainer';
 
 const QRCodePage = () => {
   const { user } = useSelector(state => state.user);
-  const [value, setValue] = useState('https://beweddy-delta.vercel.app/');
-  const [link, setLink] = useState(`https://beweddy-delta.vercel.app/couple/${user?.username}`);
+  const [value, setValue] = useState(
+    `https://beweddy-delta.vercel.app/couple/${user?.username}`
+  );
+  const [link, setLink] = useState(
+    `https://beweddy-delta.vercel.app/couple/${user?.username}`
+  );
   const download = () => {
     const canvas = document.querySelector('.qrCode > canvas');
     const pngUrl = canvas
