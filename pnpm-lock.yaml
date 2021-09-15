@@ -20,6 +20,7 @@ specifiers:
   nodemailer: ^6.6.3
   nodemon: ^2.0.11
   stripe: ^8.165.0
+  valid-url: ^1.0.9
 
 dependencies:
   '@sendgrid/mail': 7.4.6
@@ -39,6 +40,7 @@ dependencies:
   nanoid: 3.1.25
   nodemailer: 6.6.3
   stripe: 8.170.0
+  valid-url: 1.0.9
 
 devDependencies:
   concurrently: 6.2.1
@@ -2258,6 +2260,10 @@ packages:
   /uuid/8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
+    dev: false
+
+  /valid-url/1.0.9:
+    resolution: {integrity: sha1-HBRHm0DxOXp1eC8RXkCGRHQzogA=}
     dev: false
 
   /validate-npm-package-license/3.0.4:
