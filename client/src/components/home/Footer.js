@@ -4,16 +4,17 @@ import {
   Linkedin,
   Twitter,
   Youtube,
-} from "@icons-pack/react-simple-icons";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
-import CreateAccount from "./CreateAccount";
-import HowItWork from "./HowItWork";
+} from '@icons-pack/react-simple-icons';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
+import CreateAccount from './CreateAccount';
+import HowItWork from './HowItWork';
 
 const Footer = ({ hideSocial }) => {
   const { user } = useSelector((state) => state.user);
   const { pathname } = useRouter();
+
   return (
     <>
       {!hideSocial && (
@@ -94,7 +95,7 @@ const Footer = ({ hideSocial }) => {
               </a>
             </div>
           </div>
-          {pathname === "/" && <HowItWork hideBorderBottom />}
+          {pathname === '/' && <HowItWork hideBorderBottom />}
           {!user && <CreateAccount />}
         </>
       )}
@@ -127,7 +128,7 @@ const Footer = ({ hideSocial }) => {
                 {/* <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300"></span> */}
               </a>
             </Link>
-            <Link href="/privacuPolicy">
+            <Link href="/privacy-policy">
               <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
                 <span>Privacy & Policy</span>
                 {/* <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300"></span> */}
