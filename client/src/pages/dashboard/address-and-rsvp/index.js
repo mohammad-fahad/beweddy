@@ -97,7 +97,6 @@ const AddressRSVP = () => {
   }, [allAbove]);
   const onSubmit = async data => {
     dispatch(attemptCreateGuest(submitData(data)));
-    // console.log(submitData(data));
     await client.invalidateQueries('guests');
     push('/dashboard/invitation/rsvp-guest-management');
   };

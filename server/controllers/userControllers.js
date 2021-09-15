@@ -476,8 +476,8 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
       const registries = [
         ...new Set([...user.registries, ...req.body.registries]),
       ];
-
-      user.registries = registries;
+      // console.log(registries);
+      user.registries = [...new Set(registries)];
     }
 
     if (req.body.newPassword) {
