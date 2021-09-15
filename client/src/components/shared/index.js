@@ -8,6 +8,7 @@ export { default as Divider } from './Divider';
 export { default as Offers } from '../shared/Offers';
 export { default as ActiveLink } from '../shared/ActiveLink';
 export { default as QRCodeGenerator } from './QRCodeGenerator';
+export { default as RegistryItem } from './RegistryItem';
 
 export * from './header';
 export * from './buttons';
