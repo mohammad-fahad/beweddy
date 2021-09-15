@@ -40,20 +40,20 @@ const WeddingDayCountDown = ({ sm, couple }) => {
           sm ? 'min-w-[60px] py-[7px]' : 'min-w-[103px] py-5'
         }`}
       >
-        <h4 className={`${sm ? 'text-[16px]' : 'text-2xl'} font-bold`}>
+        <h4 className={`${sm ? 'text-[12px]' : 'text-2xl'} font-bold`}>
           {days < 10 ? `0${days}` : days}
         </h4>
-        <p className={`${sm ? 'text-[9px]' : 'text-base'} font-normal`}>Days</p>
+        <p className={`${sm ? 'text-[9px]' : 'text-base'}  font-normal`}>Days</p>
       </div>
       <div
         className={`flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg ${
           sm ? 'min-w-[60px] py-[7px]' : 'min-w-[103px] py-5'
         }`}
       >
-        <h4 className={`${sm ? 'text-[16px]' : 'text-2xl'} font-bold`}>
+        <h4 className={`${sm ? 'text-[12px]' : 'text-2xl'} font-bold`}>
           {hours < 10 ? `0${hours}` : hours}
         </h4>
-        <p className={`${sm ? 'text-[9px]' : 'text-base'} font-normal`}>
+        <p className={`${sm ? 'text-[9px]' : 'text-base'}  font-normal`}>
           Hours
         </p>
       </div>
@@ -62,10 +62,10 @@ const WeddingDayCountDown = ({ sm, couple }) => {
           sm ? 'min-w-[60px] py-[7px]' : 'min-w-[103px] py-5'
         }`}
       >
-        <h4 className={`${sm ? 'text-[16px]' : 'text-2xl'} font-bold`}>
+        <h4 className={`${sm ? 'text-[12px]' : 'text-2xl'} font-bold`}>
           {minutes < 10 ? `0${minutes}` : minutes}
         </h4>
-        <p className={`${sm ? 'text-[9px]' : 'text-base'} font-normal`}>
+        <p className={`${sm ? 'text-[9px]' : 'text-base'}  font-normal`}>
           Minutes
         </p>
       </div>
@@ -74,10 +74,10 @@ const WeddingDayCountDown = ({ sm, couple }) => {
           sm ? 'min-w-[60px] py-[7px]' : 'min-w-[103px] py-5'
         }`}
       >
-        <h4 className={`${sm ? 'text-[16px]' : 'text-2xl'} font-bold`}>
+        <h4 className={`${sm ? 'text-[12px]' : 'text-2xl'} font-bold`}>
           {seconds < 10 ? `0${seconds}` : seconds}
         </h4>
-        <p className={`${sm ? 'text-[9px]' : 'text-base'} font-normal`}>
+        <p className={`${sm ? 'text-[9px]' : 'text-base'}  font-normal`}>
           Seconds
         </p>
       </div>

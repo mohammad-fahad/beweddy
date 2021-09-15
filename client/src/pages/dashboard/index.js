@@ -83,7 +83,7 @@ const Dashboard = () => {
         <DashboardLayout shadow>
           <DashboardHeader
             title={
-              <h1 className="flex gap-2 text-2xl">
+              <h1 className="flex gap-2 text-2xl mudiumTitle mb-2">
                 Dashboard <img src="/Emoji.png" alt="dashboard" />
               </h1>
             }
@@ -95,8 +95,8 @@ const Dashboard = () => {
         </div> */}
           <div className="space-y-10 shadow-box">
             <div className="max-w-[1300px] w-full">
-              <div className="px-6 my-10 sm:px-12 xxl:pr-0">
-                <div className="text-center mb-[53px]">
+              <div className="px-6 my-10 sm:px-12 xxl:pr-0 customMarginPadding">
+                <div className="text-center mb-[53px] customBottom">
                   <h3 className="relative inline-block text-2xl font-normal">
                     <span className="absolute inline-block w-full mx-auto bottom-[-12px] left-1/2 h-[2px] max-w-[52px] -translate-x-1/2 bg-primary"></span>
                     Your Apps
@@ -109,7 +109,7 @@ const Dashboard = () => {
                     <Link key={index} href={link.route}>
                       <a className="flex w-[150px] flex-col items-center justify-center space-y-5 group">
                         <div className="relative">
-                          <div className="pulse flex items-center justify-center border-2 border-transparent group-hover:border-primary rounded-full p-2 w-[90px] h-[90px] group-hover:bg-[#FCE0EB]">
+                          <div className="pulse flex items-center justify-center border-2 border-transparent group-hover:border-primary rounded-full p-2 w-[90px] h-[90px] group-hover:bg-[#FCE0EB] dashboardImage">
                             <div className="w-[42px] h-[42px] sm:w-[46px] sm:h-[46px] relative">
                               {/* <Image width={46} height={46} src={link.icon} /> */}
                               <Image
@@ -123,7 +123,7 @@ const Dashboard = () => {
                             </span>
                           </div>
                         </div>
-                        <h4 className="text-sm font-semibold text-center capitalize whitespace-nowrap">
+                        <h4 className="text-sm font-semibold text-center capitalize whitespace-nowrap dashboardTitle">
                           {link.label}
                         </h4>
                       </a>
@@ -133,7 +133,7 @@ const Dashboard = () => {
               </div>
 
               <div className="relative w-full px-6 border-t-4 border-b-4 md:px-10 gradient border-primary">
-                <div className="text-center my-[50px]">
+                <div className="text-center my-[50px] dashboardMaringPadding">
                   <h3 className="relative inline-block text-2xl font-normal">
                     <span className="absolute inline-block w-full mx-auto bottom-[-12px] left-1/2 h-[2px] max-w-[52px] -translate-x-1/2 bg-primary"></span>
                     Your Wedding Stats

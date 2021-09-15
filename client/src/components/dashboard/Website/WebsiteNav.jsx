@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 
 const WebsiteNav = ({ coupleName }) => {
   const { user } = useSelector((state) => state.user);
-  console.log(user?.email);
 
   return (
     <div className="bg-[#ffffff] border-b-[3px] border-primary">
@@ -11,7 +10,7 @@ const WebsiteNav = ({ coupleName }) => {
       <div className="flex flex-col flex-wrap items-center justify-center px-5 py-3 md:py-0 md:flex-row md:justify-between">
         <h3 className="flex items-center text-lg capitalize ">
           <img src="/apple-touch-icon.png" alt="help" className="w-8 h-8" />
-          <span className="pl-2 text-4xl font-medium">{user?.coupleName}</span>
+          <span className="pl-2 text-4xl font-medium commonTitle1" >{user?.coupleName}</span>
         </h3>
         <div className="flex flex-col flex-wrap items-center py-5 space-x-5 md:flex-row">
           <Link href="#">
