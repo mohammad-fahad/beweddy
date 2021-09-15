@@ -215,9 +215,9 @@ const EmailInvitesPage = () => {
                       <Heading h3 className="!text-sm xl:!text-base !font-bold">
                         To
                       </Heading>
-                      <h5 className="xl:text-[12px] xxl:text-base font-bold">
+                      {/* <h5 className="xl:text-[12px] xxl:text-base font-bold">
                         Recipients: 13
-                      </h5>
+                      </h5> */}
                     </div>
                     <Select
                       closeMenuOnSelect={false}

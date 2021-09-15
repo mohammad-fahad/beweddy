@@ -221,9 +221,9 @@ const TextInvitesPage = () => {
                             fill='black'
                           />
                         </svg>
-                        <h4 className='text-sm font-bold xl:text-base'>
+                        {/* <h4 className='text-sm font-bold xl:text-base'>
                           Add or input contacts
-                        </h4>
+                        </h4> */}
                       </div>
                     </div>
                     <div className='flex items-center space-x-5'>
@@ -293,9 +293,9 @@ const TextInvitesPage = () => {
                       <Heading h3 className='!text-sm xl:!text-base !font-bold'>
                         To
                       </Heading>
-                      <h5 className='xl:text-[12px] xxl:text-base font-bold'>
+                      {/* <h5 className='xl:text-[12px] xxl:text-base font-bold'>
                         Recipients: 13
-                      </h5>
+                      </h5> */}
                     </div>
                     <Select
                       closeMenuOnSelect={false}
