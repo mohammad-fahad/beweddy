@@ -176,7 +176,7 @@ const GiftCards = () => {
       <img
         src="/icons/safe-checkout.png"
         alt=""
-        className="absolute w-16 h-10 right-5 sm:right-12 bottom-5 sm:bottom-10 sm:w-20 sm:h-16"
+        className="absolute w-16 h-10 right-5 sm:right-12 bottom-5 sm:bottom-10 sm:w-20 sm:h-16 customPosition"
       />
       <div className="container py-20">
         <h2 className="max-w-3xl pb-8 mx-auto text-4xl text-center capitalize commonTitle">
@@ -189,8 +189,9 @@ const GiftCards = () => {
             return (
               <Fragment key={index}>
                 <div
-                  className={`w-full py-5 rounded-xl overflow-hidden cursor-pointer transition-transform duration-300 ease-easing relative ${selected === index ? "" : "hover:scale-110"
-                    }`}
+                  className={`w-full py-5 rounded-xl overflow-hidden cursor-pointer transition-transform duration-300 ease-easing relative ${
+                    selected === index ? "" : "hover:scale-110"
+                  }`}
                   onClick={() => {
                     handleTooltip(index + 1);
                     setTooltip(giftCard);
