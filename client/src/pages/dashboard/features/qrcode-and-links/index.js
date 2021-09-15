@@ -39,8 +39,6 @@ const QRCodePage = () => {
   const generateQRCode = async () => {
     try {
       const canvas = document.querySelector('.code > canvas');
-      console.log(canvas);
-      // return;
 
       const base64 = canvas
         .toDataURL('image/png')
@@ -58,9 +56,7 @@ const QRCodePage = () => {
 
         dispatch(
           attemptUpdateUserProfile({
-            QRCode: {
-              image: URL,
-            },
+            qrCode: URL,
           })
         );
 
@@ -144,14 +140,14 @@ const QRCodePage = () => {
                     onChange={e => setLink(e.target.value)}
                     onClick={setCopied}
                   />
-                  <Heading h3>Upload QR Image</Heading>
+                  {/* <Heading h3>Upload QR Image</Heading> */}
                   <div className='flex flex-wrap items-center gap-2 lg:space-x-5'>
-                    <div {...getRootProps()}>
+                    {/* <div {...getRootProps()}>
                       <input {...getInputProps()} />
                       <button className='w-full sm:w-max bg-white font-inter cursor-pointer text-center text-sm md:text-base font-medium md:font-semibold py-3 px-6 lg:px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition-colors duration-300 hover:border-primary'>
                         upload Image
                       </button>
-                    </div>
+                    </div> */}
 
                     <button
                       type='button'
@@ -161,11 +157,11 @@ const QRCodePage = () => {
                       Generate
                     </button>
                   </div>
-                  {user?.QRCode?.image && (
+                  {user?.qrCode && (
                     <div className='!mt-10'>
                       {/* bg-secondary-alternative/40 */}
                       <a
-                        href={user?.QRCode?.image}
+                        href={user?.qrCode}
                         download={`${user?.coupleName}`}
                         className='w-full sm:w-max  font-inter cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-5 lg:px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition duration-300 hover:bg-secondary-alternative/30 hover:border-primary'
                         // onClick={download}
@@ -198,7 +194,7 @@ const QRCodePage = () => {
                       logoHeight={50}
                       logoWidth={50}
                       // style={{image}
-                      // logoImage={user?.QRCode?.avatar}
+                      logoImage='/icons/circle-ring.png'
                     />
                   </div>
                 </div>

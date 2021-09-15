@@ -21,7 +21,7 @@ const QRCodeGenerator = () => {
           eyeRadius={0}
           logoHeight={50}
           logoWidth={50}
-          // logoImage={user?.QRCode?.avatar}
+          logoImage='/icons/circle-ring.png'
         />
       </div>
       <div className='flex flex-col items-center space-y-3'>
@@ -30,9 +30,9 @@ const QRCodeGenerator = () => {
             Generate
           </a>
         </Link>
-        {user?.QRCode?.image && (
+        {user?.qrCode && (
           <a
-            href={user?.QRCode?.image}
+            href={user?.qrCode}
             download={`${user?.coupleName}`}
             className='bg-secondary-alternative font-inter cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-primary rounded-[5px] transition duration-300 hover:bg-secondary-alternative/30'
           >

@@ -151,7 +151,8 @@ export const googleSignUp = asyncHandler(async (req, res) => {
           questions: user.questions,
           avatar: user.avatar,
           ourStory: user.ourStory,
-          QRCode: user.QRCode,
+          qrCode: user.qrCode,
+          qrCodeAvatar: user.qrCodeAvatar,
           receptionDetails: user.receptionDetails,
           giftCards: user.giftCards,
           registries: user.registries,
@@ -203,7 +204,8 @@ export const googleSignIn = asyncHandler(async (req, res) => {
         questions: user.questions,
         avatar: user.avatar,
         ourStory: user.ourStory,
-        QRCode: user.QRCode,
+        qrCode: user.qrCode,
+        qrCodeAvatar: user.qrCodeAvatar,
         receptionDetails: user.receptionDetails,
         giftCards: user.giftCards,
         registries: user.registries,
@@ -264,7 +266,8 @@ export const activeUser = asyncHandler(async (req, res) => {
         questions: user.questions,
         avatar: user.avatar,
         ourStory: user.ourStory,
-        QRCode: user.QRCode,
+        qrCode: user.qrCode,
+        qrCodeAvatar: user.qrCodeAvatar,
         receptionDetails: user.receptionDetails,
         giftCards: user.giftCards,
         registries: user.registries,
@@ -316,7 +319,8 @@ export const login = asyncHandler(async (req, res) => {
         questions: user.questions,
         avatar: user.avatar,
         ourStory: user.ourStory,
-        QRCode: user.QRCode,
+        qrCode: user.qrCode,
+        qrCodeAvatar: user.qrCodeAvatar,
         receptionDetails: user.receptionDetails,
         giftCards: user.giftCards,
         registries: user.registries,
@@ -408,7 +412,8 @@ export const getUserProfile = asyncHandler(async (req, res) => {
         questions: user.questions,
         avatar: user.avatar,
         ourStory: user.ourStory,
-        QRCode: user.QRCode,
+        qrCode: user.qrCode,
+        qrCodeAvatar: user.qrCodeAvatar,
         receptionDetails: user.receptionDetails,
         giftCards: user.giftCards,
         registries: user.registries,
@@ -427,6 +432,7 @@ export const getUserProfile = asyncHandler(async (req, res) => {
 // update user profile
 
 export const updateUserProfile = asyncHandler(async (req, res) => {
+  console.log(req.body);
   const user = await User.findById(req.user._id);
 
   if (user) {
@@ -457,12 +463,9 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     //   req.body.socialAccounts.groom || user.socialAccounts.groom;
     // user.socialAccounts.bride =
     //   req.body.socialAccounts.bride || user.socialAccounts.bride;
-    // user.QRCode.avatar = req.body.QRCode.avatar || user.QRCode.avatar;
-    // user.QRCode.image = req.body.QRCode.image || user.QRCode.image;
-    user.QRCode = {
-      image: req.body.QRCode.image || user.QRCode.image,
-      avatar: req.body.QRCode.avatar || user.QRCode.avatar,
-    };
+
+    user.qrCode = req.body.qrCode || user.qrCode;
+    user.qrCodeAvatar = req.body.qrCodeAvatar || user.qrCodeAvatar;
 
     if (req.body.avatar) {
       user.avatar = req.body.avatar;
@@ -492,7 +495,8 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
         questions: updateUser.questions,
         avatar: updateUser.avatar,
         ourStory: updateUser.ourStory,
-        QRCode: updateUser.QRCode,
+        qrCode: updateUser.qrCode,
+        qrCodeAvatar: updateUser.qrCodeAvatar,
         receptionDetails: updateUser.receptionDetails,
         giftCards: updateUser.giftCards,
         registries: updateUser.registries,
@@ -533,7 +537,8 @@ export const getCouple = asyncHandler(async (req, res) => {
     questions: user.questions,
     avatar: user.avatar,
     ourStory: user.ourStory,
-    QRCode: user.QRCode,
+    qrCode: user.qrCode,
+    qrCodeAvatar: user.qrCodeAvatar,
     receptionDetails: user.receptionDetails,
     giftCards: user.giftCards,
     registries: user.registries,

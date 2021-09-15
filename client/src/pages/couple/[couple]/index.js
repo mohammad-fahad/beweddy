@@ -39,10 +39,12 @@ const CoupleWebsitePage = () => {
     isLoading,
     isError,
   } = useQuery(['couple', query.couple], getCouple);
+  
   const { data: registries, isLoading: isRegistriesLoading } = useQuery(
     'registries',
     getRegistries
   );
+
   // console.log(isError);
   const [value, setValue] = useState(
     `https://beweddy-delta.vercel.app/${couple?.username}`
