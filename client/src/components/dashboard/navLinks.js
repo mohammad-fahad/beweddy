@@ -82,7 +82,7 @@ const DashboardNavLinks = () => {
       <div className='flex items-center justify-between space-x-5'>
         <DashboardActiveLink
           href='/dashboard'
-          className='text-sm md:!text-base lg:!text-lg !font-semibold'
+          className='text-sm md:!text-base lg:!text-lg !font-semibold customLabel'
           customActiveLink={
             dashboardRoutes.includes(pathname) ? 'lg:w-full' : 'w-0'
           }

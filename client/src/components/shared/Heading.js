@@ -6,6 +6,7 @@ const Heading = ({
   className,
   style,
   lineStyle,
+  borderClass,
 }) => {
   if (h3) {
     return (
@@ -32,7 +33,7 @@ const Heading = ({
       <div
         className={`w-48 mx-auto h-[2px] md:h-[4px] mb-16 ${
           color ? color : "bg-primary"
-        }`}
+        } ${borderClass ? borderClass : ""}`}
         style={lineStyle}
       />
     </>
