@@ -44,7 +44,7 @@ const WebsitePageOne = () => {
       <DashboardLayout>
         <DashboardHeader
           title={
-            <h2 className="flex align-center gap-2 !text-[30px] items-center">
+            <h2 className="flex align-center gap-2 !text-[30px] items-center mudiumTitle">
               your website{" "}
               <img
                 src="/icons/website.png"
@@ -55,21 +55,21 @@ const WebsitePageOne = () => {
           }
           customPadding
         >
-          <div className="flex flex-wrap items-center gap-5 py-5">
+          <div className="flex flex-wrap items-center gap-5 py-5 websitePadding">
             <Link href="/dashboard/website/edit">
-              <a className="flex white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
+              <a className="flex white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300 buttonPaddig">
                 {/* <PencilIcon className='w-5 h-5' /> */}
-                <span>Edit your website</span>
+                <span className='customLabel' >Edit your website</span>
               </a>
             </Link>
             <Link href="/">
-              <a className="flex space-x-3 white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
+              <a className="flex space-x-3 white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300 buttonPaddig">
                 <LinkIcon className="w-5 h-5" />
-                <span>Share your super link</span>
+                <span className='customLabel'>Share your super link</span>
               </a>
             </Link>
             <Link href="/">
-              <a className="flex white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
+              <a className="flex white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300 buttonPaddig customLabel">
                 Guests Management
               </a>
             </Link>
@@ -132,17 +132,17 @@ const WebsitePageOne = () => {
 
           {/* date and Countdown section */}
           <div className="flex flex-col items-center py-6 mt-[36px]">
-            <h1 className="text-2xl font-medium md:text-3xl font-inter xl:text-4xl">
+            <h1 className="text-2xl font-medium md:text-3xl font-inter xl:text-4xl mudiumTitle">
               02/27/2021
             </h1>
             <div className="max-w-[222px] w-full mx-auto h-[2px] md:h-[4px]  bg-[#FCE0EB] mt-4" />
             {/* countdown wrapper */}
             <div className="flex justify-center w-full mt-4 space-x-16">
               <div>
-                <h4 className="text-[22px] font-medium text-center mb-5">
+                <h4 className="text-[22px] font-medium text-center mb-5 mudiumTitle">
                   Wedding Day Countdown
                 </h4>
-                <WeddingDayCountDown />
+                <WeddingDayCountDown  />
               </div>
             </div>
 
@@ -187,7 +187,7 @@ const WebsitePageOne = () => {
                     />
                   </svg>
 
-                  <span> We Need Your Address & RSVP</span>
+                  <span className='customLabel' > We Need Your Address & RSVP</span>
                 </a>
               </Link>
               <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB]" />
@@ -198,7 +198,7 @@ const WebsitePageOne = () => {
                 <h2 className="text-3xl font-medium text-center md:text-4xl">
                   Our Story
                 </h2>
-                <p className="w-10/12 m-auto mt-5 text-2xl font-normal text-center subTitle">
+                <p className="w-10/12 m-auto mt-5 text-2xl font-normal text-center customLabel">
                   {user?.ourStory}
                 </p>
               </div>
@@ -299,7 +299,7 @@ const WebsitePageOne = () => {
             <div className="p-3 bg-white border-4 border-gray-200 rounded-lg">
               <div class="flex items-center justify-center flex-wrap gap-4 w-full mt-5">
                 <div class="p-5 flex justify-center items-center ">
-                  <h1 className="text-3xl font-normal md:text-4xl commonTitle">
+                  <h1 className="text-3xl font-normal md:text-4xl mudiumTitle">
                     Your Personalized <span className="font-bold">QR Code</span>
                   </h1>
                 </div>

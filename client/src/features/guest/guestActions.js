@@ -2,6 +2,7 @@ import { errorAlert, handleErrorMessage, successAlert } from '@helpers/index';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { API_URL } from '@utils/index';
 import axios from 'axios';
+import { client } from 'pages/_app';
 
 const config = {
   headers: {
@@ -26,6 +27,7 @@ export const attemptCreateGuest = createAsyncThunk(
         guestInfo,
         config
       );
+      await client.invalidateQueries('guests');
       successAlert(data.message);
     } catch (err) {
       errorAlert(handleErrorMessage(err));

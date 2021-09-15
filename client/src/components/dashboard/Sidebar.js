@@ -87,16 +87,16 @@ const Sidebar = () => {
         <div className='w-full xs:w-max lg:w-full border-2 lg:border-4 border-[#FCE3EB] lg:border-l-0 lg:rounded-l-none rounded-[5px] lg:rounded-[20px] bg-[#FFFCFD] py-2 px-4 sm:px-5 lg:py-10 lg:pl-14 lg:pr-5'>
           <form className='space-y-5' onSubmit={handleSubmit(onSubmit)}>
             <Link href='/dashboard/features/todo'>
-              <a className='flex lg:hidden items-center space-x-3 lg:space-x-5'>
+              <a className='flex lg:hidden items-center space-x-3 lg:space-x-5 customLabel'>
                 <img src='/icons/ring-tik.svg' alt='' className='w-7 lg:w-8' />
-                <h4 className='text-sm sm:text-base lg:text-lg font-semibold capitalize'>
+                <h4 className='text-sm sm:text-base lg:text-lg font-semibold capitalize customLabel'>
                   Just to do list
                 </h4>
               </a>
             </Link>
-            <div className='hidden lg:flex items-center space-x-3 lg:space-x-5'>
+            <div className='hidden lg:flex items-center space-x-3 lg:space-x-5 '>
               <img src='/icons/ring-tik.svg' alt='' className='w-7 lg:w-8' />
-              <h4 className='text-sm sm:text-base lg:text-lg font-semibold capitalize'>
+              <h4 className='text-sm sm:text-base lg:text-lg font-semibold capitalize '>
                 Just to do list
               </h4>
             </div>

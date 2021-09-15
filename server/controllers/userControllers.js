@@ -432,8 +432,9 @@ export const getUserProfile = asyncHandler(async (req, res) => {
 // update user profile
 
 export const updateUserProfile = asyncHandler(async (req, res) => {
-  console.log(req.body);
-  const user = await User.findById(req.user._id);
+  const user = await User.findById(req.user._id)
+    .populate('registry')
+    .populate('gift');
 
   if (user) {
     const questions = {
@@ -469,6 +470,14 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
 
     if (req.body.avatar) {
       user.avatar = req.body.avatar;
+    }
+
+    if (req.body.registries) {
+      const registries = [
+        ...new Set([...user.registries, ...req.body.registries]),
+      ];
+      // console.log(registries);
+      user.registries = [...new Set(registries)];
     }
 
     if (req.body.newPassword) {
@@ -518,7 +527,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
 export const getCouple = asyncHandler(async (req, res) => {
   const user = await User.findOne({ username: req.params.username })
     .populate('gift')
-    .populate('registry');
+    .populate('registries');
 
   if (!user) {
     res.status(404);
