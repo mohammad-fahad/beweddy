@@ -34,7 +34,7 @@ const RegistriesPage = () => {
       setSelected(prev => prev.filter(item => item !== id));
     }
   };
-  
+
   //* Add Registry item to user
   const addRegistries = () => {
     dispatch(attemptUpdateUserProfile({ registries: selected }));
@@ -66,7 +66,7 @@ const RegistriesPage = () => {
                     />
                   ))}
             </div>
-            {!registries?.length === 0 && (
+            {registries?.length > 0 && (
               <div className='flex items-center space-x-5 flex-wrap sm:flex-nowrap'>
                 {/* <Button
                 label='Back'
