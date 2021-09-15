@@ -4,7 +4,7 @@ import { DashboardHeader } from '@components/dashboard';
 import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
 import { Button, Footer, Loader, RegistryItem } from '@components/index';
-import { LinkIcon, PencilIcon } from '@heroicons/react/outline';
+import { motion } from 'framer-motion';
 import { Fragment, useState } from 'react';
 import { withAuthRoute } from '@hoc/withAuthRoute';
 import Image from 'next/image';
@@ -41,20 +41,20 @@ const RegistriesPage = () => {
     setSelected([]);
   };
 
-  if (isLoading || loading) return <Loader />;
+  if (isLoading) return <Loader />;
 
   return (
     <Fragment>
       <Head>
         <title>Beweddy | Registry</title>
       </Head>
-      {/* {loading && <Loader />} */}
+      {loading && <Loader />}
       <DashboardTopBar coupleName />
       <DashboardLayout marginBottom='mb-[2.1rem]' shadow>
         <DashboardHeader title='Registries' />
         <DashboardContainer>
           <div className='space-y-20'>
-            <div class='grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 registry-grid'>
+            <motion.div class='grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 registry-grid'>
               {registries?.length <= 0
                 ? 'No registries found'
                 : registries?.map(registry => (
@@ -65,7 +65,7 @@ const RegistriesPage = () => {
                       checked={selected.includes(registry._id)}
                     />
                   ))}
-            </div>
+            </motion.div>
             {registries?.length > 0 && (
               <div className='flex items-center space-x-5 flex-wrap sm:flex-nowrap'>
                 {/* <Button
