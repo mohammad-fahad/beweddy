@@ -521,9 +521,6 @@ const EditWebsitePage = () => {
                   <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
                     Our story
                   </h4>
-                  <button className='px-5 py-2'>
-                    <MinusIcon className='w-7' />
-                  </button>
                 </div>
                 <textarea
                   cols='30'
@@ -645,7 +642,7 @@ const EditWebsitePage = () => {
                 <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
                   Connect your registry
                 </h4>
-                <div className='flex items-center gap-3'>
+                <div className='flex items-center space-y-3'>
                   <div className='border-2 w-[200px] min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex flex-col items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'>
                     <Link href='/'>
                       <a className='px-6 py-2 mt-5 text-xs text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap'>
@@ -659,6 +656,7 @@ const EditWebsitePage = () => {
                     </Link>
                   </div>
                 </div>
+                .grid.grid-cols-4.gap-10
                 <Link href='/dashboard/registries'>
                   <a className='block mt-5 text-sm font-semibold text-right hover:underline font-inter'>
                     See All Wedding Registry Options
