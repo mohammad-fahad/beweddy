@@ -160,7 +160,7 @@ const Dashboard = () => {
                     <span>Preview Website</span>
                   </a>
                 </Link>
-                <Link href="/">
+                <Link href="/qrcode-and-links">
                   <a
                     className={`mt-3 xs:mt-0 capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
                   >

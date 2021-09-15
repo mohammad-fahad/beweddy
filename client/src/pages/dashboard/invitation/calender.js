@@ -50,7 +50,6 @@ const CalendarPage = () => {
   }
   const val = `Hello, \n\nWe would like to invite you to our wedding! Please come celebrate with us. \n\nThank you for your support. Love, ${user.coupleName} !\n\nVisit Our Wedding Website: https://beweddy-delta.vercel.app/couple/${user?.username}\n`;
   const {
-    watch,
     register,
     handleSubmit,
     formState: { errors },
@@ -275,7 +274,9 @@ const CalendarPage = () => {
                     <Datetime
                       isValidDate={valid}
                       dateFormat="YYYY-MM-DD" timeFormat={false}
-                      // onChange={(e) => console.log(e._d)}
+                      inputProps={
+                        { placeholder: "Select Date" }
+                      }
                       onChange={(e) => setNewDate(e._d)}
                     />
                   </Heading>
@@ -285,9 +286,12 @@ const CalendarPage = () => {
                   <Heading onClick={() => setStartTime(true)} h3 className='!text-sm ml-3 xl:!text-base !font-bold'>
                     Start
                     <Datetime
+                      inputProps={
+                        { placeholder: "Start" }
+                      }
                       dateFormat={false}
                       isValidDate={valid}
-                      onChange={(e) => console.log(e)}
+
                       onChange={(e) => setStart(e._d)}
                     />
                   </Heading>
@@ -297,6 +301,9 @@ const CalendarPage = () => {
                   <Heading h3 className='!text-sm ml-3 xl:!text-base !font-bold'>
                     End
                     <Datetime
+                      inputProps={
+                        { placeholder: "End" }
+                      }
                       isValidDate={valid}
                       dateFormat={false}
                       onChange={(e) => setEnd(e._d)}
