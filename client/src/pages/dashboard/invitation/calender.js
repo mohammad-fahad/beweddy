@@ -32,8 +32,6 @@ const CalendarPage = () => {
   var valid = function (current) {
     return current.isAfter(yesterday);
   };
-
-  //#TODO
   const dateFormat = moment(newDate).format("YYYY-MM-DD");
   const startTimeFormat = moment(start).format();
   const endTimeFormat = moment(end).format();
@@ -55,7 +53,6 @@ const CalendarPage = () => {
     watch,
     register,
     handleSubmit,
-
     formState: { errors },
   } = useForm({
     mode: 'all',
@@ -315,7 +312,7 @@ const CalendarPage = () => {
               </div>
               {/* onClick={handleClick}  */}
               <button type="submit" className='py-3 px-8 text-sm md:text-base font-bold md:font-semibold border border-[#7F7F7F] rounded-[5px] bg-secondary-alternative hover:bg-secondary-alternative/50 transition duration-300'>
-                Add Event
+                Send Calendar Invite
               </button>
 
             </form>
