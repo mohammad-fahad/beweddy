@@ -1,11 +1,17 @@
 import { LinkIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const RegistryItem = ({ registry, onChange, checked }) => {
   return (
-    <div className='select-registry'>
+    <motion.div
+      layout
+      exit={{ opacity: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className='select-registry'
+    >
       <input
         name='registry'
         type='checkbox'
@@ -47,7 +53,7 @@ const RegistryItem = ({ registry, onChange, checked }) => {
           </div>
         </div>
       </label>
-    </div>
+    </motion.div>
   );
 };
 

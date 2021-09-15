@@ -363,13 +363,8 @@ const TextInvitesPage = () => {
                                         <span
                                           className={`${
                                             selected
-<<<<<<< HEAD
-                                              ? "font-medium"
-                                              : "font-normal"
-=======
                                               ? 'font-medium'
                                               : 'font-normal'
->>>>>>> bac3bdbaaaac39762229a91cf381b20b0c6ebe4f
                                           } block truncate`}
                                         >
                                           {country.name}
