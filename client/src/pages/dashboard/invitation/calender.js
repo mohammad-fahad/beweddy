@@ -21,19 +21,31 @@ const CalendarPage = () => {
   // console.log({ user });
   const [changeText, setChangeText] = useState(false)
   const [startTime, setStartTime] = useState(false)
+  const [newDate, setNewDate] = useState("")
   const [start, setStart] = useState("")
   const [end, setEnd] = useState("")
   const { data, isLoading } = useQuery(['guests', user.token], getGuests);
 
   const emails = data?.guests?.map(guest => ({ email: guest.email }));
-  console.log("", emails);
+
+  var yesterday = moment().subtract(1, 'day');
+  var valid = function (current) {
+    return current.isAfter(yesterday);
+  };
+  const dateFormat = moment(newDate).format("YYYY-MM-DD");
+  const startTimeFormat = moment(start).format();
+  const endTimeFormat = moment(end).format();
+  const newStartDate = startTimeFormat.slice(10)
+  const newEndDate = endTimeFormat.slice(10)
+  const startSection = dateFormat + newStartDate;
+  const endSection = dateFormat + newEndDate;
 
   const startUpdate = {
-    dateTime: moment(start).format(),
+    dateTime: startSection,
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
   }
   const endUpdate = {
-    dateTime: moment(end).format(),
+    dateTime: endSection,
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
   }
   const val = `Hello, \n\nWe would like to invite you to our wedding! Please come celebrate with us. \n\nThank you for your support. Love, ${user.coupleName} !\n\nVisit Our Wedding Website: https://beweddy-delta.vercel.app/couple/${user?.username}\n`;
@@ -41,7 +53,6 @@ const CalendarPage = () => {
     watch,
     register,
     handleSubmit,
-
     formState: { errors },
   } = useForm({
     mode: 'all',
@@ -61,6 +72,9 @@ const CalendarPage = () => {
   let SCOPES = "https://www.googleapis.com/auth/calendar.events";
 
   const onSubmit = (data) => {
+    // data.start = startUpdate;
+    // data.end = endUpdate;
+    // console.log({ data })
     if (data) {
       data.start = startUpdate;
       data.end = endUpdate;
@@ -157,12 +171,6 @@ const CalendarPage = () => {
     setChangeText(!changeText)
   }
 
-  const dateAndTimePicker = () => {
-
-    return (
-      <Datetime />
-    )
-  }
 
   return (
     <>
@@ -175,9 +183,7 @@ const CalendarPage = () => {
         <DashboardHeader title='Calender Invites' />
         <DashboardContainer>
           <div>
-            {
-              startTime && dateAndTimePicker()
-            }
+
             <form
               className=" w-full"
               onSubmit={handleSubmit(onSubmit)}
@@ -227,18 +233,7 @@ const CalendarPage = () => {
                   Description
                 </Heading>
                 <div className="w-full my-3">
-                  {/* <textarea
-                    rows="4" cols="50" maxLength="200"
-                    type="text"
-                    className="w-full max-w-[592px] text-sm md:text-lg font-normal py-2 md:py-3 px-4 md:px-6 placeholder-gray-400 border-[2px] border-primary rounded-lg"
-                    placeholder="Add Description"
-                    {...register('description', {
-                      required: {
-                        value: true,
-                        message: 'description is required!',
-                      },
-                    })}
-                  /> */}
+
                   <textarea
                     cols='10'
                     rows='8'
@@ -249,7 +244,7 @@ const CalendarPage = () => {
                        scroll-design'
                     defaultValue={val}
                     placeholder=''
-                    {...register('message', {
+                    {...register('description', {
                       required: {
                         value: true,
                         message: 'Compose message is required!',
@@ -272,13 +267,29 @@ const CalendarPage = () => {
                 </Heading>
               </div>
 
-              <div className="flex justify-start items-center my-5">
+              <div className="flex justify-start items-center my-5 w-full flex-wrap max-w-[592px]">
+                <div className="flex justify-start items-center">
+                  <Image src='/icons/clock__icon.svg' width={20} height={20} />
+                  <Heading onClick={() => setStartTime(true)} h3 className='!text-sm ml-3 xl:!text-base !font-bold'>
+                    Select your Date
+                    <Datetime
+                      isValidDate={valid}
+                      dateFormat="YYYY-MM-DD" timeFormat={false}
+                      // onChange={(e) => console.log(e._d)}
+                      onChange={(e) => setNewDate(e._d)}
+                    />
+                  </Heading>
+                </div>
                 <div className="flex justify-start items-center">
                   <Image src='/icons/clock__icon.svg' width={20} height={20} />
                   <Heading onClick={() => setStartTime(true)} h3 className='!text-sm ml-3 xl:!text-base !font-bold'>
                     Start
                     <Datetime
-                      onChange={(e) => setStart(e._d)} />
+                      dateFormat={false}
+                      isValidDate={valid}
+                      onChange={(e) => console.log(e)}
+                      onChange={(e) => setStart(e._d)}
+                    />
                   </Heading>
                 </div>
                 <div className="flex justify-start ml-3 items-center">
@@ -286,7 +297,10 @@ const CalendarPage = () => {
                   <Heading h3 className='!text-sm ml-3 xl:!text-base !font-bold'>
                     End
                     <Datetime
-                      onChange={(e) => setEnd(e._d)} />
+                      isValidDate={valid}
+                      dateFormat={false}
+                      onChange={(e) => setEnd(e._d)}
+                    />
                   </Heading>
                 </div>
               </div>
@@ -298,7 +312,7 @@ const CalendarPage = () => {
               </div>
               {/* onClick={handleClick}  */}
               <button type="submit" className='py-3 px-8 text-sm md:text-base font-bold md:font-semibold border border-[#7F7F7F] rounded-[5px] bg-secondary-alternative hover:bg-secondary-alternative/50 transition duration-300'>
-                Add Event
+                Send Calendar Invite
               </button>
 
             </form>
