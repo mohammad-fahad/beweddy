@@ -13,6 +13,7 @@ import { useQuery } from 'react-query';
 import { getRegistries } from '@services/Registry';
 import { useDispatch, useSelector } from 'react-redux';
 import { attemptUpdateUserProfile } from '@features/user/userActions';
+import { differenceBy } from 'lodash';
 
 const RegistriesPage = () => {
   const dispatch = useDispatch();
@@ -21,9 +22,7 @@ const RegistriesPage = () => {
   const [selected, setSelected] = useState([]);
 
   //* Filter Registries. If user already added
-  const registries = data?.filter(
-    registry => !user?.registries.includes(registry._id)
-  );
+  const registries = differenceBy(data, user?.registries, '_id');
 
   //* Handle Card Select
   const handleItemSelect = id => {
