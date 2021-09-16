@@ -678,7 +678,7 @@ const EditWebsitePage = () => {
                       className='scale-[.85] xs:scale-95 sm:scale-100 cursor-pointer p-4 max-w-[250px] inline-block bg-white border-4 rounded-md border-gray-200 hover:border-primary transition duration-300 w-full mx-auto'
                     >
                       <div
-                        className={`border-2 border-primary flex items-center justify-center h-[140px] w-full rounded-[10px] transition duration-300 relative group p-3`}
+                        className={`border-2 overflow-hidden border-primary flex items-center justify-center h-[140px] w-full rounded-[10px] transition duration-300 relative group p-3`}
                       >
                         <Link href={registry.link}>
                           <a
