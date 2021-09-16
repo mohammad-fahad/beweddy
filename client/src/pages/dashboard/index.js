@@ -110,7 +110,7 @@ const Dashboard = () => {
                       <a className="flex w-[150px] flex-col items-center justify-center space-y-5 group">
                         <div className="relative">
                           <div className="pulse flex items-center justify-center border-2 border-transparent group-hover:border-primary rounded-full p-2 w-[90px] h-[90px] group-hover:bg-[#FCE0EB] dashboardImage">
-                            <div className="w-[42px] h-[42px] sm:w-[46px] sm:h-[46px] relative">
+                            <div className="w-[42px] h-[42px] sm:w-[48px] sm:h-[48px] relative">
                               {/* <Image width={46} height={46} src={link.icon} /> */}
                               <Image
                                 layout="fill"
