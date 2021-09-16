@@ -1,24 +1,24 @@
-import Head from "next/head";
-import Link from "next/link";
-import { DashboardHeader, WeddingDayCountDown } from "@components/dashboard";
-import DashboardTopBar from "@components/dashboard/header/TopBar";
-import DashboardLayout from "@components/dashboard/layout";
-import { Footer } from "@components/index";
-import { LinkIcon } from "@heroicons/react/outline";
-import WebsiteNav from "@components/dashboard/Website/WebsiteNav";
-import { useSelector } from "react-redux";
-import WebsiteGiftCards from "@components/dashboard/Website/WebsiteGiftCard";
-import WebsiteRegistry from "@components/dashboard/Website/websiteRegistry";
-import SocialSection from "@components/dashboard/Website/SocialSection";
-import { useState } from "react";
-import { QRCode } from "react-qrcode-logo";
-import WebsiteVideo from "@components/dashboard/Website/WebsiteVideo";
-import Swiper from "react-id-swiper";
-import { Image } from "cloudinary-react";
-import SwiperCore, { Lazy, Autoplay } from "swiper";
+import Head from 'next/head';
+import Link from 'next/link';
+import { DashboardHeader, WeddingDayCountDown } from '@components/dashboard';
+import DashboardTopBar from '@components/dashboard/header/TopBar';
+import DashboardLayout from '@components/dashboard/layout';
+import { Footer } from '@components/index';
+import { LinkIcon } from '@heroicons/react/outline';
+import WebsiteNav from '@components/dashboard/Website/WebsiteNav';
+import { useSelector } from 'react-redux';
+import WebsiteGiftCards from '@components/dashboard/Website/WebsiteGiftCard';
+import WebsiteRegistry from '@components/dashboard/Website/websiteRegistry';
+import SocialSection from '@components/dashboard/Website/SocialSection';
+import { useState } from 'react';
+import { QRCode } from 'react-qrcode-logo';
+import WebsiteVideo from '@components/dashboard/Website/WebsiteVideo';
+import Swiper from 'react-id-swiper';
+import { Image } from 'cloudinary-react';
+import SwiperCore, { Lazy, Autoplay } from 'swiper';
 
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 
 SwiperCore.use([Lazy, Autoplay]);
 
@@ -32,7 +32,7 @@ const params = {
 
 const WebsitePageOne = () => {
   const { user } = useSelector((state) => state.user);
-  const [value, setValue] = useState("https://beweddy-delta.vercel.app/");
+  const [value, setValue] = useState('https://beweddy-delta.vercel.app/');
 
   return (
     <>
@@ -45,7 +45,7 @@ const WebsitePageOne = () => {
         <DashboardHeader
           title={
             <h2 className="flex align-center gap-2 !text-[30px] items-center mudiumTitle">
-              your website{" "}
+              your website
               <img
                 src="/icons/website.png"
                 alt="your website"
@@ -59,13 +59,13 @@ const WebsitePageOne = () => {
             <Link href="/dashboard/website/edit">
               <a className="flex white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300 buttonPaddig">
                 {/* <PencilIcon className='w-5 h-5' /> */}
-                <span className='customLabel' >Edit your website</span>
+                <span className="customLabel">Edit your website</span>
               </a>
             </Link>
             <Link href="/">
               <a className="flex space-x-3 white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300 buttonPaddig">
                 <LinkIcon className="w-5 h-5" />
-                <span className='customLabel'>Share your super link</span>
+                <span className="customLabel">Share your super link</span>
               </a>
             </Link>
             <Link href="/">
@@ -123,7 +123,7 @@ const WebsitePageOne = () => {
 
                 <Link href="/dashboard/website/edit">
                   <div className="absolute !right-[20px] !top-[20px] cursor-pointer">
-                    Edit Photo{" "}
+                    Edit Photo{' '}
                   </div>
                 </Link>
               </div>
@@ -132,17 +132,19 @@ const WebsitePageOne = () => {
 
           {/* date and Countdown section */}
           <div className="flex flex-col items-center py-6 mt-[36px]">
-            <h1 className="text-2xl font-medium md:text-3xl font-inter xl:text-4xl mudiumTitle">
+            {/* <h1 className="text-2xl font-medium md:text-3xl font-inter xl:text-4xl mudiumTitle"> */}
+            <h1 className="text-xl font-medium md:text-2xl lg:text-4xl font-inter xl:text-5xl mudiumTitle">
               02/27/2021
             </h1>
             <div className="max-w-[222px] w-full mx-auto h-[2px] md:h-[4px]  bg-[#FCE0EB] mt-4" />
             {/* countdown wrapper */}
             <div className="flex justify-center w-full mt-4 space-x-16">
               <div>
-                <h4 className="text-[22px] font-medium text-center mb-5 mudiumTitle">
+                {/* <h4 className="text-[22px] font-medium text-center mb-5 mudiumTitle"> */}
+                <h4 className="text-lg md:text-[22px] font-medium text-center mb-5 mudiumTitle">
                   Wedding Day Countdown
                 </h4>
-                <WeddingDayCountDown  />
+                <WeddingDayCountDown sm />
               </div>
             </div>
 
@@ -187,7 +189,9 @@ const WebsitePageOne = () => {
                     />
                   </svg>
 
-                  <span className='customLabel' > We Need Your Address & RSVP</span>
+                  <span className="customLabel">
+                    We Need Your Address & RSVP
+                  </span>
                 </a>
               </Link>
               <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB]" />
@@ -195,10 +199,11 @@ const WebsitePageOne = () => {
             {/* our story */}
             {user?.ourStory && (
               <div>
-                <h2 className="text-3xl font-medium text-center md:text-4xl">
+                <h2 className="text-2xl font-medium text-center md:text-4xl">
                   Our Story
                 </h2>
-                <p className="w-10/12 m-auto mt-5 text-2xl font-normal text-center customLabel">
+                {/* <p className="w-10/12 m-auto mt-5 text-2xl font-normal text-center customLabel"> */}
+                <p className="w-10/12 m-auto mt-5 text-sm font-normal text-center customLabel md:text-xl">
                   {user?.ourStory}
                 </p>
               </div>
@@ -207,16 +212,18 @@ const WebsitePageOne = () => {
               <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-10" />
             )}
             {/* Reception Details */}
-            <h2 className="text-3xl md:text-4xl font-medium text-center mt-[17px]">
+            {/* <h2 className="text-3xl md:text-4xl font-medium text-center mt-[17px]"> */}
+            <h2 className="text-2xl md:text-4xl font-medium text-center mt-[17px] commonTitle">
               Reception Details
             </h2>
 
-            <div class="grid grid-cols-12 gap-4 w-full mt-5">
+            {/* <div class="grid grid-cols-12 gap-4 w-full mt-5"> */}
+            <div class="grid grid-cols-12 gap-4 w-full my-3 md:my-8">
               {user?.questions?.weddingDay?.firstReception && (
                 <div class="col-start-2 col-span-5 p-5 text-lg font-semibold subTitle">
                   <h4 className="text-lg">Receptions</h4>
                   <h6 className="miniTitle">
-                    Date 1 : {user?.questions?.weddingDay?.firstReception}{" "}
+                    Date 1 : {user?.questions?.weddingDay?.firstReception}{' '}
                   </h6>
 
                   {user?.questions?.weddingDay?.secondReception && (
@@ -238,14 +245,16 @@ const WebsitePageOne = () => {
             {/* timeline section */}
             <div class="grid grid-cols-12 gap-4 w-full mt-5">
               <div class="col-start-2 col-span-10 p-5">
-                <h4 className="text-[24px] font-medium mb-2">Timeline</h4>
+                <h4 className="text-xl md:text-[26px] font-medium mb-2">
+                  Timeline
+                </h4>
                 <ul className="space-y-3">
                   {user?.receptionDetails?.map((el) => (
                     <li className="w-full px-7 py-2 space-x-5 border border-[#D5D5D5] hover:border-primary cursor-pointer">
                       <span className="mr-2 text-lg font-bold subTitle ">
                         {el?.time}
                       </span>
-                      <span className="text-lg font-normal miniTitle">
+                      <span className="font-normal text-md md:text-lg miniTitle">
                         {el?.details}
                       </span>
                     </li>
@@ -255,8 +264,8 @@ const WebsitePageOne = () => {
             </div>
 
             {/* 😇 Bless us with a Gift Card section */}
-            <div className="w-full px-2 mx-auto mt-5">
-              <h2 className="text-3xl font-medium text-center md:text-4xl commonTitle">
+            <div className="w-full mx-auto my-3 md:my-8">
+              <h2 className="text-2xl font-medium text-center md:text-4xl commonTitle">
                 😇 Bless us with a Gift Card
               </h2>
               <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-[28px] mb-[50px]" />
@@ -266,7 +275,8 @@ const WebsitePageOne = () => {
 
               {/* our Registry section */}
 
-              <h2 className="mt-3 text-3xl font-medium text-center md:text-4xl">
+              {/* <h2 className="mt-3 text-3xl font-medium text-center md:text-4xl"> */}
+              <h2 className="mt-3 text-4xl font-medium text-center commonTitle">
                 Our Registry
               </h2>
               <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-[28px] mb-[50px]" />

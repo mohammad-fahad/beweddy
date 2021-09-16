@@ -1,37 +1,37 @@
-import Head from "next/head";
-import axios from "axios";
-import { DashboardHeader } from "@components/dashboard";
-import DashboardTopBar from "@components/dashboard/header/TopBar";
-import DashboardLayout from "@components/dashboard/layout";
-import { CropImage, Loader, Footer, Heading } from "@components/index";
-import Image from "next/image";
-import Select from "react-select";
-import makeAnimated from "react-select/animated";
-import { Fragment, useCallback, useEffect, useState } from "react";
-import { withAuthRoute } from "@hoc/withAuthRoute";
-import { EditorState, convertToRaw } from "draft-js";
-import draftToHtml from "draftjs-to-html";
-import { convertFromRaw } from "draft-js";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import dynamic from "next/dynamic";
+import Head from 'next/head';
+import axios from 'axios';
+import { DashboardHeader } from '@components/dashboard';
+import DashboardTopBar from '@components/dashboard/header/TopBar';
+import DashboardLayout from '@components/dashboard/layout';
+import { CropImage, Loader, Footer, Heading } from '@components/index';
+import Image from 'next/image';
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
+import { Fragment, useCallback, useEffect, useState } from 'react';
+import { withAuthRoute } from '@hoc/withAuthRoute';
+import { EditorState, convertToRaw } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
+import { convertFromRaw } from 'draft-js';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import dynamic from 'next/dynamic';
 
 const Editor = dynamic(
-  () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
+  () => import('react-draft-wysiwyg').then((mod) => mod.Editor),
   { ssr: false }
 );
 const htmlToDraft = dynamic(
-  () => import("html-to-draftjs").then((mod) => mod.htmlToDraft),
+  () => import('html-to-draftjs').then((mod) => mod.htmlToDraft),
   { ssr: false }
 );
 
-import { ArrowSmRightIcon } from "@heroicons/react/outline";
-import { useSelector } from "react-redux";
-import EmailPreview from "@components/dashboard/EmailPreview/EmailPreview";
-import { getGuests } from "@services/GuestManagement";
-import { useQuery } from "react-query";
-import { useDropzone } from "react-dropzone";
-import toast from "react-hot-toast";
-import { sendEmailInvites } from "@services/Invitation/email";
+import { ArrowSmRightIcon } from '@heroicons/react/outline';
+import { useSelector } from 'react-redux';
+import EmailPreview from '@components/dashboard/EmailPreview/EmailPreview';
+import { getGuests } from '@services/GuestManagement';
+import { useQuery } from 'react-query';
+import { useDropzone } from 'react-dropzone';
+import toast from 'react-hot-toast';
+import { sendEmailInvites } from '@services/Invitation/email';
 
 const animatedComponents = makeAnimated();
 
@@ -41,26 +41,26 @@ const customStyles = {
     { theme }
   ) => ({
     ...provided,
-    width: "100%",
+    width: '100%',
     // backgroundColor: 'rgba(243, 244, 246, 1)',
     borderColor: theme.colors.neutral90,
-    "&:hover": {
+    '&:hover': {
       borderColor: theme.colors.neutral70,
     },
   }),
   valueContainer: (style) => ({
     ...style,
-    padding: "6px 16px",
+    padding: '6px 16px',
   }),
   placeholder: (style) => ({
     ...style,
-    color: "rgba(156, 163, 175, 1)",
-    fontSize: "14px",
+    color: 'rgba(156, 163, 175, 1)',
+    fontSize: '14px',
   }),
   input: (style) => ({
     ...style,
-    outline: "none",
-    border: "none",
+    outline: 'none',
+    border: 'none',
   }),
 };
 
@@ -72,9 +72,9 @@ const EmailInvitesPage = () => {
   const content = {
     blocks: [
       {
-        key: "637gr",
+        key: '637gr',
         text: `Hello, \nWe would like to invite you to our wedding! Please come celebrate with us. Here is a link to our gift registry and website. \n\nWe Need your Address\n\nThank you for your support. Love, Ashley and Nate! \nVisit Our Wedding Website\nwww.beweddy.com/couple/${user?.username}\n\nBless Us With A Gift Card:  \nGift & Registry`,
-        type: "unstyled",
+        type: 'unstyled',
         depth: 0,
         inlineStyleRanges: [],
         entityRanges: [
@@ -94,19 +94,19 @@ const EmailInvitesPage = () => {
     ],
     entityMap: {
       0: {
-        type: "LINK",
-        mutability: "MUTABLE",
+        type: 'LINK',
+        mutability: 'MUTABLE',
         data: {
           url: `https://beweddy-delta.vercel.app/couple/${user?.username}/rsvp`,
-          targetOption: "_self",
+          targetOption: '_self',
         },
       },
       1: {
-        type: "LINK",
-        mutability: "MUTABLE",
+        type: 'LINK',
+        mutability: 'MUTABLE',
         data: {
           url: `https://beweddy-delta.vercel.app/couple/${user?.username}`,
-          targetOption: "_self",
+          targetOption: '_self',
         },
       },
     },
@@ -121,7 +121,7 @@ const EmailInvitesPage = () => {
   const [preview, setPreview] = useState();
   const [selectedImageFile, setSelectedImageFile] = useState();
 
-  const { data, isLoading } = useQuery(["guests", user.token], getGuests);
+  const { data, isLoading } = useQuery(['guests', user.token], getGuests);
 
   const emails = data?.guests?.map((guest) => ({
     label: guest.email,
@@ -133,13 +133,13 @@ const EmailInvitesPage = () => {
     if (newValue) {
       setToEmails(newValue);
     }
-    if (actionMeta.action === "clear") {
+    if (actionMeta.action === 'clear') {
       setToEmails(null);
     }
   };
   const onDrop = useCallback((acceptedFiles) => {
     const fileDropped = acceptedFiles[0];
-    if (fileDropped["type"].split("/")[0] === "image") {
+    if (fileDropped['type'].split('/')[0] === 'image') {
       setSelectedImageFile(fileDropped);
       return;
     }
@@ -150,7 +150,7 @@ const EmailInvitesPage = () => {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: "image/*",
+    accept: 'image/*',
     multiple: false,
   });
 
@@ -174,7 +174,7 @@ const EmailInvitesPage = () => {
   // const { handleSubmit, register, getValues, watch } = useForm({ mode: 'all' });
 
   const handleSubmit = async () => {
-    console.log("hi");
+    console.log('hi');
     try {
       await sendEmailInvites({
         emails: toEmails.map((email) => `${email.value}`),
@@ -208,8 +208,9 @@ const EmailInvitesPage = () => {
                 </div>
                 <span className="h-[4px] inline-block max-w-[215px] w-full bg-secondary-alternative"></span>
               </div>
-              <div className="grid gap-12 md:grid-cols-3">
-                <div className="md:col-span-2">
+
+              <div className="grid grid-cols-2 gap-12 md:grid-cols-3">
+                <div className="col-span-2">
                   <div className="space-y-6">
                     <div className="flex justify-between">
                       <Heading h3 className="!text-sm xl:!text-base !font-bold">
