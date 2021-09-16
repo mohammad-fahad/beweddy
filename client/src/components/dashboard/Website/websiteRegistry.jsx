@@ -24,13 +24,13 @@ const registries = [
     link: 'https://github.com/muttakinhasib',
     image: '/images/registries/target.png',
   },
-  // {
-  //   id: 4,
-  //   title: 'Bass Pro Shops',
-  //   buttonText: 'Link',
-  //   link: 'https://github.com/muttakinhasib',
-  //   image: '/images/registries/bass-pro-shops.png',
-  // },
+  {
+    id: 4,
+    title: 'Bass Pro Shops',
+    buttonText: 'Link',
+    link: 'https://github.com/muttakinhasib',
+    image: '/images/registries/bass-pro-shops.png',
+  },
 ];
 
 const WebsiteRegistry = () => {
@@ -39,7 +39,7 @@ const WebsiteRegistry = () => {
 
   return (
     <div className=" from-[#FCE3EB] to-white relative">
-      <div class="flex flex-wrap justify-center items-center gap-x-5 gap-y-3 w-full mb-5">
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-[1193px] mx-auto w-full">
         {registries?.map((registry) => (
           <div
             key={registry.id}
@@ -79,9 +79,9 @@ const WebsiteRegistry = () => {
         ))}
       </div>
 
-      <div className="flex justify-end pr-2">
+      <div className="flex justify-end pr-2 mt-5">
         <Link href="/">
-          <a className="text-lg font-semibold font-inter hover:underline">
+          <a className="text-lg font-semibold font-inter hover:underline customLabel">
             See All Registries
           </a>
         </Link>

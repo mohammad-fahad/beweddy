@@ -44,7 +44,9 @@ export const register = asyncHandler(async (req, res) => {
 
   const username = `${questions.firstName}_${
     questions.spouseFirstName
-  }_${nanoid(4)}`.toLowerCase();
+  }_${nanoid(4)}`
+    .toLowerCase()
+    .replace(/\s/g, '');
   // Create new user
   const user = await User.create({
     firstName,
@@ -149,6 +151,8 @@ export const googleSignUp = asyncHandler(async (req, res) => {
           questions: user.questions,
           avatar: user.avatar,
           ourStory: user.ourStory,
+          qrCode: user.qrCode,
+          qrCodeAvatar: user.qrCodeAvatar,
           receptionDetails: user.receptionDetails,
           giftCards: user.giftCards,
           registries: user.registries,
@@ -200,6 +204,8 @@ export const googleSignIn = asyncHandler(async (req, res) => {
         questions: user.questions,
         avatar: user.avatar,
         ourStory: user.ourStory,
+        qrCode: user.qrCode,
+        qrCodeAvatar: user.qrCodeAvatar,
         receptionDetails: user.receptionDetails,
         giftCards: user.giftCards,
         registries: user.registries,
@@ -260,6 +266,8 @@ export const activeUser = asyncHandler(async (req, res) => {
         questions: user.questions,
         avatar: user.avatar,
         ourStory: user.ourStory,
+        qrCode: user.qrCode,
+        qrCodeAvatar: user.qrCodeAvatar,
         receptionDetails: user.receptionDetails,
         giftCards: user.giftCards,
         registries: user.registries,
@@ -311,6 +319,8 @@ export const login = asyncHandler(async (req, res) => {
         questions: user.questions,
         avatar: user.avatar,
         ourStory: user.ourStory,
+        qrCode: user.qrCode,
+        qrCodeAvatar: user.qrCodeAvatar,
         receptionDetails: user.receptionDetails,
         giftCards: user.giftCards,
         registries: user.registries,
@@ -402,6 +412,8 @@ export const getUserProfile = asyncHandler(async (req, res) => {
         questions: user.questions,
         avatar: user.avatar,
         ourStory: user.ourStory,
+        qrCode: user.qrCode,
+        qrCodeAvatar: user.qrCodeAvatar,
         receptionDetails: user.receptionDetails,
         giftCards: user.giftCards,
         registries: user.registries,
@@ -420,6 +432,7 @@ export const getUserProfile = asyncHandler(async (req, res) => {
 // update user profile
 
 export const updateUserProfile = asyncHandler(async (req, res) => {
+  console.log(req.body);
   const user = await User.findById(req.user._id);
 
   if (user) {
@@ -446,14 +459,18 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     // user.avatar = req.body.avatar || user.avatar;
     user.ourStory = req.body.ourStory || user.ourStory;
     user.receptionDetails = req.body.receptionDetails || user.receptionDetails;
-    user.socialAccounts.groom =
-      req.body.socialAccounts.groom || user.socialAccounts.groom;
-    user.socialAccounts.bride =
-      req.body.socialAccounts.bride || user.socialAccounts.bride;
+    // user.socialAccounts.groom =
+    //   req.body.socialAccounts.groom || user.socialAccounts.groom;
+    // user.socialAccounts.bride =
+    //   req.body.socialAccounts.bride || user.socialAccounts.bride;
+
+    user.qrCode = req.body.qrCode || user.qrCode;
+    user.qrCodeAvatar = req.body.qrCodeAvatar || user.qrCodeAvatar;
 
     if (req.body.avatar) {
       user.avatar = req.body.avatar;
     }
+
     if (req.body.newPassword) {
       if (await user.matchPassword(req.body.oldPassword)) {
         user.password = req.body.newPassword;
@@ -478,6 +495,8 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
         questions: updateUser.questions,
         avatar: updateUser.avatar,
         ourStory: updateUser.ourStory,
+        qrCode: updateUser.qrCode,
+        qrCodeAvatar: updateUser.qrCodeAvatar,
         receptionDetails: updateUser.receptionDetails,
         giftCards: updateUser.giftCards,
         registries: updateUser.registries,
@@ -486,7 +505,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
         role: updateUser.role,
         token: generateIdToken(updateUser._id),
       },
-      message: 'Profile Updated',
+      message: 'Updated!',
     });
   } else {
     res.status(404);
@@ -518,6 +537,8 @@ export const getCouple = asyncHandler(async (req, res) => {
     questions: user.questions,
     avatar: user.avatar,
     ourStory: user.ourStory,
+    qrCode: user.qrCode,
+    qrCodeAvatar: user.qrCodeAvatar,
     receptionDetails: user.receptionDetails,
     giftCards: user.giftCards,
     registries: user.registries,

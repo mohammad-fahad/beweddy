@@ -64,7 +64,7 @@ const TextInvitesPage = () => {
   const [preview, setPreview] = useState();
   const [selectedImageFile, setSelectedImageFile] = useState();
   const phones = data?.guests?.map(guest => ({
-    label: guest.phone?.number,
+    label: `${guest.phone?.number} - ${guest?.name}`,
     value: guest.phone?.number,
     provider: guest.phone?.provider,
   }));
@@ -221,9 +221,9 @@ const TextInvitesPage = () => {
                             fill='black'
                           />
                         </svg>
-                        <h4 className='text-sm font-bold xl:text-base'>
+                        {/* <h4 className='text-sm font-bold xl:text-base'>
                           Add or input contacts
-                        </h4>
+                        </h4> */}
                       </div>
                     </div>
                     <div className='flex items-center space-x-5'>
@@ -268,14 +268,34 @@ const TextInvitesPage = () => {
                           </span>
                         </label>
                       </div>
+                      <div className='flex items-center'>
+                        <input
+                          type='radio'
+                          id='calenderInvite'
+                          value='calenderInvite'
+                          className='hidden'
+                          {...register('compose')}
+                        />
+                        <label
+                          htmlFor='calenderInvite'
+                          className='flex items-center space-x-3 cursor-pointer'
+                        >
+                          <div className='checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center'>
+                            <div className='checked-inner w-[10px] h-[10px] rounded-full'></div>
+                          </div>
+                          <span className='text-lg font-light font-inter'>
+                            Calender Invite
+                          </span>
+                        </label>
+                      </div>
                     </div>
                     <div className='flex justify-between'>
                       <Heading h3 className='!text-sm xl:!text-base !font-bold'>
                         To
                       </Heading>
-                      <h5 className='xl:text-[12px] xxl:text-base font-bold'>
+                      {/* <h5 className='xl:text-[12px] xxl:text-base font-bold'>
                         Recipients: 13
-                      </h5>
+                      </h5> */}
                     </div>
                     <Select
                       closeMenuOnSelect={false}
@@ -424,7 +444,7 @@ const TextInvitesPage = () => {
                           })}
                         ></textarea>
                         {errors.message && (
-                          <p className='text-red-400 text-sm'>
+                          <p className='text-sm text-red-400'>
                             {errors.message.message}
                           </p>
                         )}

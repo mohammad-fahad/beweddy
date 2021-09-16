@@ -87,7 +87,7 @@ const WebsiteGiftCards = () => {
 
   return (
     <div className=" from-[#FCE3EB] to-white relative">
-      <div className="relative flex flex-wrap items-center justify-center gap-x-5 gap-y-3">
+      <div className="relative grid w-full grid-cols-2 px-2 mx-auto mb-5 md:px-5 md:mb-10 md:grid-cols-3 lg:grid-cols-4 sm:px-0 sm:max-w-full gap-x-5 sm:gap-x-10">
         {giftCards.map((giftCard, index) => {
           return (
             <Fragment key={index}>
@@ -167,7 +167,7 @@ const WebsiteGiftCards = () => {
 
       <div className="flex justify-end pr-2">
         <Link href="/">
-          <a className="text-lg font-semibold font-inter hover:underline">
+          <a className="text-lg font-semibold font-inter hover:underline customLabel">
             See All Gift Cards
           </a>
         </Link>
