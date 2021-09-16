@@ -282,7 +282,7 @@ const EmailInvitesPage = () => {
             onClick={() => setIsOpen((prev) => !prev)}
             className={`fixed z-[1000] inset-0 w-full h-screen bg-primary/30 items-center justify-center      `}
           ></div>
-          <div className="fixed inset-0 z-[5000] top-1/2 -translate-y-1/2 max-w-4xl mx-auto bg-white h-[80vh] overflow-y-auto p-10 rounded-lg">
+          <div className="fixed inset-0 z-[5000] top-1/2 -translate-y-1/2 max-w-4xl mx-auto bg-white h-[80vh] overflow-y-auto sm:p-10 p-3 rounded-lg">
             <EmailPreview
               {...{ handleSubmit, setIsOpen, uploadedFile, message }}
             />

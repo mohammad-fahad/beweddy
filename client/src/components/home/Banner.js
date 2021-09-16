@@ -71,7 +71,7 @@ const Banner = ({ setImageLoaded }) => {
                 className="-mt-6 w-7 h-7 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20 sm:-mt-8"
                 alt=""
               />
-              <h4 className="mt-3 text-xs text-center font-regular sm:font-medium md:text-sm lg:text-base xl:text-lg">
+              <h4 className="sm:mt-3 mt-1 text-xs text-center font-regular sm:font-medium md:text-sm lg:text-base xl:text-lg">
                 We Need Your <br /> Address
               </h4>
             </a>
