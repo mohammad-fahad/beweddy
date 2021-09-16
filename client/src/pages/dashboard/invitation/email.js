@@ -126,6 +126,7 @@ const EmailInvitesPage = () => {
   const emails = data?.guests?.map(guest => ({
     label: guest.email,
     value: guest.email,
+    email: guest.email,
   }));
 
   const onEditorStateChange = editorState => setEditorState(editorState);
@@ -174,7 +175,6 @@ const EmailInvitesPage = () => {
   // const { handleSubmit, register, getValues, watch } = useForm({ mode: 'all' });
 
   const handleSubmit = async () => {
-    console.log('hi');
     try {
       await sendEmailInvites({
         emails: toEmails.map(email => `${email.value}`),

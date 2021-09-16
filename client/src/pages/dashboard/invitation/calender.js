@@ -14,6 +14,38 @@ import Datetime from 'react-datetime';
 import moment from 'moment';
 import { useQuery } from 'react-query';
 import { getGuests } from '@services/GuestManagement';
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
+const animatedComponents = makeAnimated();
+
+const customStyles = {
+  control: (
+    { borderColor, backgroundColor, boxShadow, ...provided },
+    { theme }
+  ) => ({
+    ...provided,
+    width: '100%',
+    // backgroundColor: 'rgba(243, 244, 246, 1)',
+    borderColor: theme.colors.neutral90,
+    '&:hover': {
+      borderColor: theme.colors.neutral70,
+    },
+  }),
+  valueContainer: style => ({
+    ...style,
+    padding: '6px 16px',
+  }),
+  placeholder: style => ({
+    ...style,
+    color: 'rgba(156, 163, 175, 1)',
+    fontSize: '14px',
+  }),
+  input: style => ({
+    ...style,
+    outline: 'none',
+    border: 'none',
+  }),
+};
 
 const CalendarPage = () => {
   //redux state section
@@ -25,7 +57,12 @@ const CalendarPage = () => {
   const [end, setEnd] = useState('');
   const { data, isLoading } = useQuery(['guests', user.token], getGuests);
 
-  const emails = data?.guests?.map(guest => ({ email: guest.email }));
+  const [emails, setToEmails] = useState(null);
+
+  const toEmails = data?.guests?.map(guest => ({
+    label: guest.email,
+    value: guest.email,
+  }));
 
   var yesterday = moment().subtract(1, 'day');
   var valid = function (current) {
@@ -61,11 +98,22 @@ const CalendarPage = () => {
       description: `${val}`,
     },
   });
+
+  const handleEmails = (newValue, actionMeta) => {
+    if (newValue) {
+      setToEmails(
+        newValue.map(v => ({ email: v.value, responseStatus: 'needsAction' }))
+      );
+    }
+    if (actionMeta.action === 'clear') {
+      setToEmails(null);
+    }
+  };
+
   const getValue = watch('summary');
   //calendar Section
   let gapi = window.gapi;
-  // let CLIENT_ID = "658735256071-bhacjo0eesuoin4duputhn3bkt7nle56.apps.googleusercontent.com";
-  // let API_KEY = "AIzaSyB4aFvm7Ev-v_edhfUhqj7mmyuRzKP8bcg";
+
   let DISCOVERY_DOCS = [
     'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest',
   ];
@@ -74,17 +122,18 @@ const CalendarPage = () => {
 
   const onSubmit = data => {
     // data.start = startUpdate;
+    // data.attendees = emails;
     // data.end = endUpdate;
-    // console.log({ data })
+    // console.log({ data });
     if (data) {
       data.start = startUpdate;
       data.end = endUpdate;
-      data.attendees = emails;
       data.visibility = 'public';
+      data.attendees = emails;
       data.reminders = {
         useDefault: false,
         overrides: [
-          { method: 'email', minutes: 24 * 60 },
+          { method: 'email', minutes: 1 },
           { method: 'popup', minutes: 10 },
         ],
       };
@@ -219,19 +268,21 @@ const CalendarPage = () => {
                   Edit Title
                 </p>
               </div>
-              <Heading h3 className='!text-sm xl:!text-base !font-bold'>
-                To
-              </Heading>
+              <div className='space-y-3 w-full max-w-[592px]'>
+                <Heading h3 className='!text-sm xl:!text-base !font-bold'>
+                  To
+                </Heading>
 
-              <Select
-                closeMenuOnSelect={false}
-                components={animatedComponents}
-                onChange={handleEmails}
-                // defaultValue={[colourOptions[4], colourOptions[5]]}
-                isMulti
-                styles={customStyles}
-                options={emails}
-              />
+                <Select
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  onChange={handleEmails}
+                  // defaultValue={[colourOptions[4], colourOptions[5]]}
+                  isMulti
+                  styles={customStyles}
+                  options={toEmails}
+                />
+              </div>
               <div className='my-5'>
                 <Heading h3 className='!text-sm xl:!text-base !font-bold'>
                   Description
