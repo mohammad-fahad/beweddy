@@ -87,13 +87,13 @@ const WebsiteGiftCards = () => {
 
   return (
     <div className=" from-[#FCE3EB] to-white relative">
-      <div className="relative flex flex-wrap items-center justify-center gap-x-5 gap-y-3">
+      <div className="relative grid w-full grid-cols-2 px-2 mx-auto mb-5 md:px-5 md:mb-10 md:grid-cols-3 lg:grid-cols-4 sm:px-0 sm:max-w-full gap-x-5 sm:gap-x-10">
         {giftCards.map((giftCard, index) => {
           return (
             <Fragment key={index}>
               <div
                 className={`mx-auto py-5 rounded-xl overflow-hidden cursor-pointer transition-transform duration-300 ease-easing relative ${
-                  selected === index ? "" : "hover:scale-110"
+                  selected === index ? '' : 'hover:scale-110'
                 }`}
                 onClick={() => {
                   handleTooltip(index + 1);

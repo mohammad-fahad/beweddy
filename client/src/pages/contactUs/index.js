@@ -1,8 +1,8 @@
-import { Footer } from "@components/home";
-import { Header, Heading } from "@components/shared";
-import CenterTitle from "@components/shared/CenterTitle";
-import { useForm } from "react-hook-form";
-import React from "react";
+import { Footer } from '@components/home';
+import { Header, Heading } from '@components/shared';
+import CenterTitle from '@components/shared/CenterTitle';
+import { useForm } from 'react-hook-form';
+import React from 'react';
 
 const index = () => {
   const {
@@ -11,7 +11,7 @@ const index = () => {
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+
   return (
     <div>
       <Header />
@@ -28,7 +28,7 @@ const index = () => {
           <p>
             email us at email:
             <a href="mailto:nate@beweddy.com" className="underline">
-              nate@beweddy.com{" "}
+              nate@beweddy.com{' '}
             </a>
           </p>
           <p>You can also reach us by phone at</p>
@@ -53,7 +53,7 @@ const index = () => {
                   type="text"
                   name="name"
                   placeholder="Your full Name"
-                  {...register("name")}
+                  {...register('name')}
                   className="w-full text-sm md:text-lg font-normal rounded-[5px] p-4 placeholder-gray-400 border-[1px] border-primary rounded-lg"
                 />
               </div>
@@ -68,7 +68,7 @@ const index = () => {
                   type="text"
                   name="email"
                   placeholder="your@email.com"
-                  {...register("email", { required: true })}
+                  {...register('email', { required: true })}
                   className="w-full text-sm md:text-lg font-normal rounded-[5px] p-4 placeholder-gray-400 border-[1px] border-primary rounded-lg"
                 />
                 {errors.email && <span>This field is required</span>}
@@ -84,7 +84,7 @@ const index = () => {
                   type="number"
                   name="number"
                   placeholder="Your Contact Number"
-                  {...register("number", { required: true })}
+                  {...register('number', { required: true })}
                   className="w-full text-sm md:text-lg font-normal rounded-[5px] p-4 placeholder-gray-400 border-[1px] border-primary rounded-lg"
                 />
                 {errors.number && <span>This field is required</span>}
@@ -102,10 +102,10 @@ const index = () => {
                   className="rounded-[5px] focus:border-purple-100 p-4 w-full placeholder-[#c6c6ct] font-medium text-lg scroll-design"
                   defaultValue=""
                   placeholder="Write your message here. We Will response quickly"
-                  {...register("message", {
+                  {...register('message', {
                     required: {
                       value: true,
-                      message: "Compose message is required!",
+                      message: 'Compose message is required!',
                     },
                   })}
                 ></textarea>

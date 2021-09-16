@@ -15,8 +15,21 @@ const Terms = () => {
       <Header />
       <PageTitle title="Terms of Use" />
       <PageHeading lineOne="The following describes the Terms of Service Conditions of Use for our website." />
-      <Banner />
-      <Paragraph />
+
+      <div className="bg-gradient-to-br from-[#fddce7] to-white border-t-[2px] border-primary border-b-[2px]">
+        <div className="container grid w-full grid-cols-12 gap-4 mt-5">
+          <div className="p-1 text-lg font-semibold md:col-span-10 md:col-start-2 subTitle">
+            <Banner />
+          </div>
+        </div>
+      </div>
+
+      <div className="container grid w-full grid-cols-12 gap-4 mt-5">
+        <div className="p-1 text-lg font-semibold md:col-span-10 md:col-start-2 subTitle">
+          <Paragraph />
+        </div>
+      </div>
+
       <HowItWork />
       <CreateAccount />
       <Footer />

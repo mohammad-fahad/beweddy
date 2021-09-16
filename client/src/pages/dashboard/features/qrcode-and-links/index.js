@@ -1,20 +1,20 @@
-import Head from "next/head";
-import { DashboardHeader } from "@components/dashboard";
-import { Footer, Heading, Loader, CropImage } from "@components/index";
-import { withAuthRoute } from "@hoc/withAuthRoute";
-import DashboardTopBar from "@components/dashboard/header/TopBar";
-import DashboardLayout from "@components/dashboard/layout";
-import Image from "next/image";
-import { QRCode } from "react-qrcode-logo";
-import { useDispatch, useSelector } from "react-redux";
-import { useCallback, useState } from "react";
-import DashboardContainer from "@components/dashboard/DashboardContainer";
-import { fileUploader } from "@services/Uploader";
-import toast from "react-hot-toast";
-import { useDropzone } from "react-dropzone";
-import { attemptUpdateUserProfile } from "@features/user/userActions";
-import { downloadQRCode } from "@utils/index";
-import useCopyClipboard from "react-use-clipboard";
+import Head from 'next/head';
+import { DashboardHeader } from '@components/dashboard';
+import { Footer, Heading, Loader, CropImage } from '@components/index';
+import { withAuthRoute } from '@hoc/withAuthRoute';
+import DashboardTopBar from '@components/dashboard/header/TopBar';
+import DashboardLayout from '@components/dashboard/layout';
+import Image from 'next/image';
+import { QRCode } from 'react-qrcode-logo';
+import { useDispatch, useSelector } from 'react-redux';
+import { useCallback, useState } from 'react';
+import DashboardContainer from '@components/dashboard/DashboardContainer';
+import { fileUploader } from '@services/Uploader';
+import toast from 'react-hot-toast';
+import { useDropzone } from 'react-dropzone';
+import { attemptUpdateUserProfile } from '@features/user/userActions';
+import { downloadQRCode } from '@utils/index';
+import useCopyClipboard from 'react-use-clipboard';
 
 const QRCodePage = () => {
   const dispatch = useDispatch();
@@ -34,21 +34,21 @@ const QRCodePage = () => {
     successDuration: 1500,
   });
 
-  isCopied && toast.success("Wedding website link copied!");
+  isCopied && toast.success('Wedding website link copied!');
 
   const generateQRCode = async () => {
     try {
-      const canvas = document.querySelector(".code > canvas");
+      const canvas = document.querySelector('.code > canvas');
 
       const base64 = canvas
-        .toDataURL("image/png")
-        .replace("image/png", "image/octet-stream");
+        .toDataURL('image/png')
+        .replace('image/png', 'image/octet-stream');
 
       if (base64) {
         const coupleName =
           `${user?.firstName}-${user?.questions?.spouseFirstName}`
             .toLowerCase()
-            .replace(/\s/g, "");
+            .replace(/\s/g, '');
         setLoading(true);
         const result = await fileUploader(base64);
 
@@ -70,7 +70,7 @@ const QRCodePage = () => {
 
   const onDrop = useCallback((acceptedFiles) => {
     const fileDropped = acceptedFiles[0];
-    if (fileDropped["type"].split("/")[0] === "image") {
+    if (fileDropped['type'].split('/')[0] === 'image') {
       setSelectedImageFile(fileDropped);
       return;
     }
@@ -81,7 +81,7 @@ const QRCodePage = () => {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: "image/*",
+    accept: 'image/*',
     multiple: false,
   });
 

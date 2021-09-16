@@ -1,17 +1,19 @@
-import React from "react";
+import React from 'react';
 import {
   Facebook,
   Instagram,
   Linkedin,
   Twitter,
   Youtube,
-} from "@icons-pack/react-simple-icons";
+} from '@icons-pack/react-simple-icons';
 
 const SocialSection = ({ name, links }) => {
   console.log(links);
   return (
     <div>
-      <h2 className="text-2xl font-medium capitalize">Follow {name && name}</h2>
+      <h2 className="text-xl md:text-2xl whitespace-nowrap font-medium capitalize">
+        Follow {name && name}
+      </h2>
       <div className="w-40  h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-3" />
       <div className="flex flex-wrap items-center gap-5 mt-6 md:gap-5">
         {links?.facebook && (

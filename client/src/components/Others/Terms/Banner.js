@@ -1,6 +1,6 @@
 const Banner = () => {
   return (
-    <div className="bg-gradient-to-br from-[#fddce7] to-white border-t-[2px] border-primary border-b-[2px]">
+    // <div className="bg-gradient-to-br from-[#fddce7] to-white border-t-[2px] border-primary border-b-[2px]">
       <div className="container py-10 mx-auto uppercase">
         <p className="text-left md:text-justify">
           PLEASE READ THIS DOCUMENT CAREFULLY BEFORE ACCESSING OR USING OUR
@@ -28,7 +28,7 @@ const Banner = () => {
           SOFTWARE TEXT, GRAPHICS, AND LINKS.
         </p>
       </div>
-    </div>
+    // </div> 
   );
 };
 

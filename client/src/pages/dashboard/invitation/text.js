@@ -477,6 +477,7 @@ const TextInvitesPage = () => {
                   </form>
                 </div>
 
+                {/* <div className="hidden mx-auto md:block"> */}
                 <div className="hidden mx-auto md:block">
                   <div className="relative">
                     <img
