@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { DashboardHeader, WeddingDayCountDown } from '@components/dashboard';
+import { WeddingDayCountDown } from '@components/dashboard';
 import { Footer, Loader } from '@components/index';
 import WebsiteNav from '@components/dashboard/Website/WebsiteNav';
-import { useSelector } from 'react-redux';
+
 import WebsiteGiftCards from '@components/dashboard/Website/WebsiteGiftCard';
 import WebsiteRegistry from '@components/dashboard/Website/websiteRegistry';
 import SocialSection from '@components/dashboard/Website/SocialSection';
@@ -17,7 +17,6 @@ import SwiperCore, { Lazy, Autoplay } from 'swiper';
 import { useQuery } from 'react-query';
 import { getCouple } from '@services/Couple';
 import { useRouter } from 'next/router';
-import { getRegistries } from '@services/Registry';
 
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
@@ -35,33 +34,25 @@ const params = {
   },
 };
 
-const CoupleWebsitePage = ({ couple }) => {
+const CoupleWebsitePage = props => {
   const { query } = useRouter();
 
-  // const {
-  //   data: couple,
-  //   isLoading,
-  //   isError,
-  // } = useQuery(['couple', query.couple], getCouple);
-
-  const { data: registries, isLoading: isRegistriesLoading } = useQuery(
-    'registries',
-    getRegistries
-  );
+  const {
+    data: couple,
+    isLoading,
+    isError,
+  } = useQuery(['couple', query.couple], getCouple, {
+    initialData: props.user,
+  });
 
   // console.log(isError);
   const [value, setValue] = useState(
     `https://beweddy-delta.vercel.app/${couple?.username}`
   );
 
-  // if (isLoading || isRegistriesLoading) return <Loader />;
+  if (isLoading) return <Loader />;
 
-  // const { user } = useSelector((state) => state?.user);
-  // console.log("sonjoy", user.socialAccounts?.bride);
-  // console.log("sree", user.socialAccounts?.groom);
-  // console.log(couple?.socialAccounts?.bride);
-
-  // if (query.couple && !couple) return <NotFoundPage />;
+  if (query.couple && !couple) return <NotFoundPage />;
 
   return (
     <>
@@ -71,26 +62,6 @@ const CoupleWebsitePage = ({ couple }) => {
 
       <div className='container w-full mx-auto'>
         <WebsiteNav />
-
-        {/* banner image */}
-        {/* <Swiper {...params}>
-          {couple?.questions?.couplePictures.map((image, index) => (
-            <div className='w-full'>
-              <div className='aspect-w-16 aspect-h-9'>
-                <Image
-                  cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
-                  publicId={image.public_id}
-                  src={!image.public_id ? image.url : null}
-                  width={image.width}
-                  crop='scale'
-                  className='object-cover'
-                />
-              </div>
-              <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
-            </div>
-          ))}
-        </Swiper> */}
-
         <Carousel
           autoPlay
           infiniteLoop
@@ -98,6 +69,8 @@ const CoupleWebsitePage = ({ couple }) => {
           showIndicators={false}
           showThumbs={false}
           interval={3000}
+          swipeable
+          emulateTouch
         >
           {couple?.questions?.couplePictures.map((image, index) => (
             <div className='w-full'>
@@ -365,7 +338,7 @@ export const getServerSideProps = async ({ params: { couple } }) => {
 
   return {
     props: {
-      couple: user,
+      user,
     },
   };
 };
