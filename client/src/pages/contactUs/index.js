@@ -69,7 +69,7 @@ const index = () => {
                   name="email"
                   placeholder="your@email.com"
                   {...register('email', { required: true })}
-                  className="w-full text-sm md:text-lg font-normal rounded-[5px] p-4 placeholder-gray-400 border-[1px] border-primary rounded-lg"
+                  className="w-full text-sm md:text-lg font-normal rounded-[5px] p-4 placeholder-gray-400 border-[1px] border-primary"
                 />
                 {errors.email && <span>This field is required</span>}
               </div>
