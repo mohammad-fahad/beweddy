@@ -3,7 +3,7 @@ import { getGifts, createGift } from '../controllers/giftController.js';
 
 const router = express.Router();
 
-router.post('/create', createGift);
 router.get('/', getGifts);
+router.post('/create', createGift);
 
 export default router;

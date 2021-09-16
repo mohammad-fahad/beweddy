@@ -60,7 +60,6 @@ app.use(`${API_VERSION}/gifts`, GiftRoutes);
 app.use(`${API_VERSION}/todos`, todoRoutes);
 app.use(`${API_VERSION}/registries`, RegistryRoutes);
 app.use(`${API_VERSION}/invitation`, invitationRoutes);
-app.use(`${API_VERSION}/invitation`, invitationRoutes);
 // app.use('/', require('./routes/redirect'))
 // app.use('/api/url', require('./routes/url'))
 
