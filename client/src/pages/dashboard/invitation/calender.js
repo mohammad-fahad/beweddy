@@ -101,9 +101,7 @@ const CalendarPage = () => {
 
   const handleEmails = (newValue, actionMeta) => {
     if (newValue) {
-      setToEmails(
-        newValue.map(v => ({ email: v.value, responseStatus: 'needsAction' }))
-      );
+      setToEmails(newValue.map(v => ({ email: v.value })));
     }
     if (actionMeta.action === 'clear') {
       setToEmails(null);
@@ -118,7 +116,7 @@ const CalendarPage = () => {
     'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest',
   ];
   let SCOPES =
-    'https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar.events';
+    'https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar';
 
   const onSubmit = data => {
     // data.start = startUpdate;
@@ -133,8 +131,8 @@ const CalendarPage = () => {
       data.reminders = {
         useDefault: false,
         overrides: [
-          { method: 'email', minutes: 1 },
-          { method: 'popup', minutes: 10 },
+          { method: 'email', minutes: 24 * 60 },
+          { method: 'popup', minutes: 60 },
         ],
       };
       data.recurrence = ['RRULE:FREQ=DAILY;COUNT=2'];
@@ -153,32 +151,6 @@ const CalendarPage = () => {
           .getAuthInstance()
           .signIn()
           .then(() => {
-            var event = {
-              summary: 'Awesome Event!',
-              location: 'UTAH Convention Hall',
-              description: 'Really great refreshments',
-              start: {
-                dateTime: '2022-06-28T09:00:00-07:00',
-                timeZone: 'America/Los_Angeles',
-              },
-              end: {
-                dateTime: '2022-06-28T17:00:00-07:00',
-                timeZone: 'America/Los_Angeles',
-              },
-              recurrence: ['RRULE:FREQ=DAILY;COUNT=2'],
-              attendees: [
-                { email: 'lpage@example.com' },
-                { email: 'sbrin@example.com' }, //dynamic
-              ],
-              reminders: {
-                useDefault: false,
-                overrides: [
-                  { method: 'email', minutes: 24 * 60 },
-                  { method: 'popup', minutes: 10 },
-                ],
-              },
-            };
-
             let request = gapi.client.calendar.events.insert({
               calendarId: 'primary',
               sendNotifications: true,

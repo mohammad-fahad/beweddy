@@ -52,7 +52,7 @@ import axios from 'axios';
 
 const EditWebsitePage = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector(state => state.user);
+  const { user, loading: userLoading } = useSelector(state => state.user);
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState();
   const [preview, setPreview] = useState();
@@ -301,7 +301,7 @@ const EditWebsitePage = () => {
         <title>Beweddy | Edit Website</title>
       </Head>
 
-      {loading && <Loader />}
+      {(loading || userLoading) && <Loader />}
 
       <DashboardTopBar />
 
@@ -619,14 +619,26 @@ const EditWebsitePage = () => {
 
               <div>
                 <div className='flex items-center gap-3 md:gap-10'>
-                  <div className='relative grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xxl:grid-cols-6 sm:max-w-full gap-5 sm:gap-10'>
+                  <motion.div className='relative grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xxl:grid-cols-6 sm:max-w-full gap-5 sm:gap-10'>
                     <Link href='/dashboard/gift-cards'>
-                      <a className='max-w-[200px] max-h-[120px] w-full h-full border-2 border-secondary-alternative bg-secondary-alternative/50 flex items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'>
+                      <motion.a
+                        layout
+                        exit={{ opacity: 0 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className='max-w-[200px] max-h-[120px] w-full h-full border-2 border-secondary-alternative bg-secondary-alternative/50 flex items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'
+                      >
                         <PlusIcon className='w-8 h-8' />
-                      </a>
+                      </motion.a>
                     </Link>
                     {user?.giftCards?.map(gift => (
-                      <div className='inline-block relative max-w-[200px] max-h-[120px] w-full h-full overflow-hidden transition duration-300 cursor-pointer rounded-xl ease-easing'>
+                      <motion.div
+                        layout
+                        exit={{ opacity: 0 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className='inline-block relative max-w-[200px] max-h-[120px] w-full h-full overflow-hidden transition duration-300 cursor-pointer rounded-xl ease-easing'
+                      >
                         <Image
                           width={200}
                           height={120}
@@ -646,9 +658,9 @@ const EditWebsitePage = () => {
                         >
                           <MinusIcon className='w-12 h-12 text-white' />
                         </div>
-                      </div>
+                      </motion.div>
                     ))}
-                  </div>
+                  </motion.div>
                 </div>
                 <Link href='/dashboard/gift-cards/'>
                   <a className='block mt-5 text-sm font-semibold text-right hover:underline font-inter'>
@@ -680,10 +692,13 @@ const EditWebsitePage = () => {
                     </Link>
                   </div>
                 </div>
-                <div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 2lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 sm:gap-5 md:gap-10'>
+                <motion.div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 2lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 sm:gap-5 md:gap-10'>
                   {user?.registries?.map(registry => (
-                    <div
-                      htmlFor={registry._id}
+                    <motion.div
+                      layout
+                      exit={{ opacity: 0 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
                       className='scale-[.85] xs:scale-95 sm:scale-100 cursor-pointer p-4 max-w-[250px] inline-block bg-white border-4 rounded-md border-gray-200 hover:border-primary transition duration-300 w-full mx-auto'
                     >
                       <div
@@ -712,9 +727,9 @@ const EditWebsitePage = () => {
                           </button>
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
                 <Link href='/dashboard/registries'>
                   <a className='block mt-5 text-sm font-semibold text-right hover:underline font-inter'>
                     See All Wedding Registry Options
