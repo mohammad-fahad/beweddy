@@ -21,6 +21,9 @@ import { client } from 'pages/_app';
 import { getCouple } from '@services/Couple';
 import { useQuery } from 'react-query';
 import NotFoundPage from 'pages/404';
+import { API_URL } from '@utils/index';
+import axios from 'axios';
+
 SwiperCore.use([Lazy, Autoplay]);
 
 const params = {
@@ -52,17 +55,17 @@ const providers = {
   virginmobile: { sms: 'vmobl.com', mms: 'vmpix.com' },
 };
 
-const RSVPage = () => {
+const RSVPage = ({ user }) => {
   const dispatch = useDispatch();
   const { push, query } = useRouter();
   const { loading } = useSelector(state => state.rsvp);
 
-  const {
-    data: user,
-    isLoading,
-    isFetching,
-    isError,
-  } = useQuery(['couple', query.couple], getCouple);
+  // const {
+  //   data: user,
+  //   isLoading,
+  //   isFetching,
+  //   isError,
+  // } = useQuery(['couple', query.couple], getCouple);
 
   const { countries } = useSelector(state => state.countryList);
   const [selectedProvider, setSelectedProvider] = useState(otherProviders[0]);
@@ -134,8 +137,8 @@ const RSVPage = () => {
     };
   };
 
-  if (isLoading || isFetching) return <Loader />;
-  if (query.couple && !couple) return <NotFoundPage />;
+  // if (isLoading || isFetching) return <Loader />;
+  // if (query.couple && !user) return <NotFoundPage />;
 
   return (
     <>
@@ -858,3 +861,14 @@ const RSVPage = () => {
 };
 
 export default RSVPage;
+
+export const getServerSideProps = async ({ params: { couple } }) => {
+  const res = await fetch(`${API_URL}/users/${couple}`);
+  const user = await res.json();
+
+  return {
+    props: {
+      user,
+    },
+  };
+};
