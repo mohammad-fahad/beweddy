@@ -129,7 +129,9 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       emailVerified: email_verified,
       username,
       questions,
-    });
+    })
+      .populate('registries')
+      .populate('giftCards');
 
     if (user) {
       defaultTodos.forEach(async todo => {
@@ -184,7 +186,9 @@ export const googleSignIn = asyncHandler(async (req, res) => {
 
   // Check if email is verified
   if (email_verified) {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email })
+      .populate('registries')
+      .populate('giftCards');
 
     if (!user) {
       res.status(404);
@@ -286,7 +290,9 @@ export const activeUser = asyncHandler(async (req, res) => {
 export const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email })
+    .populate('registries')
+    .populate('giftCards');
 
   if (!user) {
     res.status(404);
@@ -432,9 +438,7 @@ export const getUserProfile = asyncHandler(async (req, res) => {
 // update user profile
 
 export const updateUserProfile = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id)
-    .populate('registry')
-    .populate('gift');
+  const user = await User.findById(req.user._id);
 
   if (user) {
     const questions = {
@@ -480,6 +484,14 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
       user.registries = [...new Set(registries)];
     }
 
+    if (req.body.giftCards) {
+      const giftCards = [
+        ...new Set([...user.giftCards, ...req.body.giftCards]),
+      ];
+      // console.log(giftCards);
+      user.giftCards = [...new Set(giftCards)];
+    }
+
     if (req.body.newPassword) {
       if (await user.matchPassword(req.body.oldPassword)) {
         user.password = req.body.newPassword;
@@ -489,7 +501,10 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
       }
     }
 
-    const updateUser = await user.save();
+    const updatedUser = await user.save();
+    const updateUser = await User.findById(updatedUser._id)
+      .populate('giftCards')
+      .populate('registries');
 
     res.json({
       user: {
@@ -526,7 +541,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
 
 export const getCouple = asyncHandler(async (req, res) => {
   const user = await User.findOne({ username: req.params.username })
-    .populate('gift')
+    .populate('giftCards')
     .populate('registries');
 
   if (!user) {

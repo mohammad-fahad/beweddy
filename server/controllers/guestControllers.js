@@ -32,7 +32,17 @@ export const getGuests = asyncHandler(async (req, res) => {
 export const createGuest = asyncHandler(async (req, res) => {
   const { email, phone } = req.body;
 
-  const guestExists = await Guest.findOne({ $or: [{ email }, { phone }] });
+  const guestExists = await Guest.findOne({
+    $and: [
+      { user: req.body.id },
+      { email },
+      // { $or: [{ email }, { phone: phone.number }] },
+    ],
+  });
+
+  // const a = (username || id) && (email || phone);
+
+  console.log(guestExists);
 
   const user = await User.findOne({ username: req.body.username }).select(
     '-password'
