@@ -3,11 +3,9 @@ import Link from 'next/link';
 // import Image from 'next/image';
 import { Image } from 'cloudinary-react';
 import { DashboardHeader } from '@components/dashboard';
-import DashboardTopBar from '@components/dashboard/header/TopBar';
-import DashboardLayout from '@components/dashboard/layout';
-import { Button, Footer, Heading } from '@components/index';
-import { LinkIcon, PencilIcon, SelectorIcon } from '@heroicons/react/outline';
-import { withAuthRoute } from '@hoc/withAuthRoute';
+import { Button, Footer, Heading, Loader } from '@components/index';
+import { SelectorIcon } from '@heroicons/react/outline';
+
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,10 +15,15 @@ import SwiperCore, { Lazy, Autoplay } from 'swiper';
 import { Listbox, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { CheckIcon } from '@heroicons/react/solid';
-import { addGuest } from '@features/guest/guestSlice';
 import { useRouter } from 'next/router';
 import { attemptCreateGuest } from '@features/guest/guestActions';
 import { client } from 'pages/_app';
+import { getCouple } from '@services/Couple';
+import { useQuery } from 'react-query';
+import NotFoundPage from 'pages/404';
+import { API_URL } from '@utils/index';
+import axios from 'axios';
+
 SwiperCore.use([Lazy, Autoplay]);
 
 const params = {
@@ -52,10 +55,18 @@ const providers = {
   virginmobile: { sms: 'vmobl.com', mms: 'vmpix.com' },
 };
 
-const RSVPage = () => {
+const RSVPage = ({ user }) => {
   const dispatch = useDispatch();
-  const { user } = useSelector(state => state.user);
   const { push, query } = useRouter();
+  const { loading } = useSelector(state => state.rsvp);
+
+  // const {
+  //   data: user,
+  //   isLoading,
+  //   isFetching,
+  //   isError,
+  // } = useQuery(['couple', query.couple], getCouple);
+
   const { countries } = useSelector(state => state.countryList);
   const [selectedProvider, setSelectedProvider] = useState(otherProviders[0]);
 
@@ -94,8 +105,8 @@ const RSVPage = () => {
   }, [allAbove]);
   const onSubmit = async data => {
     dispatch(attemptCreateGuest(submitData(data)));
-    // console.log(submitData(data));
     await client.invalidateQueries('guests');
+    push(`/couple/${user?.username}`);
   };
 
   const submitData = data => {
@@ -114,7 +125,7 @@ const RSVPage = () => {
     };
 
     return {
-      id: user?._id,
+      username: query?.couple,
       address,
       wayOfInvitations,
       name: data.name,
@@ -126,14 +137,15 @@ const RSVPage = () => {
     };
   };
 
+  // if (isLoading || isFetching) return <Loader />;
+  // if (query.couple && !user) return <NotFoundPage />;
+
   return (
     <>
       <Head>
         <title>Beweddy | Address & RSVP</title>
       </Head>
-      {/* {loading && <Loader />} */}
-      {/* <DashboardTopBar /> */}
-      {/* <DashboardLayout> */}
+      {loading && <Loader />}
       <div className='flex flex-col items-center overflow-hidden py-6 max-w-5xl w-full mx-auto'>
         <DashboardHeader>
           <div className='flex flex-col items-center justify-center w-full space-x-5 '>
@@ -143,14 +155,14 @@ const RSVPage = () => {
               </a>
             </Link>
             <h1 className='mt-5 text-3xl font-medium'>
-              Need Your Address & RSVP
+              We Need Your Address & RSVP
             </h1>
           </div>
         </DashboardHeader>
         <div className='border-4 border-gray-200 rounded-lg'>
           <div style={{ width: '1015px', height: '450px', overflow: 'hidden' }}>
             <Swiper {...params}>
-              {user.questions.couplePictures.map((image, index) => (
+              {user?.questions.couplePictures.map((image, index) => (
                 <div className='w-full'>
                   <div className='aspect-w-16 aspect-h-9'>
                     <Image
@@ -168,18 +180,9 @@ const RSVPage = () => {
             </Swiper>
           </div>
           <div className='p-10'>
-            <h5 className='text-2xl font-medium text-center'>
-              {user.coupleName}'s Wedding
+            <h5 className='text-2xl font-medium text-center my-5'>
+              {user?.coupleName}'s Wedding
             </h5>
-
-            <div className='flex justify-center my-5'>
-              <Link href='/'>
-                <a className='flex justify-center items-center space-x-3 py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300'>
-                  <LinkIcon className='w-5 h-5' />
-                  <span>Share your super link</span>
-                </a>
-              </Link>
-            </div>
             <h4 className='text-4xl font-medium text-center'>
               ✨ Your Are Invited To Our Wedding! 💍 ✨
             </h4>
@@ -858,3 +861,14 @@ const RSVPage = () => {
 };
 
 export default RSVPage;
+
+export const getServerSideProps = async ({ params: { couple } }) => {
+  const res = await fetch(`${API_URL}/users/${couple}`);
+  const user = await res.json();
+
+  return {
+    props: {
+      user,
+    },
+  };
+};

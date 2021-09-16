@@ -24,7 +24,7 @@ const guestSchema = new mongoose.Schema(
       },
       providence: {
         type: String,
-        required: true,
+        // required: true,
       },
       city: {
         type: String,

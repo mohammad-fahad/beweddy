@@ -318,12 +318,7 @@ const AddressRSVP = () => {
                       type='text'
                       className='w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
                       placeholder='Apt/Suite/Other'
-                      {...register('providence', {
-                        required: {
-                          value: true,
-                          message: 'Providence is required!',
-                        },
-                      })}
+                      {...register('providence')}
                     />
 
                     <p className='h-4 mt-2 text-sm font-light text-red-400'>
