@@ -73,15 +73,15 @@
   .select-registry > [type="checkbox"]:checked:focus + label {
     @apply border-primary;
   }
-  .select-gift > [type='checkbox']:checked + label .minus {
+  .select-gift > [type="checkbox"]:checked + label .minus {
     @apply inline-block !important;
   }
 
-  .select-gift > [type='checkbox']:checked + label {
+  .select-gift > [type="checkbox"]:checked + label {
     @apply opacity-50;
   }
 
-  .select-gift > [type='checkbox']:checked + label .plus {
+  .select-gift > [type="checkbox"]:checked + label .plus {
     @apply hidden;
   }
 
@@ -303,6 +303,7 @@
   .customGap {
     margin: 0 !important;
     padding: 0 !important;
+    gap : 2 !important;
   }
   .customSocialIcon {
     font-size: 10px !important;
@@ -328,7 +329,7 @@
   .customPadding {
     padding: 0 !important;
     margin-top: 5px !important;
-    margin-left: 5px !important;
+    margin-bottom: 5px !important;
   }
   .customImage {
     height: 40px !important;
@@ -367,5 +368,8 @@
   }
   .buttonPaddig {
     padding: 8px 15px !important;
+  }
+  .customAlignCenter {
+    text-align : center !important ; 
   }
 }
