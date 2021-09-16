@@ -1,3 +1,5 @@
+import { IoSaveSharp, IoCloseSharp } from 'react-icons/io5';
+
 const Modal = ({ children, modalIsOpen, setModalIsOpen, onSave }) => {
   return (
     <div
@@ -6,24 +8,44 @@ const Modal = ({ children, modalIsOpen, setModalIsOpen, onSave }) => {
     `}
     >
       <div
-        className='absolute inset-0 bg-black/25 w-full h-full z-0'
-        onClick={() => setModalIsOpen(prev => !prev)}
+        className="absolute inset-0 z-0 w-full h-full bg-black/25"
+        onClick={() => setModalIsOpen((prev) => !prev)}
       />
-      <div className='max-w-lg w-full bg-white rounded-md p-5 relative z-10'>
-        <h3 className='font-medium text-gray-800 text-xl mb-5'>
-          Crop your image
-        </h3>
+      <div className="relative z-10 w-full max-w-lg p-5 bg-white rounded-md">
+        <div className="flex items-center justify-between mb-3 md:mb-0">
+          <h3 className="text-xl font-medium text-gray-800 md:mb-5">
+            Crop your image
+          </h3>
+
+          <div className="block md:hidden ">
+            <div className="flex items-center space-x-3">
+              <button
+                className="px-5 py-2 text-sm border-2 border-black rounded-md"
+                onClick={() => setModalIsOpen(false)}
+              >
+                <IoCloseSharp />
+              </button>
+              <button
+                className="px-5 py-2 text-sm text-white transition bg-black border-2 border-black rounded-md hover:opacity-80"
+                onClick={onSave}
+              >
+                <IoSaveSharp />
+              </button>
+            </div>
+          </div>
+        </div>
+
         {children}
-        <div className='mt-5'>
-          <div className='flex items-center space-x-5'>
+        <div className="hidden mt-5 md:block">
+          <div className="flex items-center space-x-5">
             <button
-              className='py-2 text-sm px-5 border-2 border-black rounded-md'
+              className="px-5 py-2 text-sm border-2 border-black rounded-md"
               onClick={() => setModalIsOpen(false)}
             >
               Cancel
             </button>
             <button
-              className='py-2 text-sm px-5 border-2 border-black bg-black hover:opacity-80 transition text-white rounded-md'
+              className="px-5 py-2 text-sm text-white transition bg-black border-2 border-black rounded-md hover:opacity-80"
               onClick={onSave}
             >
               Save
