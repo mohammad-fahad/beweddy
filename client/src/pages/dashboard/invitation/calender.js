@@ -181,6 +181,7 @@ const CalendarPage = () => {
 
             let request = gapi.client.calendar.events.insert({
               calendarId: 'primary',
+              sendNotifications: true,
               resource: data,
             });
 
@@ -314,17 +315,22 @@ const CalendarPage = () => {
                 </div>
               </div>
               <div className='flex justify-start items-center my-5'>
-                <Image
-                  src='/icons/calendar__location.png'
-                  width={20}
-                  height={20}
-                />
-                <Heading h3 className='!text-sm xl:!text-base ml-3 !font-bold'>
-                  Location
+                <Heading
+                  h3
+                  className='!text-sm xl:!text-base ml-3 !font-bold space-y-2'
+                >
+                  <div className='flex items-center space-x-3'>
+                    <Image
+                      src='/icons/calendar__location.png'
+                      width={20}
+                      height={20}
+                    />
+                    <span>Location</span>
+                  </div>
                   <input
                     required
                     type='text'
-                    className='border border-primary max-w-[592px] py-3 px-5 text-sm font-semibold w-full rounded-[5px]'
+                    className='border border-primary max-w-[275px] py-3 px-5 text-sm font-semibold w-full rounded-[5px]'
                     placeholder='Utah Convention Hall, Utah'
                     {...register('location', {
                       required: {
@@ -336,15 +342,22 @@ const CalendarPage = () => {
                 </Heading>
               </div>
 
-              <div className='flex justify-start items-center my-5 w-full flex-wrap max-w-[592px]'>
-                <div className='flex justify-start mr-2 items-center'>
-                  <Image src='/icons/clock__icon.svg' width={20} height={20} />
+              <div className='flex flex-col space-y-5 my-5 w-full flex-wrap max-w-[592px]'>
+                <div className='flex items-center space-x-3'>
                   <Heading
                     onClick={() => setStartTime(true)}
                     h3
-                    className='!text-sm ml-3 xl:!text-base !font-bold'
+                    className='!text-sm ml-3 xl:!text-base !font-bold space-y-2'
                   >
-                    Select your Date
+                    <div className='flex items-center space-x-3'>
+                      <Image
+                        src='/icons/clock__icon.svg'
+                        width={20}
+                        height={20}
+                      />
+
+                      <span>Select your Date</span>
+                    </div>
                     <Datetime
                       isValidDate={valid}
                       dateFormat='YYYY-MM-DD'
@@ -355,13 +368,19 @@ const CalendarPage = () => {
                   </Heading>
                 </div>
                 <div className='flex justify-start items-center'>
-                  <Image src='/icons/clock__icon.svg' width={20} height={20} />
                   <Heading
                     onClick={() => setStartTime(true)}
                     h3
-                    className='!text-sm ml-3 xl:!text-base !font-bold'
+                    className='!text-sm ml-3 xl:!text-base !font-bold space-y-2'
                   >
-                    Start
+                    <div className='flex items-center space-x-3'>
+                      <Image
+                        src='/icons/clock__icon.svg'
+                        width={20}
+                        height={20}
+                      />
+                      <span>Start</span>
+                    </div>
                     <Datetime
                       inputProps={{ placeholder: 'Start' }}
                       dateFormat={false}
@@ -370,13 +389,20 @@ const CalendarPage = () => {
                     />
                   </Heading>
                 </div>
-                <div className='flex justify-start ml-3 items-center'>
-                  <Image src='/icons/clock__icon.svg' width={20} height={20} />
+                <div className='flex justify-start items-center'>
                   <Heading
                     h3
-                    className='!text-sm ml-3 xl:!text-base !font-bold'
+                    className='!text-sm ml-3 xl:!text-base !font-bold space-y-3'
                   >
-                    End
+                    <div className='flex items-center space-x-3'>
+                      <Image
+                        src='/icons/clock__icon.svg'
+                        width={20}
+                        height={20}
+                      />
+
+                      <span>End</span>
+                    </div>
                     <Datetime
                       inputProps={{ placeholder: 'End' }}
                       isValidDate={valid}
@@ -385,12 +411,6 @@ const CalendarPage = () => {
                     />
                   </Heading>
                 </div>
-              </div>
-              <div className='flex justify-start items-center my-5'>
-                <Image src='/icons/attendee.svg' width={20} height={20} />
-                <Heading h3 className='!text-sm ml-3 xl:!text-base !font-bold'>
-                  Attendees
-                </Heading>
               </div>
               {/* onClick={handleClick}  */}
               <button
