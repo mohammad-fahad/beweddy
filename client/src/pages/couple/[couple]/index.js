@@ -220,21 +220,29 @@ const CoupleWebsitePage = props => {
           {/* 😇 Bless us with a Gift Card section */}
           {/* <div className="w-full max-w-3xl mx-auto mt-5"> */}
           <div className='w-full mx-auto my-3 md:my-8'>
-            <h2 className='text-2xl font-medium text-center md:text-4xl commonTitle'>
-              😇 Bless us with a Gift Card
-            </h2>
-            <div className='w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] my-5' />
-            <div>
-              <WebsiteGiftCards />
-            </div>
+            {couple?.giftCards?.length > 0 && (
+              <>
+                <h2 className='text-2xl font-medium text-center md:text-4xl commonTitle'>
+                  😇 Bless us with a Gift Card
+                </h2>
+                <div className='w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] my-5' />
+                <div>
+                  <WebsiteGiftCards giftCards={couple?.giftCards} />
+                </div>
+              </>
+            )}
 
-            <h2 className='text-4xl font-medium text-center commonTitle'>
-              Our Registry
-            </h2>
-            <div className='w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-[28px] mb-[50px]' />
-            <div>
-              <WebsiteRegistry registries={couple?.registries} />
-            </div>
+            {couple?.registries?.length > 0 && (
+              <>
+                <h2 className='text-4xl font-medium text-center commonTitle'>
+                  Our Registry
+                </h2>
+                <div className='w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-[28px] mb-[50px]' />
+                <div>
+                  <WebsiteRegistry registries={couple?.registries} />
+                </div>
+              </>
+            )}
           </div>
 
           {/* follow section */}
