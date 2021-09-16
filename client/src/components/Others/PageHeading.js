@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 const PageHeading = ({ lineOne, lineTwo }) => {
   return (
-    <div className="container py-5 mx-auto text-center">
+    <div className="container mx-auto text-center">
       {lineOne && <p className="!text-[18px]">{lineOne}</p>}
       {lineTwo && <p>{lineTwo}</p>}
 
