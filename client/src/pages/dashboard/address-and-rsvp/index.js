@@ -212,19 +212,19 @@ const AddressRSVP = () => {
             ))}
           </Carousel>
 
-          <div className='px-2 py-10 lg:px-10 lg:py-10'>
-            <h5 className='text-2xl font-medium text-center'>
+          <div className='px-2 py-10 lg:px-10  lg:py-10'>
+            <h5 className='text-2xl font-medium my-5 text-center'>
               {user.coupleName}'s Wedding
             </h5>
 
-            <div className='flex justify-center my-5'>
+            {/* <div className='flex justify-center my-5'>
               <Link href='/'>
                 <a className='flex justify-center items-center space-x-3 py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300'>
                   <LinkIcon className='w-5 h-5' />
                   <span className='customLabel'>Wedding Wedding Link</span>
                 </a>
               </Link>
-            </div>
+            </div> */}
             <h4 className='text-2xl font-medium text-center md:text-3xl mudiumTitle'>
               ✨ Your Are Invited To Our Wedding! 💍 ✨
             </h4>
@@ -426,10 +426,9 @@ const AddressRSVP = () => {
                             <Listbox.Option
                               key={countryIdx}
                               className={({ active }) =>
-                                `${
-                                  active
-                                    ? 'text-amber-900 bg-secondary-alternative/20'
-                                    : 'text-gray-900'
+                                `${active
+                                  ? 'text-amber-900 bg-secondary-alternative/20'
+                                  : 'text-gray-900'
                                 }
                           cursor-pointer select-none relative py-2 pl-10 pr-4`
                               }
@@ -438,19 +437,17 @@ const AddressRSVP = () => {
                               {({ selected, active }) => (
                                 <>
                                   <span
-                                    className={`${
-                                      selected ? 'font-medium' : 'font-normal'
-                                    } block truncate`}
+                                    className={`${selected ? 'font-medium' : 'font-normal'
+                                      } block truncate`}
                                   >
                                     {country.name}
                                   </span>
                                   {selected ? (
                                     <span
-                                      className={`${
-                                        active
-                                          ? 'text-amber-600'
-                                          : 'text-amber-600'
-                                      }
+                                      className={`${active
+                                        ? 'text-amber-600'
+                                        : 'text-amber-600'
+                                        }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                     >
                                       <CheckIcon
@@ -737,10 +734,9 @@ const AddressRSVP = () => {
                             <Listbox.Option
                               key={providerIdx}
                               className={({ active }) =>
-                                `${
-                                  active
-                                    ? 'text-secondary bg-secondary-alternative/50'
-                                    : 'text-gray-900'
+                                `${active
+                                  ? 'text-secondary bg-secondary-alternative/50'
+                                  : 'text-gray-900'
                                 }
                           cursor-pointer select-none relative py-2 pl-10 pr-4 font-medium`
                               }
@@ -749,19 +745,17 @@ const AddressRSVP = () => {
                               {({ selected, active }) => (
                                 <>
                                   <span
-                                    className={`${
-                                      selected ? 'font-semibold' : 'font-medium'
-                                    } block truncate`}
+                                    className={`${selected ? 'font-semibold' : 'font-medium'
+                                      } block truncate`}
                                   >
                                     {provider.name}
                                   </span>
                                   {selected ? (
                                     <span
-                                      className={`${
-                                        active
-                                          ? 'text-amber-600'
-                                          : 'text-amber-600'
-                                      }
+                                      className={`${active
+                                        ? 'text-amber-600'
+                                        : 'text-amber-600'
+                                        }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                     >
                                       <CheckIcon

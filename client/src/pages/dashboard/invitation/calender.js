@@ -67,21 +67,18 @@ const CalendarPage = () => {
   // let CLIENT_ID = "658735256071-bhacjo0eesuoin4duputhn3bkt7nle56.apps.googleusercontent.com";
   // let API_KEY = "AIzaSyB4aFvm7Ev-v_edhfUhqj7mmyuRzKP8bcg";
   let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-  let SCOPES = "https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar.events";
+  let SCOPES = "https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar";
 
   const onSubmit = data => {
-    // data.start = startUpdate;
-    // data.end = endUpdate;
-    // console.log({ data })
     if (data) {
       data.start = startUpdate;
       data.end = endUpdate;
-      data.attendees = emails;
+      data.attendees = [{ email: 'team.sampson1@gmail.com' }];
       data.visibility = 'public';
       data.reminders = {
         useDefault: false,
         overrides: [
-          { method: 'email', minutes: 24 * 60 },
+          { method: 'email', minutes: 1 },
           { method: 'popup', minutes: 10 },
         ],
       };
@@ -101,34 +98,9 @@ const CalendarPage = () => {
           .getAuthInstance()
           .signIn()
           .then(() => {
-            var event = {
-              summary: 'Awesome Event!',
-              location: 'UTAH Convention Hall',
-              description: 'Really great refreshments',
-              start: {
-                dateTime: '2022-06-28T09:00:00-07:00',
-                timeZone: 'America/Los_Angeles',
-              },
-              end: {
-                dateTime: '2022-06-28T17:00:00-07:00',
-                timeZone: 'America/Los_Angeles',
-              },
-              recurrence: ['RRULE:FREQ=DAILY;COUNT=2'],
-              attendees: [
-                { email: 'lpage@example.com' },
-                { email: 'sbrin@example.com' }, //dynamic
-              ],
-              reminders: {
-                useDefault: false,
-                overrides: [
-                  { method: 'email', minutes: 24 * 60 },
-                  { method: 'popup', minutes: 10 },
-                ],
-              },
-            };
-
             let request = gapi.client.calendar.events.insert({
               calendarId: 'primary',
+              sendNotifications: true,
               resource: data,
             });
 
@@ -148,6 +120,7 @@ const CalendarPage = () => {
                 timeMin: new Date().toISOString(),
                 showDeleted: false,
                 singleEvents: true,
+
                 maxResults: 10,
                 orderBy: 'startTime',
               })
