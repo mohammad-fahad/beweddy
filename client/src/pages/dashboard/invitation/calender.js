@@ -18,7 +18,6 @@ import { getGuests } from '@services/GuestManagement';
 const CalendarPage = () => {
   //redux state section
   const { user } = useSelector(state => state.user);
-  // console.log({ user });
   const [changeText, setChangeText] = useState(false)
   const [startTime, setStartTime] = useState(false)
   const [newDate, setNewDate] = useState("")
@@ -50,6 +49,7 @@ const CalendarPage = () => {
   }
   const val = `Hello, \n\nWe would like to invite you to our wedding! Please come celebrate with us. \n\nThank you for your support. Love, ${user.coupleName} !\n\nVisit Our Wedding Website: https://beweddy-delta.vercel.app/couple/${user?.username}\n`;
   const {
+    watch,
     register,
     handleSubmit,
     formState: { errors },
@@ -57,18 +57,18 @@ const CalendarPage = () => {
     mode: 'all',
     defaultValues: {
       summary: `${user?.coupleName}'s Wedding Day`,
-      location: "UTAH Convention Hall, UTAH",
+      location: "",
       description: `${val}`,
 
     },
   });
-
+  const getValue = watch('summary');
   //calendar Section
   let gapi = window.gapi
-  let CLIENT_ID = "658735256071-bhacjo0eesuoin4duputhn3bkt7nle56.apps.googleusercontent.com";
-  let API_KEY = "AIzaSyB4aFvm7Ev-v_edhfUhqj7mmyuRzKP8bcg";
+  // let CLIENT_ID = "658735256071-bhacjo0eesuoin4duputhn3bkt7nle56.apps.googleusercontent.com";
+  // let API_KEY = "AIzaSyB4aFvm7Ev-v_edhfUhqj7mmyuRzKP8bcg";
   let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-  let SCOPES = "https://www.googleapis.com/auth/calendar.events";
+  let SCOPES = "https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar.events";
 
   const onSubmit = (data) => {
     // data.start = startUpdate;
@@ -78,6 +78,7 @@ const CalendarPage = () => {
       data.start = startUpdate;
       data.end = endUpdate;
       data.attendees = emails;
+      data.visibility = 'public';
       data.reminders = {
         'useDefault': false,
         'overrides': [
@@ -92,12 +93,12 @@ const CalendarPage = () => {
         console.log('loaded client')
 
         gapi.client.init({
-          apiKey: API_KEY,
-          clientId: CLIENT_ID,
+          apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
+          clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
           discoveryDocs: DISCOVERY_DOCS,
           scope: SCOPES,
         })
-        gapi.client.load('calendar', 'v3', () => console.log('bam!'))
+        gapi.client.load('calendar', 'v3', () => console.log(''))
 
         gapi.auth2.getAuthInstance().signIn()
           .then(() => {
@@ -199,7 +200,6 @@ const CalendarPage = () => {
                 {
                   changeText && <div className="w-full my-3">
                     <input
-                      defaultValue={`${user.coupleName}'s Wedding Day`}
                       type="text"
                       className="w-full max-w-[592px] text-sm md:text-lg font-normal py-2 md:py-3 px-4 md:px-6 placeholder-gray-400 border-[2px] border-primary rounded-lg"
                       placeholder="Title"
@@ -220,7 +220,7 @@ const CalendarPage = () => {
                 {
                   !changeText &&
                   <h2
-                    className="text-2xl font-semibold font-inter">{`${user.coupleName}'s Wedding Day`}</h2>
+                    className="text-2xl font-semibold font-inter">{getValue}</h2>
                 }
                 <p
                   className="text-[#ADADAD] text-sm mt-2"
@@ -262,12 +262,25 @@ const CalendarPage = () => {
               <div className="flex justify-start items-center my-5">
                 <Image src='/icons/calendar__location.png' width={20} height={20} />
                 <Heading h3 className='!text-sm xl:!text-base ml-3 !font-bold'>
-                  Auto Generated
+                  Location
+                  <input
+                    required
+                    type="text"
+                    className="border border-primary max-w-[592px] py-3 px-5 text-sm font-semibold w-full rounded-[5px]"
+                    placeholder="Utah Convention Hall, Utah"
+                    {...register('location', {
+                      required: {
+                        value: true,
+                        message: 'Location is required!',
+                      },
+                    })}
+                  />
                 </Heading>
+
               </div>
 
               <div className="flex justify-start items-center my-5 w-full flex-wrap max-w-[592px]">
-                <div className="flex justify-start items-center">
+                <div className="flex justify-start mr-2 items-center">
                   <Image src='/icons/clock__icon.svg' width={20} height={20} />
                   <Heading onClick={() => setStartTime(true)} h3 className='!text-sm ml-3 xl:!text-base !font-bold'>
                     Select your Date
