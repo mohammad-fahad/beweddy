@@ -24,12 +24,21 @@ export const createGift = asyncHandler(async (req, res) => {
 // Delete Gift by ID
 export const deleteGift = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const gift = Gift.findByIdAndRemove(id);
-
-  // if (gift) {
-  //   res.status(201).json({ message: 'Gift created successfully' });
-  // } else {
-  //   res.status(500);
-  //   throw new Error('Server Error');
-  // }
+  const gift = await Gift.findByIdAndRemove(id);
+  if (gift) {
+    res.status(201).json({ message: 'Gift Deleted successfully' });
+  } else {
+    res.status(500);
+    throw new Error('Server Error');
+  }
 });
+
+
+export const updateGift = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const updatedGift = req.body;
+  const updatedGiftResponse = await Gift.findByIdAndUpdate(id, { ...updatedGift, id }, { new: true });
+  if (updatedGiftResponse) {
+    res.status(201).json({ message: "Gift Updated Successfully" });
+  }
+})
