@@ -75,18 +75,18 @@ const CoupleWebsitePage = () => {
         {/* banner image */}
         {/* <Swiper {...params}>
           {couple?.questions?.couplePictures.map((image, index) => (
-            <div className="w-full">
-              <div className="aspect-w-16 aspect-h-9">
+            <div className='w-full'>
+              <div className='aspect-w-16 aspect-h-9'>
                 <Image
                   cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                   publicId={image.public_id}
                   src={!image.public_id ? image.url : null}
                   width={image.width}
-                  crop="scale"
-                  className="object-cover"
+                  crop='scale'
+                  className='object-cover'
                 />
               </div>
-              <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
+              <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
             </div>
           ))}
         </Swiper> */}
@@ -255,14 +255,12 @@ const CoupleWebsitePage = () => {
               <WebsiteGiftCards />
             </div>
 
-            {/* our Registry section */}
-
-            <h2 className="text-2xl font-medium text-center md:text-4xl commonTitle">
+            <h2 className="text-4xl font-medium text-center commonTitle">
               Our Registry
             </h2>
-            <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] my-5" />
+            <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-[28px] mb-[50px]" />
             <div>
-              <WebsiteRegistry />
+              <WebsiteRegistry registries={couple?.registries} />
             </div>
           </div>
 

@@ -18,7 +18,7 @@ import useCopyClipboard from 'react-use-clipboard';
 
 const QRCodePage = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector(state => state.user);
+  const { user } = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState();
   const [preview, setPreview] = useState();
@@ -68,7 +68,7 @@ const QRCodePage = () => {
     }
   };
 
-  const onDrop = useCallback(acceptedFiles => {
+  const onDrop = useCallback((acceptedFiles) => {
     const fileDropped = acceptedFiles[0];
     if (fileDropped['type'].split('/')[0] === 'image') {
       setSelectedImageFile(fileDropped);
@@ -132,16 +132,16 @@ const QRCodePage = () => {
                 <div className="flex flex-col space-y-5">
                   <Heading h3>Create Your Customize QR Code</Heading>
                   <input
-                    type='text'
+                    type="text"
                     readOnly
-                    className='max-w-sm w-full rounded-[5px] border-[3px] border-gray-300 py-3 px-5 text-base font-normal placeholder-gray-300'
-                    placeholder='www.beweddy.com/nateandash'
+                    className="max-w-sm w-full rounded-[5px] border-[3px] border-gray-300 py-3 px-5 text-base font-normal placeholder-gray-300"
+                    placeholder="www.beweddy.com/nateandash"
                     value={link}
-                    onChange={e => setLink(e.target.value)}
+                    onChange={(e) => setLink(e.target.value)}
                     onClick={setCopied}
                   />
                   {/* <Heading h3>Upload QR Image</Heading> */}
-                  <div className='flex flex-wrap items-center gap-2 lg:space-x-5'>
+                  <div className="flex flex-wrap items-center gap-2 lg:space-x-5">
                     {/* <div {...getRootProps()}>
                       <input {...getInputProps()} />
                       <button className='w-full sm:w-max bg-white font-inter cursor-pointer text-center text-sm md:text-base font-medium md:font-semibold py-3 px-6 lg:px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition-colors duration-300 hover:border-primary'>
@@ -150,20 +150,20 @@ const QRCodePage = () => {
                     </div> */}
 
                     <button
-                      type='button'
-                      className='w-full sm:w-max bg-white font-inter cursor-pointer text-center text-sm md:text-base font-medium md:font-semibold py-3 px-6 lg:px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition-colors duration-300 hover:border-primary'
+                      type="button"
+                      className="w-full sm:w-max bg-white font-inter cursor-pointer text-center text-sm md:text-base font-medium md:font-semibold py-3 px-6 lg:px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition-colors duration-300 hover:border-primary"
                       onClick={generateQRCode}
                     >
                       Generate
                     </button>
                   </div>
                   {user?.qrCode && (
-                    <div className='!mt-10'>
+                    <div className="!mt-10">
                       {/* bg-secondary-alternative/40 */}
                       <a
                         href={user?.qrCode}
                         download={`${user?.coupleName}`}
-                        className='w-full sm:w-max  font-inter cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-5 lg:px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition duration-300 hover:bg-secondary-alternative/30 hover:border-primary'
+                        className="w-full sm:w-max  font-inter cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-5 lg:px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition duration-300 hover:bg-secondary-alternative/30 hover:border-primary"
                         // onClick={download}
                       >
                         Download Your QR Code
@@ -185,11 +185,11 @@ const QRCodePage = () => {
                     alt=""
                     className="w-full"
                   />
-                  <div className='absolute -translate-x-1/2 -translate-y-1/2 code qrCode left-1/2 top-1/2'>
+                  <div className="absolute -translate-x-1/2 -translate-y-1/2 code qrCode left-1/2 top-1/2">
                     <QRCode
                       {...{ value }}
                       size={165}
-                      id='qrcode'
+                      id="qrcode"
                       eyeRadius={0}
                       logoHeight={50}
                       logoWidth={50}

@@ -68,6 +68,11 @@
     background-image: url("/icons/tik.svg");
     background-size: 14px;
   }
+  .select-registry > [type="checkbox"]:checked + label,
+  .select-registry > [type="checkbox"]:checked:hover + label,
+  .select-registry > [type="checkbox"]:checked:focus + label {
+    @apply border-primary;
+  }
 
   .timeline {
     @apply border-t-[3px] odd:ml-3 even:mr-3 odd:border-r-[3px] odd:rounded-tr-[25px] even:border-l-[3px] even:rounded-tl-[25px] border-primary;
@@ -308,5 +313,48 @@
   }
   .customPosition {
     bottom: 50px !important;
+  }
+  .customPadding {
+    padding: 0 !important;
+    margin-top: 5px !important;
+    margin-left: 5px !important;
+  }
+  .customImage {
+    height: 40px !important;
+    margin: auto !important;
+  }
+  .customContentText {
+    display: flex !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  .customMarginPadding {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+  }
+  .customBottom {
+    margin-bottom: 10px !important;
+  }
+  .dashboardTitle {
+    font-size: 12px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+  .dashboardImage {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .dashboardMaringPadding {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+  }
+  .websitePadding {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+  .buttonPaddig {
+    padding: 8px 15px !important;
   }
 }

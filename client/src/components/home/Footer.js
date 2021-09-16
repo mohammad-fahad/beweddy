@@ -134,7 +134,7 @@ const Footer = ({ hideSocial }) => {
                 {/* <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300"></span> */}
               </a>
             </Link>
-            <Link href="/contact">
+            <Link href="/contactUs">
               <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
                 <span>Contact us</span>
                 {/* <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300"></span> */}

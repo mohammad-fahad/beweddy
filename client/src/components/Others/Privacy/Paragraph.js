@@ -1,9 +1,9 @@
-import { QRCodeGenerator } from '@components/shared';
-
+import { useWindowSize } from "@hooks/useWindowSize";
 const Paragraph = () => {
+  const size = useWindowSize();
   return (
     <div>
-      <p className="text-sm text-left md:text-lg md:text-justify">
+      <p className="text-[14px] text-left text-justify customLabel">
         We are fully aware of our responsibilities as honorable Internet
         citizens, and we maintain a ZERO TOLERANCE Spam Policy accordingly. We
         are highly sensitive to the privacy of and are dedicated to protecting
@@ -20,10 +20,18 @@ const Paragraph = () => {
         make use of the various services offered by Stephens Marketing.
         (collectively, “Services”) (“Authorized Customers”).
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!pt-1" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         “Personally Identifiable Information”
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         Refers to any information that identifies or can be used to identify,
         contact, or locate the person to whom such information pertains,
         including, but not limited to, name, address, phone number, fax number,
@@ -33,10 +41,18 @@ const Paragraph = () => {
         identification of the individual user) or demographic information not
         connected to an identified individual.
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         What Personally Identifiable Information is collected?
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         We may collect basic user profile information from all of our Visitors.
         We collect the following additional information from our Authorized
         Customers: the names, addresses, phone numbers and email addresses of
@@ -44,10 +60,18 @@ const Paragraph = () => {
         nature and size of the advertising inventory that the Authorized
         Customer intends to purchase or sell.
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         What organizations are collecting the information?
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         In addition to our direct collection of information, our third party
         service vendors (such as credit card companies, clearinghouses and
         banks) who may provide such services as credit, insurance, and escrow
@@ -59,10 +83,18 @@ const Paragraph = () => {
         links in the distribution chain, and do not store, retain, or use the
         information given to them.
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         How does the Site use Personally Identifiable Information?
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         We use Personally Identifiable Information to customize the Site, to
         make appropriate service offerings, to provide 3rd party offers from our
         trusted marketing partners via email, and to fulfill buying and selling
@@ -73,10 +105,18 @@ const Paragraph = () => {
         Customers in response to specific inquiries, or to provide requested
         information.
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         With whom may the information may be shared?
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         Personally Identifiable Information about Authorized Customers may be
         shared with other Authorized Customers who wish to evaluate potential
         transactions with other Authorized Customers. We may share aggregated
@@ -86,28 +126,52 @@ const Paragraph = () => {
         receiving information or being contacted by us or by any agency acting
         on our behalf.
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         How is Personally Identifiable Information stored?
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         Personally Identifiable Information collected by soundslocal.com is
         securely stored and is not accessible to third parties or employees of
         Stephens Marketing, except for use as indicated above.
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         What choices are available to Visitors regarding collection, use and
         distribution of the information?
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         Visitors and Authorized Customers may opt out of receiving unsolicited
         information from or being contacted by us and/or our vendors and
         affiliated agencies by responding to emails as instructed, or by
         contacting us at soundslocalmarketing@gmail.com.
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         Are Cookies Used on the Site?
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         Cookies are used for a variety of reasons. We use Cookies to obtain
         information about the preferences of our Visitors and the services they
         select. We also use Cookies for security purposes to protect our
@@ -115,18 +179,34 @@ const Paragraph = () => {
         on and the site is unused for more than 10 minutes, we will
         automatically log the Authorized Customer off.
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         How do we use login information?
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         We use login information, including, but not limited to, IP addresses,
         ISPs, and browser types, to analyze trends, administer the Site, track a
         user’s movement and use, and gather broad demographic information.
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         How does the Site keep Personally Identifiable Information secure?
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         All of our employees are familiar with our security policy and
         practices. The Personally Identifiable Information of our Visitors and
         Authorized Customers is only accessible to a limited number of qualified
@@ -141,20 +221,36 @@ const Paragraph = () => {
         will not be liable to Visitors or Authorized Customers for any such
         occurrences.
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         How can Visitors correct any inaccuracies in Personally Identifiable
         Information?
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         Visitors and Authorized Customers may contact us to update Personally
         Identifiable Information about them or to correct any inaccuracies by
         emailing us at soundslocalmarketing@gmail.com
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         Can a Visitor delete or deactivate Personally Identifiable Information
         collected by the Site?
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         We provide Visitors and Authorized Customers with a mechanism to
         delete/deactivate Personally Identifiable Information from the Site’s
         database by contacting . However, because of backups and records of
@@ -165,10 +261,18 @@ const Paragraph = () => {
         Personally Identifiable Information relating to that individual in any
         way moving forward.
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         What happens if the Privacy Policy Changes?
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
         We will let our Visitors and Authorized Customers know about changes to
         our privacy policy by posting such changes on the Site. However, if we
         are changing our privacy policy in a manner that might cause disclosure
@@ -177,8 +281,14 @@ const Paragraph = () => {
         Visitor or Authorized Customer to allow such Visitor or Authorized
         Customer to prevent such disclosure.
       </p>
-      <p className="pt-5 text-sm text-left md:text-lg md:text-justify">Links</p>
-      <p className="py-5 text-sm text-left md:text-lg md:text-justify">
+      <p
+        className={`${
+          size.width < 600 ? "!col-start-0 !col-span-12" : ""
+        } pt-5 text-[14px] text-left text-justify customLabel`}
+      >
+        Links
+      </p>
+      <p className="py-5 text-[14px] text-left text-justify customLabel">
         This web site contains links to other web sites. Please note that when
         you click on one of these links, you are moving to another web site. We
         encourage you to read the privacy statements of these linked sites as

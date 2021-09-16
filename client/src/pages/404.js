@@ -21,7 +21,7 @@ const NotFoundPage = () => {
           />
         </div>
         <h2 className="text-lg text-center md:text-3xl">
-          Oops! Party Foul <br /> The page you've requested is not available
+          Oops! Party Foul <br /> Please Refresh To Fix Error
         </h2>
       </div>
     </motion.div>

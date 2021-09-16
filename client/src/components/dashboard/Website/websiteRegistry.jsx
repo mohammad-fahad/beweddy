@@ -3,46 +3,13 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { LinkIcon } from '@heroicons/react/outline';
 
-const registries = [
-  {
-    id: 1,
-    title: 'Amazon Wedding Registry',
-    link: 'https://github.com/muttakinhasib',
-    image: '/images/registries/Amazon.png',
-  },
-  {
-    id: 2,
-    title: 'Bed Bath & Beyond',
-    buttonText: 'Link',
-    link: 'https://github.com/muttakinhasib',
-    image: '/images/registries/bbbLogo.png',
-  },
-  {
-    id: 3,
-    title: 'Target Wedding Registry',
-    buttonText: 'Link',
-    link: 'https://github.com/muttakinhasib',
-    image: '/images/registries/target.png',
-  },
-  {
-    id: 4,
-    title: 'Bass Pro Shops',
-    buttonText: 'Link',
-    link: 'https://github.com/muttakinhasib',
-    image: '/images/registries/bass-pro-shops.png',
-  },
-];
-
-const WebsiteRegistry = () => {
-  const [col, setCol] = useState(4);
-  const [selected, setSelected] = useState(null);
-
+const WebsiteRegistry = ({ registries }) => {
   return (
     <div className=" from-[#FCE3EB] to-white relative">
-      <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-[1193px] mx-auto w-full">
+      <div class="flex flex-wrap justify-center items-center gap-x-5 gap-y-3 w-full mb-5">
         {registries?.map((registry) => (
           <div
-            key={registry.id}
+            key={registry._id}
             className="p-4 max-w-[280px] bg-white border-4 border-gray-200 hover:border-primary transition duration-300 w-full mx-auto"
           >
             <div
@@ -57,11 +24,7 @@ const WebsiteRegistry = () => {
                 </a>
               </Link>
               <div>
-                <Image
-                  width={200}
-                  height={80}
-                  src={registry.image || '/images/registries/Amazon.png'}
-                />
+                <Image width={200} height={80} src={registry.image} />
               </div>
             </div>
 
@@ -79,7 +42,7 @@ const WebsiteRegistry = () => {
         ))}
       </div>
 
-      <div className="flex justify-end pr-2 mt-5">
+      <div className="flex justify-end pr-2">
         <Link href="/">
           <a className="text-lg font-semibold font-inter hover:underline customLabel">
             See All Registries
