@@ -17,7 +17,7 @@ const WebsiteNav = ({ coupleName }) => {
         <div className='flex flex-col flex-wrap items-center pt-5 pb-2 space-x-5 md:pb-5 md:flex-row'>
           <Link href='#'>
             <a className='flex items-center space-x-3 text-sm font-semibold text-gray-700 transition duration-300 md:text-md whitespace-nowrap font-inter hover:text-primary'>
-              <span>Need your Address- RSVP</span>
+              <span>We Need your Address - RSVP</span>
             </a>
           </Link>
           {user && (
