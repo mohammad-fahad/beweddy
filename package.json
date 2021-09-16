@@ -5,7 +5,7 @@
   "type": "module",
   "main": "server",
   "engines": {
-    "node": "14.x"
+    "node": "16.x"
   },
   "scripts": {
     "start": "node server",
@@ -32,7 +32,7 @@
     "express-fileupload": "^1.2.1",
     "googleapis": "^81.0.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.13.3",
+    "mongoose": "^5.13.8",
     "morgan": "^1.10.0",
     "nanoid": "^3.1.23",
     "nodemailer": "^6.6.3",
