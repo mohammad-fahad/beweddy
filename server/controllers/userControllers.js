@@ -490,6 +490,13 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
       user.giftCards = [...new Set(giftCards)];
     }
 
+    if (req.body.removeGiftCard) {
+      user.giftCards.pull(removeGiftCard);
+    }
+    if (req.body.removeRegistry) {
+      user.registries(removeRegistry).remove();
+    }
+
     if (req.body.newPassword) {
       if (await user.matchPassword(req.body.oldPassword)) {
         user.password = req.body.newPassword;
