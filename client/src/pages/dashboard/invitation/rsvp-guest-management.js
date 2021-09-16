@@ -31,7 +31,10 @@ const AttendingStatus = ({ status }) => {
 
 const RSVPGuestManagementPage = () => {
   const { user } = useSelector(state => state.user);
-  const { data, isLoading } = useQuery(['guests', user.token], getGuests);
+  const { data, isLoading, isFetching } = useQuery(
+    ['guests', user.token],
+    getGuests
+  );
   // const countAttending = guests?.filter(guest => guest.rsvp === 'yes').length;
 
   return (
@@ -39,7 +42,7 @@ const RSVPGuestManagementPage = () => {
       <Head>
         <title>Beweddy | Guest Management</title>
       </Head>
-      {isLoading && <Loader />}
+      {(isLoading || isFetching) && <Loader />}
       <DashboardTopBar coupleName />
       <DashboardLayout marginBottom='mb-[2.1rem]' shadow>
         <DashboardHeader title='Guest Management' />
@@ -47,7 +50,10 @@ const RSVPGuestManagementPage = () => {
           <div className='max-w-[1300px] w-full'>
             <div className='p-12 xxl:pr-0 flex items-center  justify-between flex-wrap'>
               <div>
-                <Heading h3 className='!font-alice !text-4xl !font-light commonTitle1'>
+                <Heading
+                  h3
+                  className='!font-alice !text-4xl !font-light commonTitle1'
+                >
                   {user.coupleName}’s wedding
                 </Heading>
                 <p className='text-base text-gray-700 mt-2'>
@@ -133,11 +139,19 @@ const RSVPGuestManagementPage = () => {
                       <td className='px-4 pb-3 pt-6 text-sm customLabel'>
                         {guest?.phone?.number}
                       </td>
-                      <td className='px-4 pb-3 pt-6 text-sm customLabel'>{guest?.email}</td>
-                      <td className='px-4 pb-3 pt-6 text-sm customLabel' align='center'>
+                      <td className='px-4 pb-3 pt-6 text-sm customLabel'>
+                        {guest?.email}
+                      </td>
+                      <td
+                        className='px-4 pb-3 pt-6 text-sm customLabel'
+                        align='center'
+                      >
                         <AttendingStatus status={guest?.rsvp} />
                       </td>
-                      <td className='px-4 pb-3 pt-6 text-sm customLabel' align='center'>
+                      <td
+                        className='px-4 pb-3 pt-6 text-sm customLabel'
+                        align='center'
+                      >
                         {guest?.guestEstimate}
                       </td>
                       <td className='px-4 pb-3 pt-6 text-sm customLabel'>

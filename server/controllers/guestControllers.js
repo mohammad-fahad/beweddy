@@ -32,42 +32,36 @@ export const getGuests = asyncHandler(async (req, res) => {
 export const createGuest = asyncHandler(async (req, res) => {
   const { email, phone } = req.body;
 
-  const guestExists = await Guest.findOne({
-    $and: [
-      { user: req.body.id },
-      { email },
-      // { $or: [{ email }, { phone: phone.number }] },
-    ],
+  const user = await User.findOne({
+    $or: [{ username: req.body.username }, { _id: req.body.id }],
   });
 
-  // const a = (username || id) && (email || phone);
-
-  console.log(guestExists);
-
-  const user = await User.findOne({ username: req.body.username }).select(
-    '-password'
-  );
-
-  if (guestExists) {
-    const updated = await Guest.findByIdAndUpdate(guestExists._id, {
-      ...req.body,
-    });
-    if (updated) {
-      res.json({ message: 'Thank you' });
-    }
-  }
-
-  if (req.body.id || user) {
-    const guest = await Guest.create({
-      user: req.body.id || user._id,
-      ...req.body,
+  if (user) {
+    const guestExists = await Guest.findOne({
+      user,
+      $or: [{ phone: phone.number }, { email }],
     });
 
-    if (guest) {
-      res.status(201).json({ message: 'Guest successfully added' });
+    if (guestExists) {
+      const updated = await Guest.findByIdAndUpdate(guestExists._id, {
+        ...req.body,
+      });
+
+      if (updated) {
+        res.json({ message: 'Thank you' });
+      }
     } else {
-      res.status(500);
-      throw new Error('Server Error');
+      const guest = await Guest.create({
+        user: req.body.id || user._id,
+        ...req.body,
+      });
+
+      if (guest) {
+        res.status(201).json({ message: 'Guest successfully added' });
+      } else {
+        res.status(500);
+        throw new Error('Server Error');
+      }
     }
   } else {
     res.status(404);
