@@ -4,6 +4,9 @@
   "description": "BeWeddy | Free All-in-One Wedding Platform",
   "type": "module",
   "main": "server",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "start": "node server",
     "server": "nodemon server",
