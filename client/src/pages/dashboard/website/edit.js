@@ -634,7 +634,16 @@ const EditWebsitePage = () => {
                           alt={gift.name}
                         />
 
-                        <div className='absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center transition duration-300 opacity-0 bg-primary/80 hover:opacity-100'>
+                        <div
+                          className='absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center transition duration-300 opacity-0 bg-primary/80 hover:opacity-100'
+                          onClick={() =>
+                            dispatch(
+                              attemptUpdateUserProfile({
+                                removeGiftCard: gift._id,
+                              })
+                            )
+                          }
+                        >
                           <MinusIcon className='w-12 h-12 text-white' />
                         </div>
                       </div>

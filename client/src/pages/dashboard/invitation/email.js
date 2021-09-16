@@ -32,6 +32,7 @@ import { useQuery } from 'react-query';
 import { useDropzone } from 'react-dropzone';
 import toast from 'react-hot-toast';
 import { sendEmailInvites } from '@services/Invitation/email';
+import { fileUploader } from '@services/Uploader';
 
 const animatedComponents = makeAnimated();
 
@@ -126,6 +127,7 @@ const EmailInvitesPage = () => {
   const emails = data?.guests?.map(guest => ({
     label: guest.email,
     value: guest.email,
+    email: guest.email,
   }));
 
   const onEditorStateChange = editorState => setEditorState(editorState);
@@ -174,7 +176,6 @@ const EmailInvitesPage = () => {
   // const { handleSubmit, register, getValues, watch } = useForm({ mode: 'all' });
 
   const handleSubmit = async () => {
-    console.log('hi');
     try {
       await sendEmailInvites({
         emails: toEmails.map(email => `${email.value}`),
@@ -240,9 +241,10 @@ const EmailInvitesPage = () => {
                       value={fromEmail}
                       onChange={e => setFromEmail(e.target.value)}
                     />
-                    <h3 className='!text-sm font-bold leading-5'>
+                    <Heading h3 className='!text-sm xl:!text-base !font-bold'>
                       Add Media Content
-                    </h3>
+                    </Heading>
+
                     <div {...getRootProps()}>
                       <input {...getInputProps()} />
                       <button className='py-3 px-8 text-sm md:text-base font-bold md:font-semibold border border-[#7F7F7F] rounded-[5px] bg-secondary-alternative hover:bg-secondary-alternative/50 transition duration-300'>
