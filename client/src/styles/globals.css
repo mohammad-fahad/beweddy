@@ -73,6 +73,17 @@
   .select-registry > [type="checkbox"]:checked:focus + label {
     @apply border-primary;
   }
+  .select-gift > [type='checkbox']:checked + label .minus {
+    @apply inline-block !important;
+  }
+
+  .select-gift > [type='checkbox']:checked + label {
+    @apply opacity-50;
+  }
+
+  .select-gift > [type='checkbox']:checked + label .plus {
+    @apply hidden;
+  }
 
   .timeline {
     @apply border-t-[3px] odd:ml-3 even:mr-3 odd:border-r-[3px] odd:rounded-tr-[25px] even:border-l-[3px] even:rounded-tl-[25px] border-primary;
