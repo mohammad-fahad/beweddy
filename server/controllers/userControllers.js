@@ -129,9 +129,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       emailVerified: email_verified,
       username,
       questions,
-    })
-      .populate('registries')
-      .populate('giftCards');
+    });
 
     if (user) {
       defaultTodos.forEach(async todo => {

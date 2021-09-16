@@ -14,11 +14,10 @@ export const attemptCreateGuest = createAsyncThunk(
   'auth/attemptCreateGuest',
   async (guestInfo, { getState }) => {
     try {
-      const { user } = getState().user;
       const config = {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${user.token}`,
+          // Authorization: `Bearer ${user.token}`,
         },
       };
 

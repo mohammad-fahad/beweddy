@@ -4,8 +4,10 @@ import PageTitle from '@components/Others/PageTitle';
 import PageHeading from '@components/Others/PageHeading';
 import Banner from '@components/Others/Privacy/Banner';
 import { useWindowSize } from '@hooks/useWindowSize';
+
 const PrivacyPolicy = () => {
   const size = useWindowSize();
+
   return (
     <>
       <Head>
@@ -29,7 +31,7 @@ const PrivacyPolicy = () => {
           <div
             className={`col-span-2 p-1 flex justify-end ${
               size.width < 1200 ? '!col-span-4' : ''
-            } ${size.width < 600 ? ' !col-span-12 ' : ''}`}
+            } ${size.width < 600 ? 'hidden !col-span-12 ' : ''}`}
           ></div>
         </div>
       </div>
