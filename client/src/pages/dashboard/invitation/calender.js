@@ -218,7 +218,19 @@ const CalendarPage = () => {
                   Edit Title
                 </p>
               </div>
-              
+              <Heading h3 className='!text-sm xl:!text-base !font-bold'>
+                To
+              </Heading>
+
+              <Select
+                closeMenuOnSelect={false}
+                components={animatedComponents}
+                onChange={handleEmails}
+                // defaultValue={[colourOptions[4], colourOptions[5]]}
+                isMulti
+                styles={customStyles}
+                options={emails}
+              />
               <div className='my-5'>
                 <Heading h3 className='!text-sm xl:!text-base !font-bold'>
                   Description
