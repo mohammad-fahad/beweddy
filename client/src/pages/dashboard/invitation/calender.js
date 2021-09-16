@@ -18,11 +18,11 @@ import { getGuests } from '@services/GuestManagement';
 const CalendarPage = () => {
   //redux state section
   const { user } = useSelector(state => state.user);
-  const [changeText, setChangeText] = useState(false)
-  const [startTime, setStartTime] = useState(false)
-  const [newDate, setNewDate] = useState("")
-  const [start, setStart] = useState("")
-  const [end, setEnd] = useState("")
+  const [changeText, setChangeText] = useState(false);
+  const [startTime, setStartTime] = useState(false);
+  const [newDate, setNewDate] = useState('');
+  const [start, setStart] = useState('');
+  const [end, setEnd] = useState('');
   const { data, isLoading } = useQuery(['guests', user.token], getGuests);
 
   const emails = data?.guests?.map(guest => ({ email: guest.email }));
@@ -57,17 +57,20 @@ const CalendarPage = () => {
     mode: 'all',
     defaultValues: {
       summary: `${user?.coupleName}'s Wedding Day`,
-      location: "",
+      location: '',
       description: `${val}`,
     },
   });
   const getValue = watch('summary');
   //calendar Section
-  let gapi = window.gapi
+  let gapi = window.gapi;
   // let CLIENT_ID = "658735256071-bhacjo0eesuoin4duputhn3bkt7nle56.apps.googleusercontent.com";
   // let API_KEY = "AIzaSyB4aFvm7Ev-v_edhfUhqj7mmyuRzKP8bcg";
-  let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-  let SCOPES = "https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar.events";
+  let DISCOVERY_DOCS = [
+    'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest',
+  ];
+  let SCOPES =
+    'https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar.events';
 
   const onSubmit = data => {
     // data.start = startUpdate;
@@ -94,8 +97,8 @@ const CalendarPage = () => {
           clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
           discoveryDocs: DISCOVERY_DOCS,
           scope: SCOPES,
-        })
-        gapi.client.load('calendar', 'v3', () => console.log(''))
+        });
+        gapi.client.load('calendar', 'v3', () => console.log(''));
 
         gapi.auth2
           .getAuthInstance()
@@ -187,9 +190,9 @@ const CalendarPage = () => {
                 {changeText && (
                   <div className='w-full my-3'>
                     <input
-                      type="text"
-                      className="w-full max-w-[592px] text-sm md:text-lg font-normal py-2 md:py-3 px-4 md:px-6 placeholder-gray-400 border-[2px] border-primary rounded-lg"
-                      placeholder="Title"
+                      type='text'
+                      className='w-full max-w-[592px] text-sm md:text-lg font-normal py-2 md:py-3 px-4 md:px-6 placeholder-gray-400 border-[2px] border-primary rounded-lg'
+                      placeholder='Title'
                       {...register('summary', {
                         required: {
                           value: true,
@@ -204,11 +207,11 @@ const CalendarPage = () => {
                     )}
                   </div>
                 )}
-                {
-                  !changeText &&
-                  <h2
-                    className="text-2xl font-semibold font-inter">{getValue}</h2>
-                }
+                {!changeText && (
+                  <h2 className='text-2xl font-semibold font-inter'>
+                    {getValue}
+                  </h2>
+                )}
                 <p
                   className='text-[#ADADAD] text-sm mt-2'
                   onClick={changeToEditable}
@@ -216,7 +219,19 @@ const CalendarPage = () => {
                   Edit Title
                 </p>
               </div>
+              <Heading h3 className='!text-sm xl:!text-base !font-bold'>
+                To
+              </Heading>
 
+              <Select
+                closeMenuOnSelect={false}
+                components={animatedComponents}
+                onChange={handleEmails}
+                // defaultValue={[colourOptions[4], colourOptions[5]]}
+                isMulti
+                styles={customStyles}
+                options={emails}
+              />
               <div className='my-5'>
                 <Heading h3 className='!text-sm xl:!text-base !font-bold'>
                   Description
@@ -257,9 +272,9 @@ const CalendarPage = () => {
                   Location
                   <input
                     required
-                    type="text"
-                    className="border border-primary max-w-[592px] py-3 px-5 text-sm font-semibold w-full rounded-[5px]"
-                    placeholder="Utah Convention Hall, Utah"
+                    type='text'
+                    className='border border-primary max-w-[592px] py-3 px-5 text-sm font-semibold w-full rounded-[5px]'
+                    placeholder='Utah Convention Hall, Utah'
                     {...register('location', {
                       required: {
                         value: true,
@@ -268,11 +283,10 @@ const CalendarPage = () => {
                     })}
                   />
                 </Heading>
-
               </div>
 
-              <div className="flex justify-start items-center my-5 w-full flex-wrap max-w-[592px]">
-                <div className="flex justify-start mr-2 items-center">
+              <div className='flex justify-start items-center my-5 w-full flex-wrap max-w-[592px]'>
+                <div className='flex justify-start mr-2 items-center'>
                   <Image src='/icons/clock__icon.svg' width={20} height={20} />
                   <Heading
                     onClick={() => setStartTime(true)}
@@ -282,11 +296,10 @@ const CalendarPage = () => {
                     Select your Date
                     <Datetime
                       isValidDate={valid}
-                      dateFormat="YYYY-MM-DD" timeFormat={false}
-                      inputProps={
-                        { placeholder: "Select Date" }
-                      }
-                      onChange={(e) => setNewDate(e._d)}
+                      dateFormat='YYYY-MM-DD'
+                      timeFormat={false}
+                      inputProps={{ placeholder: 'Select Date' }}
+                      onChange={e => setNewDate(e._d)}
                     />
                   </Heading>
                 </div>
@@ -299,13 +312,10 @@ const CalendarPage = () => {
                   >
                     Start
                     <Datetime
-                      inputProps={
-                        { placeholder: "Start" }
-                      }
+                      inputProps={{ placeholder: 'Start' }}
                       dateFormat={false}
                       isValidDate={valid}
-
-                      onChange={(e) => setStart(e._d)}
+                      onChange={e => setStart(e._d)}
                     />
                   </Heading>
                 </div>
@@ -317,9 +327,7 @@ const CalendarPage = () => {
                   >
                     End
                     <Datetime
-                      inputProps={
-                        { placeholder: "End" }
-                      }
+                      inputProps={{ placeholder: 'End' }}
                       isValidDate={valid}
                       dateFormat={false}
                       onChange={e => setEnd(e._d)}
