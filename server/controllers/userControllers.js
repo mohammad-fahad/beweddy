@@ -491,10 +491,11 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     }
 
     if (req.body.removeGiftCard) {
-      user.giftCards.pull(removeGiftCard);
+      user.giftCards.pull(req.body.removeGiftCard);
     }
+
     if (req.body.removeRegistry) {
-      user.registries(removeRegistry).remove();
+      user.registries.pull(req.body.removeRegistry);
     }
 
     if (req.body.newPassword) {
