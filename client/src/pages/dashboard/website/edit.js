@@ -615,7 +615,7 @@ const EditWebsitePage = () => {
               <Divider />
 
               <Heading h3></Heading>
-              <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
+              <h4 className='mb-6 text-[24px] font-medium cursor-pointer capitalize mudiumTitle'>
                 Add Gift Card
               </h4>
 

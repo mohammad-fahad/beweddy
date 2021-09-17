@@ -119,7 +119,7 @@ const Sidebar = () => {
                   <input
                     type='text'
                     className='w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 border-r-0 rounded-r-none text-base font-normal placeholder-gray-400'
-                    placeholder='Enter todo'
+                    placeholder='Enter to do'
                     {...register('description', {
                       required: true,
                     })}
@@ -156,17 +156,16 @@ const Sidebar = () => {
                       )}
                     </button>
                     <p
-                      className={`text-base font-normal break-words ${
-                        todo.isComplete ? 'line-through' : ''
-                      }`}
-                      // onClick={() =>
-                      //   dispatch(
-                      //     toggleTodo({
-                      //       id: todo.id,
-                      //       isComplete: !todo.isComplete,
-                      //     })
-                      //   )
-                      // }
+                      className={`text-base font-normal break-words ${todo.isComplete ? 'line-through' : ''
+                        }`}
+                    // onClick={() =>
+                    //   dispatch(
+                    //     toggleTodo({
+                    //       id: todo.id,
+                    //       isComplete: !todo.isComplete,
+                    //     })
+                    //   )
+                    // }
                     >
                       {todo.description}
                     </p>
