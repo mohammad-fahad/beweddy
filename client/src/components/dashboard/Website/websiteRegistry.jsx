@@ -25,7 +25,15 @@ const WebsiteRegistry = ({ registries }) => {
                 </a>
               </Link>
               <div>
-                <Image width={200} height={80} src={registry.image} />
+                <Image
+                  width={200}
+                  height={80}
+                  src={
+                    isEmpty(registry.image)
+                      ? '/images/placeholder.webp'
+                      : registry.image
+                  }
+                />
               </div>
             </div>
 

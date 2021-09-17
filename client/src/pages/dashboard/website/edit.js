@@ -628,7 +628,7 @@ const EditWebsitePage = () => {
                         exit={{ opacity: 0 }}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className='max-w-[200px] max-h-[120px] w-full h-full border-2 border-secondary-alternative bg-secondary-alternative/50 flex items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'
+                        className='max-w-[200px] min-h-[120px] w-full h-full border-2 border-secondary-alternative bg-secondary-alternative/50 flex items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'
                       >
                         <PlusIcon className='w-8 h-8' />
                       </motion.a>
@@ -717,7 +717,15 @@ const EditWebsitePage = () => {
                           </a>
                         </Link>
                         <div>
-                          <Image width={200} height={80} src={registry.image} />
+                          <Image
+                            width={200}
+                            height={80}
+                            src={
+                              isEmpty(registry.image)
+                                ? '/images/placeholder.webp'
+                                : registry.image
+                            }
+                          />
                         </div>
                       </div>
 

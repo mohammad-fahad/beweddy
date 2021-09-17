@@ -14,6 +14,7 @@ import userRoutes from './routes/userRoutes.js';
 import todoRoutes from './routes/todoRoutes.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import RegistryRoutes from './routes/registryRoutes.js';
+import privetRegistryRoutes from './routes/privetRegistryRoutes.js';
 import GiftRoutes from './routes/giftRoutes.js';
 import invitationRoutes from './routes/invitationRoutes.js';
 
@@ -59,6 +60,7 @@ app.use(`${API_VERSION}/guests`, guestRoutes);
 app.use(`${API_VERSION}/gifts`, GiftRoutes);
 app.use(`${API_VERSION}/todos`, todoRoutes);
 app.use(`${API_VERSION}/registries`, RegistryRoutes);
+app.use(`${API_VERSION}/privetRegistries`, privetRegistryRoutes);
 app.use(`${API_VERSION}/invitation`, invitationRoutes);
 // app.use('/', require('./routes/redirect'))
 // app.use('/api/url', require('./routes/url'))
