@@ -76,3 +76,37 @@ https://i.ibb.co/TtwdvXF/wayfair.jpg
 
 
 
+
+//calendar
+
+
+    export function setNewEvents(event) {
+      let r = Math.random().toString(36).substring(7);
+      let options = {
+        summary: event.summary,
+        start: {
+          dateTime: event.start,
+        },
+        end: {
+          dateTime: event.end,
+        },
+        attendees: [{ email: "my-email@gmail.com", responseStatus: "needsAction" }],
+        conferenceData: {
+          createRequest: { conferenceSolutionKey: { type: "hangoutsMeet" }, requestId: r },
+        },
+        reminders: {
+          useDefault: false,
+          overrides: [
+            { method: "email", minutes: 1 },
+            { method: "popup", minutes: 15 },
+          ],
+        },
+        visibility: "public",
+      };
+
+      ApiCalendar.createEvent(options, CALENDAR_ID, { conferenceDataVersion: 1 })
+        .then((result) => console.log(result))
+        .catch((error) => {
+          console.log(error);
+        });
+    }

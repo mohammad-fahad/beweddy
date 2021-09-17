@@ -46,11 +46,15 @@ const WebsitePageOne = () => {
           title={
             <h2 className='flex align-center gap-2 !text-[30px] items-center mudiumTitle'>
               your website
-              <img
-                src='/icons/website.png'
-                alt='your website'
-                className='w-[20px] h-[20px]'
-              />
+
+              <a target="_blank" href={`/couple/${user.username}`}>
+                <img
+                  src='/icons/website.png'
+                  alt='your website'
+                  className='w-[20px] h-[20px]'
+                />
+              </a>
+
             </h2>
           }
           customPadding

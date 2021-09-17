@@ -14,7 +14,7 @@ import Datetime from 'react-datetime';
 import moment from 'moment';
 import { useQuery } from 'react-query';
 import { getGuests } from '@services/GuestManagement';
-import Select from 'react-select';
+import Select from 'react-select/creatable';
 import makeAnimated from 'react-select/animated';
 const animatedComponents = makeAnimated();
 
@@ -135,7 +135,7 @@ const CalendarPage = () => {
           { method: 'popup', minutes: 60 },
         ],
       };
-      data.recurrence = ['RRULE:FREQ=DAILY;COUNT=2'];
+      data.recurrence = ['RRULE:FREQ=DAILY;COUNT=1'];
       gapi.load('client:auth2', () => {
         console.log('loaded client');
 
@@ -173,6 +173,7 @@ const CalendarPage = () => {
                 timeMin: new Date().toISOString(),
                 showDeleted: false,
                 singleEvents: true,
+
                 maxResults: 10,
                 orderBy: 'startTime',
               })
