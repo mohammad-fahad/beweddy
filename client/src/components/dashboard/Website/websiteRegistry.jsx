@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { LinkIcon } from '@heroicons/react/outline';
+import { isEmpty } from 'lodash';
 
 const WebsiteRegistry = ({ registries }) => {
   return (
