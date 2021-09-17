@@ -51,7 +51,7 @@ export const deleteTodo = asyncHandler(async (req, res) => {
   const todo = await Todo.findByIdAndRemove(id);
 
   if (todo) {
-    res.status(201).json({ message: 'Todo deleted successfully' });
+    res.status(201).json({ message: 'To do deleted successfully' });
   } else {
     res.status(500);
     throw new Error('Server Error');
