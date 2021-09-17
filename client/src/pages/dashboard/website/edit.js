@@ -67,22 +67,22 @@ const EditWebsitePage = () => {
     user.receptionDetails.length
       ? user.receptionDetails
       : [
-          {
-            id: generate(),
-            time: '5.00 PM',
-            details: 'Example of event details',
-          },
-          {
-            id: generate(),
-            time: '5.30 PM',
-            details: 'Ceremony',
-          },
-          {
-            id: generate(),
-            time: '6.00 PM',
-            details: 'Ceremony ends/cocktails begin',
-          },
-        ]
+        {
+          id: generate(),
+          time: '5.00 PM',
+          details: 'Example of event details',
+        },
+        {
+          id: generate(),
+          time: '5.30 PM',
+          details: 'Ceremony',
+        },
+        {
+          id: generate(),
+          time: '6.00 PM',
+          details: 'Ceremony ends/cocktails begin',
+        },
+      ]
   );
   const { groom, bride } = user.socialAccounts;
 
@@ -383,7 +383,7 @@ const EditWebsitePage = () => {
                   />
                 </div>
                 <div className='!mt-5'>
-                  <button type='submit'>Save</button>
+                  <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
                 </div>
               </div>
 
@@ -441,7 +441,7 @@ const EditWebsitePage = () => {
                     </motion.div>
                   ))}
                 </motion.div>
-                <button type='submit'>Save</button>
+                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
               </div>
 
               <Divider />
@@ -510,7 +510,7 @@ const EditWebsitePage = () => {
                   </div>
                 </div>
                 <div>
-                  <button type='submit'>Save</button>
+                  <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
                 </div>
               </div>
 
@@ -531,7 +531,7 @@ const EditWebsitePage = () => {
                   {...register('ourStory')}
                 ></textarea>
 
-                <button type='submit'>Save</button>
+                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
               </div>
 
               <Divider />
@@ -609,7 +609,7 @@ const EditWebsitePage = () => {
                   <PlusIcon className='h-5 w-7' />
                   <span>Add New</span>
                 </button>
-                <button type='submit'>Save</button>
+                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
               </div>
 
               <Divider />
@@ -671,7 +671,7 @@ const EditWebsitePage = () => {
                 </Link>
               </div>
 
-              <button type='submit'> Save </button>
+              <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
 
               <Divider />
 
@@ -740,7 +740,7 @@ const EditWebsitePage = () => {
                   </a>
                 </Link>
                 <div>
-                  <button type='submit'>Save</button>
+                  <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
                 </div>
               </div>
 
@@ -1270,7 +1270,7 @@ const EditWebsitePage = () => {
                 </div>
               </div>
               <div>
-                <button type='submit'>Save</button>
+                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
               </div>
 
               <Divider />
