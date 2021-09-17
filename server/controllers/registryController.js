@@ -23,12 +23,24 @@ export const createRegistry = asyncHandler(async (req, res) => {
 // Delete Registry by ID
 export const deleteRegistry = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const registry = Registry.findByIdAndRemove(id);
-
-  // if (Registry) {
-  //     res.status(201).json({ message: 'Registry Deleted successfully' });
-  // } else {
-  //     res.status(500);
-  //     throw new Error('Server Error');
-  // }
+  const registry = await Registry.findByIdAndRemove(id);
+  if (registry) {
+    res.status(201).json({ message: 'Registry Deleted successfully' });
+  } else {
+    res.status(500);
+    throw new Error('Server Error');
+  }
 });
+
+
+export const updateRegistry = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  const updatedRegistry = req.body;
+  const updatedRegistryResponse = await Registry.findByIdAndUpdate(id, { ...updatedRegistry, id }, { new: true });
+  if (updatedRegistryResponse) {
+    res.status(201).json({ message: "Registry Updated Successfully" });
+  } else {
+    res.status(500);
+    throw new Error('Server Error');
+  }
+})
