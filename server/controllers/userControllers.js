@@ -567,6 +567,9 @@ export const getCouple = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error('User not found');
   }
+  const privetRegistries = await PrivetRegistry.find({
+    user: user._id,
+  });
 
   res.status(200).json({
     _id: user._id,
