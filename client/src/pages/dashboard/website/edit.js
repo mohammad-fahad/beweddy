@@ -49,6 +49,7 @@ import {
 import { attemptUpdateUserProfile } from '@features/user/userActions';
 import { Fragment } from 'react';
 import axios from 'axios';
+import RegistryModal from '@components/dashboard/RegistryModal';
 
 const EditWebsitePage = () => {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ const EditWebsitePage = () => {
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState();
   const [preview, setPreview] = useState();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageFile, setSelectedImageFile] = useState();
   const [uploadedFiles, setUploadedFiles] = useState(
     user.questions.couplePictures
@@ -680,11 +682,13 @@ const EditWebsitePage = () => {
                 </h4>
                 <div className='flex items-center space-y-3'>
                   <div className='border-2 w-[200px] min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex flex-col items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'>
-                    <Link href='/'>
-                      <a className='px-6 py-2 mt-5 text-xs text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap'>
-                        Create Registry
-                      </a>
-                    </Link>
+                    <button
+                      type='button'
+                      className='px-6 py-2 mt-5 text-xs text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap'
+                      onClick={() => setIsModalOpen(true)}
+                    >
+                      Create Registry
+                    </button>
                     <Link href='/'>
                       <a className='py-2 text-base font-light text-blue-500 font-inter hover:underline'>
                         Learn more
@@ -1311,7 +1315,7 @@ const EditWebsitePage = () => {
           {/* <QRCodeGenerator /> */}
         </DashboardContainer>
       </DashboardLayout>
-
+      <RegistryModal {...{ isModalOpen, setIsModalOpen }} />
       <Footer hideSocial />
 
       <CropImage
