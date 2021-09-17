@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Menu, Transition } from '@headlessui/react';
 
 import { useForm } from 'react-hook-form';
 import { Button, Heading } from '@components/shared';
@@ -12,11 +11,27 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Footer } from '@components/home';
 import WebsiteNav from '@components/dashboard/Website/WebsiteNav';
+import { useQuery } from 'react-query';
+import { getCouple } from '@services/Couple';
+import { getGiftById } from '@services/Gift';
 
 const CheckoutPage = () => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.user);
   const [date, setDate] = useState(new Date());
+
+  const {
+    data: couple,
+    isLoading,
+    isError,
+  } = useQuery(['couple', query.couple], getCouple, {
+    initialData: props.user,
+  });
+
+  const { data: gift } = useQuery(['gift', query.giftcard], getGiftById, {
+    initialData: props.giftCard,
+  });
+
   const {
     register,
     handleSubmit,
@@ -28,8 +43,11 @@ const CheckoutPage = () => {
     shouldFocusError: false,
     shouldUnregister: true,
   });
+
   watch(['guestEstimate', 'provider']);
+
   const onSubmit = data => console.log(data);
+
   return (
     <div>
       <WebsiteNav />
@@ -444,3 +462,17 @@ const CheckoutPage = () => {
 };
 
 export default CheckoutPage;
+
+export const getServerSideProps = async ({ params: { couple, giftcard } }) => {
+  const res = await fetch(`${API_URL}/users/${couple}`);
+  const resGift = await fetch(`${API_URL}/gifts/${giftcard}`);
+  const user = await res.json();
+  const giftCard = await resGift.json();
+
+  return {
+    props: {
+      user,
+      giftCard,
+    },
+  };
+};

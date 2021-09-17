@@ -18,3 +18,20 @@ export const getGifts = async () => {
     console.error(err);
   }
 };
+
+export const getGiftById = async ({ queryKey }) => {
+  const [_key, id] = queryKey;
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+      // Authorization: `Bearer ${token}`,
+    },
+  };
+
+  try {
+    const { data } = await axios.get(`${API_URL}/gifts/${id}`, config);
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+};

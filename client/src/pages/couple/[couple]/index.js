@@ -37,22 +37,21 @@ const params = {
 const CoupleWebsitePage = props => {
   const { query } = useRouter();
 
-  const {
-    data: couple,
-    isLoading,
-    isError,
-  } = useQuery(['couple', query.couple], getCouple, {
-    initialData: props.user,
-  });
+  const { data: couple, isLoading } = useQuery(
+    ['couple', query.couple],
+    getCouple,
+    {
+      initialData: props.user,
+    }
+  );
 
-  // console.log(isError);
   const [value, setValue] = useState(
     `https://beweddy-delta.vercel.app/${couple?.username}`
   );
 
-  if (isLoading) return <Loader />;
-
   if (query.couple && !couple) return <NotFoundPage />;
+
+  if (isLoading) return <Loader />;
 
   return (
     <>
@@ -342,11 +341,19 @@ export default CoupleWebsitePage;
 
 export const getServerSideProps = async ({ params: { couple } }) => {
   const res = await fetch(`${API_URL}/users/${couple}`);
+  // const errorCode = res.ok ? false : res.statusCode;
   const user = await res.json();
+
+  if (!user) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
       user,
+      // errorCode,
     },
   };
 };

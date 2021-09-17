@@ -33,12 +33,24 @@ export const deleteGift = asyncHandler(async (req, res) => {
   }
 });
 
-
 export const updateGift = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const updatedGift = req.body;
-  const updatedGiftResponse = await Gift.findByIdAndUpdate(id, { ...updatedGift, id }, { new: true });
+  const updatedGiftResponse = await Gift.findByIdAndUpdate(
+    id,
+    { ...updatedGift, id },
+    { new: true }
+  );
   if (updatedGiftResponse) {
-    res.status(201).json({ message: "Gift Updated Successfully" });
+    res.status(201).json({ message: 'Gift Updated Successfully' });
   }
-})
+});
+
+export const getGiftCardById = asyncHandler(async (req, res) => {
+  const giftCard = await Gift.findById(req.params.id);
+  if (!giftCard) {
+    res.status(404);
+    throw new Error('Gift card is not found');
+  }
+  res.json(giftCard);
+});
