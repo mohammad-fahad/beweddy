@@ -61,7 +61,7 @@ const CoupleWebsitePage = props => {
       </Head>
 
       <div className='container w-full mx-auto'>
-        <WebsiteNav />
+        <WebsiteNav user={couple} />
         <Carousel
           autoPlay
           infiniteLoop

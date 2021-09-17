@@ -2,19 +2,22 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const WeddingDayCountDown = ({ sm, couple }) => {
-  const { user: userCouple } = useSelector((state) => state.user);
+  const { user: userCouple } = useSelector(state => state.user);
   const user = couple || userCouple;
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
-  const {
-    weddingDay: { weddingDate },
-  } = user && user?.questions;
+  // const {
+  //   weddingDay: { questions?.weddingDay?.weddingDate },
+  // } = user && user?.questions;
+  const questions = user?.questions;
 
   useEffect(() => {
-    if (weddingDate) {
-      const countDownDate = new Date(weddingDate).getTime();
+    if (questions?.weddingDay?.weddingDate) {
+      const countDownDate = new Date(
+        questions?.weddingDay?.weddingDate
+      ).getTime();
 
       // Time calculations for days, hours, minutes and seconds
       const interval = setInterval(() => {
@@ -43,7 +46,9 @@ const WeddingDayCountDown = ({ sm, couple }) => {
         <h4 className={`${sm ? 'text-[12px]' : 'text-2xl'} font-bold`}>
           {days < 10 ? `0${days}` : days}
         </h4>
-        <p className={`${sm ? 'text-[9px]' : 'text-base'}  font-normal`}>Days</p>
+        <p className={`${sm ? 'text-[9px]' : 'text-base'}  font-normal`}>
+          Days
+        </p>
       </div>
       <div
         className={`flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg ${
