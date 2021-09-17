@@ -113,6 +113,11 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                           value: true,
                           message: 'Image link is required!',
                         },
+                        pattern: {
+                          value:
+                            /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/,
+                          message: 'Link is not valid',
+                        },
                       })}
                     />
                   </div>
@@ -132,6 +137,11 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                         required: {
                           value: true,
                           message: 'Affiliate link is required!',
+                        },
+                        pattern: {
+                          value:
+                            /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/,
+                          message: 'Link is not valid',
                         },
                       })}
                     />
