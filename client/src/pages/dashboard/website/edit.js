@@ -66,24 +66,25 @@ const EditWebsitePage = () => {
     user.receptionDetails.length
       ? user.receptionDetails
       : [
-          {
-            id: generate(),
-            time: '5.00 PM',
-            details: 'Example of event details',
-          },
-          {
-            id: generate(),
-            time: '5.30 PM',
-            details: 'Ceremony',
-          },
-          {
-            id: generate(),
-            time: '6.00 PM',
-            details: 'Ceremony ends/cocktails begin',
-          },
-        ]
+        {
+          id: generate(),
+          time: '5.00 PM',
+          details: 'Example of event details',
+        },
+        {
+          id: generate(),
+          time: '5.30 PM',
+          details: 'Ceremony',
+        },
+        {
+          id: generate(),
+          time: '6.00 PM',
+          details: 'Ceremony ends/cocktails begin',
+        },
+      ]
   );
   const { groom, bride } = user.socialAccounts;
+
 
   // WeddingDate Picker
   const _weddingDate = user.questions?.weddingDay?.weddingDate
@@ -257,7 +258,6 @@ const EditWebsitePage = () => {
   };
 
   const onSubmit = data => {
-    // console.log(submitData(data));
     dispatch(attemptUpdateUserProfile(submitData(data)));
   };
 
@@ -1040,7 +1040,7 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.snapchat.com/beweddy'
-                              defaultValue={groom.snapchat}
+                              defaultValue={"idayhfigsidfighdsifh"}
                               {...register('groom_snapchat')}
                             />
                           </div>
