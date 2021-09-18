@@ -23,7 +23,6 @@ const LoginPage = () => {
   } = useForm({ mode: 'all' });
 
   const onSubmit = (data) => {
-    // console.log(data);
     if (data) {
       dispatch(attemptLogin(data));
     }
