@@ -3,26 +3,20 @@ import { Header, Heading } from '@components/shared';
 import CenterTitle from '@components/shared/CenterTitle';
 import { useForm } from 'react-hook-form';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { contactMessage } from '@services/Contact';
+
 const index = () => {
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors },
   } = useForm();
 
-  // const onSubmit = (data) => {
-  //   contactMessage(data)
-  //   console.log({ data });
-  // }
-  const dispatch = useDispatch();
 
   const onSubmit = async (data) => {
-    dispatch(contactMessage(data));
-    // await client.invalidateQueries('guests');
-    // push(`/couple/${user?.username}`);
+    contactMessage(data)
+    reset()
   };
 
 
@@ -150,8 +144,6 @@ const index = () => {
                   submit
                 </button>
               </div>
-
-              {/* <input type="submit" /> */}
             </div>
           </form>
         </div>
