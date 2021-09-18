@@ -26,6 +26,7 @@ specifiers:
   postcss: ^8.3.5
   qrcode.react: ^1.0.1
   react: 17.0.2
+  react-confetti: ^6.0.1
   react-datepicker: ^4.1.1
   react-datetime: ^3.1.1
   react-day-picker: ^7.4.10
@@ -77,6 +78,7 @@ dependencies:
   next: 11.0.1_react-dom@17.0.2+react@17.0.2
   qrcode.react: 1.0.1_react@17.0.2
   react: 17.0.2
+  react-confetti: 6.0.1_react@17.0.2
   react-datepicker: 4.2.1_react-dom@17.0.2+react@17.0.2
   react-datetime: 3.1.1_moment@2.29.1+react@17.0.2
   react-day-picker: 7.4.10_react@17.0.2
@@ -2471,6 +2473,16 @@ packages:
       unpipe: 1.0.0
     dev: false
 
+  /react-confetti/6.0.1_react@17.0.2:
+    resolution: {integrity: sha512-ZpOTBrqSNhWE4rRXCZ6E6U+wGd7iYHF5MGrqwikoiBpgBq9Akdu0DcLW+FdFnLjyZYC+VfAiV2KeFgYRMyMrkA==}
+    engines: {node: '>=10.18'}
+    peerDependencies:
+      react: ^16.3.0 || ^17.0.1
+    dependencies:
+      react: 17.0.2
+      tween-functions: 1.2.0
+    dev: false
+
   /react-datepicker/4.2.1_react-dom@17.0.2+react@17.0.2:
     resolution: {integrity: sha512-0gcvHMnX8rS1fV90PjjsB7MQdsWNU77JeVHf6bbwK9HnFxgwjVflTx40ebKmHV+leqe+f+FgUP9Nvqbe5RGyfA==}
     peerDependencies:
@@ -3288,6 +3300,10 @@ packages:
 
   /tty-browserify/0.0.1:
     resolution: {integrity: sha512-C3TaO7K81YvjCgQH9Q1S3R3P3BtN3RIM8n+OvX4il1K1zgE8ZhI0op7kClgkxtutIE8hQrcrHBXvIheqKUUCxw==}
+    dev: false
+
+  /tween-functions/1.2.0:
+    resolution: {integrity: sha1-GuOlDnxguz3vd06scHrLynO7w/8=}
     dev: false
 
   /type-fest/0.7.1:

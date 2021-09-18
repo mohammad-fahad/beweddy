@@ -1,4 +1,5 @@
 import asyncHandler from 'express-async-handler';
+import { nanoid } from 'nanoid';
 import Stripe from 'stripe';
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 // Get All Registry
@@ -23,13 +24,12 @@ export const checkoutSession = asyncHandler(async (req, res) => {
     },
     line_items: [transformedItem],
     mode: 'payment',
-    success_url: `${process.env.CLIENT_URL}/success`,
+    success_url: `${process.env.CLIENT_URL}/payment/${nanoid(6)}`,
     cancel_url: `${process.env.CLIENT_URL}/couple/${req.body.cancel}`,
     // metadata: {
     //   email,
     //   images: JSON.stringify(items.map(item => item.image)),
     // },
   });
-
   res.json(session.url);
 });

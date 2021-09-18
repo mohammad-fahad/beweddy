@@ -84,7 +84,7 @@ const CalendarPage = () => {
     dateTime: endSection,
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
   };
-  const val = `Hello, \n\nWe would like to invite you to our wedding! Please come celebrate with us. \n\nThank you for your support. Love, ${user.coupleName} !\n\nVisit Our Wedding Website: https://beweddy-delta.vercel.app/couple/${user?.username}\n`;
+  const val = `Hello, \n\nWe would like to invite you to our wedding! Please come celebrate with us. \n\nThank you for your support. Love, ${user.coupleName} !\n\nVisit Our Wedding Website: ${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${user?.username}\n`;
   const {
     watch,
     register,

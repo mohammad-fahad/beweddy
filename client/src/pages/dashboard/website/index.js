@@ -32,7 +32,7 @@ const params = {
 
 const WebsitePageOne = () => {
   const { user } = useSelector((state) => state.user);
-  const [value, setValue] = useState("https://beweddy-delta.vercel.app/");
+  const [value, setValue] = useState(`${process.env.NEXT_PUBLIC_CLIENT_URL}`);
 
   return (
     <>
