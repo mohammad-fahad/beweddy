@@ -46,7 +46,7 @@ const CheckoutPage = props => {
     shouldUnregister: true,
   });
 
-  watch(['guestEstimate', 'provider']);
+  watch(['amount']);
 
   const onSubmit = data => console.log(data);
 
@@ -87,7 +87,7 @@ const CheckoutPage = props => {
                   className='w-96 rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
                   value={user?.coupleName}
                   placeholder={user?.coupleName}
-                  {...register('name', {
+                  {...register('coupleName', {
                     required: {
                       value: true,
                       message: 'Name is required!',
@@ -95,13 +95,13 @@ const CheckoutPage = props => {
                   })}
                 />
                 <p className='h-4 mt-2 text-sm font-light text-red-400'>
-                  {errors?.name?.message}
+                  {errors?.coupleName?.message}
                 </p>
 
                 {/* gift image section */}
                 <div>
                   <Image
-                    src={gift?.image}
+                    src={gift?.image || 'images/placeholder.webp'}
                     alt='Gift image here'
                     height={280}
                     width={400}
@@ -132,7 +132,7 @@ const CheckoutPage = props => {
                           id='20'
                           value={20}
                           className='hidden'
-                          {...register('rsvp')}
+                          {...register('amount')}
                         />
                         <label
                           htmlFor='20'
@@ -152,7 +152,7 @@ const CheckoutPage = props => {
                           id='25'
                           value={25}
                           className='hidden'
-                          {...register('rsvp')}
+                          {...register('amount')}
                         />
                         <label
                           htmlFor='25'
@@ -173,7 +173,7 @@ const CheckoutPage = props => {
                           id='50'
                           value={50}
                           className='hidden'
-                          {...register('rsvp')}
+                          {...register('amount')}
                         />
                         <label
                           htmlFor='50'
@@ -193,7 +193,7 @@ const CheckoutPage = props => {
                           id='100'
                           value={100}
                           className='hidden'
-                          {...register('rsvp')}
+                          {...register('amount')}
                         />
                         <label
                           htmlFor='100'
@@ -216,7 +216,7 @@ const CheckoutPage = props => {
                           id='150'
                           value={150}
                           className='hidden'
-                          {...register('rsvp')}
+                          {...register('amount')}
                         />
                         <label
                           htmlFor='150'
@@ -236,7 +236,7 @@ const CheckoutPage = props => {
                           id='200'
                           value={200}
                           className='hidden'
-                          {...register('rsvp')}
+                          {...register('amount')}
                         />
                         <label
                           htmlFor='200'
@@ -257,7 +257,7 @@ const CheckoutPage = props => {
                           id='250'
                           value={250}
                           className='hidden'
-                          {...register('rsvp')}
+                          {...register('amount')}
                         />
                         <label
                           htmlFor='250'
@@ -277,7 +277,7 @@ const CheckoutPage = props => {
                           id='500'
                           value={500}
                           className='hidden'
-                          {...register('rsvp')}
+                          {...register('amount')}
                         />
                         <label
                           htmlFor='500'
@@ -296,15 +296,15 @@ const CheckoutPage = props => {
                       <input
                         disabled
                         type='text'
-                        value={`${getValues('guestEstimate')}`}
+                        value={`${getValues('amount') || 25}`}
                         className='w-28 text-center rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
                       />
                       <input
                         type='range'
-                        min='2'
+                        min='25'
                         max='2000'
                         className='block text-center rounded-[5px] border-2 w-[230px] border-gray-200 py-3 px-5 text-base font-normal'
-                        {...register('guestEstimate')}
+                        {...register('amount')}
                       />
                     </div>
                   </div>
@@ -313,39 +313,17 @@ const CheckoutPage = props => {
                 {/* input field */}
                 <div className='space-y-3'>
                   <Heading h3 className='!text-[22px] !font-medium'>
-                    Your First Name <span className='text-red-400'>*</span>
+                    Your Name <span className='text-red-400'>*</span>
                   </Heading>
                   <div>
                     <input
                       type='text'
                       className='w-[476px] rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
                       placeholder='Your First Name'
-                      {...register('Fname', {
+                      {...register('name', {
                         required: {
                           value: true,
                           message: 'First Name is required!',
-                        },
-                      })}
-                    />
-                    <p className='h-4 mt-2 text-sm font-light text-red-400'>
-                      {errors?.name?.message}
-                    </p>
-                  </div>
-                </div>
-                {/* input field */}
-                <div className='space-y-3'>
-                  <Heading h3 className='!text-[22px] !font-medium'>
-                    Your Last Name <span className='text-red-400'>*</span>
-                  </Heading>
-                  <div>
-                    <input
-                      type='text'
-                      className='w-[476px] rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
-                      placeholder='Your Last Name'
-                      {...register('Lname', {
-                        required: {
-                          value: true,
-                          message: 'Your Last Name is required!',
                         },
                       })}
                     />
@@ -369,10 +347,15 @@ const CheckoutPage = props => {
                           value: true,
                           message: 'Your E-mail is required!',
                         },
+                        pattern: {
+                          value:
+                            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                          message: 'Must be a valid email address',
+                        },
                       })}
                     />
                     <p className='h-4 mt-2 text-sm font-light text-red-400'>
-                      {errors?.name?.message}
+                      {errors?.email?.message}
                     </p>
                   </div>
                 </div>
@@ -392,18 +375,18 @@ const CheckoutPage = props => {
                       {...register('message')}
                     />
                     <p className='h-4 mt-2 text-sm font-light text-red-400'>
-                      {errors?.name?.message}
+                      {errors?.message?.message}
                     </p>
                   </div>
                 </div>
                 {/* radio buttons */}
-                <div className='flex items-center'>
+                {/* <div className='flex items-center'>
                   <input
                     type='radio'
                     id='day'
                     value='day'
                     className='hidden'
-                    {...register('rsvp')}
+                    {...register('amount')}
                   />
                 </div>
                 <label
@@ -418,7 +401,7 @@ const CheckoutPage = props => {
                   </span>
                 </label>
 
-                {/* datepicker */}
+
 
                 <div className='mt-10 space-y-3'>
                   <Heading h3 className='!text-[22px] !font-medium'>
@@ -435,7 +418,7 @@ const CheckoutPage = props => {
                       {errors?.name?.message}
                     </p>
                   </div>
-                </div>
+                </div> */}
 
                 {/* button section */}
                 <div className='flex gap-5 my-4'>
