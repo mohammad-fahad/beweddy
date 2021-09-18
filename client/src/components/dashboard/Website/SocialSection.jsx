@@ -8,7 +8,6 @@ import {
 } from '@icons-pack/react-simple-icons';
 
 const SocialSection = ({ name, links }) => {
-  console.log(links);
   return (
     <div>
       <h2 className="text-xl md:text-2xl whitespace-nowrap font-medium capitalize">

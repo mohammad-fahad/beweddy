@@ -52,7 +52,7 @@ import RegistryModal from '@components/dashboard/RegistryModal';
 const EditWebsitePage = () => {
   const dispatch = useDispatch();
   const { user, loading: userLoading } = useSelector(state => state.user);
-  console.log({ user });
+  // console.log({ user });
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState();
   const [preview, setPreview] = useState();

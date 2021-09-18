@@ -162,7 +162,7 @@ const TextInvitesPage = () => {
         },
       };
       const { data } = await axios.post(URL, formData, config);
-      console.log(data);
+      // console.log(data);
       toast.success("Image uploaded successfully");
       setLoading(false);
       setUploadedFile({ filename: data.original_filename, url: data.url });
