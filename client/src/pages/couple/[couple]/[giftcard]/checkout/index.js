@@ -14,21 +14,23 @@ import WebsiteNav from '@components/dashboard/Website/WebsiteNav';
 import { useQuery } from 'react-query';
 import { getCouple } from '@services/Couple';
 import { getGiftById } from '@services/Gift';
+import { API_URL } from '@utils/index';
+import { useRouter } from 'next/router';
 
-const CheckoutPage = () => {
+const CheckoutPage = props => {
   const dispatch = useDispatch();
-  const { user } = useSelector(state => state.user);
   const [date, setDate] = useState(new Date());
+  const { query } = useRouter();
 
   const {
-    data: couple,
+    data: user,
     isLoading,
     isError,
-  } = useQuery(['couple', query.couple], getCouple, {
+  } = useQuery(['couple', query?.couple], getCouple, {
     initialData: props.user,
   });
 
-  const { data: gift } = useQuery(['gift', query.giftcard], getGiftById, {
+  const { data: gift } = useQuery(['gift', query?.giftcard], getGiftById, {
     initialData: props.giftCard,
   });
 
@@ -50,7 +52,7 @@ const CheckoutPage = () => {
 
   return (
     <div>
-      <WebsiteNav />
+      <WebsiteNav {...{ user }} />
       <div className='container p-9'>
         <h2 className='flex text-lg leading-5'>
           <a className='mr-2 text-sm font-semibold text-gray-700 transition duration-300 font-inter md:text-base hover:text-primary'>
@@ -99,7 +101,7 @@ const CheckoutPage = () => {
                 {/* gift image section */}
                 <div>
                   <Image
-                    src='/images/nike.png'
+                    src={gift?.image}
                     alt='Gift image here'
                     height={280}
                     width={400}
@@ -110,7 +112,7 @@ const CheckoutPage = () => {
                 {/* target section */}
                 <div>
                   <h1 className='text-4xl leading-[44px] text-[#1f1f1f]'>
-                    Target{' '}
+                    {gift?.title}
                   </h1>
                   <h1 className='text-4xl leading-[44px] text-[#1f1f1f] font-bold my-3'>
                     $25-$500
@@ -127,13 +129,13 @@ const CheckoutPage = () => {
                       <div className='flex items-center'>
                         <input
                           type='radio'
-                          id='no'
-                          value='no'
+                          id='20'
+                          value={20}
                           className='hidden'
                           {...register('rsvp')}
                         />
                         <label
-                          htmlFor='no'
+                          htmlFor='20'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
                           <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
@@ -147,13 +149,13 @@ const CheckoutPage = () => {
                       <div className='flex items-center'>
                         <input
                           type='radio'
-                          id='no'
-                          value='no'
+                          id='25'
+                          value={25}
                           className='hidden'
                           {...register('rsvp')}
                         />
                         <label
-                          htmlFor='no'
+                          htmlFor='25'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
                           <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
@@ -168,13 +170,13 @@ const CheckoutPage = () => {
                       <div className='flex items-center'>
                         <input
                           type='radio'
-                          id='no'
-                          value='no'
+                          id='50'
+                          value={50}
                           className='hidden'
                           {...register('rsvp')}
                         />
                         <label
-                          htmlFor='no'
+                          htmlFor='50'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
                           <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
@@ -188,13 +190,13 @@ const CheckoutPage = () => {
                       <div className='flex items-center'>
                         <input
                           type='radio'
-                          id='no'
-                          value='no'
+                          id='100'
+                          value={100}
                           className='hidden'
                           {...register('rsvp')}
                         />
                         <label
-                          htmlFor='no'
+                          htmlFor='100'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
                           <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
@@ -211,13 +213,13 @@ const CheckoutPage = () => {
                       <div className='flex items-center'>
                         <input
                           type='radio'
-                          id='no'
-                          value='no'
+                          id='150'
+                          value={150}
                           className='hidden'
                           {...register('rsvp')}
                         />
                         <label
-                          htmlFor='no'
+                          htmlFor='150'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
                           <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
@@ -231,13 +233,13 @@ const CheckoutPage = () => {
                       <div className='flex items-center'>
                         <input
                           type='radio'
-                          id='no'
-                          value='no'
+                          id='200'
+                          value={200}
                           className='hidden'
                           {...register('rsvp')}
                         />
                         <label
-                          htmlFor='no'
+                          htmlFor='200'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
                           <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
@@ -252,13 +254,13 @@ const CheckoutPage = () => {
                       <div className='flex items-center'>
                         <input
                           type='radio'
-                          id='no'
-                          value='no'
+                          id='250'
+                          value={250}
                           className='hidden'
                           {...register('rsvp')}
                         />
                         <label
-                          htmlFor='no'
+                          htmlFor='250'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
                           <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
@@ -272,13 +274,13 @@ const CheckoutPage = () => {
                       <div className='flex items-center'>
                         <input
                           type='radio'
-                          id='no'
-                          value='no'
+                          id='500'
+                          value={500}
                           className='hidden'
                           {...register('rsvp')}
                         />
                         <label
-                          htmlFor='no'
+                          htmlFor='500'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
                           <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
