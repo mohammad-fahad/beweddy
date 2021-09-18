@@ -21,7 +21,7 @@ specifiers:
   nodemon: ^2.0.11
   react: ^17.0.2
   react-use-clipboard: ^1.0.7
-  stripe: ^8.165.0
+  stripe: ^8.170.0
   valid-url: ^1.0.9
 
 dependencies:

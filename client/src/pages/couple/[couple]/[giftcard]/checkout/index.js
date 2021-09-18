@@ -16,6 +16,7 @@ import { getCouple } from '@services/Couple';
 import { getGiftById } from '@services/Gift';
 import { API_URL } from '@utils/index';
 import { useRouter } from 'next/router';
+import { attemptPayment } from '@services/Payment';
 
 const CheckoutPage = props => {
   const dispatch = useDispatch();
@@ -46,9 +47,17 @@ const CheckoutPage = props => {
     shouldUnregister: true,
   });
 
-  watch(['amount']);
+  watch(['amount', 'customAmount']);
 
-  const onSubmit = data => console.log(data);
+  const onSubmit = async data => {
+   const payload = {
+     description:  gift?.description,
+     title: gift?.title,
+     image: gift?.image,
+     price:data.amount
+   }
+    await attemptPayment(payload)
+  };
 
   return (
     <div>
@@ -101,7 +110,7 @@ const CheckoutPage = props => {
                 {/* gift image section */}
                 <div>
                   <Image
-                    src={gift?.image || 'images/placeholder.webp'}
+                    src={gift?.image || '/images/placeholder.webp'}
                     alt='Gift image here'
                     height={280}
                     width={400}
@@ -111,12 +120,12 @@ const CheckoutPage = props => {
 
                 {/* target section */}
                 <div>
-                  <h1 className='text-4xl leading-[44px] text-[#1f1f1f]'>
+                  <h4 className='text-4xl leading-[44px] text-[#1f1f1f]'>
                     {gift?.title}
-                  </h1>
-                  <h1 className='text-4xl leading-[44px] text-[#1f1f1f] font-bold my-3'>
+                  </h4>
+                  <h4 className='text-4xl leading-[44px] text-[#1f1f1f] font-bold my-3'>
                     $25-$500
-                  </h1>
+                  </h4>
                   <h2 className='text-lg text-[#000000] my-3'>
                     See full gift card information and terms
                   </h2>
@@ -293,18 +302,31 @@ const CheckoutPage = props => {
                     </div>
                     {/* radio button */}
                     <div className='space-y-3 !mt-2'>
-                      <input
-                        disabled
-                        type='text'
-                        value={`${getValues('amount') || 25}`}
-                        className='w-28 text-center rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
-                      />
+                      <div className='flex items-center'>
+                        <input
+                          type='radio'
+                          id={`${getValues('customAmount')}`}
+                          value={getValues('customAmount')}
+                          className='hidden'
+                          {...register('amount')}
+                        />
+                        <label
+                          htmlFor={`${getValues('customAmount')}`}
+                          className='flex items-center space-x-3 cursor-pointer'
+                        >
+                          <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
+                            <span className='text-lg font-light font-inter'>
+                              ${getValues('customAmount')}
+                            </span>
+                          </div>
+                        </label>
+                      </div>
                       <input
                         type='range'
                         min='25'
                         max='2000'
                         className='block text-center rounded-[5px] border-2 w-[230px] border-gray-200 py-3 px-5 text-base font-normal'
-                        {...register('amount')}
+                        {...register('customAmount')}
                       />
                     </div>
                   </div>
@@ -323,7 +345,7 @@ const CheckoutPage = props => {
                       {...register('name', {
                         required: {
                           value: true,
-                          message: 'First Name is required!',
+                          message: 'Name is required!',
                         },
                       })}
                     />

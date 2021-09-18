@@ -17,6 +17,7 @@ import RegistryRoutes from './routes/registryRoutes.js';
 import privetRegistryRoutes from './routes/privetRegistryRoutes.js';
 import GiftRoutes from './routes/giftRoutes.js';
 import invitationRoutes from './routes/invitationRoutes.js';
+import paymentRoutes from './routes/paymentRoutes.js';
 import contactRoutes from './routes/contactusRoutes.js';
 
 // Connect MongoDB
@@ -64,6 +65,7 @@ app.use(`${API_VERSION}/registries`, RegistryRoutes);
 app.use(`${API_VERSION}/privetRegistries`, privetRegistryRoutes);
 app.use(`${API_VERSION}/invitation`, invitationRoutes);
 app.use(`${API_VERSION}/contact`, contactRoutes);
+app.use(`${API_VERSION}/create-checkout-session`, paymentRoutes);
 // app.use('/', require('./routes/redirect'))
 // app.use('/api/url', require('./routes/url'))
 
