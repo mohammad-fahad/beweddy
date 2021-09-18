@@ -7,6 +7,7 @@ specifiers:
   '@icons-pack/react-simple-icons': ^4.6.1
   '@react-hook/media-query': ^1.1.1
   '@reduxjs/toolkit': ^1.6.1
+  '@stripe/stripe-js': ^1.17.1
   '@tailwindcss/aspect-ratio': ^0.2.1
   '@tailwindcss/forms': ^0.3.3
   autoprefixer: ^10.3.1
@@ -59,6 +60,7 @@ dependencies:
   '@icons-pack/react-simple-icons': 4.6.1_react@17.0.2
   '@react-hook/media-query': 1.1.1_react@17.0.2
   '@reduxjs/toolkit': 1.6.1_react-redux@7.2.4+react@17.0.2
+  '@stripe/stripe-js': 1.17.1
   '@tailwindcss/aspect-ratio': 0.2.1_tailwindcss@2.2.7
   '@tailwindcss/forms': 0.3.3_tailwindcss@2.2.7
   axios: 0.21.1
@@ -376,6 +378,10 @@ packages:
       redux: 4.1.1
       redux-thunk: 2.3.0
       reselect: 4.0.0
+    dev: false
+
+  /@stripe/stripe-js/1.17.1:
+    resolution: {integrity: sha512-c9MyDvdi5Xou0j0JPNy86NebtTDfh9o62Ifuzx6GSm2YO0oedBpy51WSyOue2L8Fb+mqESS5gd6mGVEIPUnXsA==}
     dev: false
 
   /@tailwindcss/aspect-ratio/0.2.1_tailwindcss@2.2.7:
