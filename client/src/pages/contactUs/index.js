@@ -3,7 +3,7 @@ import { Header, Heading } from '@components/shared';
 import CenterTitle from '@components/shared/CenterTitle';
 import { useForm } from 'react-hook-form';
 import React from 'react';
-
+import { useDispatch, useSelector } from 'react-redux';
 const index = () => {
   const {
     register,
@@ -16,8 +16,8 @@ const index = () => {
   // const onSubmit = (data) => {
   //   contactMessage(data)
   //   console.log({ data });
-
   // }
+  const dispatch = useDispatch();
 
   const onSubmit = async (data) => {
     dispatch(contactMessage(data));
@@ -125,7 +125,7 @@ const index = () => {
                 <textarea
                   cols='6'
                   rows='4'
-                  className='rounded-[5px] focus:border-purple-100 p-4 w-full placeholder-[#c6c6ct] font-medium text-lg scroll-design'
+                  className='rounded-[5px] focus:border-purple-100 p-4 w-full placeholder-gray-400  font-medium text-lg scroll-design'
                   defaultValue=''
                   placeholder='Write your message here. We Will response quickly'
                   {...register('message', {
