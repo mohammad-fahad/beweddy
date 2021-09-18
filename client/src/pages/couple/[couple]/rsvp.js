@@ -212,7 +212,7 @@ const RSVPage = ({ user }) => {
           </Carousel>
 
           <div className="px-2 py-10 lg:px-10 lg:py-10">
-            <h5 className="text-2xl font-medium text-center">
+            <h5 className="text-2xl my-3 font-medium text-center">
               {user.coupleName}'s Wedding
             </h5>
 
@@ -418,10 +418,9 @@ const RSVPage = ({ user }) => {
                             <Listbox.Option
                               key={countryIdx}
                               className={({ active }) =>
-                                `${
-                                  active
-                                    ? 'text-amber-900 bg-secondary-alternative/20'
-                                    : 'text-gray-900'
+                                `${active
+                                  ? 'text-amber-900 bg-secondary-alternative/20'
+                                  : 'text-gray-900'
                                 }
                           cursor-pointer select-none relative py-2 pl-10 pr-4`
                               }
@@ -430,19 +429,17 @@ const RSVPage = ({ user }) => {
                               {({ selected, active }) => (
                                 <>
                                   <span
-                                    className={`${
-                                      selected ? 'font-medium' : 'font-normal'
-                                    } block truncate`}
+                                    className={`${selected ? 'font-medium' : 'font-normal'
+                                      } block truncate`}
                                   >
                                     {country.name}
                                   </span>
                                   {selected ? (
                                     <span
-                                      className={`${
-                                        active
+                                      className={`${active
                                           ? 'text-amber-600'
                                           : 'text-amber-600'
-                                      }
+                                        }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                     >
                                       <CheckIcon
@@ -729,10 +726,9 @@ const RSVPage = ({ user }) => {
                             <Listbox.Option
                               key={providerIdx}
                               className={({ active }) =>
-                                `${
-                                  active
-                                    ? 'text-secondary bg-secondary-alternative/50'
-                                    : 'text-gray-900'
+                                `${active
+                                  ? 'text-secondary bg-secondary-alternative/50'
+                                  : 'text-gray-900'
                                 }
                           cursor-pointer select-none relative py-2 pl-10 pr-4 font-medium`
                               }
@@ -741,19 +737,17 @@ const RSVPage = ({ user }) => {
                               {({ selected, active }) => (
                                 <>
                                   <span
-                                    className={`${
-                                      selected ? 'font-semibold' : 'font-medium'
-                                    } block truncate`}
+                                    className={`${selected ? 'font-semibold' : 'font-medium'
+                                      } block truncate`}
                                   >
                                     {provider.name}
                                   </span>
                                   {selected ? (
                                     <span
-                                      className={`${
-                                        active
+                                      className={`${active
                                           ? 'text-amber-600'
                                           : 'text-amber-600'
-                                      }
+                                        }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                     >
                                       <CheckIcon

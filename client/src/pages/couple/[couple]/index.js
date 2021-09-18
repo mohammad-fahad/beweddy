@@ -232,7 +232,7 @@ const CoupleWebsitePage = (props) => {
                 </h2>
                 <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] my-5" />
                 <div>
-                  <WebsiteGiftCards giftCards={couple?.giftCards} />
+                  <WebsiteGiftCards {...{couple}} giftCards={couple?.giftCards} />
                 </div>
               </>
             )}

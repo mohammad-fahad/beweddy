@@ -81,17 +81,17 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                       htmlFor='title'
                       className='text-sm md:text-base font-medium md:font-semibold'
                     >
-                      Registry Title
+                      Registry Name
                     </label>
                     <input
                       id='title'
                       type='text'
                       className='text-[13px] md:text-[15px] border-gray-100 border-2 py-2 px-4 xs:py-3 xs:px-5 placeholder-gray-300 rounded-[5px]'
-                      placeholder='Enter registry title'
+                      placeholder='Enter registry Name'
                       {...register('title', {
                         required: {
                           value: true,
-                          message: 'Title is required!',
+                          message: 'Registry name is required!',
                         },
                       })}
                     />
@@ -101,16 +101,16 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                       htmlFor='image'
                       className='text-sm md:text-base font-medium md:font-semibold'
                     >
-                      Registry Image
+                      Company Photo
                     </label>
                     <input
                       id='image'
                       type='text'
                       className='text-[13px] md:text-[15px] border-gray-100 border-2 py-2 px-4 xs:py-3 xs:px-5 placeholder-gray-300 rounded-[5px]'
-                      placeholder='Enter image link here'
+                      placeholder='Enter Company photo link here'
                       {...register('image', {
                         required: {
-                          value: true,
+                          value: false,
                           message: 'Image link is required!',
                         },
                         pattern: {
@@ -126,17 +126,17 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                       htmlFor='link'
                       className='text-sm md:text-base font-medium md:font-semibold'
                     >
-                      Affiliate Link
+                      Registry Link
                     </label>
                     <input
                       id='link'
                       type='text'
                       className='text-[13px] md:text-[15px] border-gray-100 border-2 py-2 px-4 xs:py-3 xs:px-5 placeholder-gray-300 rounded-[5px]'
-                      placeholder='Enter your affiliate link'
+                      placeholder='Enter your registry link'
                       {...register('link', {
                         required: {
                           value: true,
-                          message: 'Affiliate link is required!',
+                          message: 'Registry link is required!',
                         },
                         pattern: {
                           value:
@@ -157,7 +157,7 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                       id='description'
                       type='text'
                       className='text-[13px] md:text-[15px] border-gray-100 border-2 py-2 px-4 xs:py-3 xs:px-5 placeholder-gray-300 rounded-[5px]'
-                      placeholder='Enter register description'
+                      placeholder='Enter registery description'
                       {...register('description')}
                     />
                   </div>

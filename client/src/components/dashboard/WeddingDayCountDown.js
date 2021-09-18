@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-const WeddingDayCountDown = ({ preview, sm, couple }) => {
+const WeddingDayCountDown = ({ sm, couple, preview }) => {
   const { user: userCouple } = useSelector((state) => state.user);
   const user = couple || userCouple;
   const [days, setDays] = useState(0);
@@ -50,8 +50,21 @@ const WeddingDayCountDown = ({ preview, sm, couple }) => {
         >
           {days < 10 ? `0${days}` : days}
         </h4>
+<<<<<<< HEAD
 
         <h4 className={`${sm ? 'text-[12px]' : 'text-2xl'} font-bold`}>
+=======
+        <p className={`${sm ? "text-[9px]" : "text-base"}  font-normal`}>
+          Days
+        </p>
+      </div>
+      <div
+        className={`flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg ${
+          sm ? "min-w-[60px] py-[7px]" : "min-w-[103px] py-5"
+        } ${preview ? "countDownBorder" : ""}`}
+      >
+        <h4 className={`${sm ? "text-[12px]" : "text-2xl"} font-bold`}>
+>>>>>>> 9fbdf7d1e513dab850f02ece4c9438439ef54a25
           {hours < 10 ? `0${hours}` : hours}
         </h4>
         <p className={`${sm ? 'text-[9px]' : 'text-base'}  font-normal`}>

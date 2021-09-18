@@ -111,12 +111,12 @@ const Footer = ({ hideSocial }) => {
           </p>
           {/* <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-between sm:gap-6"> */}
           <div className="flex flex-col flex-wrap items-center justify-center gap-3 md:flex-row sm:justify-between sm:gap-6">
-            <Link href="/about">
+            <Link href="#">
               <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
                 <span>About BeWeddy!</span>
               </a>
             </Link>
-            <Link href="/howItWork">
+            <Link href="#">
               <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
                 <span>How it Works?</span>
                 {/* <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300"></span> */}
