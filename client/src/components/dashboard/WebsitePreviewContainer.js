@@ -10,16 +10,15 @@ import TabPreview from "./WebsitePreview/TabPreview";
 SwiperCore.use([Lazy, Autoplay]);
 
 const params = {
-  loop: true,
-  autoplay: {
-    delay: 5000,
-    disableOnInteraction: false,
-  },
+  // loop: true,
+  // autoplay: {
+  //   delay: 5000,
+  //   disableOnInteraction: false,
+  // },
 };
 
 const WebsitePreviewContainer = ({ minimal }) => {
   const { user } = useSelector((state) => state.user);
-  console.log(user?.email);
   return (
     <div
       className={`mt-10 flex flex-col justify-center space-y-10 rounded-xl ${
@@ -49,7 +48,8 @@ const WebsitePreviewContainer = ({ minimal }) => {
                 <img
                   src="/images/wedding-laptop.png"
                   alt=""
-                  className="!md:max-h-[444px] mx-auto swiper-lazy"
+                  className="!h-[600px] mx-auto swiper-lazy"
+                  // className="!md:max-h-[444px] mx-auto swiper-lazy"
                 />
                 <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
               </div>
@@ -66,7 +66,8 @@ const WebsitePreviewContainer = ({ minimal }) => {
                 <img
                   src="/images/wedding-phone.png"
                   alt=""
-                  className="!max-h-[250px] !md:max-h-[395px] mx-auto swiper-lazy"
+                  // className="!max-h-[250px] !md:max-h-[395px] mx-auto swiper-lazy"
+                  className="!h-[600px]  mx-auto swiper-lazy"
                 />
                 <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
               </div>
@@ -82,7 +83,8 @@ const WebsitePreviewContainer = ({ minimal }) => {
                 <img
                   src="/images/wedding-macbook.png"
                   alt=""
-                  className="max-h-[250px] md:max-h-[444px] mx-auto swiper-lazy"
+                  // className="max-h-[250px] md:max-h-[444px] mx-auto swiper-lazy"
+                  className="!h-[600px] mx-auto swiper-lazy"
                 />
                 <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
               </div>
