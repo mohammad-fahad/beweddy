@@ -66,22 +66,22 @@ const EditWebsitePage = () => {
     user.receptionDetails.length
       ? user.receptionDetails
       : [
-          {
-            id: generate(),
-            time: '5.00 PM',
-            details: 'Example of event details',
-          },
-          {
-            id: generate(),
-            time: '5.30 PM',
-            details: 'Ceremony',
-          },
-          {
-            id: generate(),
-            time: '6.00 PM',
-            details: 'Ceremony ends/cocktails begin',
-          },
-        ]
+        {
+          id: generate(),
+          time: '5.00 PM',
+          details: 'Example of event details',
+        },
+        {
+          id: generate(),
+          time: '5.30 PM',
+          details: 'Ceremony',
+        },
+        {
+          id: generate(),
+          time: '6.00 PM',
+          details: 'Ceremony ends/cocktails begin',
+        },
+      ]
   );
   const { groom, bride } = user.socialAccounts;
 
@@ -258,8 +258,6 @@ const EditWebsitePage = () => {
   };
 
   const onSubmit = data => {
-    console.log("sdkfshfhsdhfoosdfohosdhohfdsohfsdhof", data);
-    console.log("sdkfshfhsdhfoosdfohosdhohfdsohfsdhof", submitData(data));
     dispatch(attemptUpdateUserProfile(submitData(data)));
   };
 
