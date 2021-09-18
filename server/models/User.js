@@ -133,56 +133,24 @@ const userSchema = new mongoose.Schema(
     ],
     socialAccounts: {
       groom: {
-        facebook: {
-          type: String
-        },
-        twitter: {
-          type: String
-        },
-        instagram: {
-          type: String
-        },
-        snapchat: {
-          type: String
-        },
-        tiktok: {
-          type: String
-        },
-        pinterest: {
-          type: String
-        },
-        linkedIn: {
-          type: String
-        },
-        youTube: {
-          type: String
-        },
+        facebook: String,
+        twitter: String,
+        instagram: String,
+        snapchat: String,
+        tiktok: String,
+        pinterest: String,
+        linkedIn: String,
+        youTube: String,
       },
       bride: {
-        facebook: {
-          type: String
-        },
-        twitter: {
-          type: String
-        },
-        instagram: {
-          type: String
-        },
-        snapchat: {
-          type: String
-        },
-        tiktok: {
-          type: String
-        },
-        pinterest: {
-          type: String
-        },
-        linkedIn: {
-          type: String
-        },
-        youTube: {
-          type: String
-        },
+        facebook: String,
+        twitter: String,
+        instagram: String,
+        snapchat: String,
+        tiktok: String,
+        pinterest: String,
+        linkedIn: String,
+        youTube: String,
       },
     },
     weddingVideo: {

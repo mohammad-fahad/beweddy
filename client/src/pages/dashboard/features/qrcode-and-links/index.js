@@ -24,10 +24,10 @@ const QRCodePage = () => {
   const [preview, setPreview] = useState();
   const [selectedImageFile, setSelectedImageFile] = useState();
   const [value, setValue] = useState(
-    `https://beweddy-delta.vercel.app/couple/${user?.username}`
+    `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${user?.username}`
   );
   const [link, setLink] = useState(
-    `https://beweddy-delta.vercel.app/couple/${user?.username}`
+    `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${user?.username}`
   );
 
   const [isCopied, setCopied] = useCopyClipboard(value, {

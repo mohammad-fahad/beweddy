@@ -5,7 +5,8 @@ module.exports = {
       'lh3.googleusercontent.com',
       'imgbb.com',
       'i.ibb.co',
-      'beweddy-delta.vercel.app'
+      'beweddy-delta.vercel.app',
+      'beweddy.com',
     ],
   },
 };

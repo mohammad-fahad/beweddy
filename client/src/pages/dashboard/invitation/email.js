@@ -98,7 +98,7 @@ const EmailInvitesPage = () => {
         type: 'LINK',
         mutability: 'MUTABLE',
         data: {
-          url: `https://beweddy-delta.vercel.app/couple/${user?.username}/rsvp`,
+          url: `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${user?.username}/rsvp`,
           targetOption: '_self',
         },
       },
@@ -106,7 +106,7 @@ const EmailInvitesPage = () => {
         type: 'LINK',
         mutability: 'MUTABLE',
         data: {
-          url: `https://beweddy-delta.vercel.app/couple/${user?.username}`,
+          url: `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${user?.username}`,
           targetOption: '_self',
         },
       },
@@ -295,7 +295,7 @@ const EmailInvitesPage = () => {
       <CropImage
         onSave={onCropSave}
         selectedFile={selectedImageFile}
-        // aspectRatio={16 / 9}
+      // aspectRatio={16 / 9}
       />
     </Fragment>
   );

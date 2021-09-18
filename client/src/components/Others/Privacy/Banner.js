@@ -7,7 +7,7 @@ import { useWindowSize } from "@hooks/useWindowSize";
 const Banner = () => {
   const { user } = useSelector((state) => state.user);
   const [value, setValue] = useState(
-    `https://beweddy-delta.vercel.app/couple/${user?.username}`
+    `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${user?.username}`
   );
 
   const size = useWindowSize();
@@ -16,18 +16,15 @@ const Banner = () => {
     <div className="container mx-auto">
       <div className="grid w-full grid-cols-12 gap-4 mt-5">
         <div
-          className={` ${
-            size.width < 1200 ? "!col-start-0 !col-span-8 " : ""
-          } ${
-            size.width < 600 ? "!col-start-0 !col-span-12" : ""
-          } col-start-3 col-span-7 p-1 text-lg font-semibold subTitle`}
+          className={` ${size.width < 1200 ? "!col-start-0 !col-span-8 " : ""
+            } ${size.width < 600 ? "!col-start-0 !col-span-12" : ""
+            } col-start-3 col-span-7 p-1 text-lg font-semibold subTitle`}
         >
           <Paragraph />
         </div>
         <div
-          className={`col-span-2 p-1 flex justify-end customGrid ${
-            size.width < 1200 ? "!col-span-4" : ""
-          } ${size.width < 600 ? " !col-span-12 " : ""}`}
+          className={`col-span-2 p-1 flex justify-end customGrid ${size.width < 1200 ? "!col-span-4" : ""
+            } ${size.width < 600 ? " !col-span-12 " : ""}`}
         >
           <div className="mx-auto">
             <div className="space-y-10">
