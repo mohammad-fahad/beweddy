@@ -499,3 +499,20 @@
 .form-control {
   @apply rounded-[5px] !important;
 }
+@media screen and (min-width: 2000px) {
+  .homePageWrapper {
+    padding-top: 18rem !important;
+  }
+}
+
+@media screen and (min-width: 2400px) {
+  .homePageWrapper {
+    padding-top: 20rem !important;
+  }
+}
+
+@media screen and (min-width: 2500px) {
+  .homePageWrapper {
+    padding-top: 25rem !important;
+  }
+}
