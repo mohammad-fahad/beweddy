@@ -50,7 +50,7 @@ const CheckoutPage = props => {
 
   const onSubmit = async data => {
     const payload = {
-      description: gift?.description,
+      description: data.message,
       title: gift?.title,
       image: gift?.image,
       price: data.amount,
