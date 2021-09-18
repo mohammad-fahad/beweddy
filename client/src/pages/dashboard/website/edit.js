@@ -120,11 +120,7 @@ const EditWebsitePage = () => {
     formState: { errors },
   } = useForm({
     mode: 'all',
-    defaultValues: {
-      ...user.questions,
-      ourStory: user.ourStory,
-      location: user.location,
-    },
+    defaultValues: { ...user.questions, ourStory: user.ourStory, location: user.location },
     shouldFocusError: false,
     shouldUnregister: true,
   });
@@ -258,6 +254,8 @@ const EditWebsitePage = () => {
   };
 
   const onSubmit = data => {
+    console.log("sdkfshfhsdhfoosdfohosdhohfdsohfsdhof", data);
+    console.log("sdkfshfhsdhfoosdfohosdhohfdsohfsdhof", data.groom_facebook);
     dispatch(attemptUpdateUserProfile(submitData(data)));
   };
 
@@ -339,7 +337,7 @@ const EditWebsitePage = () => {
             <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
               Name (you & your spouse name)
             </h4>
-            <form className='space-y-7' onSubmit={handleSubmit(onSubmit)}>
+            <form className='space-y-10' onSubmit={handleSubmit(onSubmit)}>
               <div className='space-y-2'>
                 <div className='flex flex-wrap items-center gap-5'>
                   <input
@@ -387,12 +385,7 @@ const EditWebsitePage = () => {
                   />
                 </div>
                 <div className='!mt-5'>
-                  <button
-                    className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
-                    type='submit'
-                  >
-                    Save
-                  </button>
+                  <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
                 </div>
               </div>
 
@@ -450,12 +443,7 @@ const EditWebsitePage = () => {
                     </motion.div>
                   ))}
                 </motion.div>
-                <button
-                  className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
-                  type='submit'
-                >
-                  Save
-                </button>
+                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
               </div>
 
               <Divider />
@@ -463,7 +451,7 @@ const EditWebsitePage = () => {
               <div className='space-y-5'>
                 {/* <Heading h3>Pick your wedding date</Heading> */}
 
-                <h4 className='text-[24px] font-medium capitalize mudiumTitle'>
+                <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
                   Pick your wedding date
                 </h4>
 
@@ -485,7 +473,7 @@ const EditWebsitePage = () => {
                   />
                 </div>
 
-                <h4 className='text-[24px] font-medium capitalize mudiumTitle'>
+                <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
                   Pick your Reception date
                 </h4>
                 <div className='flex flex-wrap items-center gap-5'>
@@ -524,12 +512,7 @@ const EditWebsitePage = () => {
                   </div>
                 </div>
                 <div>
-                  <button
-                    className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
-                    type='submit'
-                  >
-                    Save
-                  </button>
+                  <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
                 </div>
               </div>
 
@@ -538,7 +521,7 @@ const EditWebsitePage = () => {
               <div className='space-y-5'>
                 <div className='flex items-center justify-between space-x-5'>
                   {/* <Heading h3></Heading> */}
-                  <h4 className='text-[24px] font-medium capitalize mudiumTitle'>
+                  <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
                     Our story
                   </h4>
                 </div>
@@ -550,12 +533,7 @@ const EditWebsitePage = () => {
                   {...register('ourStory')}
                 ></textarea>
 
-                <button
-                  className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
-                  type='submit'
-                >
-                  Save
-                </button>
+                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
               </div>
 
               <Divider />
@@ -590,7 +568,7 @@ const EditWebsitePage = () => {
 
               <div className='space-y-5'>
                 <div className='flex items-center justify-between space-x-5'>
-                  <h4 className='text-[24px] font-medium capitalize mudiumTitle'>
+                  <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
                     Reception Details
                   </h4>
                   {/* <button className='px-5 py-2'>
@@ -661,12 +639,7 @@ const EditWebsitePage = () => {
                   <PlusIcon className='h-5 w-7' />
                   <span>Add New</span>
                 </button>
-                <button
-                  className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
-                  type='submit'
-                >
-                  Save
-                </button>
+                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
               </div>
 
               <Divider />
@@ -728,18 +701,13 @@ const EditWebsitePage = () => {
                 </Link>
               </div>
 
-              <button
-                className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
-                type='submit'
-              >
-                Save
-              </button>
+              <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
 
               <Divider />
 
               <div className='space-y-5'>
                 {/* <Heading h3></Heading> */}
-                <h4 className='text-[24px] font-medium capitalize mudiumTitle'>
+                <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
                   Connect your registry
                 </h4>
                 <div className='flex items-center space-y-3'>
@@ -810,12 +778,7 @@ const EditWebsitePage = () => {
                   </a>
                 </Link>
                 <div>
-                  <button
-                    className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
-                    type='submit'
-                  >
-                    Save
-                  </button>
+                  <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
                 </div>
               </div>
 
@@ -1040,7 +1003,7 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.snapchat.com/beweddy'
-                              defaultValue={"idayhfigsidfighdsifh"}
+                              defaultValue={groom.snapchat}
                               {...register('groom_snapchat')}
                             />
                           </div>
@@ -1345,12 +1308,7 @@ const EditWebsitePage = () => {
                 </div>
               </div>
               <div>
-                <button
-                  className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
-                  type='submit'
-                >
-                  Save
-                </button>
+                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
               </div>
 
               <Divider />
