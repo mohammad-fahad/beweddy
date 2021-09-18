@@ -22,7 +22,7 @@ const MobilePreview = () => {
       />
       {/* </div> */}
       <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
-      <div className="absolute !top-[21px] !bottom-[142px] !left-[207px] !right-[208px] customMobile">
+      <div className="absolute !top-[21px] !bottom-[116px] !left-[207px] !right-[208px] customMobile">
         <h1 className="absolute !top-[10px] left-[20%] text-[#ffffff]">
           {" "}
           {user?.coupleName}{" "}

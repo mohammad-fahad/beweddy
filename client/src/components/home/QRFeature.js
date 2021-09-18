@@ -27,7 +27,7 @@ const QRFeature = () => {
           </div>
           <div className="-mb-32 lg:mb-[-14rem]">
             <img
-              src="/images/phone-qrcode.png"
+              src="/images/QR.png"
               alt=""
               className="w-56 mx-auto md:w-80 lg:ml-auto lg:mr-0"
             />
