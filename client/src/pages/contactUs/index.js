@@ -9,7 +9,6 @@ const index = () => {
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors },
   } = useForm();
@@ -145,8 +144,6 @@ const index = () => {
                   submit
                 </button>
               </div>
-
-              {/* <input type="submit" /> */}
             </div>
           </form>
         </div>

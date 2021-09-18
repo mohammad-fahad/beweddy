@@ -39,8 +39,6 @@ import { compareDate } from '@helpers/index';
 import { isEmpty } from 'lodash';
 import {
   Facebook,
-  Gmail,
-  Google,
   Instagram,
   Linkedin,
   Twitter,
