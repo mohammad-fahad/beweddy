@@ -14,18 +14,55 @@ import Datetime from 'react-datetime';
 import moment from 'moment';
 import { useQuery } from 'react-query';
 import { getGuests } from '@services/GuestManagement';
+import Select from 'react-select/creatable';
+import makeAnimated from 'react-select/animated';
+const animatedComponents = makeAnimated();
+
+const customStyles = {
+  control: (
+    { borderColor, backgroundColor, boxShadow, ...provided },
+    { theme }
+  ) => ({
+    ...provided,
+    width: '100%',
+    // backgroundColor: 'rgba(243, 244, 246, 1)',
+    borderColor: theme.colors.neutral90,
+    '&:hover': {
+      borderColor: theme.colors.neutral70,
+    },
+  }),
+  valueContainer: style => ({
+    ...style,
+    padding: '6px 16px',
+  }),
+  placeholder: style => ({
+    ...style,
+    color: 'rgba(156, 163, 175, 1)',
+    fontSize: '14px',
+  }),
+  input: style => ({
+    ...style,
+    outline: 'none',
+    border: 'none',
+  }),
+};
 
 const CalendarPage = () => {
   //redux state section
   const { user } = useSelector(state => state.user);
-  const [changeText, setChangeText] = useState(false)
-  const [startTime, setStartTime] = useState(false)
-  const [newDate, setNewDate] = useState("")
-  const [start, setStart] = useState("")
-  const [end, setEnd] = useState("")
+  const [changeText, setChangeText] = useState(false);
+  const [startTime, setStartTime] = useState(false);
+  const [newDate, setNewDate] = useState('');
+  const [start, setStart] = useState('');
+  const [end, setEnd] = useState('');
   const { data, isLoading } = useQuery(['guests', user.token], getGuests);
 
-  const emails = data?.guests?.map(guest => ({ email: guest.email }));
+  const [emails, setToEmails] = useState(null);
+
+  const toEmails = data?.guests?.map(guest => ({
+    label: guest.email,
+    value: guest.email,
+  }));
 
   var yesterday = moment().subtract(1, 'day');
   var valid = function (current) {
@@ -57,35 +94,48 @@ const CalendarPage = () => {
     mode: 'all',
     defaultValues: {
       summary: `${user?.coupleName}'s Wedding Day`,
-      location: "",
+      location: '',
       description: `${val}`,
     },
   });
+
+  const handleEmails = (newValue, actionMeta) => {
+    if (newValue) {
+      setToEmails(newValue.map(v => ({ email: v.value })));
+    }
+    if (actionMeta.action === 'clear') {
+      setToEmails(null);
+    }
+  };
+
   const getValue = watch('summary');
   //calendar Section
-  let gapi = window.gapi
-  // let CLIENT_ID = "658735256071-bhacjo0eesuoin4duputhn3bkt7nle56.apps.googleusercontent.com";
-  // let API_KEY = "AIzaSyB4aFvm7Ev-v_edhfUhqj7mmyuRzKP8bcg";
-  let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-  let SCOPES = "https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar.events";
+  let gapi = window.gapi;
+
+  let DISCOVERY_DOCS = [
+    'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest',
+  ];
+  let SCOPES =
+    'https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar';
 
   const onSubmit = data => {
     // data.start = startUpdate;
+    // data.attendees = emails;
     // data.end = endUpdate;
-    // console.log({ data })
+    // console.log({ data });
     if (data) {
       data.start = startUpdate;
       data.end = endUpdate;
-      data.attendees = emails;
       data.visibility = 'public';
+      data.attendees = emails;
       data.reminders = {
         useDefault: false,
         overrides: [
           { method: 'email', minutes: 24 * 60 },
-          { method: 'popup', minutes: 10 },
+          { method: 'popup', minutes: 60 },
         ],
       };
-      data.recurrence = ['RRULE:FREQ=DAILY;COUNT=2'];
+      data.recurrence = ['RRULE:FREQ=DAILY;COUNT=1'];
       gapi.load('client:auth2', () => {
         console.log('loaded client');
 
@@ -94,41 +144,16 @@ const CalendarPage = () => {
           clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
           discoveryDocs: DISCOVERY_DOCS,
           scope: SCOPES,
-        })
-        gapi.client.load('calendar', 'v3', () => console.log(''))
+        });
+        gapi.client.load('calendar', 'v3', () => console.log(''));
 
         gapi.auth2
           .getAuthInstance()
           .signIn()
           .then(() => {
-            var event = {
-              summary: 'Awesome Event!',
-              location: 'UTAH Convention Hall',
-              description: 'Really great refreshments',
-              start: {
-                dateTime: '2022-06-28T09:00:00-07:00',
-                timeZone: 'America/Los_Angeles',
-              },
-              end: {
-                dateTime: '2022-06-28T17:00:00-07:00',
-                timeZone: 'America/Los_Angeles',
-              },
-              recurrence: ['RRULE:FREQ=DAILY;COUNT=2'],
-              attendees: [
-                { email: 'lpage@example.com' },
-                { email: 'sbrin@example.com' }, //dynamic
-              ],
-              reminders: {
-                useDefault: false,
-                overrides: [
-                  { method: 'email', minutes: 24 * 60 },
-                  { method: 'popup', minutes: 10 },
-                ],
-              },
-            };
-
             let request = gapi.client.calendar.events.insert({
               calendarId: 'primary',
+              sendNotifications: true,
               resource: data,
             });
 
@@ -148,6 +173,7 @@ const CalendarPage = () => {
                 timeMin: new Date().toISOString(),
                 showDeleted: false,
                 singleEvents: true,
+
                 maxResults: 10,
                 orderBy: 'startTime',
               })
@@ -187,9 +213,9 @@ const CalendarPage = () => {
                 {changeText && (
                   <div className='w-full my-3'>
                     <input
-                      type="text"
-                      className="w-full max-w-[592px] text-sm md:text-lg font-normal py-2 md:py-3 px-4 md:px-6 placeholder-gray-400 border-[2px] border-primary rounded-lg"
-                      placeholder="Title"
+                      type='text'
+                      className='w-full max-w-[592px] text-sm md:text-lg font-normal py-2 md:py-3 px-4 md:px-6 placeholder-gray-400 border-[2px] border-primary rounded-lg'
+                      placeholder='Title'
                       {...register('summary', {
                         required: {
                           value: true,
@@ -204,11 +230,11 @@ const CalendarPage = () => {
                     )}
                   </div>
                 )}
-                {
-                  !changeText &&
-                  <h2
-                    className="text-2xl font-semibold font-inter">{getValue}</h2>
-                }
+                {!changeText && (
+                  <h2 className='text-2xl font-semibold font-inter'>
+                    {getValue}
+                  </h2>
+                )}
                 <p
                   className='text-[#ADADAD] text-sm mt-2'
                   onClick={changeToEditable}
@@ -216,7 +242,21 @@ const CalendarPage = () => {
                   Edit Title
                 </p>
               </div>
+              <div className='space-y-3 w-full max-w-[592px]'>
+                <Heading h3 className='!text-sm xl:!text-base !font-bold'>
+                  To
+                </Heading>
 
+                <Select
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  onChange={handleEmails}
+                  // defaultValue={[colourOptions[4], colourOptions[5]]}
+                  isMulti
+                  styles={customStyles}
+                  options={toEmails}
+                />
+              </div>
               <div className='my-5'>
                 <Heading h3 className='!text-sm xl:!text-base !font-bold'>
                   Description
@@ -248,18 +288,23 @@ const CalendarPage = () => {
                 </div>
               </div>
               <div className='flex justify-start items-center my-5'>
-                <Image
-                  src='/icons/calendar__location.png'
-                  width={20}
-                  height={20}
-                />
-                <Heading h3 className='!text-sm xl:!text-base ml-3 !font-bold'>
-                  Location
+                <Heading
+                  h3
+                  className='!text-sm xl:!text-base ml-3 !font-bold space-y-2'
+                >
+                  <div className='flex items-center space-x-3'>
+                    <Image
+                      src='/icons/calendar__location.png'
+                      width={20}
+                      height={20}
+                    />
+                    <span>Location</span>
+                  </div>
                   <input
                     required
-                    type="text"
-                    className="border border-primary max-w-[592px] py-3 px-5 text-sm font-semibold w-full rounded-[5px]"
-                    placeholder="Utah Convention Hall, Utah"
+                    type='text'
+                    className='border border-primary max-w-[275px] py-3 px-5 text-sm font-semibold w-full rounded-[5px]'
+                    placeholder='Utah Convention Hall, Utah'
                     {...register('location', {
                       required: {
                         value: true,
@@ -268,70 +313,77 @@ const CalendarPage = () => {
                     })}
                   />
                 </Heading>
-
               </div>
 
-              <div className="flex justify-start items-center my-5 w-full flex-wrap max-w-[592px]">
-                <div className="flex justify-start mr-2 items-center">
-                  <Image src='/icons/clock__icon.svg' width={20} height={20} />
+              <div className='flex flex-col space-y-5 my-5 w-full flex-wrap max-w-[592px]'>
+                <div className='flex items-center space-x-3'>
                   <Heading
                     onClick={() => setStartTime(true)}
                     h3
-                    className='!text-sm ml-3 xl:!text-base !font-bold'
+                    className='!text-sm ml-3 xl:!text-base !font-bold space-y-2'
                   >
-                    Select your Date
+                    <div className='flex items-center space-x-3'>
+                      <Image
+                        src='/icons/clock__icon.svg'
+                        width={20}
+                        height={20}
+                      />
+
+                      <span>Select your Date</span>
+                    </div>
                     <Datetime
                       isValidDate={valid}
-                      dateFormat="YYYY-MM-DD" timeFormat={false}
-                      inputProps={
-                        { placeholder: "Select Date" }
-                      }
-                      onChange={(e) => setNewDate(e._d)}
+                      dateFormat='YYYY-MM-DD'
+                      timeFormat={false}
+                      inputProps={{ placeholder: 'Select Date' }}
+                      onChange={e => setNewDate(e._d)}
                     />
                   </Heading>
                 </div>
                 <div className='flex justify-start items-center'>
-                  <Image src='/icons/clock__icon.svg' width={20} height={20} />
                   <Heading
                     onClick={() => setStartTime(true)}
                     h3
-                    className='!text-sm ml-3 xl:!text-base !font-bold'
+                    className='!text-sm ml-3 xl:!text-base !font-bold space-y-2'
                   >
-                    Start
+                    <div className='flex items-center space-x-3'>
+                      <Image
+                        src='/icons/clock__icon.svg'
+                        width={20}
+                        height={20}
+                      />
+                      <span>Start</span>
+                    </div>
                     <Datetime
-                      inputProps={
-                        { placeholder: "Start" }
-                      }
+                      inputProps={{ placeholder: 'Start' }}
                       dateFormat={false}
                       isValidDate={valid}
-
-                      onChange={(e) => setStart(e._d)}
+                      onChange={e => setStart(e._d)}
                     />
                   </Heading>
                 </div>
-                <div className='flex justify-start ml-3 items-center'>
-                  <Image src='/icons/clock__icon.svg' width={20} height={20} />
+                <div className='flex justify-start items-center'>
                   <Heading
                     h3
-                    className='!text-sm ml-3 xl:!text-base !font-bold'
+                    className='!text-sm ml-3 xl:!text-base !font-bold space-y-3'
                   >
-                    End
+                    <div className='flex items-center space-x-3'>
+                      <Image
+                        src='/icons/clock__icon.svg'
+                        width={20}
+                        height={20}
+                      />
+
+                      <span>End</span>
+                    </div>
                     <Datetime
-                      inputProps={
-                        { placeholder: "End" }
-                      }
+                      inputProps={{ placeholder: 'End' }}
                       isValidDate={valid}
                       dateFormat={false}
                       onChange={e => setEnd(e._d)}
                     />
                   </Heading>
                 </div>
-              </div>
-              <div className='flex justify-start items-center my-5'>
-                <Image src='/icons/attendee.svg' width={20} height={20} />
-                <Heading h3 className='!text-sm ml-3 xl:!text-base !font-bold'>
-                  Attendees
-                </Heading>
               </div>
               {/* onClick={handleClick}  */}
               <button

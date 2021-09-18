@@ -14,6 +14,7 @@ import {
 import { client } from '../lib/google.js';
 import { nanoid } from 'nanoid';
 import Todo from '../models/Todo.js';
+import PrivetRegistry from '../models/PrivetRegistry.js';
 
 // Register New User
 
@@ -138,6 +139,11 @@ export const googleSignUp = asyncHandler(async (req, res) => {
           ...todo,
         });
       });
+
+      const privetRegistries = await PrivetRegistry.find({
+        user: user._id,
+      });
+
       res.json({
         user: {
           _id: user._id,
@@ -155,7 +161,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
           qrCodeAvatar: user.qrCodeAvatar,
           receptionDetails: user.receptionDetails,
           giftCards: user.giftCards,
-          registries: user.registries,
+          registries: [...user.registries, ...privetRegistries],
           socialAccounts: user.socialAccounts,
           isAdmin: user.isAdmin,
           role: user.role,
@@ -187,6 +193,7 @@ export const googleSignIn = asyncHandler(async (req, res) => {
     const user = await User.findOne({ email })
       .populate('registries')
       .populate('giftCards');
+    const privetRegistries = await PrivetRegistry.find({ user: user._id });
 
     if (!user) {
       res.status(404);
@@ -210,7 +217,7 @@ export const googleSignIn = asyncHandler(async (req, res) => {
         qrCodeAvatar: user.qrCodeAvatar,
         receptionDetails: user.receptionDetails,
         giftCards: user.giftCards,
-        registries: user.registries,
+        registries: [...user.registries, ...privetRegistries],
         socialAccounts: user.socialAccounts,
         isAdmin: user.isAdmin,
         role: user.role,
@@ -255,6 +262,8 @@ export const activeUser = asyncHandler(async (req, res) => {
 
   // Send response
   if (user) {
+    const privetRegistries = await PrivetRegistry.find({ user: user._id });
+
     res.status(201).json({
       user: {
         _id: user._id,
@@ -272,7 +281,7 @@ export const activeUser = asyncHandler(async (req, res) => {
         qrCodeAvatar: user.qrCodeAvatar,
         receptionDetails: user.receptionDetails,
         giftCards: user.giftCards,
-        registries: user.registries,
+        registries: [...user.registries, ...privetRegistries],
         socialAccounts: user.socialAccounts,
         isAdmin: user.isAdmin,
         role: user.role,
@@ -310,6 +319,8 @@ export const login = asyncHandler(async (req, res) => {
 
   // Check if user & password matches
   if (await user.matchPassword(password)) {
+    const privetRegistries = await PrivetRegistry.find({ user: user._id });
+
     res.json({
       user: {
         _id: user._id,
@@ -327,7 +338,7 @@ export const login = asyncHandler(async (req, res) => {
         qrCodeAvatar: user.qrCodeAvatar,
         receptionDetails: user.receptionDetails,
         giftCards: user.giftCards,
-        registries: user.registries,
+        registries: [...user.registries, ...privetRegistries],
         socialAccounts: user.socialAccounts,
         isAdmin: user.isAdmin,
         role: user.role,
@@ -401,6 +412,7 @@ export const resetPassword = asyncHandler(async (req, res) => {
 // Get User Profile
 export const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
+  const privetRegistries = await PrivetRegistry.find({ user: req.user._id });
 
   if (user) {
     res.json({
@@ -420,7 +432,7 @@ export const getUserProfile = asyncHandler(async (req, res) => {
         qrCodeAvatar: user.qrCodeAvatar,
         receptionDetails: user.receptionDetails,
         giftCards: user.giftCards,
-        registries: user.registries,
+        registries: [...user.registries, ...privetRegistries],
         socialAccounts: user.socialAccounts,
         isAdmin: user.isAdmin,
         role: user.role,
@@ -437,6 +449,7 @@ export const getUserProfile = asyncHandler(async (req, res) => {
 
 export const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id);
+  const privetRegistries = await PrivetRegistry.find({ user: req.user._id });
 
   if (user) {
     const questions = {
@@ -490,6 +503,14 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
       user.giftCards = [...new Set(giftCards)];
     }
 
+    if (req.body.removeGiftCard) {
+      user.giftCards.pull(req.body.removeGiftCard);
+    }
+
+    if (req.body.removeRegistry) {
+      user.registries.pull(req.body.removeRegistry);
+    }
+
     if (req.body.newPassword) {
       if (await user.matchPassword(req.body.oldPassword)) {
         user.password = req.body.newPassword;
@@ -521,7 +542,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
         qrCodeAvatar: updateUser.qrCodeAvatar,
         receptionDetails: updateUser.receptionDetails,
         giftCards: updateUser.giftCards,
-        registries: updateUser.registries,
+        registries: [...updateUser.registries, ...privetRegistries],
         socialAccounts: updateUser.socialAccounts,
         isAdmin: updateUser.isAdmin,
         role: updateUser.role,
@@ -547,6 +568,10 @@ export const getCouple = asyncHandler(async (req, res) => {
     throw new Error('User not found');
   }
 
+  const privetRegistries = await PrivetRegistry.find({
+    user: user._id,
+  });
+
   res.status(200).json({
     _id: user._id,
     firstName: user.firstName,
@@ -563,7 +588,7 @@ export const getCouple = asyncHandler(async (req, res) => {
     qrCodeAvatar: user.qrCodeAvatar,
     receptionDetails: user.receptionDetails,
     giftCards: user.giftCards,
-    registries: user.registries,
+    registries: [...user.registries, ...privetRegistries],
     socialAccounts: user.socialAccounts,
   });
 });

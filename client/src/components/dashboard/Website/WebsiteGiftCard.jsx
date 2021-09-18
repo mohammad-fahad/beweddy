@@ -27,31 +27,26 @@ const WebsiteGiftCards = ({ giftCards }) => {
     }
   }, [isSmallDevice, isMediumDevice, isLargeDevice]);
 
-  const handleTooltip = index => {
-    const itemRowNumber = Math.ceil(index / col);
-    setPushItemTo(itemRowNumber * col - index + index);
-    setShowTooltip(true);
-    setSelected(index - 1);
-  };
-
   return (
     <div className=' from-[#FCE3EB] to-white relative'>
       <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-5 md:gap-10 mx-auto w-full'>
         {giftCards?.map(giftCard => (
-          <Link href={`/`}>
-            <Image
-              width={245}
-              height={157}
-              src={giftCard.image}
-              alt={giftCard.name}
-              className='w-full'
-            />
+          <Link href={`/couple/${couple?.username}/${giftCard?._id}/checkout`}>
+            <a>
+              <Image
+                width={245}
+                height={157}
+                src={giftCard.image}
+                alt={giftCard.name}
+                className='w-full'
+              />
+            </a>
           </Link>
         ))}
       </div>
 
       <div className='flex justify-end pr-2'>
-        <Link href='/'>
+        <Link href='#'>
           <a className='text-lg font-semibold font-inter hover:underline customLabel'>
             See All Gift Cards
           </a>

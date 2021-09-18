@@ -37,22 +37,21 @@ const params = {
 const CoupleWebsitePage = (props) => {
   const { query } = useRouter();
 
-  const {
-    data: couple,
-    isLoading,
-    isError,
-  } = useQuery(['couple', query.couple], getCouple, {
-    initialData: props.user,
-  });
+  const { data: couple, isLoading } = useQuery(
+    ['couple', query.couple],
+    getCouple,
+    {
+      initialData: props.user,
+    }
+  );
 
-  // console.log(isError);
   const [value, setValue] = useState(
     `https://beweddy-delta.vercel.app/${couple?.username}`
   );
 
-  if (isLoading) return <Loader />;
-
   if (query.couple && !couple) return <NotFoundPage />;
+
+  if (isLoading) return <Loader />;
 
   return (
     <>
@@ -96,7 +95,7 @@ const CoupleWebsitePage = (props) => {
 
         {/* <div className="flex flex-col items-center py-6 mt-[36px] max-w-5xl w-full mx-auto"> */}
         <div className="flex flex-col items-center w-full">
-          <h1 className="text-xl font-medium md:text-2xl lg:text-4xl font-inter xl:text-5xl">
+          <h1 className="text-xl font-medium md:text-2xl lg:text-4xl font-inter">
             02/27/2021
           </h1>
           <div className="max-w-[222px] w-full mx-auto h-[2px] md:h-[4px]  bg-[#FCE0EB] mt-4" />
@@ -348,11 +347,19 @@ export default CoupleWebsitePage;
 
 export const getServerSideProps = async ({ params: { couple } }) => {
   const res = await fetch(`${API_URL}/users/${couple}`);
+  // const errorCode = res.ok ? false : res.statusCode;
   const user = await res.json();
+
+  if (!user) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
       user,
+      // errorCode,
     },
   };
 };

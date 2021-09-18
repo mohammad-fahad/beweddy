@@ -49,13 +49,15 @@ import {
 import { attemptUpdateUserProfile } from '@features/user/userActions';
 import { Fragment } from 'react';
 import axios from 'axios';
+import RegistryModal from '@components/dashboard/RegistryModal';
 
 const EditWebsitePage = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector(state => state.user);
+  const { user, loading: userLoading } = useSelector(state => state.user);
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState();
   const [preview, setPreview] = useState();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageFile, setSelectedImageFile] = useState();
   const [uploadedFiles, setUploadedFiles] = useState(
     user.questions.couplePictures
@@ -65,22 +67,22 @@ const EditWebsitePage = () => {
     user.receptionDetails.length
       ? user.receptionDetails
       : [
-          {
-            id: generate(),
-            time: '5.00 PM',
-            details: 'Example of event details',
-          },
-          {
-            id: generate(),
-            time: '5.30 PM',
-            details: 'Ceremony',
-          },
-          {
-            id: generate(),
-            time: '6.00 PM',
-            details: 'Ceremony ends/cocktails begin',
-          },
-        ]
+        {
+          id: generate(),
+          time: '5.00 PM',
+          details: 'Example of event details',
+        },
+        {
+          id: generate(),
+          time: '5.30 PM',
+          details: 'Ceremony',
+        },
+        {
+          id: generate(),
+          time: '6.00 PM',
+          details: 'Ceremony ends/cocktails begin',
+        },
+      ]
   );
   const { groom, bride } = user.socialAccounts;
 
@@ -301,7 +303,7 @@ const EditWebsitePage = () => {
         <title>Beweddy | Edit Website</title>
       </Head>
 
-      {loading && <Loader />}
+      {(loading || userLoading) && <Loader />}
 
       <DashboardTopBar />
 
@@ -381,7 +383,7 @@ const EditWebsitePage = () => {
                   />
                 </div>
                 <div className='!mt-5'>
-                  <button type='submit'>Save</button>
+                  <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
                 </div>
               </div>
 
@@ -439,7 +441,7 @@ const EditWebsitePage = () => {
                     </motion.div>
                   ))}
                 </motion.div>
-                <button type='submit'>Save</button>
+                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
               </div>
 
               <Divider />
@@ -508,7 +510,7 @@ const EditWebsitePage = () => {
                   </div>
                 </div>
                 <div>
-                  <button type='submit'>Save</button>
+                  <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
                 </div>
               </div>
 
@@ -529,7 +531,7 @@ const EditWebsitePage = () => {
                   {...register('ourStory')}
                 ></textarea>
 
-                <button type='submit'>Save</button>
+                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
               </div>
 
               <Divider />
@@ -607,26 +609,38 @@ const EditWebsitePage = () => {
                   <PlusIcon className='h-5 w-7' />
                   <span>Add New</span>
                 </button>
-                <button type='submit'>Save</button>
+                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
               </div>
 
               <Divider />
 
               <Heading h3></Heading>
-              <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
+              <h4 className='mb-6 text-[24px] font-medium cursor-pointer capitalize mudiumTitle'>
                 Add Gift Card
               </h4>
 
               <div>
                 <div className='flex items-center gap-3 md:gap-10'>
-                  <div className='relative grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xxl:grid-cols-6 sm:max-w-full gap-5 sm:gap-10'>
+                  <motion.div className='relative grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xxl:grid-cols-6 sm:max-w-full gap-5 sm:gap-10'>
                     <Link href='/dashboard/gift-cards'>
-                      <a className='max-w-[200px] max-h-[120px] w-full h-full border-2 border-secondary-alternative bg-secondary-alternative/50 flex items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'>
+                      <motion.a
+                        layout
+                        exit={{ opacity: 0 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className='max-w-[200px] min-h-[120px] w-full h-full border-2 border-secondary-alternative bg-secondary-alternative/50 flex items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'
+                      >
                         <PlusIcon className='w-8 h-8' />
-                      </a>
+                      </motion.a>
                     </Link>
                     {user?.giftCards?.map(gift => (
-                      <div className='inline-block relative max-w-[200px] max-h-[120px] w-full h-full overflow-hidden transition duration-300 cursor-pointer rounded-xl ease-easing'>
+                      <motion.div
+                        layout
+                        exit={{ opacity: 0 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className='inline-block relative max-w-[200px] max-h-[120px] w-full h-full overflow-hidden transition duration-300 cursor-pointer rounded-xl ease-easing'
+                      >
                         <Image
                           width={200}
                           height={120}
@@ -634,12 +648,21 @@ const EditWebsitePage = () => {
                           alt={gift.name}
                         />
 
-                        <div className='absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center transition duration-300 opacity-0 bg-primary/80 hover:opacity-100'>
+                        <div
+                          className='absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center transition duration-300 opacity-0 bg-primary/80 hover:opacity-100'
+                          onClick={() =>
+                            dispatch(
+                              attemptUpdateUserProfile({
+                                removeGiftCard: gift._id,
+                              })
+                            )
+                          }
+                        >
                           <MinusIcon className='w-12 h-12 text-white' />
                         </div>
-                      </div>
+                      </motion.div>
                     ))}
-                  </div>
+                  </motion.div>
                 </div>
                 <Link href='/dashboard/gift-cards/'>
                   <a className='block mt-5 text-sm font-semibold text-right hover:underline font-inter'>
@@ -648,7 +671,7 @@ const EditWebsitePage = () => {
                 </Link>
               </div>
 
-              <button type='submit'> Save </button>
+              <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
 
               <Divider />
 
@@ -659,11 +682,13 @@ const EditWebsitePage = () => {
                 </h4>
                 <div className='flex items-center space-y-3'>
                   <div className='border-2 w-[200px] min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex flex-col items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'>
-                    <Link href='/'>
-                      <a className='px-6 py-2 mt-5 text-xs text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap'>
-                        Create Registry
-                      </a>
-                    </Link>
+                    <button
+                      type='button'
+                      className='px-6 py-2 mt-5 text-xs text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap'
+                      onClick={() => setIsModalOpen(true)}
+                    >
+                      Create Registry
+                    </button>
                     <Link href='/'>
                       <a className='py-2 text-base font-light text-blue-500 font-inter hover:underline'>
                         Learn more
@@ -671,10 +696,13 @@ const EditWebsitePage = () => {
                     </Link>
                   </div>
                 </div>
-                <div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 2lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 sm:gap-5 md:gap-10'>
+                <motion.div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 2lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 sm:gap-5 md:gap-10'>
                   {user?.registries?.map(registry => (
-                    <div
-                      htmlFor={registry._id}
+                    <motion.div
+                      layout
+                      exit={{ opacity: 0 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
                       className='scale-[.85] xs:scale-95 sm:scale-100 cursor-pointer p-4 max-w-[250px] inline-block bg-white border-4 rounded-md border-gray-200 hover:border-primary transition duration-300 w-full mx-auto'
                     >
                       <div
@@ -689,7 +717,15 @@ const EditWebsitePage = () => {
                           </a>
                         </Link>
                         <div>
-                          <Image width={200} height={80} src={registry.image} />
+                          <Image
+                            width={200}
+                            height={80}
+                            src={
+                              isEmpty(registry.image)
+                                ? '/images/placeholder.webp'
+                                : registry.image
+                            }
+                          />
                         </div>
                       </div>
 
@@ -703,16 +739,16 @@ const EditWebsitePage = () => {
                           </button>
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
-                </div>
+                </motion.div>
                 <Link href='/dashboard/registries'>
                   <a className='block mt-5 text-sm font-semibold text-right hover:underline font-inter'>
                     See All Wedding Registry Options
                   </a>
                 </Link>
                 <div>
-                  <button type='submit'>Save</button>
+                  <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
                 </div>
               </div>
 
@@ -1242,7 +1278,7 @@ const EditWebsitePage = () => {
                 </div>
               </div>
               <div>
-                <button type='submit'>Save</button>
+                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
               </div>
 
               <Divider />
@@ -1287,7 +1323,7 @@ const EditWebsitePage = () => {
           {/* <QRCodeGenerator /> */}
         </DashboardContainer>
       </DashboardLayout>
-
+      <RegistryModal {...{ isModalOpen, setIsModalOpen }} />
       <Footer hideSocial />
 
       <CropImage

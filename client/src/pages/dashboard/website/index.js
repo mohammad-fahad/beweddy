@@ -46,11 +46,13 @@ const WebsitePageOne = () => {
           title={
             <h2 className="flex align-center gap-2 !text-[30px] items-center mudiumTitle">
               your website
-              <img
-                src="/icons/website.png"
-                alt="your website"
-                className="w-[20px] h-[20px]"
-              />
+              <a target="_blank" href={`/couple/${user.username}`}>
+                <img
+                  src="/icons/website.png"
+                  alt="your website"
+                  className="w-[20px] h-[20px]"
+                />
+              </a>
             </h2>
           }
           customPadding
@@ -139,7 +141,7 @@ const WebsitePageOne = () => {
           {/* date and Countdown section */}
           <div className="flex flex-col items-center">
             {/* <h1 className="text-2xl font-medium md:text-3xl font-inter xl:text-4xl mudiumTitle"> */}
-            <h1 className="text-xl font-medium md:text-2xl lg:text-4xl font-inter xl:text-5xl mudiumTitle">
+            <h1 className="text-xl font-medium md:text-2xl lg:text-4xl font-inter mudiumTitle">
               02/27/2021
             </h1>
             <div className="max-w-[222px] w-full mx-auto h-[2px] md:h-[4px]  bg-[#FCE0EB] mt-4" />
