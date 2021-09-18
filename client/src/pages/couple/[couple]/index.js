@@ -193,8 +193,8 @@ const CoupleWebsitePage = (props) => {
             <div class="col-span-5 p-5 flex justify-end">
               <div>
                 <h2 className="text-lg">Locations</h2>
-                <h6>Utah Convention Hall</h6>
-                <h6>Utah, USA</h6>
+                <h6>{couple?.location}</h6>
+
               </div>
             </div>
           </div>
@@ -232,7 +232,7 @@ const CoupleWebsitePage = (props) => {
                 </h2>
                 <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] my-5" />
                 <div>
-                  <WebsiteGiftCards {...{couple}} giftCards={couple?.giftCards} />
+                  <WebsiteGiftCards {...{ couple }} giftCards={couple?.giftCards} />
                 </div>
               </>
             )}
