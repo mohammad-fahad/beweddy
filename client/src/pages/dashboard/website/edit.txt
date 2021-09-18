@@ -254,8 +254,8 @@ const EditWebsitePage = () => {
   };
 
   const onSubmit = data => {
-    console.log("sdkfshfhsdhfoosdfohosdhohfdsohfsdhof", data);
     console.log("sdkfshfhsdhfoosdfohosdhohfdsohfsdhof", submitData(data));
+    console.log("sdkfshfhsdhfoosdfohosdhohfdsohfsdhof", data.groom_facebook);
     dispatch(attemptUpdateUserProfile(submitData(data)));
   };
 
