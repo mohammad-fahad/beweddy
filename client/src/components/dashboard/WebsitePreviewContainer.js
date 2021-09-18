@@ -10,11 +10,11 @@ import TabPreview from "./WebsitePreview/TabPreview";
 SwiperCore.use([Lazy, Autoplay]);
 
 const params = {
-  // loop: true,
-  // autoplay: {
-  //   delay: 5000,
-  //   disableOnInteraction: false,
-  // },
+  loop: true,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false,
+  },
 };
 
 const WebsitePreviewContainer = ({ minimal }) => {
@@ -39,56 +39,55 @@ const WebsitePreviewContainer = ({ minimal }) => {
       )}
       <div className="w-full max-w-xl mx-auto">
         <Swiper {...params}>
-        <div> 
-         {user?.email ? (
-            <div>
-              <DesktopPreview />
-            </div>
-          ) : (
-            <div>
-              <img
-                src="/images/wedding-laptop.png"
-                alt=""
-                className="!md:max-h-[444px] mx-auto swiper-lazy"
-              />
-              <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
-            </div>
-          )}
-        </div>
-          
           <div>
-           {user?.email ? (
-            <div>
-              <MobilePreview />
-            </div>
-          ) : (
-            <div>
-              <img
-              src="/images/wedding-phone.png"
-              alt=""
-              className="!max-h-[250px] !md:max-h-[395px] mx-auto swiper-lazy"
-            />
-            <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
-            </div>
-          )}
+            {user?.email ? (
+              <div>
+                <DesktopPreview />
+              </div>
+            ) : (
+              <div>
+                <img
+                  src="/images/wedding-laptop.png"
+                  alt=""
+                  className="!md:max-h-[444px] mx-auto swiper-lazy"
+                />
+                <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
+              </div>
+            )}
+          </div>
+
+          <div>
+            {user?.email ? (
+              <div>
+                <MobilePreview />
+              </div>
+            ) : (
+              <div>
+                <img
+                  src="/images/wedding-phone.png"
+                  alt=""
+                  className="!max-h-[250px] !md:max-h-[395px] mx-auto swiper-lazy"
+                />
+                <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
+              </div>
+            )}
           </div>
           <div>
             {user?.email ? (
-                <div>
-                  <TabPreview />
-                </div>
-              ) : (
-                <div>
-                  <img
-                    src="/images/wedding-macbook.png"
-                    alt=""
-                    className="max-h-[250px] md:max-h-[444px] mx-auto swiper-lazy"
-                  />
-                  <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
-                </div>
-              )}
+              <div>
+                <TabPreview />
+              </div>
+            ) : (
+              <div>
+                <img
+                  src="/images/wedding-macbook.png"
+                  alt=""
+                  className="max-h-[250px] md:max-h-[444px] mx-auto swiper-lazy"
+                />
+                <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
+              </div>
+            )}
           </div>
-          
         </Swiper>
       </div>
     </div>
