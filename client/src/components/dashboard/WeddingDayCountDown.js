@@ -50,7 +50,15 @@ const WeddingDayCountDown = ({ sm, couple, preview }) => {
         >
           {days < 10 ? `0${days}` : days}
         </h4>
-
+        <p className={`${sm ? "text-[9px]" : "text-base"}  font-normal`}>
+          Days
+        </p>
+      </div>
+      <div
+        className={`flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg ${
+          sm ? "min-w-[60px] py-[7px]" : "min-w-[103px] py-5"
+        } ${preview ? "countDownBorder" : ""}`}
+      >
         <h4 className={`${sm ? "text-[12px]" : "text-2xl"} font-bold`}>
           {hours < 10 ? `0${hours}` : hours}
         </h4>
