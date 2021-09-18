@@ -1,28 +1,28 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import { WeddingDayCountDown } from '@components/dashboard';
-import { Footer, Loader } from '@components/index';
-import WebsiteNav from '@components/dashboard/Website/WebsiteNav';
+import Head from "next/head";
+import Link from "next/link";
+import { WeddingDayCountDown } from "@components/dashboard";
+import { Footer, Loader } from "@components/index";
+import WebsiteNav from "@components/dashboard/Website/WebsiteNav";
 
-import WebsiteGiftCards from '@components/dashboard/Website/WebsiteGiftCard';
-import WebsiteRegistry from '@components/dashboard/Website/websiteRegistry';
-import SocialSection from '@components/dashboard/Website/SocialSection';
-import { useState } from 'react';
-import { QRCode } from 'react-qrcode-logo';
-import WebsiteVideo from '@components/dashboard/Website/WebsiteVideo';
+import WebsiteGiftCards from "@components/dashboard/Website/WebsiteGiftCard";
+import WebsiteRegistry from "@components/dashboard/Website/websiteRegistry";
+import SocialSection from "@components/dashboard/Website/SocialSection";
+import { useState } from "react";
+import { QRCode } from "react-qrcode-logo";
+import WebsiteVideo from "@components/dashboard/Website/WebsiteVideo";
 
-import Swiper from 'react-id-swiper';
-import { Image } from 'cloudinary-react';
-import SwiperCore, { Lazy, Autoplay } from 'swiper';
-import { useQuery } from 'react-query';
-import { getCouple } from '@services/Couple';
-import { useRouter } from 'next/router';
+import Swiper from "react-id-swiper";
+import { Image } from "cloudinary-react";
+import SwiperCore, { Lazy, Autoplay } from "swiper";
+import { useQuery } from "react-query";
+import { getCouple } from "@services/Couple";
+import { useRouter } from "next/router";
 
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
-import NotFoundPage from 'pages/404';
-import { API_URL } from '@utils/index';
+import NotFoundPage from "pages/404";
+import { API_URL } from "@utils/index";
 
 SwiperCore.use([Lazy, Autoplay]);
 
@@ -38,7 +38,7 @@ const CoupleWebsitePage = (props) => {
   const { query } = useRouter();
 
   const { data: couple, isLoading } = useQuery(
-    ['couple', query.couple],
+    ["couple", query.couple],
     getCouple,
     {
       initialData: props.user,
@@ -89,7 +89,7 @@ const CoupleWebsitePage = (props) => {
 
         <div className="flex items-center justify-center py-2 md:py-5 ">
           <p className="font-medium text-center text-md md:text-2xl">
-            we are getting married
+            We’re Getting Married!
           </p>
         </div>
 
@@ -194,7 +194,6 @@ const CoupleWebsitePage = (props) => {
               <div>
                 <h2 className="text-lg">Locations</h2>
                 <h6>{couple?.location}</h6>
-
               </div>
             </div>
           </div>
@@ -232,7 +231,10 @@ const CoupleWebsitePage = (props) => {
                 </h2>
                 <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] my-5" />
                 <div>
-                  <WebsiteGiftCards {...{ couple }} giftCards={couple?.giftCards} />
+                  <WebsiteGiftCards
+                    {...{ couple }}
+                    giftCards={couple?.giftCards}
+                  />
                 </div>
               </>
             )}
