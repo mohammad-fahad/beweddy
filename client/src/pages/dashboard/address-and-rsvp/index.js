@@ -223,7 +223,7 @@ const AddressRSVP = () => {
                   className='flex justify-center items-center space-x-3 py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300'
                 >
                   <LinkIcon className='w-5 h-5' />
-                  <span className='customLabel'>Wedding Website Link</span>
+                  <span className='customLabel'> Website Link</span>
                 </a>
               </Link>
             </div>
@@ -428,10 +428,9 @@ const AddressRSVP = () => {
                             <Listbox.Option
                               key={countryIdx}
                               className={({ active }) =>
-                                `${
-                                  active
-                                    ? 'text-amber-900 bg-secondary-alternative/20'
-                                    : 'text-gray-900'
+                                `${active
+                                  ? 'text-amber-900 bg-secondary-alternative/20'
+                                  : 'text-gray-900'
                                 }
                           cursor-pointer select-none relative py-2 pl-10 pr-4`
                               }
@@ -440,19 +439,17 @@ const AddressRSVP = () => {
                               {({ selected, active }) => (
                                 <>
                                   <span
-                                    className={`${
-                                      selected ? 'font-medium' : 'font-normal'
-                                    } block truncate`}
+                                    className={`${selected ? 'font-medium' : 'font-normal'
+                                      } block truncate`}
                                   >
                                     {country.name}
                                   </span>
                                   {selected ? (
                                     <span
-                                      className={`${
-                                        active
-                                          ? 'text-amber-600'
-                                          : 'text-amber-600'
-                                      }
+                                      className={`${active
+                                        ? 'text-amber-600'
+                                        : 'text-amber-600'
+                                        }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                     >
                                       <CheckIcon
@@ -739,10 +736,9 @@ const AddressRSVP = () => {
                             <Listbox.Option
                               key={providerIdx}
                               className={({ active }) =>
-                                `${
-                                  active
-                                    ? 'text-secondary bg-secondary-alternative/50'
-                                    : 'text-gray-900'
+                                `${active
+                                  ? 'text-secondary bg-secondary-alternative/50'
+                                  : 'text-gray-900'
                                 }
                           cursor-pointer select-none relative py-2 pl-10 pr-4 font-medium`
                               }
@@ -751,19 +747,17 @@ const AddressRSVP = () => {
                               {({ selected, active }) => (
                                 <>
                                   <span
-                                    className={`${
-                                      selected ? 'font-semibold' : 'font-medium'
-                                    } block truncate`}
+                                    className={`${selected ? 'font-semibold' : 'font-medium'
+                                      } block truncate`}
                                   >
                                     {provider.name}
                                   </span>
                                   {selected ? (
                                     <span
-                                      className={`${
-                                        active
-                                          ? 'text-amber-600'
-                                          : 'text-amber-600'
-                                      }
+                                      className={`${active
+                                        ? 'text-amber-600'
+                                        : 'text-amber-600'
+                                        }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                     >
                                       <CheckIcon

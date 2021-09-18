@@ -1,13 +1,33 @@
+import { attemptUpdateUserProfile } from '@features/user/userActions';
 import { Dialog, Transition } from '@headlessui/react';
+import { createPrivetRegistry } from '@services/Registry/privetRegistry';
 import { Fragment } from 'react';
 import { useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
+  const dispatch = useDispatch();
+  const { user } = useSelector(state => state.user);
   function closeModal() {
     setIsModalOpen(false);
   }
 
   const { handleSubmit, register } = useForm({ mode: 'all' });
+  const { mutateAsync, isLoading } = useMutation(createPrivetRegistry);
+  const onSubmit = async data => {
+    setIsModalOpen(false);
+    await mutateAsync(
+      { payload: data, token: user?.token },
+      {
+        onSuccess: () => {
+          dispatch(attemptUpdateUserProfile({ refetch: true }));
+        },
+      }
+    );
+  };
+
   return (
     <>
       <Transition appear show={isModalOpen} as={Fragment}>
@@ -45,14 +65,17 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
               leaveFrom='opacity-100 scale-100'
               leaveTo='opacity-0 scale-95'
             >
-              <div className='inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl'>
+              <div className='inline-block w-full max-w-md p-6 mt-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl'>
                 <Dialog.Title
                   as='h4'
                   className='text-lg xs:text-xl sm:text-2xl font-medium leading-6 text-gray-900'
                 >
                   Create new registry
                 </Dialog.Title>
-                <div className='my-5 sm:my-10 space-y-2 xs:space-y-5'>
+                <form
+                  className='mt-5 sm:mt-10 space-y-2 xs:space-y-5'
+                  onSubmit={handleSubmit(onSubmit)}
+                >
                   <div className='space-y-2 flex flex-col'>
                     <label
                       htmlFor='title'
@@ -90,6 +113,11 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                           value: true,
                           message: 'Image link is required!',
                         },
+                        pattern: {
+                          value:
+                            /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/,
+                          message: 'Link is not valid',
+                        },
                       })}
                     />
                   </div>
@@ -110,6 +138,11 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                           value: true,
                           message: 'Affiliate link is required!',
                         },
+                        pattern: {
+                          value:
+                            /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/,
+                          message: 'Link is not valid',
+                        },
                       })}
                     />
                   </div>
@@ -128,23 +161,22 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                       {...register('description')}
                     />
                   </div>
-                </div>
-                <div className='flex items-center space-x-3'>
-                  <button
-                    type='button'
-                    className='inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border-2 border-gray-100 rounded-md hover:bg-gray-100 '
-                    onClick={closeModal}
-                  >
-                    cancel
-                  </button>
-                  <button
-                    type='submit'
-                    className='inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-primary border-2 border-primary rounded-md hover:bg-white hover:text-primary transition duration-300'
-                    onClick={closeModal}
-                  >
-                    Create
-                  </button>
-                </div>
+                  <div className='flex items-center space-x-3'>
+                    <button
+                      type='button'
+                      className='inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border-2 border-gray-100 rounded-md hover:bg-gray-100 '
+                      onClick={closeModal}
+                    >
+                      cancel
+                    </button>
+                    <button
+                      type='submit'
+                      className='inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-primary border-2 border-primary rounded-md hover:bg-white hover:text-primary transition duration-300'
+                    >
+                      Create
+                    </button>
+                  </div>
+                </form>
               </div>
             </Transition.Child>
           </div>

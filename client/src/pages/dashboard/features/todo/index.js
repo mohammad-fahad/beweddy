@@ -97,12 +97,12 @@ const TodoPage = () => {
       <DashboardTopBar />
       <DashboardLayout shadow>
         <DashboardHeader
-        title={
-          <h1 className="!text-[36px] commonTitle flex items-center gap-2">
-            Just Do It List
-            <img src="/icons/ring.svg" alt="" className="w-7 md:w-8" />
-          </h1>
-        }
+          title={
+            <h1 className="!text-[36px] commonTitle flex items-center gap-2">
+              Just Do It List
+              <img src="/icons/ring.svg" alt="" className="w-7 md:w-8" />
+            </h1>
+          }
         />
         <DashboardContainer>
           {/* <h1 className="!text-[36px] commonTitle flex items-center gap-2">
@@ -137,7 +137,7 @@ const TodoPage = () => {
                   <input
                     type="text"
                     className="w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 border-r-0 rounded-r-none text-base font-normal placeholder-gray-400"
-                    placeholder="Enter todo"
+                    placeholder="Enter to do"
                     {...register("description", {
                       required: true,
                     })}
@@ -172,9 +172,8 @@ const TodoPage = () => {
                     )}
                   </button>
                   <p
-                    className={`text-base md:text-lg font-normal subTitle ${
-                      todo.isComplete ? "line-through" : ""
-                    }`}
+                    className={`text-base md:text-lg font-normal subTitle ${todo.isComplete ? "line-through" : ""
+                      }`}
                   >
                     {todo.description}
                   </p>

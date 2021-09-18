@@ -83,7 +83,7 @@ const Registries = () => {
               <div
                 className={`border-2 border-primary flex items-center justify-center h-[140px] w-full rounded-[10px] transition duration-300 relative group p-3`}
               >
-                <Link href={registry.link}>
+                <Link href="#">
                   <a
                     target="_blank"
                     className="max-w-[273px] rounded-lg flex items-center justify-center w-full h-full opacity-0 hover:opacity-100 absolute inset-0 z-50 group-hover:bg-black/50"

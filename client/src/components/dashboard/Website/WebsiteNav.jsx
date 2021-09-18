@@ -1,9 +1,6 @@
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
 
-const WebsiteNav = ({ coupleName }) => {
-  const { user } = useSelector(state => state.user);
-
+const WebsiteNav = ({ user }) => {
   return (
     <div className='bg-[#ffffff] border-b-[3px] border-primary'>
       {/* <div className="xxl:pr-0"> */}
@@ -15,7 +12,7 @@ const WebsiteNav = ({ coupleName }) => {
           </span>
         </h3>
         <div className='flex flex-col flex-wrap items-center pt-5 pb-2 space-x-5 md:pb-5 md:flex-row'>
-          <Link href='#'>
+          <Link href={`/couple/${user.username}/rsvp`}>
             <a className='flex items-center space-x-3 text-sm font-semibold text-gray-700 transition duration-300 md:text-md whitespace-nowrap font-inter hover:text-primary'>
               <span>We Need your Address - RSVP</span>
             </a>
