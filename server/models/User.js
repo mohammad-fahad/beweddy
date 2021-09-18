@@ -93,6 +93,9 @@ const userSchema = new mongoose.Schema(
       default:
         'We sincerely hope we will have the honor to dine, laugh, and dance with you on our wedding weekend. It would mean the world to us.',
     },
+    location: {
+      type: String,
+    },
     receptionDetails: {
       type: Array,
       default: [

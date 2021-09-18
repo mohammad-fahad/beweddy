@@ -52,6 +52,7 @@ import RegistryModal from '@components/dashboard/RegistryModal';
 const EditWebsitePage = () => {
   const dispatch = useDispatch();
   const { user, loading: userLoading } = useSelector(state => state.user);
+  console.log({ user });
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState();
   const [preview, setPreview] = useState();
@@ -118,7 +119,7 @@ const EditWebsitePage = () => {
     formState: { errors },
   } = useForm({
     mode: 'all',
-    defaultValues: { ...user.questions, ourStory: user.ourStory },
+    defaultValues: { ...user.questions, ourStory: user.ourStory, location: user.location },
     shouldFocusError: false,
     shouldUnregister: true,
   });
@@ -252,7 +253,7 @@ const EditWebsitePage = () => {
   };
 
   const onSubmit = data => {
-    console.log(submitData(data));
+    // console.log(submitData(data));
     dispatch(attemptUpdateUserProfile(submitData(data)));
   };
 
@@ -288,6 +289,7 @@ const EditWebsitePage = () => {
       spouseFirstName: data.spouseFirstName,
       spouseLastName: data.spouseLastName,
       ourStory: data.ourStory,
+      location: data.location,
       receptionDetails,
       couplePictures: uploadedFiles,
       socialAccounts,
@@ -528,6 +530,28 @@ const EditWebsitePage = () => {
                   placeholder='We sincerely hope we will have the honor to dine, laugh, and dance with you on our wedding weekend. It would mean the world to us.'
                   {...register('ourStory')}
                 ></textarea>
+
+                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
+              </div>
+
+              <Divider />
+              <div className='space-y-5'>
+                <div className='flex items-center justify-between space-x-5'>
+
+                  <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
+                    Location Name &amp; Address
+                  </h4>
+                </div>
+                <input
+                  type='text'
+                  className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal'
+                  {...register('location', {
+                    required: {
+                      value: true,
+                      message: 'Location name and address is required!',
+                    },
+                  })}
+                />
 
                 <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
               </div>

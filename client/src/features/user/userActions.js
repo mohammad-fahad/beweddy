@@ -54,7 +54,6 @@ export const attemptUpdateUserProfile = createAsyncThunk(
   async (updatedData, { getState }) => {
     try {
       const { user } = getState().user;
-
       const config = {
         headers: {
           'Content-Type': 'application/json',
