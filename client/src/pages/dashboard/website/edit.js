@@ -254,6 +254,8 @@ const EditWebsitePage = () => {
   };
 
   const onSubmit = data => {
+    console.log("sdkfshfhsdhfoosdfohosdhohfdsohfsdhof", data);
+    console.log("sdkfshfhsdhfoosdfohosdhohfdsohfsdhof", data.groom_facebook);
     dispatch(attemptUpdateUserProfile(submitData(data)));
   };
 
@@ -535,16 +537,16 @@ const EditWebsitePage = () => {
               </div>
 
               <Divider />
-              <div className='space-y-5'>
+              <div className='space-y-5 flex flex-col'>
                 <div className='flex items-center justify-between space-x-5'>
-
-                  <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
+                  <h4 className='text-[24px] font-medium capitalize mudiumTitle'>
                     Location Name &amp; Address
                   </h4>
                 </div>
                 <input
                   type='text'
                   className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal'
+                  placeholder='Enter your location'
                   {...register('location', {
                     required: {
                       value: true,
@@ -552,8 +554,14 @@ const EditWebsitePage = () => {
                     },
                   })}
                 />
-
-                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
+                <div>
+                  <button
+                    className='inline-block border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
+                    type='submit'
+                  >
+                    Save
+                  </button>
+                </div>
               </div>
 
               <Divider />
@@ -995,7 +1003,7 @@ const EditWebsitePage = () => {
                               type='text'
                               className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
                               placeholder='https://www.snapchat.com/beweddy'
-                              defaultValue={"idayhfigsidfighdsifh"}
+                              defaultValue={groom.snapchat}
                               {...register('groom_snapchat')}
                             />
                           </div>

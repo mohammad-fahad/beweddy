@@ -268,7 +268,7 @@ const TextInvitesPage = () => {
                           </span>
                         </label>
                       </div>
-                      <div className="flex items-center">
+                      {/* <div className="flex items-center">
                         <input
                           type="radio"
                           id="calenderInvite"
@@ -287,7 +287,7 @@ const TextInvitesPage = () => {
                             Calender Invite
                           </span>
                         </label>
-                      </div>
+                      </div> */}
                     </div>
                     <div className="flex justify-between">
                       <Heading h3 className="!text-sm xl:!text-base !font-bold">
@@ -361,8 +361,8 @@ const TextInvitesPage = () => {
                                       <>
                                         <span
                                           className={`${selected
-                                              ? "font-medium"
-                                              : "font-normal"
+                                            ? "font-medium"
+                                            : "font-normal"
                                             } block truncate`}
                                         >
                                           {country.name}
@@ -370,8 +370,8 @@ const TextInvitesPage = () => {
                                         {selected ? (
                                           <span
                                             className={`${active
-                                                ? "text-amber-600"
-                                                : "text-amber-600"
+                                              ? "text-amber-600"
+                                              : "text-amber-600"
                                               }
                                              inset-y-0 left-0 flex items-center pl-3`}
                                           >
