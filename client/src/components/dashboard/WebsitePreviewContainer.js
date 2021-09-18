@@ -40,7 +40,7 @@ const WebsitePreviewContainer = ({ minimal }) => {
       <div className="w-full max-w-xl mx-auto">
         <Swiper {...params}>
           <div>
-            {user?.email ? (
+            {user?.email && user?.questions?.couplePictures.length > 0 ? (
               <div>
                 <DesktopPreview />
               </div>
@@ -57,7 +57,7 @@ const WebsitePreviewContainer = ({ minimal }) => {
           </div>
 
           <div>
-            {user?.email ? (
+            {user?.email && user?.questions?.couplePictures.length > 0 ? (
               <div>
                 <MobilePreview />
               </div>
@@ -73,7 +73,7 @@ const WebsitePreviewContainer = ({ minimal }) => {
             )}
           </div>
           <div>
-            {user?.email ? (
+            {user?.email && user?.questions?.couplePictures.length > 0 ? (
               <div>
                 <TabPreview />
               </div>
