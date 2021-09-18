@@ -30,6 +30,7 @@ const port = process.env.PORT || 5000;
 const API_VERSION = process.env.API_VERSION || '/api/v1';
 // Bypass cors
 app.use(cors());
+app.options('*', cors());
 
 // const __dirname = path.resolve();
 
@@ -50,6 +51,14 @@ app.use(
     useTempFiles: true,
   })
 );
+
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
 
 // Routes
 app.get('/', (_req, res) => {

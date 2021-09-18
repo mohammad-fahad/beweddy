@@ -3,7 +3,6 @@ import Stripe from 'stripe';
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 // Get All Registry
 export const checkoutSession = asyncHandler(async (req, res) => {
-
   const transformedItem = {
     description: req.body.description,
     quantity: 1,
@@ -24,13 +23,13 @@ export const checkoutSession = asyncHandler(async (req, res) => {
     },
     line_items: [transformedItem],
     mode: 'payment',
-    success_url: 'http://localhost:3000/success',
-    cancel_url: 'http://localhost:3000/cancel',
+    success_url: `${process.env.CLIENT_URL}/success`,
+    cancel_url: `${process.env.CLIENT_URL}/couple/${req.body.cancel}`,
     // metadata: {
     //   email,
     //   images: JSON.stringify(items.map(item => item.image)),
     // },
   });
 
-  res.redirect(303, session.url);
+  res.json(session.url);
 });

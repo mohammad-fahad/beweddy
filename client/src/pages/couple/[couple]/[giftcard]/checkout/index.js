@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useForm } from 'react-hook-form';
-import { Button, Heading } from '@components/shared';
+import { Button, Heading, Loader } from '@components/shared';
 import Image from 'next/image';
 
 import DatePicker from 'react-datepicker';
@@ -19,9 +19,8 @@ import { useRouter } from 'next/router';
 import { attemptPayment } from '@services/Payment';
 
 const CheckoutPage = props => {
-  const dispatch = useDispatch();
-  const [date, setDate] = useState(new Date());
-  const { query } = useRouter();
+  const [loading, setLoading] = useState(false);
+  const { query, push, pathname } = useRouter();
 
   const {
     data: user,
@@ -50,17 +49,28 @@ const CheckoutPage = props => {
   watch(['amount', 'customAmount']);
 
   const onSubmit = async data => {
-   const payload = {
-     description:  gift?.description,
-     title: gift?.title,
-     image: gift?.image,
-     price:data.amount
-   }
-    await attemptPayment(payload)
+    const payload = {
+      description: gift?.description,
+      title: gift?.title,
+      image: gift?.image,
+      price: data.amount,
+      cancel: `${query.couple}/${query.giftcard}/checkout`,
+    };
+    try {
+      setLoading(true);
+      const url = await attemptPayment(payload);
+      if (url) {
+        push(url);
+      }
+    } catch (err) {
+      setLoading(false);
+      console.error(err);
+    }
   };
 
   return (
     <div>
+      {loading && <Loader />}
       <WebsiteNav {...{ user }} />
       <div className='container p-9'>
         <h2 className='flex text-lg leading-5'>
