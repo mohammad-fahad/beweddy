@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Menu, Transition } from '@headlessui/react';
 
 import { useForm } from 'react-hook-form';
 import { Button, Heading } from '@components/shared';
@@ -12,11 +11,29 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Footer } from '@components/home';
 import WebsiteNav from '@components/dashboard/Website/WebsiteNav';
+import { useQuery } from 'react-query';
+import { getCouple } from '@services/Couple';
+import { getGiftById } from '@services/Gift';
+import { API_URL } from '@utils/index';
+import { useRouter } from 'next/router';
 
-const CheckoutPage = () => {
+const CheckoutPage = props => {
   const dispatch = useDispatch();
-  const { user } = useSelector(state => state.user);
   const [date, setDate] = useState(new Date());
+  const { query } = useRouter();
+
+  const {
+    data: user,
+    isLoading,
+    isError,
+  } = useQuery(['couple', query?.couple], getCouple, {
+    initialData: props.user,
+  });
+
+  const { data: gift } = useQuery(['gift', query?.giftcard], getGiftById, {
+    initialData: props.giftCard,
+  });
+
   const {
     register,
     handleSubmit,
@@ -28,11 +45,14 @@ const CheckoutPage = () => {
     shouldFocusError: false,
     shouldUnregister: true,
   });
-  watch(['guestEstimate', 'provider']);
+
+  watch(['amount']);
+
   const onSubmit = data => console.log(data);
+
   return (
     <div>
-      <WebsiteNav />
+      <WebsiteNav {...{ user }} />
       <div className='container p-9'>
         <h2 className='flex text-lg leading-5'>
           <a className='mr-2 text-sm font-semibold text-gray-700 transition duration-300 font-inter md:text-base hover:text-primary'>
@@ -67,7 +87,7 @@ const CheckoutPage = () => {
                   className='w-96 rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
                   value={user?.coupleName}
                   placeholder={user?.coupleName}
-                  {...register('name', {
+                  {...register('coupleName', {
                     required: {
                       value: true,
                       message: 'Name is required!',
@@ -75,13 +95,13 @@ const CheckoutPage = () => {
                   })}
                 />
                 <p className='h-4 mt-2 text-sm font-light text-red-400'>
-                  {errors?.name?.message}
+                  {errors?.coupleName?.message}
                 </p>
 
                 {/* gift image section */}
                 <div>
                   <Image
-                    src='/images/nike.png'
+                    src={gift?.image || 'images/placeholder.webp'}
                     alt='Gift image here'
                     height={280}
                     width={400}
@@ -92,7 +112,7 @@ const CheckoutPage = () => {
                 {/* target section */}
                 <div>
                   <h1 className='text-4xl leading-[44px] text-[#1f1f1f]'>
-                    Target{' '}
+                    {gift?.title}
                   </h1>
                   <h1 className='text-4xl leading-[44px] text-[#1f1f1f] font-bold my-3'>
                     $25-$500
@@ -109,13 +129,13 @@ const CheckoutPage = () => {
                       <div className='flex items-center'>
                         <input
                           type='radio'
-                          id='no'
-                          value='no'
+                          id='20'
+                          value={20}
                           className='hidden'
-                          {...register('rsvp')}
+                          {...register('amount')}
                         />
                         <label
-                          htmlFor='no'
+                          htmlFor='20'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
                           <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
@@ -129,13 +149,13 @@ const CheckoutPage = () => {
                       <div className='flex items-center'>
                         <input
                           type='radio'
-                          id='no'
-                          value='no'
+                          id='25'
+                          value={25}
                           className='hidden'
-                          {...register('rsvp')}
+                          {...register('amount')}
                         />
                         <label
-                          htmlFor='no'
+                          htmlFor='25'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
                           <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
@@ -150,13 +170,13 @@ const CheckoutPage = () => {
                       <div className='flex items-center'>
                         <input
                           type='radio'
-                          id='no'
-                          value='no'
+                          id='50'
+                          value={50}
                           className='hidden'
-                          {...register('rsvp')}
+                          {...register('amount')}
                         />
                         <label
-                          htmlFor='no'
+                          htmlFor='50'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
                           <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
@@ -170,13 +190,13 @@ const CheckoutPage = () => {
                       <div className='flex items-center'>
                         <input
                           type='radio'
-                          id='no'
-                          value='no'
+                          id='100'
+                          value={100}
                           className='hidden'
-                          {...register('rsvp')}
+                          {...register('amount')}
                         />
                         <label
-                          htmlFor='no'
+                          htmlFor='100'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
                           <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
@@ -193,13 +213,13 @@ const CheckoutPage = () => {
                       <div className='flex items-center'>
                         <input
                           type='radio'
-                          id='no'
-                          value='no'
+                          id='150'
+                          value={150}
                           className='hidden'
-                          {...register('rsvp')}
+                          {...register('amount')}
                         />
                         <label
-                          htmlFor='no'
+                          htmlFor='150'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
                           <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
@@ -213,13 +233,13 @@ const CheckoutPage = () => {
                       <div className='flex items-center'>
                         <input
                           type='radio'
-                          id='no'
-                          value='no'
+                          id='200'
+                          value={200}
                           className='hidden'
-                          {...register('rsvp')}
+                          {...register('amount')}
                         />
                         <label
-                          htmlFor='no'
+                          htmlFor='200'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
                           <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
@@ -234,13 +254,13 @@ const CheckoutPage = () => {
                       <div className='flex items-center'>
                         <input
                           type='radio'
-                          id='no'
-                          value='no'
+                          id='250'
+                          value={250}
                           className='hidden'
-                          {...register('rsvp')}
+                          {...register('amount')}
                         />
                         <label
-                          htmlFor='no'
+                          htmlFor='250'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
                           <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
@@ -254,13 +274,13 @@ const CheckoutPage = () => {
                       <div className='flex items-center'>
                         <input
                           type='radio'
-                          id='no'
-                          value='no'
+                          id='500'
+                          value={500}
                           className='hidden'
-                          {...register('rsvp')}
+                          {...register('amount')}
                         />
                         <label
-                          htmlFor='no'
+                          htmlFor='500'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
                           <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
@@ -276,15 +296,15 @@ const CheckoutPage = () => {
                       <input
                         disabled
                         type='text'
-                        value={`${getValues('guestEstimate')}`}
+                        value={`${getValues('amount') || 25}`}
                         className='w-28 text-center rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
                       />
                       <input
                         type='range'
-                        min='2'
+                        min='25'
                         max='2000'
                         className='block text-center rounded-[5px] border-2 w-[230px] border-gray-200 py-3 px-5 text-base font-normal'
-                        {...register('guestEstimate')}
+                        {...register('amount')}
                       />
                     </div>
                   </div>
@@ -293,39 +313,17 @@ const CheckoutPage = () => {
                 {/* input field */}
                 <div className='space-y-3'>
                   <Heading h3 className='!text-[22px] !font-medium'>
-                    Your First Name <span className='text-red-400'>*</span>
+                    Your Name <span className='text-red-400'>*</span>
                   </Heading>
                   <div>
                     <input
                       type='text'
                       className='w-[476px] rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
                       placeholder='Your First Name'
-                      {...register('Fname', {
+                      {...register('name', {
                         required: {
                           value: true,
                           message: 'First Name is required!',
-                        },
-                      })}
-                    />
-                    <p className='h-4 mt-2 text-sm font-light text-red-400'>
-                      {errors?.name?.message}
-                    </p>
-                  </div>
-                </div>
-                {/* input field */}
-                <div className='space-y-3'>
-                  <Heading h3 className='!text-[22px] !font-medium'>
-                    Your Last Name <span className='text-red-400'>*</span>
-                  </Heading>
-                  <div>
-                    <input
-                      type='text'
-                      className='w-[476px] rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
-                      placeholder='Your Last Name'
-                      {...register('Lname', {
-                        required: {
-                          value: true,
-                          message: 'Your Last Name is required!',
                         },
                       })}
                     />
@@ -349,10 +347,15 @@ const CheckoutPage = () => {
                           value: true,
                           message: 'Your E-mail is required!',
                         },
+                        pattern: {
+                          value:
+                            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                          message: 'Must be a valid email address',
+                        },
                       })}
                     />
                     <p className='h-4 mt-2 text-sm font-light text-red-400'>
-                      {errors?.name?.message}
+                      {errors?.email?.message}
                     </p>
                   </div>
                 </div>
@@ -372,18 +375,18 @@ const CheckoutPage = () => {
                       {...register('message')}
                     />
                     <p className='h-4 mt-2 text-sm font-light text-red-400'>
-                      {errors?.name?.message}
+                      {errors?.message?.message}
                     </p>
                   </div>
                 </div>
                 {/* radio buttons */}
-                <div className='flex items-center'>
+                {/* <div className='flex items-center'>
                   <input
                     type='radio'
                     id='day'
                     value='day'
                     className='hidden'
-                    {...register('rsvp')}
+                    {...register('amount')}
                   />
                 </div>
                 <label
@@ -398,7 +401,7 @@ const CheckoutPage = () => {
                   </span>
                 </label>
 
-                {/* datepicker */}
+
 
                 <div className='mt-10 space-y-3'>
                   <Heading h3 className='!text-[22px] !font-medium'>
@@ -415,7 +418,7 @@ const CheckoutPage = () => {
                       {errors?.name?.message}
                     </p>
                   </div>
-                </div>
+                </div> */}
 
                 {/* button section */}
                 <div className='flex gap-5 my-4'>
@@ -444,3 +447,17 @@ const CheckoutPage = () => {
 };
 
 export default CheckoutPage;
+
+export const getServerSideProps = async ({ params: { couple, giftcard } }) => {
+  const res = await fetch(`${API_URL}/users/${couple}`);
+  const resGift = await fetch(`${API_URL}/gifts/${giftcard}`);
+  const user = await res.json();
+  const giftCard = await resGift.json();
+
+  return {
+    props: {
+      user,
+      giftCard,
+    },
+  };
+};

@@ -1,109 +1,166 @@
-import { GlobeAltIcon, LinkIcon, PencilIcon } from '@heroicons/react/outline';
-import Link from 'next/link';
-import Swiper from 'react-id-swiper';
+import { GlobeAltIcon, LinkIcon, PencilIcon } from "@heroicons/react/outline";
+import Link from "next/link";
+import Swiper from "react-id-swiper";
+import { useSelector } from "react-redux";
 
-import SwiperCore, { Lazy, Autoplay } from 'swiper';
+import SwiperCore, { Lazy, Autoplay } from "swiper";
+import DesktopPreview from "./WebsitePreview/DesktopPreview";
+import MobilePreview from "./WebsitePreview/MobilePreview";
+import TabPreview from "./WebsitePreview/TabPreview";
 SwiperCore.use([Lazy, Autoplay]);
 
 const params = {
-  loop: true,
-  autoplay: {
-    delay: 5000,
-    disableOnInteraction: false,
-  },
+  // loop: true,
+  // autoplay: {
+  //   delay: 5000,
+  //   disableOnInteraction: false,
+  // },
 };
 
 const WebsitePreviewContainer = ({ minimal }) => {
+  const { user } = useSelector((state) => state.user);
+  console.log(user?.email);
   return (
     <div
       className={`mt-10 flex flex-col justify-center space-y-10 rounded-xl ${
-        minimal ? '' : 'border-4 border-secondary-alternative gradient'
+        minimal ? "" : "border-4 border-secondary-alternative gradient"
       }`}
       style={{
         background: "url('/images/footer-leaf.png')",
-        backgroundPosition: 'bottom',
-        backgroundSize: '110%',
-        backgroundRepeat: 'no-repeat',
+        backgroundPosition: "bottom",
+        backgroundSize: "110%",
+        backgroundRepeat: "no-repeat",
       }}
     >
       {!minimal && (
-        <h3 className='text-3xl text-center capitalize'>
+        <h3 className="text-3xl text-center capitalize">
           Your wedding website preview
         </h3>
       )}
-      <div className='max-w-xl mx-auto w-full'>
+      <div className="w-full max-w-xl mx-auto">
         <Swiper {...params}>
+        <div> 
+         {user?.email ? (
+            <div>
+              <DesktopPreview />
+            </div>
+          ) : (
+            <div>
+              <img
+                src="/images/wedding-laptop.png"
+                alt=""
+                className="!md:max-h-[444px] mx-auto swiper-lazy"
+              />
+              <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
+            </div>
+          )}
+        </div>
+          
           <div>
-            <img
-              src='/images/wedding-laptop.png'
-              alt=''
-              className='md:max-h-[444px] mx-auto swiper-lazy'
+           {user?.email ? (
+            <div>
+              <MobilePreview />
+            </div>
+          ) : (
+            <div>
+              <img
+              src="/images/wedding-phone.png"
+              alt=""
+              className="!max-h-[250px] !md:max-h-[395px] mx-auto swiper-lazy"
             />
-            <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
+            <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
+            </div>
+          )}
           </div>
           <div>
-            <img
-              src='/images/wedding-phone.png'
-              alt=''
-              className='max-h-[250px] md:max-h-[395px] mx-auto swiper-lazy'
-            />
-            <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
+            {user?.email ? (
+                <div>
+                  <TabPreview />
+                </div>
+              ) : (
+                <div>
+                  <img
+                    src="/images/wedding-macbook.png"
+                    alt=""
+                    className="max-h-[250px] md:max-h-[444px] mx-auto swiper-lazy"
+                  />
+                  <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
+                </div>
+              )}
           </div>
-          <div>
-            <img
-              src='/images/wedding-macbook.png'
-              alt=''
-              className='max-h-[250px] md:max-h-[444px] mx-auto swiper-lazy'
-            />
-            <div className='swiper-lazy-preloader swiper-lazy-preloader-white' />
-          </div>
+          
         </Swiper>
       </div>
-      {/* <div className='flex items-center space-x-5 justify-center'>
-        {minimal && (
-          <Link href='/dashboard/website'>
-            <a
-              className={`capitalize font-inter font-medium border-4 border-secondary-alternative rounded-[5px] ${
-                minimal ? 'bg-secondary-alternative' : 'bg-white'
-              } py-2 px-5 flex items-center space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
-            >
-              <GlobeAltIcon className='w-5 h-5' />
-              <span>Preview Website</span>
-            </a>
-          </Link>
-        )}
-        <Link href='/dashboard/website/edit'>
-          <a
-            className={`capitalize font-inter font-medium border-4 border-secondary-alternative rounded-[5px] ${
-              minimal ? 'bg-secondary-alternative' : 'bg-white'
-            } py-2 px-5 flex items-center space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
-          >
-            <PencilIcon className='w-5 h-5' />
-            <span>Edit your website</span>
-          </a>
-        </Link>
-        {!minimal && (
-          <>
-            <Link href='/'>
-              <a className='capitalize font-inter font-medium border-4 border-secondary-alternative rounded-[5px] bg-white py-2 px-5 flex items-center space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/5 transition duration-300'>
-                <LinkIcon className='w-5 h-5' />
-                <span>Share your website link</span>
-              </a>
-            </Link>
-            <Link href='/'>
-              <a className='relative capitalize font-inter font-medium border-4 border-secondary-alternative rounded-[5px] bg-white py-2 px-5 flex items-center space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/5 transition duration-300'>
-                <LinkIcon className='w-5 h-5' />
-                <span>We need your address</span>
-                <span className='absolute -bottom-7 left-[-0.8rem] font-light text-sm text-gray-400 capitalize'>
-                  Share with guests
-                </span>
-              </a>
-            </Link>
-          </>
-        )}
-      </div> */}
     </div>
   );
 };
 
 export default WebsitePreviewContainer;
+
+// import { GlobeAltIcon, LinkIcon, PencilIcon } from "@heroicons/react/outline";
+// import Link from "next/link";
+// import Swiper from "react-id-swiper";
+
+// import SwiperCore, { Lazy, Autoplay } from "swiper";
+// import { useSelector } from 'react-redux';
+SwiperCore.use([Lazy, Autoplay]);
+
+// const params = {
+//   loop: true,
+//   autoplay: {
+//     delay: 5000,
+//     disableOnInteraction: false,
+//   },
+// };
+
+// const WebsitePreviewContainer = ({ minimal }) => {
+//   return (
+//     <div
+//       className={`mt-10 flex flex-col justify-center space-y-10 rounded-xl ${
+//         minimal ? "" : "border-4 border-secondary-alternative gradient"
+//       }`}
+//       style={{
+//         background: "url('/images/footer-leaf.png')",
+//         backgroundPosition: "bottom",
+//         backgroundSize: "110%",
+//         backgroundRepeat: "no-repeat",
+//       }}
+//     >
+//       {!minimal && (
+//         <h3 className="text-3xl text-center capitalize">
+//           Your wedding website preview
+//         </h3>
+//       )}
+//       <div className="w-full max-w-xl mx-auto">
+//         <Swiper {...params}>
+//           <div>
+//             <img
+//               src="/images/wedding-laptop.png"
+//               alt=""
+//               className="md:max-h-[444px] mx-auto swiper-lazy"
+//             />
+//             <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
+//           </div>
+//           <div>
+//             <img
+//               src="/images/wedding-phone.png"
+//               alt=""
+//               className="max-h-[250px] md:max-h-[395px] mx-auto swiper-lazy"
+//             />
+//             <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
+//           </div>
+//           <div>
+//             <img
+//               src="/images/wedding-macbook.png"
+//               alt=""
+//               className="max-h-[250px] md:max-h-[444px] mx-auto swiper-lazy"
+//             />
+//             <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
+//           </div>
+//         </Swiper>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default WebsitePreviewContainer;

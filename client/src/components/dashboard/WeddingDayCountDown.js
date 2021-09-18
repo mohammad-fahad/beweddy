@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
-const WeddingDayCountDown = ({ sm, couple }) => {
-  const { user: userCouple } = useSelector(state => state.user);
+const WeddingDayCountDown = ({ sm, couple, preview }) => {
+  const { user: userCouple } = useSelector((state) => state.user);
   const user = couple || userCouple;
   const [days, setDays] = useState(0);
   const [hours, setHours] = useState(0);
@@ -40,49 +40,53 @@ const WeddingDayCountDown = ({ sm, couple }) => {
     <div className={`flex items-center justify-center flex-wrap gap-3`}>
       <div
         className={`flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg ${
-          sm ? 'min-w-[60px] py-[7px]' : 'min-w-[103px] py-5'
-        }`}
+          sm ? "min-w-[60px] py-[7px]" : "min-w-[103px] py-5"
+        } ${preview ? "countDownBorder" : ""}`}
       >
-        <h4 className={`${sm ? 'text-[12px]' : 'text-2xl'} font-bold`}>
+        <h4
+          className={`${sm ? "text-[12px]" : "text-2xl"}  ${
+            preview ? "countDownBorder" : ""
+          } font-bold`}
+        >
           {days < 10 ? `0${days}` : days}
         </h4>
-        <p className={`${sm ? 'text-[9px]' : 'text-base'}  font-normal`}>
+        <p className={`${sm ? "text-[9px]" : "text-base"}  font-normal`}>
           Days
         </p>
       </div>
       <div
         className={`flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg ${
-          sm ? 'min-w-[60px] py-[7px]' : 'min-w-[103px] py-5'
-        }`}
+          sm ? "min-w-[60px] py-[7px]" : "min-w-[103px] py-5"
+        } ${preview ? "countDownBorder" : ""}`}
       >
-        <h4 className={`${sm ? 'text-[12px]' : 'text-2xl'} font-bold`}>
+        <h4 className={`${sm ? "text-[12px]" : "text-2xl"} font-bold`}>
           {hours < 10 ? `0${hours}` : hours}
         </h4>
-        <p className={`${sm ? 'text-[9px]' : 'text-base'}  font-normal`}>
+        <p className={`${sm ? "text-[9px]" : "text-base"}  font-normal`}>
           Hours
         </p>
       </div>
       <div
         className={`flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg ${
-          sm ? 'min-w-[60px] py-[7px]' : 'min-w-[103px] py-5'
-        }`}
+          sm ? "min-w-[60px] py-[7px]" : "min-w-[103px] py-5"
+        } ${preview ? "countDownBorder" : ""}`}
       >
-        <h4 className={`${sm ? 'text-[12px]' : 'text-2xl'} font-bold`}>
+        <h4 className={`${sm ? "text-[12px]" : "text-2xl"} font-bold`}>
           {minutes < 10 ? `0${minutes}` : minutes}
         </h4>
-        <p className={`${sm ? 'text-[9px]' : 'text-base'}  font-normal`}>
+        <p className={`${sm ? "text-[9px]" : "text-base"}  font-normal`}>
           Minutes
         </p>
       </div>
       <div
         className={`flex flex-col items-center justify-center border-2 border-secondary-alternative rounded-lg ${
-          sm ? 'min-w-[60px] py-[7px]' : 'min-w-[103px] py-5'
-        }`}
+          sm ? "min-w-[60px] py-[7px]" : "min-w-[103px] py-5"
+        } ${preview ? "countDownBorder" : ""}`}
       >
-        <h4 className={`${sm ? 'text-[12px]' : 'text-2xl'} font-bold`}>
+        <h4 className={`${sm ? "text-[12px]" : "text-2xl"} font-bold`}>
           {seconds < 10 ? `0${seconds}` : seconds}
         </h4>
-        <p className={`${sm ? 'text-[9px]' : 'text-base'}  font-normal`}>
+        <p className={`${sm ? "text-[9px]" : "text-base"}  font-normal`}>
           Seconds
         </p>
       </div>
