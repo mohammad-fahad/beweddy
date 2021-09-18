@@ -1,24 +1,24 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import { DashboardHeader, WeddingDayCountDown } from '@components/dashboard';
-import DashboardTopBar from '@components/dashboard/header/TopBar';
-import DashboardLayout from '@components/dashboard/layout';
-import { Footer } from '@components/index';
-import { LinkIcon } from '@heroicons/react/outline';
-import WebsiteNav from '@components/dashboard/Website/WebsiteNav';
-import { useSelector } from 'react-redux';
-import WebsiteGiftCards from '@components/dashboard/Website/WebsiteGiftCard';
-import WebsiteRegistry from '@components/dashboard/Website/websiteRegistry';
-import SocialSection from '@components/dashboard/Website/SocialSection';
-import { useState } from 'react';
-import { QRCode } from 'react-qrcode-logo';
-import WebsiteVideo from '@components/dashboard/Website/WebsiteVideo';
-import Swiper from 'react-id-swiper';
-import { Image } from 'cloudinary-react';
-import SwiperCore, { Lazy, Autoplay } from 'swiper';
+import Head from "next/head";
+import Link from "next/link";
+import { DashboardHeader, WeddingDayCountDown } from "@components/dashboard";
+import DashboardTopBar from "@components/dashboard/header/TopBar";
+import DashboardLayout from "@components/dashboard/layout";
+import { Footer } from "@components/index";
+import { LinkIcon } from "@heroicons/react/outline";
+import WebsiteNav from "@components/dashboard/Website/WebsiteNav";
+import { useSelector } from "react-redux";
+import WebsiteGiftCards from "@components/dashboard/Website/WebsiteGiftCard";
+import WebsiteRegistry from "@components/dashboard/Website/websiteRegistry";
+import SocialSection from "@components/dashboard/Website/SocialSection";
+import { useState } from "react";
+import { QRCode } from "react-qrcode-logo";
+import WebsiteVideo from "@components/dashboard/Website/WebsiteVideo";
+import Swiper from "react-id-swiper";
+import { Image } from "cloudinary-react";
+import SwiperCore, { Lazy, Autoplay } from "swiper";
 
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
 SwiperCore.use([Lazy, Autoplay]);
 
@@ -32,7 +32,7 @@ const params = {
 
 const WebsitePageOne = () => {
   const { user } = useSelector((state) => state.user);
-  const [value, setValue] = useState('https://beweddy-delta.vercel.app/');
+  const [value, setValue] = useState("https://beweddy-delta.vercel.app/");
 
   return (
     <>
@@ -134,7 +134,7 @@ const WebsitePageOne = () => {
 
           <div className="flex items-center justify-center py-2 md:py-5 ">
             <p className="font-medium text-center text-md md:text-2xl">
-              we are getting married
+              We’re Getting Married!
             </p>
           </div>
 
@@ -231,7 +231,7 @@ const WebsitePageOne = () => {
                 <div class="col-start-2 col-span-5 p-5 text-lg font-semibold subTitle">
                   <h4 className="text-lg">Receptions</h4>
                   <h6 className="miniTitle">
-                    Date 1 : {user?.questions?.weddingDay?.firstReception}{' '}
+                    Date 1 : {user?.questions?.weddingDay?.firstReception}{" "}
                   </h6>
 
                   {user?.questions?.weddingDay?.secondReception && (
