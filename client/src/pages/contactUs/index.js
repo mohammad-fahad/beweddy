@@ -9,8 +9,14 @@ const index = () => {
     register,
     handleSubmit,
     watch,
+    reset
     formState: { errors },
   } = useForm();
+
+  const onSubmit = (data) => {
+    console.log({ data });
+
+  }
 
   return (
     <div>
