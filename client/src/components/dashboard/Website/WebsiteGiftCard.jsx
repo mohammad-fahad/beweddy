@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Fragment, useEffect, useState } from 'react';
 import { useMediaQuery } from '@react-hook/media-query';
 
-const WebsiteGiftCards = ({ giftCards }) => {
+const WebsiteGiftCards = ({ giftCards,couple }) => {
   const [pushItemTo, setPushItemTo] = useState(0);
   const [col, setCol] = useState(4);
   const [showTooltip, setShowTooltip] = useState(false);

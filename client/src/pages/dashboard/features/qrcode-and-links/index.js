@@ -164,7 +164,7 @@ const QRCodePage = () => {
                         href={user?.qrCode}
                         download={`${user?.coupleName}`}
                         className="w-full sm:w-max  font-inter cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-5 lg:px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition duration-300 hover:bg-secondary-alternative/30 hover:border-primary"
-                        // onClick={download}
+                      // onClick={download}
                       >
                         Download Your QR Code
                       </a>
@@ -326,7 +326,7 @@ const QRCodePage = () => {
       <CropImage
         onSave={onCropSave}
         selectedFile={selectedImageFile}
-        // aspectRatio={1 / 1}
+      // aspectRatio={1 / 1}
       />
       <Footer hideSocial />
     </>

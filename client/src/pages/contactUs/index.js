@@ -3,16 +3,28 @@ import { Header, Heading } from '@components/shared';
 import CenterTitle from '@components/shared/CenterTitle';
 import { useForm } from 'react-hook-form';
 import React from 'react';
-
+import { useDispatch, useSelector } from 'react-redux';
 const index = () => {
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  // const onSubmit = (data) => {
+  //   contactMessage(data)
+  //   console.log({ data });
+  // }
+  const dispatch = useDispatch();
+
+  const onSubmit = async (data) => {
+    dispatch(contactMessage(data));
+    // await client.invalidateQueries('guests');
+    // push(`/couple/${user?.username}`);
+  };
+
 
   return (
     <div>
@@ -55,7 +67,12 @@ const index = () => {
                   type='text'
                   name='name'
                   placeholder='Your full Name'
-                  {...register('name')}
+                  {...register('name', {
+                    required: {
+                      value: true,
+                      message: 'Name is required!',
+                    }
+                  })}
                   className='w-full text-sm md:text-lg font-normal rounded-[5px] p-4 placeholder-gray-400 border-[1px] border-primary'
                 />
               </div>
@@ -70,7 +87,14 @@ const index = () => {
                   type='text'
                   name='email'
                   placeholder='your@email.com'
-                  {...register('email', { required: true })}
+
+                  {...register('email', {
+                    required: {
+                      value: true,
+                      message: 'Email is required!',
+                    }
+                  })}
+
                   className='w-full text-sm md:text-lg font-normal rounded-[5px] p-4 placeholder-gray-400 border-[1px] border-primary'
                 />
                 {errors.email && <span>This field is required</span>}
@@ -83,10 +107,10 @@ const index = () => {
                 </div>
                 <input
                   defaultValue=''
-                  type='number'
+                  type='tel'
                   name='number'
                   placeholder='Your Contact Number'
-                  {...register('number', { required: true })}
+                  {...register('number')}
                   className='w-full text-sm md:text-lg font-normal rounded-[5px] p-4 placeholder-gray-400 border-[1px] border-primary'
                 />
                 {errors.number && <span>This field is required</span>}
@@ -101,7 +125,7 @@ const index = () => {
                 <textarea
                   cols='6'
                   rows='4'
-                  className='rounded-[5px] focus:border-purple-100 p-4 w-full placeholder-[#c6c6ct] font-medium text-lg scroll-design'
+                  className='rounded-[5px] focus:border-purple-100 p-4 w-full placeholder-gray-400  font-medium text-lg scroll-design'
                   defaultValue=''
                   placeholder='Write your message here. We Will response quickly'
                   {...register('message', {
