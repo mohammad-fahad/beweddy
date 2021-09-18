@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import Link from 'next/link';
 
 import { useForm } from 'react-hook-form';
 import { Button, Heading, Loader } from '@components/shared';
@@ -56,6 +56,7 @@ const CheckoutPage = props => {
       price: data.amount,
       cancel: `${query.couple}/${query.giftcard}/checkout`,
     };
+
     try {
       setLoading(true);
       const url = await attemptPayment(payload);
@@ -136,16 +137,21 @@ const CheckoutPage = props => {
                   <h4 className='text-4xl leading-[44px] text-[#1f1f1f] font-bold my-3'>
                     $25-$500
                   </h4>
-                  <h2 className='text-lg text-[#000000] my-3'>
-                    See full gift card information and terms
-                  </h2>
+                  <p className='text-lg text-[#000000] my-3 font-light'>
+                    See full gift card{' '}
+                    <Link href='#'>
+                      <a className='font-semibold capitalize hover:underline'>
+                        information and terms
+                      </a>
+                    </Link>
+                  </p>
 
                   <div className='my-8'>
-                    <h2 className='text-lg text-[#000000] my-3'>
+                    <h4 className='text-lg text-[#000000] my-3'>
                       Choose Amount
-                    </h2>
-                    <div className='flex gap-3'>
-                      <div className='flex items-center'>
+                    </h4>
+                    <div className='flex space-x-3'>
+                      <div className='flex items-center select-amount'>
                         <input
                           type='radio'
                           id='20'
@@ -157,15 +163,15 @@ const CheckoutPage = props => {
                           htmlFor='20'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
-                          <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
-                            <span className='text-lg font-light font-inter'>
+                          <div className='checked-outer border-[2px] rounded-[5px] border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
+                            <span className='text-lg font-semibold font-inter'>
                               $20
                             </span>
                           </div>
                         </label>
                       </div>
                       {/* 2nd part */}
-                      <div className='flex items-center'>
+                      <div className='flex items-center select-amount'>
                         <input
                           type='radio'
                           id='25'
@@ -177,8 +183,8 @@ const CheckoutPage = props => {
                           htmlFor='25'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
-                          <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
-                            <span className='text-lg font-light font-inter'>
+                          <div className='checked-outer border-[2px] rounded-[5px] border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
+                            <span className='text-lg font-semibold font-inter'>
                               $25
                             </span>
                           </div>
@@ -186,7 +192,7 @@ const CheckoutPage = props => {
                       </div>
                       {/* 3rd part */}
                       {/* <span className="">$20</span> */}
-                      <div className='flex items-center'>
+                      <div className='flex items-center select-amount'>
                         <input
                           type='radio'
                           id='50'
@@ -198,15 +204,15 @@ const CheckoutPage = props => {
                           htmlFor='50'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
-                          <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
-                            <span className='text-lg font-light font-inter'>
+                          <div className='checked-outer border-[2px] rounded-[5px] border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
+                            <span className='text-lg font-semibold font-inter'>
                               $50
                             </span>
                           </div>
                         </label>
                       </div>
                       {/* 4th radio button */}
-                      <div className='flex items-center'>
+                      <div className='flex items-center select-amount'>
                         <input
                           type='radio'
                           id='100'
@@ -218,8 +224,8 @@ const CheckoutPage = props => {
                           htmlFor='100'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
-                          <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
-                            <span className='text-lg font-light font-inter'>
+                          <div className='checked-outer border-[2px] rounded-[5px] border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
+                            <span className='text-lg font-semibold font-inter'>
                               $100
                             </span>
                           </div>
@@ -229,7 +235,7 @@ const CheckoutPage = props => {
 
                     {/* 2nd button group start here */}
                     <div className='flex gap-3 my-4'>
-                      <div className='flex items-center'>
+                      <div className='flex items-center select-amount'>
                         <input
                           type='radio'
                           id='150'
@@ -241,15 +247,15 @@ const CheckoutPage = props => {
                           htmlFor='150'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
-                          <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
-                            <span className='text-lg font-light font-inter'>
+                          <div className='checked-outer border-[2px] rounded-[5px] border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
+                            <span className='text-lg font-semibold font-inter'>
                               $150
                             </span>
                           </div>
                         </label>
                       </div>
                       {/* 2nd part */}
-                      <div className='flex items-center'>
+                      <div className='flex items-center select-amount'>
                         <input
                           type='radio'
                           id='200'
@@ -261,8 +267,8 @@ const CheckoutPage = props => {
                           htmlFor='200'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
-                          <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
-                            <span className='text-lg font-light font-inter'>
+                          <div className='checked-outer border-[2px] rounded-[5px] border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
+                            <span className='text-lg font-semibold font-inter'>
                               $200
                             </span>
                           </div>
@@ -270,7 +276,7 @@ const CheckoutPage = props => {
                       </div>
                       {/* 3rd part */}
                       {/* <span className="">$20</span> */}
-                      <div className='flex items-center'>
+                      <div className='flex items-center select-amount'>
                         <input
                           type='radio'
                           id='250'
@@ -282,15 +288,15 @@ const CheckoutPage = props => {
                           htmlFor='250'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
-                          <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
-                            <span className='text-lg font-light font-inter'>
+                          <div className='checked-outer border-[2px] rounded-[5px] border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
+                            <span className='text-lg font-semibold font-inter'>
                               $250
                             </span>
                           </div>
                         </label>
                       </div>
                       {/* 4th radio button */}
-                      <div className='flex items-center'>
+                      <div className='flex items-center select-amount'>
                         <input
                           type='radio'
                           id='500'
@@ -302,8 +308,8 @@ const CheckoutPage = props => {
                           htmlFor='500'
                           className='flex items-center space-x-3 cursor-pointer'
                         >
-                          <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
-                            <span className='text-lg font-light font-inter'>
+                          <div className='checked-outer border-[2px] rounded-[5px] border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
+                            <span className='text-lg font-semibold font-inter'>
                               $500
                             </span>
                           </div>
@@ -312,7 +318,7 @@ const CheckoutPage = props => {
                     </div>
                     {/* radio button */}
                     <div className='space-y-3 !mt-2'>
-                      <div className='flex items-center'>
+                      <div className='flex items-center select-amount'>
                         <input
                           type='radio'
                           id={`${getValues('customAmount')}`}
@@ -324,8 +330,8 @@ const CheckoutPage = props => {
                           htmlFor={`${getValues('customAmount')}`}
                           className='flex items-center space-x-3 cursor-pointer'
                         >
-                          <div className='checked-outer border-[2px] rounded-sm border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
-                            <span className='text-lg font-light font-inter'>
+                          <div className='checked-outer border-[2px] rounded-[5px] border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
+                            <span className='text-lg font-semibold font-inter'>
                               ${getValues('customAmount')}
                             </span>
                           </div>
@@ -344,71 +350,74 @@ const CheckoutPage = props => {
 
                 {/* input field */}
                 <div className='space-y-3'>
-                  <Heading h3 className='!text-[22px] !font-medium'>
-                    Your Name <span className='text-red-400'>*</span>
-                  </Heading>
-                  <div>
-                    <input
-                      type='text'
-                      className='w-[476px] rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
-                      placeholder='Your First Name'
-                      {...register('name', {
-                        required: {
-                          value: true,
-                          message: 'Name is required!',
-                        },
-                      })}
-                    />
-                    <p className='h-4 mt-2 text-sm font-light text-red-400'>
-                      {errors?.name?.message}
-                    </p>
+                  <div className='space-y-3'>
+                    <Heading h3 className='!text-[22px] !font-medium'>
+                      Your Name <span className='text-red-400'>*</span>
+                    </Heading>
+                    <div>
+                      <input
+                        type='text'
+                        className='w-[476px] rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
+                        placeholder='Your First Name'
+                        {...register('name', {
+                          required: {
+                            value: true,
+                            message: 'Name is required!',
+                          },
+                        })}
+                      />
+                      <p className='h-4 mt-2 text-sm font-light text-red-400'>
+                        {errors?.name?.message}
+                      </p>
+                    </div>
                   </div>
-                </div>
 
-                <div className='space-y-3'>
-                  <Heading h3 className='!text-[22px] !font-medium'>
-                    Your Email Address* <span className='text-red-400'>*</span>
-                  </Heading>
-                  <div>
-                    <input
-                      type='text'
-                      className='w-[476px] rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
-                      placeholder='Your Email Address'
-                      {...register('email', {
-                        required: {
-                          value: true,
-                          message: 'Your E-mail is required!',
-                        },
-                        pattern: {
-                          value:
-                            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                          message: 'Must be a valid email address',
-                        },
-                      })}
-                    />
-                    <p className='h-4 mt-2 text-sm font-light text-red-400'>
-                      {errors?.email?.message}
-                    </p>
+                  <div className='space-y-3'>
+                    <Heading h3 className='!text-[22px] !font-medium'>
+                      Your Email Address*{' '}
+                      <span className='text-red-400'>*</span>
+                    </Heading>
+                    <div>
+                      <input
+                        type='text'
+                        className='w-[476px] rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
+                        placeholder='Your Email Address'
+                        {...register('email', {
+                          required: {
+                            value: true,
+                            message: 'Your E-mail is required!',
+                          },
+                          pattern: {
+                            value:
+                              /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                            message: 'Must be a valid email address',
+                          },
+                        })}
+                      />
+                      <p className='h-4 mt-2 text-sm font-light text-red-400'>
+                        {errors?.email?.message}
+                      </p>
+                    </div>
                   </div>
-                </div>
 
-                <div className='space-y-3'>
-                  <Heading h3 className='!text-[22px] !font-medium'>
-                    Personal Message <span className='text-red-400'>*</span>
-                  </Heading>
-                  <div>
-                    <textarea
-                      cols='6'
-                      rows='5'
-                      className='rounded-[5px] p-3 w-[476px] placeholder-[#BDBDBD] font-medium text-lg'
-                      defaultValue=''
-                      placeholder={`Hope you enjoy this gift! I am so happy and excited for you
+                  <div className='space-y-3'>
+                    <Heading h3 className='!text-[22px] !font-medium'>
+                      Personal Message <span className='text-red-400'>*</span>
+                    </Heading>
+                    <div>
+                      <textarea
+                        cols='6'
+                        rows='5'
+                        className='rounded-[5px] p-3 w-[476px] placeholder-[#BDBDBD] font-medium text-lg'
+                        defaultValue=''
+                        placeholder={`Hope you enjoy this gift! I am so happy and excited for you
 - Love the Smith Family`}
-                      {...register('message')}
-                    />
-                    <p className='h-4 mt-2 text-sm font-light text-red-400'>
-                      {errors?.message?.message}
-                    </p>
+                        {...register('message')}
+                      />
+                      <p className='h-4 mt-2 text-sm font-light text-red-400'>
+                        {errors?.message?.message}
+                      </p>
+                    </div>
                   </div>
                 </div>
                 {/* radio buttons */}

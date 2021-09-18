@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Fragment, useEffect, useState } from 'react';
 import { useMediaQuery } from '@react-hook/media-query';
 
-const WebsiteGiftCards = ({ giftCards,couple }) => {
+const WebsiteGiftCards = ({ giftCards, couple }) => {
   const [pushItemTo, setPushItemTo] = useState(0);
   const [col, setCol] = useState(4);
   const [showTooltip, setShowTooltip] = useState(false);
@@ -32,7 +32,7 @@ const WebsiteGiftCards = ({ giftCards,couple }) => {
       <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-5 md:gap-10 mx-auto w-full'>
         {giftCards?.map(giftCard => (
           <Link href={`/couple/${couple?.username}/${giftCard?._id}/checkout`}>
-            <a>
+            <a className='hover:scale-110 transition duration-300'>
               <Image
                 width={245}
                 height={157}

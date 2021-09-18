@@ -61,6 +61,12 @@
     @apply bg-secondary-alternative;
   }
 
+  .select-amount [type='radio']:checked + label .checked-outer,
+  .select-amount [type='radio']:checked:hover + label .checked-outer,
+  .select-amount [type='radio']:checked:focus + label .checked-outer {
+    @apply bg-[#FFF7F9] border-[#F9D1DE];
+  }
+
   [type='checkbox']:checked,
   [type='checkbox']:checked:hover,
   [type='checkbox']:checked:focus {

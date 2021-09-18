@@ -66,22 +66,22 @@ const EditWebsitePage = () => {
     user.receptionDetails.length
       ? user.receptionDetails
       : [
-        {
-          id: generate(),
-          time: '5.00 PM',
-          details: 'Example of event details',
-        },
-        {
-          id: generate(),
-          time: '5.30 PM',
-          details: 'Ceremony',
-        },
-        {
-          id: generate(),
-          time: '6.00 PM',
-          details: 'Ceremony ends/cocktails begin',
-        },
-      ]
+          {
+            id: generate(),
+            time: '5.00 PM',
+            details: 'Example of event details',
+          },
+          {
+            id: generate(),
+            time: '5.30 PM',
+            details: 'Ceremony',
+          },
+          {
+            id: generate(),
+            time: '6.00 PM',
+            details: 'Ceremony ends/cocktails begin',
+          },
+        ]
   );
   const { groom, bride } = user.socialAccounts;
 
@@ -119,7 +119,11 @@ const EditWebsitePage = () => {
     formState: { errors },
   } = useForm({
     mode: 'all',
-    defaultValues: { ...user.questions, ourStory: user.ourStory, location: user.location },
+    defaultValues: {
+      ...user.questions,
+      ourStory: user.ourStory,
+      location: user.location,
+    },
     shouldFocusError: false,
     shouldUnregister: true,
   });
@@ -335,7 +339,7 @@ const EditWebsitePage = () => {
             <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
               Name (you & your spouse name)
             </h4>
-            <form className='space-y-10' onSubmit={handleSubmit(onSubmit)}>
+            <form className='space-y-7' onSubmit={handleSubmit(onSubmit)}>
               <div className='space-y-2'>
                 <div className='flex flex-wrap items-center gap-5'>
                   <input
@@ -383,7 +387,12 @@ const EditWebsitePage = () => {
                   />
                 </div>
                 <div className='!mt-5'>
-                  <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
+                  <button
+                    className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
+                    type='submit'
+                  >
+                    Save
+                  </button>
                 </div>
               </div>
 
@@ -441,7 +450,12 @@ const EditWebsitePage = () => {
                     </motion.div>
                   ))}
                 </motion.div>
-                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
+                <button
+                  className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
+                  type='submit'
+                >
+                  Save
+                </button>
               </div>
 
               <Divider />
@@ -449,7 +463,7 @@ const EditWebsitePage = () => {
               <div className='space-y-5'>
                 {/* <Heading h3>Pick your wedding date</Heading> */}
 
-                <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
+                <h4 className='text-[24px] font-medium capitalize mudiumTitle'>
                   Pick your wedding date
                 </h4>
 
@@ -471,7 +485,7 @@ const EditWebsitePage = () => {
                   />
                 </div>
 
-                <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
+                <h4 className='text-[24px] font-medium capitalize mudiumTitle'>
                   Pick your Reception date
                 </h4>
                 <div className='flex flex-wrap items-center gap-5'>
@@ -510,7 +524,12 @@ const EditWebsitePage = () => {
                   </div>
                 </div>
                 <div>
-                  <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
+                  <button
+                    className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
+                    type='submit'
+                  >
+                    Save
+                  </button>
                 </div>
               </div>
 
@@ -519,7 +538,7 @@ const EditWebsitePage = () => {
               <div className='space-y-5'>
                 <div className='flex items-center justify-between space-x-5'>
                   {/* <Heading h3></Heading> */}
-                  <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
+                  <h4 className='text-[24px] font-medium capitalize mudiumTitle'>
                     Our story
                   </h4>
                 </div>
@@ -531,20 +550,25 @@ const EditWebsitePage = () => {
                   {...register('ourStory')}
                 ></textarea>
 
-                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
+                <button
+                  className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
+                  type='submit'
+                >
+                  Save
+                </button>
               </div>
 
               <Divider />
-              <div className='space-y-5'>
+              <div className='space-y-5 flex flex-col'>
                 <div className='flex items-center justify-between space-x-5'>
-
-                  <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
+                  <h4 className='text-[24px] font-medium capitalize mudiumTitle'>
                     Location Name &amp; Address
                   </h4>
                 </div>
                 <input
                   type='text'
                   className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal'
+                  placeholder='Enter your location'
                   {...register('location', {
                     required: {
                       value: true,
@@ -552,15 +576,21 @@ const EditWebsitePage = () => {
                     },
                   })}
                 />
-
-                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
+                <div>
+                  <button
+                    className='inline-block border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
+                    type='submit'
+                  >
+                    Save
+                  </button>
+                </div>
               </div>
 
               <Divider />
 
               <div className='space-y-5'>
                 <div className='flex items-center justify-between space-x-5'>
-                  <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
+                  <h4 className='text-[24px] font-medium capitalize mudiumTitle'>
                     Reception Details
                   </h4>
                   {/* <button className='px-5 py-2'>
@@ -631,7 +661,12 @@ const EditWebsitePage = () => {
                   <PlusIcon className='h-5 w-7' />
                   <span>Add New</span>
                 </button>
-                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
+                <button
+                  className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
+                  type='submit'
+                >
+                  Save
+                </button>
               </div>
 
               <Divider />
@@ -693,13 +728,18 @@ const EditWebsitePage = () => {
                 </Link>
               </div>
 
-              <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
+              <button
+                className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
+                type='submit'
+              >
+                Save
+              </button>
 
               <Divider />
 
               <div className='space-y-5'>
                 {/* <Heading h3></Heading> */}
-                <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
+                <h4 className='text-[24px] font-medium capitalize mudiumTitle'>
                   Connect your registry
                 </h4>
                 <div className='flex items-center space-y-3'>
@@ -770,7 +810,12 @@ const EditWebsitePage = () => {
                   </a>
                 </Link>
                 <div>
-                  <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
+                  <button
+                    className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
+                    type='submit'
+                  >
+                    Save
+                  </button>
                 </div>
               </div>
 
@@ -1300,7 +1345,12 @@ const EditWebsitePage = () => {
                 </div>
               </div>
               <div>
-                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
+                <button
+                  className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
+                  type='submit'
+                >
+                  Save
+                </button>
               </div>
 
               <Divider />
