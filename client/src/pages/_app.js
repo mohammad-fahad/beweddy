@@ -11,10 +11,21 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import 'swiper/swiper.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../styles/globals.css';
+import { useEffect } from 'react';
+import { Router } from 'next/router';
 
 export const client = new QueryClient();
 
 function MyApp({ Component, router, pageProps }) {
+  useEffect(() => {
+    Router.events.on('routeChangeComplete', () => {
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'smooth',
+      });
+    });
+  }, []);
   return (
     <QueryClientProvider {...{ client }}>
       <Provider {...{ store }}>
