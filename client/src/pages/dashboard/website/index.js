@@ -244,8 +244,8 @@ const WebsitePageOne = () => {
               <div class="col-span-5 p-5 flex justify-end">
                 <div>
                   <h2 className="text-lg">Locations</h2>
-                  <h6 className="miniTitle">Utah Convention Hall</h6>
-                  <h6 className="miniTitle">Utah, USA</h6>
+                  <h6 className="miniTitle">{user?.location}</h6>
+                  {/* <h6 className="miniTitle">Utah, USA</h6> */}
                 </div>
               </div>
             </div>

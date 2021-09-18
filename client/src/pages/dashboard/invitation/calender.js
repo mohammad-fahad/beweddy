@@ -94,7 +94,7 @@ const CalendarPage = () => {
     mode: 'all',
     defaultValues: {
       summary: `${user?.coupleName}'s Wedding Day`,
-      location: '',
+      location: `${user?.location}`,
       description: `${val}`,
     },
   });

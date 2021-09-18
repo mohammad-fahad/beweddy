@@ -43,9 +43,8 @@ export const register = asyncHandler(async (req, res) => {
     throw new Error('User already exists');
   }
 
-  const username = `${questions.firstName}_${
-    questions.spouseFirstName
-  }_${nanoid(4)}`
+  const username = `${questions.firstName}_${questions.spouseFirstName
+    }_${nanoid(4)}`
     .toLowerCase()
     .replace(/\s/g, '');
   // Create new user
@@ -115,9 +114,8 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       res.status(400);
       throw new Error('User already exists');
     }
-    const username = `${questions.firstName}_${
-      questions.spouseFirstName
-    }_${nanoid(4)}`
+    const username = `${questions.firstName}_${questions.spouseFirstName
+      }_${nanoid(4)}`
       .toLowerCase()
       .replace(/\s/g, '');
     // If not user exists then create new user
@@ -212,6 +210,7 @@ export const googleSignIn = asyncHandler(async (req, res) => {
         phone: user.phone,
         questions: user.questions,
         avatar: user.avatar,
+        location: user.location,
         ourStory: user.ourStory,
         qrCode: user.qrCode,
         qrCodeAvatar: user.qrCodeAvatar,
@@ -274,6 +273,7 @@ export const activeUser = asyncHandler(async (req, res) => {
         username: user.username,
         email: user.email,
         phone: user.phone,
+        location: user.location,
         questions: user.questions,
         avatar: user.avatar,
         ourStory: user.ourStory,
@@ -334,6 +334,7 @@ export const login = asyncHandler(async (req, res) => {
         questions: user.questions,
         avatar: user.avatar,
         ourStory: user.ourStory,
+        location: user.location,
         qrCode: user.qrCode,
         qrCodeAvatar: user.qrCodeAvatar,
         receptionDetails: user.receptionDetails,
@@ -426,6 +427,7 @@ export const getUserProfile = asyncHandler(async (req, res) => {
         email: user.email,
         phone: user.phone,
         questions: user.questions,
+        location: user.location,
         avatar: user.avatar,
         ourStory: user.ourStory,
         qrCode: user.qrCode,
@@ -472,6 +474,10 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     user.firstName = req.body.firstName || user.firstName;
     user.lastName = req.body.lastName || user.lastName;
     user.questions = questions || user.questions;
+    if (req.body.location) {
+      user.location = req.body.location
+    }
+
     // user.avatar = req.body.avatar || user.avatar;
     user.ourStory = req.body.ourStory || user.ourStory;
     user.receptionDetails = req.body.receptionDetails || user.receptionDetails;
@@ -537,6 +543,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
         phone: updateUser.phone,
         questions: updateUser.questions,
         avatar: updateUser.avatar,
+        location: updateUser.location,
         ourStory: updateUser.ourStory,
         qrCode: updateUser.qrCode,
         qrCodeAvatar: updateUser.qrCodeAvatar,
@@ -581,6 +588,7 @@ export const getCouple = asyncHandler(async (req, res) => {
     username: user.username,
     email: user.email,
     phone: user.phone,
+    location: user.location,
     questions: user.questions,
     avatar: user.avatar,
     ourStory: user.ourStory,
