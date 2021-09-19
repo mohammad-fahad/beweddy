@@ -385,7 +385,7 @@ const EditWebsitePage = () => {
                   />
                 </div>
                 <div className='!mt-5'>
-                  <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
+                  <button className="border-2 transition-colors duration-300 !border-[#000000] px-3 py-1 hover:border-black" type='submit'>Save</button>
                 </div>
               </div>
 
@@ -443,7 +443,7 @@ const EditWebsitePage = () => {
                     </motion.div>
                   ))}
                 </motion.div>
-                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
+                <button className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black" type='submit'>Save</button>
               </div>
 
               <Divider />
@@ -512,7 +512,7 @@ const EditWebsitePage = () => {
                   </div>
                 </div>
                 <div>
-                  <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
+                  <button className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black" type='submit'>Save</button>
                 </div>
               </div>
 
@@ -533,7 +533,7 @@ const EditWebsitePage = () => {
                   {...register('ourStory')}
                 ></textarea>
 
-                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
+                <button className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black" type='submit'>Save</button>
               </div>
 
               <Divider />
@@ -556,7 +556,7 @@ const EditWebsitePage = () => {
                 />
                 <div>
                   <button
-                    className='inline-block border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
+                    className='inline-block border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black'
                     type='submit'
                   >
                     Save
@@ -639,7 +639,7 @@ const EditWebsitePage = () => {
                   <PlusIcon className='h-5 w-7' />
                   <span>Add New</span>
                 </button>
-                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
+                <button className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black" type='submit'>Save</button>
               </div>
 
               <Divider />
@@ -701,7 +701,7 @@ const EditWebsitePage = () => {
                 </Link>
               </div>
 
-              <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
+              <button className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black" type='submit'>Save</button>
 
               <Divider />
 
@@ -778,7 +778,7 @@ const EditWebsitePage = () => {
                   </a>
                 </Link>
                 <div>
-                  <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
+                  <button className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black" type='submit'>Save</button>
                 </div>
               </div>
 
@@ -1308,7 +1308,7 @@ const EditWebsitePage = () => {
                 </div>
               </div>
               <div>
-                <button className="border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black" type='submit'>Save</button>
+                <button className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black" type='submit'>Save</button>
               </div>
 
               <Divider />

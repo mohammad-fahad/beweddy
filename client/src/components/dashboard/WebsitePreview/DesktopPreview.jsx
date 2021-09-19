@@ -32,13 +32,22 @@ const DesktopPreview = () => {
         >
           {user?.coupleName}
         </h1>
+        <div
+          className={`absolute !bottom-[0px] left-[0px] rigth-[10px] bg-[#00000069] w-full py-2 `}>
+            <h1 className={`text-[#ffffff] text-center ${
+                size.width < 480 ? "text-[12px]" : ""
+              }`}>
+                We’re Getting Married!
+            </h1>
+        </div>
+
         <img
           src={user?.questions?.couplePictures[0]?.url}
           alt="website preview"
-          className={`!h-[57%] ${size.width < 600 ? "desktopImage" : ""}`}
+          className={`!h-[100%] ${size.width < 600 ? "desktopImage" : ""}`}
           style={{ width: "-webkit-fill-available" }}
         />
-        <div className="bg-[#f9d1de] border-t-2 border-black">
+        {/* <div className="bg-[#f9d1de] border-t-2 border-black">
           <div className="pt-2 text-center sm:pt-4">
             <h1 className={`${size.width < 480 ? "text-[12px]" : ""}`}>
               {" "}
@@ -48,7 +57,7 @@ const DesktopPreview = () => {
           <div className="py-2 sm:py-3 ">
             <WeddingDayCountDown sm preview />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
