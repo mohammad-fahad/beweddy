@@ -10,11 +10,11 @@ import TabPreview from "./WebsitePreview/TabPreview";
 SwiperCore.use([Lazy, Autoplay]);
 
 const params = {
-  // loop: true,
-  // autoplay: {
-  //   delay: 5000,
-  //   disableOnInteraction: false,
-  // },
+  loop: true,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false,
+  },
 };
 
 const WebsitePreviewContainer = ({ minimal }) => {
@@ -48,8 +48,8 @@ const WebsitePreviewContainer = ({ minimal }) => {
                 <img
                   src="/images/wedding-laptop.png"
                   alt=""
-                  className="!h-[600px] mx-auto swiper-lazy"
-                  // className="!md:max-h-[444px] mx-auto swiper-lazy"
+                  // className="!h-[600px] mx-auto swiper-lazy"
+                  className="!md:max-h-[444px] !max-h-[250px] mx-auto swiper-lazy"
                 />
                 <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
               </div>
@@ -66,8 +66,8 @@ const WebsitePreviewContainer = ({ minimal }) => {
                 <img
                   src="/images/wedding-phone.png"
                   alt=""
-                  // className="!max-h-[250px] !md:max-h-[395px] mx-auto swiper-lazy"
-                  className="!h-[600px]  mx-auto swiper-lazy"
+                  className="!max-h-[250px] !md:max-h-[395px] mx-auto swiper-lazy"
+                  // className="!h-[600px]  mx-auto swiper-lazy"
                 />
                 <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
               </div>
@@ -83,8 +83,8 @@ const WebsitePreviewContainer = ({ minimal }) => {
                 <img
                   src="/images/wedding-macbook.png"
                   alt=""
-                  // className="max-h-[250px] md:max-h-[444px] mx-auto swiper-lazy"
-                  className="!h-[600px] mx-auto swiper-lazy"
+                  className="max-h-[250px] md:max-h-[444px] mx-auto swiper-lazy"
+                  // className="!h-[600px] mx-auto swiper-lazy"
                 />
                 <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
               </div>
@@ -104,7 +104,7 @@ export default WebsitePreviewContainer;
 
 // import SwiperCore, { Lazy, Autoplay } from "swiper";
 // import { useSelector } from 'react-redux';
-SwiperCore.use([Lazy, Autoplay]);
+// SwiperCore.use([Lazy, Autoplay]);
 
 // const params = {
 //   loop: true,

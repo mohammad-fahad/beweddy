@@ -291,6 +291,15 @@
   }
 }
 
+@media screen and (max-width: 767px) {
+  .tabImagesWrapper {
+    bottom: 193px !important;
+    right: 21px !important;
+    left: 21px !important;
+    top: 20px !important;
+  }
+}
+
 @media screen and (max-width: 599px) {
   .headerTitle {
     font-size: 36px !important;
@@ -405,34 +414,34 @@
     text-align: center !important ;
   }
   .customMobile {
-    right: 44px !important;
-    left: 44px !important;
-    bottom: 22px !important;
-  }
+    right: 31px !important;
+    left: 32px !important;
+    bottom: 27px !important;
+}
   .customMobileImg {
-    width: 300px !important;
+    width: 220px !important;
   }
-  .responsiveImg {
+  /* .responsiveImg {
     height: 50% !important;
-  }
+  } */
   .desktopPreview {
-    width: 400px !important;
+    /* width: 400px !important;
     height: 300px !important;
-    max-height: 300px !important;
+    max-height: 300px !important; */
   }
   .desktopImagesWrapper {
-    right: 53px !important;
-    left: 52px !important;
-    bottom: 58px !important;
-    top: 16px !important;
-  }
+    right: 70px !important;
+    left: 69px !important;
+    bottom: 61px !important;
+    top: 19px !important;
+}
   .desktopImage {
   }
-  .tabPreview {
+  /* .tabPreview {
     width: 400px !important;
     height: 300px !important;
     max-height: 300px !important;
-  }
+  } */
   .tabImagesWrapper {
     right: 15px !important;
     left: 14px !important;
@@ -442,57 +451,66 @@
 }
 
 @media screen and (max-width: 480px) {
-  .desktopPreview {
+  /* .desktopPreview {
     width: 300px !important;
     height: 200px !important;
     max-height: 300px !important;
-  }
+  } */
   .desktopImagesWrapper {
-    right: 40px !important;
-    left: 39px !important;
-    bottom: 58px !important;
-    top: 12px !important;
-  }
-  .desktopImage {
+    right: 55px !important;
+    left: 54px !important;
+    bottom: 48px !important;
+    top: 16px !important;
+}
+  /* .desktopImage {
     height: 77px !important;
-  }
+  } */
   .countDownBorder {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
     min-width: 40px !important;
     border: none !important;
   }
-  .tabPreview {
+  /* .tabPreview {
     width: 300px !important;
     height: 400px !important;
     max-height: 400px !important;
-  }
-  .tabImage {
+  } */
+  /* .tabImage {
     height: 62% !important;
-  }
+  } */
   .tabImagesWrapper {
-    right: 10px !important;
-    left: 11px !important;
-    bottom: 143px !important;
-    top: 17px !important;
+      right: 16px !important;
+      left: 16px !important;
+      bottom: 132px !important;
+      top: 17px !important;
   }
 }
 
-@media screen and (min-width: 2000px) {
-  .homePageWrapper {
-    padding-top: 18rem !important;
+@media screen and (max-width: 385px) {
+  .desktopImagesWrapper {
+      right: 43px !important;
+      left: 42px !important;
+      bottom: 36px !important;
+      top: 11px !important;
   }
 }
 
-@media screen and (min-width: 2400px) {
-  .homePageWrapper {
-    padding-top: 20rem !important;
+@media screen and (max-width: 375px) {
+  .tabImagesWrapper {
+      right: 13px !important;
+      left: 13px !important;
+      bottom: 110px !important;
+      top: 13px !important;
   }
-}
 
-@media screen and (min-width: 2500px) {
-  .homePageWrapper {
-    padding-top: 25rem !important;
+}
+@media screen and (max-width: 370px) {
+  .tabImagesWrapper {
+      right: 12px !important;
+      left: 12px !important;
+      bottom: 102px !important;
+      top: 11px !important;
   }
 }
 

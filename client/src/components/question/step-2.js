@@ -17,6 +17,10 @@ import { motion } from "framer-motion";
 import { isEmpty } from "lodash";
 import { compareDate } from "@helpers/index";
 
+import getYear from "date-fns/getYear";
+import getMonth from "date-fns/getYear";
+import "react-datepicker/dist/react-datepicker.css";
+
 const easing = [0.6, -0.05, 0.01, 0.99];
 const fadeInUp = {
   initial: {
@@ -217,6 +221,24 @@ const WeddingDay = () => {
     }
   }, [tba]);
 
+  const range = (start, end) => {
+    return new Array(end - start).fill().map((d, i) => i + start);
+  };
+  const years = range(1990, getYear(new Date()) + 5);
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
   return (
     <CreateWebsiteContainer seo={{ title: "Wedding Day" }} page="2">
@@ -245,6 +267,60 @@ const WeddingDay = () => {
         >
           <div>
             <DatePicker
+              renderCustomHeader={({
+                date,
+                changeYear,
+                changeMonth,
+                decreaseMonth,
+                increaseMonth,
+                prevMonthButtonDisabled,
+                nextMonthButtonDisabled,
+              }) => (
+                <div
+                  style={{
+                    margin: 10,
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <button
+                    onClick={decreaseMonth}
+                    disabled={prevMonthButtonDisabled}
+                  >
+                    {"<"}
+                  </button>
+                  <select
+                    value={getYear(date)}
+                    onChange={({ target: { value } }) => changeYear(value)}
+                  >
+                    {years.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+
+                  <select
+                    value={months[getMonth(date)]}
+                    onChange={({ target: { value } }) =>
+                      changeMonth(months.indexOf(value))
+                    }
+                  >
+                    {months.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+
+                  <button
+                    onClick={increaseMonth}
+                    disabled={nextMonthButtonDisabled}
+                  >
+                    {">"}
+                  </button>
+                </div>
+              )}
               selected={selectWeddingDay}
               popperPlacement="top-end"
               onChange={(date) => {
@@ -303,6 +379,60 @@ const WeddingDay = () => {
           >
             <div>
               <DatePicker
+                renderCustomHeader={({
+                  date,
+                  changeYear,
+                  changeMonth,
+                  decreaseMonth,
+                  increaseMonth,
+                  prevMonthButtonDisabled,
+                  nextMonthButtonDisabled,
+                }) => (
+                  <div
+                    style={{
+                      margin: 10,
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <button
+                      onClick={decreaseMonth}
+                      disabled={prevMonthButtonDisabled}
+                    >
+                      {"<"}
+                    </button>
+                    <select
+                      value={getYear(date)}
+                      onChange={({ target: { value } }) => changeYear(value)}
+                    >
+                      {years.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+
+                    <select
+                      value={months[getMonth(date)]}
+                      onChange={({ target: { value } }) =>
+                        changeMonth(months.indexOf(value))
+                      }
+                    >
+                      {months.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+
+                    <button
+                      onClick={increaseMonth}
+                      disabled={nextMonthButtonDisabled}
+                    >
+                      {">"}
+                    </button>
+                  </div>
+                )}
                 selected={selectFirstReception}
                 // popperPlacement='top-end'
                 onChange={(date) => {
@@ -315,6 +445,60 @@ const WeddingDay = () => {
 
             <div>
               <DatePicker
+                renderCustomHeader={({
+                  date,
+                  changeYear,
+                  changeMonth,
+                  decreaseMonth,
+                  increaseMonth,
+                  prevMonthButtonDisabled,
+                  nextMonthButtonDisabled,
+                }) => (
+                  <div
+                    style={{
+                      margin: 10,
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <button
+                      onClick={decreaseMonth}
+                      disabled={prevMonthButtonDisabled}
+                    >
+                      {"<"}
+                    </button>
+                    <select
+                      value={getYear(date)}
+                      onChange={({ target: { value } }) => changeYear(value)}
+                    >
+                      {years.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+
+                    <select
+                      value={months[getMonth(date)]}
+                      onChange={({ target: { value } }) =>
+                        changeMonth(months.indexOf(value))
+                      }
+                    >
+                      {months.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+
+                    <button
+                      onClick={increaseMonth}
+                      disabled={nextMonthButtonDisabled}
+                    >
+                      {">"}
+                    </button>
+                  </div>
+                )}
                 selected={selectSecondReception}
                 // popperPlacement='top-end'
                 onChange={(date) => {
