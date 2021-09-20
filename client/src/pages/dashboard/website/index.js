@@ -158,7 +158,7 @@ const WebsitePageOne = () => {
 
             {/* address and rsvp button */}
 
-            <div className="my-[40px] space-y-[26px]">
+            <div className="sm:my-[40px] my-[10px] sm:space-y-[26px]">
               <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB]" />
               <Link href="/dashboard/address-and-rsvp">
                 <a className="w-full flex items-center justify-center space-x-3 py-4 px-5 border-2 border-primary bg-[#F9D1DE] rounded-[5px] capitalize font-inter font-bold text-sm hover:bg-secondary/5 transition duration-300">
@@ -211,7 +211,7 @@ const WebsitePageOne = () => {
                   Our Story
                 </h2>
                 {/* <p className="w-10/12 m-auto mt-5 text-2xl font-normal text-center customLabel"> */}
-                <p className="w-10/12 m-auto mt-5 text-sm font-normal text-center customLabel md:text-xl">
+                <p className="sm:w-10/12 w-[98%] m-auto mt-5 text-sm font-normal text-center customLabel md:text-xl">
                   {user?.ourStory}
                 </p>
               </div>
@@ -228,7 +228,7 @@ const WebsitePageOne = () => {
             {/* <div class="grid grid-cols-12 gap-4 w-full mt-5"> */}
             <div class="grid grid-cols-12 gap-4 w-full my-3 md:my-8">
               {user?.questions?.weddingDay?.firstReception && (
-                <div class="col-start-2 col-span-5 p-5 text-lg font-semibold subTitle">
+                <div class="sm:col-start-2 sm:col-span-5 col-span-12 sm:p-5 p-2 text-lg font-semibold subTitle">
                   <h4 className="text-lg">Receptions</h4>
                   <h6 className="miniTitle">
                     Date 1 : {user?.questions?.weddingDay?.firstReception}{" "}
@@ -241,7 +241,7 @@ const WebsitePageOne = () => {
                   )}
                 </div>
               )}
-              <div class="col-span-5 p-5 flex justify-end">
+              <div class="col-span-5 sm:p-5 p-2 flex justify-end">
                 <div>
                   <h2 className="text-lg">Locations</h2>
                   <h6 className="miniTitle">{user?.location}</h6>
@@ -252,7 +252,7 @@ const WebsitePageOne = () => {
 
             {/* timeline section */}
             <div class="grid grid-cols-12 gap-4 w-full mt-5">
-              <div class="col-start-2 col-span-10 p-5">
+              <div class=" sm:col-start-2 sm:col-span-10 col-span-12 sm:p-5 p-2">
                 <h4 className="text-xl md:text-[26px] font-medium mb-2">
                   Timeline
                 </h4>
@@ -302,10 +302,10 @@ const WebsitePageOne = () => {
 
             <div className="w-full max-w-6xl mx-auto">
               <div class="flex flex-wrap justify-between items-center gap-4 w-full mt-5">
-                <div class="p-5">
+                <div class="sm:p-5 p-3">
                   <SocialSection name={user?.questions?.firstName} />
                 </div>
-                <div class="p-5">
+                <div class="sm:p-5 p-3">
                   <SocialSection name={user?.questions?.spouseFirstName} />
                 </div>
               </div>
@@ -321,12 +321,12 @@ const WebsitePageOne = () => {
           <div className="container w-full">
             <div className="p-3 bg-white border-4 border-gray-200 rounded-lg">
               <div class="flex items-center justify-center flex-wrap gap-4 w-full mt-5">
-                <div class="p-5 flex justify-center items-center ">
+                <div class="sm:p-5 p-2 flex justify-center items-center ">
                   <h1 className="text-3xl font-normal md:text-4xl mudiumTitle">
                     Your Personalized <span className="font-bold">QR Code</span>
                   </h1>
                 </div>
-                <div class="p-5">
+                <div class="sm:p-5 p-2">
                   <div className="qrCode">
                     <QRCode
                       {...{ value }}

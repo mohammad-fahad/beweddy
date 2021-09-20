@@ -346,13 +346,13 @@ const EditWebsitePage = () => {
               </a>
             </Link> */}
             <Link href="/dashboard/features/qrcode-and-links">
-              <a className="flex items-center space-x-3 py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
+              <a className="flex items-center space-x-3 py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300 sm:ml-0 ml-5">
                 <LinkIcon className="w-5 h-5" />
                 <span>Share your super link</span>
               </a>
             </Link>
             <Link href="/dashboard/invitation/rsvp-guest-management">
-              <a className="py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
+              <a className="py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300 sm:ml-0 ml-5">
                 Guests Management
               </a>
             </Link>
@@ -794,7 +794,8 @@ const EditWebsitePage = () => {
                   <div key={reception.id} className="flex items-center">
                     <input
                       type="text"
-                      className="w-28 rounded-[5px] border-2 rounded-r-none focus:!border-gray-200 border-gray-200 py-2 pl-4 text-base font-bold placeholder-gray-200"
+                      // className="w-28 rounded-[5px] border-2 rounded-r-none focus:!border-gray-200 border-gray-200 py-2 pl-4 text-base font-bold placeholder-gray-200"
+                      className="w-[100px] rounded-[5px] border-2 rounded-r-none focus:!border-gray-200 border-gray-200 py-2 pl-4 text-base font-bold placeholder-gray-200 border-r-0"
                       placeholder="12.00 PM"
                       value={reception.time}
                       onChange={(e) => {
@@ -810,7 +811,7 @@ const EditWebsitePage = () => {
                     <div className="relative w-full">
                       <input
                         type="text"
-                        className="w-full rounded-[5px] rounded-l-none border-l-0 border-2 focus:!border-gray-200 border-gray-200 py-2 px-4 text-base font-normal placeholder-gray-300"
+                        className="w-full rounded-[5px] rounded-l-none border-l-0 border-2 focus:!border-gray-200 border-gray-200 py-2  text-base font-normal placeholder-gray-300 !px-0 "
                         placeholder="Details"
                         value={reception.details}
                         onChange={(e) => {
@@ -825,7 +826,7 @@ const EditWebsitePage = () => {
 
                       <button
                         type="button"
-                        className="absolute -translate-y-1/2 top-1/2 right-5"
+                        className="absolute -translate-y-1/2 top-1/2 right-[1px] bg-[#ffffff] py-2"
                         onClick={() =>
                           setReceptionDetails((prev) =>
                             prev.filter((x) => x.id !== reception.id)
@@ -933,7 +934,7 @@ const EditWebsitePage = () => {
               <div className="space-y-5">
                 {/* <Heading h3></Heading> */}
                 <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
-                  Connect your registry
+                  Connect your registry & Venmo
                 </h4>
                 <div className="flex items-center space-y-3">
                   <div className="border-2 w-[200px] min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex flex-col items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300">
@@ -942,13 +943,20 @@ const EditWebsitePage = () => {
                       className="px-6 py-2 mt-5 text-xs text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap"
                       onClick={() => setIsModalOpen(true)}
                     >
-                      Create Registry
+                      Connect Registry
                     </button>
-                    <Link href="/">
+                    <button
+                      type="button"
+                      className="px-6 py-2 mt-5 text-xs text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap"
+                      onClick={() => setIsModalOpen(true)}
+                    >
+                      Connect Venmo
+                    </button>
+                    {/* <Link href="/">
                       <a className="py-2 text-base font-light text-blue-500 font-inter hover:underline">
                         Learn more
                       </a>
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
                 <motion.div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 2lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 sm:gap-5 md:gap-10">
@@ -1181,8 +1189,7 @@ const EditWebsitePage = () => {
                         <img
                           src="/icons/tiktok.svg"
                           alt=""
-                          className="w-10"
-                          className="customSocialIcon"
+                          className="w-10 customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
@@ -1213,8 +1220,7 @@ const EditWebsitePage = () => {
                         <img
                           src="/icons/snapchat.svg"
                           alt=""
-                          className="w-10"
-                          className="customSocialIcon"
+                          className="w-10 customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
@@ -1245,8 +1251,7 @@ const EditWebsitePage = () => {
                         <img
                           src="/icons/pinterest.svg"
                           alt=""
-                          className="w-10"
-                          className="customSocialIcon"
+                          className="w-10 customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
@@ -1443,8 +1448,7 @@ const EditWebsitePage = () => {
                         <img
                           src="/icons/tiktok.svg"
                           alt=""
-                          className="w-10"
-                          className="customSocialIcon"
+                          className="w-10 customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
@@ -1475,8 +1479,7 @@ const EditWebsitePage = () => {
                         <img
                           src="/icons/snapchat.svg"
                           alt=""
-                          className="w-10"
-                          className="customSocialIcon"
+                          className="w-10 customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
@@ -1507,8 +1510,7 @@ const EditWebsitePage = () => {
                         <img
                           src="/icons/pinterest.svg"
                           alt=""
-                          className="w-10"
-                          className="customSocialIcon"
+                          className="w-10 customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
