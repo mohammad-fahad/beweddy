@@ -79,7 +79,7 @@ const WebsitePageOne = () => {
         </DashboardHeader>
 
         <div className="border-4 border-gray-200 rounded-lg">
-          <WebsiteNav />
+          <WebsiteNav user={user} />
 
           {/* banner image */}
           {/* <div className="w-full">

@@ -145,7 +145,7 @@ const Dashboard = () => {
               <div className="flex items-center flex-wrap px-[1.15rem] xs:space-y-0 space-x-3 md:space-x-5 justify-center my-[50px]">
                 <Link href="/dashboard/website/edit">
                   <a
-                    className={`capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
+                    className={`capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300 smallText`}
                   >
                     {/* <PencilIcon className='hidden w-5 h-5 sm:inline-block' /> */}
                     <span>Edit your website</span>
@@ -154,7 +154,7 @@ const Dashboard = () => {
                 <Link href={`/couple/${user?.username}`}>
                   <a
                     target="_blank"
-                    className={`capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
+                    className={`capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300 smallText`}
                   >
                     {/* <GlobeAltIcon className='hidden w-5 h-5 sm:inline-block' /> */}
                     <span>Preview Website</span>
@@ -162,7 +162,7 @@ const Dashboard = () => {
                 </Link>
                 <Link href="/dashboard/features/qrcode-and-links">
                   <a
-                    className={`mt-3 xs:mt-0 capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
+                    className={`sm:mt-3 xs:mt-0 capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300 smallText`}
                   >
                     <LinkIcon className="hidden w-5 h-5 sm:inline-block" />
                     <span>Superlink</span>

@@ -301,6 +301,9 @@
 }
 
 @media screen and (max-width: 599px) {
+  .smallText {
+    font-size : 10px !important;
+  }
   .headerTitle {
     font-size: 36px !important;
   }
