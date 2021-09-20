@@ -10,11 +10,11 @@ import TabPreview from "./WebsitePreview/TabPreview";
 SwiperCore.use([Lazy, Autoplay]);
 
 const params = {
-  // loop: true,
-  // autoplay: {
-  //   delay: 5000,
-  //   disableOnInteraction: false,
-  // },
+  loop: true,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false,
+  },
 };
 
 const WebsitePreviewContainer = ({ minimal }) => {
