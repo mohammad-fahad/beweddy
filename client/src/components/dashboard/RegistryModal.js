@@ -101,13 +101,13 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                       htmlFor='image'
                       className='text-sm md:text-base font-medium md:font-semibold'
                     >
-                      Company Photo
+                      Company Logo
                     </label>
                     <input
                       id='image'
                       type='text'
                       className='text-[13px] md:text-[15px] border-gray-100 border-2 py-2 px-4 xs:py-3 xs:px-5 placeholder-gray-300 rounded-[5px]'
-                      placeholder='Enter Company photo link here'
+                      placeholder='Enter Company Logo link here'
                       {...register('image', {
                         required: {
                           value: false,
