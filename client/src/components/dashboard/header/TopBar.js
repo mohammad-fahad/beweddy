@@ -15,12 +15,12 @@ const DashboardTopBar = () => {
             👋 Welcome {user?.coupleName}!
           </h3>
           <div className="flex items-center space-x-5">
-            <Link href="/">
+            {/* <Link href="/">
               <a className="flex items-center space-x-2 text-sm font-semibold text-gray-700 transition duration-300 md:space-x-3 font-inter md:text-base hover:text-primary">
                 <SearchIcon className="w-[14px] h-[14px]" />
                 <span className="text-[14px]">Search</span>
               </a>
-            </Link>
+            </Link> */}
             <Link href="#">
               <a className="flex items-center space-x-2 text-sm font-semibold text-gray-700 transition duration-300 md:space-x-3 font-inter md:text-base hover:text-primary">
                 <img

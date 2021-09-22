@@ -428,10 +428,9 @@ const AddressRSVP = () => {
                             <Listbox.Option
                               key={countryIdx}
                               className={({ active }) =>
-                                `${
-                                  active
-                                    ? "text-amber-900 bg-secondary-alternative/20"
-                                    : "text-gray-900"
+                                `${active
+                                  ? "text-amber-900 bg-secondary-alternative/20"
+                                  : "text-gray-900"
                                 }
                           cursor-pointer select-none relative py-2 pl-10 pr-4`
                               }
@@ -440,19 +439,17 @@ const AddressRSVP = () => {
                               {({ selected, active }) => (
                                 <>
                                   <span
-                                    className={`${
-                                      selected ? "font-medium" : "font-normal"
-                                    } block truncate`}
+                                    className={`${selected ? "font-medium" : "font-normal"
+                                      } block truncate`}
                                   >
                                     {country.name}
                                   </span>
                                   {selected ? (
                                     <span
-                                      className={`${
-                                        active
-                                          ? "text-amber-600"
-                                          : "text-amber-600"
-                                      }
+                                      className={`${active
+                                        ? "text-amber-600"
+                                        : "text-amber-600"
+                                        }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                     >
                                       <CheckIcon
@@ -563,7 +560,7 @@ const AddressRSVP = () => {
 
               <div className="space-y-5 !mt-5">
                 <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
-                  Who's your phone provider?
+                  What's your phone provider?
                 </Heading>
 
                 <div className="flex flex-wrap gap-3">
@@ -739,10 +736,9 @@ const AddressRSVP = () => {
                             <Listbox.Option
                               key={providerIdx}
                               className={({ active }) =>
-                                `${
-                                  active
-                                    ? "text-secondary bg-secondary-alternative/50"
-                                    : "text-gray-900"
+                                `${active
+                                  ? "text-secondary bg-secondary-alternative/50"
+                                  : "text-gray-900"
                                 }
                           cursor-pointer select-none relative py-2 pl-10 pr-4 font-medium`
                               }
@@ -751,19 +747,17 @@ const AddressRSVP = () => {
                               {({ selected, active }) => (
                                 <>
                                   <span
-                                    className={`${
-                                      selected ? "font-semibold" : "font-medium"
-                                    } block truncate`}
+                                    className={`${selected ? "font-semibold" : "font-medium"
+                                      } block truncate`}
                                   >
                                     {provider.name}
                                   </span>
                                   {selected ? (
                                     <span
-                                      className={`${
-                                        active
-                                          ? "text-amber-600"
-                                          : "text-amber-600"
-                                      }
+                                      className={`${active
+                                        ? "text-amber-600"
+                                        : "text-amber-600"
+                                        }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                     >
                                       <CheckIcon
@@ -855,7 +849,7 @@ const AddressRSVP = () => {
 
               <div
                 className="space-y-3 !mt-10 "
-                // title='Please include yourself'
+              // title='Please include yourself'
               >
                 <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
                   RSVP Estimate Guests
@@ -870,6 +864,7 @@ const AddressRSVP = () => {
                 <div className="py-3">
                   <input
                     type="range"
+                    defaultValue={1}
                     min="1"
                     max="1000"
                     className="block cursor-pointer text-center rounded-[5px] border-2 border-gray-200 px-5 text-base font-normal"

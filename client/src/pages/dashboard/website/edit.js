@@ -44,6 +44,8 @@ import {
   Twitter,
   Youtube,
 } from "@icons-pack/react-simple-icons";
+import "react-datetime/css/react-datetime.css";
+import Datetime from "react-datetime";
 import { attemptUpdateUserProfile } from "@features/user/userActions";
 import { Fragment } from "react";
 import axios from "axios";
@@ -69,22 +71,22 @@ const EditWebsitePage = () => {
     user.receptionDetails.length
       ? user.receptionDetails
       : [
-          {
-            id: generate(),
-            time: "5.00 PM",
-            details: "Example of event details",
-          },
-          {
-            id: generate(),
-            time: "5.30 PM",
-            details: "Ceremony",
-          },
-          {
-            id: generate(),
-            time: "6.00 PM",
-            details: "Ceremony ends/cocktails begin",
-          },
-        ]
+        {
+          id: generate(),
+          time: "5.00 PM",
+          details: "Example of event details",
+        },
+        {
+          id: generate(),
+          time: "5.30 PM",
+          details: "Ceremony",
+        },
+        {
+          id: generate(),
+          time: "6.00 PM",
+          details: "Ceremony ends/cocktails begin",
+        },
+      ]
   );
   const { groom, bride } = user.socialAccounts;
 
@@ -758,17 +760,33 @@ const EditWebsitePage = () => {
                     Location Name &amp; Address
                   </h4>
                 </div>
-                <input
-                  type="text"
-                  className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal"
-                  placeholder="Enter your location"
-                  {...register("location", {
-                    required: {
-                      value: true,
-                      message: "Location name and address is required!",
-                    },
-                  })}
-                />
+                <div className="flex justify-between flex-row items-center">
+                  <div className="max-w-xs w-full">
+                    <input
+                      type="text"
+                      className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal"
+                      placeholder="Enter your location"
+                      {...register("location", {
+                        required: {
+                          value: true,
+                          message: "Location name and address is required!",
+                        },
+                      })}
+                    />
+                  </div>
+
+                  <div style={{ width: '100%' }}>
+                    <iframe
+                      width='50%'
+                      height='400'
+                      frameBorder='0'
+                      scrolling='no'
+                      marginHeight='0'
+                      marginWidth='0'
+                      src='https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=365%20Queen%20Street%20South,%20Mississauga,%20ON%20L5M%201M3+(Leedway%20group)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed'
+                    />
+                  </div>
+                </div>
                 <div>
                   <button
                     className="inline-block border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black"
@@ -786,13 +804,10 @@ const EditWebsitePage = () => {
                   <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
                     Reception Details
                   </h4>
-                  {/* <button className='px-5 py-2'>
-                  <MinusIcon className='w-7' />
-                </button> */}
                 </div>
                 {receptionDetails.map((reception, index) => (
                   <div key={reception.id} className="flex items-center">
-                    <input
+                    {/* <input
                       type="text"
                       // className="w-28 rounded-[5px] border-2 rounded-r-none focus:!border-gray-200 border-gray-200 py-2 pl-4 text-base font-bold placeholder-gray-200"
                       className="w-[100px] rounded-[5px] border-2 rounded-r-none focus:!border-gray-200 border-gray-200 py-2 pl-4 text-base font-bold placeholder-gray-200 border-r-0"
@@ -803,6 +818,21 @@ const EditWebsitePage = () => {
                         setReceptionDetails((prev) =>
                           produce(prev, (value) => {
                             value[index].time = time;
+                          })
+                        );
+                      }}
+                    /> */}
+                    <Datetime
+                      className="w-[100px] rounded-[5px] border-2 rounded-r-none focus:!border-gray-200 border-gray-200 py-2 pl-4 text-base font-bold placeholder-gray-200 border-r-0"
+                      inputProps={{ placeholder: "12.00 PM" }}
+                      dateFormat={false}
+                      value={reception.time}
+                      onChange={(e) => {
+                        const time = e._d;
+                        const startTimeFormat = moment(time).format("hh:mm a");
+                        setReceptionDetails((prev) =>
+                          produce(prev, (value) => {
+                            value[index].time = startTimeFormat;
                           })
                         );
                       }}
@@ -1554,30 +1584,15 @@ const EditWebsitePage = () => {
                 <Heading h3>First Look or Wedding Video</Heading>
                 <div className="space-y-3">
                   <label htmlFor="videoTitle" className="block">
-                    Video Title
+                    Youtube Video Link
                   </label>
                   <input
                     type="text"
                     id="videoTitle"
                     className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal placeholder-gray-300"
-                    placeholder="Name Your Wedding Video"
-                    {...register("videoTitle")}
+                    placeholder="Paste Your Wedding Youtube Link"
+                    {...register("videoLink")}
                   />
-                </div>
-                <div
-                  className="relative focus:outline-none"
-                  {...getRootProps()}
-                >
-                  <input {...getInputProps()} />
-                  <label
-                    htmlFor="couplePictures"
-                    className="bg-white cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-secondary-alternative/50 rounded-[5px]"
-                  >
-                    Upload Video
-                  </label>
-                  <p className="mt-2 text-sm font-light text-center text-red-400">
-                    {errors?.couplePictures?.message}
-                  </p>
                 </div>
               </div>
               <Button
