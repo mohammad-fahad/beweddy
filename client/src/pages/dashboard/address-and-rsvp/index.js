@@ -447,8 +447,8 @@ const AddressRSVP = () => {
                                   {selected ? (
                                     <span
                                       className={`${active
-                                          ? "text-amber-600"
-                                          : "text-amber-600"
+                                        ? "text-amber-600"
+                                        : "text-amber-600"
                                         }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                     >
@@ -755,8 +755,8 @@ const AddressRSVP = () => {
                                   {selected ? (
                                     <span
                                       className={`${active
-                                          ? "text-amber-600"
-                                          : "text-amber-600"
+                                        ? "text-amber-600"
+                                        : "text-amber-600"
                                         }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                     >
@@ -864,6 +864,7 @@ const AddressRSVP = () => {
                 <div className="py-3">
                   <input
                     type="range"
+                    defaultValue={1}
                     min="1"
                     max="1000"
                     className="block cursor-pointer text-center rounded-[5px] border-2 border-gray-200 px-5 text-base font-normal"

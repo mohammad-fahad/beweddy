@@ -18,7 +18,7 @@ export const createTodo = asyncHandler(async (req, res) => {
   });
 
   if (todo) {
-    res.status(201).json({ message: "Todo created successfully" });
+    res.status(201).json({ message: "To do created successfully" });
   } else {
     res.status(500);
     throw new Error("Server Error");
