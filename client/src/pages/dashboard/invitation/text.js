@@ -466,7 +466,7 @@ const TextInvitesPage = () => {
 
                     <button
                       type="submit"
-                      className="flex items-center justify-end !mt-10 space-x-3 text-sm md:text-base font-bold text-right"
+                      className="flex items-center border-2 py-2 bg-secondary-alternative px-2 border-black  justify-end !mt-10 space-x-3 text-sm md:text-base font-bold text-right"
                     >
                       <span>Send Message</span>
                       <ArrowRightIcon className="w-6 h-6" />
