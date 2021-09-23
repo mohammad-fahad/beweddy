@@ -71,22 +71,22 @@ const EditWebsitePage = () => {
     user.receptionDetails.length
       ? user.receptionDetails
       : [
-        {
-          id: generate(),
-          time: "5.00 PM",
-          details: "Example of event details",
-        },
-        {
-          id: generate(),
-          time: "5.30 PM",
-          details: "Ceremony",
-        },
-        {
-          id: generate(),
-          time: "6.00 PM",
-          details: "Ceremony ends/cocktails begin",
-        },
-      ]
+          {
+            id: generate(),
+            time: "5.00 PM",
+            details: "Example of event details",
+          },
+          {
+            id: generate(),
+            time: "5.30 PM",
+            details: "Ceremony",
+          },
+          {
+            id: generate(),
+            time: "6.00 PM",
+            details: "Ceremony ends/cocktails begin",
+          },
+        ]
   );
   const { groom, bride } = user.socialAccounts;
 
@@ -760,8 +760,8 @@ const EditWebsitePage = () => {
                     Location Name &amp; Address
                   </h4>
                 </div>
-                <div className="flex justify-between flex-row items-center">
-                  <div className="max-w-xs w-full">
+                <div className="flex flex-row items-center justify-between">
+                  <div className="w-full max-w-xs">
                     <input
                       type="text"
                       className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal"
@@ -775,15 +775,15 @@ const EditWebsitePage = () => {
                     />
                   </div>
 
-                  <div style={{ width: '100%' }}>
+                  <div style={{ width: "100%" }}>
                     <iframe
-                      width='50%'
-                      height='400'
-                      frameBorder='0'
-                      scrolling='no'
-                      marginHeight='0'
-                      marginWidth='0'
-                      src='https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=365%20Queen%20Street%20South,%20Mississauga,%20ON%20L5M%201M3+(Leedway%20group)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed'
+                      width="50%"
+                      height="400"
+                      frameBorder="0"
+                      scrolling="no"
+                      marginHeight="0"
+                      marginWidth="0"
+                      src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=365%20Queen%20Street%20South,%20Mississauga,%20ON%20L5M%201M3+(Leedway%20group)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
                     />
                   </div>
                 </div>
@@ -806,7 +806,10 @@ const EditWebsitePage = () => {
                   </h4>
                 </div>
                 {receptionDetails.map((reception, index) => (
-                  <div key={reception.id} className="flex items-center">
+                  <div
+                    key={reception.id}
+                    className="flex items-center !border-gray-200"
+                  >
                     {/* <input
                       type="text"
                       // className="w-28 rounded-[5px] border-2 rounded-r-none focus:!border-gray-200 border-gray-200 py-2 pl-4 text-base font-bold placeholder-gray-200"
@@ -823,8 +826,9 @@ const EditWebsitePage = () => {
                       }}
                     /> */}
                     <Datetime
-                      className="w-[100px] rounded-[5px] border-2 rounded-r-none focus:!border-gray-200 border-gray-200 py-2 pl-4 text-base font-bold placeholder-gray-200 border-r-0"
+                      className="w-[100px] rounded-[5px] border-2 rounded-r-none !focus:!border-gray-200 !border-gray-200  text-base font-bold placeholder-gray-200 border-r-0"
                       inputProps={{ placeholder: "12.00 PM" }}
+                      style={{ borderColor: "none" }}
                       dateFormat={false}
                       value={reception.time}
                       onChange={(e) => {
@@ -841,7 +845,7 @@ const EditWebsitePage = () => {
                     <div className="relative w-full">
                       <input
                         type="text"
-                        className="w-full rounded-[5px] rounded-l-none border-l-0 border-2 focus:!border-gray-200 border-gray-200 py-2  text-base font-normal placeholder-gray-300 !px-0 "
+                        className="w-full rounded-[5px] rounded-l-none border-l-0 border-2 !focus:!border-gray-200 !border-gray-200 py-2  text-base font-normal placeholder-gray-300 !px-0 "
                         placeholder="Details"
                         value={reception.details}
                         onChange={(e) => {
@@ -970,14 +974,14 @@ const EditWebsitePage = () => {
                   <div className="border-2 w-[200px] min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex flex-col items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300">
                     <button
                       type="button"
-                      className="px-6 py-2 mt-5 text-xs text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap"
+                      className=" mt-5 text-xs w-[160px] py-2 text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap"
                       onClick={() => setIsModalOpen(true)}
                     >
                       Connect Registry
                     </button>
                     <button
                       type="button"
-                      className="px-6 py-2 mt-5 text-xs text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap"
+                      className="w-[160px] py-2 mt-5 text-xs text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap"
                       onClick={() => setIsModalOpen(true)}
                     >
                       Connect Venmo
