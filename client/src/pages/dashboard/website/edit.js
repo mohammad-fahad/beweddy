@@ -440,6 +440,9 @@ const EditWebsitePage = () => {
                   >
                     Upload
                   </label>
+                  <p className="text-[12px] mt-2">
+                    Crop Pictures For Cover Photos
+                  </p>
                   <p className="mt-2 text-sm font-light text-center text-red-400">
                     {errors?.couplePictures?.message}
                   </p>

@@ -248,6 +248,7 @@ const UploadAnnouncement = () => {
             {...getRootProps()}
           >
             <input {...getInputProps()} />
+            <p className="text-[10px] mb-3">Crop Pictures for cover photos</p>
             <label
               htmlFor="uploadAnnouncement"
               className="w-56 bg-white cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-2 md:py-3 px-4 placeholder-primary border-[3px] border-primary rounded-[5px]"

@@ -387,7 +387,7 @@ const CalendarPage = () => {
               {/* onClick={handleClick}  */}
               <button
                 type="submit"
-                className="py-3 px-8 text-sm md:text-base font-bold md:font-semibold border border-[#7F7F7F] rounded-[5px] bg-secondary-alternative hover:bg-secondary-alternative/50 transition duration-300"
+                className="py-3 px-8 ml-3 text-sm md:text-base font-bold md:font-semibold border border-[#7F7F7F] rounded-[5px] bg-secondary-alternative hover:bg-secondary-alternative/50 transition duration-300"
               >
                 Send Calendar Invite
               </button>
