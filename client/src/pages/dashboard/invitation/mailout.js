@@ -6,6 +6,8 @@ import DashboardTopBar from "@components/dashboard/header/TopBar";
 import DashboardLayout from "@components/dashboard/layout";
 import { StarIcon } from "@heroicons/react/solid";
 import { useState } from "react";
+import fakeData from "./fakeData";
+import InvitationCard from "./InvitationCard";
 
 const MailOutInvitationPage = () => {
   const [isActive, setIsActive] = useState(false);
@@ -48,8 +50,11 @@ const MailOutInvitationPage = () => {
                 </fieldset>
               )}
             </div>
-
-            <div classNameName="grid-cols-2"></div>
+          </div>
+          <div classNameName="grid-cols-10">
+            {fakeData.map((card, i) => (
+              <InvitationCard data={card} key={i} />
+            ))}
           </div>
         </div>
       </DashboardLayout>

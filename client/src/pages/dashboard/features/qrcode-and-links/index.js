@@ -1,20 +1,20 @@
-import Head from 'next/head';
-import { DashboardHeader } from '@components/dashboard';
-import { Footer, Heading, Loader, CropImage } from '@components/index';
-import { withAuthRoute } from '@hoc/withAuthRoute';
-import DashboardTopBar from '@components/dashboard/header/TopBar';
-import DashboardLayout from '@components/dashboard/layout';
-import Image from 'next/image';
-import { QRCode } from 'react-qrcode-logo';
-import { useDispatch, useSelector } from 'react-redux';
-import { useCallback, useState } from 'react';
-import DashboardContainer from '@components/dashboard/DashboardContainer';
-import { fileUploader } from '@services/Uploader';
-import toast from 'react-hot-toast';
-import { useDropzone } from 'react-dropzone';
-import { attemptUpdateUserProfile } from '@features/user/userActions';
-import { downloadQRCode } from '@utils/index';
-import useCopyClipboard from 'react-use-clipboard';
+import Head from "next/head";
+import { DashboardHeader } from "@components/dashboard";
+import { Footer, Heading, Loader, CropImage } from "@components/index";
+import { withAuthRoute } from "@hoc/withAuthRoute";
+import DashboardTopBar from "@components/dashboard/header/TopBar";
+import DashboardLayout from "@components/dashboard/layout";
+import Image from "next/image";
+import { QRCode } from "react-qrcode-logo";
+import { useDispatch, useSelector } from "react-redux";
+import { useCallback, useState } from "react";
+import DashboardContainer from "@components/dashboard/DashboardContainer";
+import { fileUploader } from "@services/Uploader";
+import toast from "react-hot-toast";
+import { useDropzone } from "react-dropzone";
+import { attemptUpdateUserProfile } from "@features/user/userActions";
+import { downloadQRCode } from "@utils/index";
+import useCopyClipboard from "react-use-clipboard";
 
 const QRCodePage = () => {
   const dispatch = useDispatch();
@@ -34,21 +34,21 @@ const QRCodePage = () => {
     successDuration: 1500,
   });
 
-  isCopied && toast.success('Wedding website link copied!');
+  isCopied && toast.success("Wedding website link copied!");
 
   const generateQRCode = async () => {
     try {
-      const canvas = document.querySelector('.code > canvas');
+      const canvas = document.querySelector(".code > canvas");
 
       const base64 = canvas
-        .toDataURL('image/png')
-        .replace('image/png', 'image/octet-stream');
+        .toDataURL("image/png")
+        .replace("image/png", "image/octet-stream");
 
       if (base64) {
         const coupleName =
           `${user?.firstName}-${user?.questions?.spouseFirstName}`
             .toLowerCase()
-            .replace(/\s/g, '');
+            .replace(/\s/g, "");
         setLoading(true);
         const result = await fileUploader(base64);
 
@@ -70,7 +70,7 @@ const QRCodePage = () => {
 
   const onDrop = useCallback((acceptedFiles) => {
     const fileDropped = acceptedFiles[0];
-    if (fileDropped['type'].split('/')[0] === 'image') {
+    if (fileDropped["type"].split("/")[0] === "image") {
       setSelectedImageFile(fileDropped);
       return;
     }
@@ -81,7 +81,7 @@ const QRCodePage = () => {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: 'image/*',
+    accept: "image/*",
     multiple: false,
   });
 
@@ -164,7 +164,7 @@ const QRCodePage = () => {
                         href={user?.qrCode}
                         download={`${user?.coupleName}`}
                         className="w-full sm:w-max  font-inter cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-5 lg:px-10 placeholder-primary border-[3px] border-secondary-alternative/80 rounded-[5px] transition duration-300 hover:bg-secondary-alternative/30 hover:border-primary"
-                      // onClick={download}
+                        // onClick={download}
                       >
                         Download Your QR Code
                       </a>
@@ -209,19 +209,27 @@ const QRCodePage = () => {
                   <Heading h3 className="!font-medium !text-lg">
                     Your Supper Link
                   </Heading>
-                  <div>
+                  <div className="relative max-w-[330px] w-full">
                     <input
                       type="text"
                       className="max-w-[330px] w-full py-3 px-5 text-center text-blue-400 placeholder-blue-400 border font-medium border-primary rounded-[5px]"
                       placeholder="www.bw.link/123"
+                      onClick={setCopied}
                     />
+                    <button
+                      onClick={setCopied}
+                      className="absolute right-1 items-center justify-center px-5 py-2 bg-[#ffffff] my-1"
+                    >
+                      Copy
+                    </button>
                   </div>
                 </div>
                 <div className="max-w-[330px]">
                   <Image
                     width={330}
                     height={660}
-                    src="/images/feature-mobile.png"
+                    // src="/images/feature-mobile.png"
+                    src="/images/linkpage.png"
                   />
                 </div>
               </div>
@@ -232,12 +240,19 @@ const QRCodePage = () => {
                   <Heading h3 className="!font-medium !text-lg">
                     Your Website Link
                   </Heading>
-                  <div>
+                  <div className="relative max-w-[400px] w-full">
                     <input
                       type="text"
                       className="max-w-[400px] text-sm w-full py-3 px-5 text-blue-400 placeholder-blue-400 border font-medium border-primary rounded-[5px]"
                       placeholder="www.beweddy.com/nateandash"
+                      onClick={setCopied}
                     />
+                    <button
+                      onClick={setCopied}
+                      className="absolute right-1 items-center justify-center px-5 py-2 bg-[#ffffff] my-1"
+                    >
+                      Copy
+                    </button>
                   </div>
                   <a
                     href="#"
@@ -250,12 +265,19 @@ const QRCodePage = () => {
                   <Heading h3 className="!font-medium !text-lg">
                     Gift Cards & Registry Link
                   </Heading>
-                  <div>
+                  <div className="relative max-w-[400px] w-full">
                     <input
                       type="text"
                       className="max-w-[400px] text-sm w-full py-3 px-5 text-blue-400 placeholder-blue-400 border font-medium border-primary rounded-[5px]"
                       placeholder="www.beweddy.com/nateandash/giftcards"
+                      onClick={setCopied}
                     />
+                    <button
+                      onClick={setCopied}
+                      className="absolute right-1 items-center justify-center px-5 py-2 bg-[#ffffff] my-1"
+                    >
+                      Copy
+                    </button>
                   </div>
                   <a
                     href="#"
@@ -268,12 +290,19 @@ const QRCodePage = () => {
                   <Heading h3 className="!font-medium !text-lg">
                     We Need Your Address Link
                   </Heading>
-                  <div>
+                  <div className="relative max-w-[400px] w-full">
                     <input
                       type="text"
                       className="max-w-[400px] text-sm w-full py-3 px-5 text-blue-400 placeholder-blue-400 border font-medium border-primary rounded-[5px]"
                       placeholder="www.beweddy.com/nateandash/needyouraddress"
+                      onClick={setCopied}
                     />
+                    <button
+                      onClick={setCopied}
+                      className="absolute right-1 items-center justify-center px-5 py-2 bg-[#ffffff] my-1"
+                    >
+                      Copy
+                    </button>
                   </div>
                   <a
                     href="#"
@@ -286,12 +315,19 @@ const QRCodePage = () => {
                   <Heading h3 className="!font-medium !text-lg">
                     Event Details
                   </Heading>
-                  <div>
+                  <div className="relative max-w-[400px] w-full">
                     <input
                       type="text"
                       className="max-w-[400px] text-sm w-full py-3 px-5 text-blue-400 placeholder-blue-400 border font-medium border-primary rounded-[5px]"
                       placeholder="www.beweddy.com/nateandash/needyouraddress"
+                      onClick={setCopied}
                     />
+                    <button
+                      onClick={setCopied}
+                      className="absolute right-1 items-center justify-center px-5 py-2 bg-[#ffffff] my-1"
+                    >
+                      Copy
+                    </button>
                   </div>
                   <a
                     href="#"
@@ -304,12 +340,19 @@ const QRCodePage = () => {
                   <Heading h3 className="!font-medium !text-lg">
                     Link Shortener
                   </Heading>
-                  <div>
+                  <div className="relative max-w-[400px] w-full">
                     <input
                       type="text"
                       className="max-w-[400px] text-sm w-full py-3 px-5 text-blue-400 placeholder-blue-400 border font-medium border-primary rounded-[5px]"
                       placeholder="Add link"
+                      onClick={setCopied}
                     />
+                    <button
+                      onClick={setCopied}
+                      className="absolute right-1 items-center justify-center px-5 py-2 bg-[#ffffff] my-1"
+                    >
+                      Copy
+                    </button>
                   </div>
                   <a
                     href="#"
@@ -326,7 +369,7 @@ const QRCodePage = () => {
       <CropImage
         onSave={onCropSave}
         selectedFile={selectedImageFile}
-      // aspectRatio={1 / 1}
+        // aspectRatio={1 / 1}
       />
       <Footer hideSocial />
     </>
