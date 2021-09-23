@@ -35,9 +35,15 @@ const params = {
 };
 
 const otherProviders = [
-  { name: "Select Provider" },
-  { name: "Airtel" },
-  { name: "Robi" },
+  { id: 1, name: "Other" },
+  { id: 1, name: "AT&T" },
+  { id: 2, name: "T-Mobile & Sprint" },
+  {
+    id: 3,
+    name: "verixon",
+  },
+  { id: 4, name: "Boost Mobile" },
+  { id: 5, name: "Cricket Wireless" },
 ];
 
 const providers = {
@@ -230,7 +236,7 @@ const AddressRSVP = () => {
             <h4 className="text-2xl font-medium text-center md:text-3xl mudiumTitle">
               ✨ Your Are Invited To Our Wedding! 💍 ✨
             </h4>
-            <p className="mt-5 mb-16 font-medium text-center text-md subTitle">
+            <p className="mt-5 mb-5 font-medium text-center sm:mb-16 text-md customLabel">
               Thanks for your love and support! We want to send you an
               invitation!
             </p>
@@ -428,9 +434,10 @@ const AddressRSVP = () => {
                             <Listbox.Option
                               key={countryIdx}
                               className={({ active }) =>
-                                `${active
-                                  ? "text-amber-900 bg-secondary-alternative/20"
-                                  : "text-gray-900"
+                                `${
+                                  active
+                                    ? "text-amber-900 bg-secondary-alternative/20"
+                                    : "text-gray-900"
                                 }
                           cursor-pointer select-none relative py-2 pl-10 pr-4`
                               }
@@ -439,17 +446,19 @@ const AddressRSVP = () => {
                               {({ selected, active }) => (
                                 <>
                                   <span
-                                    className={`${selected ? "font-medium" : "font-normal"
-                                      } block truncate`}
+                                    className={`${
+                                      selected ? "font-medium" : "font-normal"
+                                    } block truncate`}
                                   >
                                     {country.name}
                                   </span>
                                   {selected ? (
                                     <span
-                                      className={`${active
-                                        ? "text-amber-600"
-                                        : "text-amber-600"
-                                        }
+                                      className={`${
+                                        active
+                                          ? "text-amber-600"
+                                          : "text-amber-600"
+                                      }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                     >
                                       <CheckIcon
@@ -487,228 +496,261 @@ const AddressRSVP = () => {
                   {errors?.phone?.message}
                 </p>
               </div>
-              <div className="space-y-5">
-                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
-                  How do you want your invitation & Reminders Sent?
-                </Heading>
-                <div className="flex flex-row flex-wrap items-center gap-3">
-                  <div className="flex items-center gap-3">
-                    <input
-                      type="checkbox"
-                      id="text_invite"
-                      value={true}
-                      defaultChecked
-                      className="text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-                      {...register("text_invite")}
-                    />
-                    <label
-                      htmlFor="text_invite"
-                      className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg customLabel"
-                    >
-                      Text - 📲
-                    </label>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <input
-                      type="checkbox"
-                      id="email_invite"
-                      value={true}
-                      defaultChecked
-                      className="text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-                      {...register("email_invite")}
-                    />
-                    <label
-                      htmlFor="email_invite"
-                      className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg customLabel"
-                    >
-                      E-mail - 🖥
-                    </label>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <input
-                      type="checkbox"
-                      id="mail_invite"
-                      value={true}
-                      className="text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-                      {...register("mail_invite")}
-                    />
-                    <label
-                      htmlFor="mail_invite"
-                      className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg customLabel"
-                    >
-                      Mail - 💌
-                    </label>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <input
-                      type="checkbox"
-                      id="allAbove_invite"
-                      value={true}
-                      defaultChecked
-                      className="text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-                      {...register("allAbove_invite")}
-                    />
-                    <label
-                      htmlFor="allAbove_invite"
-                      className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg customLabel"
-                    >
-                      All The Above - 💯
-                    </label>
-                  </div>
-                </div>
-              </div>
 
               <div className="space-y-5 !mt-5">
+                {/* phone provider */}
                 <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
                   What's your phone provider?
                 </Heading>
+                <div>
+                  <div class="grid grid-cols-12 gap-2 w-full customGrid customAlignCenter">
+                    <div class="md:col-span-4 xs:col-span-6 p-2 customGap">
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          id="AT&T"
+                          value="at&t"
+                          defaultChecked
+                          className="hidden"
+                          {...register("provider")}
+                        />
+                        <label
+                          htmlFor="AT&T"
+                          className="flex items-center space-x-3 cursor-pointer"
+                        >
+                          <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
+                            <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
+                          </div>
+                          <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
+                            AT&T
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="md:col-span-4 xs:col-span-6 p-2 customGap">
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          id="T-Mobile&Sprint"
+                          value="tmobile"
+                          className="hidden"
+                          {...register("provider")}
+                        />
+                        <label
+                          htmlFor="T-Mobile&Sprint"
+                          className="flex items-center space-x-3 cursor-pointer"
+                        >
+                          <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
+                            <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
+                          </div>
+                          <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
+                            T-Mobile & Sprint
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="md:col-span-4 xs:col-span-6 p-2 customGap">
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          id="Verizon"
+                          value="verizon"
+                          className="hidden"
+                          {...register("provider")}
+                        />
+                        <label
+                          htmlFor="Verizon"
+                          className="flex items-center space-x-3 cursor-pointer"
+                        >
+                          <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
+                            <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
+                          </div>
+                          <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
+                            Verizon
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="md:col-span-4 xs:col-span-6 p-2 customGap">
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          id="BoostMobile"
+                          value="boostmobile"
+                          className="hidden"
+                          {...register("provider")}
+                        />
+                        <label
+                          htmlFor="BoostMobile"
+                          className="flex items-center space-x-3 cursor-pointer"
+                        >
+                          <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
+                            <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
+                          </div>
+                          <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
+                            Boost Mobile
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="md:col-span-4 xs:col-span-6 p-2 customGap">
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          id="CricketWireless"
+                          value="cricketwireless"
+                          className="hidden"
+                          {...register("provider")}
+                        />
+                        <label
+                          htmlFor="CricketWireless"
+                          className="flex items-center space-x-3 cursor-pointer"
+                        >
+                          <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
+                            <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
+                          </div>
+                          <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
+                            Cricket Wireless
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="md:col-span-4 xs:col-span-6 p-2 customGap">
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          id="VirginMobile"
+                          value="virginmobile"
+                          className="hidden"
+                          {...register("provider")}
+                        />
+                        <label
+                          htmlFor="VirginMobile"
+                          className="flex items-center space-x-3 cursor-pointer"
+                        >
+                          <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
+                            <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
+                          </div>
+                          <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
+                            Virgin Mobile
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-span-3 p-2 customGap">
+                    {/* <Listbox
+                      value={selectedPerson}
+                      onChange={setSelectedPerson}
+                    >
+                      <Listbox.Button>{selectedPerson.name}</Listbox.Button>
+                      <Listbox.Options>
+                        {people.map((person) => (
+                          <Listbox.Option
+                            key={person.id}
+                            value={person}
+                            disabled={person.unavailable}
+                          >
+                            {person.name}
+                          </Listbox.Option>
+                        ))}
+                      </Listbox.Options>
+                    </Listbox> */}
+                    <Listbox
+                      value={selectedProvider}
+                      onChange={setSelectedProvider}
+                    >
+                      <div className="relative mt-1">
+                        <Listbox.Button className="relative font-inter w-max rounded-[5px] border-2 border-secondary/20 sm:py-3 py-1 pl-5 sm:pr-10 pr-8 text-base font-semibold customLabel">
+                          <span className="block truncate">
+                            {selectedProvider.name}
+                          </span>
+                          <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                            <SelectorIcon
+                              className="w-5 h-5 text-gray-400"
+                              aria-hidden="true"
+                            />
+                          </span>
+                        </Listbox.Button>
+                        <Transition
+                          as={Fragment}
+                          leave="transition ease-in duration-100"
+                          leaveFrom="opacity-100"
+                          leaveTo="opacity-0"
+                        >
+                          <Listbox.Options className="absolute min-w-[256px] py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                            {otherProviders.map((provider, providerIdx) => (
+                              <Listbox.Option
+                                key={providerIdx}
+                                className={({ active }) =>
+                                  `${
+                                    active
+                                      ? "text-secondary bg-secondary-alternative/50"
+                                      : "text-gray-900"
+                                  }
+                          cursor-pointer select-none relative py-2 pl-10 pr-4 font-medium`
+                                }
+                                value={provider}
+                              >
+                                {({ selected, active }) => (
+                                  <>
+                                    <span
+                                      className={`customLabel ${
+                                        selected
+                                          ? "font-semibold"
+                                          : "font-medium"
+                                      } block truncate`}
+                                    >
+                                      {provider.name}
+                                    </span>
+                                    {selected ? (
+                                      <span
+                                        className={`customLabel ${
+                                          active
+                                            ? "text-amber-600"
+                                            : "text-amber-600"
+                                        }
+                                absolute inset-y-0 left-0 flex items-center pl-3`}
+                                      >
+                                        <CheckIcon
+                                          className="w-5 h-5"
+                                          aria-hidden="true"
+                                        />
+                                      </span>
+                                    ) : null}
+                                  </>
+                                )}
+                              </Listbox.Option>
+                            ))}
+                          </Listbox.Options>
+                        </Transition>
+                      </div>
+                    </Listbox>
 
-                <div className="flex flex-wrap gap-3">
-                  <div className="flex items-center">
-                    <input
-                      type="radio"
-                      id="AT&T"
-                      value="at&t"
-                      defaultChecked
-                      className="hidden"
-                      {...register("provider")}
-                    />
-                    <label
-                      htmlFor="AT&T"
-                      className="flex items-center space-x-3 cursor-pointer"
-                    >
-                      <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
-                        <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
-                      </div>
-                      <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
-                        AT&T
-                      </span>
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input
-                      type="radio"
-                      id="T-Mobile&Sprint"
-                      value="tmobile"
-                      className="hidden"
-                      {...register("provider")}
-                    />
-                    <label
-                      htmlFor="T-Mobile&Sprint"
-                      className="flex items-center space-x-3 cursor-pointer"
-                    >
-                      <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
-                        <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
-                      </div>
-                      <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
-                        T-Mobile & Sprint
-                      </span>
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input
-                      type="radio"
-                      id="Verizon"
-                      value="verizon"
-                      className="hidden"
-                      {...register("provider")}
-                    />
-                    <label
-                      htmlFor="Verizon"
-                      className="flex items-center space-x-3 cursor-pointer"
-                    >
-                      <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
-                        <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
-                      </div>
-                      <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
-                        Verizon
-                      </span>
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input
-                      type="radio"
-                      id="BoostMobile"
-                      value="boostmobile"
-                      className="hidden"
-                      {...register("provider")}
-                    />
-                    <label
-                      htmlFor="BoostMobile"
-                      className="flex items-center space-x-3 cursor-pointer"
-                    >
-                      <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
-                        <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
-                      </div>
-                      <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
-                        Boost Mobile
-                      </span>
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input
-                      type="radio"
-                      id="CricketWireless"
-                      value="cricketwireless"
-                      className="hidden"
-                      {...register("provider")}
-                    />
-                    <label
-                      htmlFor="CricketWireless"
-                      className="flex items-center space-x-3 cursor-pointer"
-                    >
-                      <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
-                        <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
-                      </div>
-                      <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
-                        Cricket Wireless
-                      </span>
-                    </label>
-                  </div>
-
-                  <div className="flex items-center">
-                    <input
-                      type="radio"
-                      id="VirginMobile"
-                      value="virginmobile"
-                      className="hidden"
-                      {...register("provider")}
-                    />
-                    <label
-                      htmlFor="VirginMobile"
-                      className="flex items-center space-x-3 cursor-pointer"
-                    >
-                      <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
-                        <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
-                      </div>
-                      <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
-                        Virgin Mobile
-                      </span>
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input
-                      type="radio"
-                      id="Other"
-                      value="Other"
-                      className="hidden"
-                      {...register("provider")}
-                    />
-                    <label
-                      htmlFor="Other"
-                      className="flex items-center space-x-3 cursor-pointer"
-                    >
-                      <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
-                        <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
-                      </div>
-                      <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
-                        Other
-                      </span>
-                    </label>
+                    {/* <div className="flex items-center">
+                      <input
+                        type="radio"
+                        id="Other"
+                        value="Other"
+                        className="hidden"
+                        {...register("provider")}
+                      />
+                      <label
+                        htmlFor="Other"
+                        className="flex items-center space-x-3 cursor-pointer"
+                      >
+                        <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
+                          <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
+                        </div>
+                        <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
+                          Other
+                        </span>
+                      </label>
+                    </div> */}
                   </div>
                 </div>
 
-                {getValues("provider") === "Other" && (
+                {/* {getValues("provider") === "Other" && (
                   <Listbox
                     value={selectedProvider}
                     onChange={setSelectedProvider}
@@ -736,9 +778,10 @@ const AddressRSVP = () => {
                             <Listbox.Option
                               key={providerIdx}
                               className={({ active }) =>
-                                `${active
-                                  ? "text-secondary bg-secondary-alternative/50"
-                                  : "text-gray-900"
+                                `${
+                                  active
+                                    ? "text-secondary bg-secondary-alternative/50"
+                                    : "text-gray-900"
                                 }
                           cursor-pointer select-none relative py-2 pl-10 pr-4 font-medium`
                               }
@@ -747,17 +790,19 @@ const AddressRSVP = () => {
                               {({ selected, active }) => (
                                 <>
                                   <span
-                                    className={`${selected ? "font-semibold" : "font-medium"
-                                      } block truncate`}
+                                    className={`${
+                                      selected ? "font-semibold" : "font-medium"
+                                    } block truncate`}
                                   >
                                     {provider.name}
                                   </span>
                                   {selected ? (
                                     <span
-                                      className={`${active
-                                        ? "text-amber-600"
-                                        : "text-amber-600"
-                                        }
+                                      className={`${
+                                        active
+                                          ? "text-amber-600"
+                                          : "text-amber-600"
+                                      }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                     >
                                       <CheckIcon
@@ -774,82 +819,170 @@ const AddressRSVP = () => {
                       </Transition>
                     </div>
                   </Listbox>
-                )}
+                )} */}
+              </div>
+
+              <div className="space-y-5">
+                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
+                  How do you want your invitation & Reminders Sent?
+                </Heading>
+
+                <div class="grid grid-cols-12 gap-2 w-full customGrid customAlignCenter">
+                  <div class="md:col-span-3 xs:col-span-6 p-2 customGap">
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="checkbox"
+                        id="text_invite"
+                        value={true}
+                        defaultChecked
+                        className="text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                        {...register("text_invite")}
+                      />
+                      <label
+                        htmlFor="text_invite"
+                        className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg customLabel"
+                      >
+                        Text - 📲
+                      </label>
+                    </div>
+                  </div>
+                  <div class="md:col-span-3 xs:col-span-6 p-2 customGap">
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="checkbox"
+                        id="email_invite"
+                        value={true}
+                        defaultChecked
+                        className="text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                        {...register("email_invite")}
+                      />
+                      <label
+                        htmlFor="email_invite"
+                        className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg customLabel"
+                      >
+                        E-mail - 🖥
+                      </label>
+                    </div>
+                  </div>
+                  <div class="md:col-span-3 xs:col-span-6 p-2 customGap">
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="checkbox"
+                        id="mail_invite"
+                        value={true}
+                        className="text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                        {...register("mail_invite")}
+                      />
+                      <label
+                        htmlFor="mail_invite"
+                        className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg customLabel"
+                      >
+                        Mail - 💌
+                      </label>
+                    </div>
+                  </div>
+                  <div class="md:col-span-3 xs:col-span-6 p-2 customGap">
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="checkbox"
+                        id="allAbove_invite"
+                        value={true}
+                        defaultChecked
+                        className="text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                        {...register("allAbove_invite")}
+                      />
+                      <label
+                        htmlFor="allAbove_invite"
+                        className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg customLabel"
+                      >
+                        All The Above - 💯
+                      </label>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className="space-y-5 !mt-5">
                 <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
                   Can you make it? Please RSVP
                 </Heading>
-                <div className="flex flex-wrap items-center gap-3">
-                  <div className="flex items-center">
-                    <input
-                      type="radio"
-                      id="yes"
-                      value="yes"
-                      defaultChecked
-                      className="hidden"
-                      {...register("rsvp")}
-                    />
-                    <label
-                      htmlFor="yes"
-                      className="flex items-center space-x-3 cursor-pointer"
-                    >
-                      <div className="checked-outer border-[3px] rounded-full border-primary w-6 md:w-7 h-6 md:h-7 flex items-center justify-center">
-                        <div className="w-2 h-2 rounded-full checked-inner md:w-3 md:h-3"></div>
-                      </div>
-                      <span className="text-lg font-light font-inter customLabel">
-                        Yes
-                      </span>
-                    </label>
+
+                <div class="grid grid-cols-12 gap-2 w-full customGrid customAlignCenter">
+                  <div class="md:col-span-4 xs:col-span-6 p-2 customGap">
+                    <div className="flex items-center">
+                      <input
+                        type="radio"
+                        id="yes"
+                        value="yes"
+                        defaultChecked
+                        className="hidden"
+                        {...register("rsvp")}
+                      />
+                      <label
+                        htmlFor="yes"
+                        className="flex items-center space-x-3 cursor-pointer"
+                      >
+                        <div className="checked-outer border-[3px] rounded-full border-primary w-6 md:w-7 h-6 md:h-7 flex items-center justify-center">
+                          <div className="w-2 h-2 rounded-full checked-inner md:w-3 md:h-3"></div>
+                        </div>
+                        <span className="text-lg font-light font-inter customLabel">
+                          Yes
+                        </span>
+                      </label>
+                    </div>
                   </div>
-                  <div className="flex items-center">
-                    <input
-                      type="radio"
-                      id="maybe"
-                      value="maybe"
-                      defaultChecked
-                      className="hidden"
-                      {...register("rsvp")}
-                    />
-                    <label
-                      htmlFor="maybe"
-                      className="flex items-center space-x-3 cursor-pointer"
-                    >
-                      <div className="checked-outer border-[3px] rounded-full border-primary w-6 md:w-7 h-6 md:h-7 flex items-center justify-center">
-                        <div className="w-2 h-2 rounded-full checked-inner md:w-3 md:h-3"></div>
-                      </div>
-                      <span className="text-lg font-light font-inter customLabel">
-                        Maybe
-                      </span>
-                    </label>
+                  <div class="md:col-span-4 xs:col-span-6 p-2 customGap">
+                    <div className="flex items-center">
+                      <input
+                        type="radio"
+                        id="maybe"
+                        value="maybe"
+                        defaultChecked
+                        className="hidden"
+                        {...register("rsvp")}
+                      />
+                      <label
+                        htmlFor="maybe"
+                        className="flex items-center space-x-3 cursor-pointer"
+                      >
+                        <div className="checked-outer border-[3px] rounded-full border-primary w-6 md:w-7 h-6 md:h-7 flex items-center justify-center">
+                          <div className="w-2 h-2 rounded-full checked-inner md:w-3 md:h-3"></div>
+                        </div>
+                        <span className="text-lg font-light font-inter customLabel">
+                          Maybe
+                        </span>
+                      </label>
+                    </div>
                   </div>
-                  <div className="flex items-center">
-                    <input
-                      type="radio"
-                      id="no"
-                      value="no"
-                      className="hidden"
-                      {...register("rsvp")}
-                    />
-                    <label
-                      htmlFor="no"
-                      className="flex items-center space-x-3 cursor-pointer"
-                    >
-                      <div className="checked-outer border-[3px] rounded-full border-primary w-6 md:w-7 h-6 md:h-7 flex items-center justify-center">
-                        <div className="w-2 h-2 rounded-full checked-inner md:w-3 md:h-3"></div>
-                      </div>
-                      <span className="text-lg font-light font-inter customLabel">
-                        No, we send our best.
-                      </span>
-                    </label>
+
+                  <div class="md:col-span-4 xs:col-span-6 p-2 customGap">
+                    <div className="flex items-center">
+                      <input
+                        type="radio"
+                        id="no"
+                        value="no"
+                        className="hidden"
+                        {...register("rsvp")}
+                      />
+                      <label
+                        htmlFor="no"
+                        className="flex items-center space-x-3 cursor-pointer"
+                      >
+                        <div className="checked-outer border-[3px] rounded-full border-primary w-6 md:w-7 h-6 md:h-7 flex items-center justify-center">
+                          <div className="w-2 h-2 rounded-full checked-inner md:w-3 md:h-3"></div>
+                        </div>
+                        <span className="text-lg font-light font-inter customLabel">
+                          No, we send our best.
+                        </span>
+                      </label>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div
                 className="space-y-3 !mt-10 "
-              // title='Please include yourself'
+                // title='Please include yourself'
               >
                 <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
                   RSVP Estimate Guests
@@ -861,16 +994,16 @@ const AddressRSVP = () => {
                   value={`${getValues("guestEstimate")}`}
                   className="w-28 text-center rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
                 />
-                <div className="py-3">
+                <div className="py-1 sm:py-3">
                   <input
                     type="range"
                     defaultValue={1}
                     min="1"
                     max="1000"
-                    className="block cursor-pointer text-center rounded-[5px] border-2 border-gray-200 px-5 text-base font-normal"
+                    className="block cursor-pointer text-center rounded-[5px] border-2 border-gray-200 sm:px-5 px-2 text-base font-normal"
                     {...register("guestEstimate")}
                   />
-                  <h2 className='text-[12px]' >Please include yourself</h2>
+                  <h2 className="text-[12px]">Please include yourself</h2>
                 </div>
               </div>
               <div className="!mt-10">

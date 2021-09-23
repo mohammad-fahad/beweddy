@@ -302,7 +302,7 @@
 
 @media screen and (max-width: 599px) {
   .smallText {
-    font-size : 10px !important;
+    font-size: 10px !important;
   }
   .headerTitle {
     font-size: 36px !important;
@@ -420,7 +420,7 @@
     right: 31px !important;
     left: 32px !important;
     bottom: 27px !important;
-}
+  }
   .customMobileImg {
     width: 220px !important;
   }
@@ -437,7 +437,7 @@
     left: 69px !important;
     bottom: 61px !important;
     top: 19px !important;
-}
+  }
   .desktopImage {
   }
   /* .tabPreview {
@@ -464,7 +464,7 @@
     left: 54px !important;
     bottom: 48px !important;
     top: 16px !important;
-}
+  }
   /* .desktopImage {
     height: 77px !important;
   } */
@@ -483,37 +483,36 @@
     height: 62% !important;
   } */
   .tabImagesWrapper {
-      right: 16px !important;
-      left: 16px !important;
-      bottom: 132px !important;
-      top: 17px !important;
+    right: 16px !important;
+    left: 16px !important;
+    bottom: 132px !important;
+    top: 17px !important;
   }
 }
 
 @media screen and (max-width: 385px) {
   .desktopImagesWrapper {
-      right: 43px !important;
-      left: 42px !important;
-      bottom: 36px !important;
-      top: 11px !important;
+    right: 43px !important;
+    left: 42px !important;
+    bottom: 36px !important;
+    top: 11px !important;
   }
 }
 
 @media screen and (max-width: 375px) {
   .tabImagesWrapper {
-      right: 13px !important;
-      left: 13px !important;
-      bottom: 110px !important;
-      top: 13px !important;
+    right: 13px !important;
+    left: 13px !important;
+    bottom: 110px !important;
+    top: 13px !important;
   }
-
 }
 @media screen and (max-width: 370px) {
   .tabImagesWrapper {
-      right: 12px !important;
-      left: 12px !important;
-      bottom: 102px !important;
-      top: 11px !important;
+    right: 12px !important;
+    left: 12px !important;
+    bottom: 102px !important;
+    top: 11px !important;
   }
 }
 
@@ -536,4 +535,8 @@
   .homePageWrapper {
     padding-top: 25rem !important;
   }
+}
+
+.form-control {
+  border: none !important;
 }

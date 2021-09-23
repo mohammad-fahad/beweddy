@@ -105,11 +105,7 @@ const TodoPage = () => {
           }
         />
         <DashboardContainer>
-          {/* <h1 className="!text-[36px] commonTitle flex items-center gap-2">
-            Just Do It List{" "}
-            <img src="/icons/ring.svg" alt="" className="w-7 md:w-8" />{" "}
-          </h1> */}
-          <div className="relative p-8 mt-5 border-4 border-gray-200 rounded-lg lg:p-10">
+          <div className="relative p-2 pt-8 border-4 border-gray-200 rounded-lg sm:pt-0 sm:mt-5 sm:p-8 lg:p-10">
             <div className="w-max bg-white absolute top-[-1.9rem] left-1/2 -translate-x-1/2 py-3 px-5 flex items-center space-x-3">
               <img src="/icons/todo.svg" alt="" className="w-7 md:w-8" />
               <h4 className="text-base font-medium capitalize md:text-xl xl:text-2xl">
@@ -172,8 +168,9 @@ const TodoPage = () => {
                     )}
                   </button>
                   <p
-                    className={`text-base md:text-lg font-normal subTitle ${todo.isComplete ? "line-through" : ""
-                      }`}
+                    className={`text-base md:text-lg font-normal smallText ${
+                      todo.isComplete ? "line-through" : ""
+                    }`}
                   >
                     {todo.description}
                   </p>
