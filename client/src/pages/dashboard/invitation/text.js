@@ -511,6 +511,7 @@ const TextInvitesPage = () => {
                                 }`}
                                 height={50}
                                 width={50}
+                                className="rounded-full"
                               />
                             </div>
                             <h4 className="text-sm font-bold text-center">
