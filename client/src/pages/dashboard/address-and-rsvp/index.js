@@ -44,6 +44,18 @@ const otherProviders = [
   },
   { id: 4, name: "Boost Mobile" },
   { id: 5, name: "Cricket Wireless" },
+  { id: 7, name: "Metro PCS" },
+  { id: 8, name: "Mint Mobile" },
+  { id: 9, name: "Page Plus" },
+  { id: 10, name: "Red Pocket" },
+  { id: 11, name: "Republic Wireless" },
+  { id: 12, name: "Sprint" },
+  { id: 13, name: "T-Mobile" },
+  { id: 14, name: "Tracfone" },
+  { id: 15, name: "U.S. Cellular" },
+  { id: 16, name: "Virgin Mobile" },
+  { id: 17, name: "Ting" },
+  { id: 18, name: "Xfinity Mobile" },
 ];
 
 const providers = {
