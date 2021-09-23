@@ -230,7 +230,7 @@ const AddressRSVP = () => {
           </Carousel>
 
           <div className="px-2 py-10 lg:px-10 lg:py-10">
-            <h5 className="text-2xl font-medium text-center">
+            <h5 className="text-[36px] font-medium text-center mudiumTitle">
               {user.coupleName}'s Wedding
             </h5>
 
@@ -241,14 +241,17 @@ const AddressRSVP = () => {
                   className="flex justify-center items-center space-x-3 py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300"
                 >
                   <LinkIcon className="w-5 h-5" />
-                  <span className="customLabel"> Website Link</span>
+                  <span className="customLabel text-[14px] font-normal">
+                    {" "}
+                    Website Link
+                  </span>
                 </a>
               </Link>
             </div>
-            <h4 className="text-2xl font-medium text-center md:text-3xl mudiumTitle">
+            <h4 className="text-[36px] font-medium text-center mudiumTitle">
               ✨ Your Are Invited To Our Wedding! 💍 ✨
             </h4>
-            <p className="mt-5 mb-5 font-medium text-center sm:mb-16 text-md customLabel">
+            <p className="mt-5 mb-5 font-normal text-center sm:mb-16 text-[14px] customLabel">
               Thanks for your love and support! We want to send you an
               invitation!
             </p>

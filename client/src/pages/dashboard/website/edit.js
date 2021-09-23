@@ -429,6 +429,9 @@ const EditWebsitePage = () => {
                 <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
                   Upload 4 images
                 </h4>
+                <p className="text-[12px] m-0">
+                  Crop Pictures For Cover Photos
+                </p>
                 <div
                   className="relative focus:outline-none"
                   {...getRootProps()}
@@ -440,9 +443,6 @@ const EditWebsitePage = () => {
                   >
                     Upload
                   </label>
-                  <p className="text-[12px] mt-2">
-                    Crop Pictures For Cover Photos
-                  </p>
                   <p className="mt-2 text-sm font-light text-center text-red-400">
                     {errors?.couplePictures?.message}
                   </p>

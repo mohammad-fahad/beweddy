@@ -218,7 +218,7 @@ const QRCodePage = () => {
                     />
                     <button
                       onClick={setCopied}
-                      className="absolute right-0 items-center justify-center px-5 py-3 bg-transparent"
+                      className="absolute right-1 items-center justify-center px-5 py-2 bg-[#ffffff] my-1"
                     >
                       Copy
                     </button>
@@ -240,12 +240,19 @@ const QRCodePage = () => {
                   <Heading h3 className="!font-medium !text-lg">
                     Your Website Link
                   </Heading>
-                  <div>
+                  <div className="relative max-w-[400px] w-full">
                     <input
                       type="text"
                       className="max-w-[400px] text-sm w-full py-3 px-5 text-blue-400 placeholder-blue-400 border font-medium border-primary rounded-[5px]"
                       placeholder="www.beweddy.com/nateandash"
+                      onClick={setCopied}
                     />
+                    <button
+                      onClick={setCopied}
+                      className="absolute right-1 items-center justify-center px-5 py-2 bg-[#ffffff] my-1"
+                    >
+                      Copy
+                    </button>
                   </div>
                   <a
                     href="#"
@@ -258,12 +265,19 @@ const QRCodePage = () => {
                   <Heading h3 className="!font-medium !text-lg">
                     Gift Cards & Registry Link
                   </Heading>
-                  <div>
+                  <div className="relative max-w-[400px] w-full">
                     <input
                       type="text"
                       className="max-w-[400px] text-sm w-full py-3 px-5 text-blue-400 placeholder-blue-400 border font-medium border-primary rounded-[5px]"
                       placeholder="www.beweddy.com/nateandash/giftcards"
+                      onClick={setCopied}
                     />
+                    <button
+                      onClick={setCopied}
+                      className="absolute right-1 items-center justify-center px-5 py-2 bg-[#ffffff] my-1"
+                    >
+                      Copy
+                    </button>
                   </div>
                   <a
                     href="#"
@@ -276,12 +290,19 @@ const QRCodePage = () => {
                   <Heading h3 className="!font-medium !text-lg">
                     We Need Your Address Link
                   </Heading>
-                  <div>
+                  <div className="relative max-w-[400px] w-full">
                     <input
                       type="text"
                       className="max-w-[400px] text-sm w-full py-3 px-5 text-blue-400 placeholder-blue-400 border font-medium border-primary rounded-[5px]"
                       placeholder="www.beweddy.com/nateandash/needyouraddress"
+                      onClick={setCopied}
                     />
+                    <button
+                      onClick={setCopied}
+                      className="absolute right-1 items-center justify-center px-5 py-2 bg-[#ffffff] my-1"
+                    >
+                      Copy
+                    </button>
                   </div>
                   <a
                     href="#"
@@ -294,12 +315,19 @@ const QRCodePage = () => {
                   <Heading h3 className="!font-medium !text-lg">
                     Event Details
                   </Heading>
-                  <div>
+                  <div className="relative max-w-[400px] w-full">
                     <input
                       type="text"
                       className="max-w-[400px] text-sm w-full py-3 px-5 text-blue-400 placeholder-blue-400 border font-medium border-primary rounded-[5px]"
                       placeholder="www.beweddy.com/nateandash/needyouraddress"
+                      onClick={setCopied}
                     />
+                    <button
+                      onClick={setCopied}
+                      className="absolute right-1 items-center justify-center px-5 py-2 bg-[#ffffff] my-1"
+                    >
+                      Copy
+                    </button>
                   </div>
                   <a
                     href="#"
@@ -312,12 +340,19 @@ const QRCodePage = () => {
                   <Heading h3 className="!font-medium !text-lg">
                     Link Shortener
                   </Heading>
-                  <div>
+                  <div className="relative max-w-[400px] w-full">
                     <input
                       type="text"
                       className="max-w-[400px] text-sm w-full py-3 px-5 text-blue-400 placeholder-blue-400 border font-medium border-primary rounded-[5px]"
                       placeholder="Add link"
+                      onClick={setCopied}
                     />
+                    <button
+                      onClick={setCopied}
+                      className="absolute right-1 items-center justify-center px-5 py-2 bg-[#ffffff] my-1"
+                    >
+                      Copy
+                    </button>
                   </div>
                   <a
                     href="#"
