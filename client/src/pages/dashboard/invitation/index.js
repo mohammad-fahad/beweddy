@@ -44,17 +44,6 @@ const params = {
 
 const AddressRSVP = () => {
   const { user } = useSelector(state => state.user);
-  const { countries } = useSelector(state => state.countryList);
-
-  const [selectedCountry, setSelectedCountry] = useState({});
-
-  useEffect(() => {
-    if (countries?.length) {
-      setSelectedCountry(
-        countries.find(country => country.alpha3Code === 'USA')
-      );
-    }
-  }, [countries]);
 
   const {
     watch,
