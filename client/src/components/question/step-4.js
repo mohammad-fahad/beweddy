@@ -50,21 +50,6 @@ const stagger = {
 
 const SentInvitation = () => {
   const dispatch = useDispatch();
-
-  const [countries, setCountries] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState({});
-  useEffect(() => {
-    fetchCountryData();
-  }, []);
-
-  const fetchCountryData = async () => {
-    const { data } = await axios.get("https://restcountries.eu/rest/v2/all");
-    setCountries(data);
-    setSelectedCountry(
-      ...data.filter((country) => country.alpha3Code === "USA")
-    );
-  };
-
   const { push } = useRouter();
   const { questions } = useSelector((state) => state.question);
   const {
@@ -114,7 +99,7 @@ const SentInvitation = () => {
     dispatch(
       addSentInvitation({
         ...data,
-        callingCode: selectedCountry.callingCodes[0],
+        callingCode: 1,
       })
     );
     push({ query: { step: 5 } });
@@ -156,12 +141,12 @@ const SentInvitation = () => {
               Enter Phone Number
             </label>
             <div className="flex items-center">
-              <Listbox value={selectedCountry} onChange={setSelectedCountry}>
+              <Listbox value={`USA`}>
                 <div className="relative -mr-2">
                   <Listbox.Button className="bg-white cursor-pointer inline-block font-semibold py-[6px] md:py-[10px] px-4 placeholder-gray-400 border-[3px] border-gray-200 rounded-[5px] -mr-1">
                     <img
-                      src={selectedCountry.flag}
-                      alt={selectedCountry.name}
+                      src="/logos/usa___logo.svg"
+                      alt={`USA`}
                       className="object-cover mr-8 rounded-full w-7 h-7 md:mr-4"
                     />
                     <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -187,45 +172,41 @@ const SentInvitation = () => {
                     leaveTo="opacity-0"
                   >
                     <Listbox.Options className="absolute z-50 max-w-xs py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                      {countries.map((country, countryIdx) => (
-                        <Listbox.Option
-                          key={countryIdx}
-                          className={({ active }) =>
-                            `${
-                              active
-                                ? "text-amber-900 bg-secondary-alternative/20"
-                                : "text-gray-900"
-                            }
-                          cursor-pointer select-none relative py-2 pl-10 pr-4`
+
+                      <Listbox.Option
+                        className={({ active }) =>
+                          `${active
+                            ? "text-amber-900 bg-secondary-alternative/20"
+                            : "text-gray-900"
                           }
-                          value={country}
-                        >
-                          {({ selected, active }) => (
-                            <>
-                              <span
-                                className={`${
-                                  selected ? "font-medium" : "font-normal"
+                          cursor-pointer select-none relative py-2 pl-10 pr-4`
+                        }
+                        value={`USA`}
+                      >
+                        {({ selected, active }) => (
+                          <>
+                            <span
+                              className={`${selected ? "font-medium" : "font-normal"
                                 } block truncate`}
-                              >
-                                {country.name}
-                              </span>
-                              {selected ? (
-                                <span
-                                  className={`${
-                                    active ? "text-amber-600" : "text-amber-600"
+                            >
+                              {`USA`}
+                            </span>
+                            {selected ? (
+                              <span
+                                className={`${active ? "text-amber-600" : "text-amber-600"
                                   }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
-                                >
-                                  <CheckIcon
-                                    className="w-5 h-5"
-                                    aria-hidden="true"
-                                  />
-                                </span>
-                              ) : null}
-                            </>
-                          )}
-                        </Listbox.Option>
-                      ))}
+                              >
+                                <CheckIcon
+                                  className="w-5 h-5"
+                                  aria-hidden="true"
+                                />
+                              </span>
+                            ) : null}
+                          </>
+                        )}
+                      </Listbox.Option>
+
                     </Listbox.Options>
                   </Transition>
                 </div>
