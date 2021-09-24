@@ -96,23 +96,23 @@ const userSchema = new mongoose.Schema(
     location: {
       type: String,
     },
-    receptionDetails: {
-      type: Array,
-      // default: [
-      //   {
-      //     time: '5.00 PM',
-      //     details: 'Example of event details',
-      //   },
-      //   {
-      //     time: '5.30 PM',
-      //     details: 'Ceremony',
-      //   },
-      //   {
-      //     time: '6.00 PM',
-      //     details: 'Ceremony ends/cocktails begin',
-      //   },
-      // ],
-    },
+    receptionDetails: []
+    // type: Array,
+    // default: [
+    //   {
+    //     time: '5.00 PM',
+    //     details: 'Example of event details',
+    //   },
+    //   {
+    //     time: '5.30 PM',
+    //     details: 'Ceremony',
+    //   },
+    //   {
+    //     time: '6.00 PM',
+    //     details: 'Ceremony ends/cocktails begin',
+    //   },
+    // ],
+    ,
     giftCards: [
       {
         type: mongoose.Schema.Types.ObjectId,

@@ -854,24 +854,10 @@ const EditWebsitePage = () => {
                 </div>
                 {receptionDetails.map((reception, index) => (
                   <div
-                    key={reception.id}
+                    key={index}
                     className="flex items-center !border-gray-200"
                   >
-                    {/* <input
-                      type="text"
-                      // className="w-28 rounded-[5px] border-2 rounded-r-none focus:!border-gray-200 border-gray-200 py-2 pl-4 text-base font-bold placeholder-gray-200"
-                      className="w-[100px] rounded-[5px] border-2 rounded-r-none focus:!border-gray-200 border-gray-200 py-2 pl-4 text-base font-bold placeholder-gray-200 border-r-0"
-                      placeholder="12.00 PM"
-                      value={reception.time}
-                      onChange={(e) => {
-                        const time = e.target.value;
-                        setReceptionDetails((prev) =>
-                          produce(prev, (value) => {
-                            value[index].time = time;
-                          })
-                        );
-                      }}
-                    /> */}
+
                     <Datetime
                       className="w-[100px] rounded-[5px] border-2 rounded-r-none !focus:!border-gray-200 !border-gray-200  text-base font-bold placeholder-gray-200 border-r-0 datepiceker"
                       inputProps={{ placeholder: "12.00 PM" }}
