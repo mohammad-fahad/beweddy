@@ -71,22 +71,62 @@ const EditWebsitePage = () => {
     user.receptionDetails.length
       ? user.receptionDetails
       : [
-          {
-            id: generate(),
-            time: "5.00 PM",
-            details: "Example of event details",
-          },
-          {
-            id: generate(),
-            time: "5.30 PM",
-            details: "Ceremony",
-          },
-          {
-            id: generate(),
-            time: "6.00 PM",
-            details: "Ceremony ends/cocktails begin",
-          },
-        ]
+        {
+          id: generate(),
+          time: "5.00 PM",
+          details: "Example of event details",
+        },
+        {
+          id: generate(),
+          time: "5:30 PM",
+          details: "Ceremony",
+        },
+        {
+          id: generate(),
+          time: "6:00 PM",
+          details: "Ceremony ends/cocktails begin",
+        },
+        {
+          id: generate(),
+          time: "7:00 PM",
+          details: "Cocktails ends and guests are ushered into the reception",
+        },
+        {
+          id: generate(),
+          time: "7:20 PM",
+          details: "Introduction and first dance—guests asked to join after ",
+        },
+        {
+          id: generate(),
+          time: "7:45 PM",
+          details: " Guests take their seats and the first course is served",
+        },
+        {
+          id: generate(),
+          time: "8:00 PM",
+          details: "Welcome speech from parents",
+        },
+        {
+          id: generate(),
+          time: "8:10 PM",
+          details: "Toasts from maid of honor and best man",
+        },
+        {
+          id: generate(),
+          time: "9:00 PM",
+          details: "Parent dances",
+        },
+        {
+          id: generate(),
+          time: "9:30 PM ",
+          details: "Cake cutting",
+        },
+        {
+          id: generate(),
+          time: "10:00 PM",
+          details: "Send-Off",
+        },
+      ]
   );
   const { groom, bride } = user.socialAccounts;
 
@@ -921,8 +961,9 @@ const EditWebsitePage = () => {
                         <PlusIcon className="w-8 h-8" />
                       </motion.a>
                     </Link>
-                    {user?.giftCards?.map((gift) => (
+                    {user?.giftCards?.map((gift, i) => (
                       <motion.div
+                        key={i}
                         layout
                         exit={{ opacity: 0 }}
                         initial={{ opacity: 0 }}
@@ -997,8 +1038,9 @@ const EditWebsitePage = () => {
                   </div>
                 </div>
                 <motion.div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 2lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 sm:gap-5 md:gap-10">
-                  {user?.registries?.map((registry) => (
+                  {user?.registries?.map((registry, i) => (
                     <motion.div
+                      key={i}
                       layout
                       exit={{ opacity: 0 }}
                       initial={{ opacity: 0 }}
