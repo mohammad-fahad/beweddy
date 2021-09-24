@@ -1104,6 +1104,7 @@ const EditWebsitePage = () => {
                     Follow
                     <div className="ml-2">
                       <EditText
+                        type="text"
                         name="firstName"
                         defaultValue={user?.questions?.firstName}
                       />
@@ -1367,6 +1368,7 @@ const EditWebsitePage = () => {
                     Follow
                     <div className="ml-2">
                       <EditText
+                        type="text"
                         name="spouseFirstName"
                         defaultValue={user?.questions?.spouseFirstName}
                       />
