@@ -1,71 +1,71 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import Image from 'next/image';
+import Head from "next/head";
+import Link from "next/link";
+import Image from "next/image";
 import {
   ActivityInfo,
   DashboardHeader,
   WebsitePreviewContainer,
   WeddingDayCountDown,
-} from '@components/dashboard';
-import { Footer } from '@components/index';
-import { withAuthRoute } from '@hoc/withAuthRoute';
-import DashboardTopBar from '@components/dashboard/header/TopBar';
-import DashboardLayout from '@components/dashboard/layout';
-import { useSelector } from 'react-redux';
-import { GlobeAltIcon, LinkIcon, PencilIcon } from '@heroicons/react/outline';
+} from "@components/dashboard";
+import { Footer } from "@components/index";
+import { withAuthRoute } from "@hoc/withAuthRoute";
+import DashboardTopBar from "@components/dashboard/header/TopBar";
+import DashboardLayout from "@components/dashboard/layout";
+import { useSelector } from "react-redux";
+import { GlobeAltIcon, LinkIcon, PencilIcon } from "@heroicons/react/outline";
 
 const navLinks = [
   {
-    label: 'We need your address',
-    route: '/dashboard/address-and-rsvp',
-    icon: '/icons/location.svg',
+    label: "We need your address",
+    route: "/dashboard/address-and-rsvp",
+    icon: "/icons/location.svg",
   },
   {
-    label: 'Just do it list',
-    route: '/dashboard/features/todo',
-    icon: '/icons/ring-tik.svg',
+    label: "Just do it list",
+    route: "/dashboard/features/todo",
+    icon: "/icons/ring-tik.svg",
   },
   {
-    label: 'QR Code & links',
-    route: '/dashboard/features/qrcode-and-links',
-    icon: '/icons/qrcode.svg',
+    label: "QR Code & links",
+    route: "/dashboard/features/qrcode-and-links",
+    icon: "/icons/qrcode.svg",
   },
   {
-    label: 'Text invites',
-    route: '/dashboard/invitation/text',
-    icon: '/icons/messages.svg',
+    label: "Text invites",
+    route: "/dashboard/invitation/text",
+    icon: "/icons/messages.svg",
   },
   {
-    label: 'Email invites',
-    route: '/dashboard/invitation/email',
-    icon: '/icons/email_send.svg',
+    label: "Email invites",
+    route: "/dashboard/invitation/email",
+    icon: "/icons/email_send.svg",
   },
   {
-    label: 'Mailout invites',
-    route: '/dashboard/invitation/mailout',
-    icon: '/icons/email_add.svg',
+    label: "Mailout invites",
+    route: "/dashboard/invitation/mailout",
+    icon: "/icons/email_add.svg",
   },
   {
-    label: 'Calender invites',
-    route: '/dashboard/invitation/calender',
-    icon: '/icons/note_tick.svg',
-  },
-
-  {
-    label: 'Gift cards',
-    route: '/dashboard/gift-cards',
-    icon: '/icons/gift-2.svg',
-  },
-  {
-    label: 'Registry',
-    route: '/dashboard/registries',
-    icon: '/icons/registry.svg',
+    label: "Calender invites",
+    route: "/dashboard/invitation/calender",
+    icon: "/icons/note_tick.svg",
   },
 
   {
-    label: 'Guest management',
-    route: '/dashboard/invitation/rsvp-guest-management',
-    icon: '/icons/ic_baseline-rsvp.svg',
+    label: "Gift cards",
+    route: "/dashboard/gift-cards",
+    icon: "/icons/gift-2.svg",
+  },
+  {
+    label: "Registry",
+    route: "/dashboard/registries",
+    icon: "/icons/registry.svg",
+  },
+
+  {
+    label: "Guest management",
+    route: "/dashboard/invitation/rsvp-guest-management",
+    icon: "/icons/ic_baseline-rsvp.svg",
   },
 ];
 
@@ -83,7 +83,7 @@ const Dashboard = () => {
         <DashboardLayout shadow>
           <DashboardHeader
             title={
-              <h1 className="flex gap-2 text-2xl mudiumTitle mb-2">
+              <h1 className="flex gap-2 mb-2 text-2xl mudiumTitle">
                 Dashboard <img src="/Emoji.png" alt="dashboard" />
               </h1>
             }
@@ -132,7 +132,8 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              <div className="relative w-full px-6 border-t-4 border-b-4 md:px-10 gradient border-primary">
+              {/* <div className="relative w-full px-6 border-t-4 border-b-4 md:px-10 gradient border-primary"> */}
+              <div className="relative w-full px-6 border-t-4 md:px-10 border-primary">
                 <div className="text-center my-[50px] dashboardMaringPadding">
                   <h3 className="relative inline-block text-2xl font-normal">
                     <span className="absolute inline-block w-full mx-auto bottom-[-12px] left-1/2 h-[2px] max-w-[52px] -translate-x-1/2 bg-primary"></span>

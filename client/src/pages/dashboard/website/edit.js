@@ -4,8 +4,6 @@ import { produce } from "immer";
 import { generate } from "shortid";
 import { Image } from "cloudinary-react";
 import { DashboardContainer, DashboardHeader } from "@components/dashboard";
-import { EditText, EditTextarea } from "react-edit-text";
-import "react-edit-text/dist/index.css";
 import DashboardTopBar from "@components/dashboard/header/TopBar";
 import DashboardLayout from "@components/dashboard/layout";
 import {
@@ -59,6 +57,8 @@ import VenmoModal from "@components/dashboard/VenmoModal";
 
 const EditWebsitePage = () => {
   const dispatch = useDispatch();
+  const [nickname, setNickname] = useState(false);
+  const [spouseFirst, setSpouseFirst] = useState(false);
   const { user, loading: userLoading } = useSelector((state) => state.user);
   console.log({ user });
   const [loading, setLoading] = useState(false);
@@ -1102,13 +1102,33 @@ const EditWebsitePage = () => {
                 <div className="w-full space-y-10">
                   <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle flex items-center">
                     Follow
-                    <div className="ml-2">
-                      <EditText
-                        type="text"
-                        name="firstName"
-                        defaultValue={user?.questions?.firstName}
-                      />
-                    </div>
+                    {nickname ? (
+                      <div className="flex items-center justify-center ml-2">
+                        <input
+                          type="text"
+                          className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal"
+                          {...register("firstName", {
+                            required: {
+                              value: true,
+                              message: "First name is required!",
+                            },
+                          })}
+                        />
+                        <button
+                          className="transition-colors duration-300 px-3 py-[3px] bg-white text-primary rounded-[5px] border-2 border-gray-200"
+                          type="submit"
+                        >
+                          Save
+                        </button>
+                      </div>
+                    ) : (
+                      <span
+                        onClick={() => setNickname(!nickname)}
+                        className="ml-2"
+                      >
+                        {user?.questions?.firstName}
+                      </span>
+                    )}
                   </h4>
                   <Popover.Group className="flex flex-wrap items-center gap-3">
                     <Popover className="relative">
@@ -1367,11 +1387,39 @@ const EditWebsitePage = () => {
                   <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle flex items-center">
                     Follow
                     <div className="ml-2">
-                      <EditText
-                        type="text"
+                      {/* <EditText
+                        onBlur={handleSubmit(onSubmit)}
+                        inline
                         name="spouseFirstName"
                         defaultValue={user?.questions?.spouseFirstName}
-                      />
+                      /> */}
+                      {spouseFirst ? (
+                        <div className="flex items-center justify-center ml-2">
+                          <input
+                            type="text"
+                            className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal"
+                            {...register("spouseFirstName", {
+                              required: {
+                                value: true,
+                                message: "First name is required!",
+                              },
+                            })}
+                          />
+                          <button
+                            className="transition-colors duration-300 px-3 py-[3px] bg-white text-primary rounded-[5px] border-2 border-gray-200"
+                            type="submit"
+                          >
+                            Save
+                          </button>
+                        </div>
+                      ) : (
+                        <span
+                          onClick={() => setSpouseFirst(!spouseFirst)}
+                          className="ml-2"
+                        >
+                          {user?.questions?.spouseFirstName}
+                        </span>
+                      )}
                     </div>
                   </h4>
                   <Popover.Group className="flex flex-wrap items-center gap-3">
