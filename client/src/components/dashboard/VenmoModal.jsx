@@ -73,8 +73,17 @@ const VenmoModal = ({ isVenmoModalOpen, setIsVenmoModalOpen }) => {
                 >
                   Connect Your Venmo
                 </Dialog.Title>
+                <div className="flex items-center justify-center">
+                  <Image
+                    src="https://i.ibb.co/V9yxT0p/images.png"
+                    width={100}
+                    height={100}
+                    objectFit="contain"
+                    loading="lazy"
+                  />
+                </div>
                 <form
-                  className="mt-5 space-y-2 sm:mt-10 xs:space-y-5"
+                  className="space-y-2 sm:mt-10 xs:space-y-5"
                   onSubmit={handleSubmit(onSubmit)}
                 >
                   <div className="flex flex-col space-y-2">
@@ -97,7 +106,7 @@ const VenmoModal = ({ isVenmoModalOpen, setIsVenmoModalOpen }) => {
                       })}
                     />
                   </div>
-                  <div className="flex flex-col space-y-2">
+                  {/* <div className="flex flex-col space-y-2">
                     <label
                       htmlFor="image"
                       className="text-sm font-medium md:text-base md:font-semibold"
@@ -114,7 +123,7 @@ const VenmoModal = ({ isVenmoModalOpen, setIsVenmoModalOpen }) => {
                       />
                     </div>
 
-                    {/* <input
+                    <input
                       id="image"
                       type="text"
                       className="text-[13px] md:text-[15px] border-gray-100 border-2 py-2 px-4 xs:py-3 xs:px-5 placeholder-gray-300 rounded-[5px]"
@@ -130,8 +139,8 @@ const VenmoModal = ({ isVenmoModalOpen, setIsVenmoModalOpen }) => {
                           message: "Link is not valid",
                         },
                       })}
-                    /> */}
-                  </div>
+                    />
+                  </div> */}
                   <div className="flex flex-col space-y-2">
                     <label
                       htmlFor="link"
