@@ -540,3 +540,9 @@
 .form-control {
   /* border: #b9c2d6 !important; */
 }
+
+.datepiceker .form-control {
+  border: none !important;
+  border-color: none !important;
+  outline: none !important;
+}

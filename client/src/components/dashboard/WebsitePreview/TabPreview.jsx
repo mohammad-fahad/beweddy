@@ -25,16 +25,19 @@ const TabPreview = () => {
           size.width < 768 ? "tabImagesWrapper" : ""
         } ${size.width < 600 ? "tabImagesWrapper" : ""}`}
       >
-        <h1 className="absolute !top-[10px] !left-[10px] ">
+        {/* <h1 className="absolute !top-[10px] !left-[10px] ">
           {user?.coupleName}
-        </h1>
-         <div
-          className={`absolute !bottom-[0px] left-[0px] rigth-[10px] bg-[#00000069] w-full py-2 `} >
-            <h1 className={`text-[#ffffff] text-center ${
-                size.width < 480 ? "text-[12px]" : ""
-              }`}>
-                We’re Getting Married!
-            </h1>
+        </h1> */}
+        <div
+          className={`absolute !bottom-[0px] left-[0px] rigth-[10px] bg-[#00000069] w-full py-2 `}
+        >
+          <h1
+            className={`text-[#ffffff] text-center capitalize ${
+              size.width < 480 ? "text-[12px]" : ""
+            }`}
+          >
+            {user?.coupleName} Getting Married!
+          </h1>
         </div>
         <img
           src={user?.questions?.couplePictures[0]?.url}

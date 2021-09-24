@@ -4,6 +4,8 @@ import { produce } from "immer";
 import { generate } from "shortid";
 import { Image } from "cloudinary-react";
 import { DashboardContainer, DashboardHeader } from "@components/dashboard";
+import { EditText, EditTextarea } from "react-edit-text";
+import "react-edit-text/dist/index.css";
 import DashboardTopBar from "@components/dashboard/header/TopBar";
 import DashboardLayout from "@components/dashboard/layout";
 import {
@@ -53,15 +55,17 @@ import RegistryModal from "@components/dashboard/RegistryModal";
 import getYear from "date-fns/getYear";
 import getMonth from "date-fns/getYear";
 import "react-datepicker/dist/react-datepicker.css";
+import VenmoModal from "@components/dashboard/VenmoModal";
 
 const EditWebsitePage = () => {
   const dispatch = useDispatch();
   const { user, loading: userLoading } = useSelector((state) => state.user);
-  // console.log({ user });
+  console.log({ user });
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState();
   const [preview, setPreview] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isVenmoModalOpen, setIsVenmoModalOpen] = useState(false);
   const [selectedImageFile, setSelectedImageFile] = useState();
   const [uploadedFiles, setUploadedFiles] = useState(
     user.questions.couplePictures
@@ -73,18 +77,53 @@ const EditWebsitePage = () => {
       : [
           {
             id: generate(),
-            time: "5.00 PM",
-            details: "Example of event details",
-          },
-          {
-            id: generate(),
-            time: "5.30 PM",
+            time: "5:30 PM",
             details: "Ceremony",
           },
           {
             id: generate(),
-            time: "6.00 PM",
+            time: "6:00 PM",
             details: "Ceremony ends/cocktails begin",
+          },
+          {
+            id: generate(),
+            time: "7:00 PM",
+            details: "Cocktails ends and guests are ushered into the reception",
+          },
+          {
+            id: generate(),
+            time: "7:20 PM",
+            details: "Introduction and first dance—guests asked to join after ",
+          },
+          {
+            id: generate(),
+            time: "7:45 PM",
+            details: " Guests take their seats and the first course is served",
+          },
+          {
+            id: generate(),
+            time: "8:00 PM",
+            details: "Welcome speech from parents",
+          },
+          {
+            id: generate(),
+            time: "8:10 PM",
+            details: "Toasts from maid of honor and best man",
+          },
+          {
+            id: generate(),
+            time: "9:00 PM",
+            details: "Parent dances",
+          },
+          {
+            id: generate(),
+            time: "9:30 PM ",
+            details: "Cake cutting",
+          },
+          {
+            id: generate(),
+            time: "10:00 PM",
+            details: "Send-Off",
           },
         ]
   );
@@ -415,7 +454,7 @@ const EditWebsitePage = () => {
                 </div>
                 <div className="!mt-5">
                   <button
-                    className="border-2 transition-colors duration-300 !border-[#000000] px-3 py-1 hover:border-black"
+                    className="border-2 transition-colors duration-300 !border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
                     type="submit"
                   >
                     Save
@@ -481,7 +520,7 @@ const EditWebsitePage = () => {
                   ))}
                 </motion.div>
                 <button
-                  className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black"
+                  className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
                   type="submit"
                 >
                   Save
@@ -723,7 +762,7 @@ const EditWebsitePage = () => {
                 </div>
                 <div>
                   <button
-                    className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black"
+                    className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
                     type="submit"
                   >
                     Save
@@ -749,7 +788,7 @@ const EditWebsitePage = () => {
                 ></textarea>
 
                 <button
-                  className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black"
+                  className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
                   type="submit"
                 >
                   Save
@@ -763,7 +802,7 @@ const EditWebsitePage = () => {
                     Location Name &amp; Address
                   </h4>
                 </div>
-                <div className="flex flex-row items-center justify-between">
+                <div className="flex flex-row items-center justify-between w-full">
                   <div className="w-full max-w-xs">
                     <input
                       type="text"
@@ -778,9 +817,9 @@ const EditWebsitePage = () => {
                     />
                   </div>
 
-                  <div style={{ width: "100%" }}>
+                  <div className="flex justify-end w-full">
                     <iframe
-                      width="50%"
+                      width="55%"
                       height="400"
                       frameBorder="0"
                       scrolling="no"
@@ -792,7 +831,7 @@ const EditWebsitePage = () => {
                 </div>
                 <div>
                   <button
-                    className="inline-block border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black"
+                    className="inline-block border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
                     type="submit"
                   >
                     Save
@@ -829,9 +868,9 @@ const EditWebsitePage = () => {
                       }}
                     /> */}
                     <Datetime
-                      className="w-[100px] rounded-[5px] border-2 rounded-r-none !focus:!border-gray-200 !border-gray-200  text-base font-bold placeholder-gray-200 border-r-0"
+                      className="w-[100px] rounded-[5px] border-2 rounded-r-none !focus:!border-gray-200 !border-gray-200  text-base font-bold placeholder-gray-200 border-r-0 datepiceker"
                       inputProps={{ placeholder: "12.00 PM" }}
-                      style={{ borderColor: "none" }}
+                      id="datepickerInput"
                       dateFormat={false}
                       value={reception.time}
                       onChange={(e) => {
@@ -893,7 +932,7 @@ const EditWebsitePage = () => {
                   <span>Add New</span>
                 </button>
                 <button
-                  className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black"
+                  className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
                   type="submit"
                 >
                   Save
@@ -960,7 +999,7 @@ const EditWebsitePage = () => {
               </div>
 
               <button
-                className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black"
+                className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
                 type="submit"
               >
                 Save
@@ -985,7 +1024,7 @@ const EditWebsitePage = () => {
                     <button
                       type="button"
                       className="w-[160px] py-2 mt-5 text-xs text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap"
-                      onClick={() => setIsModalOpen(true)}
+                      onClick={() => setIsVenmoModalOpen(true)}
                     >
                       Connect Venmo
                     </button>
@@ -1049,7 +1088,7 @@ const EditWebsitePage = () => {
                 </Link>
                 <div>
                   <button
-                    className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black"
+                    className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
                     type="submit"
                   >
                     Save
@@ -1061,8 +1100,14 @@ const EditWebsitePage = () => {
 
               <div className="flex items-center flex-col md:flex-row justify-center gap-5 w-full !mb-20">
                 <div className="w-full space-y-10">
-                  <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
-                    Follow "Groom"
+                  <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle flex items-center">
+                    Follow
+                    <div className="ml-2">
+                      <EditText
+                        name="firstName"
+                        defaultValue={user?.questions?.firstName}
+                      />
+                    </div>
                   </h4>
                   <Popover.Group className="flex flex-wrap items-center gap-3">
                     <Popover className="relative">
@@ -1318,8 +1363,14 @@ const EditWebsitePage = () => {
                 </div>
 
                 <div className="w-full space-y-10">
-                  <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
-                    Follow "Bride"
+                  <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle flex items-center">
+                    Follow
+                    <div className="ml-2">
+                      <EditText
+                        name="spouseFirstName"
+                        defaultValue={user?.questions?.spouseFirstName}
+                      />
+                    </div>
                   </h4>
                   <Popover.Group className="flex flex-wrap items-center gap-3">
                     <Popover className="relative">
@@ -1578,7 +1629,7 @@ const EditWebsitePage = () => {
               </div>
               <div>
                 <button
-                  className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black"
+                  className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
                   type="submit"
                 >
                   Save
@@ -1613,6 +1664,7 @@ const EditWebsitePage = () => {
         </DashboardContainer>
       </DashboardLayout>
       <RegistryModal {...{ isModalOpen, setIsModalOpen }} />
+      <VenmoModal {...{ isVenmoModalOpen, setIsVenmoModalOpen }} />
       <Footer hideSocial />
 
       <CropImage

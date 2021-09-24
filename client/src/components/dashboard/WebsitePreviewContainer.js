@@ -56,7 +56,7 @@ const WebsitePreviewContainer = ({ minimal }) => {
             )}
           </div>
 
-          <div>
+          {/* <div>
             {user?.email && user?.questions?.couplePictures.length > 0 ? (
               <div>
                 <MobilePreview />
@@ -72,7 +72,7 @@ const WebsitePreviewContainer = ({ minimal }) => {
                 <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
               </div>
             )}
-          </div>
+          </div> */}
           <div>
             {user?.email && user?.questions?.couplePictures.length > 0 ? (
               <div>

@@ -6,18 +6,19 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import Image from "next/image";
 
-const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
+const VenmoModal = ({ isVenmoModalOpen, setIsVenmoModalOpen }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   function closeModal() {
-    setIsModalOpen(false);
+    setIsVenmoModalOpen(false);
   }
 
   const { handleSubmit, register } = useForm({ mode: "all" });
   const { mutateAsync, isLoading } = useMutation(createPrivetRegistry);
   const onSubmit = async (data) => {
-    setIsModalOpen(false);
+    setIsVenmoModalOpen(false);
     await mutateAsync(
       { payload: data, token: user?.token },
       {
@@ -30,7 +31,7 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
 
   return (
     <>
-      <Transition appear show={isModalOpen} as={Fragment}>
+      <Transition appear show={isVenmoModalOpen} as={Fragment}>
         <Dialog
           as="div"
           className="fixed inset-0 z-10 overflow-y-auto"
@@ -70,7 +71,7 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                   as="h4"
                   className="text-lg font-medium leading-6 text-gray-900 xs:text-xl sm:text-2xl"
                 >
-                  Connect Your registry
+                  Connect Your Venmo
                 </Dialog.Title>
                 <form
                   className="mt-5 space-y-2 sm:mt-10 xs:space-y-5"
@@ -81,13 +82,13 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                       htmlFor="title"
                       className="text-sm font-medium md:text-base md:font-semibold"
                     >
-                      Registry Name
+                      Venmo Name
                     </label>
                     <input
                       id="title"
                       type="text"
                       className="text-[13px] md:text-[15px] border-gray-100 border-2 py-2 px-4 xs:py-3 xs:px-5 placeholder-gray-300 rounded-[5px]"
-                      placeholder="Enter registry Name"
+                      placeholder="Enter Venmo Name"
                       {...register("title", {
                         required: {
                           value: true,
@@ -101,9 +102,19 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                       htmlFor="image"
                       className="text-sm font-medium md:text-base md:font-semibold"
                     >
-                      Company Logo
+                      Venmo Logo
                     </label>
-                    <input
+                    <div>
+                      <Image
+                        src="https://i.ibb.co/V9yxT0p/images.png"
+                        width={100}
+                        height={100}
+                        objectFit="contain"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    {/* <input
                       id="image"
                       type="text"
                       className="text-[13px] md:text-[15px] border-gray-100 border-2 py-2 px-4 xs:py-3 xs:px-5 placeholder-gray-300 rounded-[5px]"
@@ -119,24 +130,25 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                           message: "Link is not valid",
                         },
                       })}
-                    />
+                    /> */}
                   </div>
                   <div className="flex flex-col space-y-2">
                     <label
                       htmlFor="link"
                       className="text-sm font-medium md:text-base md:font-semibold"
                     >
-                      Registry Link
+                      Venmo Link
                     </label>
+
                     <input
                       id="link"
                       type="text"
                       className="text-[13px] md:text-[15px] border-gray-100 border-2 py-2 px-4 xs:py-3 xs:px-5 placeholder-gray-300 rounded-[5px]"
-                      placeholder="Enter your registry link"
+                      placeholder="Enter your Venmo link"
                       {...register("link", {
                         required: {
                           value: true,
-                          message: "Registry link is required!",
+                          message: "Venmo link is required!",
                         },
                         pattern: {
                           value:
@@ -146,21 +158,7 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                       })}
                     />
                   </div>
-                  <div className="flex flex-col space-y-2">
-                    <label
-                      htmlFor="description"
-                      className="text-sm font-medium md:text-base md:font-semibold"
-                    >
-                      Description
-                    </label>
-                    <textarea
-                      id="description"
-                      type="text"
-                      className="text-[13px] md:text-[15px] border-gray-100 border-2 py-2 px-4 xs:py-3 xs:px-5 placeholder-gray-300 rounded-[5px]"
-                      placeholder="Enter registery description"
-                      {...register("description")}
-                    />
-                  </div>
+
                   <div className="flex items-center space-x-3">
                     <button
                       type="button"
@@ -186,4 +184,4 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
   );
 };
 
-export default RegistryModal;
+export default VenmoModal;
