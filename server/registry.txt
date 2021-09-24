@@ -14,7 +14,6 @@ https://i.ibb.co/nMDD75g/Pottery-Barn-wedding-registry-logo.png
 https://i.ibb.co/CKF1KQv/target-corporation-bridal-registry-retail-gift-target-wedding-png-favpng-ah2-Gt-C9-YEY7m-En-TXz-Pesx.jpg
 https://i.ibb.co/n8GxyNg/target-logo.png
 https://i.ibb.co/C7gCNQ1/The-Home-Depot.png
-
 https://i.ibb.co/7pN8fLR/walmart.png
 https://i.ibb.co/TtwdvXF/wayfair.jpg
 
@@ -73,40 +72,7 @@ https://i.ibb.co/C7gCNQ1/The-Home-Depot.png
 https://i.ibb.co/7pN8fLR/walmart.png
 https://i.ibb.co/TtwdvXF/wayfair.jpg
 
-
-
-
-
-//calendar
-
-
-    export function setNewEvents(event) {
-      let r = Math.random().toString(36).substring(7);
-      let options = {
-        summary: event.summary,
-        start: {
-          dateTime: event.start,
-        },
-        end: {
-          dateTime: event.end,
-        },
-        attendees: [{ email: "my-email@gmail.com", responseStatus: "needsAction" }],
-        conferenceData: {
-          createRequest: { conferenceSolutionKey: { type: "hangoutsMeet" }, requestId: r },
-        },
-        reminders: {
-          useDefault: false,
-          overrides: [
-            { method: "email", minutes: 1 },
-            { method: "popup", minutes: 15 },
-          ],
-        },
-        visibility: "public",
-      };
-
-      ApiCalendar.createEvent(options, CALENDAR_ID, { conferenceDataVersion: 1 })
-        .then((result) => console.log(result))
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+//venmo
+https://i.ibb.co/Zxsf0yQ/venmo.png
+https://i.ibb.co/2MHfjSC/venmo.png
+https://i.ibb.co/V9yxT0p/images.png
