@@ -21,7 +21,7 @@ const MailOutInvitationPage = () => {
       <DashboardLayout marginBottom="mb-[2.1rem]">
         <DashboardHeader title="Mailout Invites" hideCoupleName hideMarginTop />
         <div classNameName="p-10 border-4 border-gray-200 rounded-lg mt-14 space-y-10">
-          <div classNameName="grid-cols-2">
+          <div classNameName="grid grid-cols-2">
             <div className="accordion-title">
               <div className="flex justify-between">
                 <h1 className="text-lg" onClick={() => setIsActive(!isActive)}>
@@ -51,10 +51,12 @@ const MailOutInvitationPage = () => {
               )}
             </div>
           </div>
-          <div classNameName="grid-cols-10">
-            {fakeData.map((card, i) => (
-              <InvitationCard data={card} key={i} />
-            ))}
+          <div classNameName="grid grid-cols-10 gap-4">
+            <div className="flex flex-wrap">
+              {fakeData.map((card, i) => (
+                <InvitationCard data={card} width="33%" key={i} />
+              ))}
+            </div>
           </div>
         </div>
       </DashboardLayout>
