@@ -274,6 +274,7 @@ const UploadCouplePicture = () => {
             {...getRootProps()}
             variants={fadeInUp}
           >
+            <p className="text-[12px] mb-1">Crop Pictures For Cover Photos</p>
             <input {...getInputProps()} />
             <label
               htmlFor="uploadCouplePicture"

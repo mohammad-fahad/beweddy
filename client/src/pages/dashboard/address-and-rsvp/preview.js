@@ -35,17 +35,6 @@ const AddressRSVPPreviewPage = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   const { guest } = useSelector((state) => state.rsvp);
-  const { countries } = useSelector((state) => state.countryList);
-
-  const [selectedCountry, setSelectedCountry] = useState({});
-
-  useEffect(() => {
-    if (countries?.length) {
-      setSelectedCountry(
-        countries.find((country) => country.alpha3Code === 'USA')
-      );
-    }
-  }, [countries]);
 
   const {
     watch,
@@ -85,7 +74,7 @@ const AddressRSVPPreviewPage = () => {
       name: data.name,
       email: data.email,
       phone: data.phone,
-      callingCode: selectedCountry.callingCodes[0],
+      callingCode: "1",
       provider: data.provider,
       rsvp: data.rsvp,
       guestEstimate: data.guestEstimate,

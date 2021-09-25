@@ -30,12 +30,19 @@ const MobilePreview = () => {
         </h1>
 
         <div
-          className={`absolute !bottom-[0px] left-[0px] rigth-[10px] bg-[#00000069] w-full py-1 `} style={{borderBottomLeftRadius: "10px" , borderBottomRightRadius: "10px"}} >
-            <h1 className={`text-[#ffffff] text-center ${
-                size.width < 480 ? "text-[12px]" : "text-[15px]"
-              }`}>
-                We’re Getting Married!
-            </h1>
+          className={`absolute !bottom-[0px] left-[0px] rigth-[10px] bg-[#00000069] w-full py-1 `}
+          style={{
+            borderBottomLeftRadius: "10px",
+            borderBottomRightRadius: "10px",
+          }}
+        >
+          <h1
+            className={`text-[#ffffff] text-center ${
+              size.width < 480 ? "text-[12px]" : "text-[15px]"
+            }`}
+          >
+            We’re Getting Married!
+          </h1>
         </div>
         <img
           src={user?.questions?.couplePictures[0]?.url}

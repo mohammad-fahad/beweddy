@@ -22,14 +22,15 @@ const WebsitePreviewContainer = ({ minimal }) => {
   return (
     <div
       className={`mt-10 flex flex-col justify-center space-y-10 rounded-xl ${
+        // minimal ? "" : "border-4 border-secondary-alternative gradient"
         minimal ? "" : "border-4 border-secondary-alternative gradient"
       }`}
-      style={{
-        background: "url('/images/footer-leaf.png')",
-        backgroundPosition: "bottom",
-        backgroundSize: "110%",
-        backgroundRepeat: "no-repeat",
-      }}
+      // style={{
+      //   background: "url('/images/footer-leaf.png')",
+      //   backgroundPosition: "bottom",
+      //   backgroundSize: "110%",
+      //   backgroundRepeat: "no-repeat",
+      // }}
     >
       {!minimal && (
         <h3 className="text-3xl text-center capitalize">
@@ -56,7 +57,7 @@ const WebsitePreviewContainer = ({ minimal }) => {
             )}
           </div>
 
-          <div>
+          {/* <div>
             {user?.email && user?.questions?.couplePictures.length > 0 ? (
               <div>
                 <MobilePreview />
@@ -72,7 +73,7 @@ const WebsitePreviewContainer = ({ minimal }) => {
                 <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
               </div>
             )}
-          </div>
+          </div> */}
           <div>
             {user?.email && user?.questions?.couplePictures.length > 0 ? (
               <div>

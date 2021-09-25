@@ -53,15 +53,19 @@ import RegistryModal from "@components/dashboard/RegistryModal";
 import getYear from "date-fns/getYear";
 import getMonth from "date-fns/getYear";
 import "react-datepicker/dist/react-datepicker.css";
+import VenmoModal from "@components/dashboard/VenmoModal";
 
 const EditWebsitePage = () => {
   const dispatch = useDispatch();
+  const [nickname, setNickname] = useState(false);
+  const [spouseFirst, setSpouseFirst] = useState(false);
   const { user, loading: userLoading } = useSelector((state) => state.user);
-  // console.log({ user });
+  console.log({ user });
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState();
   const [preview, setPreview] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isVenmoModalOpen, setIsVenmoModalOpen] = useState(false);
   const [selectedImageFile, setSelectedImageFile] = useState();
   const [uploadedFiles, setUploadedFiles] = useState(
     user.questions.couplePictures
@@ -71,22 +75,62 @@ const EditWebsitePage = () => {
     user.receptionDetails.length
       ? user.receptionDetails
       : [
-          {
-            id: generate(),
-            time: "5.00 PM",
-            details: "Example of event details",
-          },
-          {
-            id: generate(),
-            time: "5.30 PM",
-            details: "Ceremony",
-          },
-          {
-            id: generate(),
-            time: "6.00 PM",
-            details: "Ceremony ends/cocktails begin",
-          },
-        ]
+        {
+          id: generate(),
+          time: "5.00 PM",
+          details: "Example of event details",
+        },
+        {
+          id: generate(),
+          time: "5:30 PM",
+          details: "Ceremony",
+        },
+        {
+          id: generate(),
+          time: "6:00 PM",
+          details: "Ceremony ends/cocktails begin",
+        },
+        {
+          id: generate(),
+          time: "7:00 PM",
+          details: "Cocktails ends and guests are ushered into the reception",
+        },
+        {
+          id: generate(),
+          time: "7:20 PM",
+          details: "Introduction and first dance—guests asked to join after ",
+        },
+        {
+          id: generate(),
+          time: "7:45 PM",
+          details: " Guests take their seats and the first course is served",
+        },
+        {
+          id: generate(),
+          time: "8:00 PM",
+          details: "Welcome speech from parents",
+        },
+        {
+          id: generate(),
+          time: "8:10 PM",
+          details: "Toasts from maid of honor and best man",
+        },
+        {
+          id: generate(),
+          time: "9:00 PM",
+          details: "Parent dances",
+        },
+        {
+          id: generate(),
+          time: "9:30 PM ",
+          details: "Cake cutting",
+        },
+        {
+          id: generate(),
+          time: "10:00 PM",
+          details: "Send-Off",
+        },
+      ]
   );
   const { groom, bride } = user.socialAccounts;
 
@@ -415,7 +459,7 @@ const EditWebsitePage = () => {
                 </div>
                 <div className="!mt-5">
                   <button
-                    className="border-2 transition-colors duration-300 !border-[#000000] px-3 py-1 hover:border-black"
+                    className="border-2 transition-colors duration-300 !border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
                     type="submit"
                   >
                     Save
@@ -481,7 +525,7 @@ const EditWebsitePage = () => {
                   ))}
                 </motion.div>
                 <button
-                  className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black"
+                  className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
                   type="submit"
                 >
                   Save
@@ -723,7 +767,7 @@ const EditWebsitePage = () => {
                 </div>
                 <div>
                   <button
-                    className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black"
+                    className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
                     type="submit"
                   >
                     Save
@@ -749,7 +793,7 @@ const EditWebsitePage = () => {
                 ></textarea>
 
                 <button
-                  className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black"
+                  className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
                   type="submit"
                 >
                   Save
@@ -763,7 +807,7 @@ const EditWebsitePage = () => {
                     Location Name &amp; Address
                   </h4>
                 </div>
-                <div className="flex flex-row items-center justify-between">
+                <div className="flex flex-row items-center justify-between w-full">
                   <div className="w-full max-w-xs">
                     <input
                       type="text"
@@ -778,9 +822,9 @@ const EditWebsitePage = () => {
                     />
                   </div>
 
-                  <div style={{ width: "100%" }}>
+                  <div className="flex justify-end w-full">
                     <iframe
-                      width="50%"
+                      width="55%"
                       height="400"
                       frameBorder="0"
                       scrolling="no"
@@ -792,7 +836,7 @@ const EditWebsitePage = () => {
                 </div>
                 <div>
                   <button
-                    className="inline-block border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black"
+                    className="inline-block border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
                     type="submit"
                   >
                     Save
@@ -810,28 +854,14 @@ const EditWebsitePage = () => {
                 </div>
                 {receptionDetails.map((reception, index) => (
                   <div
-                    key={reception.id}
+                    key={index}
                     className="flex items-center !border-gray-200"
                   >
-                    {/* <input
-                      type="text"
-                      // className="w-28 rounded-[5px] border-2 rounded-r-none focus:!border-gray-200 border-gray-200 py-2 pl-4 text-base font-bold placeholder-gray-200"
-                      className="w-[100px] rounded-[5px] border-2 rounded-r-none focus:!border-gray-200 border-gray-200 py-2 pl-4 text-base font-bold placeholder-gray-200 border-r-0"
-                      placeholder="12.00 PM"
-                      value={reception.time}
-                      onChange={(e) => {
-                        const time = e.target.value;
-                        setReceptionDetails((prev) =>
-                          produce(prev, (value) => {
-                            value[index].time = time;
-                          })
-                        );
-                      }}
-                    /> */}
+
                     <Datetime
-                      className="w-[100px] rounded-[5px] border-2 rounded-r-none !focus:!border-gray-200 !border-gray-200  text-base font-bold placeholder-gray-200 border-r-0"
+                      className="w-[100px] rounded-[5px] border-2 rounded-r-none !focus:!border-gray-200 !border-gray-200  text-base font-bold placeholder-gray-200 border-r-0 datepiceker"
                       inputProps={{ placeholder: "12.00 PM" }}
-                      style={{ borderColor: "none" }}
+                      id="datepickerInput"
                       dateFormat={false}
                       value={reception.time}
                       onChange={(e) => {
@@ -893,7 +923,7 @@ const EditWebsitePage = () => {
                   <span>Add New</span>
                 </button>
                 <button
-                  className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black"
+                  className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
                   type="submit"
                 >
                   Save
@@ -921,8 +951,9 @@ const EditWebsitePage = () => {
                         <PlusIcon className="w-8 h-8" />
                       </motion.a>
                     </Link>
-                    {user?.giftCards?.map((gift) => (
+                    {user?.giftCards?.map((gift, i) => (
                       <motion.div
+                        key={i}
                         layout
                         exit={{ opacity: 0 }}
                         initial={{ opacity: 0 }}
@@ -960,7 +991,7 @@ const EditWebsitePage = () => {
               </div>
 
               <button
-                className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black"
+                className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
                 type="submit"
               >
                 Save
@@ -985,7 +1016,7 @@ const EditWebsitePage = () => {
                     <button
                       type="button"
                       className="w-[160px] py-2 mt-5 text-xs text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap"
-                      onClick={() => setIsModalOpen(true)}
+                      onClick={() => setIsVenmoModalOpen(true)}
                     >
                       Connect Venmo
                     </button>
@@ -997,8 +1028,9 @@ const EditWebsitePage = () => {
                   </div>
                 </div>
                 <motion.div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 2lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 sm:gap-5 md:gap-10">
-                  {user?.registries?.map((registry) => (
+                  {user?.registries?.map((registry, i) => (
                     <motion.div
+                      key={i}
                       layout
                       exit={{ opacity: 0 }}
                       initial={{ opacity: 0 }}
@@ -1049,7 +1081,7 @@ const EditWebsitePage = () => {
                 </Link>
                 <div>
                   <button
-                    className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black"
+                    className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
                     type="submit"
                   >
                     Save
@@ -1061,8 +1093,35 @@ const EditWebsitePage = () => {
 
               <div className="flex items-center flex-col md:flex-row justify-center gap-5 w-full !mb-20">
                 <div className="w-full space-y-10">
-                  <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
-                    Follow "Groom"
+                  <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle flex items-center">
+                    Follow
+                    {nickname ? (
+                      <div className="flex items-center justify-center ml-2">
+                        <input
+                          type="text"
+                          className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal"
+                          {...register("firstName", {
+                            required: {
+                              value: true,
+                              message: "First name is required!",
+                            },
+                          })}
+                        />
+                        <button
+                          className="transition-colors duration-300 px-3 py-[3px] bg-white text-primary rounded-[5px] border-2 border-gray-200"
+                          type="submit"
+                        >
+                          Save
+                        </button>
+                      </div>
+                    ) : (
+                      <span
+                        onClick={() => setNickname(!nickname)}
+                        className="ml-2"
+                      >
+                        {user?.questions?.firstName}
+                      </span>
+                    )}
                   </h4>
                   <Popover.Group className="flex flex-wrap items-center gap-3">
                     <Popover className="relative">
@@ -1318,8 +1377,43 @@ const EditWebsitePage = () => {
                 </div>
 
                 <div className="w-full space-y-10">
-                  <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
-                    Follow "Bride"
+                  <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle flex items-center">
+                    Follow
+                    <div className="ml-2">
+                      {/* <EditText
+                        onBlur={handleSubmit(onSubmit)}
+                        inline
+                        name="spouseFirstName"
+                        defaultValue={user?.questions?.spouseFirstName}
+                      /> */}
+                      {spouseFirst ? (
+                        <div className="flex items-center justify-center ml-2">
+                          <input
+                            type="text"
+                            className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal"
+                            {...register("spouseFirstName", {
+                              required: {
+                                value: true,
+                                message: "First name is required!",
+                              },
+                            })}
+                          />
+                          <button
+                            className="transition-colors duration-300 px-3 py-[3px] bg-white text-primary rounded-[5px] border-2 border-gray-200"
+                            type="submit"
+                          >
+                            Save
+                          </button>
+                        </div>
+                      ) : (
+                        <span
+                          onClick={() => setSpouseFirst(!spouseFirst)}
+                          className="ml-2"
+                        >
+                          {user?.questions?.spouseFirstName}
+                        </span>
+                      )}
+                    </div>
                   </h4>
                   <Popover.Group className="flex flex-wrap items-center gap-3">
                     <Popover className="relative">
@@ -1578,7 +1672,7 @@ const EditWebsitePage = () => {
               </div>
               <div>
                 <button
-                  className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 hover:border-black"
+                  className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
                   type="submit"
                 >
                   Save
@@ -1613,6 +1707,7 @@ const EditWebsitePage = () => {
         </DashboardContainer>
       </DashboardLayout>
       <RegistryModal {...{ isModalOpen, setIsModalOpen }} />
+      <VenmoModal {...{ isVenmoModalOpen, setIsVenmoModalOpen }} />
       <Footer hideSocial />
 
       <CropImage
