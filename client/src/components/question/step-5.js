@@ -228,6 +228,7 @@ const UploadCouplePicture = () => {
             // className='pt-5 md:pt-0'
             lineStyle={{ marginBottom: "25px" }}
           />
+          {/* <p className="text-[12px] mb-1">Crop Pictures For Cover Photos</p> */}
           <p className="text-2xl font-semibold text-center">Up to 4 Images</p>
         </motion.div>
 
@@ -274,8 +275,8 @@ const UploadCouplePicture = () => {
             {...getRootProps()}
             variants={fadeInUp}
           >
-            <p className="text-[12px] mb-1">Crop Pictures For Cover Photos</p>
             <input {...getInputProps()} />
+            <p className="text-[12px] mb-1">Crop Pictures For Cover Photos</p>
             <label
               htmlFor="uploadCouplePicture"
               className="w-56 bg-white cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-2 md:py-3 px-4 placeholder-primary border-[3px] border-primary rounded-[5px]"
