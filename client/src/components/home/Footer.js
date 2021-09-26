@@ -4,12 +4,12 @@ import {
   Linkedin,
   Twitter,
   Youtube,
-} from '@icons-pack/react-simple-icons';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
-import CreateAccount from './CreateAccount';
-import HowItWork from './HowItWork';
+} from "@icons-pack/react-simple-icons";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import CreateAccount from "./CreateAccount";
+import HowItWork from "./HowItWork";
 
 const Footer = ({ hideSocial }) => {
   const { user } = useSelector((state) => state.user);
@@ -95,7 +95,7 @@ const Footer = ({ hideSocial }) => {
               </a>
             </div>
           </div>
-          {pathname === '/' && <HowItWork hideBorderBottom />}
+          {pathname === "/" && <HowItWork hideBorderBottom />}
           {!user && <CreateAccount />}
         </>
       )}
@@ -104,10 +104,9 @@ const Footer = ({ hideSocial }) => {
         {/* <div className="container flex flex-col-reverse flex-wrap items-center justify-center gap-5 !md:flex-row sm:justify-between"> */}
         <div className="container flex !flex-row flex-wrap items-center justify-center gap-5  sm:justify-between footerWrapper">
           <p className="text-base">
-            <strong className="font-semibold">
-              &copy; {new Date().getFullYear()} BeWeddy.
-            </strong>
-            All rights reserved.
+            <span className="mr-1">&copy; {new Date().getFullYear()}</span>
+            <strong className="font-semibold">BeWeddy.</strong>
+            <span className="ml-1"> All rights reserved.</span>
           </p>
           {/* <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-between sm:gap-6"> */}
           <div className="flex flex-col flex-wrap items-center justify-center gap-3 md:flex-row sm:justify-between sm:gap-6">
