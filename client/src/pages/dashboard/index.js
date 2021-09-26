@@ -1,71 +1,71 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import Image from 'next/image';
+import Head from "next/head";
+import Link from "next/link";
+import Image from "next/image";
 import {
   ActivityInfo,
   DashboardHeader,
   WebsitePreviewContainer,
   WeddingDayCountDown,
-} from '@components/dashboard';
-import { Footer } from '@components/index';
-import { withAuthRoute } from '@hoc/withAuthRoute';
-import DashboardTopBar from '@components/dashboard/header/TopBar';
-import DashboardLayout from '@components/dashboard/layout';
-import { useSelector } from 'react-redux';
-import { GlobeAltIcon, LinkIcon, PencilIcon } from '@heroicons/react/outline';
+} from "@components/dashboard";
+import { Footer } from "@components/index";
+import { withAuthRoute } from "@hoc/withAuthRoute";
+import DashboardTopBar from "@components/dashboard/header/TopBar";
+import DashboardLayout from "@components/dashboard/layout";
+import { useSelector } from "react-redux";
+import { GlobeAltIcon, LinkIcon, PencilIcon } from "@heroicons/react/outline";
 
 const navLinks = [
   {
-    label: 'We need your address',
-    route: '/dashboard/address-and-rsvp',
-    icon: '/icons/location.svg',
+    label: "We need your address",
+    route: "/dashboard/address-and-rsvp",
+    icon: "/icons/location.svg",
   },
   {
-    label: 'Just do it list',
-    route: '/dashboard/features/todo',
-    icon: '/icons/ring-tik.svg',
+    label: "Just do it list",
+    route: "/dashboard/features/todo",
+    icon: "/icons/ring-tik.svg",
   },
   {
-    label: 'QR Code & links',
-    route: '/dashboard/features/qrcode-and-links',
-    icon: '/icons/qrcode.svg',
+    label: "QR Code & links",
+    route: "/dashboard/features/qrcode-and-links",
+    icon: "/icons/qrcode.svg",
   },
   {
-    label: 'Text invites',
-    route: '/dashboard/invitation/text',
-    icon: '/icons/messages.svg',
+    label: "Text invites",
+    route: "/dashboard/invitation/text",
+    icon: "/icons/messages.svg",
   },
   {
-    label: 'Email invites',
-    route: '/dashboard/invitation/email',
-    icon: '/icons/email_send.svg',
+    label: "Email invites",
+    route: "/dashboard/invitation/email",
+    icon: "/icons/email_send.svg",
   },
   {
-    label: 'Mailout invites',
-    route: '/dashboard/invitation/mailout',
-    icon: '/icons/email_add.svg',
+    label: "Mailout invites",
+    route: "/dashboard/invitation/mailout",
+    icon: "/icons/email_add.svg",
   },
   {
-    label: 'Calender invites',
-    route: '/dashboard/invitation/calender',
-    icon: '/icons/note_tick.svg',
-  },
-
-  {
-    label: 'Gift cards',
-    route: '/dashboard/gift-cards',
-    icon: '/icons/gift-2.svg',
-  },
-  {
-    label: 'Registry',
-    route: '/dashboard/registries',
-    icon: '/icons/registry.svg',
+    label: "Calender invites",
+    route: "/dashboard/invitation/calender",
+    icon: "/icons/note_tick.svg",
   },
 
   {
-    label: 'Guest management',
-    route: '/dashboard/invitation/rsvp-guest-management',
-    icon: '/icons/ic_baseline-rsvp.svg',
+    label: "Gift cards",
+    route: "/dashboard/gift-cards",
+    icon: "/icons/gift-2.svg",
+  },
+  {
+    label: "Registry",
+    route: "/dashboard/registries",
+    icon: "/icons/registry.svg",
+  },
+
+  {
+    label: "Guest management",
+    route: "/dashboard/invitation/rsvp-guest-management",
+    icon: "/icons/ic_baseline-rsvp.svg",
   },
 ];
 
@@ -83,7 +83,7 @@ const Dashboard = () => {
         <DashboardLayout shadow>
           <DashboardHeader
             title={
-              <h1 className="flex gap-2 text-2xl mudiumTitle mb-2">
+              <h1 className="flex gap-2 mb-2 text-2xl mudiumTitle">
                 Dashboard <img src="/Emoji.png" alt="dashboard" />
               </h1>
             }
@@ -132,7 +132,8 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              <div className="relative w-full px-6 border-t-4 border-b-4 md:px-10 gradient border-primary">
+              {/* <div className="relative w-full px-6 border-t-4 border-b-4 md:px-10 gradient border-primary"> */}
+              <div className="relative w-full px-6 border-t-4 md:px-10 border-primary">
                 <div className="text-center my-[50px] dashboardMaringPadding">
                   <h3 className="relative inline-block text-2xl font-normal">
                     <span className="absolute inline-block w-full mx-auto bottom-[-12px] left-1/2 h-[2px] max-w-[52px] -translate-x-1/2 bg-primary"></span>
@@ -145,7 +146,7 @@ const Dashboard = () => {
               <div className="flex items-center flex-wrap px-[1.15rem] xs:space-y-0 space-x-3 md:space-x-5 justify-center my-[50px]">
                 <Link href="/dashboard/website/edit">
                   <a
-                    className={`capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
+                    className={`capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300 smallText`}
                   >
                     {/* <PencilIcon className='hidden w-5 h-5 sm:inline-block' /> */}
                     <span>Edit your website</span>
@@ -154,7 +155,7 @@ const Dashboard = () => {
                 <Link href={`/couple/${user?.username}`}>
                   <a
                     target="_blank"
-                    className={`capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
+                    className={`capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300 smallText`}
                   >
                     {/* <GlobeAltIcon className='hidden w-5 h-5 sm:inline-block' /> */}
                     <span>Preview Website</span>
@@ -162,7 +163,7 @@ const Dashboard = () => {
                 </Link>
                 <Link href="/dashboard/features/qrcode-and-links">
                   <a
-                    className={`mt-3 xs:mt-0 capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300`}
+                    className={`sm:mt-3 xs:mt-0 capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300 smallText`}
                   >
                     <LinkIcon className="hidden w-5 h-5 sm:inline-block" />
                     <span>Superlink</span>

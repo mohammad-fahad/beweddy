@@ -1,10 +1,10 @@
-import asyncHandler from 'express-async-handler';
-import Todo from '../models/Todo.js';
+import asyncHandler from "express-async-handler";
+import Todo from "../models/Todo.js";
 
 // Get All Todos
 export const getTodos = asyncHandler(async (req, res) => {
   const todos = await Todo.find({ user: req.user._id });
-  console.log(todos);
+  // console.log(todos);
   res.status(200).json(todos);
 });
 
@@ -18,10 +18,10 @@ export const createTodo = asyncHandler(async (req, res) => {
   });
 
   if (todo) {
-    res.status(201).json({ message: 'Todo created successfully' });
+    res.status(201).json({ message: "To do created successfully" });
   } else {
     res.status(500);
-    throw new Error('Server Error');
+    throw new Error("Server Error");
   }
 });
 
@@ -37,11 +37,11 @@ export const updateTodo = asyncHandler(async (req, res) => {
     const updatedTodo = await todo.save();
 
     if (updatedTodo) {
-      res.status(200).json({ message: 'Todo updated successfully' });
+      res.status(200).json({ message: "Todo updated successfully" });
     }
   } else {
     res.status(500);
-    throw new Error('Todo not found');
+    throw new Error("Todo not found");
   }
 });
 
@@ -51,9 +51,9 @@ export const deleteTodo = asyncHandler(async (req, res) => {
   const todo = await Todo.findByIdAndRemove(id);
 
   if (todo) {
-    res.status(201).json({ message: 'To do deleted successfully' });
+    res.status(201).json({ message: "To do deleted successfully" });
   } else {
     res.status(500);
-    throw new Error('Server Error');
+    throw new Error("Server Error");
   }
 });

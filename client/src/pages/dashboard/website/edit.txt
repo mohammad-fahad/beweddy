@@ -1,12 +1,3 @@
-https://i.ibb.co/Qck86z9/bath-body.png
-https://i.ibb.co/yY16hyz/cabelas.png
-https://i.ibb.co/647Fp1X/cinemark.png
-https://i.ibb.co/BcdwLfs/disney.png
-https://i.ibb.co/gm221bs/doordash.png
-https://i.ibb.co/G0JvL3c/target.png
-https://i.ibb.co/1mcqVmY/texas.png
-
-
 import Head from 'next/head';
 import Link from 'next/link';
 import { produce } from 'immer';
@@ -57,6 +48,10 @@ import { attemptUpdateUserProfile } from '@features/user/userActions';
 import { Fragment } from 'react';
 import axios from 'axios';
 import RegistryModal from '@components/dashboard/RegistryModal';
+
+import getYear from "date-fns/getYear";
+import getMonth from "date-fns/getYear";
+import "react-datepicker/dist/react-datepicker.css";
 
 const EditWebsitePage = () => {
   const dispatch = useDispatch();
@@ -263,52 +258,12 @@ const EditWebsitePage = () => {
   };
 
   const onSubmit = data => {
-
-    const socialAccounts = {
-      groom: {
-        gfacebook: data.groom_facebook,
-        ginstagram: data.groom_instagram,
-        gtwitter: data.groom_twitter,
-        glinkedIn: data.groom_linkedIn,
-        gsnapchat: data.groom_snapchat,
-        gtiktok: data.groom_tiktok,
-        gpinterest: data.groom_pinterest,
-        gyouTube: data.groom_youTube,
-      },
-      bride: {
-        bfacebook: data.bride_facebook,
-        binstagram: data.bride_instagram,
-        btwitter: data.bride_twitter,
-        blinkedIn: data.bride_linkedIn,
-        bsnapchat: data.bride_snapchat,
-        btiktok: data.bride_tiktok,
-        bpinterest: data.bride_pinterest,
-        byouTube: data.bride_youTube,
-      },
-    };
-    const payload = {
-      firstName: data.firstName,
-      lastName: data.lastName,
-      weddingDate: data.weddingDate,
-      firstReception: data.firstReception,
-      secondReception: data.secondReception,
-      spouseFirstName: data.spouseFirstName,
-      spouseLastName: data.spouseLastName,
-      ourStory: data.ourStory,
-      location: data.location,
-      receptionDetails,
-      couplePictures: uploadedFiles,
-      socialAccounts: socialAccounts,
-    };
-
-    // console.log("sdkfshfhsdhfoosdfohosdhohfdsohfsdhof", submitData(data));
-    console.log("sdkfshfhsdhfoosdfohosdhohfdsohfsdhof", payload);
-    dispatch(attemptUpdateUserProfile(payload));
+    console.log("sdkfshfhsdhfoosdfohosdhohfdsohfsdhof", submitData(data));
+    console.log("sdkfshfhsdhfoosdfohosdhohfdsohfsdhof", data.groom_facebook);
+    dispatch(attemptUpdateUserProfile(submitData(data)));
   };
 
   const submitData = data => {
-    console.log("sdkfshfhsdhfoosdfohosdhohfdsohfsdhof", data.groom_facebook);
-
     const socialAccounts = {
       groom: {
         facebook: data.groom_facebook,
@@ -331,8 +286,6 @@ const EditWebsitePage = () => {
         youTube: data.bride_youTube,
       },
     };
-
-
     const payload = {
       firstName: data.firstName,
       lastName: data.lastName,
@@ -345,10 +298,11 @@ const EditWebsitePage = () => {
       location: data.location,
       receptionDetails,
       couplePictures: uploadedFiles,
-      socialAccounts: socialAccounts,
+      socialAccounts,
     };
     return payload;
   };
+  
 
   return (
     <>

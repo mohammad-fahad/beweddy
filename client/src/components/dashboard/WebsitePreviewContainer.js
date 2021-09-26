@@ -19,18 +19,18 @@ const params = {
 
 const WebsitePreviewContainer = ({ minimal }) => {
   const { user } = useSelector((state) => state.user);
-  console.log(user?.email);
   return (
     <div
       className={`mt-10 flex flex-col justify-center space-y-10 rounded-xl ${
+        // minimal ? "" : "border-4 border-secondary-alternative gradient"
         minimal ? "" : "border-4 border-secondary-alternative gradient"
       }`}
-      style={{
-        background: "url('/images/footer-leaf.png')",
-        backgroundPosition: "bottom",
-        backgroundSize: "110%",
-        backgroundRepeat: "no-repeat",
-      }}
+      // style={{
+      //   background: "url('/images/footer-leaf.png')",
+      //   backgroundPosition: "bottom",
+      //   backgroundSize: "110%",
+      //   backgroundRepeat: "no-repeat",
+      // }}
     >
       {!minimal && (
         <h3 className="text-3xl text-center capitalize">
@@ -49,14 +49,15 @@ const WebsitePreviewContainer = ({ minimal }) => {
                 <img
                   src="/images/wedding-laptop.png"
                   alt=""
-                  className="!md:max-h-[444px] mx-auto swiper-lazy"
+                  // className="!h-[600px] mx-auto swiper-lazy"
+                  className="!md:max-h-[444px] !max-h-[250px] mx-auto swiper-lazy"
                 />
                 <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
               </div>
             )}
           </div>
 
-          <div>
+          {/* <div>
             {user?.email && user?.questions?.couplePictures.length > 0 ? (
               <div>
                 <MobilePreview />
@@ -67,11 +68,12 @@ const WebsitePreviewContainer = ({ minimal }) => {
                   src="/images/wedding-phone.png"
                   alt=""
                   className="!max-h-[250px] !md:max-h-[395px] mx-auto swiper-lazy"
+                  // className="!h-[600px]  mx-auto swiper-lazy"
                 />
                 <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
               </div>
             )}
-          </div>
+          </div> */}
           <div>
             {user?.email && user?.questions?.couplePictures.length > 0 ? (
               <div>
@@ -83,6 +85,7 @@ const WebsitePreviewContainer = ({ minimal }) => {
                   src="/images/wedding-macbook.png"
                   alt=""
                   className="max-h-[250px] md:max-h-[444px] mx-auto swiper-lazy"
+                  // className="!h-[600px] mx-auto swiper-lazy"
                 />
                 <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
               </div>
@@ -102,7 +105,7 @@ export default WebsitePreviewContainer;
 
 // import SwiperCore, { Lazy, Autoplay } from "swiper";
 // import { useSelector } from 'react-redux';
-SwiperCore.use([Lazy, Autoplay]);
+// SwiperCore.use([Lazy, Autoplay]);
 
 // const params = {
 //   loop: true,

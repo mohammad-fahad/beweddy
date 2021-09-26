@@ -46,7 +46,7 @@ const CoupleWebsitePage = props => {
   );
 
   const [value, setValue] = useState(
-    `https://beweddy-delta.vercel.app/${couple?.username}`
+    `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${couple?.username}`
   );
 
   if (query.couple && !couple) return <NotFoundPage />;

@@ -89,7 +89,7 @@ const TextInvitesPage = () => {
     }
   }, [countries]);
 
-  const val = `Hello, \n\nWe would like to invite you to our wedding! Please come celebrate with us. \n\nThank you for your support. Love, ${user.coupleName}!\n\nVisit Our Wedding Website: https://beweddy-delta.vercel.app/couple/${user?.username}\n`;
+  const val = `Hello, \n\nWe would like to invite you to our wedding! Please come celebrate with us. \n\nThank you for your support. Love, ${user.coupleName}!\n\nVisit Our Wedding Website: ${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${user?.username}\n`;
 
   const handlePhones = (newValue, actionMeta) => {
     if (newValue) {
@@ -162,7 +162,7 @@ const TextInvitesPage = () => {
         },
       };
       const { data } = await axios.post(URL, formData, config);
-      console.log(data);
+      // console.log(data);
       toast.success("Image uploaded successfully");
       setLoading(false);
       setUploadedFile({ filename: data.original_filename, url: data.url });
@@ -184,20 +184,22 @@ const TextInvitesPage = () => {
 
         <div className="space-y-10 shadow-box">
           <div className="max-w-[1300px] w-full">
-            <div className="p-12 xxl:pr-0">
+            <div className="p-3 sm:p-12 xxl:pr-0">
               <div className="mb-5">
                 <div className="flex items-center pb-2 space-x-3">
                   <Image src="/icons/messages.svg" width={46} height={46} />
-                  <h3 className="text-2xl">Send Text & MMS Invites</h3>
+                  <h3 className="text-2xl mudiumTitle">
+                    Send Text & MMS Invites
+                  </h3>
                 </div>
                 <span className="h-[4px] inline-block max-w-[215px] w-full bg-secondary-alternative"></span>
               </div>
 
-              <div className="flex flex-wrap items-center justify-center gap-12">
+              <div className="flex flex-wrap items-center justify-center gap-4 md:gap-12">
                 <div className="md:col-span-2">
                   <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex justify-between">
-                      <Heading h3 className="!text-2xl">
+                      <Heading h3 className="!text-2xl commonTitle">
                         New Message
                       </Heading>
                       <div className="flex items-center space-x-3">
@@ -268,7 +270,7 @@ const TextInvitesPage = () => {
                           </span>
                         </label>
                       </div>
-                      <div className="flex items-center">
+                      {/* <div className="flex items-center">
                         <input
                           type="radio"
                           id="calenderInvite"
@@ -287,7 +289,7 @@ const TextInvitesPage = () => {
                             Calender Invite
                           </span>
                         </label>
-                      </div>
+                      </div> */}
                     </div>
                     <div className="flex justify-between">
                       <Heading h3 className="!text-sm xl:!text-base !font-bold">
@@ -429,7 +431,7 @@ const TextInvitesPage = () => {
                         <textarea
                           cols="30"
                           rows="10"
-                          className="rounded-[20px] focus:border-purple-100 p-10 w-full placeholder-primary font-medium text-lg scroll-design"
+                          className="rounded-[20px] customLabel focus:border-purple-100 sm:p-10 p-3 w-full placeholder-primary font-medium text-lg scroll-design"
                           defaultValue={val}
                           placeholder=""
                           {...register("message", {
@@ -469,7 +471,7 @@ const TextInvitesPage = () => {
 
                     <button
                       type="submit"
-                      className="flex items-center justify-end !mt-10 space-x-3 text-sm md:text-base font-bold text-right"
+                      className="flex items-center border-2 py-2 bg-secondary-alternative px-2 border-black  justify-end !mt-10 space-x-3 text-sm md:text-base font-bold text-right"
                     >
                       <span>Send Message</span>
                       <ArrowRightIcon className="w-6 h-6" />
@@ -509,6 +511,7 @@ const TextInvitesPage = () => {
                                 }`}
                                 height={50}
                                 width={50}
+                                className="rounded-full"
                               />
                             </div>
                             <h4 className="text-sm font-bold text-center">

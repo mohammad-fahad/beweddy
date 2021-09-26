@@ -39,7 +39,7 @@ const Banner = ({ setImageLoaded }) => {
             All-in-One <br /> Wedding Platform
           </h1>
         </div>
-        <div className="flex flex-wrap items-center justify-center pt-32 banner-bubble sm:ml-8 md:px-5 md:mb-20 xl:pt-36">
+        <div className="flex flex-wrap items-center justify-center pt-32 banner-bubble sm:ml-8 md:px-5 md:mb-20 xl:pt-36 homePageWrapper">
           <Link href={`${user ? "dashboard" : "/example-website"}`}>
             <a className="flex flex-col items-center justify-center transition duration-300 bg-white border-4 rounded-full cursor-pointer bubble md:-ml-10 bg-white/90 hover:bg-white border-primary w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-64 xl:h-64 hover:scale-110">
               <img

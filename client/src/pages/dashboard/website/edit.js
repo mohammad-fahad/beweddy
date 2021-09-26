@@ -1,11 +1,11 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import { produce } from 'immer';
-import { generate } from 'shortid';
-import { Image } from 'cloudinary-react';
-import { DashboardContainer, DashboardHeader } from '@components/dashboard';
-import DashboardTopBar from '@components/dashboard/header/TopBar';
-import DashboardLayout from '@components/dashboard/layout';
+import Head from "next/head";
+import Link from "next/link";
+import { produce } from "immer";
+import { generate } from "shortid";
+import { Image } from "cloudinary-react";
+import { DashboardContainer, DashboardHeader } from "@components/dashboard";
+import DashboardTopBar from "@components/dashboard/header/TopBar";
+import DashboardLayout from "@components/dashboard/layout";
 import {
   Button,
   CropImage,
@@ -17,46 +17,55 @@ import {
   QRCodeGenerator,
   SecondReceptionDatePicker,
   WeddingDatePicker,
-} from '@components/index';
+} from "@components/index";
 import {
   LinkIcon,
   MinusIcon,
   PencilIcon,
   PlusIcon,
-} from '@heroicons/react/outline';
-import { withAuthRoute } from '@hoc/withAuthRoute';
-import { Popover, Transition } from '@headlessui/react';
-import { attemptImageUpload, removeImage } from '@utils/index';
-import { useCallback, useEffect, useState } from 'react';
-import { useDropzone } from 'react-dropzone';
-import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { motion } from 'framer-motion';
-import { XIcon } from '@heroicons/react/solid';
-import moment from 'moment';
-import DatePicker from 'react-datepicker';
-import { compareDate } from '@helpers/index';
-import { isEmpty } from 'lodash';
+} from "@heroicons/react/outline";
+import { withAuthRoute } from "@hoc/withAuthRoute";
+import { Popover, Transition } from "@headlessui/react";
+import { attemptImageUpload, removeImage } from "@utils/index";
+import { useCallback, useEffect, useState } from "react";
+import { useDropzone } from "react-dropzone";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { motion } from "framer-motion";
+import { XIcon } from "@heroicons/react/solid";
+import moment from "moment";
+import DatePicker from "react-datepicker";
+import { compareDate } from "@helpers/index";
+import { isEmpty } from "lodash";
 import {
   Facebook,
   Instagram,
   Linkedin,
   Twitter,
   Youtube,
-} from '@icons-pack/react-simple-icons';
-import { attemptUpdateUserProfile } from '@features/user/userActions';
-import { Fragment } from 'react';
-import axios from 'axios';
-import RegistryModal from '@components/dashboard/RegistryModal';
+} from "@icons-pack/react-simple-icons";
+import "react-datetime/css/react-datetime.css";
+import Datetime from "react-datetime";
+import { attemptUpdateUserProfile } from "@features/user/userActions";
+import { Fragment } from "react";
+import axios from "axios";
+import RegistryModal from "@components/dashboard/RegistryModal";
+import getYear from "date-fns/getYear";
+import getMonth from "date-fns/getYear";
+import "react-datepicker/dist/react-datepicker.css";
+import VenmoModal from "@components/dashboard/VenmoModal";
 
 const EditWebsitePage = () => {
   const dispatch = useDispatch();
-  const { user, loading: userLoading } = useSelector(state => state.user);
+  const [nickname, setNickname] = useState(false);
+  const [spouseFirst, setSpouseFirst] = useState(false);
+  const { user, loading: userLoading } = useSelector((state) => state.user);
   console.log({ user });
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState();
   const [preview, setPreview] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isVenmoModalOpen, setIsVenmoModalOpen] = useState(false);
   const [selectedImageFile, setSelectedImageFile] = useState();
   const [uploadedFiles, setUploadedFiles] = useState(
     user.questions.couplePictures
@@ -66,36 +75,76 @@ const EditWebsitePage = () => {
     user.receptionDetails.length
       ? user.receptionDetails
       : [
-          {
-            id: generate(),
-            time: '5.00 PM',
-            details: 'Example of event details',
-          },
-          {
-            id: generate(),
-            time: '5.30 PM',
-            details: 'Ceremony',
-          },
-          {
-            id: generate(),
-            time: '6.00 PM',
-            details: 'Ceremony ends/cocktails begin',
-          },
-        ]
+        {
+          id: generate(),
+          time: "5.00 PM",
+          details: "Example of event details",
+        },
+        {
+          id: generate(),
+          time: "5:30 PM",
+          details: "Ceremony",
+        },
+        {
+          id: generate(),
+          time: "6:00 PM",
+          details: "Ceremony ends/cocktails begin",
+        },
+        {
+          id: generate(),
+          time: "7:00 PM",
+          details: "Cocktails ends and guests are ushered into the reception",
+        },
+        {
+          id: generate(),
+          time: "7:20 PM",
+          details: "Introduction and first dance—guests asked to join after ",
+        },
+        {
+          id: generate(),
+          time: "7:45 PM",
+          details: " Guests take their seats and the first course is served",
+        },
+        {
+          id: generate(),
+          time: "8:00 PM",
+          details: "Welcome speech from parents",
+        },
+        {
+          id: generate(),
+          time: "8:10 PM",
+          details: "Toasts from maid of honor and best man",
+        },
+        {
+          id: generate(),
+          time: "9:00 PM",
+          details: "Parent dances",
+        },
+        {
+          id: generate(),
+          time: "9:30 PM ",
+          details: "Cake cutting",
+        },
+        {
+          id: generate(),
+          time: "10:00 PM",
+          details: "Send-Off",
+        },
+      ]
   );
   const { groom, bride } = user.socialAccounts;
 
   // WeddingDate Picker
   const _weddingDate = user.questions?.weddingDay?.weddingDate
     ? new Date(user.questions?.weddingDay?.weddingDate)
-    : '';
+    : "";
 
   const [selectWeddingDay, setSelectWeddingDay] = useState(_weddingDate);
 
   // First Reception Picker
   const _firstReception = user.questions?.weddingDay?.firstReception
     ? new Date(user.questions?.weddingDay?.firstReception)
-    : '';
+    : "";
 
   const [selectFirstReception, setSelectFirstReception] =
     useState(_firstReception);
@@ -103,7 +152,7 @@ const EditWebsitePage = () => {
   // Second Reception Picker
   const _secondReception = user.questions?.weddingDay?.secondReception
     ? new Date(user.questions?.weddingDay?.secondReception)
-    : '';
+    : "";
 
   const [selectSecondReception, setSelectSecondReception] =
     useState(_secondReception);
@@ -118,7 +167,7 @@ const EditWebsitePage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    mode: 'all',
+    mode: "all",
     defaultValues: {
       ...user.questions,
       ourStory: user.ourStory,
@@ -129,53 +178,53 @@ const EditWebsitePage = () => {
   });
 
   // Watch Input Fields
-  watch(['weddingDate', 'firstReception', 'secondReception']);
+  watch(["weddingDate", "firstReception", "secondReception"]);
 
   // Input Fields as Variable
-  const weddingDate = getValues('weddingDate');
-  const firstReception = getValues('firstReception');
-  const secondReception = getValues('secondReception');
+  const weddingDate = getValues("weddingDate");
+  const firstReception = getValues("firstReception");
+  const secondReception = getValues("secondReception");
 
   useEffect(() => {
     if (isEmpty(weddingDate) || compareDate(weddingDate)) {
-      clearErrors('weddingDate');
+      clearErrors("weddingDate");
     } else {
-      setError('weddingDate', {
-        type: 'validate',
-        message: 'Seems like you have selected past date',
+      setError("weddingDate", {
+        type: "validate",
+        message: "Seems like you have selected past date",
       });
     }
     if (isEmpty(firstReception) || compareDate(firstReception)) {
-      clearErrors('firstReception');
+      clearErrors("firstReception");
     } else {
-      setError('firstReception', {
-        type: 'validate',
-        message: 'Seems like you have selected past date',
+      setError("firstReception", {
+        type: "validate",
+        message: "Seems like you have selected past date",
       });
     }
     if (isEmpty(secondReception) || compareDate(secondReception)) {
-      clearErrors('secondReception');
+      clearErrors("secondReception");
     } else {
-      setError('secondReception', {
-        type: 'validate',
-        message: 'Seems like you have selected past date',
+      setError("secondReception", {
+        type: "validate",
+        message: "Seems like you have selected past date",
       });
     }
   }, [weddingDate, firstReception, secondReception]);
 
   // Handle image uploadedFiles
 
-  const onDrop = useCallback(acceptedFiles => {
+  const onDrop = useCallback((acceptedFiles) => {
     if (uploadedFiles.length === 4) {
-      setError('couplePictures', {
-        type: 'maxLength',
-        message: 'Maximum number of files uploaded',
+      setError("couplePictures", {
+        type: "maxLength",
+        message: "Maximum number of files uploaded",
       });
       return;
     }
 
     const fileDropped = acceptedFiles[0];
-    if (fileDropped['type'].split('/')[0] === 'image') {
+    if (fileDropped["type"].split("/")[0] === "image") {
       setSelectedImageFile(fileDropped);
       return;
     }
@@ -186,7 +235,7 @@ const EditWebsitePage = () => {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: 'image/*',
+    accept: "image/*",
     multiple: false,
   });
 
@@ -197,12 +246,12 @@ const EditWebsitePage = () => {
     const URL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`;
     try {
       const formData = new FormData();
-      formData.append('file', file);
-      formData.append('upload_preset', 'beweddy_csfhgnsu');
+      formData.append("file", file);
+      formData.append("upload_preset", "beweddy_csfhgnsu");
 
       const config = {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
           // Authorization: `Bearer ${user.token}`,
         },
       };
@@ -218,13 +267,13 @@ const EditWebsitePage = () => {
       // );
       // const data = await attemptImageUpload(formData);
 
-      setUploadedFiles(prev => [
+      setUploadedFiles((prev) => [
         ...prev,
         { public_id, height, width, secure_url, url },
       ]);
 
-      setValue('couplePictures', uploadedFiles);
-      clearErrors('couplePictures');
+      setValue("couplePictures", uploadedFiles);
+      clearErrors("couplePictures");
       setLoading(false);
     } catch (err) {
       setLoading(false);
@@ -233,21 +282,23 @@ const EditWebsitePage = () => {
   };
 
   // Handle remove images
-  const handleRemoveImage = async id => {
+  const handleRemoveImage = async (id) => {
     try {
       setLoading(true);
       await removeImage(id);
-      setUploadedFiles(prev => prev.filter(image => image.public_id !== id));
+      setUploadedFiles((prev) =>
+        prev.filter((image) => image.public_id !== id)
+      );
       if (uploadedFiles.length === 0) {
-        setError('couplePictures', {
-          type: 'required',
-          message: 'Please upload couple picture file or check do this later',
+        setError("couplePictures", {
+          type: "required",
+          message: "Please upload couple picture file or check do this later",
         });
-        setValue('couplePictures', undefined, {
+        setValue("couplePictures", undefined, {
           shouldValidate: true,
         });
       } else {
-        setValue('couplePictures', uploadedFiles);
+        setValue("couplePictures", uploadedFiles);
       }
       setLoading(false);
     } catch (err) {
@@ -256,12 +307,13 @@ const EditWebsitePage = () => {
     }
   };
 
-  const onSubmit = data => {
-    // console.log(submitData(data));
+  const onSubmit = (data) => {
+    console.log("sdkfshfhsdhfoosdfohosdhohfdsohfsdhof", data);
+    console.log("sdkfshfhsdhfoosdfohosdhohfdsohfsdhof", data.groom_facebook);
     dispatch(attemptUpdateUserProfile(submitData(data)));
   };
 
-  const submitData = data => {
+  const submitData = (data) => {
     const socialAccounts = {
       groom: {
         facebook: data.groom_facebook,
@@ -301,6 +353,25 @@ const EditWebsitePage = () => {
     return payload;
   };
 
+  const range = (start, end) => {
+    return new Array(end - start).fill().map((d, i) => i + start);
+  };
+  const years = range(1990, getYear(new Date()) + 5);
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
   return (
     <>
       <Head>
@@ -312,22 +383,22 @@ const EditWebsitePage = () => {
       <DashboardTopBar />
 
       <DashboardLayout shadow>
-        <DashboardHeader title='Edit your website' customPadding>
-          <div className='flex flex-wrap items-center gap-3 py-3 md:py-0'>
+        <DashboardHeader title="Edit your website" customPadding>
+          <div className="flex flex-wrap items-center gap-3 py-3 md:py-0">
             {/* <Link href='/dashboard/website/edit'>
               <a className='flex items-center space-x-3 py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300'>
                 <PencilIcon className='w-5 h-5' />
                 <span>Edit your website</span>
               </a>
             </Link> */}
-            <Link href='/dashboard/features/qrcode-and-links'>
-              <a className='flex items-center space-x-3 py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300'>
-                <LinkIcon className='w-5 h-5' />
+            <Link href="/dashboard/features/qrcode-and-links">
+              <a className="flex items-center space-x-3 py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300 sm:ml-0 ml-5">
+                <LinkIcon className="w-5 h-5" />
                 <span>Share your super link</span>
               </a>
             </Link>
-            <Link href='/dashboard/invitation/rsvp-guest-management'>
-              <a className='py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300'>
+            <Link href="/dashboard/invitation/rsvp-guest-management">
+              <a className="py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300 sm:ml-0 ml-5">
                 Guests Management
               </a>
             </Link>
@@ -335,61 +406,61 @@ const EditWebsitePage = () => {
         </DashboardHeader>
 
         <DashboardContainer>
-          <div className=''>
-            <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
+          <div className="">
+            <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
               Name (you & your spouse name)
             </h4>
-            <form className='space-y-7' onSubmit={handleSubmit(onSubmit)}>
-              <div className='space-y-2'>
-                <div className='flex flex-wrap items-center gap-5'>
+            <form className="space-y-10" onSubmit={handleSubmit(onSubmit)}>
+              <div className="space-y-2">
+                <div className="flex flex-wrap items-center gap-5">
                   <input
-                    type='text'
-                    className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal'
-                    {...register('firstName', {
+                    type="text"
+                    className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal"
+                    {...register("firstName", {
                       required: {
                         value: true,
-                        message: 'First name is required!',
+                        message: "First name is required!",
                       },
                     })}
                   />
                   <input
-                    type='text'
-                    className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal'
-                    {...register('lastName', {
+                    type="text"
+                    className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal"
+                    {...register("lastName", {
                       required: {
                         value: true,
-                        message: 'Last name is required!',
+                        message: "Last name is required!",
                       },
                     })}
                   />
                 </div>
 
-                <div className='flex flex-wrap items-center gap-5'>
+                <div className="flex flex-wrap items-center gap-5">
                   <input
-                    type='text'
-                    className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal'
-                    {...register('spouseFirstName', {
+                    type="text"
+                    className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal"
+                    {...register("spouseFirstName", {
                       required: {
                         value: true,
-                        message: 'Spouse first name is required!',
+                        message: "Spouse first name is required!",
                       },
                     })}
                   />
                   <input
-                    type='text'
-                    className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal'
-                    {...register('spouseLastName', {
+                    type="text"
+                    className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal"
+                    {...register("spouseLastName", {
                       required: {
                         value: true,
-                        message: 'Spouse last name is required!',
+                        message: "Spouse last name is required!",
                       },
                     })}
                   />
                 </div>
-                <div className='!mt-5'>
+                <div className="!mt-5">
                   <button
-                    className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
-                    type='submit'
+                    className="border-2 transition-colors duration-300 !border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
+                    type="submit"
                   >
                     Save
                   </button>
@@ -398,61 +469,64 @@ const EditWebsitePage = () => {
 
               <Divider />
 
-              <div className='space-y-5'>
-                <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
+              <div className="space-y-5">
+                <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
                   Upload 4 images
                 </h4>
+                <p className="text-[12px] m-0">
+                  Crop Pictures For Cover Photos
+                </p>
                 <div
-                  className='relative focus:outline-none'
+                  className="relative focus:outline-none"
                   {...getRootProps()}
                 >
                   <input {...getInputProps()} />
                   <label
-                    htmlFor='couplePictures'
-                    className='bg-white cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-secondary-alternative/50 rounded-[5px]'
+                    htmlFor="couplePictures"
+                    className="bg-white cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-secondary-alternative/50 rounded-[5px]"
                   >
                     Upload
                   </label>
-                  <p className='mt-2 text-sm font-light text-center text-red-400'>
+                  <p className="mt-2 text-sm font-light text-center text-red-400">
                     {errors?.couplePictures?.message}
                   </p>
                 </div>
 
-                <motion.div className='relative grid w-full grid-cols-2 gap-5 mx-auto mb-5 md:mb-10 md:grid-cols-3 lg:grid-cols-4 sm:px-0 sm:max-w-full sm:gap-10'>
-                  {uploadedFiles.map(image => (
+                <motion.div className="relative grid w-full grid-cols-2 gap-5 mx-auto mb-5 md:mb-10 md:grid-cols-3 lg:grid-cols-4 sm:px-0 sm:max-w-full sm:gap-10">
+                  {uploadedFiles.map((image) => (
                     <motion.div
                       key={image.public_id}
-                      className='max-w-[150px] md:max-w-[220px] w-full group border-[3px] border-primary rounded-[5px] overflow-hidden relative'
+                      className="max-w-[150px] md:max-w-[220px] w-full group border-[3px] border-primary rounded-[5px] overflow-hidden relative"
                       layout
                       exit={{ opacity: 0 }}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                     >
                       <button
-                        type='button'
-                        className='absolute z-50 hidden p-1 text-red-400 bg-white border rounded-full group-hover:inline-block right-1 top-1 border-primary'
+                        type="button"
+                        className="absolute z-50 hidden p-1 text-red-400 bg-white border rounded-full group-hover:inline-block right-1 top-1 border-primary"
                         onClick={() => handleRemoveImage(image.public_id)}
                       >
-                        <XIcon className='w-5 h-5' />
+                        <XIcon className="w-5 h-5" />
                       </button>
-                      <div className='aspect-w-16 aspect-h-9'>
+                      <div className="aspect-w-16 aspect-h-9">
                         <Image
                           cloudName={
                             process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
                           }
                           publicId={image.public_id}
                           src={!image.public_id ? image.url : null}
-                          width='200'
-                          crop='scale'
-                          className='object-cover w-full'
+                          width="200"
+                          crop="scale"
+                          className="object-cover w-full"
                         />
                       </div>
                     </motion.div>
                   ))}
                 </motion.div>
                 <button
-                  className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
-                  type='submit'
+                  className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
+                  type="submit"
                 >
                   Save
                 </button>
@@ -460,46 +534,158 @@ const EditWebsitePage = () => {
 
               <Divider />
 
-              <div className='space-y-5'>
+              <div className="space-y-5">
                 {/* <Heading h3>Pick your wedding date</Heading> */}
 
-                <h4 className='text-[24px] font-medium capitalize mudiumTitle'>
+                <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
                   Pick your wedding date
                 </h4>
 
-                <div className='inline-block'>
+                <div className="inline-block">
                   <DatePicker
+                    renderCustomHeader={({
+                      date,
+                      changeYear,
+                      changeMonth,
+                      decreaseMonth,
+                      increaseMonth,
+                      prevMonthButtonDisabled,
+                      nextMonthButtonDisabled,
+                    }) => (
+                      <div
+                        style={{
+                          margin: 10,
+                          display: "flex",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <button
+                          onClick={decreaseMonth}
+                          disabled={prevMonthButtonDisabled}
+                        >
+                          {"<"}
+                        </button>
+                        <select
+                          value={getYear(date)}
+                          onChange={({ target: { value } }) =>
+                            changeYear(value)
+                          }
+                        >
+                          {years.map((option) => (
+                            <option key={option} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
+
+                        <select
+                          value={months[getMonth(date)]}
+                          onChange={({ target: { value } }) =>
+                            changeMonth(months.indexOf(value))
+                          }
+                        >
+                          {months.map((option) => (
+                            <option key={option} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
+
+                        <button
+                          onClick={increaseMonth}
+                          disabled={nextMonthButtonDisabled}
+                        >
+                          {">"}
+                        </button>
+                      </div>
+                    )}
                     selected={selectWeddingDay}
-                    popperPlacement='top-end'
-                    onChange={date => {
+                    popperPlacement="top-end"
+                    onChange={(date) => {
                       setSelectWeddingDay(date);
-                      setValue('weddingDate', moment(date).format('LL'));
+                      setValue("weddingDate", moment(date).format("LL"));
                     }}
                     customInput={
                       <WeddingDatePicker
-                        placeholder='Select Wedding Date'
-                        border='border-secondary-alternative/50'
+                        placeholder="Select Wedding Date"
+                        border="border-secondary-alternative/50"
                         {...{ errors }}
                       />
                     }
                   />
                 </div>
 
-                <h4 className='text-[24px] font-medium capitalize mudiumTitle'>
+                <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
                   Pick your Reception date
                 </h4>
-                <div className='flex flex-wrap items-center gap-5'>
+                <div className="flex flex-wrap items-center gap-5">
                   <div>
                     <DatePicker
+                      renderCustomHeader={({
+                        date,
+                        changeYear,
+                        changeMonth,
+                        decreaseMonth,
+                        increaseMonth,
+                        prevMonthButtonDisabled,
+                        nextMonthButtonDisabled,
+                      }) => (
+                        <div
+                          style={{
+                            margin: 10,
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <button
+                            onClick={decreaseMonth}
+                            disabled={prevMonthButtonDisabled}
+                          >
+                            {"<"}
+                          </button>
+                          <select
+                            value={getYear(date)}
+                            onChange={({ target: { value } }) =>
+                              changeYear(value)
+                            }
+                          >
+                            {years.map((option) => (
+                              <option key={option} value={option}>
+                                {option}
+                              </option>
+                            ))}
+                          </select>
+
+                          <select
+                            value={months[getMonth(date)]}
+                            onChange={({ target: { value } }) =>
+                              changeMonth(months.indexOf(value))
+                            }
+                          >
+                            {months.map((option) => (
+                              <option key={option} value={option}>
+                                {option}
+                              </option>
+                            ))}
+                          </select>
+
+                          <button
+                            onClick={increaseMonth}
+                            disabled={nextMonthButtonDisabled}
+                          >
+                            {">"}
+                          </button>
+                        </div>
+                      )}
                       selected={selectFirstReception}
                       // popperPlacement='top-end'
-                      onChange={date => {
+                      onChange={(date) => {
                         setSelectFirstReception(date);
-                        setValue('firstReception', moment(date).format('LL'));
+                        setValue("firstReception", moment(date).format("LL"));
                       }}
                       customInput={
                         <FirstReceptionDatePicker
-                          border='border-secondary-alternative/50'
+                          border="border-secondary-alternative/50"
                           {...{ errors }}
                         />
                       }
@@ -508,15 +694,71 @@ const EditWebsitePage = () => {
 
                   <div>
                     <DatePicker
+                      renderCustomHeader={({
+                        date,
+                        changeYear,
+                        changeMonth,
+                        decreaseMonth,
+                        increaseMonth,
+                        prevMonthButtonDisabled,
+                        nextMonthButtonDisabled,
+                      }) => (
+                        <div
+                          style={{
+                            margin: 10,
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <button
+                            onClick={decreaseMonth}
+                            disabled={prevMonthButtonDisabled}
+                          >
+                            {"<"}
+                          </button>
+                          <select
+                            value={getYear(date)}
+                            onChange={({ target: { value } }) =>
+                              changeYear(value)
+                            }
+                          >
+                            {years.map((option) => (
+                              <option key={option} value={option}>
+                                {option}
+                              </option>
+                            ))}
+                          </select>
+
+                          <select
+                            value={months[getMonth(date)]}
+                            onChange={({ target: { value } }) =>
+                              changeMonth(months.indexOf(value))
+                            }
+                          >
+                            {months.map((option) => (
+                              <option key={option} value={option}>
+                                {option}
+                              </option>
+                            ))}
+                          </select>
+
+                          <button
+                            onClick={increaseMonth}
+                            disabled={nextMonthButtonDisabled}
+                          >
+                            {">"}
+                          </button>
+                        </div>
+                      )}
                       selected={selectSecondReception}
                       // popperPlacement='top-end'
-                      onChange={date => {
+                      onChange={(date) => {
                         setSelectSecondReception(date);
-                        setValue('secondReception', moment(date).format('LL'));
+                        setValue("secondReception", moment(date).format("LL"));
                       }}
                       customInput={
                         <SecondReceptionDatePicker
-                          border='border-secondary-alternative/50'
+                          border="border-secondary-alternative/50"
                           {...{ errors }}
                         />
                       }
@@ -525,8 +767,8 @@ const EditWebsitePage = () => {
                 </div>
                 <div>
                   <button
-                    className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
-                    type='submit'
+                    className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
+                    type="submit"
                   >
                     Save
                   </button>
@@ -535,51 +777,67 @@ const EditWebsitePage = () => {
 
               <Divider />
 
-              <div className='space-y-5'>
-                <div className='flex items-center justify-between space-x-5'>
+              <div className="space-y-5">
+                <div className="flex items-center justify-between space-x-5">
                   {/* <Heading h3></Heading> */}
-                  <h4 className='text-[24px] font-medium capitalize mudiumTitle'>
+                  <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
                     Our story
                   </h4>
                 </div>
                 <textarea
-                  cols='30'
-                  rows='5'
-                  className='w-full px-5 py-3 text-base font-normal border-2 border-gray-200 rounded-lg focus:ring-0 focus:border-primary'
-                  placeholder='We sincerely hope we will have the honor to dine, laugh, and dance with you on our wedding weekend. It would mean the world to us.'
-                  {...register('ourStory')}
+                  cols="30"
+                  rows="5"
+                  className="w-full px-5 py-3 text-base font-normal border-2 border-gray-200 rounded-lg focus:ring-0 focus:border-primary"
+                  placeholder="We sincerely hope we will have the honor to dine, laugh, and dance with you on our wedding weekend. It would mean the world to us."
+                  {...register("ourStory")}
                 ></textarea>
 
                 <button
-                  className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
-                  type='submit'
+                  className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
+                  type="submit"
                 >
                   Save
                 </button>
               </div>
 
               <Divider />
-              <div className='space-y-5 flex flex-col'>
-                <div className='flex items-center justify-between space-x-5'>
-                  <h4 className='text-[24px] font-medium capitalize mudiumTitle'>
+              <div className="flex flex-col space-y-5">
+                <div className="flex items-center justify-between space-x-5">
+                  <h4 className="text-[24px] font-medium capitalize mudiumTitle">
                     Location Name &amp; Address
                   </h4>
                 </div>
-                <input
-                  type='text'
-                  className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal'
-                  placeholder='Enter your location'
-                  {...register('location', {
-                    required: {
-                      value: true,
-                      message: 'Location name and address is required!',
-                    },
-                  })}
-                />
+                <div className="flex flex-row items-center justify-between w-full">
+                  <div className="w-full max-w-xs">
+                    <input
+                      type="text"
+                      className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal"
+                      placeholder="Enter your location"
+                      {...register("location", {
+                        required: {
+                          value: true,
+                          message: "Location name and address is required!",
+                        },
+                      })}
+                    />
+                  </div>
+
+                  <div className="flex justify-end w-full">
+                    <iframe
+                      width="55%"
+                      height="400"
+                      frameBorder="0"
+                      scrolling="no"
+                      marginHeight="0"
+                      marginWidth="0"
+                      src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=365%20Queen%20Street%20South,%20Mississauga,%20ON%20L5M%201M3+(Leedway%20group)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                    />
+                  </div>
+                </div>
                 <div>
                   <button
-                    className='inline-block border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
-                    type='submit'
+                    className="inline-block border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
+                    type="submit"
                   >
                     Save
                   </button>
@@ -588,42 +846,45 @@ const EditWebsitePage = () => {
 
               <Divider />
 
-              <div className='space-y-5'>
-                <div className='flex items-center justify-between space-x-5'>
-                  <h4 className='text-[24px] font-medium capitalize mudiumTitle'>
+              <div className="space-y-5">
+                <div className="flex items-center justify-between space-x-5">
+                  <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
                     Reception Details
                   </h4>
-                  {/* <button className='px-5 py-2'>
-                  <MinusIcon className='w-7' />
-                </button> */}
                 </div>
                 {receptionDetails.map((reception, index) => (
-                  <div key={reception.id} className='flex items-center'>
-                    <input
-                      type='text'
-                      className='w-28 rounded-[5px] border-2 rounded-r-none focus:!border-gray-200 border-gray-200 py-2 pl-4 text-base font-bold placeholder-gray-200'
-                      placeholder='12.00 PM'
+                  <div
+                    key={index}
+                    className="flex items-center !border-gray-200"
+                  >
+
+                    <Datetime
+                      className="w-[100px] rounded-[5px] border-2 rounded-r-none !focus:!border-gray-200 !border-gray-200  text-base font-bold placeholder-gray-200 border-r-0 datepiceker"
+                      inputProps={{ placeholder: "12.00 PM" }}
+                      id="datepickerInput"
+                      dateFormat={false}
                       value={reception.time}
-                      onChange={e => {
-                        const time = e.target.value;
-                        setReceptionDetails(prev =>
-                          produce(prev, value => {
-                            value[index].time = time;
+                      onChange={(e) => {
+                        const time = e._d;
+                        const startTimeFormat = moment(time).format("hh:mm a");
+                        setReceptionDetails((prev) =>
+                          produce(prev, (value) => {
+                            value[index].time = startTimeFormat;
                           })
                         );
                       }}
                     />
 
-                    <div className='relative w-full'>
+                    <div className="relative w-full">
                       <input
-                        type='text'
-                        className='w-full rounded-[5px] rounded-l-none border-l-0 border-2 focus:!border-gray-200 border-gray-200 py-2 px-4 text-base font-normal placeholder-gray-300'
-                        placeholder='Details'
+                        type="text"
+                        className="w-full rounded-[5px] rounded-l-none border-l-0 border-2 !focus:!border-gray-200 !border-gray-200 py-2  text-base font-normal placeholder-gray-300 !px-0 "
+                        placeholder="Details"
                         value={reception.details}
-                        onChange={e => {
+                        onChange={(e) => {
                           const details = e.target.value;
-                          setReceptionDetails(prev =>
-                            produce(prev, value => {
+                          setReceptionDetails((prev) =>
+                            produce(prev, (value) => {
                               value[index].details = details;
                             })
                           );
@@ -631,39 +892,39 @@ const EditWebsitePage = () => {
                       />
 
                       <button
-                        type='button'
-                        className='absolute -translate-y-1/2 top-1/2 right-5'
+                        type="button"
+                        className="absolute -translate-y-1/2 top-1/2 right-[1px] bg-[#ffffff] py-2"
                         onClick={() =>
-                          setReceptionDetails(prev =>
-                            prev.filter(x => x.id !== reception.id)
+                          setReceptionDetails((prev) =>
+                            prev.filter((x) => x.id !== reception.id)
                           )
                         }
                       >
-                        <MinusIcon className='h-5 w-7' />
+                        <MinusIcon className="h-5 w-7" />
                       </button>
                     </div>
                   </div>
                 ))}
                 <button
-                  type='button'
-                  className='font-inter flex items-center space-x-3 rounded-[5px] border-2 focus:!border-gray-200 border-gray-200 py-2 px-4 text-base font-normal placeholder-gray-300'
+                  type="button"
+                  className="font-inter flex items-center space-x-3 rounded-[5px] border-2 focus:!border-gray-200 border-gray-200 py-2 px-4 text-base font-normal placeholder-gray-300"
                   onClick={() =>
-                    setReceptionDetails(prev => [
+                    setReceptionDetails((prev) => [
                       ...prev,
                       {
                         id: generate(),
-                        time: '',
-                        details: '',
+                        time: "",
+                        details: "",
                       },
                     ])
                   }
                 >
-                  <PlusIcon className='h-5 w-7' />
+                  <PlusIcon className="h-5 w-7" />
                   <span>Add New</span>
                 </button>
                 <button
-                  className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
-                  type='submit'
+                  className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
+                  type="submit"
                 >
                   Save
                 </button>
@@ -672,31 +933,32 @@ const EditWebsitePage = () => {
               <Divider />
 
               <Heading h3></Heading>
-              <h4 className='mb-6 text-[24px] font-medium cursor-pointer capitalize mudiumTitle'>
+              <h4 className="mb-6 text-[24px] font-medium cursor-pointer capitalize mudiumTitle">
                 Add Gift Card
               </h4>
 
               <div>
-                <div className='flex items-center gap-3 md:gap-10'>
-                  <motion.div className='relative grid w-full grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xxl:grid-cols-6 sm:max-w-full gap-5 sm:gap-10'>
-                    <Link href='/dashboard/gift-cards'>
+                <div className="flex items-center gap-3 md:gap-10">
+                  <motion.div className="relative grid w-full grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 xxl:grid-cols-6 sm:max-w-full sm:gap-10">
+                    <Link href="/dashboard/gift-cards">
                       <motion.a
                         layout
                         exit={{ opacity: 0 }}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className='max-w-[200px] min-h-[120px] w-full h-full border-2 border-secondary-alternative bg-secondary-alternative/50 flex items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'
+                        className="max-w-[200px] min-h-[120px] w-full h-full border-2 border-secondary-alternative bg-secondary-alternative/50 flex items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300"
                       >
-                        <PlusIcon className='w-8 h-8' />
+                        <PlusIcon className="w-8 h-8" />
                       </motion.a>
                     </Link>
-                    {user?.giftCards?.map(gift => (
+                    {user?.giftCards?.map((gift, i) => (
                       <motion.div
+                        key={i}
                         layout
                         exit={{ opacity: 0 }}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className='inline-block relative max-w-[200px] max-h-[120px] w-full h-full overflow-hidden transition duration-300 cursor-pointer rounded-xl ease-easing'
+                        className="inline-block relative max-w-[200px] max-h-[120px] w-full h-full overflow-hidden transition duration-300 cursor-pointer rounded-xl ease-easing"
                       >
                         <Image
                           width={200}
@@ -706,7 +968,7 @@ const EditWebsitePage = () => {
                         />
 
                         <div
-                          className='absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center transition duration-300 opacity-0 bg-primary/80 hover:opacity-100'
+                          className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center transition duration-300 opacity-0 bg-primary/80 hover:opacity-100"
                           onClick={() =>
                             dispatch(
                               attemptUpdateUserProfile({
@@ -715,67 +977,75 @@ const EditWebsitePage = () => {
                             )
                           }
                         >
-                          <MinusIcon className='w-12 h-12 text-white' />
+                          <MinusIcon className="w-12 h-12 text-white" />
                         </div>
                       </motion.div>
                     ))}
                   </motion.div>
                 </div>
-                <Link href='/dashboard/gift-cards/'>
-                  <a className='block mt-5 text-sm font-semibold text-right hover:underline font-inter'>
+                <Link href="/dashboard/gift-cards/">
+                  <a className="block mt-5 text-sm font-semibold text-right hover:underline font-inter">
                     See All Gift Card Options
                   </a>
                 </Link>
               </div>
 
               <button
-                className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
-                type='submit'
+                className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
+                type="submit"
               >
                 Save
               </button>
 
               <Divider />
 
-              <div className='space-y-5'>
+              <div className="space-y-5">
                 {/* <Heading h3></Heading> */}
-                <h4 className='text-[24px] font-medium capitalize mudiumTitle'>
-                  Connect your registry
+                <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
+                  Connect your registry & Venmo
                 </h4>
-                <div className='flex items-center space-y-3'>
-                  <div className='border-2 w-[200px] min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex flex-col items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'>
+                <div className="flex items-center space-y-3">
+                  <div className="border-2 w-[200px] min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex flex-col items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300">
                     <button
-                      type='button'
-                      className='px-6 py-2 mt-5 text-xs text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap'
+                      type="button"
+                      className=" mt-5 text-xs w-[160px] py-2 text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap"
                       onClick={() => setIsModalOpen(true)}
                     >
-                      Create Registry
+                      Connect Registry
                     </button>
-                    <Link href='/'>
-                      <a className='py-2 text-base font-light text-blue-500 font-inter hover:underline'>
+                    <button
+                      type="button"
+                      className="w-[160px] py-2 mt-5 text-xs text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap"
+                      onClick={() => setIsVenmoModalOpen(true)}
+                    >
+                      Connect Venmo
+                    </button>
+                    {/* <Link href="/">
+                      <a className="py-2 text-base font-light text-blue-500 font-inter hover:underline">
                         Learn more
                       </a>
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
-                <motion.div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 2lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 sm:gap-5 md:gap-10'>
-                  {user?.registries?.map(registry => (
+                <motion.div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 2lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 sm:gap-5 md:gap-10">
+                  {user?.registries?.map((registry, i) => (
                     <motion.div
+                      key={i}
                       layout
                       exit={{ opacity: 0 }}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      className='scale-[.85] xs:scale-95 sm:scale-100 cursor-pointer p-4 max-w-[250px] inline-block bg-white border-4 rounded-md border-gray-200 hover:border-primary transition duration-300 w-full mx-auto'
+                      className="scale-[.85] xs:scale-95 sm:scale-100 cursor-pointer p-4 max-w-[250px] inline-block bg-white border-4 rounded-md border-gray-200 hover:border-primary transition duration-300 w-full mx-auto"
                     >
                       <div
                         className={`border-2 overflow-hidden border-primary flex items-center justify-center h-[140px] w-full rounded-[10px] transition duration-300 relative group p-3`}
                       >
                         <Link href={registry.link}>
                           <a
-                            target='_blank'
-                            className='max-w-[273px] rounded-lg flex items-center justify-center w-full h-full opacity-0 hover:opacity-100 absolute inset-0 z-50 group-hover:bg-black/50'
+                            target="_blank"
+                            className="max-w-[273px] rounded-lg flex items-center justify-center w-full h-full opacity-0 hover:opacity-100 absolute inset-0 z-50 group-hover:bg-black/50"
                           >
-                            <LinkIcon className='w-8 h-8 text-white' />
+                            <LinkIcon className="w-8 h-8 text-white" />
                           </a>
                         </Link>
                         <div>
@@ -784,19 +1054,19 @@ const EditWebsitePage = () => {
                             height={80}
                             src={
                               isEmpty(registry.image)
-                                ? '/images/placeholder.webp'
+                                ? "/images/placeholder.webp"
                                 : registry.image
                             }
                           />
                         </div>
                       </div>
 
-                      <div className='flex flex-col py-4 text-center'>
-                        <h3 className='text-lg font-semibold font-inter'>
+                      <div className="flex flex-col py-4 text-center">
+                        <h3 className="text-lg font-semibold font-inter">
                           {registry.title}
                         </h3>
                         <div>
-                          <button className='py-2 inline-block px-8 border-gray-900 border-2 rounded-[5px] mt-5 hover:bg-black transition duration-300 hover:text-white font-inter font-bold'>
+                          <button className="py-2 inline-block px-8 border-gray-900 border-2 rounded-[5px] mt-5 hover:bg-black transition duration-300 hover:text-white font-inter font-bold">
                             Link
                           </button>
                         </div>
@@ -804,15 +1074,15 @@ const EditWebsitePage = () => {
                     </motion.div>
                   ))}
                 </motion.div>
-                <Link href='/dashboard/registries'>
-                  <a className='block mt-5 text-sm font-semibold text-right hover:underline font-inter'>
+                <Link href="/dashboard/registries">
+                  <a className="block mt-5 text-sm font-semibold text-right hover:underline font-inter">
                     See All Wedding Registry Options
                   </a>
                 </Link>
                 <div>
                   <button
-                    className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
-                    type='submit'
+                    className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
+                    type="submit"
                   >
                     Save
                   </button>
@@ -821,259 +1091,283 @@ const EditWebsitePage = () => {
 
               <Divider />
 
-              <div className='flex items-center flex-col md:flex-row justify-center gap-5 w-full !mb-20'>
-                <div className='w-full space-y-10'>
-                  <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
-                    Follow "Groom"
+              <div className="flex items-center flex-col md:flex-row justify-center gap-5 w-full !mb-20">
+                <div className="w-full space-y-10">
+                  <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle flex items-center">
+                    Follow
+                    {nickname ? (
+                      <div className="flex items-center justify-center ml-2">
+                        <input
+                          type="text"
+                          className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal"
+                          {...register("firstName", {
+                            required: {
+                              value: true,
+                              message: "First name is required!",
+                            },
+                          })}
+                        />
+                        <button
+                          className="transition-colors duration-300 px-3 py-[3px] bg-white text-primary rounded-[5px] border-2 border-gray-200"
+                          type="submit"
+                        >
+                          Save
+                        </button>
+                      </div>
+                    ) : (
+                      <span
+                        onClick={() => setNickname(!nickname)}
+                        className="ml-2"
+                      >
+                        {user?.questions?.firstName}
+                      </span>
+                    )}
                   </h4>
-                  <Popover.Group className='flex flex-wrap items-center gap-3'>
-                    <Popover className='relative'>
+                  <Popover.Group className="flex flex-wrap items-center gap-3">
+                    <Popover className="relative">
                       <Popover.Button>
                         <Facebook
-                          color='#1877F2'
+                          color="#1877F2"
                           size={35}
-                          className='customSocialIcon'
+                          className="customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
-                        enter='transition ease-out duration-200'
-                        enterFrom='opacity-0 translate-y-1'
-                        enterTo='opacity-100 translate-y-0'
-                        leave='transition ease-in duration-150'
-                        leaveFrom='opacity-100 translate-y-0'
-                        leaveTo='opacity-0 translate-y-1'
+                        enter="transition ease-out duration-200"
+                        enterFrom="opacity-0 translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-1"
                       >
                         <Popover.Panel>
-                          <div className='absolute -bottom-24 left-[-11px]'>
-                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                          <div className="absolute -bottom-24 left-[-11px]">
+                            <span className="z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary"></span>
                             <input
-                              type='text'
-                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
-                              placeholder='https://facebook.com/beweddy'
+                              type="text"
+                              className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
+                              placeholder="https://facebook.com/beweddy"
                               defaultValue={groom.facebook}
-                              {...register('groom_facebook')}
+                              {...register("groom_facebook")}
                             />
                           </div>
                         </Popover.Panel>
                       </Transition>
                     </Popover>
 
-                    <Popover className='relative'>
+                    <Popover className="relative">
                       <Popover.Button>
                         <Instagram
-                          color='#E4405F'
+                          color="#E4405F"
                           size={35}
-                          className='customSocialIcon'
+                          className="customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
-                        enter='transition ease-out duration-200'
-                        enterFrom='opacity-0 translate-y-1'
-                        enterTo='opacity-100 translate-y-0'
-                        leave='transition ease-in duration-150'
-                        leaveFrom='opacity-100 translate-y-0'
-                        leaveTo='opacity-0 translate-y-1'
+                        enter="transition ease-out duration-200"
+                        enterFrom="opacity-0 translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-1"
                       >
                         <Popover.Panel>
-                          <div className='absolute -bottom-24 left-[-11px]'>
-                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                          <div className="absolute -bottom-24 left-[-11px]">
+                            <span className="z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary"></span>
                             <input
-                              type='text'
-                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
-                              placeholder='https://instagram.com/beweddy'
+                              type="text"
+                              className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
+                              placeholder="https://instagram.com/beweddy"
                               defaultValue={groom.instagram}
-                              {...register('groom_instagram')}
+                              {...register("groom_instagram")}
                             />
                           </div>
                         </Popover.Panel>
                       </Transition>
                     </Popover>
-                    <Popover className='relative'>
+                    <Popover className="relative">
                       <Popover.Button>
                         <Twitter
-                          color='#1DA1F2'
+                          color="#1DA1F2"
                           size={35}
-                          className='customSocialIcon'
+                          className="customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
-                        enter='transition ease-out duration-200'
-                        enterFrom='opacity-0 translate-y-1'
-                        enterTo='opacity-100 translate-y-0'
-                        leave='transition ease-in duration-150'
-                        leaveFrom='opacity-100 translate-y-0'
-                        leaveTo='opacity-0 translate-y-1'
+                        enter="transition ease-out duration-200"
+                        enterFrom="opacity-0 translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-1"
                       >
                         <Popover.Panel>
-                          <div className='absolute -bottom-24 left-[-11px]'>
-                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                          <div className="absolute -bottom-24 left-[-11px]">
+                            <span className="z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary"></span>
                             <input
-                              type='text'
-                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
-                              placeholder='https://twitter.com/beweddy'
+                              type="text"
+                              className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
+                              placeholder="https://twitter.com/beweddy"
                               defaultValue={groom.twitter}
-                              {...register('groom_twitter')}
+                              {...register("groom_twitter")}
                             />
                           </div>
                         </Popover.Panel>
                       </Transition>
                     </Popover>
-                    <Popover className='relative'>
+                    <Popover className="relative">
                       <Popover.Button>
                         <Youtube
-                          color='#FF0000'
+                          color="#FF0000"
                           size={35}
-                          className='customSocialIcon'
+                          className="customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
-                        enter='transition ease-out duration-200'
-                        enterFrom='opacity-0 translate-y-1'
-                        enterTo='opacity-100 translate-y-0'
-                        leave='transition ease-in duration-150'
-                        leaveFrom='opacity-100 translate-y-0'
-                        leaveTo='opacity-0 translate-y-1'
+                        enter="transition ease-out duration-200"
+                        enterFrom="opacity-0 translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-1"
                       >
                         <Popover.Panel>
-                          <div className='absolute -bottom-24 left-[-11px]'>
-                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                          <div className="absolute -bottom-24 left-[-11px]">
+                            <span className="z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary"></span>
                             <input
-                              type='text'
-                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
-                              placeholder='https://www.youtube.com/beweddy'
+                              type="text"
+                              className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
+                              placeholder="https://www.youtube.com/beweddy"
                               defaultValue={groom.youTube}
-                              {...register('groom_youTube')}
+                              {...register("groom_youTube")}
                             />
                           </div>
                         </Popover.Panel>
                       </Transition>
                     </Popover>
-                    <Popover className='relative'>
+                    <Popover className="relative">
                       <Popover.Button>
                         <Linkedin
-                          color='#0A66C2'
+                          color="#0A66C2"
                           size={35}
-                          className='customSocialIcon'
+                          className="customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
-                        enter='transition ease-out duration-200'
-                        enterFrom='opacity-0 translate-y-1'
-                        enterTo='opacity-100 translate-y-0'
-                        leave='transition ease-in duration-150'
-                        leaveFrom='opacity-100 translate-y-0'
-                        leaveTo='opacity-0 translate-y-1'
+                        enter="transition ease-out duration-200"
+                        enterFrom="opacity-0 translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-1"
                       >
                         <Popover.Panel>
-                          <div className='absolute -bottom-24 left-[-11px]'>
-                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                          <div className="absolute -bottom-24 left-[-11px]">
+                            <span className="z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary"></span>
                             <input
-                              type='text'
-                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
-                              placeholder='https://www.linkedin.com/in/beweddy'
+                              type="text"
+                              className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
+                              placeholder="https://www.linkedin.com/in/beweddy"
                               defaultValue={groom.linkedIn}
-                              {...register('groom_linkedIn')}
+                              {...register("groom_linkedIn")}
                             />
                           </div>
                         </Popover.Panel>
                       </Transition>
                     </Popover>
-                    <Popover className='relative'>
+                    <Popover className="relative">
                       <Popover.Button>
                         <img
-                          src='/icons/tiktok.svg'
-                          alt=''
-                          className='w-10'
-                          className='customSocialIcon'
+                          src="/icons/tiktok.svg"
+                          alt=""
+                          className="w-10 customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
-                        enter='transition ease-out duration-200'
-                        enterFrom='opacity-0 translate-y-1'
-                        enterTo='opacity-100 translate-y-0'
-                        leave='transition ease-in duration-150'
-                        leaveFrom='opacity-100 translate-y-0'
-                        leaveTo='opacity-0 translate-y-1'
+                        enter="transition ease-out duration-200"
+                        enterFrom="opacity-0 translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-1"
                       >
                         <Popover.Panel>
-                          <div className='absolute -bottom-24 left-[-11px]'>
-                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                          <div className="absolute -bottom-24 left-[-11px]">
+                            <span className="z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary"></span>
                             <input
-                              type='text'
-                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
-                              placeholder='https://www.tiktok.com/beweddy'
+                              type="text"
+                              className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
+                              placeholder="https://www.tiktok.com/beweddy"
                               defaultValue={groom.tiktok}
-                              {...register('groom_tiktok')}
+                              {...register("groom_tiktok")}
                             />
                           </div>
                         </Popover.Panel>
                       </Transition>
                     </Popover>
-                    <Popover className='relative'>
+                    <Popover className="relative">
                       <Popover.Button>
                         <img
-                          src='/icons/snapchat.svg'
-                          alt=''
-                          className='w-10'
-                          className='customSocialIcon'
+                          src="/icons/snapchat.svg"
+                          alt=""
+                          className="w-10 customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
-                        enter='transition ease-out duration-200'
-                        enterFrom='opacity-0 translate-y-1'
-                        enterTo='opacity-100 translate-y-0'
-                        leave='transition ease-in duration-150'
-                        leaveFrom='opacity-100 translate-y-0'
-                        leaveTo='opacity-0 translate-y-1'
+                        enter="transition ease-out duration-200"
+                        enterFrom="opacity-0 translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-1"
                       >
                         <Popover.Panel>
-                          <div className='absolute -bottom-24 left-[-11px]'>
-                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                          <div className="absolute -bottom-24 left-[-11px]">
+                            <span className="z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary"></span>
                             <input
-                              type='text'
-                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
-                              placeholder='https://www.snapchat.com/beweddy'
+                              type="text"
+                              className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
+                              placeholder="https://www.snapchat.com/beweddy"
                               defaultValue={groom.snapchat}
-                              {...register('groom_snapchat')}
+                              {...register("groom_snapchat")}
                             />
                           </div>
                         </Popover.Panel>
                       </Transition>
                     </Popover>
-                    <Popover className='relative'>
+                    <Popover className="relative">
                       <Popover.Button>
                         <img
-                          src='/icons/pinterest.svg'
-                          alt=''
-                          className='w-10'
-                          className='customSocialIcon'
+                          src="/icons/pinterest.svg"
+                          alt=""
+                          className="w-10 customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
-                        enter='transition ease-out duration-200'
-                        enterFrom='opacity-0 translate-y-1'
-                        enterTo='opacity-100 translate-y-0'
-                        leave='transition ease-in duration-150'
-                        leaveFrom='opacity-100 translate-y-0'
-                        leaveTo='opacity-0 translate-y-1'
+                        enter="transition ease-out duration-200"
+                        enterFrom="opacity-0 translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-1"
                       >
                         <Popover.Panel>
-                          <div className='absolute -bottom-24 left-[-11px]'>
-                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                          <div className="absolute -bottom-24 left-[-11px]">
+                            <span className="z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary"></span>
                             <input
-                              type='text'
-                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
-                              placeholder='https://www.pinterest.com/beweddy'
+                              type="text"
+                              className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
+                              placeholder="https://www.pinterest.com/beweddy"
                               defaultValue={groom.pinterest}
-                              {...register('groom_pinterest')}
+                              {...register("groom_pinterest")}
                             />
                           </div>
                         </Popover.Panel>
@@ -1082,260 +1376,292 @@ const EditWebsitePage = () => {
                   </Popover.Group>
                 </div>
 
-                <div className='w-full space-y-10'>
-                  <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
-                    Follow "Bride"
+                <div className="w-full space-y-10">
+                  <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle flex items-center">
+                    Follow
+                    <div className="ml-2">
+                      {/* <EditText
+                        onBlur={handleSubmit(onSubmit)}
+                        inline
+                        name="spouseFirstName"
+                        defaultValue={user?.questions?.spouseFirstName}
+                      /> */}
+                      {spouseFirst ? (
+                        <div className="flex items-center justify-center ml-2">
+                          <input
+                            type="text"
+                            className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal"
+                            {...register("spouseFirstName", {
+                              required: {
+                                value: true,
+                                message: "First name is required!",
+                              },
+                            })}
+                          />
+                          <button
+                            className="transition-colors duration-300 px-3 py-[3px] bg-white text-primary rounded-[5px] border-2 border-gray-200"
+                            type="submit"
+                          >
+                            Save
+                          </button>
+                        </div>
+                      ) : (
+                        <span
+                          onClick={() => setSpouseFirst(!spouseFirst)}
+                          className="ml-2"
+                        >
+                          {user?.questions?.spouseFirstName}
+                        </span>
+                      )}
+                    </div>
                   </h4>
-                  <Popover.Group className='flex flex-wrap items-center gap-3'>
-                    <Popover className='relative'>
+                  <Popover.Group className="flex flex-wrap items-center gap-3">
+                    <Popover className="relative">
                       <Popover.Button>
                         <Facebook
-                          color='#1877F2'
+                          color="#1877F2"
                           size={35}
-                          className='customSocialIcon'
+                          className="customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
-                        enter='transition ease-out duration-200'
-                        enterFrom='opacity-0 translate-y-1'
-                        enterTo='opacity-100 translate-y-0'
-                        leave='transition ease-in duration-150'
-                        leaveFrom='opacity-100 translate-y-0'
-                        leaveTo='opacity-0 translate-y-1'
+                        enter="transition ease-out duration-200"
+                        enterFrom="opacity-0 translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-1"
                       >
                         <Popover.Panel>
-                          <div className='absolute -bottom-24 left-[-11px]'>
-                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                          <div className="absolute -bottom-24 left-[-11px]">
+                            <span className="z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary"></span>
                             <input
-                              type='text'
-                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
-                              placeholder='https://facebook.com/beweddy'
+                              type="text"
+                              className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
+                              placeholder="https://facebook.com/beweddy"
                               defaultValue={bride.facebook}
-                              {...register('bride_facebook')}
+                              {...register("bride_facebook")}
                             />
                           </div>
                         </Popover.Panel>
                       </Transition>
                     </Popover>
 
-                    <Popover className='relative'>
+                    <Popover className="relative">
                       <Popover.Button>
                         <Instagram
-                          color='#E4405F'
+                          color="#E4405F"
                           size={35}
-                          className='customSocialIcon'
+                          className="customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
-                        enter='transition ease-out duration-200'
-                        enterFrom='opacity-0 translate-y-1'
-                        enterTo='opacity-100 translate-y-0'
-                        leave='transition ease-in duration-150'
-                        leaveFrom='opacity-100 translate-y-0'
-                        leaveTo='opacity-0 translate-y-1'
+                        enter="transition ease-out duration-200"
+                        enterFrom="opacity-0 translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-1"
                       >
                         <Popover.Panel>
-                          <div className='absolute -bottom-24 left-[-11px]'>
-                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                          <div className="absolute -bottom-24 left-[-11px]">
+                            <span className="z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary"></span>
                             <input
-                              type='text'
-                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
-                              placeholder='https://instagram.com/beweddy'
+                              type="text"
+                              className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
+                              placeholder="https://instagram.com/beweddy"
                               defaultValue={bride.instagram}
-                              {...register('bride_instagram')}
+                              {...register("bride_instagram")}
                             />
                           </div>
                         </Popover.Panel>
                       </Transition>
                     </Popover>
 
-                    <Popover className='relative'>
+                    <Popover className="relative">
                       <Popover.Button>
                         <Twitter
-                          color='#1DA1F2'
+                          color="#1DA1F2"
                           size={35}
-                          className='customSocialIcon'
+                          className="customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
-                        enter='transition ease-out duration-200'
-                        enterFrom='opacity-0 translate-y-1'
-                        enterTo='opacity-100 translate-y-0'
-                        leave='transition ease-in duration-150'
-                        leaveFrom='opacity-100 translate-y-0'
-                        leaveTo='opacity-0 translate-y-1'
+                        enter="transition ease-out duration-200"
+                        enterFrom="opacity-0 translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-1"
                       >
                         <Popover.Panel>
-                          <div className='absolute -bottom-24 left-[-11px]'>
-                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                          <div className="absolute -bottom-24 left-[-11px]">
+                            <span className="z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary"></span>
                             <input
-                              type='text'
-                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
-                              placeholder='https://twitter.com/beweddy'
+                              type="text"
+                              className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
+                              placeholder="https://twitter.com/beweddy"
                               defaultValue={bride.twitter}
-                              {...register('bride_twitter')}
+                              {...register("bride_twitter")}
                             />
                           </div>
                         </Popover.Panel>
                       </Transition>
                     </Popover>
 
-                    <Popover className='relative'>
+                    <Popover className="relative">
                       <Popover.Button>
                         <Youtube
-                          color='#FF0000'
+                          color="#FF0000"
                           size={35}
-                          className='customSocialIcon'
+                          className="customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
-                        enter='transition ease-out duration-200'
-                        enterFrom='opacity-0 translate-y-1'
-                        enterTo='opacity-100 translate-y-0'
-                        leave='transition ease-in duration-150'
-                        leaveFrom='opacity-100 translate-y-0'
-                        leaveTo='opacity-0 translate-y-1'
+                        enter="transition ease-out duration-200"
+                        enterFrom="opacity-0 translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-1"
                       >
                         <Popover.Panel>
-                          <div className='absolute -bottom-24 left-[-11px]'>
-                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                          <div className="absolute -bottom-24 left-[-11px]">
+                            <span className="z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary"></span>
                             <input
-                              type='text'
-                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
-                              placeholder='https://www.youtube.com/beweddy'
+                              type="text"
+                              className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
+                              placeholder="https://www.youtube.com/beweddy"
                               defaultValue={bride.youTube}
-                              {...register('bride_youTube')}
+                              {...register("bride_youTube")}
                             />
                           </div>
                         </Popover.Panel>
                       </Transition>
                     </Popover>
-                    <Popover className='relative'>
+                    <Popover className="relative">
                       <Popover.Button>
                         <Linkedin
-                          color='#0A66C2'
+                          color="#0A66C2"
                           size={35}
-                          className='customSocialIcon'
+                          className="customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
-                        enter='transition ease-out duration-200'
-                        enterFrom='opacity-0 translate-y-1'
-                        enterTo='opacity-100 translate-y-0'
-                        leave='transition ease-in duration-150'
-                        leaveFrom='opacity-100 translate-y-0'
-                        leaveTo='opacity-0 translate-y-1'
+                        enter="transition ease-out duration-200"
+                        enterFrom="opacity-0 translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-1"
                       >
                         <Popover.Panel>
-                          <div className='absolute -bottom-24 left-[-11px]'>
-                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                          <div className="absolute -bottom-24 left-[-11px]">
+                            <span className="z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary"></span>
                             <input
-                              type='text'
-                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
-                              placeholder='https://www.linkedin.com/in/beweddy'
+                              type="text"
+                              className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
+                              placeholder="https://www.linkedin.com/in/beweddy"
                               defaultValue={bride.linkedIn}
-                              {...register('bride_linkedIn')}
+                              {...register("bride_linkedIn")}
                             />
                           </div>
                         </Popover.Panel>
                       </Transition>
                     </Popover>
-                    <Popover className='relative'>
+                    <Popover className="relative">
                       <Popover.Button>
                         <img
-                          src='/icons/tiktok.svg'
-                          alt=''
-                          className='w-10'
-                          className='customSocialIcon'
+                          src="/icons/tiktok.svg"
+                          alt=""
+                          className="w-10 customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
-                        enter='transition ease-out duration-200'
-                        enterFrom='opacity-0 translate-y-1'
-                        enterTo='opacity-100 translate-y-0'
-                        leave='transition ease-in duration-150'
-                        leaveFrom='opacity-100 translate-y-0'
-                        leaveTo='opacity-0 translate-y-1'
+                        enter="transition ease-out duration-200"
+                        enterFrom="opacity-0 translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-1"
                       >
                         <Popover.Panel>
-                          <div className='absolute -bottom-24 left-[-11px]'>
-                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                          <div className="absolute -bottom-24 left-[-11px]">
+                            <span className="z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary"></span>
                             <input
-                              type='text'
-                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
-                              placeholder='https://www.tiktok.com/beweddy'
+                              type="text"
+                              className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
+                              placeholder="https://www.tiktok.com/beweddy"
                               defaultValue={bride.tiktok}
-                              {...register('bride_tiktok')}
+                              {...register("bride_tiktok")}
                             />
                           </div>
                         </Popover.Panel>
                       </Transition>
                     </Popover>
-                    <Popover className='relative'>
+                    <Popover className="relative">
                       <Popover.Button>
                         <img
-                          src='/icons/snapchat.svg'
-                          alt=''
-                          className='w-10'
-                          className='customSocialIcon'
+                          src="/icons/snapchat.svg"
+                          alt=""
+                          className="w-10 customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
-                        enter='transition ease-out duration-200'
-                        enterFrom='opacity-0 translate-y-1'
-                        enterTo='opacity-100 translate-y-0'
-                        leave='transition ease-in duration-150'
-                        leaveFrom='opacity-100 translate-y-0'
-                        leaveTo='opacity-0 translate-y-1'
+                        enter="transition ease-out duration-200"
+                        enterFrom="opacity-0 translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-1"
                       >
                         <Popover.Panel>
-                          <div className='absolute -bottom-24 left-[-11px]'>
-                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                          <div className="absolute -bottom-24 left-[-11px]">
+                            <span className="z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary"></span>
                             <input
-                              type='text'
-                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
-                              placeholder='https://www.snapchat.com/beweddy'
+                              type="text"
+                              className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
+                              placeholder="https://www.snapchat.com/beweddy"
                               defaultValue={bride.snapchat}
-                              {...register('bride_snapchat')}
+                              {...register("bride_snapchat")}
                             />
                           </div>
                         </Popover.Panel>
                       </Transition>
                     </Popover>
-                    <Popover className='relative'>
+                    <Popover className="relative">
                       <Popover.Button>
                         <img
-                          src='/icons/pinterest.svg'
-                          alt=''
-                          className='w-10'
-                          className='customSocialIcon'
+                          src="/icons/pinterest.svg"
+                          alt=""
+                          className="w-10 customSocialIcon"
                         />
                       </Popover.Button>
                       <Transition
                         as={Fragment}
-                        enter='transition ease-out duration-200'
-                        enterFrom='opacity-0 translate-y-1'
-                        enterTo='opacity-100 translate-y-0'
-                        leave='transition ease-in duration-150'
-                        leaveFrom='opacity-100 translate-y-0'
-                        leaveTo='opacity-0 translate-y-1'
+                        enter="transition ease-out duration-200"
+                        enterFrom="opacity-0 translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-1"
                       >
                         <Popover.Panel>
-                          <div className='absolute -bottom-24 left-[-11px]'>
-                            <span className='z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary'></span>
+                          <div className="absolute -bottom-24 left-[-11px]">
+                            <span className="z-10 absolute top-[-1.20rem] rotate-45 left-[10px] w-10 h-10 bg-primary"></span>
                             <input
-                              type='text'
-                              className='relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300'
-                              placeholder='https://www.pinterest.com/beweddy'
+                              type="text"
+                              className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
+                              placeholder="https://www.pinterest.com/beweddy"
                               defaultValue={bride.pinterest}
-                              {...register('bride_pinterest')}
+                              {...register("bride_pinterest")}
                             />
                           </div>
                         </Popover.Panel>
@@ -1346,8 +1672,8 @@ const EditWebsitePage = () => {
               </div>
               <div>
                 <button
-                  className='border-2 transition-colors duration-300 border-red-300 px-3 py-1 hover:border-black'
-                  type='submit'
+                  className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
+                  type="submit"
                 >
                   Save
                 </button>
@@ -1355,40 +1681,25 @@ const EditWebsitePage = () => {
 
               <Divider />
 
-              <div className='space-y-5'>
+              <div className="space-y-5">
                 <Heading h3>First Look or Wedding Video</Heading>
-                <div className='space-y-3'>
-                  <label htmlFor='videoTitle' className='block'>
-                    Video Title
+                <div className="space-y-3">
+                  <label htmlFor="videoTitle" className="block">
+                    Youtube Video Link
                   </label>
                   <input
-                    type='text'
-                    id='videoTitle'
-                    className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal placeholder-gray-300'
-                    placeholder='Name Your Wedding Video'
-                    {...register('videoTitle')}
+                    type="text"
+                    id="videoTitle"
+                    className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal placeholder-gray-300"
+                    placeholder="Paste Your Wedding Youtube Link"
+                    {...register("videoLink")}
                   />
-                </div>
-                <div
-                  className='relative focus:outline-none'
-                  {...getRootProps()}
-                >
-                  <input {...getInputProps()} />
-                  <label
-                    htmlFor='couplePictures'
-                    className='bg-white cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-10 placeholder-primary border-[3px] border-secondary-alternative/50 rounded-[5px]'
-                  >
-                    Upload Video
-                  </label>
-                  <p className='mt-2 text-sm font-light text-center text-red-400'>
-                    {errors?.couplePictures?.message}
-                  </p>
                 </div>
               </div>
               <Button
-                type='submit'
-                label='Update'
-                className='!rounded-[5px] !mx-0'
+                type="submit"
+                label="Update"
+                className="!rounded-[5px] !mx-0"
               />
             </form>
           </div>
@@ -1396,6 +1707,7 @@ const EditWebsitePage = () => {
         </DashboardContainer>
       </DashboardLayout>
       <RegistryModal {...{ isModalOpen, setIsModalOpen }} />
+      <VenmoModal {...{ isVenmoModalOpen, setIsVenmoModalOpen }} />
       <Footer hideSocial />
 
       <CropImage

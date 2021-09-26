@@ -16,7 +16,7 @@ const WelcomeAlert = () => {
       <div className="max-w-[1400px] py-2 px-10 xxl:px-0 mx-auto flex items-center justify-between space-x-10">
         <p className="text-[12px] text-medium flex items-center">
           <img src="/icons/waving.png" alt="waving" className="pr-1 w-[22px]" />{" "}
-          Welcome {user ? <span className='ml-1 capitalize' >{user?.coupleName} </span>  : "to Beweddy "}
+          Welcome {user ? <span className='ml-1 capitalize' >{user?.coupleName} </span> : "To BeWeddy "}
         </p>
       </div>
     </div>

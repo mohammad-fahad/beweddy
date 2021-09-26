@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 const QRCodeGenerator = () => {
   const { user } = useSelector((state) => state.user);
   const [value, setValue] = useState(
-    `https://beweddy-delta.vercel.app/couple/${user?.username}`
+    `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${user?.username}`
   );
 
   return (

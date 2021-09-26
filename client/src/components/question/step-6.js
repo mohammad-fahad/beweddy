@@ -47,7 +47,7 @@ const SignupPage = () => {
   const onSuccess = async (res) => {
     dispatch(attemptGoogleSignUp({ idToken: res.tokenId, questions }));
   };
-  const onFailure = async (res) => {};
+  const onFailure = async (res) => { };
 
   const { signIn } = useGoogleLogin({
     clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
@@ -64,9 +64,9 @@ const SignupPage = () => {
       {loading && <Loader />}
       <motion.div
         className={`bg-gradient-to-br from-[#FCE3EB] to-white`}
-        // exit={{ opacity: 0 }}
-        // initial={{ opacity: 0 }}
-        // animate={{ opacity: 1 }}
+      // exit={{ opacity: 0 }}
+      // initial={{ opacity: 0 }}
+      // animate={{ opacity: 1 }}
       >
         <div className="container flex items-center justify-center min-h-screen">
           <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
@@ -219,13 +219,13 @@ const SignupPage = () => {
                 <div className="w-full">
                   <p className="font-light text-[14px]">
                     By creating an account you accept our{" "}
-                    <Link href="/">
+                    <Link href="/terms">
                       <a className="font-semibold font-inter hover:underline">
                         Terms and conditions
                       </a>
                     </Link>
                     &nbsp;and{" "}
-                    <Link href="/">
+                    <Link href="/privacy-policy">
                       <a className="font-semibold font-inter hover:underline">
                         Privacy Policy
                       </a>
