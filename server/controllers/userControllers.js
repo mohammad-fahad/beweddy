@@ -161,6 +161,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
           giftCards: user.giftCards,
           registries: [...user.registries, ...privetRegistries],
           socialAccounts: user.socialAccounts,
+          weddingVideo: user.weddingVideo,
           isAdmin: user.isAdmin,
           role: user.role,
           token: generateIdToken(user._id),
@@ -218,6 +219,7 @@ export const googleSignIn = asyncHandler(async (req, res) => {
         giftCards: user.giftCards,
         registries: [...user.registries, ...privetRegistries],
         socialAccounts: user.socialAccounts,
+        weddingVideo: user.weddingVideo,
         isAdmin: user.isAdmin,
         role: user.role,
         token: generateIdToken(user._id),
@@ -283,6 +285,7 @@ export const activeUser = asyncHandler(async (req, res) => {
         giftCards: user.giftCards,
         registries: [...user.registries, ...privetRegistries],
         socialAccounts: user.socialAccounts,
+        weddingVideo: user.weddingVideo,
         isAdmin: user.isAdmin,
         role: user.role,
         token: generateIdToken(user._id),
@@ -341,6 +344,7 @@ export const login = asyncHandler(async (req, res) => {
         giftCards: user.giftCards,
         registries: [...user.registries, ...privetRegistries],
         socialAccounts: user.socialAccounts,
+        weddingVideo: user.weddingVideo,
         isAdmin: user.isAdmin,
         role: user.role,
         token: generateIdToken(user._id),
@@ -436,6 +440,7 @@ export const getUserProfile = asyncHandler(async (req, res) => {
         giftCards: user.giftCards,
         registries: [...user.registries, ...privetRegistries],
         socialAccounts: user.socialAccounts,
+        weddingVideo: user.weddingVideo,
         isAdmin: user.isAdmin,
         role: user.role,
         token: generateIdToken(user._id),
@@ -481,11 +486,12 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     // user.avatar = req.body.avatar || user.avatar;
     user.ourStory = req.body.ourStory || user.ourStory;
     user.receptionDetails = req.body.receptionDetails || user.receptionDetails;
-    // user.socialAccounts.groom =
-    //   req.body.socialAccounts.groom || user.socialAccounts.groom;
-    // user.socialAccounts.bride =
-    //   req.body.socialAccounts.bride || user.socialAccounts.bride;
-
+    if (req.body.socialAccounts) {
+      user.socialAccounts = req.body.socialAccounts;
+    }
+    if (req.body.weddingVideo) {
+      user.weddingVideo = req.body.weddingVideo;
+    }
     user.qrCode = req.body.qrCode || user.qrCode;
     user.qrCodeAvatar = req.body.qrCodeAvatar || user.qrCodeAvatar;
 
@@ -527,10 +533,10 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     }
 
     const updatedUser = await user.save();
-    const updateUser = await User.findById(updatedUser._id)
+    const updatesUser = await User.findById(updatedUser._id)
       .populate('giftCards')
       .populate('registries');
-
+    const updateUser = JSON.parse(JSON.stringify(updatesUser))
     res.json({
       user: {
         _id: updateUser._id,
@@ -551,6 +557,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
         giftCards: updateUser.giftCards,
         registries: [...updateUser.registries, ...privetRegistries],
         socialAccounts: updateUser.socialAccounts,
+        weddingVideo: updateUser.weddingVideo,
         isAdmin: updateUser.isAdmin,
         role: updateUser.role,
         token: generateIdToken(updateUser._id),
@@ -598,5 +605,6 @@ export const getCouple = asyncHandler(async (req, res) => {
     giftCards: user.giftCards,
     registries: [...user.registries, ...privetRegistries],
     socialAccounts: user.socialAccounts,
+    weddingVideo: user.weddingVideo,
   });
 });

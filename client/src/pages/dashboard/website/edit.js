@@ -14,7 +14,6 @@ import {
   Footer,
   Heading,
   Loader,
-  QRCodeGenerator,
   SecondReceptionDatePicker,
   WeddingDatePicker,
 } from "@components/index";
@@ -75,64 +74,64 @@ const EditWebsitePage = () => {
     user.receptionDetails.length
       ? user.receptionDetails
       : [
-          {
-            id: generate(),
-            time: "5.00 PM",
-            details: "Example of event details",
-          },
-          {
-            id: generate(),
-            time: "5:30 PM",
-            details: "Ceremony",
-          },
-          {
-            id: generate(),
-            time: "6:00 PM",
-            details: "Ceremony ends/cocktails begin",
-          },
-          {
-            id: generate(),
-            time: "7:00 PM",
-            details: "Cocktails ends and guests are ushered into the reception",
-          },
-          {
-            id: generate(),
-            time: "7:20 PM",
-            details: "Introduction and first dance—guests asked to join after ",
-          },
-          {
-            id: generate(),
-            time: "7:45 PM",
-            details: " Guests take their seats and the first course is served",
-          },
-          {
-            id: generate(),
-            time: "8:00 PM",
-            details: "Welcome speech from parents",
-          },
-          {
-            id: generate(),
-            time: "8:10 PM",
-            details: "Toasts from maid of honor and best man",
-          },
-          {
-            id: generate(),
-            time: "9:00 PM",
-            details: "Parent dances",
-          },
-          {
-            id: generate(),
-            time: "9:30 PM ",
-            details: "Cake cutting",
-          },
-          {
-            id: generate(),
-            time: "10:00 PM",
-            details: "Send-Off",
-          },
-        ]
+        {
+          id: generate(),
+          time: "5.00 PM",
+          details: "Example of event details",
+        },
+        {
+          id: generate(),
+          time: "5:30 PM",
+          details: "Ceremony",
+        },
+        {
+          id: generate(),
+          time: "6:00 PM",
+          details: "Ceremony ends/cocktails begin",
+        },
+        {
+          id: generate(),
+          time: "7:00 PM",
+          details: "Cocktails ends and guests are ushered into the reception",
+        },
+        {
+          id: generate(),
+          time: "7:20 PM",
+          details: "Introduction and first dance—guests asked to join after ",
+        },
+        {
+          id: generate(),
+          time: "7:45 PM",
+          details: " Guests take their seats and the first course is served",
+        },
+        {
+          id: generate(),
+          time: "8:00 PM",
+          details: "Welcome speech from parents",
+        },
+        {
+          id: generate(),
+          time: "8:10 PM",
+          details: "Toasts from maid of honor and best man",
+        },
+        {
+          id: generate(),
+          time: "9:00 PM",
+          details: "Parent dances",
+        },
+        {
+          id: generate(),
+          time: "9:30 PM ",
+          details: "Cake cutting",
+        },
+        {
+          id: generate(),
+          time: "10:00 PM",
+          details: "Send-Off",
+        },
+      ]
   );
-  const { groom, bride } = user.socialAccounts;
+
 
   // WeddingDate Picker
   const _weddingDate = user.questions?.weddingDay?.weddingDate
@@ -154,8 +153,29 @@ const EditWebsitePage = () => {
     ? new Date(user.questions?.weddingDay?.secondReception)
     : "";
 
+
+
   const [selectSecondReception, setSelectSecondReception] =
     useState(_secondReception);
+
+  const socialLinks = {
+    groom_facebook: user?.socialAccounts?.groom?.facebook,
+    groom_instagram: user?.socialAccounts?.groom?.instagram,
+    groom_linkedIn: user?.socialAccounts?.groom?.linkedIn,
+    groom_snapchat: user?.socialAccounts?.groom?.snapchat,
+    groom_tiktok: user?.socialAccounts?.groom?.tiktok,
+    groom_pinterest: user?.socialAccounts?.groom?.pinterest,
+    groom_youTube: user?.socialAccounts?.groom?.youTube,
+    groom_twitter: user?.socialAccounts?.groom?.twitter,
+    bride_facebook: user?.socialAccounts?.bride?.facebook,
+    bride_instagram: user?.socialAccounts?.bride?.instagram,
+    bride_linkedIn: user?.socialAccounts?.bride?.linkedIn,
+    bride_snapchat: user?.socialAccounts?.bride?.snapchat,
+    bride_tiktok: user?.socialAccounts?.bride?.tiktok,
+    bride_pinterest: user?.socialAccounts?.bride?.pinterest,
+    bride_youTube: user?.socialAccounts?.bride?.youTube,
+    bride_twitter: user?.socialAccounts?.bride?.twitter,
+  }
 
   const {
     watch,
@@ -170,8 +190,10 @@ const EditWebsitePage = () => {
     mode: "all",
     defaultValues: {
       ...user.questions,
-      ourStory: user.ourStory,
-      location: user.location,
+      ourStory: user?.ourStory,
+      location: user?.location,
+      ...socialLinks,
+      weddingVideo: user?.weddingVideo,
     },
     shouldFocusError: false,
     shouldUnregister: true,
@@ -309,7 +331,7 @@ const EditWebsitePage = () => {
 
   const onSubmit = (data) => {
     console.log("sdkfshfhsdhfoosdfohosdhohfdsohfsdhof", data);
-    console.log("sdkfshfhsdhfoosdfohosdhohfdsohfsdhof", data.groom_facebook);
+    console.log("sdkfshfhsdhfoosdfohosdhohfdsohfsdhof", submitData(data));
     dispatch(attemptUpdateUserProfile(submitData(data)));
   };
 
@@ -349,6 +371,7 @@ const EditWebsitePage = () => {
       receptionDetails,
       couplePictures: uploadedFiles,
       socialAccounts,
+      weddingVideo: data.weddingVideo,
     };
     return payload;
   };
@@ -1147,7 +1170,6 @@ const EditWebsitePage = () => {
                               type="text"
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://facebook.com/beweddy"
-                              defaultValue={groom.facebook}
                               {...register("groom_facebook")}
                             />
                           </div>
@@ -1179,7 +1201,6 @@ const EditWebsitePage = () => {
                               type="text"
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://instagram.com/beweddy"
-                              defaultValue={groom.instagram}
                               {...register("groom_instagram")}
                             />
                           </div>
@@ -1210,7 +1231,6 @@ const EditWebsitePage = () => {
                               type="text"
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://twitter.com/beweddy"
-                              defaultValue={groom.twitter}
                               {...register("groom_twitter")}
                             />
                           </div>
@@ -1241,7 +1261,6 @@ const EditWebsitePage = () => {
                               type="text"
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://www.youtube.com/beweddy"
-                              defaultValue={groom.youTube}
                               {...register("groom_youTube")}
                             />
                           </div>
@@ -1272,7 +1291,6 @@ const EditWebsitePage = () => {
                               type="text"
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://www.linkedin.com/in/beweddy"
-                              defaultValue={groom.linkedIn}
                               {...register("groom_linkedIn")}
                             />
                           </div>
@@ -1303,7 +1321,6 @@ const EditWebsitePage = () => {
                               type="text"
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://www.tiktok.com/beweddy"
-                              defaultValue={groom.tiktok}
                               {...register("groom_tiktok")}
                             />
                           </div>
@@ -1334,7 +1351,6 @@ const EditWebsitePage = () => {
                               type="text"
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://www.snapchat.com/beweddy"
-                              defaultValue={groom.snapchat}
                               {...register("groom_snapchat")}
                             />
                           </div>
@@ -1365,7 +1381,6 @@ const EditWebsitePage = () => {
                               type="text"
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://www.pinterest.com/beweddy"
-                              defaultValue={groom.pinterest}
                               {...register("groom_pinterest")}
                             />
                           </div>
@@ -1383,7 +1398,7 @@ const EditWebsitePage = () => {
                         onBlur={handleSubmit(onSubmit)}
                         inline
                         name="spouseFirstName"
-                        defaultValue={user?.questions?.spouseFirstName}
+                        }
                       /> */}
                       {spouseFirst ? (
                         <div className="flex items-center justify-center ml-2">
@@ -1439,7 +1454,6 @@ const EditWebsitePage = () => {
                               type="text"
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://facebook.com/beweddy"
-                              defaultValue={bride.facebook}
                               {...register("bride_facebook")}
                             />
                           </div>
@@ -1471,7 +1485,6 @@ const EditWebsitePage = () => {
                               type="text"
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://instagram.com/beweddy"
-                              defaultValue={bride.instagram}
                               {...register("bride_instagram")}
                             />
                           </div>
@@ -1503,7 +1516,6 @@ const EditWebsitePage = () => {
                               type="text"
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://twitter.com/beweddy"
-                              defaultValue={bride.twitter}
                               {...register("bride_twitter")}
                             />
                           </div>
@@ -1535,7 +1547,6 @@ const EditWebsitePage = () => {
                               type="text"
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://www.youtube.com/beweddy"
-                              defaultValue={bride.youTube}
                               {...register("bride_youTube")}
                             />
                           </div>
@@ -1566,7 +1577,6 @@ const EditWebsitePage = () => {
                               type="text"
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://www.linkedin.com/in/beweddy"
-                              defaultValue={bride.linkedIn}
                               {...register("bride_linkedIn")}
                             />
                           </div>
@@ -1597,7 +1607,6 @@ const EditWebsitePage = () => {
                               type="text"
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://www.tiktok.com/beweddy"
-                              defaultValue={bride.tiktok}
                               {...register("bride_tiktok")}
                             />
                           </div>
@@ -1628,7 +1637,6 @@ const EditWebsitePage = () => {
                               type="text"
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://www.snapchat.com/beweddy"
-                              defaultValue={bride.snapchat}
                               {...register("bride_snapchat")}
                             />
                           </div>
@@ -1659,7 +1667,6 @@ const EditWebsitePage = () => {
                               type="text"
                               className="relative z-20 w-max rounded-[5px] border-[3px] border-primary py-3 px-5 text-base font-normal placeholder-gray-300"
                               placeholder="https://www.pinterest.com/beweddy"
-                              defaultValue={bride.pinterest}
                               {...register("bride_pinterest")}
                             />
                           </div>
@@ -1691,18 +1698,20 @@ const EditWebsitePage = () => {
                     id="videoTitle"
                     className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal placeholder-gray-300"
                     placeholder="Paste Your Wedding Youtube Link"
-                    {...register("videoLink")}
+                    {...register("weddingVideo")}
                   />
                 </div>
               </div>
-              <Button
-                type="submit"
-                label="Update"
-                className="!rounded-[5px] !mx-0"
-              />
+              <div>
+                <button
+                  className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
+                  type="submit"
+                >
+                  Save
+                </button>
+              </div>
             </form>
           </div>
-          {/* <QRCodeGenerator /> */}
         </DashboardContainer>
       </DashboardLayout>
       <RegistryModal {...{ isModalOpen, setIsModalOpen }} />
