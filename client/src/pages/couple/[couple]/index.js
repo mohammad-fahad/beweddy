@@ -17,24 +17,85 @@ import SwiperCore, { Lazy, Autoplay } from "swiper";
 import { useQuery } from "react-query";
 import { getCouple } from "@services/Couple";
 import { useRouter } from "next/router";
-
+import { generate } from "shortid";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
 import NotFoundPage from "pages/404";
-import { API_URL } from "@utils/index";
+import { API_URL, isoToUtcDate } from "@utils/index";
 
 SwiperCore.use([Lazy, Autoplay]);
 
-const params = {
-  loop: true,
-  autoplay: {
-    delay: 5000,
-    disableOnInteraction: false,
-  },
-};
+// const params = {
+//   loop: true,
+//   autoplay: {
+//     delay: 5000,
+//     disableOnInteraction: false,
+//   },
+// };
 
 const CoupleWebsitePage = (props) => {
+  const [receptionDetails, setReceptionDetails] = useState(
+    couple?.receptionDetails?.length
+      ? couple.receptionDetails
+      : [
+          {
+            id: generate(),
+            time: "5.00 PM",
+            details: "Example of event details",
+          },
+          {
+            id: generate(),
+            time: "5:30 PM",
+            details: "Ceremony",
+          },
+          {
+            id: generate(),
+            time: "6:00 PM",
+            details: "Ceremony ends/cocktails begin",
+          },
+          {
+            id: generate(),
+            time: "7:00 PM",
+            details: "Cocktails ends and guests are ushered into the reception",
+          },
+          {
+            id: generate(),
+            time: "7:20 PM",
+            details: "Introduction and first dance—guests asked to join after ",
+          },
+          {
+            id: generate(),
+            time: "7:45 PM",
+            details: " Guests take their seats and the first course is served",
+          },
+          {
+            id: generate(),
+            time: "8:00 PM",
+            details: "Welcome speech from parents",
+          },
+          {
+            id: generate(),
+            time: "8:10 PM",
+            details: "Toasts from maid of honor and best man",
+          },
+          {
+            id: generate(),
+            time: "9:00 PM",
+            details: "Parent dances",
+          },
+          {
+            id: generate(),
+            time: "9:30 PM ",
+            details: "Cake cutting",
+          },
+          {
+            id: generate(),
+            time: "10:00 PM",
+            details: "Send-Off",
+          },
+        ]
+  );
   const { query } = useRouter();
 
   const { data: couple, isLoading } = useQuery(
@@ -53,14 +114,16 @@ const CoupleWebsitePage = (props) => {
 
   if (isLoading) return <Loader />;
 
+  console.log("couple by sonjoy", couple);
+
   return (
     <>
       <Head>
         <title>Beweddy | {couple?.coupleName}'s Wedding</title>
       </Head>
 
-      <div className="container w-full mx-auto">
-        <WebsiteNav />
+      <div className="container w-full mx-auto border-4 border-[#000000] rounded-lg !p-0 mt-10 ">
+        <WebsiteNav user={couple} />
         <Carousel
           autoPlay
           infiniteLoop
@@ -93,29 +156,29 @@ const CoupleWebsitePage = (props) => {
           </p>
         </div>
 
-        {/* <div className="flex flex-col items-center py-6 mt-[36px] max-w-5xl w-full mx-auto"> */}
-        <div className="flex flex-col items-center w-full">
-          <h1 className="text-xl font-medium md:text-2xl lg:text-4xl font-inter">
-            02/27/2021
+        {/* date and Countdown section */}
+        <div className="flex flex-col items-center">
+          <h1 className="text-xl font-medium md:text-2xl lg:text-4xl font-inter mudiumTitle">
+            {isoToUtcDate(couple?.questions?.weddingDay?.weddingDate)}
           </h1>
           <div className="max-w-[222px] w-full mx-auto h-[2px] md:h-[4px]  bg-[#FCE0EB] mt-4" />
           {/* countdown wrapper */}
           <div className="flex justify-center w-full mt-4 space-x-16">
             <div>
-              <h4 className="text-lg md:text-[22px] font-medium text-center mb-5">
+              {/* <h4 className="text-[22px] font-medium text-center mb-5 mudiumTitle"> */}
+              <h4 className="text-lg md:text-[22px] font-medium text-center mb-5 mudiumTitle">
                 Wedding Day Countdown
               </h4>
-              <WeddingDayCountDown sm {...{ couple }} />
+              <WeddingDayCountDown sm />
             </div>
           </div>
 
           {/* address and rsvp button */}
 
-          <div className="my-5 md:my-10 space-y-[26px]">
+          <div className="sm:my-[40px] my-[10px] sm:space-y-[26px]">
             <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB]" />
             <Link href={`/couple/${couple?.username}/rsvp`}>
-              <a className="w-96 customButton flex items-center justify-center space-x-3 py-4 px-5 border-2 border-primary bg-[#F9D1DE] rounded-[5px] capitalize font-inter font-bold text-sm hover:bg-secondary/5 transition duration-300">
-                {/* <LinkIcon className="w-5 h-5" /> */}
+              <a className="w-full flex items-center justify-center space-x-3 py-4 px-5 border-2 border-primary bg-[#F9D1DE] rounded-[5px] capitalize font-inter font-bold text-sm hover:bg-secondary/5 transition duration-300">
                 <svg
                   width="16"
                   height="16"
@@ -155,26 +218,26 @@ const CoupleWebsitePage = (props) => {
             </Link>
             <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB]" />
           </div>
-
           {/* our story */}
           {couple?.ourStory && (
-            <>
-              <div>
-                <h2 className="text-2xl font-medium text-center md:text-4xl">
-                  Our Story
-                </h2>
-                <p className="mt-5 text-sm font-normal text-center md:text-xl">
-                  {couple?.ourStory}
-                </p>
-              </div>
-              <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-10" />
-            </>
+            <div>
+              <h2 className="text-2xl font-medium text-center md:text-4xl">
+                Our Story
+              </h2>
+              <p className="sm:w-10/12 w-[98%] m-auto mt-5 text-sm font-normal text-center customLabel md:text-xl">
+                {couple?.ourStory}
+              </p>
+            </div>
+          )}
+          {couple?.ourStory && (
+            <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-10" />
           )}
           {/* Reception Details */}
-          <h2 className="text-2xl md:text-4xl font-medium text-center mt-[17px] commonTitle">
-            Reception Details
-          </h2>
-
+          {Object?.keys(couple.receptionDetails)?.length !== 0 && (
+            <h2 className="text-2xl md:text-4xl font-medium text-center mt-[17px] commonTitle">
+              Reception Details
+            </h2>
+          )}
           <div class="grid grid-cols-12 gap-4 w-full my-3 md:my-8">
             {couple?.questions?.weddingDay?.firstReception && (
               <div class="col-start-2 col-span-5 p-5 text-lg font-semibold">
@@ -190,23 +253,24 @@ const CoupleWebsitePage = (props) => {
                 )}
               </div>
             )}
-            <div class="col-span-5 p-5 flex justify-end">
-              <div>
-                <h2 className="text-lg">Locations</h2>
-                <h6>{couple?.location}</h6>
+            {couple?.location && (
+              <div class="col-span-5 p-5 flex justify-end">
+                <div>
+                  <h2 className="text-lg">Locations</h2>
+                  <h6>{couple?.location}</h6>
+                </div>
               </div>
-            </div>
+            )}
           </div>
-
           {/* timeline section */}
-          {couple?.receptionDetails?.length >= 1 && (
+          {receptionDetails?.length >= 1 && (
             <div class="grid grid-cols-12 gap-4 w-full my-3 md:my-8">
               <div class="col-start-2 col-span-10">
                 <h4 className="text-xl md:text-[26px] font-medium mb-2">
                   Timeline
                 </h4>
-                <ul className="space-y-3">
-                  {couple?.receptionDetails?.map((el) => (
+                <ul className="mt-5 space-y-3">
+                  {receptionDetails?.map((el) => (
                     <li className="w-full px-4 py-2 space-x-5 border border-[#D5D5D5] hover:border-primary cursor-pointer">
                       <span className="font-bold text-md md:text-lg">
                         {el?.time}
@@ -220,9 +284,7 @@ const CoupleWebsitePage = (props) => {
               </div>
             </div>
           )}
-
           {/* 😇 Bless us with a Gift Card section */}
-          {/* <div className="w-full max-w-3xl mx-auto mt-5"> */}
           <div className="w-full mx-auto my-3 md:my-8">
             {couple?.giftCards?.length > 0 && (
               <>
@@ -251,42 +313,17 @@ const CoupleWebsitePage = (props) => {
               </>
             )}
           </div>
-
-          {/* follow section */}
-
-          {/* {(user.socialAccounts?.groom || user.socialAccounts?.bride) && (
-            <div className="container">
-              <div class="grid grid-cols-12 gap-4 w-full mt-5">
-                {user.socialAccounts?.groom && (
+          {(couple?.socialAccounts?.groom || couple?.socialAccounts?.bride) && (
+            <div class="flex flex-wrap items-center space-x-4 space-y-4 w-full my-3 md:my-8">
+              {couple?.socialAccounts?.groom &&
+                Object?.keys(couple.socialAccounts?.groom)?.length !== 0 && (
                   <div class="col-span-6 p-5">
                     <SocialSection
-                      name={user?.questions?.firstName}
-                      links={user.socialAccounts?.groom}
+                      name={couple?.questions?.firstName}
+                      links={couple?.socialAccounts?.groom}
                     />
                   </div>
                 )}
-                {user.socialAccounts?.bride &&
-                  Object?.keys(user.socialAccounts?.bride)?.length !== 0 && (
-                    <div class="col-span-6 p-5">
-                      <SocialSection
-                        name={user?.questions?.spouseFirstName}
-                        links={user.socialAccounts?.bride}
-                      />
-                    </div>
-                  )}
-              </div>
-            </div>
-          )} */}
-
-          {(couple?.socialAccounts?.groom || couple?.socialAccounts?.bride) && (
-            <div class="flex flex-wrap items-center space-x-4 space-y-4 w-full my-3 md:my-8">
-              {couple?.socialAccounts?.groom && (
-                <SocialSection
-                  name={couple?.questions?.firstName}
-                  links={couple?.socialAccounts?.groom}
-                />
-              )}
-
               {couple?.socialAccounts?.bride &&
                 Object?.keys(couple.socialAccounts?.bride)?.length !== 0 && (
                   <div class="col-span-6 p-5">
@@ -299,11 +336,49 @@ const CoupleWebsitePage = (props) => {
             </div>
           )}
         </div>
+        {/* QR Codes section */}
+        <div className="bg-gradient-to-br from-[#FCE3EB] to-white">
+          <div class=" max-w-6xl mx-auto flex items-center justify-between flex-wrap w-full py-16">
+            <div class="p-2 flex justify-start items-center">
+              <h1 className="text-[28px] font-normal mudiumTitle max-w-[335px] ">
+                Our Personalized
+                <span className="ml-1 font-bold">QR Code</span> Please Scan.
+              </h1>
+            </div>
+
+            <div className="sm:w-[30%]">
+              <QRCode
+                {...{ value }}
+                size={200}
+                eyeRadius={[
+                  {
+                    outer: [10, 10, 0, 10],
+                    inner: [0, 10, 10, 10],
+                  },
+                  [10, 10, 10, 0], // top/right eye
+                  [10, 0, 10, 10], // bottom/left
+                ]}
+                logoHeight={50}
+                logoWidth={50}
+                logoImage="/icons/circle-ring.png"
+              />
+            </div>
+          </div>
+          {/* wedding video */}
+          <WebsiteVideo className="!bg-[#ffffff] !from-transparent !to-transparent" />
+        </div>
       </div>
+      <footer className="container !p-0">
+        {/* footer section */}
+        <Footer
+          hideSocial
+          className="!bg-[#ffffff] !from-transparent !to-transparent  !border-none"
+        />
+      </footer>
 
       {/* QR Codes  */}
 
-      <div className="bg-gradient-to-br from-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary w-full h-full py-20">
+      {/* <div className="bg-gradient-to-br from-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary w-full h-full py-20">
         <div className="flex ">
           <div className="container w-full">
             <div className="p-3 bg-white border-4 border-gray-200 rounded-lg">
@@ -336,11 +411,11 @@ const CoupleWebsitePage = (props) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* wedding video */}
-      <WebsiteVideo />
+      {/* <WebsiteVideo /> */}
 
-      <Footer hideSocial />
+      {/* <Footer hideSocial /> */}
     </>
   );
 };
