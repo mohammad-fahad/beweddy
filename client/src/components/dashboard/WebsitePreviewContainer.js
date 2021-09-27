@@ -50,7 +50,7 @@ const WebsitePreviewContainer = ({ minimal }) => {
                   src="/images/wedding-laptop.png"
                   alt=""
                   // className="!h-[600px] mx-auto swiper-lazy"
-                  className="!md:max-h-[444px] !max-h-[250px] mx-auto swiper-lazy"
+                  className="!md:max-h-[450px] h-[400px] mx-auto swiper-lazy"
                 />
                 <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
               </div>
@@ -84,7 +84,7 @@ const WebsitePreviewContainer = ({ minimal }) => {
                 <img
                   src="/images/wedding-macbook.png"
                   alt=""
-                  className="max-h-[250px] md:max-h-[444px] mx-auto swiper-lazy"
+                  className="!md:max-h-[450px] h-[400px] mx-auto swiper-lazy"
                   // className="!h-[600px] mx-auto swiper-lazy"
                 />
                 <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />

@@ -7,6 +7,7 @@ const Heading = ({
   style,
   lineStyle,
   borderClass,
+  uploadTitle,
 }) => {
   if (h3) {
     return (
@@ -30,6 +31,11 @@ const Heading = ({
       >
         {label}
       </h2>
+      {uploadTitle && (
+        <p className="text-[18px] leading-[22px] font-medium capitalize text-[#8a8a8a] mb-3 mx-auto w-ful flex justify-center">
+          Crop Pictures for cover photos
+        </p>
+      )}
       <div
         className={`w-48 mx-auto h-[2px] md:h-[4px] mb-16 ${
           color ? color : "bg-primary"

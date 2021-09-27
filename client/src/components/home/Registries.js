@@ -33,7 +33,7 @@ const registries = [
     title: "Bass Pro Shops",
     buttonText: "Link",
     link: "https://github.com/muttakinhasib",
-    image: "/images/registries/bass-pro-shops.png",
+    image: "/venmo.png",
   },
 ];
 

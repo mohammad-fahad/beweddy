@@ -143,6 +143,25 @@ const Dashboard = () => {
                 <ActivityInfo />
                 <WebsitePreviewContainer minimal />
               </div>
+
+              <div className="flex flex-col items-center justify-center">
+                <div className="inline-block">
+                  <Link href="/dashboard/features/qrcode-and-links">
+                    <a
+                      className={`sm:mt-3 xs:mt-0 capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300 smallText`}
+                    >
+                      <LinkIcon className="hidden w-5 h-5 sm:inline-block" />
+                      <span>Share To Collect Address</span>
+                    </a>
+                  </Link>
+                </div>
+                <h1 className="text-[24px] leading-[27px] mt-4 ">
+                  Let's Eat, Drint & BeWeddy
+                </h1>
+              </div>
+
+              {/* optional part. */}
+
               <div className="flex items-center flex-wrap px-[1.15rem] xs:space-y-0 space-x-3 md:space-x-5 justify-center my-[50px]">
                 <Link href="/dashboard/website/edit">
                   <a
