@@ -7,6 +7,7 @@ import {
   Step5,
   Step6,
   Step7,
+  Step8,
 } from '@components/index';
 import { withAuthRedirect } from '@hoc/withAuthRedirect';
 
@@ -38,6 +39,9 @@ const CreateWebsitePage = () => {
 
     case 7:
       return <Step7 />;
+
+    case 8:
+      return <Step8 />;
 
     default:
       return (
