@@ -7,6 +7,7 @@ const navLinks = [
   {
     label: "Your Wedding Website",
     href: "/dashboard/website",
+    button: true,
   },
   {
     label: "We Need Your Address",
@@ -126,11 +127,10 @@ const DashboardNavLinks = () => {
             key={index}
             disabled={link.isComing}
           >
-            {link.isComing ? (
-              <p className='space-x-2'>
-                <span className='opacity-30'>{link.label}</span>
-                <small className='text-secondary opacity-50'>Coming Soon</small>
-              </p>
+            {link.button ? (
+
+              <button className="border-2 border-red-300 px-3 py-3 rounded-sm">{link.label}</button>
+
             ) : (
               link.label
             )}
