@@ -388,8 +388,8 @@ const CoupleWebsitePage = (props) => {
                     Your Personalized <span className="font-bold">QR Code</span>
                   </h1>
                 </div>
-                <div class="col-span-4 p-5 customItem">
-                  <div className="qrCode">
+                <div class='col-span-4 p-5 customItem'>
+                  <div className='qrCode'>
                     <QRCode
                       {...{ value }}
                       size={200}
@@ -403,7 +403,7 @@ const CoupleWebsitePage = (props) => {
                       ]}
                       logoHeight={50}
                       logoWidth={50}
-                      logoImage="/icons/circle-ring.png"
+                      logoImage='/icons/circle-ring.png'
                     />
                   </div>
                 </div>
