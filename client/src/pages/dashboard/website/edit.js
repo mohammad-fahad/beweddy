@@ -14,7 +14,6 @@ import {
   Footer,
   Heading,
   Loader,
-  QRCodeGenerator,
   SecondReceptionDatePicker,
   WeddingDatePicker,
 } from "@components/index";
@@ -1713,7 +1712,6 @@ const EditWebsitePage = () => {
               </div>
             </form>
           </div>
-          {/* <QRCodeGenerator /> */}
         </DashboardContainer>
       </DashboardLayout>
       <RegistryModal {...{ isModalOpen, setIsModalOpen }} />
