@@ -1,13 +1,13 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
+import Link from "next/link";
 import DashboardActiveLink from "./DashboardActiveLink";
 import Drawer from "./drawer";
 
 const navLinks = [
   {
-    label: "Your Wedding Website",
-    href: "/dashboard/website",
-    button: true,
+    label: "We Need Your Address",
+    href: "/dashboard/address-and-rsvp",
   },
   {
     label: "We Need Your Address",
@@ -81,7 +81,7 @@ const specialFeatures = [
   },
 ];
 
-const DashboardNavLinks = () => {
+const DashboardNavLinks = ({ user }) => {
   const [open, setOpen] = useState(false);
   const dashboardRoutes = ["/dashboard", "/dashboard/website/edit"];
   // const featuresRoutes = ['/dashboard/features'];
@@ -131,6 +131,16 @@ const DashboardNavLinks = () => {
         </button>
       </div>
       <div className="flex-col hidden space-y-5 lg:flex">
+        <div className="pr-5">
+          <Link href={`/couple/${user?.username}`}>
+            <a
+              target="_blank"
+              className="block w-full capitalize text-center px-3 py-3 border-2 border-[#FCE3EB] hover:bg-secondary/10 rounded-[5px] transition duration-300"
+            >
+              Your wedding website
+            </a>
+          </Link>
+        </div>
         {navLinks.map((link, index) => (
           <DashboardActiveLink
             href={link.isComing ? "#" : link.href}
