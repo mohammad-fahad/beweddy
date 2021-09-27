@@ -67,7 +67,7 @@ const specialFeatures = [
   },
 ];
 
-const DashboardNavLinks = () => {
+const DashboardNavLinks = ({ user }) => {
   const [open, setOpen] = useState(false);
   const dashboardRoutes = ['/dashboard', '/dashboard/website/edit'];
   // const featuresRoutes = ['/dashboard/features'];
@@ -118,8 +118,11 @@ const DashboardNavLinks = () => {
       </div>
       <div className='flex-col hidden space-y-5 lg:flex'>
         <div className='pr-5'>
-          <Link href='/dashboard/website'>
-            <a className='block w-full capitalize text-center px-3 py-3 border-2 border-[#FCE3EB] hover:bg-secondary/10 rounded-[5px] transition duration-300'>
+          <Link href={`/couple/${user?.username}`}>
+            <a
+              target='_blank'
+              className='block w-full capitalize text-center px-3 py-3 border-2 border-[#FCE3EB] hover:bg-secondary/10 rounded-[5px] transition duration-300'
+            >
               Your wedding website
             </a>
           </Link>

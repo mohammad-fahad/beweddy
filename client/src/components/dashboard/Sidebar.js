@@ -10,7 +10,12 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { QRCodeGenerator } from '@components/shared';
 import { useMutation, useQuery } from 'react-query';
-import { attemptUpdateTodo, createTodo, deleteTodo, getTodos } from '@services/Todo';
+import {
+  attemptUpdateTodo,
+  createTodo,
+  deleteTodo,
+  getTodos,
+} from '@services/Todo';
 import { client } from 'pages/_app';
 
 const Sidebar = () => {
@@ -80,7 +85,7 @@ const Sidebar = () => {
       {/* <div className='justify-self-center lg:justify-self-start w-full'> */}
       <div className='w-full'>
         <div className='w-full xs:w-max lg:w-full border-2 lg:border-4 border-[#FCE3EB] lg:border-l-0 lg:rounded-l-none rounded-[5px] lg:rounded-[20px] bg-[#FFFCFD] py-2 px-4 sm:px-5 lg:py-10 lg:pl-14 lg:pr-5'>
-          <DashboardNavLinks />
+          <DashboardNavLinks {...{ user }} />
         </div>
       </div>
       <div className='w-full'>
@@ -156,16 +161,17 @@ const Sidebar = () => {
                       )}
                     </button>
                     <p
-                      className={`text-base font-normal break-words ${todo.isComplete ? 'line-through' : ''
-                        }`}
-                    // onClick={() =>
-                    //   dispatch(
-                    //     toggleTodo({
-                    //       id: todo.id,
-                    //       isComplete: !todo.isComplete,
-                    //     })
-                    //   )
-                    // }
+                      className={`text-base font-normal break-words ${
+                        todo.isComplete ? 'line-through' : ''
+                      }`}
+                      // onClick={() =>
+                      //   dispatch(
+                      //     toggleTodo({
+                      //       id: todo.id,
+                      //       isComplete: !todo.isComplete,
+                      //     })
+                      //   )
+                      // }
                     >
                       {todo.description}
                     </p>

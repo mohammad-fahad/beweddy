@@ -135,7 +135,7 @@ const CheckoutPage = props => {
                     {gift?.title}
                   </h4>
                   <h4 className='text-4xl leading-[44px] text-[#1f1f1f] font-bold my-3'>
-                    $25-$500
+                    ${getValues('amount')}
                   </h4>
                   <p className='text-lg text-[#000000] my-3 font-light'>
                     See full gift card{' '}
@@ -151,6 +151,26 @@ const CheckoutPage = props => {
                       Choose Amount
                     </h4>
                     <div className='flex space-x-3'>
+                      <div className='flex items-center select-amount'>
+                        <input
+                          type='radio'
+                          id='10'
+                          value={10}
+                          defaultChecked
+                          className='hidden'
+                          {...register('amount')}
+                        />
+                        <label
+                          htmlFor='10'
+                          className='flex items-center space-x-3 cursor-pointer'
+                        >
+                          <div className='checked-outer border-[2px] rounded-[5px] border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
+                            <span className='text-lg font-semibold font-inter'>
+                              $10
+                            </span>
+                          </div>
+                        </label>
+                      </div>
                       <div className='flex items-center select-amount'>
                         <input
                           type='radio'
@@ -317,6 +337,9 @@ const CheckoutPage = props => {
                       </div>
                     </div>
                     {/* radio button */}
+                    <p className='text-gray-400 text-base font-light'>
+                      Or Choose Custom Amount
+                    </p>
                     <div className='space-y-3 !mt-2'>
                       <div className='flex items-center select-amount'>
                         <input
@@ -330,6 +353,15 @@ const CheckoutPage = props => {
                           htmlFor={`${getValues('customAmount')}`}
                           className='flex items-center space-x-3 cursor-pointer'
                         >
+                          <input
+                            type='range'
+                            min='15'
+                            defaultValue={15}
+                            max='2000'
+                            step='1'
+                            className='cursor-pointer block text-center rounded-[5px] border-2 w-[230px] border-gray-200 py-3 px-5 text-base font-normal'
+                            {...register('customAmount')}
+                          />
                           <div className='checked-outer border-[2px] rounded-[5px] border-[#dbdbdb] w-[109px] h-[58px] flex items-center justify-center'>
                             <span className='text-lg font-semibold font-inter'>
                               ${getValues('customAmount')}
@@ -337,13 +369,6 @@ const CheckoutPage = props => {
                           </div>
                         </label>
                       </div>
-                      <input
-                        type='range'
-                        min='25'
-                        max='2000'
-                        className='block text-center rounded-[5px] border-2 w-[230px] border-gray-200 py-3 px-5 text-base font-normal'
-                        {...register('customAmount')}
-                      />
                     </div>
                   </div>
                 </div>
