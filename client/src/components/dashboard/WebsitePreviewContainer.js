@@ -17,7 +17,7 @@ const params = {
   },
 };
 
-const WebsitePreviewContainer = ({ minimal }) => {
+const WebsitePreviewContainer = ({ minimal, data }) => {
   const { user } = useSelector((state) => state.user);
   return (
     <div
@@ -34,7 +34,7 @@ const WebsitePreviewContainer = ({ minimal }) => {
     >
       {!minimal && (
         <h3 className="text-3xl text-center capitalize">
-          Your wedding website preview
+          {data ? data : "Your wedding website preview"}
         </h3>
       )}
       <div className="w-full max-w-xl mx-auto">
