@@ -11,14 +11,17 @@ const AccountActivationPage = () => {
   const token = query.token;
 
   useEffect(() => {
+    if (success) {
+      const redirect = setTimeout(() => push('/dashboard'), 3000);
+      return () => clearTimeout(redirect);
+    }
+  }, [success]);
+
+  useEffect(() => {
     if (token) {
       dispatch(attemptActivation(token));
     }
-    if (success) {
-      const redirect = setTimeout(() => push('/preview'), 3000);
-      return () => clearTimeout(redirect);
-    }
-  }, [token, success]);
+  }, [token]);
 
   return <Welcome />;
 };
