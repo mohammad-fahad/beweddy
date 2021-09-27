@@ -9,9 +9,8 @@ const opts = {
 const HowItWork = ({ hideBorderBottom }) => {
   return (
     <div
-      className={`bg-gradient-to-br from-[#FCE3EB] to-white relative overflow-hidden border-t-[5px] border-primary ${
-        hideBorderBottom ? "" : "border-b-[5px]"
-      }`}
+      className={`bg-gradient-to-br from-[#FCE3EB] to-white relative overflow-hidden border-t-[5px] border-primary ${hideBorderBottom ? "" : "border-b-[5px]"
+        }`}
     >
       <div className="absolute left-0 right-0 w-full -bottom-5 sm:-bottom-10 lg:-bottom-16 xl:-bottom-20 xxl:-bottom-48">
         <img
@@ -28,13 +27,13 @@ const HowItWork = ({ hideBorderBottom }) => {
         <div className="max-w-3xl mx-auto">
           <div className="relative w-full overflow-hidden transition duration-300 rounded-2xl hover:scale-95">
             <YouTube
-              videoId="67Mlgq6-dGA"
+              videoId="tm7ZtsuzZ-k"
               className="w-full mx-auto"
               {...{ opts }}
             />
             <a
               target="_blank"
-              href="https://www.youtube.com/watch?v=67Mlgq6-dGA"
+              href="https://youtu.be/tm7ZtsuzZ-k"
               className="absolute flex items-center justify-center w-full h-full inset bg-primary/30"
             >
               <img src="/icons/play.svg" alt="play" className="w-24" />
@@ -42,7 +41,7 @@ const HowItWork = ({ hideBorderBottom }) => {
           </div>
           <a
             target="_blank"
-            href="https://www.youtube.com/watch?v=ALad4ovPbDc"
+            href="https://youtu.be/tm7ZtsuzZ-k"
             className="flex items-center mt-8 mb-[40px] space-x-5 transition duration-300 hover:opacity-50"
           >
             <Youtube color="#FF0000" size={45} />

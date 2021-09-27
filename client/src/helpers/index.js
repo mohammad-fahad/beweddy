@@ -16,3 +16,9 @@ export const handleErrorMessage = err =>
 export const successAlert = message => message && toast.success(message);
 // Error Alert
 export const errorAlert = error => error && toast.error(error);
+
+//extracting the Youtube ID
+export function YouTubeGetID(url) {
+  url = url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  return (url[2] !== undefined) ? url[2].split(/[^0-9a-z_\-]/i)[0] : url[0];
+}
