@@ -5,49 +5,49 @@ import Drawer from './drawer';
 
 const navLinks = [
   {
-    label: 'Your Wedding Website',
-    href: '/dashboard/website',
+    label: "Your Wedding Website",
+    href: "/dashboard/website",
   },
   {
-    label: 'We Need Your Address',
-    href: '/dashboard/address-and-rsvp',
+    label: "We Need Your Address",
+    href: "/dashboard/address-and-rsvp",
   },
   {
-    label: 'Just Do It List',
-    href: '/dashboard/features/todo',
+    label: "Just Do It List",
+    href: "/dashboard/features/todo",
   },
   {
-    label: 'QR Code & Links',
-    href: '/dashboard/features/qrcode-and-links',
+    label: "QR Code & Links",
+    href: "/dashboard/features/qrcode-and-links",
   },
   {
-    label: 'Text Invites',
-    href: '/dashboard/invitation/text',
+    label: "Text Invites",
+    href: "/dashboard/invitation/text",
   },
   {
-    label: 'Email Invites',
-    href: '/dashboard/invitation/email',
+    label: "Email Invites",
+    href: "/dashboard/invitation/email",
   },
   {
-    label: 'Mailout Invites',
-    isComing: true,
-    href: '/dashboard/invitation/mailout',
+    label: "Mailout Invites",
+    isComing: false,
+    href: "/dashboard/invitation/mailout",
   },
   {
-    label: 'Calender Invites',
-    href: '/dashboard/invitation/calender',
+    label: "Calender Invites",
+    href: "/dashboard/invitation/calender",
   },
   {
-    label: 'Gift Cards',
-    href: '/dashboard/gift-cards',
+    label: "Gift Cards",
+    href: "/dashboard/gift-cards",
   },
   {
-    label: 'Registries',
-    href: '/dashboard/registries',
+    label: "Registries",
+    href: "/dashboard/registries",
   },
   {
-    label: 'Guest Management',
-    href: '/dashboard/invitation/rsvp-guest-management',
+    label: "Guest Management",
+    href: "/dashboard/invitation/rsvp-guest-management",
   },
 ];
 

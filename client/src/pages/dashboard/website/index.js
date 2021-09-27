@@ -16,24 +16,86 @@ import WebsiteVideo from "@components/dashboard/Website/WebsiteVideo";
 import Swiper from "react-id-swiper";
 import { Image } from "cloudinary-react";
 import SwiperCore, { Lazy, Autoplay } from "swiper";
-
+import { generate } from "shortid";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
 SwiperCore.use([Lazy, Autoplay]);
 
-const params = {
-  loop: true,
-  // autoplay: {
-  //   delay: 5000,
-  //   disableOnInteraction: false,
-  // },
-};
+// const params = {
+//   loop: true,
+//   autoplay: {
+//     delay: 5000,
+//     disableOnInteraction: false,
+//   },
+// };
 
 const WebsitePageOne = () => {
   const { user } = useSelector((state) => state.user);
   const [value, setValue] = useState(`${process.env.NEXT_PUBLIC_CLIENT_URL}`);
-
+  const [receptionDetails, setReceptionDetails] = useState(
+    user?.receptionDetails?.length
+      ? user.receptionDetails
+      : [
+          {
+            id: generate(),
+            time: "5.00 PM",
+            details: "Example of event details",
+          },
+          {
+            id: generate(),
+            time: "5:30 PM",
+            details: "Ceremony",
+          },
+          {
+            id: generate(),
+            time: "6:00 PM",
+            details: "Ceremony ends/cocktails begin",
+          },
+          {
+            id: generate(),
+            time: "7:00 PM",
+            details: "Cocktails ends and guests are ushered into the reception",
+          },
+          {
+            id: generate(),
+            time: "7:20 PM",
+            details: "Introduction and first dance—guests asked to join after ",
+          },
+          {
+            id: generate(),
+            time: "7:45 PM",
+            details: " Guests take their seats and the first course is served",
+          },
+          {
+            id: generate(),
+            time: "8:00 PM",
+            details: "Welcome speech from parents",
+          },
+          {
+            id: generate(),
+            time: "8:10 PM",
+            details: "Toasts from maid of honor and best man",
+          },
+          {
+            id: generate(),
+            time: "9:00 PM",
+            details: "Parent dances",
+          },
+          {
+            id: generate(),
+            time: "9:30 PM ",
+            details: "Cake cutting",
+          },
+          {
+            id: generate(),
+            time: "10:00 PM",
+            details: "Send-Off",
+          },
+        ]
+  );
+  console.log(user);
+  console.log(user?.receptionDetails);
   return (
     <>
       <Head>
@@ -219,11 +281,12 @@ const WebsitePageOne = () => {
             {user?.ourStory && (
               <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-10" />
             )}
-            {/* Reception Details */}
-            {/* <h2 className="text-3xl md:text-4xl font-medium text-center mt-[17px]"> */}
-            <h2 className="text-2xl md:text-4xl font-medium text-center mt-[17px] commonTitle">
-              Reception Details
-            </h2>
+
+            {user?.receptionDetails && (
+              <h2 className="text-2xl md:text-4xl font-medium text-center mt-[17px] commonTitle">
+                Reception Details
+              </h2>
+            )}
 
             {/* <div class="grid grid-cols-12 gap-4 w-full mt-5"> */}
             <div class="grid grid-cols-12 gap-4 w-full my-3 md:my-8">
@@ -241,13 +304,15 @@ const WebsitePageOne = () => {
                   )}
                 </div>
               )}
-              <div class="col-span-5 sm:p-5 p-2 flex justify-end">
-                <div>
-                  <h2 className="text-lg">Locations</h2>
-                  <h6 className="miniTitle">{user?.location}</h6>
-                  {/* <h6 className="miniTitle">Utah, USA</h6> */}
+              {user?.location && (
+                <div class="col-span-5 sm:p-5 p-2 flex justify-end">
+                  <div>
+                    <h2 className="text-lg">Locations</h2>
+                    <h6 className="miniTitle">{user?.location}</h6>
+                    {/* <h6 className="miniTitle">Utah, USA</h6> */}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
             {/* timeline section */}
@@ -256,8 +321,8 @@ const WebsitePageOne = () => {
                 <h4 className="text-xl md:text-[26px] font-medium mb-2">
                   Timeline
                 </h4>
-                <ul className="space-y-3">
-                  {user?.receptionDetails?.map((el) => (
+                <ul className="mt-4 space-y-3">
+                  {receptionDetails?.map((el) => (
                     <li className="w-full px-7 py-2 space-x-5 border border-[#D5D5D5] hover:border-primary cursor-pointer">
                       <span className="mr-2 text-lg font-bold subTitle ">
                         {el?.time}
@@ -302,12 +367,16 @@ const WebsitePageOne = () => {
 
             <div className="w-full max-w-6xl mx-auto">
               <div class="flex flex-wrap justify-between items-center gap-4 w-full mt-5">
-                <div class="sm:p-5 p-3">
-                  <SocialSection name={user?.questions?.firstName} />
-                </div>
-                <div class="sm:p-5 p-3">
-                  <SocialSection name={user?.questions?.spouseFirstName} />
-                </div>
+                {user?.questions?.socialAccounts?.bride && (
+                  <div class="sm:p-5 p-3">
+                    <SocialSection name={user?.questions?.firstName} />
+                  </div>
+                )}
+                {user?.questions?.socialAccounts?.groom && (
+                  <div class="sm:p-5 p-3">
+                    <SocialSection name={user?.questions?.spouseFirstName} />
+                  </div>
+                )}
               </div>
             </div>
           </div>

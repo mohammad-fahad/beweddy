@@ -230,7 +230,7 @@ const EmailInvitesPage = () => {
                       styles={customStyles}
                       options={emails}
                     />
-                    <Heading h3 className="!text-sm xl:!text-base !font-bold">
+                    {/* <Heading h3 className="!text-sm xl:!text-base !font-bold">
                       From
                     </Heading>
                     <input
@@ -240,7 +240,7 @@ const EmailInvitesPage = () => {
                       placeholder="team.nate@gmail.com"
                       value={fromEmail}
                       onChange={(e) => setFromEmail(e.target.value)}
-                    />
+                    /> */}
                     <Heading h3 className="!text-sm xl:!text-base !font-bold">
                       Add Media Content
                     </Heading>

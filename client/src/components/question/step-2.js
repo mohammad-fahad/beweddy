@@ -516,10 +516,14 @@ const WeddingDay = () => {
         >
           <Button
             label="Back"
-            className="opacity-50 !bg-[#bebebe] !rounded-[10px]"
+            className="opacity-50 !bg-[#bebebe] !rounded-[10px] w-[178px] h-[59px]"
             onClick={() => push({ query: { step: 1 } })}
           />
-          <Button label="Next" type="submit" className=" !rounded-[10px]" />
+          <Button
+            label="Next"
+            type="submit"
+            className=" !rounded-[10px] w-[178px] h-[59px]"
+          />
         </motion.div>
       </motion.form>
     </CreateWebsiteContainer>
