@@ -12,43 +12,53 @@ const navLinks = [
   {
     label: "We Need Your Address",
     href: "/dashboard/address-and-rsvp",
+    icon: "/icons/location.svg",
   },
   {
     label: "Just Do It List",
     href: "/dashboard/features/todo",
+    icon: "/icons/ring-tik.svg",
   },
   {
     label: "QR Code & Links",
     href: "/dashboard/features/qrcode-and-links",
+    icon: "/icons/qrcode.svg",
   },
   {
     label: "Text Invites",
     href: "/dashboard/invitation/text",
+    icon: "/icons/messages.svg",
   },
   {
     label: "Email Invites",
     href: "/dashboard/invitation/email",
+    icon: "/icons/email_send.svg",
   },
   {
     label: "Mailout Invites",
     isComing: false,
     href: "/dashboard/invitation/mailout",
+    icon: "/icons/email_add.svg",
   },
   {
     label: "Calender Invites",
     href: "/dashboard/invitation/calender",
+    icon: "/icons/note_tick.svg",
   },
   {
     label: "Gift Cards",
     href: "/dashboard/gift-cards",
+    icon: "/icons/gift-2.svg",
   },
   {
     label: "Registries",
     href: "/dashboard/registries",
+    icon: "/icons/registry.svg",
   },
   {
     label: "Guest Management",
     href: "/dashboard/invitation/rsvp-guest-management",
+    icon: "/icons/ic_baseline-rsvp.svg",
   },
 ];
 
@@ -136,7 +146,11 @@ const DashboardNavLinks = () => {
               //   <span className='opacity-30'>{link.label}</span>
               //   <small className='opacity-50 text-secondary'>Coming Soon</small>
               // </p>
-              link.label
+              <p className="flex items-center justify-center w-full my-1">
+                <img src={link.icon} alt="" className="w-5 h-5 mr-3" />
+                {link.label}{" "}
+              </p>
+              // link.label
             )}
           </DashboardActiveLink>
         ))}
