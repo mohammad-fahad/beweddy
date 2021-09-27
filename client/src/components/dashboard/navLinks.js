@@ -134,10 +134,6 @@ const DashboardNavLinks = ({ user }) => {
             disabled={link.isComing}
           >
             {
-              // <p className='space-x-2'>
-              //   <span className='opacity-30'>{link.label}</span>
-              //   <small className='opacity-50 text-secondary'>Coming Soon</small>
-              // </p>
               link.label
             }
           </DashboardActiveLink>

@@ -30,10 +30,10 @@ const registries = [
   },
   {
     id: 4,
-    title: "Bass Pro Shops",
+    title: "Venmo",
     buttonText: "Link",
     link: "https://github.com/muttakinhasib",
-    image: "/venmo.png",
+    image: "https://i.ibb.co/Zxsf0yQ/venmo.png",
   },
 ];
 
