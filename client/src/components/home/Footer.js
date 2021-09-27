@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import CreateAccount from "./CreateAccount";
 import HowItWork from "./HowItWork";
 
-const Footer = ({ hideSocial }) => {
+const Footer = ({ hideSocial, className }) => {
   const { user } = useSelector((state) => state.user);
   const { pathname } = useRouter();
 
@@ -100,7 +100,11 @@ const Footer = ({ hideSocial }) => {
         </>
       )}
 
-      <div className="py-8 bg-gradient-to-br from-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary">
+      <div
+        className={`py-8 bg-gradient-to-br from-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary ${
+          className ? className : ""
+        } `}
+      >
         {/* <div className="container flex flex-col-reverse flex-wrap items-center justify-center gap-5 !md:flex-row sm:justify-between"> */}
         <div className="container flex !flex-row flex-wrap items-center justify-center gap-5  sm:justify-between footerWrapper">
           <p className="text-base">
