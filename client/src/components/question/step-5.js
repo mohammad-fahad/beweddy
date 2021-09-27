@@ -227,7 +227,10 @@ const UploadCouplePicture = () => {
             color="bg-primary !text-[36px] commonTitle"
             // className='pt-5 md:pt-0'
             lineStyle={{ marginBottom: "25px" }}
+            uploadTitle
           />
+          {/* <p className="text-[10px] mb-3">Crop Pictures for cover photos</p> */}
+          {/* <p className="text-[12px] mb-1">Crop Pictures For Cover Photos</p> */}
           <p className="text-2xl font-semibold text-center">Up to 4 Images</p>
         </motion.div>
 
@@ -274,7 +277,6 @@ const UploadCouplePicture = () => {
             {...getRootProps()}
             variants={fadeInUp}
           >
-            <p className="text-[12px] mb-1">Crop Pictures For Cover Photos</p>
             <input {...getInputProps()} />
             <label
               htmlFor="uploadCouplePicture"
@@ -311,13 +313,17 @@ const UploadCouplePicture = () => {
         >
           <Button
             label="Back"
-            className="opacity-50 !bg-[#bebebe] !rounded-[10px]"
+            className="opacity-50 !bg-[#bebebe] !rounded-[10px] w-[178px] h-[59px]"
             onClick={
               () => push({ query: { step: 4 } })
               // push('/create-website/step-4', null, { shallow: true })
             }
           />
-          <Button label="Next" type="submit" className=" !rounded-[10px]" />
+          <Button
+            label="Next"
+            type="submit"
+            className=" !rounded-[10px] w-[178px] h-[59px]"
+          />
         </motion.div>
       </motion.form>
       <CropImage

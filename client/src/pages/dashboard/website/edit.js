@@ -75,62 +75,62 @@ const EditWebsitePage = () => {
     user.receptionDetails.length
       ? user.receptionDetails
       : [
-        {
-          id: generate(),
-          time: "5.00 PM",
-          details: "Example of event details",
-        },
-        {
-          id: generate(),
-          time: "5:30 PM",
-          details: "Ceremony",
-        },
-        {
-          id: generate(),
-          time: "6:00 PM",
-          details: "Ceremony ends/cocktails begin",
-        },
-        {
-          id: generate(),
-          time: "7:00 PM",
-          details: "Cocktails ends and guests are ushered into the reception",
-        },
-        {
-          id: generate(),
-          time: "7:20 PM",
-          details: "Introduction and first dance—guests asked to join after ",
-        },
-        {
-          id: generate(),
-          time: "7:45 PM",
-          details: " Guests take their seats and the first course is served",
-        },
-        {
-          id: generate(),
-          time: "8:00 PM",
-          details: "Welcome speech from parents",
-        },
-        {
-          id: generate(),
-          time: "8:10 PM",
-          details: "Toasts from maid of honor and best man",
-        },
-        {
-          id: generate(),
-          time: "9:00 PM",
-          details: "Parent dances",
-        },
-        {
-          id: generate(),
-          time: "9:30 PM ",
-          details: "Cake cutting",
-        },
-        {
-          id: generate(),
-          time: "10:00 PM",
-          details: "Send-Off",
-        },
-      ]
+          {
+            id: generate(),
+            time: "5.00 PM",
+            details: "Example of event details",
+          },
+          {
+            id: generate(),
+            time: "5:30 PM",
+            details: "Ceremony",
+          },
+          {
+            id: generate(),
+            time: "6:00 PM",
+            details: "Ceremony ends/cocktails begin",
+          },
+          {
+            id: generate(),
+            time: "7:00 PM",
+            details: "Cocktails ends and guests are ushered into the reception",
+          },
+          {
+            id: generate(),
+            time: "7:20 PM",
+            details: "Introduction and first dance—guests asked to join after ",
+          },
+          {
+            id: generate(),
+            time: "7:45 PM",
+            details: " Guests take their seats and the first course is served",
+          },
+          {
+            id: generate(),
+            time: "8:00 PM",
+            details: "Welcome speech from parents",
+          },
+          {
+            id: generate(),
+            time: "8:10 PM",
+            details: "Toasts from maid of honor and best man",
+          },
+          {
+            id: generate(),
+            time: "9:00 PM",
+            details: "Parent dances",
+          },
+          {
+            id: generate(),
+            time: "9:30 PM ",
+            details: "Cake cutting",
+          },
+          {
+            id: generate(),
+            time: "10:00 PM",
+            details: "Send-Off",
+          },
+        ]
   );
   // const { groom, bride } = user?.socialAccounts;
 
@@ -497,13 +497,13 @@ const EditWebsitePage = () => {
                 <h4 className="mb-6 text-[24px] font-medium capitalize mudiumTitle">
                   Upload 4 images
                 </h4>
-                <p className="text-[12px] m-0">
-                  Crop Pictures For Cover Photos
-                </p>
                 <div
                   className="relative focus:outline-none"
                   {...getRootProps()}
                 >
+                  <p className="text-[12px] mb-1">
+                    Crop Pictures For Cover Photos
+                  </p>
                   <input {...getInputProps()} />
                   <label
                     htmlFor="couplePictures"
@@ -881,7 +881,6 @@ const EditWebsitePage = () => {
                     key={index}
                     className="flex items-center !border-gray-200"
                   >
-
                     <Datetime
                       className="w-[100px] rounded-[5px] border-2 rounded-r-none !focus:!border-gray-200 !border-gray-200  text-base font-bold placeholder-gray-200 border-r-0 datepiceker"
                       inputProps={{ placeholder: "12.00 PM" }}

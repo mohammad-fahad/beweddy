@@ -189,14 +189,14 @@ const TextInvitesPage = () => {
                 <div className="flex items-center pb-2 space-x-3">
                   <Image src="/icons/messages.svg" width={46} height={46} />
                   <h3 className="text-2xl mudiumTitle">
-                    Send Text & MMS Invites
+                    Send Text & Superlink Invites
                   </h3>
                 </div>
                 <span className="h-[4px] inline-block max-w-[215px] w-full bg-secondary-alternative"></span>
               </div>
 
-              <div className="flex flex-wrap items-center justify-center gap-4 md:gap-12">
-                <div className="md:col-span-2">
+              <div className="flex-wrap items-center justify-center gap-1 sm:flex sm:gap-4 md:gap-12 ">
+                <div className="col-auto md:col-span-2">
                   <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex justify-between">
                       <Heading h3 className="!text-2xl commonTitle">
@@ -308,7 +308,7 @@ const TextInvitesPage = () => {
                       styles={customStyles}
                       options={phones}
                     />
-                    <Heading h3 className="!text-sm xl:!text-base !font-bold">
+                    {/* <Heading h3 className="!text-sm xl:!text-base !font-bold">
                       From
                     </Heading>
                     <div>
@@ -411,10 +411,10 @@ const TextInvitesPage = () => {
                           })}
                         />
                       </div>
-                      {/* <p className='h-4 mt-2 text-sm font-light text-red-400'>
+                       <p className='h-4 mt-2 text-sm font-light text-red-400'>
                         {errors?.phone?.message}
-                      </p> */}
-                    </div>
+                      </p>
+                    </div> */}
                     {getValues("compose") === "Picture" && (
                       <div {...getRootProps()}>
                         <input {...getInputProps()} />
@@ -466,31 +466,47 @@ const TextInvitesPage = () => {
                         </svg>
 
                         <span className='absolute bottom-0 right-0 h-10 bg-white w-52'></span> */}
+                        <div className="flex justify-end">
+                          <button
+                            type="submit"
+                            className="flex items-center rounded border-2 py-2 bg-secondary-alternative px-5 border-black  justify-end !mt-10 space-x-3 text-sm md:text-base font-bold text-right"
+                          >
+                            <span>Send Message</span>
+                            <ArrowRightIcon className="w-6 h-6" />
+                          </button>
+                        </div>
                       </div>
                     </div>
 
-                    <button
+                    {/* <button
                       type="submit"
                       className="flex items-center border-2 py-2 bg-secondary-alternative px-2 border-black  justify-end !mt-10 space-x-3 text-sm md:text-base font-bold text-right"
                     >
                       <span>Send Message</span>
                       <ArrowRightIcon className="w-6 h-6" />
-                    </button>
+                    </button> */}
                   </form>
                 </div>
 
                 {/* <div className="hidden mx-auto md:block"> */}
                 <div className="hidden mx-auto md:block">
                   <div className="relative">
-                    <img
-                      src="/images/mobile-template.svg"
+                    {/* <img
+                      // src="/images/mobile-template.svg"
+                      src="/images/textInvites.png"
                       alt=""
                       className="min-w-[338px]"
+                    /> */}
+                    <img
+                      // src="/images/mobile-template.svg"
+                      src="/images/textInvites.png"
+                      alt=""
+                      className="min-w-[338px] w-[350px]"
                     />
                     <div className="absolute max-w-[315px] max-h-[540px] h-full w-full top-[60px] left-[12px] p-2">
                       <div className="px-1">
                         <div className="flex items-center justify-between">
-                          <svg
+                          {/* <svg
                             width="30"
                             height="42"
                             viewBox="0 0 30 42"
@@ -502,7 +518,8 @@ const TextInvitesPage = () => {
                               d="M12.7053 22.8984L20.6446 14.9591C21.2304 14.3733 21.2304 13.4236 20.6446 12.8378C20.0589 12.252 19.1091 12.252 18.5233 12.8378L9.52332 21.8378C8.93754 22.4236 8.93754 23.3733 9.52332 23.9591L18.5233 32.9591C19.1091 33.5449 20.0589 33.5449 20.6446 32.9591C21.2304 32.3733 21.2304 31.4236 20.6446 30.8378L12.7053 22.8984Z"
                               fill="#007AFF"
                             />
-                          </svg>
+                          </svg> */}
+                          <span></span>
                           <div className="flex flex-col items-center h-20 space-y-2">
                             <div className="w-[50px] h-[50px] rounded-full">
                               <Image
