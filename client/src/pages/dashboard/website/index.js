@@ -19,6 +19,7 @@ import SwiperCore, { Lazy, Autoplay } from "swiper";
 import { generate } from "shortid";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { isoToUtcDate } from "@utils/index";
 
 SwiperCore.use([Lazy, Autoplay]);
 
@@ -94,8 +95,7 @@ const WebsitePageOne = () => {
           },
         ]
   );
-  console.log(user);
-  console.log(user?.receptionDetails);
+
   return (
     <>
       <Head>
@@ -142,28 +142,6 @@ const WebsitePageOne = () => {
 
         <div className="border-4 border-gray-200 rounded-lg">
           <WebsiteNav user={user} />
-
-          {/* banner image */}
-          {/* <div className="w-full">
-            <Swiper {...params}>
-              {user.questions.couplePictures.map((image, index) => (
-                <div className="w-full">
-                  <div className="aspect-w-16 aspect-h-9">
-                    <Image
-                      cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
-                      publicId={image.public_id}
-                      src={!image.public_id ? image.url : null}
-                      // width={image.width}
-                      crop="scale"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
-                </div>
-              ))}
-            </Swiper>
-          </div> */}
-
           <Carousel
             autoPlay
             infiniteLoop
@@ -204,7 +182,7 @@ const WebsitePageOne = () => {
           <div className="flex flex-col items-center">
             {/* <h1 className="text-2xl font-medium md:text-3xl font-inter xl:text-4xl mudiumTitle"> */}
             <h1 className="text-xl font-medium md:text-2xl lg:text-4xl font-inter mudiumTitle">
-              02/27/2021
+              {isoToUtcDate(user?.questions?.weddingDay?.weddingDate)}
             </h1>
             <div className="max-w-[222px] w-full mx-auto h-[2px] md:h-[4px]  bg-[#FCE0EB] mt-4" />
             {/* countdown wrapper */}
@@ -282,7 +260,7 @@ const WebsitePageOne = () => {
               <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-10" />
             )}
 
-            {user?.receptionDetails && (
+            {Object?.keys(user.receptionDetails)?.length !== 0 && (
               <h2 className="text-2xl md:text-4xl font-medium text-center mt-[17px] commonTitle">
                 Reception Details
               </h2>
@@ -369,14 +347,52 @@ const WebsitePageOne = () => {
               <div class="flex flex-wrap justify-between items-center gap-4 w-full mt-5">
                 {user?.questions?.socialAccounts?.bride && (
                   <div class="sm:p-5 p-3">
-                    <SocialSection name={user?.questions?.firstName} />
+                    <SocialSection
+                      name={user?.questions?.firstName}
+                      links={user?.socialAccounts?.bride}
+                    />
                   </div>
                 )}
                 {user?.questions?.socialAccounts?.groom && (
                   <div class="sm:p-5 p-3">
-                    <SocialSection name={user?.questions?.spouseFirstName} />
+                    <SocialSection
+                      name={user?.questions?.spouseFirstName}
+                      links={user?.socialAccounts?.groom}
+                    />
                   </div>
                 )}
+              </div>
+            </div>
+          </div>
+
+          {/* QR Codes  */}
+
+          {/* <div className="bg-gradient-to-br from-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary w-full h-full py-20"> */}
+          <div className="bg-gradient-to-br from-[#FCE3EB] to-white">
+            <div class=" max-w-6xl mx-auto flex items-center justify-between flex-wrap w-full py-10">
+              <div class="p-2 flex justify-start items-center">
+                <h1 className="text-[28px] font-normal mudiumTitle max-w-[335px] ">
+                  Our Personalized
+                  <span className="ml-1 font-bold">QR Code</span> Please Scan.
+                </h1>
+              </div>
+
+              <div className="sm:w-[30%]">
+                <QRCode
+                  {...{ value }}
+                  size={200}
+                  eyeRadius={[
+                    {
+                      outer: [10, 10, 0, 10],
+                      inner: [0, 10, 10, 10],
+                    },
+                    [10, 10, 10, 0], // top/right eye
+                    [10, 0, 10, 10], // bottom/left
+                  ]}
+                  logoHeight={50}
+                  logoWidth={50}
+                  logoImage="/icons/circle-ring.png"
+                />
               </div>
             </div>
           </div>
@@ -385,40 +401,39 @@ const WebsitePageOne = () => {
 
       {/* QR Codes  */}
 
-      <div className="bg-gradient-to-br from-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary w-full h-full py-20">
-        <div className="flex ">
-          <div className="container w-full">
-            <div className="p-3 bg-white border-4 border-gray-200 rounded-lg">
-              <div class="flex items-center justify-center flex-wrap gap-4 w-full mt-5">
-                <div class="sm:p-5 p-2 flex justify-center items-center ">
-                  <h1 className="text-3xl font-normal md:text-4xl mudiumTitle">
-                    Your Personalized <span className="font-bold">QR Code</span>
-                  </h1>
-                </div>
-                <div class="sm:p-5 p-2">
-                  <div className="qrCode">
-                    <QRCode
-                      {...{ value }}
-                      size={200}
-                      eyeRadius={[
-                        {
-                          outer: [10, 10, 0, 10],
-                          inner: [0, 10, 10, 10],
-                        },
-                        [10, 10, 10, 0], // top/right eye
-                        [10, 0, 10, 10], // bottom/left
-                      ]}
-                      logoHeight={50}
-                      logoWidth={50}
-                      logoImage="/icons/circle-ring.png"
-                    />
-                  </div>
+      {/* <div className="bg-gradient-to-br from-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary w-full h-full py-20">
+        <div className="container w-full">
+          <div className="p-3 bg-white border-4 border-gray-200 rounded-lg">
+            <div class="flex items-center justify-between flex-wrap gap-4 w-full mt-5">
+              <div class="p-2 flex justify-start items-center">
+                <h1 className="text-[24px] font-normal mudiumTitle max-w-[335px] ">
+                  Our Personalized
+                  <span className="ml-1 font-bold">QR Code</span> Please Scan.
+                </h1>
+              </div>
+              <div class="p-2">
+                <div className="qrCode">
+                  <QRCode
+                    {...{ value }}
+                    size={200}
+                    eyeRadius={[
+                      {
+                        outer: [10, 10, 0, 10],
+                        inner: [0, 10, 10, 10],
+                      },
+                      [10, 10, 10, 0], // top/right eye
+                      [10, 0, 10, 10], // bottom/left
+                    ]}
+                    logoHeight={50}
+                    logoWidth={50}
+                    logoImage="/icons/circle-ring.png"
+                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* wedding video */}
       <WebsiteVideo />
 

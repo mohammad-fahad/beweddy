@@ -871,7 +871,7 @@ const RSVPage = ({ user }) => {
                     type="range"
                     defaultValue={1}
                     min="1"
-                    max="1000"
+                    max="20"
                     className="block cursor-pointer text-center rounded-[5px] border-2 border-gray-200 sm:px-5 px-2 text-base font-normal"
                     {...register("guestEstimate")}
                   />
