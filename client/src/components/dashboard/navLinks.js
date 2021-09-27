@@ -119,7 +119,7 @@ const DashboardNavLinks = () => {
       <div className='flex-col hidden space-y-5 lg:flex'>
         <div className='pr-5'>
           <Link href='/dashboard/website'>
-            <a className='block w-full text-center px-3 py-3 border-2 border-[#FCE3EB] hover:bg-secondary/10 rounded-[5px] transition duration-300'>
+            <a className='block w-full capitalize text-center px-3 py-3 border-2 border-[#FCE3EB] hover:bg-secondary/10 rounded-[5px] transition duration-300'>
               Your wedding website
             </a>
           </Link>
