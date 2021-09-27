@@ -79,7 +79,6 @@ const AddressRSVP = () => {
   const { push } = useRouter();
   const [selectedProvider, setSelectedProvider] = useState(otherProviders[0]);
 
-
   const {
     watch,
     register,
@@ -220,7 +219,7 @@ const AddressRSVP = () => {
           </Carousel>
 
           <div className="px-2 py-10 lg:px-10 lg:py-10">
-            <h5 className="text-[36px] font-medium text-center mudiumTitle">
+            <h5 className="text-[24px] font-normal text-center mudiumTitle">
               {user.coupleName}'s Wedding
             </h5>
 
@@ -230,20 +229,20 @@ const AddressRSVP = () => {
                   target="_blank"
                   className="flex justify-center items-center space-x-3 py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300"
                 >
-                  <LinkIcon className="w-5 h-5" />
                   <span className="customLabel text-[14px] font-normal">
-                    {" "}
                     Website Link
                   </span>
+                  {/* <LinkIcon className="w-5 h-5" /> */}
+                  <img src="/icons/website.png" alt="" className="w-5 h-5" />
                 </a>
               </Link>
             </div>
-            <h4 className="text-[36px] font-medium text-center mudiumTitle">
+            <h4 className="text-[32px] leading-10 font-medium text-center mudiumTitle">
               ✨ Your Are Invited To Our Wedding! 💍 ✨
             </h4>
-            <p className="mt-5 mb-5 font-normal text-center sm:mb-16 text-[14px] customLabel">
+            <p className="mt-5 mb-5 font-normal max-w-[620px] mx-auto text-center sm:mb-16 text-[18px] leading-7 capitalize customLabel">
               Thanks for your love and support! We want to send you an
-              invitation!
+              invitation. Please Fill Out this Form!
             </p>
 
             <form
@@ -251,13 +250,13 @@ const AddressRSVP = () => {
               onSubmit={handleSubmit(onSubmit)}
             >
               <div className="space-y-3">
-                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
+                <Heading h3 className="!text-[18px] !font-medium mudiumTitle">
                   Your Name Here <span className="text-red-400">*</span>
                 </Heading>
                 <div>
                   <input
                     type="text"
-                    className="w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
+                    className="w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal placeholder-[#757575] text-[14px]"
                     placeholder="Enter Your Full Name"
                     {...register("name", {
                       required: {
@@ -271,39 +270,37 @@ const AddressRSVP = () => {
                   </p>
                 </div>
               </div>
-              {/* <div className='space-y-3'>
-                <Heading h3 className='!text-[22px] !font-medium mudiumTitle'>
-                  Email <span className='text-red-400'>*</span>
+              <div className="space-y-3">
+                <Heading h3 className="!text-[18px] !font-medium mudiumTitle">
+                  Email <span className="text-red-400">*</span>
                 </Heading>
                 <div>
                   <input
-                    type='email'
-                    className='w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal'
-                    placeholder='Enter Your Valid Email'
-                    {...register('email', {
+                    type="email"
+                    className="w-full rounded-[5px] border-2 border-gray-200 placeholder-[#757575] text-[14px] py-3 px-5 text-base font-normal"
+                    placeholder="Enter Your Valid Email"
+                    {...register("email", {
                       required: {
                         value: true,
-                        message: 'Email is required!',
+                        message: "Email is required!",
                       },
                       pattern: {
                         value:
                           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                        message: 'Must be a valid email address',
+                        message: "Must be a valid email address",
                       },
                     })}
                   />
-                  <p className='h-4 mt-2 text-sm font-light text-gray-300 capitalize'>
-                    This form is collecting emails.
-                  </p>
+
                   {errors?.email && (
-                    <p className='h-4 mt-2 text-sm font-light text-red-400'>
+                    <p className="h-4 mt-2 text-sm font-light text-red-400">
                       {errors?.email?.message}
                     </p>
                   )}
                 </div>
-              </div> */}
+              </div>
               <div className="space-y-3">
-                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
+                <Heading h3 className="!text-[18px] !font-medium mudiumTitle">
                   What's your full address? 🏠
                   <span className="text-red-400">*</span>
                 </Heading>
@@ -312,7 +309,7 @@ const AddressRSVP = () => {
                   <div className="w-full">
                     <input
                       type="text"
-                      className="w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
+                      className="w-full rounded-[5px] border-2 border-gray-200 py-3 placeholder-[#757575] text-[14px] px-5 text-base font-normal"
                       placeholder="Street"
                       {...register("street", {
                         required: {
@@ -329,7 +326,7 @@ const AddressRSVP = () => {
                   <div className="w-full">
                     <input
                       type="text"
-                      className="w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
+                      className="w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal placeholder-[#757575] text-[14px]"
                       placeholder="Apt/Suite/Other"
                       {...register("providence")}
                     />
@@ -343,7 +340,7 @@ const AddressRSVP = () => {
                   <div className="w-full">
                     <input
                       type="text"
-                      className="w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
+                      className="w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal placeholder-[#757575] text-[14px]"
                       placeholder="City"
                       {...register("city", {
                         required: {
@@ -360,7 +357,7 @@ const AddressRSVP = () => {
                   <div className="w-full">
                     <input
                       type="text"
-                      className="w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
+                      className="w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal placeholder-[#757575] text-[14px]"
                       placeholder="State"
                       {...register("state", {
                         required: {
@@ -380,7 +377,7 @@ const AddressRSVP = () => {
                 <div className="w-full">
                   <input
                     type="text"
-                    className="w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
+                    className="w-full rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal placeholder-[#757575] text-[14px]"
                     placeholder="Zip"
                     {...register("zip", {
                       required: {
@@ -397,14 +394,11 @@ const AddressRSVP = () => {
                 <div className="w-full" />
               </div>
               <div className="space-y-3">
-                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
+                <Heading h3 className="!text-[18px] !font-medium mudiumTitle">
                   What's your phone number? 📲
                 </Heading>
                 <div className="flex items-center">
-                  <Listbox
-                    value={`USA`}
-
-                  >
+                  <Listbox value={`USA`}>
                     <div className="relative -mr-2">
                       <Listbox.Button className="bg-white cursor-pointer inline-block font-semibold py-[6px] md:py-[10px] px-4 placeholder-gray-400 border-[3px] border-gray-200 rounded-[5px] -mr-1">
                         <img
@@ -435,13 +429,12 @@ const AddressRSVP = () => {
                         leaveTo="opacity-0"
                       >
                         <Listbox.Options className="absolute z-50 max-w-xs py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-
                           <Listbox.Option
-
                             className={({ active }) =>
-                              `${active
-                                ? "text-amber-900 bg-secondary-alternative/20"
-                                : "text-gray-900"
+                              `${
+                                active
+                                  ? "text-amber-900 bg-secondary-alternative/20"
+                                  : "text-gray-900"
                               }
                           cursor-pointer select-none relative py-2 pl-10 pr-4`
                             }
@@ -450,17 +443,19 @@ const AddressRSVP = () => {
                             {({ selected, active }) => (
                               <>
                                 <span
-                                  className={`${selected ? "font-medium" : "font-normal"
-                                    } block truncate`}
+                                  className={`${
+                                    selected ? "font-medium" : "font-normal"
+                                  } block truncate`}
                                 >
                                   {`USA`}
                                 </span>
                                 {selected ? (
                                   <span
-                                    className={`${active
-                                      ? "text-amber-600"
-                                      : "text-amber-600"
-                                      }
+                                    className={`${
+                                      active
+                                        ? "text-amber-600"
+                                        : "text-amber-600"
+                                    }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                   >
                                     <CheckIcon
@@ -472,7 +467,6 @@ const AddressRSVP = () => {
                               </>
                             )}
                           </Listbox.Option>
-
                         </Listbox.Options>
                       </Transition>
                     </div>
@@ -480,7 +474,7 @@ const AddressRSVP = () => {
                   <input
                     id="phone"
                     type="tel"
-                    className="w-full focus:!border-gray-200 bg-white inline-block font-normal py-2 md:py-3 px-4 pl-5 placeholder-gray-400 border-[3px] border-gray-200 rounded-[5px]"
+                    className="w-full focus:!border-gray-200 placeholder-[#757575] text-[14px] bg-white inline-block font-normal py-2 md:py-3 px-4 pl-5 border-[3px] border-gray-200 rounded-[5px]"
                     placeholder="Enter phone number"
                     {...register("phone", {
                       required: {
@@ -501,7 +495,7 @@ const AddressRSVP = () => {
 
               <div className="space-y-5 !mt-5">
                 {/* phone provider */}
-                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
+                <Heading h3 className="!text-[18px] !font-medium mudiumTitle">
                   What's your phone provider?
                 </Heading>
                 <div>
@@ -523,7 +517,7 @@ const AddressRSVP = () => {
                           <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
                             <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
                           </div>
-                          <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
+                          <span className="text-[14px] font-light whitespace-nowrap font-inter customLabel">
                             AT&T
                           </span>
                         </label>
@@ -535,7 +529,7 @@ const AddressRSVP = () => {
                           type="radio"
                           id="T-Mobile&Sprint"
                           value="tmobile"
-                          className="hidden"
+                          className="hidden "
                           {...register("provider")}
                         />
                         <label
@@ -545,7 +539,7 @@ const AddressRSVP = () => {
                           <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
                             <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
                           </div>
-                          <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
+                          <span className="text-[14px] font-light whitespace-nowrap font-inter customLabel">
                             T-Mobile & Sprint
                           </span>
                         </label>
@@ -557,7 +551,7 @@ const AddressRSVP = () => {
                           type="radio"
                           id="Verizon"
                           value="verizon"
-                          className="hidden"
+                          className="hidden "
                           {...register("provider")}
                         />
                         <label
@@ -567,7 +561,7 @@ const AddressRSVP = () => {
                           <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
                             <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
                           </div>
-                          <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
+                          <span className="text-[14px] font-light whitespace-nowrap font-inter customLabel">
                             Verizon
                           </span>
                         </label>
@@ -589,7 +583,7 @@ const AddressRSVP = () => {
                           <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
                             <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
                           </div>
-                          <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
+                          <span className="text-[14px] font-light whitespace-nowrap font-inter customLabel">
                             Boost Mobile
                           </span>
                         </label>
@@ -611,7 +605,7 @@ const AddressRSVP = () => {
                           <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
                             <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
                           </div>
-                          <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
+                          <span className="text-[14px] font-light whitespace-nowrap font-inter customLabel">
                             Cricket Wireless
                           </span>
                         </label>
@@ -633,7 +627,7 @@ const AddressRSVP = () => {
                           <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
                             <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
                           </div>
-                          <span className="text-lg font-light whitespace-nowrap font-inter customLabel">
+                          <span className="text-[14px] font-light whitespace-nowrap font-inter customLabel">
                             Virgin Mobile
                           </span>
                         </label>
@@ -662,9 +656,9 @@ const AddressRSVP = () => {
                       value={selectedProvider}
                       onChange={setSelectedProvider}
                     >
-                      <div className="relative mt-1">
+                      <div className="relative mt-1 text-[14px]">
                         <Listbox.Button className="relative font-inter w-max rounded-[5px] border-2 border-secondary/20 sm:py-3 py-1 pl-5 sm:pr-10 pr-8 text-base font-semibold customLabel">
-                          <span className="block truncate">
+                          <span className="block truncate text-[14px]">
                             {selectedProvider.name}
                           </span>
                           <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -685,9 +679,10 @@ const AddressRSVP = () => {
                               <Listbox.Option
                                 key={providerIdx}
                                 className={({ active }) =>
-                                  `${active
-                                    ? "text-secondary bg-secondary-alternative/50"
-                                    : "text-gray-900"
+                                  `${
+                                    active
+                                      ? "text-secondary bg-secondary-alternative/50"
+                                      : "text-gray-900"
                                   }
                           cursor-pointer select-none relative py-2 pl-10 pr-4 font-medium`
                                 }
@@ -696,19 +691,21 @@ const AddressRSVP = () => {
                                 {({ selected, active }) => (
                                   <>
                                     <span
-                                      className={`customLabel ${selected
-                                        ? "font-semibold"
-                                        : "font-medium"
-                                        } block truncate`}
+                                      className={`customLabel ${
+                                        selected
+                                          ? "font-semibold"
+                                          : "font-medium"
+                                      } block truncate text-[14px]`}
                                     >
                                       {provider.name}
                                     </span>
                                     {selected ? (
                                       <span
-                                        className={`customLabel ${active
-                                          ? "text-amber-600"
-                                          : "text-amber-600"
-                                          }
+                                        className={`customLabel ${
+                                          active
+                                            ? "text-amber-600"
+                                            : "text-amber-600"
+                                        }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                       >
                                         <CheckIcon
@@ -822,7 +819,7 @@ const AddressRSVP = () => {
               </div>
 
               <div className="space-y-5">
-                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
+                <Heading h3 className="!text-[18px] !font-medium mudiumTitle">
                   How do you want your invitation & Reminders Sent?
                 </Heading>
 
@@ -834,12 +831,12 @@ const AddressRSVP = () => {
                         id="text_invite"
                         value={true}
                         defaultChecked
-                        className="text-primary rounded-md border-2 border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                        className="text-primary rounded-md border-2 placeholder-[#757575] text-[14px] border-gray-300 w-[20px] h-[20px] focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                         {...register("text_invite")}
                       />
                       <label
                         htmlFor="text_invite"
-                        className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg customLabel"
+                        className="text-[14px] font-light cursor-pointer whitespace-nowrap font-inter customLabel"
                       >
                         Text - 📲
                       </label>
@@ -857,7 +854,7 @@ const AddressRSVP = () => {
                       />
                       <label
                         htmlFor="email_invite"
-                        className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg customLabel"
+                        className="text-[14px] font-light cursor-pointer whitespace-nowrap font-inter customLabel"
                       >
                         E-mail - 🖥
                       </label>
@@ -874,7 +871,7 @@ const AddressRSVP = () => {
                       />
                       <label
                         htmlFor="mail_invite"
-                        className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg customLabel"
+                        className="text-[14px] font-light cursor-pointer whitespace-nowrap font-inter customLabel"
                       >
                         Mail - 💌
                       </label>
@@ -892,7 +889,7 @@ const AddressRSVP = () => {
                       />
                       <label
                         htmlFor="allAbove_invite"
-                        className="text-lg font-light cursor-pointer whitespace-nowrap font-inter md:text-lg customLabel"
+                        className="text-[14px] font-light cursor-pointer whitespace-nowrap font-inter customLabel"
                       >
                         All The Above - 💯
                       </label>
@@ -902,12 +899,12 @@ const AddressRSVP = () => {
               </div>
 
               <div className="space-y-5 !mt-5">
-                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
+                <Heading h3 className="!text-[18px] !font-medium mudiumTitle">
                   Can you make it? Please RSVP
                 </Heading>
 
                 <div class="grid grid-cols-12 gap-2 w-full customGrid customAlignCenter">
-                  <div class="md:col-span-4 xs:col-span-6 p-2 customGap">
+                  <div class="md:col-span-3 xs:col-span-6 p-2 customGap">
                     <div className="flex items-center">
                       <input
                         type="radio"
@@ -924,13 +921,13 @@ const AddressRSVP = () => {
                         <div className="checked-outer border-[3px] rounded-full border-primary w-6 md:w-7 h-6 md:h-7 flex items-center justify-center">
                           <div className="w-2 h-2 rounded-full checked-inner md:w-3 md:h-3"></div>
                         </div>
-                        <span className="text-lg font-light font-inter customLabel">
+                        <span className="text-[14px] font-light font-inter customLabel">
                           Yes
                         </span>
                       </label>
                     </div>
                   </div>
-                  <div class="md:col-span-4 xs:col-span-6 p-2 customGap">
+                  <div class="md:col-span-3 xs:col-span-6 p-2 customGap">
                     <div className="flex items-center">
                       <input
                         type="radio"
@@ -947,7 +944,7 @@ const AddressRSVP = () => {
                         <div className="checked-outer border-[3px] rounded-full border-primary w-6 md:w-7 h-6 md:h-7 flex items-center justify-center">
                           <div className="w-2 h-2 rounded-full checked-inner md:w-3 md:h-3"></div>
                         </div>
-                        <span className="text-lg font-light font-inter customLabel">
+                        <span className="text-[14px] font-light font-inter customLabel">
                           Maybe
                         </span>
                       </label>
@@ -970,7 +967,7 @@ const AddressRSVP = () => {
                         <div className="checked-outer border-[3px] rounded-full border-primary w-6 md:w-7 h-6 md:h-7 flex items-center justify-center">
                           <div className="w-2 h-2 rounded-full checked-inner md:w-3 md:h-3"></div>
                         </div>
-                        <span className="text-lg font-light font-inter customLabel">
+                        <span className="text-[14px] font-light font-inter customLabel">
                           No, we send our best.
                         </span>
                       </label>
@@ -981,41 +978,46 @@ const AddressRSVP = () => {
 
               <div
                 className="space-y-3 !mt-10 "
-              // title='Please include yourself'
+                // title='Please include yourself'
               >
-                <Heading h3 className="!text-[22px] !font-medium mudiumTitle">
+                <Heading
+                  h3
+                  className="!text-[18px] !m-0 !font-medium mudiumTitle"
+                >
                   RSVP Estimate Guests
                 </Heading>
-
+                <h2 className="text-[12px]">Please include yourself</h2>
                 <input
-                  disabled
                   type="text"
                   value={`${getValues("guestEstimate")}`}
                   className="w-28 text-center rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
+                  {...register("guestEstimate")}
                 />
                 <div className="py-1 sm:py-3">
                   <input
                     type="range"
                     defaultValue={1}
                     min="1"
-                    max="1000"
+                    max="20"
                     className="block cursor-pointer text-center rounded-[5px] border-2 border-gray-200 sm:px-5 px-2 text-base font-normal"
                     {...register("guestEstimate")}
                   />
-                  <h2 className="text-[12px]">Please include yourself</h2>
                 </div>
               </div>
-              <div className="!mt-10">
+              <div className="!mt-10 flex justify-center items-center flex-col">
                 <Button
-                  className="!mx-0 !rounded-lg"
+                  className="!mx-0 !rounded-lg !bg-[#FCE0EB] !text-[#000000] !w-[205px] h-[70px] !text-[24px]"
                   label="Submit"
                   type="submit"
                 />
+                <h1 className="text-[32px] leading-9 font-normal mt-4">
+                  Eat, Drink, & BeWeddy!
+                </h1>
               </div>
             </form>
           </div>
 
-          <div className="py-16 border-t-4 border-primary bg-secondary-alternative/40">
+          {/* <div className="py-16 border-t-4 border-primary bg-secondary-alternative/40">
             <div className="text-center">
               <Heading
                 h3
@@ -1031,7 +1033,7 @@ const AddressRSVP = () => {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </DashboardLayout>
 

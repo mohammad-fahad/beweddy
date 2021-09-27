@@ -6,11 +6,47 @@ import DashboardTopBar from "@components/dashboard/header/TopBar";
 import DashboardLayout from "@components/dashboard/layout";
 import { StarIcon } from "@heroicons/react/solid";
 import { useState } from "react";
-import fakeData from "./fakeData";
 import InvitationCard from "./InvitationCard";
 import { QRCode } from "react-qrcode-logo";
 
+
+
 const MailOutInvitationPage = () => {
+
+  const fakeData = [
+    {
+      image:
+        "https://designshack.net/wp-content/uploads/free-invitation-templates.jpg",
+      name: "Card one",
+      color: "red green blue",
+    },
+    {
+      image:
+        "https://cdn3.vectorstock.com/i/1000x1000/42/27/luxury-invitation-card-design-vector-22684227.jpg",
+      name: "Card two",
+      color: "red green blue",
+    },
+    {
+      image:
+        "https://www.proweddinginvites.com/images/thumb/files/18/PWIF063.jpg",
+      name: "Card three",
+      color: "red green blue",
+    },
+    {
+      image:
+        "https://legaldbol.com/wp-content/uploads/2019/03/79-Create-Invitation-Card-Template-Free-Vector-in-Photoshop-for-Invitation-Card-Template-Free-Vector.jpg",
+      name: "Card four",
+      color: "red green blue",
+    },
+    {
+      image:
+        "https://file.amockup.com/uploads/2020/08/free-modern-tracing-paper-mock-up1.jpg",
+      name: "Card five",
+      color: "red green blue",
+    },
+  ];
+
+
   const [isActive, setIsActive] = useState(false);
   const [isActive2, setIsActive2] = useState(false);
   const [value, setValue] = useState(`${process.env.NEXT_PUBLIC_CLIENT_URL}`);

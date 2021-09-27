@@ -55,12 +55,12 @@ const EmailPreview = ({ message, handleSubmit, setIsOpen, uploadedFile }) => {
         </div>
 
         <div
-          className="w-full max-w-xl sm:pt-10 pt-2 mx-auto customLabel"
+          className="w-full pt-2 mx-auto sm:pt-10 customLabel"
           dangerouslySetInnerHTML={{ __html: message }}
         ></div>
       </div>
 
-      <div className="flex items-center w-full max-w-xl mx-auto sm:my-10 my-3 ">
+      <div className="flex items-center w-full mx-auto my-3 sm:my-10 ">
         <button
           type="button"
           className="w-40 px-5 py-2 font-medium capitalize transition duration-300 border-2 border-gray-200 rounded-lg font-inter hover:bg-secondary-alternative/40 hover:border-primary customLabel"

@@ -132,6 +132,7 @@ const userSchema = new mongoose.Schema(
       },
     ],
     socialAccounts: {
+
       groom: {
         facebook: String,
         twitter: String,
@@ -153,9 +154,9 @@ const userSchema = new mongoose.Schema(
         youTube: String,
       },
     },
+
     weddingVideo: {
-      title: String,
-      video: String,
+      type: String,
     },
     role: {
       type: String,
