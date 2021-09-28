@@ -142,6 +142,9 @@ const CreateSuperlink = () => {
   ];
 
   const onEditorStateChange = (editorState) => setEditorState(editorState);
+
+  const val = `Hello, \n\nWe would like to invite you to our wedding! Please come celebrate with us. \n\nThank you for your support. Love, ${user.coupleName}!\n\nVisit Our Wedding Website: ${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${user?.username}\n`;
+
   return (
     <>
       <Head>
@@ -284,13 +287,33 @@ const CreateSuperlink = () => {
                   <h2 className="text-[14px] font-bold leading-[17px] mb-3">
                     Body Text
                   </h2>
-                  <div className="relative">
+                  {/* <div className="relative">
                     <Editor
                       editorState={editorState}
                       wrapperClassName="border-2 border-primary rounded-[5px] overflow-hidden"
                       editorClassName="px-5 py-2 min-h-[300px] !h-[20px] customLabel"
                       onEditorStateChange={onEditorStateChange}
                     />
+                  </div> */}
+                  <div>
+                    <textarea
+                      cols="20"
+                      rows="8"
+                      className="rounded-[15px] customLabel focus:border-purple-100 sm:p-6 p-3 w-full placeholder-primary font-medium text-lg scroll-design"
+                      defaultValue={val}
+                      placeholder=""
+                      {...register("message", {
+                        required: {
+                          value: true,
+                          message: "Compose message is required!",
+                        },
+                      })}
+                    ></textarea>
+                    {errors.message && (
+                      <p className="text-sm text-red-400">
+                        {errors.message.message}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="flex items-center justify-end w-full mt-5">
