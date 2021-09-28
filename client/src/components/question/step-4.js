@@ -126,7 +126,7 @@ const SentInvitation = () => {
     register('provider', {
       required: {
         value: true,
-        message: 'Please add your phone provider',
+        message: 'Please select your phone provider',
       },
     });
   }, []);
@@ -142,7 +142,7 @@ const SentInvitation = () => {
     if (selectedProvider.sms === '') {
       setError('provider', {
         type: 'required',
-        message: 'Please add your phone provider',
+        message: 'Please select your phone provider',
       });
       return;
     }
