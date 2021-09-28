@@ -15,6 +15,7 @@ import { useDropzone } from "react-dropzone";
 import { attemptUpdateUserProfile } from "@features/user/userActions";
 import { downloadQRCode } from "@utils/index";
 import useCopyClipboard from "react-use-clipboard";
+import SharableModal from "@components/dashboard/SharableModal";
 
 const QRCodePage = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const QRCodePage = () => {
   const [file, setFile] = useState();
   const [preview, setPreview] = useState();
   const [selectedImageFile, setSelectedImageFile] = useState();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [value, setValue] = useState(
     `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${user?.username}`
   );
@@ -172,6 +174,15 @@ const QRCodePage = () => {
                   )}
                 </div>
               </div>
+              <div>
+                <button
+                  type="button"
+                  className=" mt-5 text-xs w-[160px] py-2 text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap"
+                  onClick={() => setIsModalOpen(true)}
+                >
+                  preview
+                </button>
+              </div>
             </div>
 
             <div className="hidden mx-auto xl:col-span-1 md:block">
@@ -202,7 +213,7 @@ const QRCodePage = () => {
             </div>
           </div>
 
-          <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
+          {/* <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
             <div className="justify-self-center md:justify-self-stretch">
               <div className="space-y-8">
                 <div className="space-y-3">
@@ -234,6 +245,7 @@ const QRCodePage = () => {
                 </div>
               </div>
             </div>
+
             <div className="justify-self-center md:justify-self-stretch max-w-[400px] w-full">
               <div className="space-y-10">
                 <div className="space-y-3">
@@ -363,9 +375,10 @@ const QRCodePage = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </DashboardContainer>
       </DashboardLayout>
+      <SharableModal {...{ isModalOpen, setIsModalOpen }} />
       <CropImage
         onSave={onCropSave}
         selectedFile={selectedImageFile}
