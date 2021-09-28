@@ -174,10 +174,9 @@ const SentInvitation = () => {
                     <Listbox.Options className="absolute z-50 max-w-xs py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                       <Listbox.Option
                         className={({ active }) =>
-                          `${
-                            active
-                              ? "text-amber-900 bg-secondary-alternative/20"
-                              : "text-gray-900"
+                          `${active
+                            ? "text-amber-900 bg-secondary-alternative/20"
+                            : "text-gray-900"
                           }
                           cursor-pointer select-none relative py-2 pl-10 pr-4`
                         }
@@ -186,17 +185,15 @@ const SentInvitation = () => {
                         {({ selected, active }) => (
                           <>
                             <span
-                              className={`${
-                                selected ? "font-medium" : "font-normal"
-                              } block truncate`}
+                              className={`${selected ? "font-medium" : "font-normal"
+                                } block truncate`}
                             >
                               {`USA`}
                             </span>
                             {selected ? (
                               <span
-                                className={`${
-                                  active ? "text-amber-600" : "text-amber-600"
-                                }
+                                className={`${active ? "text-amber-600" : "text-amber-600"
+                                  }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                               >
                                 <CheckIcon

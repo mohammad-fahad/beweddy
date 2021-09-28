@@ -75,15 +75,15 @@ const VenmoModal = ({ isVenmoModalOpen, setIsVenmoModalOpen }) => {
                 </Dialog.Title>
                 <div className="flex items-center justify-center">
                   <Image
-                    src="https://i.ibb.co/V9yxT0p/images.png"
-                    width={100}
+                    src="/images/registries/venmo__.png"
+                    width={200}
                     height={100}
                     objectFit="contain"
                     loading="lazy"
                   />
                 </div>
                 <form
-                  className="space-y-2 sm:mt-10 xs:space-y-5"
+                  className="space-y-2 sm:mt-5 xs:space-y-5"
                   onSubmit={handleSubmit(onSubmit)}
                 >
                   <div className="flex flex-col space-y-2">
@@ -91,13 +91,13 @@ const VenmoModal = ({ isVenmoModalOpen, setIsVenmoModalOpen }) => {
                       htmlFor="title"
                       className="text-sm font-medium md:text-base md:font-semibold"
                     >
-                      Venmo Name
+                      Venmo Username
                     </label>
                     <input
                       id="title"
                       type="text"
                       className="text-[13px] md:text-[15px] border-gray-100 border-2 py-2 px-4 xs:py-3 xs:px-5 placeholder-gray-300 rounded-[5px]"
-                      placeholder="Enter Venmo Name"
+                      placeholder="Enter Venmo User Name"
                       {...register("title", {
                         required: {
                           value: true,
@@ -180,7 +180,7 @@ const VenmoModal = ({ isVenmoModalOpen, setIsVenmoModalOpen }) => {
                       type="submit"
                       className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white transition duration-300 border-2 rounded-md bg-primary border-primary hover:bg-white hover:text-primary"
                     >
-                      Create
+                      Connect
                     </button>
                   </div>
                 </form>
