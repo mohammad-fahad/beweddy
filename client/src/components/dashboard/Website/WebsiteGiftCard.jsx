@@ -47,8 +47,8 @@ const WebsiteGiftCards = ({ giftCards, couple, coupleWebsite }) => {
 
       {coupleWebsite ? (
         <div className="flex justify-center mt-10">
-          <Link href="#">
-            <button className="text-lg font-semibold font-inter hover:underline customLabel">
+          <Link href="/">
+            <button className="text-lg font-semibold font-inter customLabel border-2 transition-colors duration-300 border-[#DEDEDE] px-10 rounded py-1 bg-white text-primary hover:bg-primary hover:text-white">
               See All Gift Cards
             </button>
           </Link>
