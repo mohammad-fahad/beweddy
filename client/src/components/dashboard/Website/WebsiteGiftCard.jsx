@@ -1,19 +1,19 @@
-import { XIcon } from '@heroicons/react/solid';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Fragment, useEffect, useState } from 'react';
-import { useMediaQuery } from '@react-hook/media-query';
+import { XIcon } from "@heroicons/react/solid";
+import Image from "next/image";
+import Link from "next/link";
+import { Fragment, useEffect, useState } from "react";
+import { useMediaQuery } from "@react-hook/media-query";
 
-const WebsiteGiftCards = ({ giftCards, couple }) => {
+const WebsiteGiftCards = ({ giftCards, couple, coupleWebsite }) => {
   const [pushItemTo, setPushItemTo] = useState(0);
   const [col, setCol] = useState(4);
   const [showTooltip, setShowTooltip] = useState(false);
   const [tooltip, setTooltip] = useState({});
   const [selected, setSelected] = useState(null);
 
-  const isLargeDevice = useMediaQuery('only screen and (min-width: 992px)');
-  const isMediumDevice = useMediaQuery('only screen and (max-width: 991px)');
-  const isSmallDevice = useMediaQuery('only screen and (max-width: 767px)');
+  const isLargeDevice = useMediaQuery("only screen and (min-width: 992px)");
+  const isMediumDevice = useMediaQuery("only screen and (max-width: 991px)");
+  const isSmallDevice = useMediaQuery("only screen and (max-width: 767px)");
 
   useEffect(() => {
     if (isSmallDevice) {
@@ -28,30 +28,40 @@ const WebsiteGiftCards = ({ giftCards, couple }) => {
   }, [isSmallDevice, isMediumDevice, isLargeDevice]);
 
   return (
-    <div className=' from-[#FCE3EB] to-white relative'>
-      <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-5 md:gap-10 mx-auto w-full'>
-        {giftCards?.map(giftCard => (
+    <div className=" from-[#FCE3EB] to-white relative">
+      <div className="grid w-full grid-cols-2 gap-5 mx-auto sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 md:gap-10">
+        {giftCards?.map((giftCard) => (
           <Link href={`/couple/${couple?.username}/${giftCard?._id}/checkout`}>
-            <a className='hover:scale-110 transition duration-300'>
+            <a className="transition duration-300 hover:scale-110">
               <Image
                 width={245}
                 height={157}
                 src={giftCard.image}
                 alt={giftCard.name}
-                className='w-full'
+                className="w-full"
               />
             </a>
           </Link>
         ))}
       </div>
 
-      <div className='flex justify-end pr-2'>
-        <Link href='#'>
-          <a className='text-lg font-semibold font-inter hover:underline customLabel'>
-            See All Gift Cards
-          </a>
-        </Link>
-      </div>
+      {coupleWebsite ? (
+        <div className="flex justify-center mt-10">
+          <Link href="#">
+            <button className="text-lg font-semibold font-inter hover:underline customLabel">
+              See All Gift Cards
+            </button>
+          </Link>
+        </div>
+      ) : (
+        <div className="flex justify-end pr-2">
+          <Link href="#">
+            <a className="text-lg font-semibold font-inter hover:underline customLabel">
+              See All Gift Cards
+            </a>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
