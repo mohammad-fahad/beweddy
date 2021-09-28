@@ -205,9 +205,9 @@ const RSVPage = ({ user }) => {
           </Carousel>
 
           <div className="px-2 py-10 lg:px-10 lg:py-10">
-            <h5 className="text-[24px] font-normal text-center mudiumTitle">
+            <h3 className="text-[24px] font-normal text-center mudiumTitle">
               {user.coupleName}'s Wedding
-            </h5>
+            </h3>
 
             <div className="flex justify-center my-5">
               <Link href={`/couple/${user?.username}`}>
@@ -223,9 +223,9 @@ const RSVPage = ({ user }) => {
                 </a>
               </Link>
             </div>
-            <h4 className="text-[32px] leading-10 font-medium text-center mudiumTitle">
-              ✨ Your Are Invited To Our Wedding! 💍 ✨
-            </h4>
+            <h3 className="text-[32px] leading-10 font-medium text-center mudiumTitle">
+              ✨ You Are Invited To Our Wedding! 💍 ✨
+            </h3>
             <p className="mt-5 mb-5 font-normal max-w-[620px] mx-auto text-center sm:mb-16 text-[18px] leading-7 capitalize customLabel">
               Thanks for your love and support! We want to send you an
               invitation. Please Fill Out this Form!
