@@ -8,10 +8,6 @@ const navLinks = [
   {
     label: "We Need Your Address",
     href: "/dashboard/address-and-rsvp",
-  },
-  {
-    label: "We Need Your Address",
-    href: "/dashboard/address-and-rsvp",
     icon: "/icons/location.svg",
   },
   {
