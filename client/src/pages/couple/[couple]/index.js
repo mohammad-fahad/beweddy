@@ -37,62 +37,62 @@ const CoupleWebsitePage = (props) => {
     couple?.receptionDetails?.length
       ? couple.receptionDetails
       : [
-        {
-          id: generate(),
-          time: "5.00 PM",
-          details: "Example of event details",
-        },
-        {
-          id: generate(),
-          time: "5:30 PM",
-          details: "Ceremony",
-        },
-        {
-          id: generate(),
-          time: "6:00 PM",
-          details: "Ceremony ends/cocktails begin",
-        },
-        {
-          id: generate(),
-          time: "7:00 PM",
-          details: "Cocktails ends and guests are ushered into the reception",
-        },
-        {
-          id: generate(),
-          time: "7:20 PM",
-          details: "Introduction and first dance—guests asked to join after ",
-        },
-        {
-          id: generate(),
-          time: "7:45 PM",
-          details: " Guests take their seats and the first course is served",
-        },
-        {
-          id: generate(),
-          time: "8:00 PM",
-          details: "Welcome speech from parents",
-        },
-        {
-          id: generate(),
-          time: "8:10 PM",
-          details: "Toasts from maid of honor and best man",
-        },
-        {
-          id: generate(),
-          time: "9:00 PM",
-          details: "Parent dances",
-        },
-        {
-          id: generate(),
-          time: "9:30 PM ",
-          details: "Cake cutting",
-        },
-        {
-          id: generate(),
-          time: "10:00 PM",
-          details: "Send-Off",
-        },
-      ]
+          {
+            id: generate(),
+            time: "5.00 PM",
+            details: "Example of event details",
+          },
+          {
+            id: generate(),
+            time: "5:30 PM",
+            details: "Ceremony",
+          },
+          {
+            id: generate(),
+            time: "6:00 PM",
+            details: "Ceremony ends/cocktails begin",
+          },
+          {
+            id: generate(),
+            time: "7:00 PM",
+            details: "Cocktails ends and guests are ushered into the reception",
+          },
+          {
+            id: generate(),
+            time: "7:20 PM",
+            details: "Introduction and first dance—guests asked to join after ",
+          },
+          {
+            id: generate(),
+            time: "7:45 PM",
+            details: " Guests take their seats and the first course is served",
+          },
+          {
+            id: generate(),
+            time: "8:00 PM",
+            details: "Welcome speech from parents",
+          },
+          {
+            id: generate(),
+            time: "8:10 PM",
+            details: "Toasts from maid of honor and best man",
+          },
+          {
+            id: generate(),
+            time: "9:00 PM",
+            details: "Parent dances",
+          },
+          {
+            id: generate(),
+            time: "9:30 PM ",
+            details: "Cake cutting",
+          },
+          {
+            id: generate(),
+            time: "10:00 PM",
+            details: "Send-Off",
+          },
+        ]
   );
   const { query } = useRouter();
 
@@ -231,7 +231,7 @@ const CoupleWebsitePage = (props) => {
             <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-10" />
           )}
           {/* Reception Details */}
-          {Object?.keys(couple.receptionDetails)?.length !== 0 && (
+          {Object.keys(couple?.receptionDetails)?.length !== 0 && (
             <h2 className="text-2xl md:text-4xl font-medium text-center mt-[17px] commonTitle">
               Reception Details
             </h2>
@@ -285,30 +285,39 @@ const CoupleWebsitePage = (props) => {
           {/* 😇 Bless us with a Gift Card section */}
           <div className="w-full mx-auto my-3 md:my-8">
             {couple?.giftCards?.length > 0 && (
-              <>
-                <h2 className="text-2xl font-medium text-center md:text-4xl commonTitle">
-                  😇 Bless us with a Gift Card
-                </h2>
-                <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] my-5" />
-                <div>
-                  <WebsiteGiftCards
-                    {...{ couple }}
-                    giftCards={couple?.giftCards}
-                  />
+              <div class="grid grid-cols-12 gap-4 w-full my-3 md:my-8">
+                <div class="col-start-2 col-span-10">
+                  <h2 className="text-2xl font-medium text-center md:text-4xl commonTitle">
+                    😇 Bless us with a Gift Card //{" "}
+                  </h2>
+                  <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] my-5" />
+                  <div className="mt-5 space-y-3">
+                    <div className="my-10">
+                      <WebsiteGiftCards
+                        {...{ couple }}
+                        giftCards={couple?.giftCards}
+                        coupleWebsite
+                      />
+                    </div>
+                  </div>
                 </div>
-              </>
+              </div>
             )}
 
             {couple?.registries?.length > 0 && (
-              <>
-                <h2 className="text-4xl font-medium text-center commonTitle">
-                  Our Registry
-                </h2>
-                <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-[28px] mb-[50px]" />
-                <div>
-                  <WebsiteRegistry registries={couple?.registries} />
+              <div class="grid grid-cols-12 gap-4 w-full my-3 md:my-8">
+                <div class="col-start-2 col-span-10">
+                  <h2 className="text-4xl font-medium text-center commonTitle">
+                    Our Registry
+                  </h2>
+                  <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-[28px] mb-[50px]" />
+                  <div className="mt-5 space-y-3">
+                    <div>
+                      <WebsiteRegistry registries={couple?.registries} />
+                    </div>
+                  </div>
                 </div>
-              </>
+              </div>
             )}
           </div>
           {(couple?.socialAccounts?.groom || couple?.socialAccounts?.bride) && (
@@ -363,7 +372,10 @@ const CoupleWebsitePage = (props) => {
             </div>
           </div>
           {/* wedding video */}
-          <WebsiteVideo videoLink={couple?.weddingVideo} className="!bg-[#ffffff] !from-transparent !to-transparent" />
+          <WebsiteVideo
+            videoLink={couple?.weddingVideo}
+            className="!bg-[#ffffff] !from-transparent !to-transparent"
+          />
         </div>
       </div>
       <footer className="container !p-0">
