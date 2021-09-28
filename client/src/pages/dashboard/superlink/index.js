@@ -38,7 +38,7 @@ const SuperLink = () => {
 
         <div className="border-4 border-gray-200 rounded-lg">
           <div class="grid grid-cols-12 gap-2 w-full p-8">
-            <div class="sm:col-start-4 sm:col-span-4 xs:col-span-12 p-2">
+            <div class="lg:col-start-4 sm:col-start-4 sm:col-span-6 col-span-12 p-2">
               <div className="flex flex-col items-center justify-center">
                 <h1 className="text-[24px] leading-7 font-medium">
                   Your Unique Superlink

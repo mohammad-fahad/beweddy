@@ -75,7 +75,7 @@ const SharableModal = ({ isModalOpen, setIsModalOpen }) => {
                           />
                           <button
                             onClick={setCopied}
-                            className="absolute right-1 items-center justify-center px-5 py-2 bg-[#ffffff] my-1"
+                            className="absolute right-1 border-l-2 items-center justify-center px-3 py-2 bg-[#ffffff] top-1"
                           >
                             Copy
                           </button>
@@ -107,7 +107,7 @@ const SharableModal = ({ isModalOpen, setIsModalOpen }) => {
                           />
                           <button
                             onClick={setCopied}
-                            className="absolute right-1 items-center justify-center px-5 py-2 bg-[#ffffff] my-1"
+                            className="absolute right-1 border-l-2 items-center justify-center px-3 py-2 bg-[#ffffff] top-1"
                           >
                             Copy
                           </button>
@@ -132,7 +132,7 @@ const SharableModal = ({ isModalOpen, setIsModalOpen }) => {
                           />
                           <button
                             onClick={setCopied}
-                            className="absolute right-1 items-center justify-center px-5 py-2 bg-[#ffffff] my-1"
+                            className="absolute right-1 border-l-2 items-center justify-center px-3 py-2 bg-[#ffffff] top-1"
                           >
                             Copy
                           </button>
@@ -157,7 +157,7 @@ const SharableModal = ({ isModalOpen, setIsModalOpen }) => {
                           />
                           <button
                             onClick={setCopied}
-                            className="absolute right-1 items-center justify-center px-5 py-2 bg-[#ffffff] my-1"
+                            className="absolute right-1 border-l-2 items-center justify-center px-3 py-2 bg-[#ffffff] top-1"
                           >
                             Copy
                           </button>
@@ -182,7 +182,7 @@ const SharableModal = ({ isModalOpen, setIsModalOpen }) => {
                           />
                           <button
                             onClick={setCopied}
-                            className="absolute right-1 items-center justify-center px-5 py-2 bg-[#ffffff] my-1"
+                            className="absolute right-1 border-l-2 items-center justify-center px-3 py-2 bg-[#ffffff] top-1"
                           >
                             Copy
                           </button>
@@ -207,7 +207,7 @@ const SharableModal = ({ isModalOpen, setIsModalOpen }) => {
                           />
                           <button
                             onClick={setCopied}
-                            className="absolute right-1 items-center justify-center px-5 py-2 bg-[#ffffff] my-1"
+                            className="absolute right-1 border-l-2 items-center justify-center px-3 py-2 bg-[#ffffff] top-1"
                           >
                             Copy
                           </button>

@@ -85,6 +85,7 @@ const userSchema = new mongoose.Schema(
       wayOfInvitation: {
         callingCode: String,
         phone: String,
+        provider: Object,
       },
       couplePictures: [],
     },
@@ -96,7 +97,7 @@ const userSchema = new mongoose.Schema(
     location: {
       type: String,
     },
-    receptionDetails: []
+    receptionDetails: [],
     // type: Array,
     // default: [
     //   {
@@ -112,7 +113,6 @@ const userSchema = new mongoose.Schema(
     //     details: 'Ceremony ends/cocktails begin',
     //   },
     // ],
-    ,
     giftCards: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -132,7 +132,6 @@ const userSchema = new mongoose.Schema(
       },
     ],
     socialAccounts: {
-
       groom: {
         facebook: String,
         twitter: String,
