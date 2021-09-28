@@ -830,12 +830,6 @@ const EditWebsitePage = () => {
                       className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal'
                       placeholder='Enter your location'
                       {...register('location')}
-                      // {...register('location', {
-                      //   required: {
-                      //     value: true,
-                      //     message: 'Location name and address is required!',
-                      //   },
-                      // })}
                     />
                   </div>
 
