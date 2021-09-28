@@ -70,11 +70,6 @@ const RegistriesPage = () => {
             </motion.div>
             {registries?.length > 0 && (
               <div className="flex flex-wrap items-center space-x-5 sm:flex-nowrap">
-                {/* <Button
-                label='Back'
-                className='opacity-50 !rounded-[5px] !py-2 mx-0'
-                // onClick={() => push({ query: { step: 1 } })}
-              /> */}
                 <Button
                   label="Save"
                   type="button"

@@ -13,8 +13,8 @@ const Superlink = ({ user }) => {
       <Image
         src={user?.questions?.couplePictures[0]?.url}
         alt="super link"
-        width={500}
-        height={300}
+        width={800}
+        height={400}
         objectFit="cover"
         loading="lazy"
         className="rounded-lg"
