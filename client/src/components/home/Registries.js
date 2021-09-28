@@ -33,7 +33,9 @@ const registries = [
     title: "Venmo",
     buttonText: "Link",
     link: "https://github.com/muttakinhasib",
-    image: "https://i.ibb.co/Zxsf0yQ/venmo.png",
+    image: "/images/registries/venmo__.png",
+
+    // image: "https://i.ibb.co/Zxsf0yQ/venmo.png",
   },
 ];
 

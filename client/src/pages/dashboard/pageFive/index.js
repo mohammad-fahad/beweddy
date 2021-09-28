@@ -128,9 +128,9 @@ const PageFive = () => {
             </Swiper>
           </div>
           <div className="p-10">
-            <h5 className="text-2xl font-medium text-center">
+            <h3 className="text-2xl font-medium text-center">
               {user.coupleName}'s Wedding
-            </h5>
+            </h3>
 
             <div className="flex justify-center my-5">
               <Link href="/">
@@ -140,9 +140,9 @@ const PageFive = () => {
                 </a>
               </Link>
             </div>
-            <h4 className="text-4xl font-medium text-center">
-              ✨ Your Are Invited To Our Wedding! 💍 ✨
-            </h4>
+            <h3 className="text-4xl font-medium text-center">
+              ✨ You Are Invited To Our Wedding! 💍 ✨
+            </h3>
             <p className="mt-5 mb-16 text-2xl font-medium text-center">
               Thanks for your love and support! We want to send you an
               invitation!

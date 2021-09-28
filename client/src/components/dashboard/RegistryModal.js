@@ -173,7 +173,7 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                       type="submit"
                       className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white transition duration-300 border-2 rounded-md bg-primary border-primary hover:bg-white hover:text-primary"
                     >
-                      Create
+                      Connect
                     </button>
                   </div>
                 </form>
