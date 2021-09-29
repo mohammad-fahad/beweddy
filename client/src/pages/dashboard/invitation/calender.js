@@ -49,7 +49,7 @@ const customStyles = {
 
 const CalendarPage = () => {
   //redux state section
-  const { user } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state?.user);
   const [changeText, setChangeText] = useState(false);
   const [startTime, setStartTime] = useState(false);
   const [newDate, setNewDate] = useState("");
@@ -94,7 +94,7 @@ const CalendarPage = () => {
     mode: "all",
     defaultValues: {
       summary: `${user?.coupleName}'s Wedding Day`,
-      location: `${user?.location}`,
+      location: `${user?.location ? user?.location : ""}`,
       description: `${val}`,
     },
   });
