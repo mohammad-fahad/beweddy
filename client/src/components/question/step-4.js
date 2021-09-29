@@ -2,12 +2,35 @@ import { CreateWebsiteContainer } from "@components/createWebsite";
 import { Button, Heading } from "@components/index";
 import { addSentInvitation } from "@features/question/questionSlice";
 import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon } from "@heroicons/react/solid";
+import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
+import axios from "axios";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+
+const providers = [
+  { name: "What’s your phone provider?", sms: "", mms: "" },
+  { name: "AT&T", sms: "txt.att.net", mms: "mms.att.net" },
+  {
+    name: "T-Mobile & Sprint",
+    sms: "tmomail.net",
+    mms: "tmomail.net",
+  },
+  { name: "Verizon", sms: "vtext.com", mms: "vzwpix.com" },
+  {
+    name: "Boost Mobile",
+    sms: "sms.myboostmobile.com",
+    mms: "myboostmobile.com",
+  },
+  {
+    name: "Cricket Wireless",
+    sms: "sms.cricketwireless.net",
+    mms: "mms.cricketwireless.net",
+  },
+  { name: "Virgin Mobile", sms: "vmobl.com", mms: "vmpix.com" },
+];
 
 const easing = [0.6, -0.05, 0.01, 0.99];
 const fadeInUp = {
@@ -51,11 +74,16 @@ const SentInvitation = () => {
   const dispatch = useDispatch();
   const { push } = useRouter();
   const { questions } = useSelector((state) => state.question);
+  const [selectedProvider, setSelectedProvider] = useState(
+    questions.sentInvitation.provider || providers[0]
+  );
   const {
     watch,
     register,
     getValues,
     setValue,
+    setError,
+    clearErrors,
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: "all", defaultValues: questions.sentInvitation });
@@ -94,7 +122,30 @@ const SentInvitation = () => {
     }
   }, [allAbove, textInvite, mailInvite, emailInvite]);
 
+  useEffect(() => {
+    register("provider", {
+      required: {
+        value: true,
+        message: "Please select your phone provider",
+      },
+    });
+  }, []);
+
+  useEffect(() => {
+    setValue("provider", selectedProvider);
+    if (selectedProvider.sms !== "") {
+      clearErrors("provider");
+    }
+  }, [selectedProvider]);
+
   const onSubmit = (data) => {
+    if (selectedProvider.sms === "") {
+      setError("provider", {
+        type: "required",
+        message: "Please select your phone provider",
+      });
+      return;
+    }
     dispatch(
       addSentInvitation({
         ...data,
@@ -231,6 +282,69 @@ const SentInvitation = () => {
             {errors.phone && (
               <p className="mt-2 text-sm font-light text-red-400">
                 {errors?.phone?.message}
+              </p>
+            )}
+          </div>
+          <div>
+            <Listbox value={selectedProvider} onChange={setSelectedProvider}>
+              <div className="relative">
+                <Listbox.Button className="flex items-center justify-between max-w-[28.4rem] text-left w-full focus:!border-gray-200 bg-white font-normal py-2 md:py-3 px-4 text-gray-400 border-[3px] border-gray-200 rounded-[5px]">
+                  <span>{selectedProvider?.name}</span>
+                  <SelectorIcon className="w-5 h-5" />
+                </Listbox.Button>
+                <Transition
+                  as={Fragment}
+                  leave="transition ease-in duration-100"
+                  leaveFrom="opacity-100"
+                  leaveTo="opacity-0"
+                >
+                  <Listbox.Options className="absolute z-50 max-h-48 overflow-auto max-w-[28.4rem] text-left w-full focus:!border-gray-200 bg-white font-normal text-sm border-[3px] border-gray-200 rounded-[5px]">
+                    {providers.map((provider, index) => (
+                      <Listbox.Option
+                        key={index}
+                        className={({ active }) =>
+                          `${
+                            active
+                              ? "text-amber-900 bg-secondary-alternative/20"
+                              : "text-gray-900"
+                          }
+                          cursor-pointer select-none relative py-2 pl-10 pr-4`
+                        }
+                        value={provider}
+                      >
+                        {({ selected, active }) => (
+                          <>
+                            <span
+                              className={`${
+                                selected ? "font-medium" : "font-normal"
+                              } block truncate`}
+                            >
+                              {provider.name}
+                            </span>
+                            {selected ? (
+                              <span
+                                className={`${
+                                  active ? "text-amber-600" : "text-amber-600"
+                                }
+                                absolute inset-y-0 left-0 flex items-center pl-3`}
+                              >
+                                <CheckIcon
+                                  className="w-5 h-5"
+                                  aria-hidden="true"
+                                />
+                              </span>
+                            ) : null}
+                          </>
+                        )}
+                      </Listbox.Option>
+                    ))}
+                  </Listbox.Options>
+                </Transition>
+              </div>
+            </Listbox>
+            {errors.provider && (
+              <p className="mt-2 text-sm font-light text-red-400">
+                {errors?.provider?.message}
               </p>
             )}
           </div>

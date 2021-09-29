@@ -355,8 +355,8 @@ const CheckoutPage = props => {
                         >
                           <input
                             type='range'
-                            min='15'
-                            defaultValue={15}
+                            min='10'
+                            defaultValue={10}
                             max='2000'
                             step='1'
                             className='cursor-pointer block text-center rounded-[5px] border-2 w-[230px] border-gray-200 py-3 px-5 text-base font-normal'

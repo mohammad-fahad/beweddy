@@ -92,6 +92,9 @@ const RSVPage = ({ user }) => {
     mode: "all",
     shouldFocusError: false,
     shouldUnregister: true,
+    defaultValues: {
+      guestEstimate: "1"
+    }
   });
   watch(["guestEstimate", "provider", "allAbove_invite"]);
 
@@ -193,9 +196,9 @@ const RSVPage = ({ user }) => {
           </Carousel>
 
           <div className="px-2 py-10 lg:px-10 lg:py-10">
-            <h5 className="text-[24px] font-normal text-center mudiumTitle">
+            <h3 className="text-[24px] font-normal text-center mudiumTitle">
               {user.coupleName}'s Wedding
-            </h5>
+            </h3>
 
             <div className="flex justify-center my-5">
               <Link href={`/couple/${user?.username}`}>
@@ -211,9 +214,9 @@ const RSVPage = ({ user }) => {
                 </a>
               </Link>
             </div>
-            <h4 className="text-[32px] leading-10 font-medium text-center mudiumTitle">
-              ✨ Your Are Invited To Our Wedding! 💍 ✨
-            </h4>
+            <h3 className="text-[32px] leading-10 font-medium text-center mudiumTitle">
+              ✨ You Are Invited To Our Wedding! 💍 ✨
+            </h3>
             <p className="mt-5 mb-5 font-normal max-w-[620px] mx-auto text-center sm:mb-16 text-[18px] leading-7 capitalize customLabel">
               Thanks for your love and support! We want to send you an
               invitation. Please Fill Out this Form!
@@ -405,10 +408,9 @@ const RSVPage = ({ user }) => {
                         <Listbox.Options className="absolute z-50 max-w-xs py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                           <Listbox.Option
                             className={({ active }) =>
-                              `${
-                                active
-                                  ? "text-amber-900 bg-secondary-alternative/20"
-                                  : "text-gray-900"
+                              `${active
+                                ? "text-amber-900 bg-secondary-alternative/20"
+                                : "text-gray-900"
                               }
                           cursor-pointer select-none relative py-2 pl-10 pr-4`
                             }
@@ -417,19 +419,17 @@ const RSVPage = ({ user }) => {
                             {({ selected, active }) => (
                               <>
                                 <span
-                                  className={`${
-                                    selected ? "font-medium" : "font-normal"
-                                  } block truncate`}
+                                  className={`${selected ? "font-medium" : "font-normal"
+                                    } block truncate`}
                                 >
                                   {`USA`}
                                 </span>
                                 {selected ? (
                                   <span
-                                    className={`${
-                                      active
-                                        ? "text-amber-600"
-                                        : "text-amber-600"
-                                    }
+                                    className={`${active
+                                      ? "text-amber-600"
+                                      : "text-amber-600"
+                                      }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                   >
                                     <CheckIcon
@@ -635,10 +635,9 @@ const RSVPage = ({ user }) => {
                               <Listbox.Option
                                 key={providerIdx}
                                 className={({ active }) =>
-                                  `${
-                                    active
-                                      ? "text-secondary bg-secondary-alternative/50"
-                                      : "text-gray-900"
+                                  `${active
+                                    ? "text-secondary bg-secondary-alternative/50"
+                                    : "text-gray-900"
                                   }
                           cursor-pointer select-none relative py-2 pl-10 pr-4 font-medium`
                                 }
@@ -647,21 +646,19 @@ const RSVPage = ({ user }) => {
                                 {({ selected, active }) => (
                                   <>
                                     <span
-                                      className={`customLabel ${
-                                        selected
-                                          ? "font-semibold"
-                                          : "font-medium"
-                                      } block truncate text-[14px]`}
+                                      className={`customLabel ${selected
+                                        ? "font-semibold"
+                                        : "font-medium"
+                                        } block truncate text-[14px]`}
                                     >
                                       {provider.name}
                                     </span>
                                     {selected ? (
                                       <span
-                                        className={`customLabel ${
-                                          active
-                                            ? "text-amber-600"
-                                            : "text-amber-600"
-                                        }
+                                        className={`customLabel ${active
+                                          ? "text-amber-600"
+                                          : "text-amber-600"
+                                          }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                       >
                                         <CheckIcon
@@ -842,7 +839,7 @@ const RSVPage = ({ user }) => {
 
               <div
                 className="space-y-3 !mt-10 "
-                // title='Please include yourself'
+              // title='Please include yourself'
               >
                 <Heading
                   h3
@@ -891,12 +888,4 @@ const RSVPage = ({ user }) => {
 export default RSVPage;
 
 export const getServerSideProps = async ({ params: { couple } }) => {
-  const res = await fetch(`${API_URL}/users/${couple}`);
-  const user = await res.json();
-
-  return {
-    props: {
-      user,
-    },
-  };
 };
