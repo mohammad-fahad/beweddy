@@ -14,22 +14,102 @@ const providers = [
   { name: "What’s your phone provider?", sms: "", mms: "" },
   { name: "AT&T", sms: "txt.att.net", mms: "mms.att.net" },
   {
-    name: "T-Mobile & Sprint",
-    sms: "tmomail.net",
-    mms: "tmomail.net",
-  },
-  { name: "Verizon", sms: "vtext.com", mms: "vzwpix.com" },
-  {
     name: "Boost Mobile",
     sms: "sms.myboostmobile.com",
     mms: "myboostmobile.com",
   },
+  {
+    name: "C-spire",
+    sms: "cspire1.com",
+    mss: "cspire1.com",
+  },
+  {
+    name: "Consumer Cellular",
+    sms: "mailmymobile.net",
+    mss: "mailmymobile.net",
+  },
+  {
+    name: "Cricket",
+    sms: "sms.cricketwireless.net",
+    mss: "sms.cricketwireless.net",
+  },
+  {
+    name: "Google Fi (Project Fi)",
+    sms: "msg.fi.google.com",
+    mss: "msg.fi.google.com",
+  },
+  {
+    name: "Metro PCS",
+    sms: "mymetropcs.com",
+    mss: "mymetropcs.com",
+  },
+  {
+    name: "Mint Mobile",
+    sms: "mailmymobile.net",
+    mss: "mailmymobile.net",
+  },
+  {
+    name: "Page Plus",
+    sms: "vtext.com",
+    mss: "mypixmessages.com",
+  },
+  {
+    name: "Red Pocket",
+    sms: "mms.att.net",
+    mss: "mms.att.net",
+  },
+  {
+    name: "T-Mobile",
+    sms: "tmomail.net",
+    mms: "tmomail.net",
+  },
+  { name: "Verizon", sms: "mms.att.net", mms: "vzwpix.com" },
   {
     name: "Cricket Wireless",
     sms: "sms.cricketwireless.net",
     mms: "mms.cricketwireless.net",
   },
   { name: "Virgin Mobile", sms: "vmobl.com", mms: "vmpix.com" },
+  {
+    name: "Republic Wireless",
+    sms: "text.republicwireless.com",
+    mms: "text.republicwireless.com",
+  },
+  {
+    name: "Simple Mobile",
+    sms: "smtext.com",
+    mms: "smtext.com",
+  },
+  {
+    name: "Sprint",
+    sms: "messaging.sprintpcs.com",
+    mms: "pm.sprint.com ",
+  },
+  {
+    name: "Ting",
+    sms: "message.ting.com",
+    mms: "message.ting.com",
+  },
+  {
+    name: "Tracfone",
+    sms: "mmst5.tracfone.com",
+    mms: "mmst5.tracfone.com",
+  },
+  {
+    name: "U.S. Cellular",
+    sms: "email.uscc.net",
+    mms: "mms.uscc.net",
+  },
+  {
+    name: "Virgin Mobile",
+    sms: "vmobl.com",
+    mms: "vmpix.com",
+  },
+  {
+    name: "Xfinity Mobile",
+    sms: "vtext.com",
+    mms: "mypixmessages.com",
+  },
 ];
 
 const easing = [0.6, -0.05, 0.01, 0.99];
