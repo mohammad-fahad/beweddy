@@ -299,52 +299,54 @@ const MailOutInvitationPage = () => {
                     ))}
                   </div>
                 </div>
+
+                <div className="bg-white">
+                  <div className="flex ">
+                    <div className="container w-full">
+                      <div className=" bg-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary w-full h-full py-5 border-4 border-gray-200 rounded-lg">
+                        <div class="flex items-center justify-center flex-wrap gap-4 w-full ">
+                          <div className="flex items-start justify-between">
+                            <div class="grid grid-cols-12 w-full">
+                              <div class="col-span-3">
+                                <div className="qrCode flex justify-center items-center">
+                                  <QRCode
+                                    {...{ value }}
+                                    size={275}
+                                    eyeRadius={[
+                                      {
+                                        outer: [10, 10, 0, 10],
+                                        inner: [0, 10, 10, 10],
+                                      },
+                                      [10, 10, 10, 0], // top/right eye
+                                      [10, 0, 10, 10], // bottom/left
+                                    ]}
+                                    logoHeight={70}
+                                    logoWidth={70}
+                                    logoImage="/icons/circle-ring.png"
+                                  />
+                                </div>
+                              </div>
+                              <div class="col-span-9 flex justify-center items-center">
+                                <h1 className="!text-[28px] font-medium  mudiumTitle">
+                                  Attach a personalized QR Code to you
+                                  invitations. <br /> This brings guests
+                                  directly to your website for <br /> updates
+                                  and gift registry.
+                                </h1>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 {/* Need a pagination here */}
               </div>
             </div>
           </div>
         </div>
 
-        <div className="bg-white">
-          <div className="flex ">
-            <div className="container w-full">
-              <div className=" bg-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary w-full h-full py-20 border-4 border-gray-200 rounded-lg">
-                <div class="flex items-center justify-center flex-wrap gap-4 w-full ">
-                  <div className="flex items-start justify-between">
-                    <div class="grid grid-cols-12 w-full">
-                      <div class="col-span-3">
-                        <div className="qrCode flex justify-center items-center">
-                          <QRCode
-                            {...{ value }}
-                            size={275}
-                            eyeRadius={[
-                              {
-                                outer: [10, 10, 0, 10],
-                                inner: [0, 10, 10, 10],
-                              },
-                              [10, 10, 10, 0], // top/right eye
-                              [10, 0, 10, 10], // bottom/left
-                            ]}
-                            logoHeight={70}
-                            logoWidth={70}
-                            logoImage="/icons/circle-ring.png"
-                          />
-                        </div>
-                      </div>
-                      <div class="col-span-9 flex justify-center items-center">
-                        <h1 className="!text-[28px] font-medium  mudiumTitle">
-                          Attach a personalized QR Code to you invitations.{" "}
-                          <br /> This brings guests directly to your website for{" "}
-                          <br /> updates and gift registry.
-                        </h1>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <WebsitePreviewContainer data={"Your Wedding Website"} />
 
         <div className="flex items-center flex-wrap px-[1.15rem] xs:space-y-0 space-x-3 md:space-x-5 justify-center my-[50px]">
