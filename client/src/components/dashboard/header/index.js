@@ -42,10 +42,10 @@ const DashboardHeader = ({ title, children }) => {
   const { user } = useSelector(state => state.user);
   return (
     <div
-      className={`max-w-[1300px] w-full min-h-[155.2px] flex pb-10 md:pb-0 py-5 md:py-0 px-6 sm:px-12 lg:pl-0 lg:pr-12 xxl:pr-0 customPadding`}
+      className={`max-w-[1300px] w-full lg:my-0 lg:min-h-[155.2px] flex py-5 md:py-0 px-6 sm:px-12 lg:pl-0 lg:pr-12 xxl:pr-0`}
     >
       <div
-        className={`flex flex-col-reverse sm:flex-row items-center justify-center sm:space-x-5 sm:justify-between flex-wrap w-full`}
+        className={`flex sm:flex-row items-center justify-center md:justify-between flex-wrap w-full gap-5`}
       >
         <h2 className='capitalize text-3xl xl:text-4xl font-medium mt-5 sm:mt-0'>
           {title}
