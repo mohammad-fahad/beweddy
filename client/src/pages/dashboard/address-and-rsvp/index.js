@@ -1,6 +1,22 @@
 import Head from 'next/head';
 import Link from 'next/link';
 // import Image from 'next/image';
+<<<<<<< HEAD
+import { Image } from "cloudinary-react";
+import { DashboardHeader } from "@components/dashboard";
+import DashboardTopBar from "@components/dashboard/header/TopBar";
+import DashboardLayout from "@components/dashboard/layout";
+import { Button, Footer, Heading } from "@components/index";
+import { LinkIcon, PencilIcon, SelectorIcon } from "@heroicons/react/outline";
+import { withAuthRoute } from "@hoc/withAuthRoute";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import Swiper from "react-id-swiper";
+import toast from "react-hot-toast";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+=======
 import { Image } from 'cloudinary-react';
 import { DashboardHeader } from '@components/dashboard';
 import DashboardTopBar from '@components/dashboard/header/TopBar';
@@ -15,6 +31,7 @@ import Swiper from 'react-id-swiper';
 
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+>>>>>>> 4c2d8027d0e7f24bc30be5c54f910875b3636330
 
 import SwiperCore, { Lazy, Autoplay } from 'swiper';
 import { Listbox, Transition } from '@headlessui/react';
@@ -35,6 +52,20 @@ const params = {
 };
 
 const otherProviders = [
+<<<<<<< HEAD
+  { id: 1, name: "Other" },
+  { id: 7, name: "Metro PCS" },
+  { id: 8, name: "Mint Mobile" },
+  { id: 9, name: "Page Plus" },
+  { id: 10, name: "Red Pocket" },
+  { id: 11, name: "Republic Wireless" },
+  { id: 12, name: "Sprint" },
+  { id: 13, name: "T-Mobile" },
+  { id: 14, name: "Tracfone" },
+  { id: 15, name: "U.S. Cellular" },
+  { id: 17, name: "Ting" },
+  { id: 18, name: "Xfinity Mobile" },
+=======
   { id: 1, name: 'Other' },
   { id: 1, name: 'AT&T' },
   { id: 2, name: 'T-Mobile & Sprint' },
@@ -56,6 +87,7 @@ const otherProviders = [
   { id: 16, name: 'Virgin Mobile' },
   { id: 17, name: 'Ting' },
   { id: 18, name: 'Xfinity Mobile' },
+>>>>>>> 4c2d8027d0e7f24bc30be5c54f910875b3636330
 ];
 
 const providers = {
@@ -86,6 +118,7 @@ const AddressRSVP = () => {
     getValues,
     handleSubmit,
     formState: { errors },
+    clearErrors,
   } = useForm({
     mode: 'all',
     shouldFocusError: false,
@@ -144,9 +177,15 @@ const AddressRSVP = () => {
       <Head>
         <title>Beweddy | Address & RSVP</title>
       </Head>
-
+      <>{errors && toast.error("Please fill out information to submit")}</>
+      {/* {errors?.name?.message && <>{errors && toast.error(errors?.name?.message)}</>}
+      {errors?.email?.message && <>{errors && toast.error(errors?.email?.message)}</>}
+      <>{errors && toast.error(errors?.street?.message)}</>
+      <>{errors && toast.error(errors?.city?.message)}</>
+      <>{errors && toast.error(errors?.state?.message)}</>
+      <>{errors && toast.error(errors?.zip?.message)}</>
+      <>{errors && toast.error(errors?.phone?.message)}</> */}
       <DashboardTopBar />
-
       <DashboardLayout>
         <DashboardHeader
           title={
@@ -176,25 +215,7 @@ const AddressRSVP = () => {
           </div>
         </DashboardHeader>
 
-        <div className='border-4 border-gray-200 rounded-lg'>
-          {/* <Swiper {...params}>
-            {user?.questions?.couplePictures?.map((image, index) => (
-              <div className="w-full" key={image.public_id}>
-                <div className="aspect-w-16 aspect-h-9">
-                  <Image
-                    cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
-                    publicId={image.public_id}
-                    src={!image.public_id ? image.url : null}
-                    // width={image.width}
-                    crop="scale"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
-              </div>
-            ))}
-          </Swiper> */}
-
+        <div className="border-4 border-gray-200 rounded-lg">
           <Carousel
             autoPlay
             infiniteLoop
@@ -1033,7 +1054,6 @@ const AddressRSVP = () => {
           </div> */}
         </div>
       </DashboardLayout>
-
       <Footer hideSocial />
     </>
   );

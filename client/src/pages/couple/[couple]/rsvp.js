@@ -39,14 +39,6 @@ const params = {
 
 const otherProviders = [
   { id: 1, name: "Other" },
-  { id: 1, name: "AT&T" },
-  { id: 2, name: "T-Mobile & Sprint" },
-  {
-    id: 3,
-    name: "verixon",
-  },
-  { id: 4, name: "Boost Mobile" },
-  { id: 5, name: "Cricket Wireless" },
   { id: 7, name: "Metro PCS" },
   { id: 8, name: "Mint Mobile" },
   { id: 9, name: "Page Plus" },
@@ -56,7 +48,6 @@ const otherProviders = [
   { id: 13, name: "T-Mobile" },
   { id: 14, name: "Tracfone" },
   { id: 15, name: "U.S. Cellular" },
-  { id: 16, name: "Virgin Mobile" },
   { id: 17, name: "Ting" },
   { id: 18, name: "Xfinity Mobile" },
 ];
