@@ -30,9 +30,18 @@ const params = {
 };
 
 const otherProviders = [
-  { name: "Select Provider" },
-  { name: "Airtel" },
-  { name: "Robi" },
+  { id: 1, name: "Other" },
+  { id: 7, name: "Metro PCS" },
+  { id: 8, name: "Mint Mobile" },
+  { id: 9, name: "Page Plus" },
+  { id: 10, name: "Red Pocket" },
+  { id: 11, name: "Republic Wireless" },
+  { id: 12, name: "Sprint" },
+  { id: 13, name: "T-Mobile" },
+  { id: 14, name: "Tracfone" },
+  { id: 15, name: "U.S. Cellular" },
+  { id: 17, name: "Ting" },
+  { id: 18, name: "Xfinity Mobile" },
 ];
 
 const PageFive = () => {
@@ -94,10 +103,10 @@ const PageFive = () => {
       {/* {loading && <Loader />} */}
       {/* <DashboardTopBar /> */}
       {/* <DashboardLayout> */}
-      <div className="flex flex-col items-center overflow-hidden py-6 max-w-5xl w-full mx-auto">
+      <div className="flex flex-col items-center w-full max-w-5xl py-6 mx-auto overflow-hidden">
         <DashboardHeader>
           <div className="flex flex-col items-center justify-center w-full space-x-5 ">
-            <Link href="/" >
+            <Link href="/">
               <a className="cursor-pointer">
                 <img src="/images/logo.png" className="w-36" />
               </a>
@@ -305,10 +314,7 @@ const PageFive = () => {
                 </Heading>
                 <div>
                   <div className="flex items-center">
-                    <Listbox
-                      value={`USA`}
-
-                    >
+                    <Listbox value={`USA`}>
                       <div className="relative -mr-2">
                         <Listbox.Button className="bg-white cursor-pointer inline-block font-semibold py-[6px] md:py-[10px] px-4 placeholder-gray-400 border-[3px] border-gray-200 rounded-[5px] -mr-1">
                           <img
@@ -339,13 +345,12 @@ const PageFive = () => {
                           leaveTo="opacity-0"
                         >
                           <Listbox.Options className="absolute z-50 max-w-xs py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-
                             <Listbox.Option
-
                               className={({ active }) =>
-                                `${active
-                                  ? "text-amber-900 bg-secondary-alternative/20"
-                                  : "text-gray-900"
+                                `${
+                                  active
+                                    ? "text-amber-900 bg-secondary-alternative/20"
+                                    : "text-gray-900"
                                 }
                             cursor-pointer select-none relative py-2 pl-10 pr-4`
                               }
@@ -354,17 +359,19 @@ const PageFive = () => {
                               {({ selected, active }) => (
                                 <>
                                   <span
-                                    className={`${selected ? "font-medium" : "font-normal"
-                                      } block truncate`}
+                                    className={`${
+                                      selected ? "font-medium" : "font-normal"
+                                    } block truncate`}
                                   >
                                     {`USA`}
                                   </span>
                                   {selected ? (
                                     <span
-                                      className={`${active
-                                        ? "text-amber-600"
-                                        : "text-amber-600"
-                                        }
+                                      className={`${
+                                        active
+                                          ? "text-amber-600"
+                                          : "text-amber-600"
+                                      }
                                   absolute inset-y-0 left-0 flex items-center pl-3`}
                                     >
                                       <CheckIcon
@@ -376,7 +383,6 @@ const PageFive = () => {
                                 </>
                               )}
                             </Listbox.Option>
-
                           </Listbox.Options>
                         </Transition>
                       </div>
@@ -649,9 +655,10 @@ const PageFive = () => {
                             <Listbox.Option
                               key={providerIdx}
                               className={({ active }) =>
-                                `${active
-                                  ? "text-secondary bg-secondary-alternative/50"
-                                  : "text-gray-900"
+                                `${
+                                  active
+                                    ? "text-secondary bg-secondary-alternative/50"
+                                    : "text-gray-900"
                                 }
                             cursor-pointer select-none relative py-2 pl-10 pr-4 font-medium`
                               }
@@ -660,17 +667,19 @@ const PageFive = () => {
                               {({ selected, active }) => (
                                 <>
                                   <span
-                                    className={`${selected ? "font-semibold" : "font-medium"
-                                      } block truncate`}
+                                    className={`${
+                                      selected ? "font-semibold" : "font-medium"
+                                    } block truncate`}
                                   >
                                     {provider.name}
                                   </span>
                                   {selected ? (
                                     <span
-                                      className={`${active
-                                        ? "text-amber-600"
-                                        : "text-amber-600"
-                                        }
+                                      className={`${
+                                        active
+                                          ? "text-amber-600"
+                                          : "text-amber-600"
+                                      }
                                   absolute inset-y-0 left-0 flex items-center pl-3`}
                                     >
                                       <CheckIcon

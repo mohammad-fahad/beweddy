@@ -10,10 +10,12 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import CreateAccount from "./CreateAccount";
 import HowItWork from "./HowItWork";
+import { useWindowSize } from "@hooks/useWindowSize";
 
 const Footer = ({ hideSocial, className }) => {
   const { user } = useSelector((state) => state.user);
   const { pathname } = useRouter();
+  const size = useWindowSize();
 
   return (
     <>
@@ -32,7 +34,7 @@ const Footer = ({ hideSocial, className }) => {
                 rel="noopener noreferrer"
               >
                 <Facebook
-                  size={35}
+                  size={size.width < 599 ? 25 : 35}
                   color="#1877F2"
                   className="transition duration-300 hover:scale-125"
                 />
@@ -43,7 +45,7 @@ const Footer = ({ hideSocial, className }) => {
                 rel="noopener noreferrer"
               >
                 <Twitter
-                  size={35}
+                  size={size.width < 599 ? 25 : 35}
                   color="#1DA1F2"
                   className="transition duration-300 hover:scale-125"
                 />
@@ -54,7 +56,7 @@ const Footer = ({ hideSocial, className }) => {
                 rel="noopener noreferrer"
               >
                 <Instagram
-                  size={35}
+                  size={size.width < 599 ? 25 : 35}
                   color="#E4355F"
                   className="transition duration-300 hover:scale-125"
                 />
@@ -65,7 +67,7 @@ const Footer = ({ hideSocial, className }) => {
                 rel="noopener noreferrer"
               >
                 <Linkedin
-                  size={35}
+                  size={size.width < 599 ? 25 : 35}
                   color="#0A66C2"
                   className="transition duration-300 hover:scale-125"
                 />
@@ -79,7 +81,11 @@ const Footer = ({ hideSocial, className }) => {
                 <img
                   src="/icons/gmail.svg"
                   alt="gmail"
-                  className="w-[35px] h-[35px] hover:scale-125 transition duration-300"
+                  className={` ${
+                    size.width < 599
+                      ? "!w-[25px] !h-[25px]"
+                      : "!w-[35px] !h-[35px]"
+                  }  hover:scale-125 transition duration-300`}
                 />
               </a>
               <a
@@ -89,7 +95,7 @@ const Footer = ({ hideSocial, className }) => {
               >
                 <Youtube
                   color="#FF0000"
-                  size={35}
+                  size={size.width < 599 ? 25 : 35}
                   className="transition duration-300 hover:scale-125"
                 />
               </a>

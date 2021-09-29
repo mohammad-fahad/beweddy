@@ -2,11 +2,10 @@ import { CreateWebsiteContainer } from "@components/createWebsite";
 import { Button, Heading } from "@components/index";
 import { addSentInvitation } from "@features/question/questionSlice";
 import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, SelectorIcon } from "@heroicons/react/solid";
-import axios from "axios";
+import { CheckIcon } from "@heroicons/react/solid";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -250,10 +249,12 @@ const SentInvitation = () => {
               />
               <label
                 htmlFor="text_invite"
-                className="text-lg font-light cursor-pointer font-inter subTitle"
+                className="text-lg font-light cursor-pointer font-inter customLabel"
               >
                 Text invitation 📲{" "}
-                <strong className="text-lg font-semibold">(Free)</strong>
+                <strong className="text-lg font-semibold customLabel">
+                  (Free)
+                </strong>
               </label>
             </motion.div>
             <motion.div
@@ -270,10 +271,12 @@ const SentInvitation = () => {
               />
               <label
                 htmlFor="email_invite"
-                className="text-lg font-light cursor-pointer font-inter subTitle"
+                className="text-lg font-light cursor-pointer font-inter customLabel"
               >
                 Email invitation 🖥{" "}
-                <strong className="text-lg font-semibold">(Free)</strong>
+                <strong className="text-lg font-semibold customLabel">
+                  (Free)
+                </strong>
               </label>
             </motion.div>
             <motion.div
@@ -289,7 +292,7 @@ const SentInvitation = () => {
               />
               <label
                 htmlFor="mail_out_invite"
-                className="relative text-lg font-light cursor-pointer font-inter subTitle"
+                className="relative text-lg font-light cursor-pointer font-inter customLabel"
               >
                 Mail Out Invitation (Pricing will depend quantity. 💌)
                 <h2 className="absolute right-0 text-xs -bottom-3">
@@ -310,7 +313,7 @@ const SentInvitation = () => {
               />
               <label
                 htmlFor="all_the_above"
-                className="text-lg font-light cursor-pointer font-inter subTitle"
+                className="text-lg font-light cursor-pointer font-inter customLabel"
               >
                 All-of-the Above
               </label>
@@ -318,7 +321,7 @@ const SentInvitation = () => {
           </motion.div>
         </motion.div>
         <motion.div
-          className="flex flex-wrap items-center mb-5 space-x-3 text-center md:mb-10 sm:flex-nowrap"
+          className="flex flex-wrap items-center gap-5 my-1 text-center md:my-5 sm:flex-nowrap"
           variants={fadeInUp}
         >
           <Button
@@ -329,7 +332,7 @@ const SentInvitation = () => {
           <Button
             label="Next"
             type="submit"
-            className=" !rounded-[10px] w-[178px] h-[59px]"
+            className="!rounded-[10px] w-[178px] h-[59px]"
           />
         </motion.div>
       </motion.form>

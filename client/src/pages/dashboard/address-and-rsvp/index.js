@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import Swiper from "react-id-swiper";
-
+import toast from "react-hot-toast";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 
@@ -36,14 +36,6 @@ const params = {
 
 const otherProviders = [
   { id: 1, name: "Other" },
-  { id: 1, name: "AT&T" },
-  { id: 2, name: "T-Mobile & Sprint" },
-  {
-    id: 3,
-    name: "verixon",
-  },
-  { id: 4, name: "Boost Mobile" },
-  { id: 5, name: "Cricket Wireless" },
   { id: 7, name: "Metro PCS" },
   { id: 8, name: "Mint Mobile" },
   { id: 9, name: "Page Plus" },
@@ -53,7 +45,6 @@ const otherProviders = [
   { id: 13, name: "T-Mobile" },
   { id: 14, name: "Tracfone" },
   { id: 15, name: "U.S. Cellular" },
-  { id: 16, name: "Virgin Mobile" },
   { id: 17, name: "Ting" },
   { id: 18, name: "Xfinity Mobile" },
 ];
@@ -86,6 +77,7 @@ const AddressRSVP = () => {
     getValues,
     handleSubmit,
     formState: { errors },
+    clearErrors,
   } = useForm({
     mode: "all",
     shouldFocusError: false,
@@ -141,9 +133,15 @@ const AddressRSVP = () => {
       <Head>
         <title>Beweddy | Address & RSVP</title>
       </Head>
-
+      <>{errors && toast.error("Please fill out information to submit")}</>
+      {/* {errors?.name?.message && <>{errors && toast.error(errors?.name?.message)}</>}
+      {errors?.email?.message && <>{errors && toast.error(errors?.email?.message)}</>}
+      <>{errors && toast.error(errors?.street?.message)}</>
+      <>{errors && toast.error(errors?.city?.message)}</>
+      <>{errors && toast.error(errors?.state?.message)}</>
+      <>{errors && toast.error(errors?.zip?.message)}</>
+      <>{errors && toast.error(errors?.phone?.message)}</> */}
       <DashboardTopBar />
-
       <DashboardLayout>
         <DashboardHeader
           title={
@@ -174,24 +172,6 @@ const AddressRSVP = () => {
         </DashboardHeader>
 
         <div className="border-4 border-gray-200 rounded-lg">
-          {/* <Swiper {...params}>
-            {user?.questions?.couplePictures?.map((image, index) => (
-              <div className="w-full" key={image.public_id}>
-                <div className="aspect-w-16 aspect-h-9">
-                  <Image
-                    cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
-                    publicId={image.public_id}
-                    src={!image.public_id ? image.url : null}
-                    // width={image.width}
-                    crop="scale"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
-              </div>
-            ))}
-          </Swiper> */}
-
           <Carousel
             autoPlay
             infiniteLoop
@@ -1036,7 +1016,6 @@ const AddressRSVP = () => {
           </div> */}
         </div>
       </DashboardLayout>
-
       <Footer hideSocial />
     </>
   );
