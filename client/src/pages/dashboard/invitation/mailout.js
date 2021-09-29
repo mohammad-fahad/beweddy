@@ -1,52 +1,118 @@
 import Head from "next/head";
 import { DashboardHeader } from "@components/dashboard";
-import { Button, Footer, Heading, Loader } from "@components/index";
+import { Footer } from "@components/index";
 import { withAuthRoute } from "@hoc/withAuthRoute";
 import DashboardTopBar from "@components/dashboard/header/TopBar";
 import DashboardLayout from "@components/dashboard/layout";
-import { StarIcon } from "@heroicons/react/solid";
 import { useState } from "react";
 import InvitationCard from "./InvitationCard";
+import Pagination from "@components/shared/Pagination";
 
-
+const fakeData = [
+  {
+    image:
+      "https://designshack.net/wp-content/uploads/free-invitation-templates.jpg",
+    name: "Card one",
+    color: "red green blue",
+  },
+  {
+    image:
+      "https://cdn3.vectorstock.com/i/1000x1000/42/27/luxury-invitation-card-design-vector-22684227.jpg",
+    name: "Card two",
+    color: "red green blue",
+  },
+  {
+    image:
+      "https://www.proweddinginvites.com/images/thumb/files/18/PWIF063.jpg",
+    name: "Card three",
+    color: "red green blue",
+  },
+  {
+    image:
+      "https://legaldbol.com/wp-content/uploads/2019/03/79-Create-Invitation-Card-Template-Free-Vector-in-Photoshop-for-Invitation-Card-Template-Free-Vector.jpg",
+    name: "Card four",
+    color: "red green blue",
+  },
+  {
+    image:
+      "https://file.amockup.com/uploads/2020/08/free-modern-tracing-paper-mock-up1.jpg",
+    name: "Card five",
+    color: "red green blue",
+  },
+  {
+    image:
+      "https://designshack.net/wp-content/uploads/free-invitation-templates.jpg",
+    name: "Card one",
+    color: "red green blue",
+  },
+  {
+    image:
+      "https://cdn3.vectorstock.com/i/1000x1000/42/27/luxury-invitation-card-design-vector-22684227.jpg",
+    name: "Card two",
+    color: "red green blue",
+  },
+  {
+    image:
+      "https://www.proweddinginvites.com/images/thumb/files/18/PWIF063.jpg",
+    name: "Card three",
+    color: "red green blue",
+  },
+  {
+    image:
+      "https://legaldbol.com/wp-content/uploads/2019/03/79-Create-Invitation-Card-Template-Free-Vector-in-Photoshop-for-Invitation-Card-Template-Free-Vector.jpg",
+    name: "Card four",
+    color: "red green blue",
+  },
+  {
+    image:
+      "https://file.amockup.com/uploads/2020/08/free-modern-tracing-paper-mock-up1.jpg",
+    name: "Card five",
+    color: "red green blue",
+  },
+  {
+    image:
+      "https://designshack.net/wp-content/uploads/free-invitation-templates.jpg",
+    name: "Card one",
+    color: "red green blue",
+  },
+  {
+    image:
+      "https://cdn3.vectorstock.com/i/1000x1000/42/27/luxury-invitation-card-design-vector-22684227.jpg",
+    name: "Card two",
+    color: "red green blue",
+  },
+  {
+    image:
+      "https://www.proweddinginvites.com/images/thumb/files/18/PWIF063.jpg",
+    name: "Card three",
+    color: "red green blue",
+  },
+  {
+    image:
+      "https://legaldbol.com/wp-content/uploads/2019/03/79-Create-Invitation-Card-Template-Free-Vector-in-Photoshop-for-Invitation-Card-Template-Free-Vector.jpg",
+    name: "Card four",
+    color: "red green blue",
+  },
+  {
+    image:
+      "https://file.amockup.com/uploads/2020/08/free-modern-tracing-paper-mock-up1.jpg",
+    name: "Card five",
+    color: "red green blue",
+  },
+];
 
 const MailOutInvitationPage = () => {
-
-  const fakeData = [
-    {
-      image:
-        "https://designshack.net/wp-content/uploads/free-invitation-templates.jpg",
-      name: "Card one",
-      color: "red green blue",
-    },
-    {
-      image:
-        "https://cdn3.vectorstock.com/i/1000x1000/42/27/luxury-invitation-card-design-vector-22684227.jpg",
-      name: "Card two",
-      color: "red green blue",
-    },
-    {
-      image:
-        "https://www.proweddinginvites.com/images/thumb/files/18/PWIF063.jpg",
-      name: "Card three",
-      color: "red green blue",
-    },
-    {
-      image:
-        "https://legaldbol.com/wp-content/uploads/2019/03/79-Create-Invitation-Card-Template-Free-Vector-in-Photoshop-for-Invitation-Card-Template-Free-Vector.jpg",
-      name: "Card four",
-      color: "red green blue",
-    },
-    {
-      image:
-        "https://file.amockup.com/uploads/2020/08/free-modern-tracing-paper-mock-up1.jpg",
-      name: "Card five",
-      color: "red green blue",
-    },
-  ];
-
-
+  const [cardData, setCardData] = useState([...fakeData]);
   const [isActive, setIsActive] = useState(false);
+
+  const onPageChanged = (data) => {
+    const { currentPage, totalPages, pageLimit } = cardData;
+    const offset = (currentPage - 1) * pageLimit;
+    const currentCountries = cardData.slice(offset, offset + pageLimit);
+
+    setCardData({ currentPage, currentCountries, totalPages });
+  };
+
   return (
     <>
       <Head>
@@ -153,56 +219,29 @@ const MailOutInvitationPage = () => {
               <div class="col-span-11 p-2">
                 <div>
                   <h1 className="text-[18px]">
-                    <span>{fakeData.length} </span> Items{" "}
+                    <span>{cardData?.length} </span> Items{" "}
                   </h1>
                 </div>
                 <div className="flex items-start my-5">
                   <div class="grid grid-cols-12 w-full gap-8">
-                    {fakeData.map((card, i) => (
+                    {cardData?.map((card, i) => (
                       <div class="col-span-4">
                         <InvitationCard data={card} key={i} />
                       </div>
                     ))}
                   </div>
                 </div>
+                <div className="flex-row py-4 d-flex align-items-center">
+                  <Pagination
+                    totalRecords={cardData?.length}
+                    pageLimit={10}
+                    pageNeighbours={1}
+                    onPageChanged={onPageChanged}
+                  />
+                </div>
               </div>
             </div>
           </div>
-          {/* <div classNameName="grid-cols-2">
-            <div className="accordion-title">
-              <div className="flex justify-between">
-                <h1 className="text-lg" onClick={() => setIsActive(!isActive)}>
-                  Style
-                </h1>
-                <img src="/icons/angle-up.png" alt="" className="w-100 h-100" />
-              </div>
-              {isActive && (
-                <fieldset>
-                  <small>
-                    <input type="checkbox" name="card_style" value="Modern" />
-                    <p>Modern</p>
-
-                    <br />
-                    <input type="checkbox" name="card_style" value="Floral" />
-                    <p>Floral</p>
-                    <br />
-                    <input type="checkbox" name="card_style" value="Simple" />
-                    <p>Simple</p>
-                    <br />
-                    <input type="checkbox" name="card_style" value="Elegant" />
-                    <p>Elegant</p>
-                    <br />
-                    <br />
-                  </small>
-                </fieldset>
-              )}
-            </div>
-          </div>
-          <div classNameName="grid-cols-10">
-            {fakeData.map((card, i) => (
-              <InvitationCard data={card} key={i} />
-            ))}
-          </div> */}
         </div>
       </DashboardLayout>
       <Footer hideSocial />
