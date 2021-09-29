@@ -9,7 +9,7 @@ import DashboardTopBar from "@components/dashboard/header/TopBar";
 import DashboardLayout from "@components/dashboard/layout";
 import { StarIcon } from "@heroicons/react/solid";
 import { useState } from "react";
-import InvitationCard from "./InvitationCard";
+import InvitationCard from "../InvitationCard";
 import { QRCode } from "react-qrcode-logo";
 import { LinkIcon } from "@heroicons/react/outline";
 import Link from "next/link";
