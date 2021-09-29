@@ -18,6 +18,9 @@ const VenmoModal = ({ isVenmoModalOpen, setIsVenmoModalOpen }) => {
   const { handleSubmit, register } = useForm({ mode: "all" });
   const { mutateAsync, isLoading } = useMutation(createPrivetRegistry);
   const onSubmit = async (data) => {
+    data.image = "https://i.ibb.co/Zxsf0yQ/venmo.png";
+    data.description =
+      "What Is Venmo? Venmo is a peer-to-peer (P2P) payment app available on iPhones and Android phones that allows for the quick and easy exchange of money directly between individuals. Founded in 2009, Venmo began as a text message-based payment delivery system.";
     setIsVenmoModalOpen(false);
     await mutateAsync(
       { payload: data, token: user?.token },
