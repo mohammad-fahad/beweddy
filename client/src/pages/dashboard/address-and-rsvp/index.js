@@ -131,6 +131,8 @@ const AddressRSVP = () => {
     };
   };
 
+  const formError = Object.keys(errors);
+
   return (
     <>
       <Head>
