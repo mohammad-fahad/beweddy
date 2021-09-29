@@ -26,7 +26,7 @@ const ServerError = () => {
         </h2>
         <Link href="/">
           <a className="flex items-center gap-2 font-inter py-2 sm:py-3 px-5 sm:px-8 text-white sm:text-sm bg-primary font-medium rounded hover:bg-transparent border-[3px] border-primary hover:text-black hover:text-bold">
-            <img src="icons/go.svg" alt="go icon" />
+            <img src="/icons/go.svg" alt="go icon" />
             Contact Support
           </a>
         </Link>
