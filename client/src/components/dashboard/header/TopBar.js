@@ -61,7 +61,7 @@ const DashboardTopBar = () => {
               </a>
             </Link>
 
-            <Popover className='relative !ml-auto xs:!ml-5 inline-block xs:hidden'>
+            <Popover className='relative !ml-auto xs:!ml-5 inline-block lg:hidden'>
               {({ open }) => (
                 <>
                   <Popover.Button>
@@ -88,7 +88,7 @@ const DashboardTopBar = () => {
                     leaveFrom='opacity-100 translate-y-0'
                     leaveTo='opacity-0 translate-y-1'
                   >
-                    <Popover.Panel className='bg-white shadow-lg absolute z-10 w-max p-5 mt-3 transform translate-x-[-69%] left-1/2 sm:px-0 lg:max-w-3xl'>
+                    <Popover.Panel className='bg-white shadow-lg absolute z-10 w-max p-5 mt-3 transform translate-x-[-69%] left-1/2 lg:max-w-3xl'>
                       <span className='absolute top-[-10px] right-[5.5rem] w-5 h-5 rotate-45 z-[-1] bg-white'></span>
 
                       <div className='space-y-2'>
