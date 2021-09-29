@@ -20,6 +20,8 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a lo
 import NotFoundPage from 'pages/404';
 import { API_URL, isoToUtcDate } from '@utils/index';
 import { getGifts } from '@services/Gift';
+import { uniqBy } from 'lodash';
+import { getRegistries } from '@services/Registry';
 
 SwiperCore.use([Lazy, Autoplay]);
 
@@ -109,6 +111,16 @@ const CoupleWebsitePage = props => {
       initialData: props.gifts,
     }
   );
+  const { data: registries, isLoading: isRegistriesLoading } = useQuery(
+    'registries',
+    getRegistries,
+    {
+      initialData: props.registries,
+    }
+  );
+
+  const giftCards = uniqBy([...gifts, ...couple?.giftCards], '_id');
+  const allRegistries = uniqBy([...registries, ...couple?.registries], '_id');
 
   const [value, setValue] = useState(
     `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${couple?.username}`
@@ -289,7 +301,7 @@ const CoupleWebsitePage = props => {
             )}
             {/* 😇 Bless us with a Gift Card section */}
             <div className='w-full mx-auto my-3 md:my-8'>
-              {couple?.giftCards?.length > 0 && (
+              {giftCards?.length > 0 && (
                 <div class='grid grid-cols-12 gap-4 w-full my-3 md:my-8'>
                   <div class='col-start-2 col-span-10'>
                     <h2 className='text-2xl font-medium text-center md:text-[32px] font-alice commonTitle'>
@@ -299,8 +311,7 @@ const CoupleWebsitePage = props => {
                     <div className='mt-5 space-y-3'>
                       <div className='my-10'>
                         <WebsiteGiftCards
-                          {...{ couple }}
-                          giftCards={gifts}
+                          {...{ couple, giftCards }}
                           coupleWebsite
                         />
                       </div>
@@ -309,7 +320,7 @@ const CoupleWebsitePage = props => {
                 </div>
               )}
 
-              {couple?.registries?.length > 0 && (
+              {allRegistries?.length > 0 && (
                 <div class='grid grid-cols-12 gap-4 w-full my-3 md:my-8'>
                   <div class='col-start-2 col-span-10'>
                     <h2 className=' font-medium text-[32px] font-alice text-center commonTitle'>
@@ -318,7 +329,7 @@ const CoupleWebsitePage = props => {
                     <div className='w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-[28px] mb-[50px]' />
                     <div className='mt-5 space-y-3'>
                       <div>
-                        <WebsiteRegistry registries={couple?.registries} />
+                        <WebsiteRegistry registries={allRegistries} />
                       </div>
                     </div>
                   </div>
@@ -475,9 +486,11 @@ export default CoupleWebsitePage;
 export const getServerSideProps = async ({ params: { couple } }) => {
   const res = await fetch(`${API_URL}/users/${couple}`);
   const giftRes = await fetch(`${API_URL}/gifts`);
+  const registryRes = await fetch(`${API_URL}/registries`);
   // const errorCode = res.ok ? false : res.statusCode;
   const user = await res.json();
   const gifts = await giftRes.json();
+  const registries = await registryRes.json();
 
   if (!user) {
     return {
@@ -489,6 +502,7 @@ export const getServerSideProps = async ({ params: { couple } }) => {
     props: {
       user,
       gifts,
+      registries,
       // errorCode,
     },
   };
