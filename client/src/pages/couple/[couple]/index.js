@@ -155,7 +155,7 @@ const CoupleWebsitePage = (props) => {
 
           {/* date and Countdown section */}
           <div className="flex flex-col items-center">
-            <h1 className="text-xl font-medium md:text-2xl lg:text-4xl font-inter mudiumTitle">
+            <h1 className="text-[32px] font-alice font-medium mudiumTitle">
               {isoToUtcDate(couple?.questions?.weddingDay?.weddingDate)}
             </h1>
             <div className="max-w-[222px] w-full mx-auto h-[2px] md:h-[4px]  bg-[#FCE0EB] mt-4" />
@@ -163,7 +163,7 @@ const CoupleWebsitePage = (props) => {
             <div className="flex justify-center w-full mt-4 space-x-16">
               <div>
                 {/* <h4 className="text-[22px] font-medium text-center mb-5 mudiumTitle"> */}
-                <h4 className="text-[32px] font-normal text-center mb-5 mudiumTitle">
+                <h4 className="text-[24px] !font-alice font-normal text-center mb-5 mudiumTitle">
                   Wedding Day Countdown
                 </h4>
                 <WeddingDayCountDown />
@@ -344,16 +344,18 @@ const CoupleWebsitePage = (props) => {
             )}
           </div>
           {/* QR Codes section */}
-          <div className="bg-gradient-to-br from-[#FCE3EB] to-white">
-            <div class=" max-w-6xl mx-auto flex items-center justify-between flex-wrap w-full py-16">
-              <div class="p-2 flex justify-start items-center customItem">
+          <div class="grid place-items-center sm:py-[100px] py-10 grid-cols-12 w-full bg-gradient-to-br from-[#FCE3EB] to-white border-black border-t-4 border-b-4">
+            <div class="col-start-2 sm:col-span-6 col-span-12">
+              <div class="p-2 flex justify-start items-center">
                 <h1 className="text-[28px] font-normal mudiumTitle max-w-[335px] ">
                   Our Personalized
                   <span className="ml-1 font-bold">QR Code</span> Please Scan.
                 </h1>
               </div>
+            </div>
 
-              <div className="sm:w-[30%] customItem">
+            <div className="col-span-4">
+              <div className="sm:w-[30%]">
                 <QRCode
                   {...{ value }}
                   size={200}
@@ -371,21 +373,52 @@ const CoupleWebsitePage = (props) => {
                 />
               </div>
             </div>
-            {/* wedding video */}
-            <WebsiteVideo
-              videoLink={couple?.weddingVideo}
-              className="!bg-[#ffffff] !from-transparent !to-transparent"
-            />
           </div>
+          {/* <div className="bg-gradient-to-br from-[#FCE3EB] to-white border-black border-t-4 border-b-4 flex justify-center items-center ">
+            <div class=" w-6xl mx-auto flex items-center justify-between flex-wrap w-full py-16">
+              <div className="flex flex-wrap items-center justify-between w-full">
+                <div class="p-2 flex justify-start items-center customItem">
+                  <h1 className="text-[28px] font-normal mudiumTitle max-w-[335px] ">
+                    Our Personalized
+                    <span className="ml-1 font-bold">QR Code</span> Please Scan.
+                  </h1>
+                </div>
+
+                <div className="sm:w-[30%] customItem">
+                  <QRCode
+                    {...{ value }}
+                    size={200}
+                    eyeRadius={[
+                      {
+                        outer: [10, 10, 0, 10],
+                        inner: [0, 10, 10, 10],
+                      },
+                      [10, 10, 10, 0],
+                      [10, 0, 10, 10],
+                    ]}
+                    logoHeight={50}
+                    logoWidth={50}
+                    logoImage="/icons/circle-ring.png"
+                  />
+                </div>
+              </div>
+            </div>
+          </div> */}
+          {/* wedding video */}
+          <WebsiteVideo
+            videoLink={couple?.weddingVideo}
+            className="!bg-[#ffffff] !from-transparent !to-transparent"
+          />
+          <footer className="container">
+            {/* footer section */}
+            <Footer
+              hideSocial
+              websitePreview
+              className="!bg-[#ffffff] !from-transparent !to-transparent  !border-none"
+            />
+          </footer>
         </div>
       </div>
-      <footer className="container !px-10">
-        {/* footer section */}
-        <Footer
-          hideSocial
-          className="!bg-[#ffffff] !from-transparent !to-transparent  !border-none"
-        />
-      </footer>
 
       {/* QR Codes  */}
 
