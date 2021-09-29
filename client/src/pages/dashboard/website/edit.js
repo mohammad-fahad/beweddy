@@ -1050,14 +1050,26 @@ const EditWebsitePage = () => {
                       <div
                         className={`border-2 overflow-hidden border-primary flex items-center justify-center h-[140px] w-full rounded-[10px] transition duration-300 relative group p-3`}
                       >
-                        <Link href={registry.link}>
+                        {/* <Link href={registry.link}>
                           <a
                             target='_blank'
                             className='max-w-[273px] rounded-lg flex items-center justify-center w-full h-full opacity-0 hover:opacity-100 absolute inset-0 z-50 group-hover:bg-black/50'
                           >
                             <LinkIcon className='w-8 h-8 text-white' />
                           </a>
-                        </Link>
+                        </Link> */}
+                        <div
+                          className='absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center transition duration-300 opacity-0 bg-primary/80 hover:opacity-100'
+                          onClick={() =>
+                            dispatch(
+                              attemptUpdateUserProfile({
+                                removeRegistry: registry._id,
+                              })
+                            )
+                          }
+                        >
+                          <MinusIcon className='w-12 h-12 text-white' />
+                        </div>
                         <div>
                           <Image
                             width={200}

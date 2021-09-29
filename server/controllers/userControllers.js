@@ -101,10 +101,10 @@ export const googleSignUp = asyncHandler(async (req, res) => {
   // Push all GiftCards & Registries to user
 
   const gifts = await Gift.find({}).select('_id');
-  const registries = await Registry.find({}).select('_id');
+  // const registries = await Registry.find({}).select('_id');
 
   const giftCards = gifts.map(gift => gift._id);
-  const registryCards = registries.map(registry => registry._id);
+  // const registryCards = registries.map(registry => registry._id);
 
   // Verify Google ID token
   const verify = await client.verifyIdToken({
@@ -141,7 +141,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       username,
       questions,
       giftCards,
-      registries: registryCards,
+      // registries: registryCards,
     });
 
     if (userCreated) {
@@ -258,10 +258,10 @@ export const activeUser = asyncHandler(async (req, res) => {
   // Push all GiftCards & Registries to user
 
   const gifts = await Gift.find({}).select('_id');
-  const registries = await Registry.find({}).select('_id');
+  // const registries = await Registry.find({}).select('_id');
 
   const giftCards = gifts.map(gift => gift._id);
-  const registryCards = registries.map(registry => registry._id);
+  // const registryCards = registries.map(registry => registry._id);
 
   // Decode token
   const decode = jwt.verify(token, process.env.JWT_SECRET);
@@ -288,7 +288,7 @@ export const activeUser = asyncHandler(async (req, res) => {
 
   userExists.emailVerified = true;
   userExists.giftCards.push(giftCards);
-  userExists.registries.push(registryCards);
+  // userExists.registries.push(registryCards);
 
   const user = await userExists.save();
 
