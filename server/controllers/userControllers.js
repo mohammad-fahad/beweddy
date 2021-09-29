@@ -537,13 +537,14 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
       .populate('giftCards')
       .populate('registries');
     const updateUser = JSON.parse(JSON.stringify(updatesUser))
+    console.log("from update", { updateUser });
     res.json({
       user: {
         _id: updateUser._id,
         firstName: updateUser.firstName,
         lastName: updateUser.lastName,
         fullName: updateUser.fullName,
-        coupleName: updateUser.coupleName,
+        coupleName: user.coupleName,
         username: updateUser.username,
         email: updateUser.email,
         phone: updateUser.phone,
