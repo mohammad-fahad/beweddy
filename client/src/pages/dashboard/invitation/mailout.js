@@ -102,16 +102,16 @@ const fakeData = [
 ];
 
 const MailOutInvitationPage = () => {
-  const [cardData, setCardData] = useState([...fakeData]);
+  // const [cardData, setCardData] = useState([...fakeData]);
   const [isActive, setIsActive] = useState(false);
 
-  const onPageChanged = (data) => {
-    const { currentPage, totalPages, pageLimit } = cardData;
-    const offset = (currentPage - 1) * pageLimit;
-    const currentCountries = cardData.slice(offset, offset + pageLimit);
+  // const onPageChanged = (data) => {
+  //   const { currentPage, totalPages, pageLimit } = cardData;
+  //   const offset = (currentPage - 1) * pageLimit;
+  //   const currentCountries = cardData.slice(offset, offset + pageLimit);
 
-    setCardData({ currentPage, currentCountries, totalPages });
-  };
+  //   setCardData({ currentPage, currentCountries, totalPages });
+  // };
 
   return (
     <>
@@ -219,26 +219,26 @@ const MailOutInvitationPage = () => {
               <div class="col-span-11 p-2">
                 <div>
                   <h1 className="text-[18px]">
-                    <span>{cardData?.length} </span> Items{" "}
+                    <span>{fakeData?.length} </span> Items{" "}
                   </h1>
                 </div>
                 <div className="flex items-start my-5">
                   <div class="grid grid-cols-12 w-full gap-8">
-                    {cardData?.map((card, i) => (
+                    {fakeData?.map((card, i) => (
                       <div class="col-span-4">
                         <InvitationCard data={card} key={i} />
                       </div>
                     ))}
                   </div>
                 </div>
-                <div className="flex-row py-4 d-flex align-items-center">
+                {/* <div className="flex-row py-4 d-flex align-items-center">
                   <Pagination
-                    totalRecords={cardData?.length}
+                    totalRecords={fakeData?.length}
                     pageLimit={10}
                     pageNeighbours={1}
                     onPageChanged={onPageChanged}
                   />
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
