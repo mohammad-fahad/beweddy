@@ -6,7 +6,7 @@ import DashboardTopBar from "@components/dashboard/header/TopBar";
 import DashboardLayout from "@components/dashboard/layout";
 import { useState } from "react";
 import InvitationCard from "./InvitationCard";
-import Pagination from "@components/shared/Pagination";
+// import Pagination from "@components/shared/Pagination";
 
 const fakeData = [
   {
