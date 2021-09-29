@@ -1,118 +1,58 @@
 import Head from "next/head";
-import { DashboardHeader } from "@components/dashboard";
-import { Footer } from "@components/index";
+import {
+  DashboardHeader,
+  WebsitePreviewContainer,
+} from "@components/dashboard";
+import { Button, Footer, Heading, Loader } from "@components/index";
 import { withAuthRoute } from "@hoc/withAuthRoute";
 import DashboardTopBar from "@components/dashboard/header/TopBar";
 import DashboardLayout from "@components/dashboard/layout";
+import { StarIcon } from "@heroicons/react/solid";
 import { useState } from "react";
 import InvitationCard from "./InvitationCard";
-// import Pagination from "@components/shared/Pagination";
-
-const fakeData = [
-  {
-    image:
-      "https://designshack.net/wp-content/uploads/free-invitation-templates.jpg",
-    name: "Card one",
-    color: "red green blue",
-  },
-  {
-    image:
-      "https://cdn3.vectorstock.com/i/1000x1000/42/27/luxury-invitation-card-design-vector-22684227.jpg",
-    name: "Card two",
-    color: "red green blue",
-  },
-  {
-    image:
-      "https://www.proweddinginvites.com/images/thumb/files/18/PWIF063.jpg",
-    name: "Card three",
-    color: "red green blue",
-  },
-  {
-    image:
-      "https://legaldbol.com/wp-content/uploads/2019/03/79-Create-Invitation-Card-Template-Free-Vector-in-Photoshop-for-Invitation-Card-Template-Free-Vector.jpg",
-    name: "Card four",
-    color: "red green blue",
-  },
-  {
-    image:
-      "https://file.amockup.com/uploads/2020/08/free-modern-tracing-paper-mock-up1.jpg",
-    name: "Card five",
-    color: "red green blue",
-  },
-  {
-    image:
-      "https://designshack.net/wp-content/uploads/free-invitation-templates.jpg",
-    name: "Card one",
-    color: "red green blue",
-  },
-  {
-    image:
-      "https://cdn3.vectorstock.com/i/1000x1000/42/27/luxury-invitation-card-design-vector-22684227.jpg",
-    name: "Card two",
-    color: "red green blue",
-  },
-  {
-    image:
-      "https://www.proweddinginvites.com/images/thumb/files/18/PWIF063.jpg",
-    name: "Card three",
-    color: "red green blue",
-  },
-  {
-    image:
-      "https://legaldbol.com/wp-content/uploads/2019/03/79-Create-Invitation-Card-Template-Free-Vector-in-Photoshop-for-Invitation-Card-Template-Free-Vector.jpg",
-    name: "Card four",
-    color: "red green blue",
-  },
-  {
-    image:
-      "https://file.amockup.com/uploads/2020/08/free-modern-tracing-paper-mock-up1.jpg",
-    name: "Card five",
-    color: "red green blue",
-  },
-  {
-    image:
-      "https://designshack.net/wp-content/uploads/free-invitation-templates.jpg",
-    name: "Card one",
-    color: "red green blue",
-  },
-  {
-    image:
-      "https://cdn3.vectorstock.com/i/1000x1000/42/27/luxury-invitation-card-design-vector-22684227.jpg",
-    name: "Card two",
-    color: "red green blue",
-  },
-  {
-    image:
-      "https://www.proweddinginvites.com/images/thumb/files/18/PWIF063.jpg",
-    name: "Card three",
-    color: "red green blue",
-  },
-  {
-    image:
-      "https://legaldbol.com/wp-content/uploads/2019/03/79-Create-Invitation-Card-Template-Free-Vector-in-Photoshop-for-Invitation-Card-Template-Free-Vector.jpg",
-    name: "Card four",
-    color: "red green blue",
-  },
-  {
-    image:
-      "https://file.amockup.com/uploads/2020/08/free-modern-tracing-paper-mock-up1.jpg",
-    name: "Card five",
-    color: "red green blue",
-  },
-];
+import { QRCode } from "react-qrcode-logo";
+import { LinkIcon } from "@heroicons/react/outline";
+import Link from "next/link";
+import { useSelector } from "react-redux";
 
 const MailOutInvitationPage = () => {
-  // const [cardData, setCardData] = useState([...fakeData]);
+  const { user } = useSelector((state) => state.user);
+  const fakeData = [
+    {
+      image:
+        "https://designshack.net/wp-content/uploads/free-invitation-templates.jpg",
+      name: "Card one",
+      color: "red green blue",
+    },
+    {
+      image:
+        "https://cdn3.vectorstock.com/i/1000x1000/42/27/luxury-invitation-card-design-vector-22684227.jpg",
+      name: "Card two",
+      color: "red green blue",
+    },
+    {
+      image:
+        "https://www.proweddinginvites.com/images/thumb/files/18/PWIF063.jpg",
+      name: "Card three",
+      color: "red green blue",
+    },
+    {
+      image:
+        "https://legaldbol.com/wp-content/uploads/2019/03/79-Create-Invitation-Card-Template-Free-Vector-in-Photoshop-for-Invitation-Card-Template-Free-Vector.jpg",
+      name: "Card four",
+      color: "red green blue",
+    },
+    {
+      image:
+        "https://file.amockup.com/uploads/2020/08/free-modern-tracing-paper-mock-up1.jpg",
+      name: "Card five",
+      color: "red green blue",
+    },
+  ];
+
   const [isActive, setIsActive] = useState(false);
-
-  // const onPageChanged = (data) => {
-  //   const { currentPage, totalPages, pageLimit } = cardData;
-  //   const offset = (currentPage - 1) * pageLimit;
-  //   const currentCountries = cardData.slice(offset, offset + pageLimit);
-
-  //   setCardData({ currentPage, currentCountries, totalPages });
-  // };
-
+  const [isActive2, setIsActive2] = useState(false);
+  const [value, setValue] = useState(`${process.env.NEXT_PUBLIC_CLIENT_URL}`);
   return (
     <>
       <Head>
@@ -265,7 +205,7 @@ const MailOutInvitationPage = () => {
                   >
                     <h1 className="text-lg">Season</h1>
                     <span>
-                      {!isActive ? (
+                      {!isActive2 ? (
                         <svg
                           width="24"
                           height="24"
@@ -347,29 +287,94 @@ const MailOutInvitationPage = () => {
               <div class="col-span-11 p-2">
                 <div>
                   <h1 className="text-[18px]">
-                    <span>{fakeData?.length} </span> Items{" "}
+                    <span>{fakeData.length} </span> Items{" "}
                   </h1>
                 </div>
                 <div className="flex items-start my-5">
                   <div class="grid grid-cols-12 w-full gap-8">
-                    {fakeData?.map((card, i) => (
+                    {fakeData.map((card, i) => (
                       <div class="col-span-4">
                         <InvitationCard data={card} key={i} />
                       </div>
                     ))}
                   </div>
                 </div>
-                {/* <div className="flex-row py-4 d-flex align-items-center">
-                  <Pagination
-                    totalRecords={fakeData?.length}
-                    pageLimit={10}
-                    pageNeighbours={1}
-                    onPageChanged={onPageChanged}
-                  />
-                </div> */}
+                {/* Need a pagination here */}
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="bg-white">
+          <div className="flex ">
+            <div className="container w-full">
+              <div className=" bg-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary w-full h-full py-20 border-4 rounded-lg">
+                <div class="flex items-center justify-center flex-wrap gap-4 w-full ">
+                  <div className="flex items-start justify-between">
+                    <div class="grid grid-cols-12 w-full">
+                      <div class="col-span-3">
+                        <div className="flex items-center justify-center qrCode">
+                          <QRCode
+                            {...{ value }}
+                            size={275}
+                            eyeRadius={[
+                              {
+                                outer: [10, 10, 0, 10],
+                                inner: [0, 10, 10, 10],
+                              },
+                              [10, 10, 10, 0], // top/right eye
+                              [10, 0, 10, 10], // bottom/left
+                            ]}
+                            logoHeight={70}
+                            logoWidth={70}
+                            logoImage="/icons/circle-ring.png"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-span-9 flex justify-center items-center">
+                        <h1 className="!text-[28px] font-medium  mudiumTitle">
+                          Attach a personalized QR Code to you invitations.{" "}
+                          <br /> This brings guests directly to your website for{" "}
+                          <br /> updates and gift registry.
+                        </h1>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <div className="bg-red-700"> */}
+        <WebsitePreviewContainer data={"Your Wedding Website"} />
+        {/* </div> */}
+
+        <div className="flex items-center flex-wrap px-[1.15rem] xs:space-y-0 space-x-3 md:space-x-5 justify-center my-[50px]">
+          <Link href="/dashboard/website/edit">
+            <a
+              className={`capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300 smallText`}
+            >
+              {/* <PencilIcon className='hidden w-5 h-5 sm:inline-block' /> */}
+              <span>Edit your website</span>
+            </a>
+          </Link>
+          <Link href={`/couple/${user?.username}`}>
+            <a
+              target="_blank"
+              className={`capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300 smallText`}
+            >
+              {/* <GlobeAltIcon className='hidden w-5 h-5 sm:inline-block' /> */}
+              <span>Preview Website</span>
+            </a>
+          </Link>
+          <Link href="/dashboard/features/qrcode-and-links">
+            <a
+              className={`sm:mt-3 xs:mt-0 capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300 smallText`}
+            >
+              <LinkIcon className="hidden w-5 h-5 sm:inline-block" />
+              <span>Superlink</span>
+            </a>
+          </Link>
         </div>
       </DashboardLayout>
 

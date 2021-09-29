@@ -21,7 +21,7 @@ const WebsitePreviewContainer = ({ minimal, data }) => {
   const { user } = useSelector((state) => state.user);
   return (
     <div
-      className={`mt-10 flex flex-col justify-center space-y-10 rounded-xl ${
+      className={`relative mt-10 flex flex-col justify-center space-y-10 rounded-xl ${
         // minimal ? "" : "border-4 border-secondary-alternative gradient"
         minimal ? "" : "border-4 border-secondary-alternative gradient"
       }`}
