@@ -901,3 +901,14 @@ const RSVPage = ({ user }) => {
 };
 
 export default RSVPage;
+
+export const getServerSideProps = async ({ params: { couple } }) => {
+  const res = await fetch(`${API_URL}/users/${couple}`);
+  const user = await res.json();
+
+  return {
+    props: {
+      user,
+    },
+  };
+};
