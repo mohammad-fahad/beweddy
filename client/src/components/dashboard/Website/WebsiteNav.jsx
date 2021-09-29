@@ -8,16 +8,16 @@ const WebsiteNav = ({ user }) => {
       <div className="w-full px-5 !py-3  md:py-0 md:flex-row md:justify-between">
         <div className="mt-2">
           {user && (
-            <Link href="/dashboard">
+            <Link href="/dashboard/website/edit">
               <a className="flex items-center space-x-3 text-sm font-semibold text-gray-700 transition duration-300 md:text-md whitespace-nowrap font-inter hover:text-primary">
-                <span>Back to Dashboard</span>
+                <span>Edit Website</span>
               </a>
             </Link>
           )}
         </div>
         <h3 className="flex items-center justify-center w-full text-lg capitalize">
-          <img src="/apple-touch-icon.png" alt="help" className="w-8 h-8" />
-          <span className="pl-2 text-2xl font-medium md:text-4xl">
+          {/* <img src="/apple-touch-icon.png" alt="help" className="w-8 h-8" /> */}
+          <span className="pl-2 !font-alice text-[36px] font-medium">
             {user?.coupleName}
           </span>
         </h3>

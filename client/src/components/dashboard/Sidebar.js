@@ -138,7 +138,7 @@ const Sidebar = () => {
                 </div>
               )}
               {todos
-                ?.slice(-6)
+                ?.slice(-3)
                 ?.reverse()
                 .map(todo => (
                   <div key={todo._id} className='flex space-x-5 group relative'>
@@ -161,17 +161,16 @@ const Sidebar = () => {
                       )}
                     </button>
                     <p
-                      className={`text-base font-normal break-words ${
-                        todo.isComplete ? 'line-through' : ''
-                      }`}
-                      // onClick={() =>
-                      //   dispatch(
-                      //     toggleTodo({
-                      //       id: todo.id,
-                      //       isComplete: !todo.isComplete,
-                      //     })
-                      //   )
-                      // }
+                      className={`text-base font-normal break-words ${todo.isComplete ? 'line-through' : ''
+                        }`}
+                    // onClick={() =>
+                    //   dispatch(
+                    //     toggleTodo({
+                    //       id: todo.id,
+                    //       isComplete: !todo.isComplete,
+                    //     })
+                    //   )
+                    // }
                     >
                       {todo.description}
                     </p>
