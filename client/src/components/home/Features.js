@@ -5,12 +5,7 @@ const Features = () => {
   return (
     <div className="border-[5px] border-l-0 border-r-0 border-primary">
       <div className="container py-20">
-        {/* <Heading
-          label={`The Only Free Text Messaging Wedding Platform`}
-          color="bg-[#F9D1DE]"
-          className="!text-4xl"
-        /> */}
-        <h2 className="max-w-3xl pb-8 mx-auto text-4xl text-center capitalize commonTitle mt-10">
+        <h2 className="max-w-3xl pb-8 mx-auto mt-10 text-4xl text-center capitalize commonTitle">
           The Only Free Text Messaging <br /> Wedding Platform
         </h2>
         <div className="w-48 mx-auto h-[2px] md:h-[4px] mb-16 bg-[#F9D1DE]" />
@@ -59,16 +54,6 @@ const Features = () => {
                   Email
                 </p>
               </div>
-              {/* <div className='flex items-center pr-8 space-x-8 lg:pr-10 timeline pl-7 lg:pl-8 py-7 lg:py-8 lg:space-x-10'>
-                <p className='text-[15px] md:text-lg lg:text-xl font-semibold capitalize !leading-[167.5%]'>
-                  Customized QR Code
-                </p>
-                <img
-                  src='/icons/qrLogo.png'
-                  alt=''
-                  className='w-10 md:w-12 lg:w-14 !ml-auto'
-                />
-              </div> */}
             </div>
           </div>
           <div className="self-center col-span-6 px-20 mx-auto md:col-span-5 sm:px-0">
@@ -77,15 +62,7 @@ const Features = () => {
               height={750}
               src="/images/homePageMoble.png"
               alt=""
-              // className='mx-auto w-72'
             />
-            {/* <Image
-              width={365}
-              height={750}
-              src="/images/feature-mobile.png"
-              alt=""
-              // className='mx-auto w-72'
-            /> */}
           </div>
         </div>
       </div>
