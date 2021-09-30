@@ -354,8 +354,8 @@ const CoupleWebsitePage = (props) => {
               </div>
             </div>
 
-            <div className="col-span-4">
-              <div className="sm:w-[30%]">
+            <div className="w-full col-span-12 sm:col-span-4 ">
+              <div className="sm:w-[30%] w-full customItem ">
                 <QRCode
                   {...{ value }}
                   size={200}
