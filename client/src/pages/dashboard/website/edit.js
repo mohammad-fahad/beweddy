@@ -74,62 +74,62 @@ const EditWebsitePage = () => {
     user.receptionDetails.length
       ? user.receptionDetails
       : [
-          {
-            id: generate(),
-            time: '5.00 PM',
-            details: 'Example of event details',
-          },
-          {
-            id: generate(),
-            time: '5:30 PM',
-            details: 'Ceremony',
-          },
-          {
-            id: generate(),
-            time: '6:00 PM',
-            details: 'Ceremony ends/cocktails begin',
-          },
-          {
-            id: generate(),
-            time: '7:00 PM',
-            details: 'Cocktails ends and guests are ushered into the reception',
-          },
-          {
-            id: generate(),
-            time: '7:20 PM',
-            details: 'Introduction and first dance—guests asked to join after ',
-          },
-          {
-            id: generate(),
-            time: '7:45 PM',
-            details: ' Guests take their seats and the first course is served',
-          },
-          {
-            id: generate(),
-            time: '8:00 PM',
-            details: 'Welcome speech from parents',
-          },
-          {
-            id: generate(),
-            time: '8:10 PM',
-            details: 'Toasts from maid of honor and best man',
-          },
-          {
-            id: generate(),
-            time: '9:00 PM',
-            details: 'Parent dances',
-          },
-          {
-            id: generate(),
-            time: '9:30 PM ',
-            details: 'Cake cutting',
-          },
-          {
-            id: generate(),
-            time: '10:00 PM',
-            details: 'Send-Off',
-          },
-        ]
+        {
+          id: generate(),
+          time: '5.00 PM',
+          details: 'Example of event details',
+        },
+        {
+          id: generate(),
+          time: '5:30 PM',
+          details: 'Ceremony',
+        },
+        {
+          id: generate(),
+          time: '6:00 PM',
+          details: 'Ceremony ends/cocktails begin',
+        },
+        {
+          id: generate(),
+          time: '7:00 PM',
+          details: 'Cocktails ends and guests are ushered into the reception',
+        },
+        {
+          id: generate(),
+          time: '7:20 PM',
+          details: 'Introduction and first dance—guests asked to join after ',
+        },
+        {
+          id: generate(),
+          time: '7:45 PM',
+          details: ' Guests take their seats and the first course is served',
+        },
+        {
+          id: generate(),
+          time: '8:00 PM',
+          details: 'Welcome speech from parents',
+        },
+        {
+          id: generate(),
+          time: '8:10 PM',
+          details: 'Toasts from maid of honor and best man',
+        },
+        {
+          id: generate(),
+          time: '9:00 PM',
+          details: 'Parent dances',
+        },
+        {
+          id: generate(),
+          time: '9:30 PM ',
+          details: 'Cake cutting',
+        },
+        {
+          id: generate(),
+          time: '10:00 PM',
+          details: 'Send-Off',
+        },
+      ]
   );
 
   // WeddingDate Picker
@@ -493,7 +493,7 @@ const EditWebsitePage = () => {
                   className='relative focus:outline-none'
                   {...getRootProps()}
                 >
-                  <p className='text-[12px] mb-1'>
+                  <p className='text-[12px] mb-3'>
                     Crop Pictures For Cover Photos
                   </p>
                   <input {...getInputProps()} />

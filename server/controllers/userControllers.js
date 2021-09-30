@@ -45,9 +45,8 @@ export const register = asyncHandler(async (req, res) => {
     throw new Error('User already exists');
   }
 
-  const username = `${questions.firstName}_${
-    questions.spouseFirstName
-  }_${nanoid(4)}`
+  const username = `${questions.firstName}_${questions.spouseFirstName
+    }_${nanoid(4)}`
     .toLowerCase()
     .replace(/\s/g, '');
   // Create new user
@@ -125,9 +124,8 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       res.status(400);
       throw new Error('User already exists');
     }
-    const username = `${questions.firstName}_${
-      questions.spouseFirstName
-    }_${nanoid(4)}`
+    const username = `${questions.firstName}_${questions.spouseFirstName
+      }_${nanoid(4)}`
       .toLowerCase()
       .replace(/\s/g, '');
     // If not user exists then create new user
@@ -574,7 +572,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
         firstName: updateUser.firstName,
         lastName: updateUser.lastName,
         fullName: updateUser.fullName,
-        coupleName: updateUser.coupleName,
+        coupleName: user.coupleName,
         username: updateUser.username,
         email: updateUser.email,
         phone: updateUser.phone,
