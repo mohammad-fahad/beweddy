@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 
 const InvitationCard = ({ data }) => {
   const [color, setColor] = useState("default");
@@ -17,12 +18,14 @@ const InvitationCard = ({ data }) => {
 
   return (
     <div className="mb-8">
-      <div
-        className={`w-full border-2 border-[#343533] rounded flex justify-center items-center py-4`}
-        style={{ backgroundColor: selectColor(color) }}
-      >
-        <img src={data.image} alt="" className="w-[70%] h-48 " />
-      </div>
+      <Link href={`/dashboard/invitation/mailout/${data?.id}`}>
+        <div
+          className={`w-full border-2 border-[#343533] rounded flex justify-center items-center py-4 cursor-pointer `}
+          style={{ backgroundColor: selectColor(color) }}
+        >
+          <img src={data.image} alt="" className="w-[70%] h-48 " />
+        </div>
+      </Link>
 
       <div className="my-4">
         <h1 className="text-[14px] font-medium leading-4">{data.name}</h1>
