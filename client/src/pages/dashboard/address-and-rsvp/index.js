@@ -138,7 +138,7 @@ const AddressRSVP = () => {
       <Head>
         <title>Beweddy | Address & RSVP</title>
       </Head>
-      <>{errors && toast.error("Please fill out information to submit")}</>
+      {/* <>{errors && toast.error("Please fill out information to submit")}</> */}
       {/* {errors?.name?.message && <>{errors && toast.error(errors?.name?.message)}</>}
       {errors?.email?.message && <>{errors && toast.error(errors?.email?.message)}</>}
       <>{errors && toast.error(errors?.street?.message)}</>
@@ -991,11 +991,11 @@ const AddressRSVP = () => {
               </div>
               <div className="!mt-10 flex justify-center items-center flex-col">
                 <Button
-                  className="!mx-0 !rounded-lg !bg-[#FCE0EB] !text-[#000000] !w-[205px] h-[70px] !text-[24px]"
+                  className="!mx-0 !rounded-lg !bg-[#FCE0EB] !text-[#000000] sm:w-[205px] sm:h-[70px] h-[50px] !text-[24px] mudiumTitle"
                   label="Submit"
                   type="submit"
                 />
-                <h1 className="text-[32px] leading-9 font-normal mt-4">
+                <h1 className="text-[32px] leading-9 font-normal mt-4 mudiumTitle">
                   Eat, Drink, & BeWeddy!
                 </h1>
               </div>

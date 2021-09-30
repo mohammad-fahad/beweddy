@@ -1,4 +1,3 @@
-import WeddingDayCountDown from "../WeddingDayCountDown";
 import { useSelector } from "react-redux";
 import { useWindowSize } from "@hooks/useWindowSize";
 
@@ -14,24 +13,17 @@ const DesktopPreview = () => {
       <img
         src="/preview/dasktop.png"
         alt=""
-        className={` !md:max-h-[395px] mx-auto swiper-lazy  ${
+        className={` !md:max-h-[395px] mx-auto swiper-lazy desktopPreview  ${
           size.width < 600 ? "desktopPreview" : ""
         }`}
       />
       <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
 
       <div
-        className={`absolute !top-[21px] !bottom-[69px] left-[74px] right-[77px] ${
+        className={`absolute !top-[21px] !bottom-[69px] left-[74px] right-[77px] desktopImagesWrapper ${
           size.width < 600 ? "desktopImagesWrapper" : ""
         }`}
       >
-        {/* <h1
-          className={`absolute !top-[10px] left-[10px]  ${
-            size.width < 480 ? "text-[12px]" : ""
-          }`}
-        >
-          {user?.coupleName}
-        </h1> */}
         <div
           className={`absolute !bottom-[0px] left-[0px] rigth-[10px] bg-[#00000069] w-full py-2 `}
         >
@@ -56,15 +48,3 @@ const DesktopPreview = () => {
 };
 
 export default DesktopPreview;
-
-// <div className="absolute !top-[21px] !bottom-[12.1rem] left-[22px] right-[22px]">
-//         <img src={user?.questions?.couplePictures[0]?.url} alt="website preview" className='!h-[57%]' style={{width: "-webkit-fill-available"}} />
-//         <div className="bg-[#f9d1de] border-t-2 border-black">
-//           <div className='pt-4 text-center'>
-//             <h1> Wedding Day Countdown </h1>
-//           </div>
-//           <div className='py-3 ' >
-//               <WeddingDayCountDown sm />
-//           </div>
-//         </div>
-//       </div>

@@ -22,15 +22,8 @@ const WebsitePreviewContainer = ({ minimal }) => {
   return (
     <div
       className={`relative mt-10 flex flex-col justify-center space-y-10 rounded-xl ${
-        // minimal ? "" : "border-4 border-secondary-alternative gradient"
         minimal ? "" : "border-4 border-secondary-alternative gradient"
       }`}
-      // style={{
-      //   background: "url('/images/footer-leaf.png')",
-      //   backgroundPosition: "bottom",
-      //   backgroundSize: "110%",
-      //   backgroundRepeat: "no-repeat",
-      // }}
     >
       {!minimal && (
         <h3 className="text-3xl text-center capitalize">
@@ -49,7 +42,6 @@ const WebsitePreviewContainer = ({ minimal }) => {
                 <img
                   src="/images/wedding-laptop.png"
                   alt=""
-                  // className="!h-[600px] mx-auto swiper-lazy"
                   className="sm:max-h-[400px] md:max-h-[450px] mx-auto swiper-lazy"
                 />
                 <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
@@ -85,7 +77,6 @@ const WebsitePreviewContainer = ({ minimal }) => {
                   src="/images/wedding-macbook.png"
                   alt=""
                   className="sm:max-h-[400px]  md:max-h-[450px] mx-auto swiper-lazy"
-                  // className="!h-[600px] mx-auto swiper-lazy"
                 />
                 <div className="swiper-lazy-preloader swiper-lazy-preloader-white" />
               </div>
