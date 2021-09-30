@@ -4,7 +4,6 @@ import Gift from '../models/Gift.js';
 // Get All Gifts
 export const getGifts = asyncHandler(async (_req, res) => {
   const gifts = await Gift.find({});
-
   res.status(200).json(gifts);
 });
 

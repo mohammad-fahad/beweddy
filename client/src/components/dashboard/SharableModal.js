@@ -1,12 +1,13 @@
 import { Heading } from "@components/shared";
 import { Dialog, Transition } from "@headlessui/react";
 import { createPrivetRegistry } from "@services/Registry/privetRegistry";
-import { Fragment, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { useMutation } from "react-query";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import useCopyClipboard from "react-use-clipboard";
 import Image from "next/image";
+import toast from "react-hot-toast";
 const SharableModal = ({ isModalOpen, setIsModalOpen }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
@@ -15,12 +16,81 @@ const SharableModal = ({ isModalOpen, setIsModalOpen }) => {
   }
   const { mutateAsync, isLoading } = useMutation(createPrivetRegistry);
 
-  const [value, setValue] = useState(
+  const [superlink, setSuperlink] = useState(
     `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${user?.username}`
   );
-  const [isCopied, setCopied] = useCopyClipboard(value, {
+  const [websitelink, setWebsitelink] = useState(
+    `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${user?.username}`
+  );
+  const [giftAndRegistry, setGiftAndRegistry] = useState(
+    `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/giftAndRegistry`
+  );
+  const [address, setAddress] = useState(
+    `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/address`
+  );
+  const [event, setEvent] = useState(
+    `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/event`
+  );
+  const [linkShortener, setLinkShortener] = useState(
+    `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/linkShortener`
+  );
+  const [isCopied, setCopied] = useCopyClipboard(superlink, {
     successDuration: 1500,
   });
+  const [isWebsite, setIsWebsite] = useCopyClipboard(websitelink, {
+    successDuration: 1500,
+  });
+  const [isGiftAndWebsite, setIsGiftAndWebsite] = useCopyClipboard(
+    giftAndRegistry,
+    {
+      successDuration: 1500,
+    }
+  );
+  const [isAddress, setIsAddress] = useCopyClipboard(address, {
+    successDuration: 1500,
+  });
+  const [isEvent, setIsEvent] = useCopyClipboard(event, {
+    successDuration: 1500,
+  });
+  const [isLinkShortener, setIsLinkShortener] = useCopyClipboard(
+    linkShortener,
+    {
+      successDuration: 1500,
+    }
+  );
+
+  isCopied && toast.success("Supper Link copied!");
+  isWebsite && toast.success("Website Link copied!");
+  isGiftAndWebsite && toast.success("Gift Cards & Registry Link copied!");
+  isAddress && toast.success("We Need Your Address Link copied!");
+  isEvent && toast.success("Event Details Link copied!");
+  isLinkShortener && toast.success("Shortener Link copied!");
+
+  const handleSubmitSuperlink = () => {
+    setCopied();
+    setIsModalOpen(false);
+  };
+  const handleWebsite = () => {
+    setIsWebsite();
+    setIsModalOpen(false);
+  };
+  const handleGiftAndWebsite = () => {
+    setIsGiftAndWebsite();
+    setIsModalOpen(false);
+  };
+  const handleSubmitAddress = () => {
+    setIsAddress();
+    setIsModalOpen(false);
+  };
+  const handleSubmitEvent = () => {
+    setIsEvent();
+    setIsModalOpen(false);
+  };
+  const handleSubmitLinkShortener = () => {
+    setIsLinkShortener();
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <Transition appear show={isModalOpen} as={Fragment}>
@@ -70,11 +140,12 @@ const SharableModal = ({ isModalOpen, setIsModalOpen }) => {
                           <input
                             type="text"
                             className="max-w-[330px] w-full py-3 px-5 text-center text-blue-400 placeholder-blue-400 border font-medium border-primary rounded-[5px]"
-                            placeholder="www.bw.link/123"
-                            onClick={setCopied}
+                            placeholder={`${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${user?.username}`}
+                            // onClick={setCopied}
+                            onChange={(e) => setSuperlink(e.target.value)}
                           />
                           <button
-                            onClick={setCopied}
+                            onClick={handleSubmitSuperlink}
                             className="absolute right-1 border-l-2 items-center justify-center px-3 py-2 bg-[#ffffff] top-1"
                           >
                             Copy
@@ -103,10 +174,11 @@ const SharableModal = ({ isModalOpen, setIsModalOpen }) => {
                             type="text"
                             className=" text-sm w-full py-3 px-5 text-blue-400 placeholder-blue-400 border font-medium border-primary rounded-[5px]"
                             placeholder="www.beweddy.com/nateandash"
-                            onClick={setCopied}
+                            // onClick={setCopied}
+                            onChange={(e) => setWebsitelink(e.target.value)}
                           />
                           <button
-                            onClick={setCopied}
+                            onClick={handleWebsite}
                             className="absolute right-1 border-l-2 items-center justify-center px-3 py-2 bg-[#ffffff] top-1"
                           >
                             Copy
@@ -128,10 +200,11 @@ const SharableModal = ({ isModalOpen, setIsModalOpen }) => {
                             type="text"
                             className=" text-sm w-full py-3 px-5 text-blue-400 placeholder-blue-400 border font-medium border-primary rounded-[5px]"
                             placeholder="www.beweddy.com/nateandash/giftcards"
-                            onClick={setCopied}
+                            // onClick={setCopied}
+                            onChange={(e) => setGiftAndRegistry(e.target.value)}
                           />
                           <button
-                            onClick={setCopied}
+                            onClick={handleGiftAndWebsite}
                             className="absolute right-1 border-l-2 items-center justify-center px-3 py-2 bg-[#ffffff] top-1"
                           >
                             Copy
@@ -153,10 +226,11 @@ const SharableModal = ({ isModalOpen, setIsModalOpen }) => {
                             type="text"
                             className=" text-sm w-full py-3 px-5 text-blue-400 placeholder-blue-400 border font-medium border-primary rounded-[5px]"
                             placeholder="www.beweddy.com/nateandash/needyouraddress"
-                            onClick={setCopied}
+                            // onClick={setCopied}
+                            onChange={(e) => setAddress(e.target.value)}
                           />
                           <button
-                            onClick={setCopied}
+                            onClick={handleSubmitAddress}
                             className="absolute right-1 border-l-2 items-center justify-center px-3 py-2 bg-[#ffffff] top-1"
                           >
                             Copy
@@ -178,10 +252,11 @@ const SharableModal = ({ isModalOpen, setIsModalOpen }) => {
                             type="text"
                             className="text-sm w-full py-3 px-5 text-blue-400 placeholder-blue-400 border font-medium border-primary rounded-[5px]"
                             placeholder="www.beweddy.com/nateandash/needyouraddress"
-                            onClick={setCopied}
+                            // onClick={setCopied}
+                            onChange={(e) => setIsEvent(e.target.value)}
                           />
                           <button
-                            onClick={setCopied}
+                            onClick={handleSubmitEvent}
                             className="absolute right-1 border-l-2 items-center justify-center px-3 py-2 bg-[#ffffff] top-1"
                           >
                             Copy
@@ -203,10 +278,11 @@ const SharableModal = ({ isModalOpen, setIsModalOpen }) => {
                             type="text"
                             className="text-sm w-full py-3 px-5 text-blue-400 placeholder-blue-400 border font-medium border-primary rounded-[5px]"
                             placeholder="Add link"
-                            onClick={setCopied}
+                            // onClick={setCopied}
+                            onChange={(e) => setEvent(e.target.value)}
                           />
                           <button
-                            onClick={setCopied}
+                            onClick={handleSubmitLinkShortener}
                             className="absolute right-1 border-l-2 items-center justify-center px-3 py-2 bg-[#ffffff] top-1"
                           >
                             Copy

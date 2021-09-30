@@ -15,6 +15,8 @@ import { client } from '../lib/google.js';
 import { nanoid } from 'nanoid';
 import Todo from '../models/Todo.js';
 import PrivetRegistry from '../models/PrivetRegistry.js';
+import Registry from '../models/Registry.js';
+import Gift from '../models/Gift.js';
 
 // Register New User
 
@@ -43,8 +45,9 @@ export const register = asyncHandler(async (req, res) => {
     throw new Error('User already exists');
   }
 
-  const username = `${questions.firstName}_${questions.spouseFirstName
-    }_${nanoid(4)}`
+  const username = `${questions.firstName}_${
+    questions.spouseFirstName
+  }_${nanoid(4)}`
     .toLowerCase()
     .replace(/\s/g, '');
   // Create new user
@@ -95,6 +98,14 @@ export const register = asyncHandler(async (req, res) => {
 export const googleSignUp = asyncHandler(async (req, res) => {
   const { idToken, questions } = req.body;
 
+  // Push all GiftCards & Registries to user
+
+  const gifts = await Gift.find({}).select('_id');
+  // const registries = await Registry.find({}).select('_id');
+
+  const giftCards = gifts.map(gift => gift._id);
+  // const registryCards = registries.map(registry => registry._id);
+
   // Verify Google ID token
   const verify = await client.verifyIdToken({
     idToken,
@@ -114,12 +125,13 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       res.status(400);
       throw new Error('User already exists');
     }
-    const username = `${questions.firstName}_${questions.spouseFirstName
-      }_${nanoid(4)}`
+    const username = `${questions.firstName}_${
+      questions.spouseFirstName
+    }_${nanoid(4)}`
       .toLowerCase()
       .replace(/\s/g, '');
     // If not user exists then create new user
-    const user = await User.create({
+    const userCreated = await User.create({
       firstName,
       lastName,
       email,
@@ -128,19 +140,27 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       emailVerified: email_verified,
       username,
       questions,
+      giftCards,
+      // registries: registryCards,
     });
 
-    if (user) {
+    if (userCreated) {
       defaultTodos.forEach(async todo => {
         await Todo.create({
-          user: user._id,
+          user: userCreated._id,
           ...todo,
         });
       });
 
       const privetRegistries = await PrivetRegistry.find({
-        user: user._id,
+        user: userCreated._id,
       });
+
+      const user = await User.findOne({
+        _id: userCreated._id,
+      })
+        .populate('gifts')
+        .populate('registries');
 
       res.json({
         user: {
@@ -235,6 +255,14 @@ export const googleSignIn = asyncHandler(async (req, res) => {
 export const activeUser = asyncHandler(async (req, res) => {
   const { token } = req.body;
 
+  // Push all GiftCards & Registries to user
+
+  const gifts = await Gift.find({}).select('_id');
+  // const registries = await Registry.find({}).select('_id');
+
+  const giftCards = gifts.map(gift => gift._id);
+  // const registryCards = registries.map(registry => registry._id);
+
   // Decode token
   const decode = jwt.verify(token, process.env.JWT_SECRET);
 
@@ -259,6 +287,9 @@ export const activeUser = asyncHandler(async (req, res) => {
   }
 
   userExists.emailVerified = true;
+  userExists.giftCards.push(giftCards);
+  // userExists.registries.push(registryCards);
+
   const user = await userExists.save();
 
   // Send response
@@ -480,7 +511,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     user.lastName = req.body.lastName || user.lastName;
     user.questions = questions || user.questions;
     if (req.body.location) {
-      user.location = req.body.location
+      user.location = req.body.location;
     }
 
     // user.avatar = req.body.avatar || user.avatar;
@@ -536,7 +567,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     const updatesUser = await User.findById(updatedUser._id)
       .populate('giftCards')
       .populate('registries');
-    const updateUser = JSON.parse(JSON.stringify(updatesUser))
+    const updateUser = JSON.parse(JSON.stringify(updatesUser));
     res.json({
       user: {
         _id: updateUser._id,
