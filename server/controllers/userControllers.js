@@ -16,6 +16,7 @@ import { nanoid } from 'nanoid';
 import Todo from '../models/Todo.js';
 import PrivetRegistry from '../models/PrivetRegistry.js';
 import Registry from '../models/Registry.js';
+import Guest from '../models/Guest.js';
 import Gift from '../models/Gift.js';
 
 // Register New User
@@ -293,6 +294,9 @@ export const activeUser = asyncHandler(async (req, res) => {
   // Send response
   if (user) {
     const privetRegistries = await PrivetRegistry.find({ user: user._id });
+    // await Guest.create({
+    //   user: user._id,
+    // });
 
     res.status(201).json({
       user: {
