@@ -94,7 +94,7 @@ const OpenRegistryModal = ({ isRegistryModalOpen, setIsRegistryModalOpen, regist
                                             htmlFor="title"
                                             className="text-sm font-medium md:text-base md:font-semibold"
                                         >
-                                            Registry Name{registryData?.title}
+                                            Registry Name {registryData?.title}
                                         </label>
                                         <input
                                             id="title"
