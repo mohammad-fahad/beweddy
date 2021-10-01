@@ -1,165 +1,58 @@
 import Head from "next/head";
-import { DashboardHeader } from "@components/dashboard";
-import { Footer } from "@components/index";
+import {
+  DashboardHeader,
+  WebsitePreviewContainer,
+} from "@components/dashboard";
+import { Button, Footer, Heading, Loader } from "@components/index";
 import { withAuthRoute } from "@hoc/withAuthRoute";
 import DashboardTopBar from "@components/dashboard/header/TopBar";
 import DashboardLayout from "@components/dashboard/layout";
-import { useRef, useState } from "react";
-import InvitationCard from "./InvitationCard";
+import { StarIcon } from "@heroicons/react/solid";
+import { useState } from "react";
+import InvitationCard from "../InvitationCard";
 import { QRCode } from "react-qrcode-logo";
+import { LinkIcon } from "@heroicons/react/outline";
+import Link from "next/link";
+import { useSelector } from "react-redux";
+
 const MailOutInvitationPage = () => {
+  const { user } = useSelector((state) => state.user);
   const fakeData = [
     {
-      id: "1",
-      image:
-        "https://designshack.net/wp-content/uploads/free-invitation-templates.jpg",
-      name: "Card one",
-      description:
-        "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-      color: "red green blue",
-    },
-    {
-      id: "11",
-      image:
-        "https://cdn3.vectorstock.com/i/1000x1000/42/27/luxury-invitation-card-design-vector-22684227.jpg",
-      name: "Card two",
-      color: "red green blue",
-      description:
-        "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-    },
-    {
-      id: "15",
-      image:
-        "https://www.proweddinginvites.com/images/thumb/files/18/PWIF063.jpg",
-      name: "Card three",
-      color: "red green blue",
-      description:
-        "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-    },
-    {
-      id: "17",
-      image:
-        "https://legaldbol.com/wp-content/uploads/2019/03/79-Create-Invitation-Card-Template-Free-Vector-in-Photoshop-for-Invitation-Card-Template-Free-Vector.jpg",
-      name: "Card four",
-      color: "red green blue",
-
-      description:
-        "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-    },
-    {
-      id: "19",
-      image:
-        "https://file.amockup.com/uploads/2020/08/free-modern-tracing-paper-mock-up1.jpg",
-      name: "Card five",
-      color: "red green blue",
-      description:
-        "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-    },
-    {
-      id: "174",
       image:
         "https://designshack.net/wp-content/uploads/free-invitation-templates.jpg",
       name: "Card one",
       color: "red green blue",
-      description:
-        "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
     },
     {
-      id: "134",
       image:
         "https://cdn3.vectorstock.com/i/1000x1000/42/27/luxury-invitation-card-design-vector-22684227.jpg",
       name: "Card two",
       color: "red green blue",
-      description:
-        "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
     },
     {
-      id: "1546",
       image:
         "https://www.proweddinginvites.com/images/thumb/files/18/PWIF063.jpg",
       name: "Card three",
       color: "red green blue",
-      description:
-        "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
     },
     {
-      id: "1456",
       image:
         "https://legaldbol.com/wp-content/uploads/2019/03/79-Create-Invitation-Card-Template-Free-Vector-in-Photoshop-for-Invitation-Card-Template-Free-Vector.jpg",
       name: "Card four",
       color: "red green blue",
-      description:
-        "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
     },
     {
-      id: "15464",
       image:
         "https://file.amockup.com/uploads/2020/08/free-modern-tracing-paper-mock-up1.jpg",
       name: "Card five",
       color: "red green blue",
-      description:
-        "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-    },
-    {
-      id: "154",
-      image:
-        "https://designshack.net/wp-content/uploads/free-invitation-templates.jpg",
-      name: "Card one",
-      color: "red green blue",
-      description:
-        "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-    },
-    {
-      id: "14784",
-      image:
-        "https://cdn3.vectorstock.com/i/1000x1000/42/27/luxury-invitation-card-design-vector-22684227.jpg",
-      name: "Card two",
-      color: "red green blue",
-      description:
-        "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-    },
-    {
-      id: "17412",
-      image:
-        "https://www.proweddinginvites.com/images/thumb/files/18/PWIF063.jpg",
-      name: "Card three",
-      color: "red green blue",
-      description:
-        "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-    },
-    {
-      id: "13210",
-      image:
-        "https://legaldbol.com/wp-content/uploads/2019/03/79-Create-Invitation-Card-Template-Free-Vector-in-Photoshop-for-Invitation-Card-Template-Free-Vector.jpg",
-      name: "Card four",
-      color: "red green blue",
-      description:
-        "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-    },
-    {
-      id: "2301",
-      image:
-        "https://file.amockup.com/uploads/2020/08/free-modern-tracing-paper-mock-up1.jpg",
-      name: "Card five",
-      color: "red green blue",
-      description:
-        "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
     },
   ];
 
   const [isActive, setIsActive] = useState(false);
   const [isActive2, setIsActive2] = useState(false);
   const [value, setValue] = useState(`${process.env.NEXT_PUBLIC_CLIENT_URL}`);
-
-  const pagination = useRef();
-
-  console.log(pagination);
-
-  const perPage = 25;
-
-  const setPage = ({ selected }) => {
-    console.log(selected === 0 ? 1 : selected * perPage);
-  };
   return (
     <>
       <Head>
@@ -259,6 +152,47 @@ const MailOutInvitationPage = () => {
                         <br />
                         <br />
                       </small>
+
+                      {/* <small>
+                        <div className="flex items-center my-2">
+                          <input
+                            type="checkbox"
+                            name="card_style"
+                            value="Summer"
+                          />
+                          <p className="ml-2">Summer</p>
+                        </div>
+
+                        <div className="flex items-center my-2">
+                          <input
+                            type="checkbox"
+                            name="card_style"
+                            value="Spring"
+                          />
+                          <p className="ml-2">Spring</p>
+                        </div>
+
+                        <div className="flex items-center my-2">
+                          <input
+                            type="checkbox"
+                            name="card_style"
+                            value="Fall"
+                          />
+                          <p className="ml-2">Fall</p>
+                        </div>
+
+                        <div className="flex items-center my-2">
+                          <input
+                            type="checkbox"
+                            name="card_style"
+                            value="Winter"
+                          />
+                          <p className="ml-2">Winter</p>
+                        </div>
+
+                        <br />
+                        <br />
+                      </small> */}
                     </fieldset>
                   )}
                 </div>
@@ -365,132 +299,16 @@ const MailOutInvitationPage = () => {
                     ))}
                   </div>
                 </div>
-                {/* Need a pagination here */}
-                <div className="flex justify-center my-7">
-                  {/* <ReactPaginate
-                    ref={pagination}
-                    pageCount={Math.ceil(613 / 25)}
-                    pageRangeDisplayed={4}
-                    marginPagesDisplayed={1}
-                    onPageChange={setPage}
-                    containerClassName="pagination"
-                    activeClassName="active"
-                    pageLinkClassName="page-link"
-                    breakLinkClassName="page-link"
-                    nextLinkClassName="page-link"
-                    previousLinkClassName="page-link"
-                    pageClassName="page-item !flex"
-                    breakClassName="page-item"
-                    nextClassName="page-item"
-                    previousClassName="page-item"
-                    previousLabel={<>&laquo;</>}
-                    nextLabel={<>&raquo;</>}
-                  /> */}
-                  <div className="py-2">
-                    <nav className="block">
-                      <ul className="flex flex-wrap pl-0 list-none rounded">
-                        <li>
-                          <a
-                            href="#pablo"
-                            className="relative flex items-center justify-center w-8 h-8 p-0 mx-1 text-xs font-semibold leading-tight text-pink-500 bg-white border border-pink-500 border-solid rounded-full first:ml-0"
-                          >
-                            <svg
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                clip-rule="evenodd"
-                                d="M15.624 16.416C15.8538 16.0714 15.7607 15.6057 15.416 15.376L15.3312 15.3194C15.3024 15.3002 15.2728 15.2833 15.2425 15.2685C15.2173 15.2463 15.1902 15.2254 15.1615 15.2062L14.9917 15.0931C14.963 15.0739 14.9333 15.057 14.9031 15.0423C14.8778 15.02 14.8508 14.9992 14.822 14.98L14.6523 14.8668C14.6235 14.8476 14.5939 14.8307 14.5636 14.816C14.5384 14.7937 14.5114 14.7729 14.4826 14.7537L14.3129 14.6405C14.2841 14.6214 14.2545 14.6044 14.2242 14.5897C14.199 14.5674 14.172 14.5466 14.1432 14.5274L13.9735 14.4143C13.9447 14.3951 13.9151 14.3781 13.8848 14.3634C13.8596 14.3411 13.8325 14.3203 13.8038 14.3011L13.634 14.188C13.6053 14.1688 13.5756 14.1519 13.5454 14.1371C13.5201 14.1149 13.4931 14.094 13.4643 14.0748L13.2946 13.9617C13.2658 13.9425 13.2362 13.9256 13.206 13.9108C13.1807 13.8886 13.1537 13.8677 13.1249 13.8486L12.9552 13.7354C12.9264 13.7162 12.8968 13.6993 12.8665 13.6846C12.8413 13.6623 12.8143 13.6415 12.7855 13.6223L12.6158 13.5091C12.587 13.4899 12.5574 13.473 12.5271 13.4583C12.5019 13.436 12.4748 13.4152 12.4461 13.396L12.2764 13.2828C12.2476 13.2637 12.2179 13.2467 12.1877 13.232C12.1625 13.2097 12.1354 13.1889 12.1066 13.1697L11.9369 13.0566C11.9081 13.0374 11.8785 13.0204 11.8483 13.0057C11.823 12.9834 11.796 12.9626 11.7672 12.9434L11.5975 12.8303C11.5687 12.8111 11.5391 12.7942 11.5088 12.7794C11.4836 12.7572 11.4566 12.7363 11.4278 12.7171L11.2581 12.604C11.2293 12.5848 11.1997 12.5679 11.1694 12.5532C11.1442 12.5309 11.1172 12.51 11.0884 12.4909L10.9187 12.3777C10.8899 12.3585 10.8603 12.3416 10.83 12.3269C10.8048 12.3046 10.7777 12.2838 10.7489 12.2646L10.6641 12.208C10.6562 12.2027 10.6489 12.1974 10.6423 12.192C10.6359 12.1867 10.6293 12.1816 10.6227 12.1766C10.6178 12.1702 10.6128 12.164 10.6077 12.1577C10.5977 12.1456 10.5891 12.1327 10.5819 12.1192C10.5781 12.1122 10.5742 12.1052 10.5703 12.0983C10.5682 12.0905 10.566 12.0827 10.5637 12.0749C10.5589 12.0592 10.5557 12.0426 10.554 12.0256C10.5532 12.017 10.5522 12.0085 10.5511 12C10.5522 11.9915 10.5532 11.9829 10.554 11.9743C10.5557 11.9574 10.5589 11.9408 10.5637 11.925C10.566 11.9173 10.5682 11.9095 10.5703 11.9017C10.5742 11.8948 10.5781 11.8878 10.5819 11.8808C10.5891 11.8673 10.5977 11.8544 10.6077 11.8422C10.6128 11.836 10.6178 11.8298 10.6227 11.8234C10.6293 11.8184 10.6359 11.8133 10.6423 11.808C10.6489 11.8026 10.6562 11.7973 10.6641 11.792L10.749 11.7354C10.7777 11.7162 10.8048 11.6954 10.83 11.6731C10.8603 11.6584 10.8899 11.6415 10.9187 11.6223L11.0884 11.5091C11.1172 11.4899 11.1442 11.4691 11.1694 11.4468C11.1997 11.4321 11.2293 11.4152 11.2581 11.396L11.4278 11.2828C11.4566 11.2637 11.4836 11.2428 11.5088 11.2206C11.5391 11.2058 11.5687 11.1889 11.5975 11.1697L11.7672 11.0566C11.796 11.0374 11.823 11.0165 11.8483 10.9943C11.8785 10.9796 11.9081 10.9626 11.9369 10.9434L12.1066 10.8303C12.1354 10.8111 12.1625 10.7903 12.1877 10.768C12.2179 10.7533 12.2476 10.7363 12.2764 10.7171L12.4461 10.604C12.4748 10.5848 12.5019 10.564 12.5271 10.5417C12.5574 10.527 12.587 10.51 12.6158 10.4909L12.7855 10.3777C12.8143 10.3585 12.8413 10.3377 12.8665 10.3154C12.8968 10.3007 12.9264 10.2838 12.9552 10.2646L13.1249 10.1514C13.1537 10.1323 13.1807 10.1114 13.206 10.0891C13.2362 10.0744 13.2658 10.0575 13.2946 10.0383L13.4643 9.92516C13.4931 9.90597 13.5201 9.88514 13.5454 9.86286C13.5756 9.84814 13.6053 9.8312 13.634 9.81201L13.8038 9.69887C13.8325 9.67969 13.8596 9.65885 13.8848 9.63658C13.9151 9.62186 13.9447 9.60492 13.9735 9.58573L14.1432 9.47259C14.172 9.4534 14.199 9.43257 14.2242 9.4103C14.2545 9.39557 14.2841 9.37864 14.3129 9.35945L14.4826 9.24631C14.5114 9.22712 14.5384 9.20629 14.5636 9.18402C14.5939 9.16929 14.6235 9.15236 14.6523 9.13317L14.822 9.02003C14.8508 9.00084 14.8778 8.98001 14.9031 8.95774C14.9333 8.94301 14.963 8.92607 14.9917 8.90689L15.1615 8.79374C15.1902 8.77456 15.2173 8.75372 15.2425 8.73145C15.2728 8.71673 15.3024 8.69979 15.3312 8.6806L15.416 8.62403C15.7607 8.39427 15.8538 7.92862 15.624 7.58397C15.3943 7.23932 14.9286 7.14619 14.584 7.37596L14.4991 7.43253C14.4703 7.45172 14.4433 7.47255 14.4181 7.49482C14.3878 7.50954 14.3582 7.52648 14.3294 7.54567L14.1597 7.65881C14.1309 7.678 14.1039 7.69883 14.0786 7.7211C14.0484 7.73583 14.0188 7.75276 13.99 7.77195L13.8203 7.88509C13.7915 7.90428 13.7645 7.92511 13.7392 7.94738C13.709 7.96211 13.6793 7.97905 13.6506 7.99823L13.4808 8.11137C13.4521 8.13056 13.425 8.1514 13.3998 8.17367C13.3695 8.18839 13.3399 8.20533 13.3111 8.22452L13.1414 8.33766C13.1126 8.35685 13.0856 8.37768 13.0604 8.39995C13.0301 8.41467 13.0005 8.43161 12.9717 8.4508L12.802 8.56394C12.7732 8.58313 12.7462 8.60396 12.721 8.62623C12.6907 8.64096 12.6611 8.65789 12.6323 8.67708L12.4626 8.79022C12.4338 8.80941 12.4068 8.83024 12.3815 8.85251C12.3513 8.86724 12.3216 8.88418 12.2929 8.90336L12.1232 9.0165C12.0944 9.03569 12.0673 9.05652 12.0421 9.0788C12.0118 9.09352 11.9822 9.11046 11.9534 9.12965L11.7837 9.24279C11.7549 9.26197 11.7279 9.28281 11.7027 9.30508C11.6724 9.3198 11.6428 9.33674 11.614 9.35593L11.4443 9.46907C11.4155 9.48826 11.3885 9.50909 11.3633 9.53136C11.333 9.54609 11.3034 9.56302 11.2746 9.58221L11.1049 9.69535C11.0761 9.71454 11.0491 9.73537 11.0238 9.75764C10.9936 9.77237 10.964 9.7893 10.9352 9.80849L10.7655 9.92163C10.7367 9.94082 10.7096 9.96165 10.6844 9.98392C10.6542 9.99865 10.6245 10.0156 10.5957 10.0348L10.426 10.1479C10.3973 10.1671 10.3702 10.1879 10.345 10.2102C10.3147 10.2249 10.2851 10.2419 10.2563 10.2611L10.0866 10.3742C10.0578 10.3934 10.0308 10.4142 10.0056 10.4365C9.97531 10.4512 9.94568 10.4682 9.9169 10.4873L9.83204 10.5439C9.78458 10.5756 9.739 10.6092 9.69536 10.6447C9.64989 10.6817 9.60989 10.723 9.57546 10.7674C9.53052 10.8016 9.48877 10.8415 9.45125 10.8869C9.37655 10.9773 9.31229 11.0738 9.25854 11.1745C9.23076 11.2266 9.20974 11.2804 9.19518 11.3351C9.16708 11.384 9.1441 11.4369 9.12716 11.4933C9.09403 11.6035 9.07204 11.7161 9.06104 11.8293C9.0554 11.8874 9.05654 11.9445 9.06381 12C9.05654 12.0555 9.0554 12.1126 9.06104 12.1707C9.07204 12.2839 9.09403 12.3965 9.12716 12.5067C9.1441 12.5631 9.16708 12.616 9.19518 12.6649C9.20974 12.7196 9.23076 12.7734 9.25854 12.8255C9.31229 12.9262 9.37655 13.0227 9.45125 13.1131C9.48877 13.1585 9.53052 13.1984 9.57546 13.2326C9.60989 13.277 9.64989 13.3183 9.69536 13.3553C9.739 13.3908 9.78458 13.4244 9.83204 13.4561L9.9169 13.5127C9.94568 13.5318 9.97531 13.5488 10.0056 13.5635C10.0308 13.5858 10.0578 13.6066 10.0866 13.6258L10.2563 13.7389C10.2851 13.7581 10.3147 13.7751 10.345 13.7898C10.3702 13.8121 10.3973 13.8329 10.426 13.8521L10.5957 13.9652C10.6245 13.9844 10.6542 14.0013 10.6844 14.0161C10.7096 14.0383 10.7367 14.0592 10.7655 14.0784L10.9352 14.1915C10.964 14.2107 10.9936 14.2276 11.0238 14.2424C11.0491 14.2646 11.0761 14.2855 11.1049 14.3046L11.2746 14.4178C11.3034 14.437 11.333 14.4539 11.3633 14.4686C11.3885 14.4909 11.4155 14.5117 11.4443 14.5309L11.614 14.6441C11.6428 14.6633 11.6724 14.6802 11.7027 14.6949C11.7279 14.7172 11.7549 14.738 11.7837 14.7572L11.9534 14.8703C11.9822 14.8895 12.0118 14.9065 12.0421 14.9212C12.0673 14.9435 12.0944 14.9643 12.1232 14.9835L12.2929 15.0966C12.3216 15.1158 12.3513 15.1328 12.3815 15.1475C12.4068 15.1697 12.4338 15.1906 12.4626 15.2098L12.6323 15.3229C12.6611 15.3421 12.6907 15.359 12.721 15.3738C12.7462 15.396 12.7732 15.4169 12.802 15.4361L12.9717 15.5492C13.0005 15.5684 13.0301 15.5853 13.0604 15.6C13.0856 15.6223 13.1126 15.6431 13.1414 15.6623L13.3111 15.7755C13.3399 15.7947 13.3695 15.8116 13.3998 15.8263C13.425 15.8486 13.4521 15.8694 13.4808 15.8886L13.6506 16.0018C13.6793 16.0209 13.709 16.0379 13.7392 16.0526C13.7645 16.0749 13.7915 16.0957 13.8203 16.1149L13.99 16.228C14.0188 16.2472 14.0484 16.2642 14.0786 16.2789C14.1039 16.3012 14.1309 16.322 14.1597 16.3412L14.3294 16.4543C14.3582 16.4735 14.3878 16.4904 14.4181 16.5052C14.4433 16.5274 14.4703 16.5483 14.4991 16.5675L14.584 16.624C14.9286 16.8538 15.3943 16.7607 15.624 16.416Z"
-                                fill="#292D32"
-                              />
-                            </svg>
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#pablo"
-                            className="relative flex items-center justify-center w-8 h-8 p-0 mx-1 text-xs font-semibold leading-tight text-pink-500 bg-white border border-pink-500 border-solid rounded-full first:ml-0"
-                          >
-                            1
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#pablo"
-                            className="relative flex items-center justify-center w-8 h-8 p-0 mx-1 text-xs font-semibold leading-tight text-pink-500 bg-white border border-pink-500 border-solid rounded-full first:ml-0"
-                          >
-                            2
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#pablo"
-                            className="relative flex items-center justify-center w-8 h-8 p-0 mx-1 text-xs font-semibold leading-tight text-pink-500 bg-white border border-pink-500 border-solid rounded-full first:ml-0"
-                          >
-                            3
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#pablo"
-                            className="relative flex items-center justify-center w-8 h-8 p-0 mx-1 text-xs font-semibold leading-tight text-pink-500 bg-white border border-pink-500 border-solid rounded-full first:ml-0"
-                          >
-                            4
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#pablo"
-                            className="relative flex items-center justify-center w-8 h-8 p-0 mx-1 text-xs font-semibold leading-tight text-pink-500 bg-white border border-pink-500 border-solid rounded-full first:ml-0"
-                          >
-                            5
-                          </a>
-                        </li>
-                        <li>
-                          <a
-                            href="#pablo"
-                            className="relative flex items-center justify-center w-8 h-8 p-0 mx-1 text-xs font-semibold leading-tight text-pink-500 bg-white border border-pink-500 border-solid rounded-full first:ml-0"
-                          >
-                            <svg
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                clip-rule="evenodd"
-                                d="M8.37596 7.58398C8.1462 7.92862 8.23933 8.39428 8.58397 8.62404L8.66883 8.68061C8.69761 8.6998 8.72724 8.71674 8.7575 8.73146C8.78273 8.75373 8.80976 8.77456 8.83854 8.79375L9.00825 8.90689C9.03703 8.92608 9.06666 8.94302 9.09692 8.95774C9.12215 8.98001 9.14918 9.00085 9.17796 9.02003L9.34768 9.13318C9.37646 9.15236 9.40608 9.1693 9.43634 9.18403C9.46158 9.2063 9.4886 9.22713 9.51739 9.24632L9.6871 9.35946C9.71588 9.37865 9.74551 9.39558 9.77577 9.41031C9.801 9.43258 9.82803 9.45341 9.85681 9.4726L10.0265 9.58574C10.0553 9.60493 10.0849 9.62186 10.1152 9.63659C10.1404 9.65886 10.1675 9.67969 10.1962 9.69888L10.3659 9.81202C10.3947 9.83121 10.4244 9.84815 10.4546 9.86287C10.4798 9.88514 10.5069 9.90597 10.5357 9.92516L10.7054 10.0383C10.7341 10.0575 10.7638 10.0744 10.794 10.0892C10.8193 10.1114 10.8463 10.1323 10.8751 10.1514L11.0448 10.2646C11.0736 10.2838 11.1032 10.3007 11.1335 10.3154C11.1587 10.3377 11.1857 10.3585 11.2145 10.3777L11.3842 10.4909C11.413 10.5101 11.4426 10.527 11.4729 10.5417C11.4981 10.564 11.5251 10.5848 11.5539 10.604L11.7236 10.7172C11.7524 10.7363 11.782 10.7533 11.8123 10.768C11.8375 10.7903 11.8646 10.8111 11.8933 10.8303L12.0631 10.9434C12.0918 10.9626 12.1215 10.9796 12.1517 10.9943C12.177 11.0166 12.204 11.0374 12.2328 11.0566L12.4025 11.1697C12.4313 11.1889 12.4609 11.2058 12.4912 11.2206C12.5164 11.2428 12.5434 11.2637 12.5722 11.2829L12.7419 11.396C12.7707 11.4152 12.8003 11.4321 12.8306 11.4468C12.8558 11.4691 12.8828 11.49 12.9116 11.5091L13.0813 11.6223C13.1101 11.6415 13.1397 11.6584 13.17 11.6731C13.1952 11.6954 13.2223 11.7162 13.251 11.7354L13.3359 11.792C13.3438 11.7973 13.3511 11.8026 13.3577 11.808C13.3641 11.8133 13.3707 11.8184 13.3773 11.8234C13.3822 11.8298 13.3872 11.836 13.3923 11.8423C13.4023 11.8544 13.4109 11.8673 13.4181 11.8808C13.4219 11.8878 13.4257 11.8948 13.4297 11.9017C13.4318 11.9095 13.434 11.9173 13.4363 11.9251C13.4411 11.9408 13.4443 11.9574 13.446 11.9744C13.4468 11.983 13.4478 11.9915 13.4489 12C13.4478 12.0085 13.4468 12.0171 13.446 12.0257C13.4443 12.0426 13.4411 12.0592 13.4363 12.075C13.434 12.0827 13.4318 12.0905 13.4297 12.0983C13.4257 12.1052 13.4219 12.1122 13.4181 12.1192C13.4109 12.1327 13.4023 12.1456 13.3923 12.1577C13.3872 12.164 13.3822 12.1702 13.3773 12.1766C13.3707 12.1816 13.3641 12.1867 13.3577 12.192C13.3511 12.1974 13.3438 12.2027 13.3359 12.208L13.251 12.2646C13.2223 12.2838 13.1952 12.3046 13.17 12.3269C13.1397 12.3416 13.1101 12.3585 13.0813 12.3777L12.9116 12.4909C12.8828 12.5101 12.8558 12.5309 12.8306 12.5532C12.8003 12.5679 12.7707 12.5848 12.7419 12.604L12.5722 12.7172C12.5434 12.7363 12.5164 12.7572 12.4912 12.7794C12.4609 12.7942 12.4313 12.8111 12.4025 12.8303L12.2328 12.9434C12.204 12.9626 12.177 12.9835 12.1517 13.0057C12.1215 13.0204 12.0918 13.0374 12.0631 13.0566L11.8933 13.1697C11.8646 13.1889 11.8375 13.2097 11.8123 13.232C11.782 13.2467 11.7524 13.2637 11.7236 13.2829L11.5539 13.396C11.5251 13.4152 11.4981 13.436 11.4729 13.4583C11.4426 13.473 11.413 13.4899 11.3842 13.5091L11.2145 13.6223C11.1857 13.6415 11.1587 13.6623 11.1335 13.6846C11.1032 13.6993 11.0736 13.7162 11.0448 13.7354L10.8751 13.8486C10.8463 13.8677 10.8193 13.8886 10.794 13.9109C10.7638 13.9256 10.7341 13.9425 10.7054 13.9617L10.5357 14.0748C10.5069 14.094 10.4798 14.1149 10.4546 14.1371C10.4244 14.1519 10.3947 14.1688 10.3659 14.188L10.1962 14.3011C10.1675 14.3203 10.1404 14.3411 10.1152 14.3634C10.0849 14.3781 10.0553 14.3951 10.0265 14.4143L9.85681 14.5274C9.82803 14.5466 9.801 14.5674 9.77577 14.5897C9.74551 14.6044 9.71588 14.6214 9.6871 14.6405L9.51739 14.7537C9.4886 14.7729 9.46158 14.7937 9.43634 14.816C9.40608 14.8307 9.37646 14.8476 9.34767 14.8668L9.17796 14.98C9.14918 14.9992 9.12215 15.02 9.09692 15.0423C9.06666 15.057 9.03703 15.0739 9.00825 15.0931L8.83854 15.2063C8.80976 15.2254 8.78273 15.2463 8.7575 15.2685C8.72723 15.2833 8.69761 15.3002 8.66883 15.3194L8.58397 15.376C8.23933 15.6057 8.1462 16.0714 8.37596 16.416C8.60572 16.7607 9.07138 16.8538 9.41602 16.624L9.50088 16.5675C9.52966 16.5483 9.55669 16.5275 9.58192 16.5052C9.61218 16.4905 9.64181 16.4735 9.67059 16.4543L9.8403 16.3412C9.86908 16.322 9.89611 16.3012 9.92134 16.2789C9.95161 16.2642 9.98123 16.2472 10.01 16.228L10.1797 16.1149C10.2085 16.0957 10.2355 16.0749 10.2608 16.0526C10.291 16.0379 10.3207 16.021 10.3494 16.0018L10.5191 15.8886C10.5479 15.8694 10.575 15.8486 10.6002 15.8263C10.6305 15.8116 10.6601 15.7947 10.6889 15.7755L10.8586 15.6623C10.8874 15.6432 10.9144 15.6223 10.9396 15.6001C10.9699 15.5853 10.9995 15.5684 11.0283 15.5492L11.198 15.4361C11.2268 15.4169 11.2538 15.396 11.279 15.3738C11.3093 15.359 11.3389 15.3421 11.3677 15.3229L11.5374 15.2098C11.5662 15.1906 11.5932 15.1698 11.6185 15.1475C11.6487 15.1328 11.6783 15.1158 11.7071 15.0966L11.8768 14.9835C11.9056 14.9643 11.9327 14.9435 11.9579 14.9212C11.9881 14.9065 12.0178 14.8895 12.0466 14.8704L12.2163 14.7572C12.245 14.738 12.2721 14.7172 12.2973 14.6949C12.3276 14.6802 12.3572 14.6633 12.386 14.6441L12.5557 14.5309C12.5845 14.5117 12.6115 14.4909 12.6367 14.4686C12.667 14.4539 12.6966 14.437 12.7254 14.4178L12.8951 14.3046C12.9239 14.2855 12.9509 14.2646 12.9762 14.2424C13.0064 14.2276 13.036 14.2107 13.0648 14.1915L13.2345 14.0784C13.2633 14.0592 13.2903 14.0383 13.3156 14.0161C13.3458 14.0014 13.3755 13.9844 13.4042 13.9652L13.574 13.8521C13.6027 13.8329 13.6298 13.8121 13.655 13.7898C13.6853 13.7751 13.7149 13.7581 13.7437 13.7389L13.9134 13.6258C13.9422 13.6066 13.9692 13.5858 13.9944 13.5635C14.0247 13.5488 14.0543 13.5318 14.0831 13.5127L14.1679 13.4561C14.2154 13.4244 14.261 13.3908 14.3046 13.3553C14.3501 13.3183 14.3901 13.277 14.4245 13.2326C14.4695 13.1984 14.5112 13.1585 14.5487 13.1131C14.6234 13.0227 14.6877 12.9262 14.7414 12.8255C14.7692 12.7734 14.7902 12.7196 14.8048 12.6649C14.8329 12.616 14.8559 12.5631 14.8728 12.5067C14.906 12.3965 14.928 12.2839 14.939 12.1707C14.9446 12.1126 14.9435 12.0555 14.9362 12C14.9435 11.9445 14.9446 11.8874 14.939 11.8293C14.928 11.7161 14.906 11.6035 14.8728 11.4933C14.8559 11.4369 14.8329 11.384 14.8048 11.3351C14.7902 11.2804 14.7692 11.2266 14.7414 11.1745C14.6877 11.0738 14.6234 10.9773 14.5487 10.8869C14.5112 10.8415 14.4695 10.8016 14.4245 10.7674C14.3901 10.723 14.3501 10.6817 14.3046 10.6447C14.261 10.6092 14.2154 10.5756 14.1679 10.5439L14.0831 10.4873C14.0543 10.4682 14.0247 10.4512 13.9944 10.4365C13.9692 10.4142 13.9422 10.3934 13.9134 10.3742L13.7437 10.2611C13.7149 10.2419 13.6853 10.2249 13.655 10.2102C13.6298 10.1879 13.6027 10.1671 13.574 10.1479L13.4042 10.0348C13.3755 10.0156 13.3458 9.99866 13.3156 9.98393C13.2903 9.96166 13.2633 9.94083 13.2345 9.92164L13.0648 9.8085C13.036 9.78931 13.0064 9.77237 12.9762 9.75765C12.9509 9.73538 12.9239 9.71455 12.8951 9.69536L12.7254 9.58222C12.6966 9.56303 12.667 9.54609 12.6367 9.53137C12.6115 9.5091 12.5845 9.48826 12.5557 9.46908L12.386 9.35593C12.3572 9.33675 12.3276 9.31981 12.2973 9.30508C12.2721 9.28281 12.245 9.26198 12.2163 9.24279L12.0466 9.12965C12.0178 9.11046 11.9881 9.09353 11.9579 9.0788C11.9327 9.05653 11.9056 9.0357 11.8768 9.01651L11.7071 8.90337C11.6783 8.88418 11.6487 8.86725 11.6185 8.85252C11.5932 8.83025 11.5662 8.80942 11.5374 8.79023L11.3677 8.67709C11.3389 8.6579 11.3093 8.64096 11.279 8.62624C11.2538 8.60397 11.2268 8.58313 11.198 8.56395L11.0283 8.45081C10.9995 8.43162 10.9699 8.41468 10.9396 8.39996C10.9144 8.37769 10.8874 8.35685 10.8586 8.33766L10.6889 8.22452C10.6601 8.20534 10.6305 8.1884 10.6002 8.17367C10.575 8.1514 10.5479 8.13057 10.5191 8.11138L10.3494 7.99824C10.3207 7.97905 10.291 7.96212 10.2608 7.94739C10.2355 7.92512 10.2085 7.90429 10.1797 7.8851L10.01 7.77196C9.98123 7.75277 9.95161 7.73584 9.92134 7.72111C9.89611 7.69884 9.86908 7.67801 9.8403 7.65882L9.67059 7.54568C9.64181 7.52649 9.61218 7.50955 9.58192 7.49483C9.55669 7.47256 9.52966 7.45172 9.50088 7.43254L9.41602 7.37597C9.07138 7.1462 8.60572 7.23933 8.37596 7.58398Z"
-                                fill="#292D32"
-                              />
-                            </svg>
-                          </a>
-                        </li>
-                      </ul>
-                    </nav>
-                  </div>
-                </div>
 
                 <div className="bg-white">
                   <div className="flex ">
-                    <div className="container w-full !p-0 !m-0 ">
-                      <div
-                        style={{
-                          boxShadow:
-                            "0px 4px 6px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.06)",
-                        }}
-                        className=" bg-[#FCE3EB] to-white w-full h-full py-20 border-4 rounded-lg"
-                      >
+                    <div className="container w-full">
+                      <div className=" bg-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary w-full h-full py-5 border-4 border-gray-200 rounded-lg">
                         <div class="flex items-center justify-center flex-wrap gap-4 w-full ">
                           <div className="flex items-start justify-between">
                             <div class="grid grid-cols-12 w-full">
                               <div class="col-span-3">
-                                <div className="flex items-center justify-center qrCode">
+                                <div className="qrCode flex justify-center items-center">
                                   <QRCode
                                     {...{ value }}
                                     size={275}
@@ -523,11 +341,43 @@ const MailOutInvitationPage = () => {
                     </div>
                   </div>
                 </div>
+                {/* Need a pagination here */}
               </div>
             </div>
           </div>
         </div>
+
+        <WebsitePreviewContainer data={"Your Wedding Website"} />
+
+        <div className="flex items-center flex-wrap px-[1.15rem] xs:space-y-0 space-x-3 md:space-x-5 justify-center my-[50px]">
+          <Link href="/dashboard/website/edit">
+            <a
+              className={`capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300 smallText`}
+            >
+              {/* <PencilIcon className='hidden w-5 h-5 sm:inline-block' /> */}
+              <span>Edit your website</span>
+            </a>
+          </Link>
+          <Link href={`/couple/${user?.username}`}>
+            <a
+              target="_blank"
+              className={`capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300 smallText`}
+            >
+              {/* <GlobeAltIcon className='hidden w-5 h-5 sm:inline-block' /> */}
+              <span>Preview Website</span>
+            </a>
+          </Link>
+          <Link href="/dashboard/features/qrcode-and-links">
+            <a
+              className={`sm:mt-3 xs:mt-0 capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300 smallText`}
+            >
+              <LinkIcon className="hidden w-5 h-5 sm:inline-block" />
+              <span>Superlink</span>
+            </a>
+          </Link>
+        </div>
       </DashboardLayout>
+
       <Footer hideSocial />
     </>
   );

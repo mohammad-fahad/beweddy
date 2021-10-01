@@ -114,9 +114,11 @@ const Footer = ({ hideSocial, className, websitePreview }) => {
         {/* <div className="container flex flex-col-reverse flex-wrap items-center justify-center gap-5 !md:flex-row sm:justify-between"> */}
         <div className="container flex !flex-row flex-wrap items-center justify-center gap-5  sm:justify-between footerWrapper">
           <p className="text-base">
-            <span className="mr-1">&copy; {new Date().getFullYear()}</span>
-            <strong className="font-semibold">BeWeddy.</strong>
-            <span className="ml-1"> All rights reserved.</span>
+            <span className="mr-1 customLabel">
+              &copy; {new Date().getFullYear()}
+            </span>
+            <strong className="font-semibold customLabel">BeWeddy.</strong>
+            <span className="ml-1 customLabel"> All rights reserved.</span>
           </p>
           {/* <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-between sm:gap-6"> */}
           <div className="flex flex-col flex-wrap items-center justify-center gap-3 md:flex-row sm:justify-between sm:gap-6">
@@ -124,21 +126,21 @@ const Footer = ({ hideSocial, className, websitePreview }) => {
               <>
                 <Link href="/terms">
                   <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
-                    <span>Terms of Uses</span>
+                    <span className="customLabel">Terms of Uses</span>
                     {/* <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300"></span> */}
                   </a>
                 </Link>
 
                 <Link href="/privacy-policy">
                   <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
-                    <span>Privacy & Policy</span>
+                    <span className="customLabel">Privacy & Policy</span>
                     {/* <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300"></span> */}
                   </a>
                 </Link>
 
                 <Link href="/contactUs">
                   <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
-                    <span>ContactUs</span>
+                    <span className="customLabel">ContactUs</span>
                     {/* <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300"></span> */}
                   </a>
                 </Link>
@@ -148,30 +150,30 @@ const Footer = ({ hideSocial, className, websitePreview }) => {
                 {" "}
                 <Link href="#">
                   <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
-                    <span>About BeWeddy</span>
+                    <span className="customLabel">About BeWeddy</span>
                   </a>
                 </Link>
                 <Link href="#">
                   <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
-                    <span>How it Works?</span>
+                    <span className="customLabel">How it Works?</span>
                     {/* <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300"></span> */}
                   </a>
                 </Link>
                 <Link href="/terms">
                   <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
-                    <span>Terms of Uses</span>
+                    <span className="customLabel">Terms of Uses</span>
                     {/* <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300"></span> */}
                   </a>
                 </Link>
                 <Link href="/privacy-policy">
                   <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
-                    <span>Privacy & Policy</span>
+                    <span className="customLabel">Privacy & Policy</span>
                     {/* <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300"></span> */}
                   </a>
                 </Link>
                 <Link href="/contactUs">
                   <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
-                    <span>ContactUs</span>
+                    <span className="customLabel">ContactUs</span>
                     {/* <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300"></span> */}
                   </a>
                 </Link>

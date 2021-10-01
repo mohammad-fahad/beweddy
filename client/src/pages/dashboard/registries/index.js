@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
 import { DashboardHeader } from "@components/dashboard";
 import DashboardTopBar from "@components/dashboard/header/TopBar";
 import DashboardLayout from "@components/dashboard/layout";
@@ -7,7 +6,6 @@ import { Button, Footer, Loader, RegistryItem } from "@components/index";
 import { motion } from "framer-motion";
 import { Fragment, useState } from "react";
 import { withAuthRoute } from "@hoc/withAuthRoute";
-import Image from "next/image";
 import DashboardContainer from "@components/dashboard/DashboardContainer";
 import { useQuery } from "react-query";
 import { getRegistries } from "@services/Registry";
@@ -56,7 +54,7 @@ const RegistriesPage = () => {
         />
         <DashboardContainer>
           <div className="space-y-20">
-            <motion.div class="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 registry-grid">
+            <motion.div class="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 justify-items-center gap-6 registry-grid">
               {registries?.length <= 0
                 ? "No registries found"
                 : registries?.map((registry) => (
