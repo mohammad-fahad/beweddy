@@ -110,7 +110,7 @@ const CoupleWebsitePage = (props) => {
       </Head>
 
       <div className="container p-1 sm:p-10 ">
-        <div className="w-full mx-auto border-4 border-[#000000] rounded-lg mt-10 ">
+        <div className="w-full mx-auto border-4 border-[#000000] rounded-lg mt-5 ">
           <WebsiteNav user={couple} />
           <Carousel
             autoPlay
@@ -228,16 +228,16 @@ const CoupleWebsitePage = (props) => {
                 Reception Details
               </h2>
             )}
-            <div class="grid grid-cols-12 gap-4 w-full my-3 md:my-8">
+            <div class="grid grid-cols-12 gap-4 w-full sm:px-0 px-5 my-3 md:my-8">
               {couple?.questions?.weddingDay?.firstReception && (
-                <div class="col-start-2 col-span-5 p-5 text-lg font-semibold">
+                <div class="sm:col-start-2 sm:col-span-5 col-span-12 sm:p-5 p-2 text-lg font-semibold subTitle">
                   <h4 className="text-lg">Receptions</h4>
-                  <h6>
+                  <h6 className="miniTitle">
                     Date 1 : {couple?.questions?.weddingDay?.firstReception}
                   </h6>
 
                   {couple?.questions?.weddingDay?.secondReception && (
-                    <h6>
+                    <h6 className="miniTitle">
                       Date 2 : {couple?.questions?.weddingDay?.secondReception}
                     </h6>
                   )}

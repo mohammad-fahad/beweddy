@@ -443,6 +443,16 @@
     bottom: 139px !important;
     top: 13px !important;
   }
+  .guestButton {
+    width: 100% !important;
+    font-size: 12px !important;
+  }
+  .smallDeviceRemove {
+    display: none !important;
+  }
+  .smallDeviceAdd {
+    display: block !important;
+  }
 }
 
 @media screen and (max-width: 480px) {
