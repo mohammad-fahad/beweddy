@@ -221,10 +221,10 @@ const RSVPage = ({ user }) => {
                 </a>
               </Link>
             </div>
-            <h3 className="text-[32px] leading-10 font-medium text-center mudiumTitle">
+            <h3 className="sm:text-[32px] text-[16px] leading-10 font-medium text-center">
               ✨ You Are Invited To Our Wedding! 💍 ✨
             </h3>
-            <p className="mt-5 mb-5 font-normal max-w-[620px] mx-auto text-center sm:mb-16 text-[18px] leading-7 capitalize customLabel">
+            <p className="mt-2 mb-2 font-normal max-w-[620px] mx-auto text-center sm:mb-16 text-[18px] leading-7 capitalize customLabel">
               Thanks for your love and support! We want to send you an
               invitation. Please Fill Out this Form!
             </p>
@@ -880,11 +880,11 @@ const RSVPage = ({ user }) => {
               </div>
               <div className="!mt-10 flex justify-center items-center flex-col">
                 <Button
-                  className="!mx-0 !rounded-lg !bg-[#FCE0EB] !text-[#000000] !w-[205px] h-[70px] !text-[24px]"
+                  className="!mx-0 !rounded-lg !bg-[#FCE0EB] !text-[#000000] sm:w-[205px] sm:h-[70px] h-[50px] !text-[24px] mudiumTitle"
                   label="Submit"
                   type="submit"
                 />
-                <h1 className="text-[32px] leading-9 font-normal mt-4">
+                <h1 className="text-[32px] leading-9 font-normal mt-4 mudiumTitle">
                   Eat, Drink, & BeWeddy!
                 </h1>
               </div>
