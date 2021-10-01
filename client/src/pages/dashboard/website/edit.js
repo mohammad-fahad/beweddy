@@ -49,6 +49,7 @@ import { attemptUpdateUserProfile } from '@features/user/userActions';
 import { Fragment } from 'react';
 import axios from 'axios';
 import RegistryModal from '@components/dashboard/RegistryModal';
+import OpenRegistryModal from '@components/dashboard/OpenRegistryModal';
 import getYear from 'date-fns/getYear';
 import getMonth from 'date-fns/getYear';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -64,8 +65,10 @@ const EditWebsitePage = () => {
   const [file, setFile] = useState();
   const [preview, setPreview] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isRegistryModalOpen, setIsRegistryModalOpen] = useState(false);
   const [isVenmoModalOpen, setIsVenmoModalOpen] = useState(false);
   const [selectedImageFile, setSelectedImageFile] = useState();
+  const [registryData, setRegistryData] = useState("");
   const [uploadedFiles, setUploadedFiles] = useState(
     user.questions.couplePictures
   );
@@ -1088,8 +1091,12 @@ const EditWebsitePage = () => {
                           {registry.title}
                         </h3>
                         <div>
-                          <button className='py-2 inline-block px-8 border-gray-900 border-2 rounded-[5px] mt-5 hover:bg-black transition duration-300 hover:text-white font-inter font-bold'>
-                            Link
+                          <button type="button" onClick={() => {
+                            setRegistryData(registry)
+                            setIsRegistryModalOpen(true)
+                          }}
+                            className='py-2 inline-block px-8 border-gray-900 border-2 rounded-[5px] mt-5 hover:bg-black transition duration-300 hover:text-white font-inter font-bold'>
+                            Connect
                           </button>
                         </div>
                       </div>
@@ -1715,6 +1722,7 @@ const EditWebsitePage = () => {
         </DashboardContainer>
       </DashboardLayout>
       <RegistryModal {...{ isModalOpen, setIsModalOpen }} />
+      <OpenRegistryModal {...{ isRegistryModalOpen, setIsRegistryModalOpen, registryData }} />
       <VenmoModal {...{ isVenmoModalOpen, setIsVenmoModalOpen }} />
       <Footer hideSocial />
 
