@@ -290,39 +290,67 @@ export const activeUser = asyncHandler(async (req, res) => {
   // userExists.registries.push(registryCards);
 
   const user = await userExists.save();
-  const demoGuest = {
-    "wayOfInvitations": {
-      "text_invite": true,
-      "email_invite": true,
-      "mail_invite": true,
-      "allAbove_invite": true
+  // const demoGuest = {
+  //   "wayOfInvitations": {
+  //     "text_invite": true,
+  //     "email_invite": true,
+  //     "mail_invite": true,
+  //     "allAbove_invite": true
+  //   },
+  //   "rsvp": "maybe",
+  //   "guestEstimate": 11,
+  //   "address": {
+  //     "street": "Deserunt quia hic om",
+  //     "providence": "Incididunt amet rep",
+  //     "city": "Incidunt consequatu",
+  //     "state": "Itaque quo ut ipsa",
+  //     "zip": "69999"
+  //   },
+  //   "name": "Nate",
+  //   "email": "example@example.com",
+  //   "phone": {
+  //     "number": "23948892",
+  //     "provider": {
+  //       "sms": "txt.att.net",
+  //       "mms": "mms.att.net"
+  //     }
+  //   },
+  //   "callingCode": "1"
+  // }
+
+  const newGuest = {
+    address: {
+      city: "Optio quasi labore ",
+      providence: "Consequuntur facilis",
+      state: "Vel veniam qui est ",
+      street: "Laudantium veniam ",
+      zip: "21268",
     },
-    "rsvp": "maybe",
-    "guestEstimate": 11,
-    "address": {
-      "street": "Deserunt quia hic om",
-      "providence": "Incididunt amet rep",
-      "city": "Incidunt consequatu",
-      "state": "Itaque quo ut ipsa",
-      "zip": "69999"
-    },
-    "name": "Nate",
-    "email": "example@example.com",
-    "phone": {
-      "number": "23948892",
-      "provider": {
+    callingCode: "1",
+    email: "musahaj@mailinator.com",
+    guestEstimate: "10",
+    id: "61462f3aef64f800048ebd65",
+    name: "Aileen Haney",
+    phone: {
+      number: '348450345', provider: {
         "sms": "txt.att.net",
         "mms": "mms.att.net"
       }
     },
-    "callingCode": "1"
+    rsvp: "maybe",
+    wayOfInvitations: {
+      allAbove_invite: false,
+      email_invite: true,
+      mail_invite: true,
+      text_invite: true,
+    }
   }
 
   // Send response
   if (user) {
     const privetRegistries = await PrivetRegistry.find({ user: user._id });
     await Guest.create({
-      user: user._id, ...demoGuest
+      user: user._id, ...newGuest
     });
 
     res.status(201).json({
