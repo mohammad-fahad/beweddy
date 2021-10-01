@@ -20,7 +20,7 @@ const WebsiteVideo = ({ className, videoLink }) => {
         className ? className : ""
       }`}
     >
-      <div className="container relative z-20 pt-20 pb-20 md:pb-32">
+      <div className="container relative z-20 px-10 pt-20 pb-20 md:pb-32">
         <Heading
           label="First Look or Wedding Video"
           className="!text-[36px] commonTitle"

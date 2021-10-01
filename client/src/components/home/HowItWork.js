@@ -9,8 +9,9 @@ const opts = {
 const HowItWork = ({ hideBorderBottom }) => {
   return (
     <div
-      className={`bg-gradient-to-br from-[#FCE3EB] to-white relative overflow-hidden border-t-[5px] border-primary ${hideBorderBottom ? "" : "border-b-[5px]"
-        }`}
+      className={`bg-gradient-to-br from-[#FCE3EB] to-white relative overflow-hidden border-t-[5px] border-primary ${
+        hideBorderBottom ? "" : "border-b-[5px]"
+      }`}
     >
       <div className="absolute left-0 right-0 w-full -bottom-5 sm:-bottom-10 lg:-bottom-16 xl:-bottom-20 xxl:-bottom-48">
         <img
@@ -19,7 +20,7 @@ const HowItWork = ({ hideBorderBottom }) => {
           className="object-cover w-full"
         />
       </div>
-      <div className="container relative z-20 pt-20 pb-20 md:pb-32">
+      <div className="container relative z-20 px-10 pt-20 pb-20 md:pb-32 sm:px-0">
         <Heading
           label="How It Works"
           className="!text-[36px] !font-normal commonTitle"

@@ -10,14 +10,13 @@ const WebsiteNav = ({ user }) => {
           {user && (
             <Link href="/dashboard/website/edit">
               <a className="flex items-center space-x-3 text-sm font-semibold text-gray-700 transition duration-300 md:text-md whitespace-nowrap font-inter hover:text-primary">
-                <span>Edit Website</span>
+                <span className="subTitle">Edit Website</span>
               </a>
             </Link>
           )}
         </div>
         <h3 className="flex items-center justify-center w-full text-lg capitalize">
-          {/* <img src="/apple-touch-icon.png" alt="help" className="w-8 h-8" /> */}
-          <span className="pl-2 !font-alice text-[36px] font-medium">
+          <span className="pl-2 !font-alice text-[36px] font-medium mudiumTitle">
             {user?.coupleName}
           </span>
         </h3>
