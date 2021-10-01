@@ -290,13 +290,40 @@ export const activeUser = asyncHandler(async (req, res) => {
   // userExists.registries.push(registryCards);
 
   const user = await userExists.save();
+  const demoGuest = {
+    "wayOfInvitations": {
+      "text_invite": true,
+      "email_invite": true,
+      "mail_invite": true,
+      "allAbove_invite": true
+    },
+    "rsvp": "maybe",
+    "guestEstimate": 11,
+    "address": {
+      "street": "Deserunt quia hic om",
+      "providence": "Incididunt amet rep",
+      "city": "Incidunt consequatu",
+      "state": "Itaque quo ut ipsa",
+      "zip": "69999"
+    },
+    "name": "Nate",
+    "email": "example@example.com",
+    "phone": {
+      "number": "23948892",
+      "provider": {
+        "sms": "txt.att.net",
+        "mms": "mms.att.net"
+      }
+    },
+    "callingCode": "1"
+  }
 
   // Send response
   if (user) {
     const privetRegistries = await PrivetRegistry.find({ user: user._id });
-    // await Guest.create({
-    //   user: user._id,
-    // });
+    await Guest.create({
+      user: user._id, ...demoGuest
+    });
 
     res.status(201).json({
       user: {

@@ -123,12 +123,14 @@ const AddressRSVP = () => {
   }, [allAbove, textInvite, mailInvite, emailInvite]);
   const onSubmit = async (data) => {
     dispatch(attemptCreateGuest(submitData(data)));
+    console.log("Submitted data", submitData(data))
     await client.invalidateQueries("guests");
     reset()
     push("/dashboard/invitation/rsvp-guest-management");
   };
 
   const submitData = (data) => {
+
     const wayOfInvitations = {
       text_invite: data.text_invite,
       email_invite: data.email_invite,
