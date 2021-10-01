@@ -4,13 +4,9 @@ import { Footer } from "@components/index";
 import { withAuthRoute } from "@hoc/withAuthRoute";
 import DashboardTopBar from "@components/dashboard/header/TopBar";
 import DashboardLayout from "@components/dashboard/layout";
-import { StarIcon } from "@heroicons/react/solid";
 import { useRef, useState } from "react";
 import InvitationCard from "./InvitationCard";
 import { QRCode } from "react-qrcode-logo";
-import { LinkIcon } from "@heroicons/react/outline";
-import Link from "next/link";
-import { useSelector } from "react-redux";
 const MailOutInvitationPage = () => {
   const fakeData = [
     {
