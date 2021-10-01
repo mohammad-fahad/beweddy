@@ -77,7 +77,6 @@ const AddressRSVP = () => {
     getValues,
     handleSubmit,
     formState: { errors },
-    clearErrors,
   } = useForm({
     mode: "all",
     shouldFocusError: false,
@@ -96,6 +95,9 @@ const AddressRSVP = () => {
   ]);
 
   const allAbove = getValues("allAbove_invite");
+  const textInvite = getValues("text_invite");
+  const emailInvite = getValues("email_invite");
+  const mailInvite = getValues("mail_invite");
 
   useEffect(() => {
     if (allAbove) {
@@ -103,7 +105,21 @@ const AddressRSVP = () => {
       setValue("email_invite", true);
       setValue("mail_invite", true);
     }
-  }, [allAbove]);
+    if (
+      textInvite === "true" &&
+      emailInvite === "true" &&
+      mailInvite === "true"
+    ) {
+      setValue("all_the_above", true);
+    }
+    if (
+      textInvite === "false" &&
+      emailInvite === "false" &&
+      mailInvite === "false"
+    ) {
+      setValue("all_the_above", false);
+    }
+  }, [allAbove, textInvite, mailInvite, emailInvite]);
   const onSubmit = async (data) => {
     dispatch(attemptCreateGuest(submitData(data)));
     await client.invalidateQueries("guests");
