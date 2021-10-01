@@ -823,20 +823,28 @@ const EditWebsitePage = () => {
               <div className='flex flex-col space-y-5'>
                 <div className='flex items-center justify-between space-x-5'>
                   <h4 className='text-[24px] font-medium capitalize mudiumTitle'>
-                    Location Name &amp; Address
+                    Address
                   </h4>
                 </div>
+                <div className='w-full max-w-xs'>
+                  <input
+                    type='text'
+                    className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal'
+                    placeholder='Enter your location'
+                    {...register('location')}
+                  />
+                </div>
                 <div className='flex flex-row items-center justify-between w-full'>
-                  <div className='w-full max-w-xs'>
+                  {/* <div className='w-full max-w-xs'>
                     <input
                       type='text'
                       className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal'
                       placeholder='Enter your location'
                       {...register('location')}
                     />
-                  </div>
+                  </div> */}
 
-                  <div className='flex justify-end w-full'>
+                  {/* <div className='flex justify-end w-full'>
                     <iframe
                       width='55%'
                       height='400'
@@ -846,7 +854,7 @@ const EditWebsitePage = () => {
                       marginWidth='0'
                       src='https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=365%20Queen%20Street%20South,%20Mississauga,%20ON%20L5M%201M3+(Leedway%20group)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed'
                     />
-                  </div>
+                  </div> */}
                 </div>
                 <div>
                   <button
