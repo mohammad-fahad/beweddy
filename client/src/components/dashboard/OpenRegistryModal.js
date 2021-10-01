@@ -11,20 +11,26 @@ const OpenRegistryModal = ({ isRegistryModalOpen, setIsRegistryModalOpen, regist
     console.log({ registryData })
     const dispatch = useDispatch();
     const { user } = useSelector((state) => state.user);
-    function closeModal() {
-        setIsRegistryModalOpen(false);
-    }
 
-    const { handleSubmit, register } = useForm({
+    const { handleSubmit, register, reset } = useForm({
         mode: "all",
         defaultValues: {
-            title: registryData?.title
+            title: registryData?.title,
+
         }
     });
+    function closeModal() {
+        setIsRegistryModalOpen(false);
+        reset()
+    }
     const { mutateAsync, isLoading } = useMutation(createPrivetRegistry);
+
     const onSubmit = async (data) => {
         setIsRegistryModalOpen(false);
+        data.image = registryData?.image
+        data.description = registryData?.description
         console.log({ data });
+        reset()
         // await mutateAsync(
         //     { payload: data, token: user?.token },
         //     {
@@ -88,7 +94,7 @@ const OpenRegistryModal = ({ isRegistryModalOpen, setIsRegistryModalOpen, regist
                                             htmlFor="title"
                                             className="text-sm font-medium md:text-base md:font-semibold"
                                         >
-                                            Registry Name
+                                            Registry Name {registryData?.title}
                                         </label>
                                         <input
                                             id="title"
@@ -111,14 +117,14 @@ const OpenRegistryModal = ({ isRegistryModalOpen, setIsRegistryModalOpen, regist
                                         >
                                             Company Logo
                                         </label>
-                                        <img src={registryData?.image} alt="" />
+                                        <img className="w-full" src={registryData?.image} alt="" />
                                     </div>
                                     <div className="flex flex-col space-y-2">
                                         <label
                                             htmlFor="link"
                                             className="text-sm font-medium md:text-base md:font-semibold"
                                         >
-                                            Registry Link
+                                            Registry URL
                                         </label>
                                         <input
                                             id="link"
