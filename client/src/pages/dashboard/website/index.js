@@ -191,7 +191,7 @@ const WebsitePageOne = () => {
             <div className="sm:my-[40px] my-[10px] sm:space-y-[26px]">
               <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB]" />
               <Link href="/dashboard/address-and-rsvp">
-                <a className="w-full flex items-center justify-center space-x-3 py-4 px-5 border-2 border-primary bg-[#F9D1DE] rounded-[5px] capitalize font-inter font-bold text-sm hover:bg-secondary/5 transition duration-300">
+                <a className="w-full flex items-center my-5 justify-center space-x-3 py-4 px-5 border-2 border-primary bg-[#F9D1DE] rounded-[5px] capitalize font-inter font-bold text-sm hover:bg-secondary/5 transition duration-300">
                   {/* <LinkIcon className="w-5 h-5" /> */}
                   <svg
                     width="16"
@@ -262,7 +262,7 @@ const WebsitePageOne = () => {
                 <div class="sm:col-start-2 sm:col-span-5 col-span-12 sm:p-5 p-2 text-lg font-semibold subTitle">
                   <h4 className="text-lg">Receptions</h4>
                   <h6 className="miniTitle">
-                    Date 1 : {user?.questions?.weddingDay?.firstReception}{" "}
+                    Date 1 : {user?.questions?.weddingDay?.firstReception}
                   </h6>
 
                   {user?.questions?.weddingDay?.secondReception && (
