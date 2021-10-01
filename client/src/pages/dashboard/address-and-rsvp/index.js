@@ -87,7 +87,14 @@ const AddressRSVP = () => {
       guestEstimate: "1",
     },
   });
-  watch(["guestEstimate", "provider", "allAbove_invite"]);
+  watch([
+    "guestEstimate",
+    "provider",
+    "allAbove_invite",
+    "email_invite",
+    "text_invite",
+    "mail_invite",
+  ]);
 
   const allAbove = getValues("allAbove_invite");
 
@@ -133,7 +140,9 @@ const AddressRSVP = () => {
     };
   };
 
-  const formError = Object.keys(errors);
+  // {
+  //   errors && toast.error("Please fill out information to submit");
+  // }
 
   return (
     <>
@@ -224,10 +233,10 @@ const AddressRSVP = () => {
                 </a>
               </Link>
             </div>
-            <h3 className="text-[32px] leading-10 font-medium text-center mudiumTitle">
+            <h3 className="sm:text-[32px] text-[16px] leading-10 font-medium text-center">
               ✨ You Are Invited To Our Wedding! 💍 ✨
             </h3>
-            <p className="mt-5 mb-5 font-normal max-w-[620px] mx-auto text-center sm:mb-16 text-[18px] leading-7 capitalize customLabel">
+            <p className="mt-2 mb-2 font-normal max-w-[620px] mx-auto text-center sm:mb-16 text-[18px] leading-7 capitalize customLabel">
               Thanks for your love and support! We want to send you an
               invitation. Please Fill Out this Form!
             </p>
