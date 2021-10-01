@@ -48,7 +48,7 @@ const RSVPGuestManagementPage = () => {
         <DashboardHeader title="Guest Management" />
         <div className="space-y-10 shadow-box">
           <div className="max-w-[1300px] w-full">
-            <div className="flex flex-wrap items-center justify-between p-12 xxl:pr-0">
+            <div className="flex flex-wrap items-center justify-between p-10 xxl:pr-0">
               <div>
                 <Heading
                   h3
@@ -60,21 +60,21 @@ const RSVPGuestManagementPage = () => {
                   Number of Your RSVP: <strong>{data?.guests?.length}</strong>
                 </p>
               </div>
-              <div className="flex items-center justify-end gap-3">
+              <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-end">
                 <Link href="/dashboard/invitation/text">
-                  <a className="flex items-center px-5 py-2 my-3 space-x-3 text-base font-semibold transition duration-300 border-2 border-gray-500 rounded-md font-inter bg-secondary-alternative text-primary hover:bg-secondary-alternative/50">
+                  <a className="flex items-center px-5 py-2 my-3 space-x-3 text-base font-semibold transition duration-300 border-2 border-gray-500 rounded-md font-inter bg-secondary-alternative text-primary hover:bg-secondary-alternative/50 guestButton">
                     Share we need your address link
                   </a>
                 </Link>
                 <Link href="/dashboard/invitation/text">
-                  <a className="flex items-center px-5 py-2 my-3 space-x-3 text-base font-semibold transition duration-300 border-2 border-gray-500 rounded-md font-inter bg-secondary-alternative text-primary hover:bg-secondary-alternative/50">
+                  <a className="flex items-center px-5 py-2 my-3 space-x-3 text-base font-semibold transition duration-300 border-2 border-gray-500 rounded-md font-inter bg-secondary-alternative text-primary hover:bg-secondary-alternative/50 guestButton">
                     <PlusIcon className="w-5 h-5" />
                     <span>Invite Guests</span>
                   </a>
                 </Link>
               </div>
             </div>
-            <div className="flex flex-col justify-between px-12 py-5 space-y-5 bg-gray-100 xl:space-y-0 xl:items-center xl:flex-row">
+            <div className="flex flex-col justify-between px-10 py-5 space-y-5 bg-gray-100 xl:space-y-0 xl:items-center xl:flex-row">
               <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
                 <Link href="/dashboard/address-and-rsvp">
                   <a className="flex items-center w-full px-4 py-2 space-x-3 text-sm font-medium transition duration-300 bg-white border-2 border-white rounded-md sm:w-max xl:text-base font-inter hover:border-primary">

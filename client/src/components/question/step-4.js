@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const providers = [
   { name: "What’s your phone provider?", sms: "", mms: "" },
+  { name: "Other", sms: "", mms: "" },
   { name: "AT&T", sms: "txt.att.net", mms: "mms.att.net" },
   {
     name: "Boost Mobile",
