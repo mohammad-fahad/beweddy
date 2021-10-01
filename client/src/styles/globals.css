@@ -424,22 +424,14 @@
   .customMobileImg {
     width: 220px !important;
   }
-  /* .responsiveImg {
-    height: 50% !important;
-  } */
-  .desktopPreview {
-    /* width: 400px !important;
-    height: 300px !important;
-    max-height: 300px !important; */
-  }
+
   .desktopImagesWrapper {
     right: 70px !important;
     left: 69px !important;
     bottom: 61px !important;
     top: 19px !important;
   }
-  .desktopImage {
-  }
+
   /* .tabPreview {
     width: 400px !important;
     height: 300px !important;

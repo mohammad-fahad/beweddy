@@ -19,17 +19,8 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import NotFoundPage from "pages/404";
 import { API_URL, isoToUtcDate } from "@utils/index";
-
+import { useWindowSize } from "@hooks/useWindowSize";
 SwiperCore.use([Lazy, Autoplay]);
-
-// const params = {
-//   loop: true,
-//   autoplay: {
-//     delay: 5000,
-//     disableOnInteraction: false,
-//   },
-// };
-
 const CoupleWebsitePage = (props) => {
   const [receptionDetails, setReceptionDetails] = useState(
     couple?.receptionDetails?.length
@@ -110,7 +101,7 @@ const CoupleWebsitePage = (props) => {
 
   if (isLoading) return <Loader />;
 
-  console.log("couple by sonjoy", couple);
+  const size = useWindowSize();
 
   return (
     <>
@@ -175,7 +166,7 @@ const CoupleWebsitePage = (props) => {
             <div className="sm:my-[40px] my-[10px] sm:space-y-[26px]">
               <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB]" />
               <Link href={`/couple/${couple?.username}/rsvp`}>
-                <a className="w-full flex items-center justify-center space-x-3 py-4 px-5 border-2 border-primary bg-[#F9D1DE] rounded-[5px] capitalize font-inter font-bold text-sm hover:bg-secondary/5 transition duration-300">
+                <a className="w-full my-5 flex items-center justify-center space-x-3 py-4 px-5 border-2 border-primary bg-[#F9D1DE] rounded-[5px] capitalize font-inter font-bold text-sm hover:bg-secondary/5 transition duration-300">
                   <svg
                     width="16"
                     height="16"
@@ -223,7 +214,7 @@ const CoupleWebsitePage = (props) => {
                 <h2 className="text-[32px] font-alice font-medium text-center">
                   Our Story
                 </h2>
-                <p className="sm:w-10/12 w-[98%] m-auto mt-5 text-sm font-normal text-center customLabel md:text-[18px]">
+                <p className="sm:w-10/12 w-[321px] m-auto mt-5 text-sm font-normal text-center customLabel md:text-[18px]">
                   {couple?.ourStory}
                 </p>
               </div>
@@ -354,11 +345,11 @@ const CoupleWebsitePage = (props) => {
               </div>
             </div>
 
-            <div className="col-span-4">
-              <div className="sm:w-[30%]">
+            <div className="w-full col-span-12 sm:col-span-4 ">
+              <div className="sm:w-[30%] w-full customItem ">
                 <QRCode
                   {...{ value }}
-                  size={200}
+                  size={size.width > 600 ? 200 : 120}
                   eyeRadius={[
                     {
                       outer: [10, 10, 0, 10],
@@ -374,37 +365,6 @@ const CoupleWebsitePage = (props) => {
               </div>
             </div>
           </div>
-          {/* <div className="bg-gradient-to-br from-[#FCE3EB] to-white border-black border-t-4 border-b-4 flex justify-center items-center ">
-            <div class=" w-6xl mx-auto flex items-center justify-between flex-wrap w-full py-16">
-              <div className="flex flex-wrap items-center justify-between w-full">
-                <div class="p-2 flex justify-start items-center customItem">
-                  <h1 className="text-[28px] font-normal mudiumTitle max-w-[335px] ">
-                    Our Personalized
-                    <span className="ml-1 font-bold">QR Code</span> Please Scan.
-                  </h1>
-                </div>
-
-                <div className="sm:w-[30%] customItem">
-                  <QRCode
-                    {...{ value }}
-                    size={200}
-                    eyeRadius={[
-                      {
-                        outer: [10, 10, 0, 10],
-                        inner: [0, 10, 10, 10],
-                      },
-                      [10, 10, 10, 0],
-                      [10, 0, 10, 10],
-                    ]}
-                    logoHeight={50}
-                    logoWidth={50}
-                    logoImage="/icons/circle-ring.png"
-                  />
-                </div>
-              </div>
-            </div>
-          </div> */}
-          {/* wedding video */}
           <WebsiteVideo
             videoLink={couple?.weddingVideo}
             className="!bg-[#ffffff] !from-transparent !to-transparent"
@@ -419,47 +379,6 @@ const CoupleWebsitePage = (props) => {
           </footer>
         </div>
       </div>
-
-      {/* QR Codes  */}
-
-      {/* <div className="bg-gradient-to-br from-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary w-full h-full py-20">
-        <div className="flex ">
-          <div className="container w-full">
-            <div className="p-3 bg-white border-4 border-gray-200 rounded-lg">
-              <div class="grid grid-cols-12 gap-4 w-full mt-5 customGrid ">
-                <div class="col-span-8  p-5 flex justify-center items-center customItem">
-                  <h1 className="text-4xl font-normal mudiumTitle">
-                    Your Personalized <span className="font-bold">QR Code</span>
-                  </h1>
-                </div>
-                <div class='col-span-4 p-5 customItem'>
-                  <div className='qrCode'>
-                    <QRCode
-                      {...{ value }}
-                      size={200}
-                      eyeRadius={[
-                        {
-                          outer: [10, 10, 0, 10],
-                          inner: [0, 10, 10, 10],
-                        },
-                        [10, 10, 10, 0], // top/right eye//new
-                        [10, 0, 10, 10], // bottom/left
-                      ]}
-                      logoHeight={50}
-                      logoWidth={50}
-                      logoImage='/icons/circle-ring.png'
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
-      {/* wedding video */}
-      {/* <WebsiteVideo /> */}
-
-      {/* <Footer hideSocial /> */}
     </>
   );
 };
@@ -468,19 +387,15 @@ export default CoupleWebsitePage;
 
 export const getServerSideProps = async ({ params: { couple } }) => {
   const res = await fetch(`${API_URL}/users/${couple}`);
-  // const errorCode = res.ok ? false : res.statusCode;
   const user = await res.json();
-
   if (!user) {
     return {
       notFound: true,
     };
   }
-
   return {
     props: {
       user,
-      // errorCode,
     },
   };
 };

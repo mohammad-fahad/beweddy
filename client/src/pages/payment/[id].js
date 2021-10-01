@@ -32,6 +32,7 @@ const Payment = () => {
               objectFit="cover"
               loading="lazy"
             />
+            {/* Thank you for sending this meaningful gift! */}
             <h1 className="text-4xl leading-10 font-bold py-[15px] commonTitle">
               Congratulations!
             </h1>

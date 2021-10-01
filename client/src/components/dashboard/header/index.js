@@ -35,19 +35,19 @@
 
 // export default DashboardHeader;
 
-import { WeddingDayCountDown } from '@components/index';
-import { useSelector } from 'react-redux';
+import { WeddingDayCountDown } from "@components/index";
+import { useSelector } from "react-redux";
 
 const DashboardHeader = ({ title, children }) => {
-  const { user } = useSelector(state => state.user);
+  const { user } = useSelector((state) => state.user);
   return (
     <div
-      className={`max-w-[1300px] w-full lg:my-0 lg:min-h-[155.2px] flex py-5 md:py-0 px-6 sm:px-12 lg:pl-0 lg:pr-12 xxl:pr-0`}
+      className={`max-w-[1300px] w-full lg:my-0 lg:min-h-[155.2px] flex py-5 md:py-0 px-1 sm:px-12 lg:pl-0 lg:pr-12 xxl:pr-0`}
     >
       <div
-        className={`flex sm:flex-row items-center justify-center md:justify-between flex-wrap w-full gap-5`}
+        className={`flex sm:flex-row items-center justify-center md:justify-between flex-wrap w-full sm:gap-5 gap-2 `}
       >
-        <h2 className='capitalize text-3xl xl:text-4xl font-medium mt-5 sm:mt-0'>
+        <h2 className="mt-5 text-3xl font-medium capitalize xl:text-4xl sm:mt-0">
           {title}
         </h2>
 

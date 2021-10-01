@@ -178,13 +178,13 @@ const GiftCards = () => {
         alt=""
         className="absolute w-16 h-10 right-5 sm:right-12 bottom-5 sm:bottom-10 sm:w-20 sm:h-16 customPosition"
       />
-      <div className="container py-20">
-        <h2 className="max-w-3xl pb-8 mx-auto text-4xl text-center capitalize commonTitle">
+      <div className="container px-10 py-20 sm:px-0">
+        <h2 className="max-w-3xl pb-8 mx-auto text-4xl text-center capitalize mudiumTitle">
           Receive Gifts With The Best <br /> Gift Card Registry
         </h2>
         <div className="w-48 mx-auto h-[2px] md:h-[4px] mb-16 bg-primary" />
 
-        <div className="relative grid w-full grid-cols-2 px-5 mx-auto my-20 md:grid-cols-3 lg:grid-cols-4 sm:px-0 sm:max-w-full gap-x-5 sm:gap-x-10">
+        <div className="relative grid w-full grid-cols-2 px-0 mx-auto my-20 md:grid-cols-3 lg:grid-cols-4 sm:max-w-full gap-x-5 sm:gap-x-10">
           {giftCards.slice(0, -1).map((giftCard, index) => {
             return (
               <Fragment key={index}>
