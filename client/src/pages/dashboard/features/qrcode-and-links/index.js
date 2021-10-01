@@ -4,7 +4,6 @@ import { Footer, Heading, Loader, CropImage } from "@components/index";
 import { withAuthRoute } from "@hoc/withAuthRoute";
 import DashboardTopBar from "@components/dashboard/header/TopBar";
 import DashboardLayout from "@components/dashboard/layout";
-import Image from "next/image";
 import { QRCode } from "react-qrcode-logo";
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useState } from "react";
@@ -13,7 +12,6 @@ import { fileUploader } from "@services/Uploader";
 import toast from "react-hot-toast";
 import { useDropzone } from "react-dropzone";
 import { attemptUpdateUserProfile } from "@features/user/userActions";
-import { downloadQRCode } from "@utils/index";
 import useCopyClipboard from "react-use-clipboard";
 import SharableModal from "@components/dashboard/SharableModal";
 
@@ -127,7 +125,7 @@ const QRCodePage = () => {
                 <div className="flex items-center pb-2 space-x-3">
                   <h3 className="text-2xl">QR Code</h3>
                 </div>
-                <span className="h-[4px] inline-block max-w-[215px] w-full bg-secondary-alternative"></span>
+                {/* <span className="h-[4px] inline-block max-w-[215px] w-full bg-secondary-alternative"></span> */}
               </div>
 
               <div className="px-8 py-10 border-2 border-primary">

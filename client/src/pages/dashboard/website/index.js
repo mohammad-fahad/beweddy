@@ -4,7 +4,6 @@ import { DashboardHeader, WeddingDayCountDown } from "@components/dashboard";
 import DashboardTopBar from "@components/dashboard/header/TopBar";
 import DashboardLayout from "@components/dashboard/layout";
 import { Footer } from "@components/index";
-import { LinkIcon } from "@heroicons/react/outline";
 import WebsiteNav from "@components/dashboard/Website/WebsiteNav";
 import { useSelector } from "react-redux";
 import WebsiteGiftCards from "@components/dashboard/Website/WebsiteGiftCard";
@@ -13,24 +12,15 @@ import SocialSection from "@components/dashboard/Website/SocialSection";
 import { useState } from "react";
 import { QRCode } from "react-qrcode-logo";
 import WebsiteVideo from "@components/dashboard/Website/WebsiteVideo";
-import Swiper from "react-id-swiper";
 import { Image } from "cloudinary-react";
 import SwiperCore, { Lazy, Autoplay } from "swiper";
 import { generate } from "shortid";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { isoToUtcDate } from "@utils/index";
+import { useWindowSize } from "@hooks/useWindowSize";
 
 SwiperCore.use([Lazy, Autoplay]);
-
-// const params = {
-//   loop: true,
-//   autoplay: {
-//     delay: 5000,
-//     disableOnInteraction: false,
-//   },
-// };
-
 const WebsitePageOne = () => {
   const { user } = useSelector((state) => state.user);
   const [value, setValue] = useState(`${process.env.NEXT_PUBLIC_CLIENT_URL}`);
@@ -96,6 +86,7 @@ const WebsitePageOne = () => {
         ]
   );
 
+  const size = useWindowSize();
   return (
     <>
       <Head>
@@ -106,7 +97,7 @@ const WebsitePageOne = () => {
       <DashboardLayout>
         <DashboardHeader
           title={
-            <h2 className="flex align-center gap-2 !text-[30px] items-center mudiumTitle">
+            <h2 className="flex align-center gap-2 !text-[30px] !mt-1 items-center mudiumTitle">
               your website
               <a target="_blank" href={`/couple/${user.username}`}>
                 <img
@@ -119,16 +110,15 @@ const WebsitePageOne = () => {
           }
           customPadding
         >
-          <div className="flex flex-wrap items-center gap-5 py-5 websitePadding">
+          <div className="flex flex-wrap items-center gap-2 py-5 sm:gap-5 websitePadding">
             <Link href="/dashboard/website/edit">
               <a className="flex white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300 buttonPaddig">
-                {/* <PencilIcon className='w-5 h-5' /> */}
                 <span className="customLabel">Edit your website</span>
               </a>
             </Link>
             <Link href="/">
               <a className="flex space-x-3 white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300 buttonPaddig">
-                <LinkIcon className="w-5 h-5" />
+                {/* <LinkIcon className="w-5 h-5" /> */}
                 <span className="customLabel">Share your super link</span>
               </a>
             </Link>
@@ -301,11 +291,11 @@ const WebsitePageOne = () => {
                 </h4>
                 <ul className="mt-4 space-y-3">
                   {receptionDetails?.map((el) => (
-                    <li className="w-full px-7 py-2 space-x-5 border border-[#D5D5D5] hover:border-primary cursor-pointer">
-                      <span className="mr-2 text-lg font-bold subTitle ">
+                    <li className="w-full sm:px-7 px-1 py-2 space-x-2 border border-[#D5D5D5] hover:border-primary cursor-pointer">
+                      <span className="mr-0 text-lg font-bold sm:mr-2 customLabel ">
                         {el?.time}
                       </span>
-                      <span className="font-normal text-md md:text-lg miniTitle">
+                      <span className="font-normal text-md md:text-lg customLabel">
                         {el?.details}
                       </span>
                     </li>
@@ -314,30 +304,42 @@ const WebsitePageOne = () => {
               </div>
             </div>
 
-            {/* 😇 Bless us with a Gift Card section */}
+            {/*  Bless us with a Gift Card section */}
             <div className="w-full mx-auto my-3 md:my-8">
               {user?.giftCards?.length > 0 && (
-                <>
-                  <h2 className="text-2xl font-medium text-center md:text-4xl commonTitle">
-                    😇 Bless us with a Gift Card
-                  </h2>
-                  <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] my-5" />
-                  <div>
-                    <WebsiteGiftCards giftCards={user?.giftCards} />
+                <div class="grid grid-cols-12 gap-4 w-full my-3 md:my-8">
+                  <div class="col-start-2 col-span-10">
+                    <h2 className="text-2xl font-medium text-center md:text-[32px] font-alice commonTitle">
+                      Bless us with a Gift Card
+                    </h2>
+                    <div className="w-[200px] mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] my-5" />
+                    <div className="mt-5 space-y-3">
+                      <div className="my-10">
+                        <WebsiteGiftCards
+                          {...{ user }}
+                          giftCards={user?.giftCards}
+                          coupleWebsite
+                        />
+                      </div>
+                    </div>
                   </div>
-                </>
+                </div>
               )}
 
               {user?.registries?.length > 0 && (
-                <>
-                  <h2 className="text-4xl font-medium text-center commonTitle">
-                    Our Registry
-                  </h2>
-                  <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-[28px] mb-[50px]" />
-                  <div>
-                    <WebsiteRegistry registries={user?.registries} />
+                <div class="grid grid-cols-12 gap-4 w-full my-3 md:my-8">
+                  <div class="col-start-2 col-span-10">
+                    <h2 className=" font-medium text-[32px] font-alice text-center commonTitle">
+                      Our Registry
+                    </h2>
+                    <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-[28px] mb-[50px]" />
+                    <div className="mt-5 space-y-3">
+                      <div>
+                        <WebsiteRegistry registries={couple?.registries} />
+                      </div>
+                    </div>
                   </div>
-                </>
+                </div>
               )}
             </div>
 
@@ -366,28 +368,28 @@ const WebsitePageOne = () => {
           </div>
 
           {/* QR Codes  */}
-
-          {/* <div className="bg-gradient-to-br from-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary w-full h-full py-20"> */}
-          <div className="bg-gradient-to-br from-[#FCE3EB] to-white">
-            <div class=" max-w-6xl mx-auto flex items-center justify-between flex-wrap w-full py-10">
+          <div class="grid place-items-center sm:py-[100px] py-10 grid-cols-12 w-full bg-gradient-to-br from-[#FCE3EB] to-white border-black border-t-4 border-b-4">
+            <div class="col-start-2 sm:col-span-6 col-span-12">
               <div class="p-2 flex justify-start items-center">
-                <h1 className="text-[28px] font-normal mudiumTitle max-w-[335px] ">
+                <h1 className="text-[28px] font-normal subTitle max-w-[335px] ">
                   Our Personalized
                   <span className="ml-1 font-bold">QR Code</span> Please Scan.
                 </h1>
               </div>
+            </div>
 
-              <div className="sm:w-[30%]">
+            <div className="w-full col-span-12 sm:col-span-4 ">
+              <div className="sm:w-[30%] w-full customItem ">
                 <QRCode
                   {...{ value }}
-                  size={200}
+                  size={size.width > 600 ? 200 : 120}
                   eyeRadius={[
                     {
                       outer: [10, 10, 0, 10],
                       inner: [0, 10, 10, 10],
                     },
-                    [10, 10, 10, 0], // top/right eye
-                    [10, 0, 10, 10], // bottom/left
+                    [10, 10, 10, 0],
+                    [10, 0, 10, 10],
                   ]}
                   logoHeight={50}
                   logoWidth={50}
@@ -398,43 +400,6 @@ const WebsitePageOne = () => {
           </div>
         </div>
       </DashboardLayout>
-
-      {/* QR Codes  */}
-
-      {/* <div className="bg-gradient-to-br from-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary w-full h-full py-20">
-        <div className="container w-full">
-          <div className="p-3 bg-white border-4 border-gray-200 rounded-lg">
-            <div class="flex items-center justify-between flex-wrap gap-4 w-full mt-5">
-              <div class="p-2 flex justify-start items-center">
-                <h1 className="text-[24px] font-normal mudiumTitle max-w-[335px] ">
-                  Our Personalized
-                  <span className="ml-1 font-bold">QR Code</span> Please Scan.
-                </h1>
-              </div>
-              <div class="p-2">
-                <div className="qrCode">
-                  <QRCode
-                    {...{ value }}
-                    size={200}
-                    eyeRadius={[
-                      {
-                        outer: [10, 10, 0, 10],
-                        inner: [0, 10, 10, 10],
-                      },
-                      [10, 10, 10, 0], // top/right eye
-                      [10, 0, 10, 10], // bottom/left
-                    ]}
-                    logoHeight={50}
-                    logoWidth={50}
-                    logoImage="/icons/circle-ring.png"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
-      {/* wedding video */}
       <WebsiteVideo />
 
       <Footer hideSocial />

@@ -71,8 +71,8 @@ const Registries = () => {
 
   return (
     <div className="bg-[#FCFCFC] border-t-[5px] border-primary relative">
-      <div className="container py-32 ">
-        <h2 className="pb-8 mx-auto text-4xl text-center capitalize commonTitle1">
+      <div className="container px-10 py-20 sm:px-0">
+        <h2 className="pb-8 mx-auto text-4xl text-center capitalize mudiumTitle">
           Link & Sync Your Gift Registries <br /> All In One Place!
         </h2>
         <div className="w-48 mx-auto h-[2px] md:h-[4px] mb-16 bg-[#F9D1DE] mt-6" />

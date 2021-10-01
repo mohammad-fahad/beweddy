@@ -16,6 +16,7 @@ import { useQuery } from "react-query";
 import { getGuests } from "@services/GuestManagement";
 import Select from "react-select/creatable";
 import makeAnimated from "react-select/animated";
+import { useWindowSize } from "@hooks/useWindowSize";
 const animatedComponents = makeAnimated();
 
 const customStyles = {
@@ -189,6 +190,8 @@ const CalendarPage = () => {
     setChangeText(!changeText);
   };
 
+  const size = useWindowSize();
+
   return (
     <>
       <Head>
@@ -203,17 +206,21 @@ const CalendarPage = () => {
             <form className="w-full " onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-5">
                 <div className="flex items-center pb-2 space-x-3">
-                  <Image src="/icons/uil_calender.png" width={46} height={46} />
-                  <h3 className="text-2xl">Calendar Invites</h3>
+                  <Image
+                    src="/icons/uil_calender.png"
+                    width={size.width > 599 ? 46 : 30}
+                    height={size.width > 599 ? 46 : 30}
+                  />
+                  <h3 className="text-2xl commonTitle1">Calendar Invites</h3>
                 </div>
-                <span className="h-[4px] inline-block max-w-[215px] w-full bg-secondary-alternative"></span>
+                <span className="h-[4px] inline-block max-w-[180px] w-full bg-secondary-alternative"></span>
               </div>
               <div className="my-5">
                 {changeText && (
                   <div className="w-full my-3">
                     <input
                       type="text"
-                      className="w-full max-w-[592px] text-sm md:text-lg font-normal py-2 md:py-3 px-4 md:px-6 placeholder-gray-400 border-[2px] border-primary rounded-lg"
+                      className="w-full max-w-[592px] text-sm md:text-lg font-normal py-2 md:py-3 px-4 md:px-6 placeholder-gray-400 border-[2px] border-primary customLabel rounded-lg"
                       placeholder="Title"
                       {...register("summary", {
                         required: {
@@ -230,7 +237,7 @@ const CalendarPage = () => {
                   </div>
                 )}
                 {!changeText && (
-                  <h2 className="text-2xl font-semibold font-inter">
+                  <h2 className="text-2xl font-semibold mudiumTitle font-inter">
                     {getValue}
                   </h2>
                 )}
@@ -264,9 +271,9 @@ const CalendarPage = () => {
                   <textarea
                     cols="10"
                     rows="8"
-                    className="rounded-[20px]
+                    className="customLabel rounded-[20px]
                     focus:border-purple-100
-                     p-10 w-full max-w-[592px] placeholder-primary
+                     sm:p-10 p-4 w-full max-w-[592px] placeholder-primary
                       font-medium text-lg
                        scroll-design"
                     defaultValue={val}
@@ -289,7 +296,7 @@ const CalendarPage = () => {
               <div className="flex items-center justify-start my-5">
                 <Heading
                   h3
-                  className="!text-sm xl:!text-base ml-3 !font-bold space-y-2"
+                  className="!text-sm xl:!text-base sm:ml-3 ml-0 !font-bold space-y-2"
                 >
                   <div className="flex items-center space-x-3">
                     <Image
@@ -319,7 +326,7 @@ const CalendarPage = () => {
                   <Heading
                     onClick={() => setStartTime(true)}
                     h3
-                    className="!text-sm ml-3 xl:!text-base !font-bold space-y-2"
+                    className="!text-sm sm:ml-3 ml-0 xl:!text-base !font-bold space-y-2"
                   >
                     <div className="flex items-center space-x-3">
                       <Image
@@ -343,7 +350,7 @@ const CalendarPage = () => {
                   <Heading
                     onClick={() => setStartTime(true)}
                     h3
-                    className="!text-sm ml-3 xl:!text-base !font-bold space-y-2"
+                    className="!text-sm sm:ml-3 ml-0 xl:!text-base !font-bold space-y-2"
                   >
                     <div className="flex items-center space-x-3">
                       <Image
@@ -364,7 +371,7 @@ const CalendarPage = () => {
                 <div className="flex items-center justify-start">
                   <Heading
                     h3
-                    className="!text-sm ml-3 xl:!text-base !font-bold space-y-3"
+                    className="!text-sm sm:ml-3 ml-0 xl:!text-base !font-bold space-y-3"
                   >
                     <div className="flex items-center space-x-3">
                       <Image
@@ -387,7 +394,7 @@ const CalendarPage = () => {
               {/* onClick={handleClick}  */}
               <button
                 type="submit"
-                className="py-3 px-8 ml-3 text-sm md:text-base font-bold md:font-semibold border border-[#7F7F7F] rounded-[5px] bg-secondary-alternative hover:bg-secondary-alternative/50 transition duration-300"
+                className="py-3 px-8 sm:ml-3 ml-0 text-sm md:text-base font-bold md:font-semibold border border-[#7F7F7F] rounded-[5px] bg-secondary-alternative hover:bg-secondary-alternative/50 transition duration-300"
               >
                 Send Calendar Invite
               </button>
