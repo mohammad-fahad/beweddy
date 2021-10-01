@@ -3,6 +3,13 @@ import jwt from 'jsonwebtoken';
 /**
  * @param  {String} id
  */
+export const generateTangoToken = payload => {
+  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '30d' });
+};
+
+/**
+ * @param  {String} id
+ */
 export const generateActivationToken = id => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '15m' });
 };

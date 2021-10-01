@@ -55,6 +55,14 @@ const CheckoutPage = props => {
       image: gift?.image,
       price: data.amount,
       cancel: `${query.couple}/${query.giftcard}/checkout`,
+      gift: {
+        coupleName: user?.coupleName,
+        coupleEmail: user?.email,
+        guestEmail: data.email,
+        guestName: data.name,
+        message: data.message,
+        amount: data.amount,
+      },
     };
 
     try {
