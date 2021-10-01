@@ -11,8 +11,6 @@ import { QRCode } from "react-qrcode-logo";
 import { LinkIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { useSelector } from "react-redux";
-import ReactPaginate from "react-paginate";
-import Pagination from "@components/shared/Pagination";
 const MailOutInvitationPage = () => {
   const fakeData = [
     {
