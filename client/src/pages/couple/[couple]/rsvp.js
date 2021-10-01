@@ -96,7 +96,14 @@ const RSVPage = ({ user }) => {
       guestEstimate: "1",
     },
   });
-  watch(["guestEstimate", "provider", "allAbove_invite"]);
+  watch([
+    "guestEstimate",
+    "provider",
+    "allAbove_invite",
+    "email_invite",
+    "text_invite",
+    "mail_invite",
+  ]);
 
   const allAbove = getValues("allAbove_invite");
 
