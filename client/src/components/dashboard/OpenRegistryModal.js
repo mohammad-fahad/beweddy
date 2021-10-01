@@ -24,14 +24,15 @@ const OpenRegistryModal = ({ isRegistryModalOpen, setIsRegistryModalOpen, regist
     const { mutateAsync, isLoading } = useMutation(createPrivetRegistry);
     const onSubmit = async (data) => {
         setIsRegistryModalOpen(false);
-        await mutateAsync(
-            { payload: data, token: user?.token },
-            {
-                onSuccess: () => {
-                    dispatch(attemptUpdateUserProfile({ refetch: true }));
-                },
-            }
-        );
+        console.log({ data });
+        // await mutateAsync(
+        //     { payload: data, token: user?.token },
+        //     {
+        //         onSuccess: () => {
+        //             dispatch(attemptUpdateUserProfile({ refetch: true }));
+        //         },
+        //     }
+        // );
     };
 
     return (
