@@ -36,12 +36,12 @@ const Payment = () => {
             <h1 className="text-4xl leading-10 font-bold py-[15px] commonTitle">
               Congratulations!
             </h1>
-            <p1 className="text-[24px] leading-[44px] font-medium subTitle">
+            <p className="text-[24px] leading-[44px] font-medium subTitle">
               You Have Sent The Gift To The Couple.
-            </p1>
-            <p1 className="text-[24px] leading-[44px] font-medium subTitle">
+            </p>
+            <p className="text-[24px] leading-[44px] font-medium subTitle">
               Let's Eat, Drink & BeWeddy!
-            </p1>
+            </p>
           </div>
         </div>
       </div>
