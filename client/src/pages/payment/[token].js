@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Confetti from "react-confetti";
-
+import { useRouter } from 'next/router';
+import { attemptSendGiftCardEmail } from '@services/Tango';
 const Payment = () => {
+  const { query } = useRouter();
+  useEffect(() => {
+    if (query.token) {
+      const attempt = async () => {
+        await attemptSendGiftCardEmail({
+          token: query.token
+        })
+      }
+      attempt()
+    }
+  }, [query.token])
+
   return (
     <div>
       <div className="container flex items-center justify-center min-h-screen py-5">
