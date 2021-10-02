@@ -126,7 +126,7 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                       htmlFor="link"
                       className="text-sm font-medium md:text-base md:font-semibold"
                     >
-                      Registry Link
+                      Registry URL
                     </label>
                     <input
                       id="link"
@@ -136,7 +136,7 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                       {...register("link", {
                         required: {
                           value: true,
-                          message: "Registry link is required!",
+                          message: "Registry URL is required!",
                         },
                         pattern: {
                           value:
