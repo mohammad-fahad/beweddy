@@ -99,7 +99,7 @@ const WebsitePageOne = () => {
           title={
             <h2 className="flex align-center gap-2 !text-[30px] !mt-1 items-center mudiumTitle">
               your website
-              <a target="_blank" href={`/couple/${user.username}`}>
+              <a target="_blank" href={`/couple/${user?.username}`}>
                 <img
                   src="/icons/website.png"
                   alt="your website"
@@ -140,7 +140,7 @@ const WebsitePageOne = () => {
             showThumbs={false}
             interval={3000}
           >
-            {user.questions.couplePictures.map((image, index) => (
+            {user?.questions.couplePictures.map((image, index) => (
               <div className="relative w-full">
                 <div className="aspect-w-16 aspect-h-9">
                   <Image
@@ -250,7 +250,7 @@ const WebsitePageOne = () => {
               <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-10" />
             )}
 
-            {Object?.keys(user.receptionDetails)?.length !== 0 && (
+            {Object?.keys(user?.receptionDetails)?.length !== 0 && (
               <h2 className="text-2xl md:text-4xl font-medium text-center mt-[17px] commonTitle">
                 Reception Details
               </h2>
@@ -318,7 +318,7 @@ const WebsitePageOne = () => {
                         <WebsiteGiftCards
                           {...{ user }}
                           giftCards={user?.giftCards}
-                          coupleWebsite
+                        // coupleWebsite
                         />
                       </div>
                     </div>
