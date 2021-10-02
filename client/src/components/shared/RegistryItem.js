@@ -47,8 +47,8 @@ const RegistryItem = ({ registry, onChange, checked }) => {
         <div className='py-4 text-center flex flex-col'>
           <h3 className='text-lg font-semibold font-inter'>{registry.title}</h3>
           <div>
-            <button className='py-2 inline-block px-8 border-gray-900 border-2 rounded-[5px] mt-5 hover:bg-black transition duration-300 hover:text-white font-inter font-bold'>
-              Link
+            <button type="button" className='py-2 inline-block px-8 border-gray-900 border-2 rounded-[5px] mt-5 hover:bg-black transition duration-300 hover:text-white font-inter font-bold'>
+              Connect
             </button>
           </div>
         </div>
