@@ -347,7 +347,7 @@ const CoupleWebsitePage = (props) => {
 
             <div className="w-full col-span-12 sm:col-span-4 ">
               <div className="sm:w-[30%] w-full customItem ">
-                <QRCode
+                {/* <QRCode
                   {...{ value }}
                   size={size.width > 600 ? 200 : 120}
                   eyeRadius={[
@@ -358,6 +358,14 @@ const CoupleWebsitePage = (props) => {
                     [10, 10, 10, 0],
                     [10, 0, 10, 10],
                   ]}
+                  logoHeight={50}
+                  logoWidth={50}
+                  logoImage="/icons/circle-ring.png"
+                /> */}
+                <QRCode
+                  {...{ value }}
+                  size={200}
+                  eyeRadius={0}
                   logoHeight={50}
                   logoWidth={50}
                   logoImage="/icons/circle-ring.png"
