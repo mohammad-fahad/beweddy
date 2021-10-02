@@ -293,7 +293,7 @@ export const activeUser = asyncHandler(async (req, res) => {
   // const registries = await Registry.find({}).select('_id');
 
   const giftCards = gifts.map(gift => gift._id);
-  console.log("Azim", { giftCards })
+
   // const registryCards = registries.map(registry => registry._id);
 
   // Decode token
@@ -319,11 +319,18 @@ export const activeUser = asyncHandler(async (req, res) => {
     throw new Error('Account already activated, please login');
   }
 
+
+
   userExists.emailVerified = true;
-  userExists.giftCards.push(giftCards);
+  userExists.giftCards = giftCards;
+  // userExists.giftCards.push(giftCards);
+
+
+
+
   // userExists.registries.push(registryCards);
 
-  const user = await userExists.save();
+  const userUpdated = await userExists.save();
   const newGuest = {
     address: {
       city: "Optio quasi labore ",
@@ -352,9 +359,13 @@ export const activeUser = asyncHandler(async (req, res) => {
     }
   }
 
+  const user = await User.findOne({ email: userUpdated.email })
+    .populate('registries')
+    .populate('giftCards');
   // Send response
   if (user) {
     const privetRegistries = await PrivetRegistry.find({ user: user._id });
+
     await Guest.create({
       user: user._id, ...newGuest
     });

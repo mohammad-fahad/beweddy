@@ -62,7 +62,6 @@ export function isoToUtcDate(date) {
   if (!date) {
     return "";
   }
-
   date = moment(date);
   return date.utc().format("MM|DD|YYYY");
 }
