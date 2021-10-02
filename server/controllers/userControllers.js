@@ -104,7 +104,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
   // const registries = await Registry.find({}).select('_id');
 
   const giftCards = gifts.map(gift => gift._id);
-  console.log("Azim ----> google", { giftCards })
+
   // const registryCards = registries.map(registry => registry._id);
 
   // Verify Google ID token
@@ -608,7 +608,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
       const registries = [
         ...new Set([...user.registries, ...req.body.registries]),
       ];
-      // console.log(registries);
+
       user.registries = [...new Set(registries)];
     }
 
@@ -616,7 +616,6 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
       const giftCards = [
         ...new Set([...user.giftCards, ...req.body.giftCards]),
       ];
-      // console.log(giftCards);
       user.giftCards = [...new Set(giftCards)];
     }
 
