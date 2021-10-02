@@ -40,8 +40,8 @@ const WebsiteGiftCards = ({ giftCards, couple, coupleWebsite }) => {
                 <Image
                   width={245}
                   height={157}
-                  src={giftCard.image}
-                  alt={giftCard.name}
+                  src={giftCard?.image}
+                  alt={giftCard?.name}
                   className="w-full"
                 />
               </a>
@@ -52,8 +52,8 @@ const WebsiteGiftCards = ({ giftCards, couple, coupleWebsite }) => {
                 <Image
                   width={245}
                   height={157}
-                  src={giftCard.image}
-                  alt={giftCard.name}
+                  src={giftCard?.image}
+                  alt={giftCard?.name}
                   className="w-full"
                 />
               </a>
