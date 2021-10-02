@@ -19,6 +19,7 @@ import GiftRoutes from './routes/giftRoutes.js';
 import invitationRoutes from './routes/invitationRoutes.js';
 import paymentRoutes from './routes/paymentRoutes.js';
 import contactRoutes from './routes/contactusRoutes.js';
+import tangoRoutes from './routes/tangoRoutes.js';
 
 // Connect MongoDB
 connectDB();
@@ -75,6 +76,7 @@ app.use(`${API_VERSION}/privetRegistries`, privetRegistryRoutes);
 app.use(`${API_VERSION}/invitation`, invitationRoutes);
 app.use(`${API_VERSION}/contact`, contactRoutes);
 app.use(`${API_VERSION}/create-checkout-session`, paymentRoutes);
+app.use(`${API_VERSION}/tango`, tangoRoutes);
 // app.use('/', require('./routes/redirect'))
 // app.use('/api/url', require('./routes/url'))
 
