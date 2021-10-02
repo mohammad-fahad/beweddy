@@ -19,6 +19,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { isoToUtcDate } from "@utils/index";
 import { useWindowSize } from "@hooks/useWindowSize";
+import { withAuthRoute } from '@hoc/withAuthRoute';
 
 SwiperCore.use([Lazy, Autoplay]);
 const WebsitePageOne = () => {
@@ -407,4 +408,4 @@ const WebsitePageOne = () => {
   );
 };
 
-export default WebsitePageOne;
+export default withAuthRoute(WebsitePageOne);
