@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Link from "next/link";
-// import Image from 'next/image';
 import { Image } from "cloudinary-react";
 import { DashboardHeader } from "@components/dashboard";
 import DashboardTopBar from "@components/dashboard/header/TopBar";

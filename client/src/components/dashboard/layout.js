@@ -24,9 +24,8 @@ const DashboardLayout = ({ children, shadow }) => {
               </a>
             </Link>
           </div>
-          {/* <div className='self-center col-span-1 lg:col-span-full'> */}
           <Sidebar />
-          {/* </div> */}
+
         </div>
       </div>
       {shadow ? (

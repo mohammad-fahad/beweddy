@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
-
 import { QRCode } from "react-qrcode-logo";
-// import QRCode from 'qrcode.react';
 import { useSelector } from "react-redux";
 
 const QRCodeGenerator = () => {
