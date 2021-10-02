@@ -104,6 +104,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
   // const registries = await Registry.find({}).select('_id');
 
   const giftCards = gifts.map(gift => gift._id);
+  console.log("Azim ----> google", { giftCards })
   // const registryCards = registries.map(registry => registry._id);
 
   // Verify Google ID token
@@ -190,7 +191,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       const user = await User.findOne({
         _id: userCreated._id,
       })
-        .populate('gifts')
+        .populate('giftCards')
         .populate('registries');
 
       res.json({
@@ -292,6 +293,7 @@ export const activeUser = asyncHandler(async (req, res) => {
   // const registries = await Registry.find({}).select('_id');
 
   const giftCards = gifts.map(gift => gift._id);
+  console.log("Azim", { giftCards })
   // const registryCards = registries.map(registry => registry._id);
 
   // Decode token
