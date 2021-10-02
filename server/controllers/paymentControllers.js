@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import Stripe from 'stripe';
+import { generateTangoToken } from '../utils/token/index.js';
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 // Get All Registry
 export const checkoutSession = asyncHandler(async (req, res) => {
