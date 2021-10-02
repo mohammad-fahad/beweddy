@@ -104,6 +104,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
   // const registries = await Registry.find({}).select('_id');
 
   const giftCards = gifts.map(gift => gift._id);
+  console.log("Azim ----> google", { giftCards })
   // const registryCards = registries.map(registry => registry._id);
 
   // Verify Google ID token
@@ -142,6 +143,33 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       giftCards,
       // registries: registryCards,
     });
+    const newGuest = {
+      address: {
+        city: "Optio quasi labore ",
+        providence: "Consequuntur facilis",
+        state: "Vel veniam qui est ",
+        street: "Laudantium veniam ",
+        zip: "21268",
+      },
+      callingCode: "1",
+      email: "musa@example.com",
+      guestEstimate: "10",
+      id: "61462f3aef64f800048ebd65",
+      name: "Aileen Haney",
+      phone: {
+        number: '348450345', provider: {
+          "sms": "txt.att.net",
+          "mms": "mms.att.net"
+        }
+      },
+      rsvp: "maybe",
+      wayOfInvitations: {
+        allAbove_invite: false,
+        email_invite: true,
+        mail_invite: true,
+        text_invite: true,
+      }
+    }
 
     if (userCreated) {
       defaultTodos.forEach(async todo => {
@@ -149,7 +177,12 @@ export const googleSignUp = asyncHandler(async (req, res) => {
           user: userCreated._id,
           ...todo,
         });
+
       });
+      await Guest.create({
+        user: userCreated._id, ...newGuest
+      });
+
 
       const privetRegistries = await PrivetRegistry.find({
         user: userCreated._id,
@@ -158,7 +191,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       const user = await User.findOne({
         _id: userCreated._id,
       })
-        .populate('gifts')
+        .populate('giftCards')
         .populate('registries');
 
       res.json({
@@ -260,6 +293,7 @@ export const activeUser = asyncHandler(async (req, res) => {
   // const registries = await Registry.find({}).select('_id');
 
   const giftCards = gifts.map(gift => gift._id);
+  console.log("Azim", { giftCards })
   // const registryCards = registries.map(registry => registry._id);
 
   // Decode token
@@ -290,34 +324,6 @@ export const activeUser = asyncHandler(async (req, res) => {
   // userExists.registries.push(registryCards);
 
   const user = await userExists.save();
-  // const demoGuest = {
-  //   "wayOfInvitations": {
-  //     "text_invite": true,
-  //     "email_invite": true,
-  //     "mail_invite": true,
-  //     "allAbove_invite": true
-  //   },
-  //   "rsvp": "maybe",
-  //   "guestEstimate": 11,
-  //   "address": {
-  //     "street": "Deserunt quia hic om",
-  //     "providence": "Incididunt amet rep",
-  //     "city": "Incidunt consequatu",
-  //     "state": "Itaque quo ut ipsa",
-  //     "zip": "69999"
-  //   },
-  //   "name": "Nate",
-  //   "email": "example@example.com",
-  //   "phone": {
-  //     "number": "23948892",
-  //     "provider": {
-  //       "sms": "txt.att.net",
-  //       "mms": "mms.att.net"
-  //     }
-  //   },
-  //   "callingCode": "1"
-  // }
-
   const newGuest = {
     address: {
       city: "Optio quasi labore ",
@@ -327,7 +333,7 @@ export const activeUser = asyncHandler(async (req, res) => {
       zip: "21268",
     },
     callingCode: "1",
-    email: "musahaj@mailinator.com",
+    email: "musa@example.com",
     guestEstimate: "10",
     id: "61462f3aef64f800048ebd65",
     name: "Aileen Haney",

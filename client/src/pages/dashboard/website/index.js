@@ -142,13 +142,13 @@ const WebsitePageOne = () => {
             interval={3000}
           >
             {user?.questions.couplePictures.map((image, index) => (
-              <div className="relative w-full">
+              <div key={index} className="relative w-full">
                 <div className="aspect-w-16 aspect-h-9">
                   <Image
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                     publicId={image.public_id}
-                    src={!image.public_id ? image.url : null}
-                    width={image.width}
+                    src={!image.public_id ? image?.url : null}
+                    width={image?.width}
                     crop="scale"
                     className="object-cover"
                   />
@@ -319,7 +319,6 @@ const WebsitePageOne = () => {
                         <WebsiteGiftCards
                           {...{ user }}
                           giftCards={user?.giftCards}
-                        // coupleWebsite
                         />
                       </div>
                     </div>
