@@ -123,7 +123,7 @@ const CalendarPage = () => {
     // data.start = startUpdate;
     // data.attendees = emails;
     // data.end = endUpdate;
-    // console.log({ data });
+
     if (data) {
       data.start = startUpdate;
       data.end = endUpdate;
@@ -138,7 +138,7 @@ const CalendarPage = () => {
       };
       data.recurrence = ["RRULE:FREQ=DAILY;COUNT=1"];
       gapi.load("client:auth2", () => {
-        console.log("loaded client");
+        console.log("loaded");
 
         gapi.client.init({
           apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,

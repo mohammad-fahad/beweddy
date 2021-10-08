@@ -104,6 +104,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
   // const registries = await Registry.find({}).select('_id');
 
   const giftCards = gifts.map(gift => gift._id);
+
   // const registryCards = registries.map(registry => registry._id);
 
   // Verify Google ID token
@@ -142,6 +143,33 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       giftCards,
       // registries: registryCards,
     });
+    const newGuest = {
+      address: {
+        city: "Optio quasi labore ",
+        providence: "Consequuntur facilis",
+        state: "Vel veniam qui est ",
+        street: "Laudantium veniam ",
+        zip: "21268",
+      },
+      callingCode: "1",
+      email: "musa@example.com",
+      guestEstimate: "10",
+      id: "61462f3aef64f800048ebd65",
+      name: "Aileen Haney",
+      phone: {
+        number: '348450345', provider: {
+          "sms": "txt.att.net",
+          "mms": "mms.att.net"
+        }
+      },
+      rsvp: "maybe",
+      wayOfInvitations: {
+        allAbove_invite: false,
+        email_invite: true,
+        mail_invite: true,
+        text_invite: true,
+      }
+    }
 
     if (userCreated) {
       defaultTodos.forEach(async todo => {
@@ -149,7 +177,12 @@ export const googleSignUp = asyncHandler(async (req, res) => {
           user: userCreated._id,
           ...todo,
         });
+
       });
+      await Guest.create({
+        user: userCreated._id, ...newGuest
+      });
+
 
       const privetRegistries = await PrivetRegistry.find({
         user: userCreated._id,
@@ -158,7 +191,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       const user = await User.findOne({
         _id: userCreated._id,
       })
-        .populate('gifts')
+        .populate('giftCards')
         .populate('registries');
 
       res.json({
@@ -260,6 +293,7 @@ export const activeUser = asyncHandler(async (req, res) => {
   // const registries = await Registry.find({}).select('_id');
 
   const giftCards = gifts.map(gift => gift._id);
+
   // const registryCards = registries.map(registry => registry._id);
 
   // Decode token
@@ -285,18 +319,56 @@ export const activeUser = asyncHandler(async (req, res) => {
     throw new Error('Account already activated, please login');
   }
 
+
+
   userExists.emailVerified = true;
-  userExists.giftCards.push(giftCards);
+  userExists.giftCards = giftCards;
+  // userExists.giftCards.push(giftCards);
+
+
+
+
   // userExists.registries.push(registryCards);
 
-  const user = await userExists.save();
+  const userUpdated = await userExists.save();
+  const newGuest = {
+    address: {
+      city: "Optio quasi labore ",
+      providence: "Consequuntur facilis",
+      state: "Vel veniam qui est ",
+      street: "Laudantium veniam ",
+      zip: "21268",
+    },
+    callingCode: "1",
+    email: "musa@example.com",
+    guestEstimate: "10",
+    id: "61462f3aef64f800048ebd65",
+    name: "Aileen Haney",
+    phone: {
+      number: '348450345', provider: {
+        "sms": "txt.att.net",
+        "mms": "mms.att.net"
+      }
+    },
+    rsvp: "maybe",
+    wayOfInvitations: {
+      allAbove_invite: false,
+      email_invite: true,
+      mail_invite: true,
+      text_invite: true,
+    }
+  }
 
+  const user = await User.findOne({ email: userUpdated.email })
+    .populate('registries')
+    .populate('giftCards');
   // Send response
   if (user) {
     const privetRegistries = await PrivetRegistry.find({ user: user._id });
-    // await Guest.create({
-    //   user: user._id,
-    // });
+
+    await Guest.create({
+      user: user._id, ...newGuest
+    });
 
     res.status(201).json({
       user: {
@@ -536,7 +608,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
       const registries = [
         ...new Set([...user.registries, ...req.body.registries]),
       ];
-      // console.log(registries);
+
       user.registries = [...new Set(registries)];
     }
 
@@ -544,7 +616,6 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
       const giftCards = [
         ...new Set([...user.giftCards, ...req.body.giftCards]),
       ];
-      // console.log(giftCards);
       user.giftCards = [...new Set(giftCards)];
     }
 

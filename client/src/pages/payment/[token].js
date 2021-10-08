@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Confetti from "react-confetti";
-
+import { useRouter } from 'next/router';
+import { attemptSendGiftCardEmail } from '@services/Tango';
 const Payment = () => {
+  const { query } = useRouter();
+  useEffect(() => {
+    if (query.token) {
+      const attempt = async () => {
+        await attemptSendGiftCardEmail({
+          token: query.token
+        })
+      }
+      attempt()
+    }
+  }, [query.token])
+
   return (
     <div>
       <div className="container flex items-center justify-center min-h-screen py-5">
@@ -36,12 +49,12 @@ const Payment = () => {
             <h1 className="text-4xl leading-10 font-bold py-[15px] commonTitle">
               Congratulations!
             </h1>
-            <p1 className="text-[24px] leading-[44px] font-medium subTitle">
+            <p className="text-[24px] leading-[44px] font-medium subTitle">
               You Have Sent The Gift To The Couple.
-            </p1>
-            <p1 className="text-[24px] leading-[44px] font-medium subTitle">
+            </p>
+            <p className="text-[24px] leading-[44px] font-medium subTitle">
               Let's Eat, Drink & BeWeddy!
-            </p1>
+            </p>
           </div>
         </div>
       </div>

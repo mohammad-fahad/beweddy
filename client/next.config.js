@@ -7,6 +7,8 @@ module.exports = {
       'i.ibb.co',
       'beweddy-delta.vercel.app',
       'beweddy.com',
+      'trello.com',
+      'i.pinimg.com',
     ],
   },
 };

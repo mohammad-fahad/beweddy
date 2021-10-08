@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Link from "next/link";
-// import Image from 'next/image';
 import { Image } from "cloudinary-react";
 import { DashboardHeader } from "@components/dashboard";
 import DashboardTopBar from "@components/dashboard/header/TopBar";
@@ -78,7 +77,6 @@ const AddressRSVP = () => {
     getValues,
     handleSubmit,
     formState: { errors },
-    clearErrors,
   } = useForm({
     mode: "all",
     // shouldFocusError: false,
@@ -97,6 +95,9 @@ const AddressRSVP = () => {
   ]);
 
   const allAbove = getValues("allAbove_invite");
+  const textInvite = getValues("text_invite");
+  const emailInvite = getValues("email_invite");
+  const mailInvite = getValues("mail_invite");
 
   useEffect(() => {
     if (allAbove) {
@@ -104,15 +105,31 @@ const AddressRSVP = () => {
       setValue("email_invite", true);
       setValue("mail_invite", true);
     }
-  }, [allAbove]);
+    if (
+      textInvite === "true" &&
+      emailInvite === "true" &&
+      mailInvite === "true"
+    ) {
+      setValue("all_the_above", true);
+    }
+    if (
+      textInvite === "false" &&
+      emailInvite === "false" &&
+      mailInvite === "false"
+    ) {
+      setValue("all_the_above", false);
+    }
+  }, [allAbove, textInvite, mailInvite, emailInvite]);
   const onSubmit = async (data) => {
     dispatch(attemptCreateGuest(submitData(data)));
+    console.log("Submitted data", submitData(data))
     await client.invalidateQueries("guests");
     reset()
     push("/dashboard/invitation/rsvp-guest-management");
   };
 
   const submitData = (data) => {
+
     const wayOfInvitations = {
       text_invite: data.text_invite,
       email_invite: data.email_invite,

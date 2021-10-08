@@ -19,6 +19,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { isoToUtcDate } from "@utils/index";
 import { useWindowSize } from "@hooks/useWindowSize";
+import { withAuthRoute } from '@hoc/withAuthRoute';
 
 SwiperCore.use([Lazy, Autoplay]);
 const WebsitePageOne = () => {
@@ -28,62 +29,62 @@ const WebsitePageOne = () => {
     user?.receptionDetails?.length
       ? user.receptionDetails
       : [
-          {
-            id: generate(),
-            time: "5.00 PM",
-            details: "Example of event details",
-          },
-          {
-            id: generate(),
-            time: "5:30 PM",
-            details: "Ceremony",
-          },
-          {
-            id: generate(),
-            time: "6:00 PM",
-            details: "Ceremony ends/cocktails begin",
-          },
-          {
-            id: generate(),
-            time: "7:00 PM",
-            details: "Cocktails ends and guests are ushered into the reception",
-          },
-          {
-            id: generate(),
-            time: "7:20 PM",
-            details: "Introduction and first dance—guests asked to join after ",
-          },
-          {
-            id: generate(),
-            time: "7:45 PM",
-            details: " Guests take their seats and the first course is served",
-          },
-          {
-            id: generate(),
-            time: "8:00 PM",
-            details: "Welcome speech from parents",
-          },
-          {
-            id: generate(),
-            time: "8:10 PM",
-            details: "Toasts from maid of honor and best man",
-          },
-          {
-            id: generate(),
-            time: "9:00 PM",
-            details: "Parent dances",
-          },
-          {
-            id: generate(),
-            time: "9:30 PM ",
-            details: "Cake cutting",
-          },
-          {
-            id: generate(),
-            time: "10:00 PM",
-            details: "Send-Off",
-          },
-        ]
+        {
+          id: generate(),
+          time: "5.00 PM",
+          details: "Example of event details",
+        },
+        {
+          id: generate(),
+          time: "5:30 PM",
+          details: "Ceremony",
+        },
+        {
+          id: generate(),
+          time: "6:00 PM",
+          details: "Ceremony ends/cocktails begin",
+        },
+        {
+          id: generate(),
+          time: "7:00 PM",
+          details: "Cocktails ends and guests are ushered into the reception",
+        },
+        {
+          id: generate(),
+          time: "7:20 PM",
+          details: "Introduction and first dance—guests asked to join after ",
+        },
+        {
+          id: generate(),
+          time: "7:45 PM",
+          details: " Guests take their seats and the first course is served",
+        },
+        {
+          id: generate(),
+          time: "8:00 PM",
+          details: "Welcome speech from parents",
+        },
+        {
+          id: generate(),
+          time: "8:10 PM",
+          details: "Toasts from maid of honor and best man",
+        },
+        {
+          id: generate(),
+          time: "9:00 PM",
+          details: "Parent dances",
+        },
+        {
+          id: generate(),
+          time: "9:30 PM ",
+          details: "Cake cutting",
+        },
+        {
+          id: generate(),
+          time: "10:00 PM",
+          details: "Send-Off",
+        },
+      ]
   );
 
   const size = useWindowSize();
@@ -99,7 +100,7 @@ const WebsitePageOne = () => {
           title={
             <h2 className="flex align-center gap-2 !text-[30px] !mt-1 items-center mudiumTitle">
               your website
-              <a target="_blank" href={`/couple/${user.username}`}>
+              <a target="_blank" href={`/couple/${user?.username}`}>
                 <img
                   src="/icons/website.png"
                   alt="your website"
@@ -140,14 +141,14 @@ const WebsitePageOne = () => {
             showThumbs={false}
             interval={3000}
           >
-            {user.questions.couplePictures.map((image, index) => (
-              <div className="relative w-full">
+            {user?.questions.couplePictures.map((image, index) => (
+              <div key={index} className="relative w-full">
                 <div className="aspect-w-16 aspect-h-9">
                   <Image
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                     publicId={image.public_id}
-                    src={!image.public_id ? image.url : null}
-                    width={image.width}
+                    src={!image.public_id ? image?.url : null}
+                    width={image?.width}
                     crop="scale"
                     className="object-cover"
                   />
@@ -191,7 +192,7 @@ const WebsitePageOne = () => {
             <div className="sm:my-[40px] my-[10px] sm:space-y-[26px]">
               <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB]" />
               <Link href="/dashboard/address-and-rsvp">
-                <a className="w-full flex items-center justify-center space-x-3 py-4 px-5 border-2 border-primary bg-[#F9D1DE] rounded-[5px] capitalize font-inter font-bold text-sm hover:bg-secondary/5 transition duration-300">
+                <a className="w-full flex items-center my-5 justify-center space-x-3 py-4 px-5 border-2 border-primary bg-[#F9D1DE] rounded-[5px] capitalize font-inter font-bold text-sm hover:bg-secondary/5 transition duration-300">
                   {/* <LinkIcon className="w-5 h-5" /> */}
                   <svg
                     width="16"
@@ -250,7 +251,7 @@ const WebsitePageOne = () => {
               <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-10" />
             )}
 
-            {Object?.keys(user.receptionDetails)?.length !== 0 && (
+            {Object?.keys(user?.receptionDetails)?.length !== 0 && (
               <h2 className="text-2xl md:text-4xl font-medium text-center mt-[17px] commonTitle">
                 Reception Details
               </h2>
@@ -262,7 +263,7 @@ const WebsitePageOne = () => {
                 <div class="sm:col-start-2 sm:col-span-5 col-span-12 sm:p-5 p-2 text-lg font-semibold subTitle">
                   <h4 className="text-lg">Receptions</h4>
                   <h6 className="miniTitle">
-                    Date 1 : {user?.questions?.weddingDay?.firstReception}{" "}
+                    Date 1 : {user?.questions?.weddingDay?.firstReception}
                   </h6>
 
                   {user?.questions?.weddingDay?.secondReception && (
@@ -318,7 +319,6 @@ const WebsitePageOne = () => {
                         <WebsiteGiftCards
                           {...{ user }}
                           giftCards={user?.giftCards}
-                          coupleWebsite
                         />
                       </div>
                     </div>
@@ -335,7 +335,7 @@ const WebsitePageOne = () => {
                     <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-[28px] mb-[50px]" />
                     <div className="mt-5 space-y-3">
                       <div>
-                        <WebsiteRegistry registries={couple?.registries} />
+                        <WebsiteRegistry registries={user?.registries} />
                       </div>
                     </div>
                   </div>
@@ -407,4 +407,4 @@ const WebsitePageOne = () => {
   );
 };
 
-export default WebsitePageOne;
+export default withAuthRoute(WebsitePageOne);

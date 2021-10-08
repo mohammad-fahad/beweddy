@@ -7,7 +7,7 @@ import SeeMore from "@hoc/SeeMore";
 
 const Superlink = ({ user }) => {
   const [value, setValue] = useState(`${process.env.NEXT_PUBLIC_CLIENT_URL}`);
-  console.log(user);
+
   return (
     <div className="border-2 border-[#000000] rounded-lg w-full">
       <Image

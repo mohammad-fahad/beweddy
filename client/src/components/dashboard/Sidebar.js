@@ -7,7 +7,7 @@ import {
 import Link from 'next/link';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { QRCodeGenerator } from '@components/shared';
 import { useMutation, useQuery } from 'react-query';
 import {
@@ -19,7 +19,6 @@ import {
 import { client } from 'pages/_app';
 
 const Sidebar = () => {
-  const dispatch = useDispatch();
   const { user } = useSelector(state => state.user);
   // const todos = useSelector(state => state.todoList);
   const [openInput, setOpenInput] = useState(false);

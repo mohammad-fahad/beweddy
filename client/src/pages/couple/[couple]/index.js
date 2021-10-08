@@ -26,62 +26,62 @@ const CoupleWebsitePage = (props) => {
     couple?.receptionDetails?.length
       ? couple.receptionDetails
       : [
-          {
-            id: generate(),
-            time: "5.00 PM",
-            details: "Example of event details",
-          },
-          {
-            id: generate(),
-            time: "5:30 PM",
-            details: "Ceremony",
-          },
-          {
-            id: generate(),
-            time: "6:00 PM",
-            details: "Ceremony ends/cocktails begin",
-          },
-          {
-            id: generate(),
-            time: "7:00 PM",
-            details: "Cocktails ends and guests are ushered into the reception",
-          },
-          {
-            id: generate(),
-            time: "7:20 PM",
-            details: "Introduction and first dance—guests asked to join after ",
-          },
-          {
-            id: generate(),
-            time: "7:45 PM",
-            details: " Guests take their seats and the first course is served",
-          },
-          {
-            id: generate(),
-            time: "8:00 PM",
-            details: "Welcome speech from parents",
-          },
-          {
-            id: generate(),
-            time: "8:10 PM",
-            details: "Toasts from maid of honor and best man",
-          },
-          {
-            id: generate(),
-            time: "9:00 PM",
-            details: "Parent dances",
-          },
-          {
-            id: generate(),
-            time: "9:30 PM ",
-            details: "Cake cutting",
-          },
-          {
-            id: generate(),
-            time: "10:00 PM",
-            details: "Send-Off",
-          },
-        ]
+        {
+          id: generate(),
+          time: "5.00 PM",
+          details: "Example of event details",
+        },
+        {
+          id: generate(),
+          time: "5:30 PM",
+          details: "Ceremony",
+        },
+        {
+          id: generate(),
+          time: "6:00 PM",
+          details: "Ceremony ends/cocktails begin",
+        },
+        {
+          id: generate(),
+          time: "7:00 PM",
+          details: "Cocktails ends and guests are ushered into the reception",
+        },
+        {
+          id: generate(),
+          time: "7:20 PM",
+          details: "Introduction and first dance—guests asked to join after ",
+        },
+        {
+          id: generate(),
+          time: "7:45 PM",
+          details: " Guests take their seats and the first course is served",
+        },
+        {
+          id: generate(),
+          time: "8:00 PM",
+          details: "Welcome speech from parents",
+        },
+        {
+          id: generate(),
+          time: "8:10 PM",
+          details: "Toasts from maid of honor and best man",
+        },
+        {
+          id: generate(),
+          time: "9:00 PM",
+          details: "Parent dances",
+        },
+        {
+          id: generate(),
+          time: "9:30 PM ",
+          details: "Cake cutting",
+        },
+        {
+          id: generate(),
+          time: "10:00 PM",
+          details: "Send-Off",
+        },
+      ]
   );
   const { query } = useRouter();
 
@@ -110,7 +110,7 @@ const CoupleWebsitePage = (props) => {
       </Head>
 
       <div className="container p-1 sm:p-10 ">
-        <div className="w-full mx-auto border-4 border-[#000000] rounded-lg mt-10 ">
+        <div className="w-full mx-auto border-4 border-[#000000] rounded-lg mt-5 ">
           <WebsiteNav user={couple} />
           <Carousel
             autoPlay
@@ -228,16 +228,16 @@ const CoupleWebsitePage = (props) => {
                 Reception Details
               </h2>
             )}
-            <div class="grid grid-cols-12 gap-4 w-full my-3 md:my-8">
+            <div class="grid grid-cols-12 gap-4 w-full sm:px-0 px-5 my-3 md:my-8">
               {couple?.questions?.weddingDay?.firstReception && (
-                <div class="col-start-2 col-span-5 p-5 text-lg font-semibold">
+                <div class="sm:col-start-2 sm:col-span-5 col-span-12 sm:p-5 p-2 text-lg font-semibold subTitle">
                   <h4 className="text-lg">Receptions</h4>
-                  <h6>
+                  <h6 className="miniTitle">
                     Date 1 : {couple?.questions?.weddingDay?.firstReception}
                   </h6>
 
                   {couple?.questions?.weddingDay?.secondReception && (
-                    <h6>
+                    <h6 className="miniTitle">
                       Date 2 : {couple?.questions?.weddingDay?.secondReception}
                     </h6>
                   )}
@@ -278,7 +278,7 @@ const CoupleWebsitePage = (props) => {
                 <div class="grid grid-cols-12 gap-4 w-full my-3 md:my-8">
                   <div class="col-start-2 col-span-10">
                     <h2 className="text-2xl font-medium text-center md:text-[32px] font-alice commonTitle">
-                      😇 Bless us with a Gift Card
+                      Bless us with a Gift Card
                     </h2>
                     <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] my-5" />
                     <div className="mt-5 space-y-3">
@@ -312,27 +312,27 @@ const CoupleWebsitePage = (props) => {
             </div>
             {(couple?.socialAccounts?.groom ||
               couple?.socialAccounts?.bride) && (
-              <div class="flex flex-wrap items-center space-x-4 space-y-4 w-full my-3 md:my-8">
-                {couple?.socialAccounts?.groom &&
-                  Object?.keys(couple.socialAccounts?.groom)?.length !== 0 && (
-                    <div class="col-span-6 p-5">
-                      <SocialSection
-                        name={couple?.questions?.firstName}
-                        links={couple?.socialAccounts?.groom}
-                      />
-                    </div>
-                  )}
-                {couple?.socialAccounts?.bride &&
-                  Object?.keys(couple.socialAccounts?.bride)?.length !== 0 && (
-                    <div class="col-span-6 p-5">
-                      <SocialSection
-                        name={couple?.questions?.spouseFirstName}
-                        links={couple?.socialAccounts?.bride}
-                      />
-                    </div>
-                  )}
-              </div>
-            )}
+                <div class="flex flex-wrap items-center space-x-4 space-y-4 w-full my-3 md:my-8">
+                  {couple?.socialAccounts?.groom &&
+                    Object?.keys(couple.socialAccounts?.groom)?.length !== 0 && (
+                      <div class="col-span-6 p-5">
+                        <SocialSection
+                          name={couple?.questions?.firstName}
+                          links={couple?.socialAccounts?.groom}
+                        />
+                      </div>
+                    )}
+                  {couple?.socialAccounts?.bride &&
+                    Object?.keys(couple.socialAccounts?.bride)?.length !== 0 && (
+                      <div class="col-span-6 p-5">
+                        <SocialSection
+                          name={couple?.questions?.spouseFirstName}
+                          links={couple?.socialAccounts?.bride}
+                        />
+                      </div>
+                    )}
+                </div>
+              )}
           </div>
           {/* QR Codes section */}
           <div class="grid place-items-center sm:py-[100px] py-10 grid-cols-12 w-full bg-gradient-to-br from-[#FCE3EB] to-white border-black border-t-4 border-b-4">
@@ -347,7 +347,7 @@ const CoupleWebsitePage = (props) => {
 
             <div className="w-full col-span-12 sm:col-span-4 ">
               <div className="sm:w-[30%] w-full customItem ">
-                <QRCode
+                {/* <QRCode
                   {...{ value }}
                   size={size.width > 600 ? 200 : 120}
                   eyeRadius={[
@@ -358,6 +358,14 @@ const CoupleWebsitePage = (props) => {
                     [10, 10, 10, 0],
                     [10, 0, 10, 10],
                   ]}
+                  logoHeight={50}
+                  logoWidth={50}
+                  logoImage="/icons/circle-ring.png"
+                /> */}
+                <QRCode
+                  {...{ value }}
+                  size={200}
+                  eyeRadius={0}
                   logoHeight={50}
                   logoWidth={50}
                   logoImage="/icons/circle-ring.png"

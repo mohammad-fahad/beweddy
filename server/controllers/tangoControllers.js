@@ -7,9 +7,9 @@ const { TANGO_API, TANGO_ACCOUNT_NUMBER, TANGO_EMAIL_TEMPLATE, TANGO_UTID } =
 
 // Get All Gifts
 export const getGifts = asyncHandler(async (req, res) => {
-  // const { token } = req.body;
-  // const { coupleName, coupleEmail, guestEmail, guestName, message, amount } =
-  //   jwt.verify(token, process.env.JWT_SECRET);
+  const { token } = req.body;
+  const { coupleName, coupleEmail, guestEmail, guestName, message, amount } =
+    jwt.verify(token, process.env.JWT_SECRET);
 
   const payload = {
     accountIdentifier: TANGO_ACCOUNT_NUMBER,

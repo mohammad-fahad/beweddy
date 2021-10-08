@@ -23,16 +23,16 @@ const SharableModal = ({ isModalOpen, setIsModalOpen }) => {
     `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${user?.username}`
   );
   const [giftAndRegistry, setGiftAndRegistry] = useState(
-    `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/giftAndRegistry`
+    `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${user?.username}`
   );
   const [address, setAddress] = useState(
-    `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/address`
+    `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${user?.username}/rsvp`
   );
   const [event, setEvent] = useState(
-    `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/event`
+    `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${user?.username}`
   );
   const [linkShortener, setLinkShortener] = useState(
-    `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/linkShortener`
+    `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${user?.username}`
   );
   const [isCopied, setCopied] = useCopyClipboard(superlink, {
     successDuration: 1500,
