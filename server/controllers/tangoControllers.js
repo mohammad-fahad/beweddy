@@ -1,7 +1,6 @@
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
 import asyncHandler from 'express-async-handler';
-import { attemptToGiftCardRedeem } from './mailControllers.js';
 
 const { TANGO_API, TANGO_ACCOUNT_NUMBER, TANGO_EMAIL_TEMPLATE, TANGO_UTID } =
   process.env;
@@ -11,39 +10,38 @@ export const getGifts = asyncHandler(async (req, res) => {
   const { token } = req.body;
   const { coupleName, coupleEmail, guestEmail, guestName, message, amount } =
     jwt.verify(token, process.env.JWT_SECRET);
-  await attemptToGiftCardRedeem(guestName, coupleEmail, message, token)
-  res.status(200).json({ success: true })
-  // const payload = {
-  //   accountIdentifier: TANGO_ACCOUNT_NUMBER,
-  //   // amount: Number(amount),
-  //   amount: 0.01,
-  //   campaign: '',
-  //   customerIdentifier: 'customerId',
-  //   emailSubject: '',
-  //   externalRefID: '',
-  //   message,
-  //   notes: '',
-  //   recipient: {
-  //     email: coupleEmail,
-  //     firstName: coupleName,
-  //   },
-  //   etid: TANGO_EMAIL_TEMPLATE,
-  //   sendEmail: true,
-  //   sender: {
-  //     email: guestEmail,
-  //     firstName: guestName,
-  //   },
-  //   utid: TANGO_UTID,
-  // };
 
-  // // axios config
-  // const config = {
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  // };
+  const payload = {
+    accountIdentifier: TANGO_ACCOUNT_NUMBER,
+    // amount: Number(amount),
+    amount: 0.01,
+    campaign: '',
+    customerIdentifier: 'customerId',
+    emailSubject: '',
+    externalRefID: '',
+    message,
+    notes: '',
+    recipient: {
+      email: coupleEmail,
+      firstName: coupleName,
+    },
+    etid: TANGO_EMAIL_TEMPLATE,
+    sendEmail: true,
+    sender: {
+      email: guestEmail,
+      firstName: guestName,
+    },
+    utid: TANGO_UTID,
+  };
 
-  // const { data } = axios.post(TANGO_API, payload, config);
+  // axios config
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
 
-  // res.status(200).json(gifts);
+  const { data } = axios.post(TANGO_API, payload, config);
+
+  res.status(200).json(gifts);
 });
