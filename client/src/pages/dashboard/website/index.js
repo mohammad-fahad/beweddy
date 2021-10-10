@@ -19,6 +19,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { isoToUtcDate } from "@utils/index";
 import { useWindowSize } from "@hooks/useWindowSize";
+import { withAuthRoute } from "@hoc/withAuthRoute";
 
 SwiperCore.use([Lazy, Autoplay]);
 const WebsitePageOne = () => {
@@ -99,7 +100,7 @@ const WebsitePageOne = () => {
           title={
             <h2 className="flex align-center gap-2 !text-[30px] !mt-1 items-center mudiumTitle">
               your website
-              <a target="_blank" href={`/couple/${user.username}`}>
+              <a target="_blank" href={`/couple/${user?.username}`}>
                 <img
                   src="/icons/website.png"
                   alt="your website"
@@ -140,7 +141,7 @@ const WebsitePageOne = () => {
             showThumbs={false}
             interval={3000}
           >
-            {user.questions.couplePictures.map((image, index) => (
+            {user?.questions.couplePictures.map((image, index) => (
               <div className="relative w-full">
                 <div className="aspect-w-16 aspect-h-9">
                   <Image
@@ -407,4 +408,4 @@ const WebsitePageOne = () => {
   );
 };
 
-export default WebsitePageOne;
+export default withAuthRoute(WebsitePageOne);

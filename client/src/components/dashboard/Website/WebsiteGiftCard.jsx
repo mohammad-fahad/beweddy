@@ -15,6 +15,8 @@ const WebsiteGiftCards = ({ giftCards, couple, coupleWebsite }) => {
   const isMediumDevice = useMediaQuery("only screen and (max-width: 991px)");
   const isSmallDevice = useMediaQuery("only screen and (max-width: 767px)");
 
+  console.log("sonjoy", giftCards);
+
   useEffect(() => {
     if (isSmallDevice) {
       return setCol(2);
@@ -31,7 +33,10 @@ const WebsiteGiftCards = ({ giftCards, couple, coupleWebsite }) => {
     <div className=" from-[#FCE3EB] to-white relative">
       <div className="grid w-full grid-cols-2 gap-5 mx-auto sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 md:gap-10">
         {giftCards?.map((giftCard) => (
-          <Link key={giftCard._id} href={`/couple/${couple?.username}/${giftCard?._id}/checkout`}>
+          <Link
+            key={giftCard._id}
+            href={`/couple/${couple?.username}/${giftCard?._id}/checkout`}
+          >
             <a className="transition duration-300 hover:scale-110">
               <Image
                 width={245}
