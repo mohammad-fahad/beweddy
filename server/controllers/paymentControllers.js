@@ -11,7 +11,7 @@ export const checkoutSession = asyncHandler(async (req, res) => {
     quantity: 1,
     price_data: {
       currency: 'usd',
-      unit_amount: (Number(req.body.price) + 3.23) * 100,
+      unit_amount: Number(req.body.price) * 100,
       product_data: {
         name: req.body.title,
         images: [req.body.image],
