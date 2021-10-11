@@ -155,7 +155,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       email: "musa@example.com",
       guestEstimate: "10",
       id: "61462f3aef64f800048ebd65",
-      name: "Aileen Haney",
+      name: "Example",
       phone: {
         number: '348450345', provider: {
           "sms": "txt.att.net",
@@ -343,7 +343,7 @@ export const activeUser = asyncHandler(async (req, res) => {
     email: "musa@example.com",
     guestEstimate: "10",
     id: "61462f3aef64f800048ebd65",
-    name: "Aileen Haney",
+    name: "Example",
     phone: {
       number: '348450345', provider: {
         "sms": "txt.att.net",
