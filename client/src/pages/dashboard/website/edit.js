@@ -54,12 +54,17 @@ import getYear from 'date-fns/getYear';
 import getMonth from 'date-fns/getYear';
 import 'react-datepicker/dist/react-datepicker.css';
 import VenmoModal from '@components/dashboard/VenmoModal';
+import { deletePrivetRegistry } from '@services/Registry/privetRegistry';
+import { useMutation } from 'react-query';
 
 const EditWebsitePage = () => {
   const dispatch = useDispatch();
   const [nickname, setNickname] = useState(false);
   const [spouseFirst, setSpouseFirst] = useState(false);
   const { user, loading: userLoading } = useSelector(state => state.user);
+
+  const { mutateAsync: deleteRegistry, isLoading: isDeleting } =
+    useMutation(deletePrivetRegistry);
 
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState();
@@ -68,7 +73,7 @@ const EditWebsitePage = () => {
   const [isRegistryModalOpen, setIsRegistryModalOpen] = useState(false);
   const [isVenmoModalOpen, setIsVenmoModalOpen] = useState(false);
   const [selectedImageFile, setSelectedImageFile] = useState();
-  const [registryData, setRegistryData] = useState("");
+  const [registryData, setRegistryData] = useState('');
   const [uploadedFiles, setUploadedFiles] = useState(
     user.questions.couplePictures
   );
@@ -77,62 +82,62 @@ const EditWebsitePage = () => {
     user.receptionDetails.length
       ? user.receptionDetails
       : [
-        {
-          id: generate(),
-          time: '5.00 PM',
-          details: 'Example of event details',
-        },
-        {
-          id: generate(),
-          time: '5:30 PM',
-          details: 'Ceremony',
-        },
-        {
-          id: generate(),
-          time: '6:00 PM',
-          details: 'Ceremony ends/cocktails begin',
-        },
-        {
-          id: generate(),
-          time: '7:00 PM',
-          details: 'Cocktails ends and guests are ushered into the reception',
-        },
-        {
-          id: generate(),
-          time: '7:20 PM',
-          details: 'Introduction and first dance—guests asked to join after ',
-        },
-        {
-          id: generate(),
-          time: '7:45 PM',
-          details: ' Guests take their seats and the first course is served',
-        },
-        {
-          id: generate(),
-          time: '8:00 PM',
-          details: 'Welcome speech from parents',
-        },
-        {
-          id: generate(),
-          time: '8:10 PM',
-          details: 'Toasts from maid of honor and best man',
-        },
-        {
-          id: generate(),
-          time: '9:00 PM',
-          details: 'Parent dances',
-        },
-        {
-          id: generate(),
-          time: '9:30 PM ',
-          details: 'Cake cutting',
-        },
-        {
-          id: generate(),
-          time: '10:00 PM',
-          details: 'Send-Off',
-        },
-      ]
+          {
+            id: generate(),
+            time: '5.00 PM',
+            details: 'Example of event details',
+          },
+          {
+            id: generate(),
+            time: '5:30 PM',
+            details: 'Ceremony',
+          },
+          {
+            id: generate(),
+            time: '6:00 PM',
+            details: 'Ceremony ends/cocktails begin',
+          },
+          {
+            id: generate(),
+            time: '7:00 PM',
+            details: 'Cocktails ends and guests are ushered into the reception',
+          },
+          {
+            id: generate(),
+            time: '7:20 PM',
+            details: 'Introduction and first dance—guests asked to join after ',
+          },
+          {
+            id: generate(),
+            time: '7:45 PM',
+            details: ' Guests take their seats and the first course is served',
+          },
+          {
+            id: generate(),
+            time: '8:00 PM',
+            details: 'Welcome speech from parents',
+          },
+          {
+            id: generate(),
+            time: '8:10 PM',
+            details: 'Toasts from maid of honor and best man',
+          },
+          {
+            id: generate(),
+            time: '9:00 PM',
+            details: 'Parent dances',
+          },
+          {
+            id: generate(),
+            time: '9:30 PM ',
+            details: 'Cake cutting',
+          },
+          {
+            id: generate(),
+            time: '10:00 PM',
+            details: 'Send-Off',
+          },
+        ]
   );
 
   // WeddingDate Picker
@@ -375,6 +380,7 @@ const EditWebsitePage = () => {
   const range = (start, end) => {
     return new Array(end - start).fill().map((d, i) => i + start);
   };
+
   const years = range(1990, getYear(new Date()) + 5);
   const months = [
     'January',
@@ -397,7 +403,7 @@ const EditWebsitePage = () => {
         <title>Beweddy | Edit Website</title>
       </Head>
 
-      {(loading || userLoading) && <Loader />}
+      {(loading || userLoading || isDeleting) && <Loader />}
 
       <DashboardTopBar />
 
@@ -1025,15 +1031,17 @@ const EditWebsitePage = () => {
                 <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
                   Connect your registry & Venmo
                 </h4>
-                <div className='flex items-center space-y-3'>
+                <div className='flex items-center space-x-3'>
                   <div className='border-2 w-[200px] min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex flex-col items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'>
-                    <button
-                      type='button'
-                      className=' mt-5 text-xs w-[160px] py-2 text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap'
-                      onClick={() => setIsModalOpen(true)}
-                    >
-                      Connect Registry
-                    </button>
+                    <Link href='/dashboard/registries'>
+                      <a
+                        // type='button'
+                        className='inline-block text-center mt-5 text-xs w-[160px] py-2 text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap'
+                        // onClick={() => setIsModalOpen(true)}
+                      >
+                        Connect Registry
+                      </a>
+                    </Link>
                     <button
                       type='button'
                       className='w-[160px] py-2 mt-5 text-xs text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap'
@@ -1046,6 +1054,15 @@ const EditWebsitePage = () => {
                         Learn more
                       </a>
                     </Link> */}
+                  </div>
+                  <div className='border-2 w-[200px] min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex flex-col items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'>
+                    <button
+                      type='button'
+                      className='inline-block text-center text-xs w-[160px] py-2 text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap'
+                      onClick={() => setIsModalOpen(true)}
+                    >
+                      Create Registry
+                    </button>
                   </div>
                 </div>
                 <motion.div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 2lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 sm:gap-5 md:gap-10'>
@@ -1071,13 +1088,23 @@ const EditWebsitePage = () => {
                         </Link> */}
                         <div
                           className='absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center transition duration-300 opacity-0 bg-primary/80 hover:opacity-100'
-                          onClick={() =>
-                            dispatch(
-                              attemptUpdateUserProfile({
-                                removeRegistry: registry._id,
-                              })
-                            )
-                          }
+                          onClick={async () => {
+                            try {
+                              await deleteRegistry(
+                                {
+                                  id: registry?._id,
+                                  token: user?.token,
+                                },
+                                {
+                                  onSuccess: () => {
+                                    dispatch(attemptUpdateUserProfile({}));
+                                  },
+                                }
+                              );
+                            } catch (err) {
+                              console.error(err);
+                            }
+                          }}
                         >
                           <MinusIcon className='w-12 h-12 text-white' />
                         </div>
@@ -1098,7 +1125,7 @@ const EditWebsitePage = () => {
                         <h3 className='text-lg font-semibold font-inter'>
                           {registry.title}
                         </h3>
-                        <div>
+                        {/* <div>
                           <button type="button" onClick={() => {
                             setRegistryData(registry)
                             setIsRegistryModalOpen(true)
@@ -1106,7 +1133,7 @@ const EditWebsitePage = () => {
                             className='py-2 inline-block px-8 border-gray-900 border-2 rounded-[5px] mt-5 hover:bg-black transition duration-300 hover:text-white font-inter font-bold'>
                             Connect
                           </button>
-                        </div>
+                        </div> */}
                       </div>
                     </motion.div>
                   ))}
@@ -1730,7 +1757,9 @@ const EditWebsitePage = () => {
         </DashboardContainer>
       </DashboardLayout>
       <RegistryModal {...{ isModalOpen, setIsModalOpen }} />
-      <OpenRegistryModal {...{ isRegistryModalOpen, setIsRegistryModalOpen, registryData }} />
+      <OpenRegistryModal
+        {...{ isRegistryModalOpen, setIsRegistryModalOpen, registryData }}
+      />
       <VenmoModal {...{ isVenmoModalOpen, setIsVenmoModalOpen }} />
       <Footer hideSocial />
 

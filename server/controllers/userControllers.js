@@ -145,11 +145,11 @@ export const googleSignUp = asyncHandler(async (req, res) => {
     });
     const newGuest = {
       address: {
-        city: "Optio quasi labore ",
-        providence: "Consequuntur facilis",
-        state: "Vel veniam qui est ",
-        street: "Laudantium veniam ",
-        zip: "21268",
+        city: 'Optio quasi labore ',
+        providence: 'Consequuntur facilis',
+        state: 'Vel veniam qui est ',
+        street: 'Laudantium veniam ',
+        zip: '21268',
       },
       callingCode: "1",
       email: "musa@example.com",
@@ -157,19 +157,20 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       id: "61462f3aef64f800048ebd65",
       name: "Example",
       phone: {
-        number: '348450345', provider: {
-          "sms": "txt.att.net",
-          "mms": "mms.att.net"
-        }
+        number: '348450345',
+        provider: {
+          sms: 'txt.att.net',
+          mms: 'mms.att.net',
+        },
       },
-      rsvp: "maybe",
+      rsvp: 'maybe',
       wayOfInvitations: {
         allAbove_invite: false,
         email_invite: true,
         mail_invite: true,
         text_invite: true,
-      }
-    }
+      },
+    };
 
     if (userCreated) {
       defaultTodos.forEach(async todo => {
@@ -177,12 +178,11 @@ export const googleSignUp = asyncHandler(async (req, res) => {
           user: userCreated._id,
           ...todo,
         });
-
       });
       await Guest.create({
-        user: userCreated._id, ...newGuest
+        user: userCreated._id,
+        ...newGuest,
       });
-
 
       const privetRegistries = await PrivetRegistry.find({
         user: userCreated._id,
@@ -211,7 +211,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
           qrCodeAvatar: user.qrCodeAvatar,
           receptionDetails: user.receptionDetails,
           giftCards: user.giftCards,
-          registries: [...user.registries, ...privetRegistries],
+          registries: privetRegistries,
           socialAccounts: user.socialAccounts,
           weddingVideo: user.weddingVideo,
           isAdmin: user.isAdmin,
@@ -242,8 +242,9 @@ export const googleSignIn = asyncHandler(async (req, res) => {
   // Check if email is verified
   if (email_verified) {
     const user = await User.findOne({ email })
-      .populate('registries')
+      // .populate('registries')
       .populate('giftCards');
+
     const privetRegistries = await PrivetRegistry.find({ user: user._id });
 
     if (!user) {
@@ -269,7 +270,7 @@ export const googleSignIn = asyncHandler(async (req, res) => {
         qrCodeAvatar: user.qrCodeAvatar,
         receptionDetails: user.receptionDetails,
         giftCards: user.giftCards,
-        registries: [...user.registries, ...privetRegistries],
+        registries: privetRegistries ? privetRegistries : [],
         socialAccounts: user.socialAccounts,
         weddingVideo: user.weddingVideo,
         isAdmin: user.isAdmin,
@@ -319,25 +320,20 @@ export const activeUser = asyncHandler(async (req, res) => {
     throw new Error('Account already activated, please login');
   }
 
-
-
   userExists.emailVerified = true;
   userExists.giftCards = giftCards;
   // userExists.giftCards.push(giftCards);
-
-
-
 
   // userExists.registries.push(registryCards);
 
   const userUpdated = await userExists.save();
   const newGuest = {
     address: {
-      city: "Optio quasi labore ",
-      providence: "Consequuntur facilis",
-      state: "Vel veniam qui est ",
-      street: "Laudantium veniam ",
-      zip: "21268",
+      city: 'Optio quasi labore ',
+      providence: 'Consequuntur facilis',
+      state: 'Vel veniam qui est ',
+      street: 'Laudantium veniam ',
+      zip: '21268',
     },
     callingCode: "1",
     email: "musa@example.com",
@@ -345,19 +341,20 @@ export const activeUser = asyncHandler(async (req, res) => {
     id: "61462f3aef64f800048ebd65",
     name: "Example",
     phone: {
-      number: '348450345', provider: {
-        "sms": "txt.att.net",
-        "mms": "mms.att.net"
-      }
+      number: '348450345',
+      provider: {
+        sms: 'txt.att.net',
+        mms: 'mms.att.net',
+      },
     },
-    rsvp: "maybe",
+    rsvp: 'maybe',
     wayOfInvitations: {
       allAbove_invite: false,
       email_invite: true,
       mail_invite: true,
       text_invite: true,
-    }
-  }
+    },
+  };
 
   const user = await User.findOne({ email: userUpdated.email })
     .populate('registries')
@@ -367,7 +364,8 @@ export const activeUser = asyncHandler(async (req, res) => {
     const privetRegistries = await PrivetRegistry.find({ user: user._id });
 
     await Guest.create({
-      user: user._id, ...newGuest
+      user: user._id,
+      ...newGuest,
     });
 
     res.status(201).json({
@@ -388,7 +386,7 @@ export const activeUser = asyncHandler(async (req, res) => {
         qrCodeAvatar: user.qrCodeAvatar,
         receptionDetails: user.receptionDetails,
         giftCards: user.giftCards,
-        registries: [...user.registries, ...privetRegistries],
+        registries: privetRegistries ? privetRegistries : [],
         socialAccounts: user.socialAccounts,
         weddingVideo: user.weddingVideo,
         isAdmin: user.isAdmin,
@@ -447,7 +445,7 @@ export const login = asyncHandler(async (req, res) => {
         qrCodeAvatar: user.qrCodeAvatar,
         receptionDetails: user.receptionDetails,
         giftCards: user.giftCards,
-        registries: [...user.registries, ...privetRegistries],
+        registries: privetRegistries,
         socialAccounts: user.socialAccounts,
         weddingVideo: user.weddingVideo,
         isAdmin: user.isAdmin,
@@ -543,7 +541,7 @@ export const getUserProfile = asyncHandler(async (req, res) => {
         qrCodeAvatar: user.qrCodeAvatar,
         receptionDetails: user.receptionDetails,
         giftCards: user.giftCards,
-        registries: [...user.registries, ...privetRegistries],
+        registries: privetRegistries,
         socialAccounts: user.socialAccounts,
         weddingVideo: user.weddingVideo,
         isAdmin: user.isAdmin,
@@ -604,13 +602,13 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
       user.avatar = req.body.avatar;
     }
 
-    if (req.body.registries) {
-      const registries = [
-        ...new Set([...user.registries, ...req.body.registries]),
-      ];
+    // if (req.body.registries) {
+    //   const registries = [
+    //     ...new Set([...user.registries, ...req.body.registries]),
+    //   ];
 
-      user.registries = [...new Set(registries)];
-    }
+    //   user.registries = [...new Set(registries)];
+    // }
 
     if (req.body.giftCards) {
       const giftCards = [
@@ -623,9 +621,9 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
       user.giftCards.pull(req.body.removeGiftCard);
     }
 
-    if (req.body.removeRegistry) {
-      user.registries.pull(req.body.removeRegistry);
-    }
+    // if (req.body.removeRegistry) {
+    //   user.registries.pull(req.body.removeRegistry);
+    // }
 
     if (req.body.newPassword) {
       if (await user.matchPassword(req.body.oldPassword)) {
@@ -659,7 +657,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
         qrCodeAvatar: updateUser.qrCodeAvatar,
         receptionDetails: updateUser.receptionDetails,
         giftCards: updateUser.giftCards,
-        registries: [...updateUser.registries, ...privetRegistries],
+        registries: privetRegistries,
         socialAccounts: updateUser.socialAccounts,
         weddingVideo: updateUser.weddingVideo,
         isAdmin: updateUser.isAdmin,
@@ -707,7 +705,7 @@ export const getCouple = asyncHandler(async (req, res) => {
     qrCodeAvatar: user.qrCodeAvatar,
     receptionDetails: user.receptionDetails,
     giftCards: user.giftCards,
-    registries: [...user.registries, ...privetRegistries],
+    registries: privetRegistries,
     socialAccounts: user.socialAccounts,
     weddingVideo: user.weddingVideo,
   });

@@ -39,7 +39,8 @@ export const updatePrivetRegistry = asyncHandler(async (req, res) => {
 // Delete Registry by ID
 export const deletePrivetRegistry = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const registry = PrivetRegistry.findByIdAndRemove(id);
+
+  const registry = await PrivetRegistry.findByIdAndRemove(id);
 
   if (registry) {
     res.status(204).json({ message: 'Registry Deleted successfully' });
