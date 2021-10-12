@@ -22,6 +22,7 @@ import {
   MinusIcon,
   PencilIcon,
   PlusIcon,
+  TrashIcon,
 } from '@heroicons/react/outline';
 import { withAuthRoute } from '@hoc/withAuthRoute';
 import { Popover, Transition } from '@headlessui/react';
@@ -71,6 +72,7 @@ const EditWebsitePage = () => {
   const [preview, setPreview] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isRegistryModalOpen, setIsRegistryModalOpen] = useState(false);
+  const [isUpdate, setIsUpdate] = useState(false);
   const [isVenmoModalOpen, setIsVenmoModalOpen] = useState(false);
   const [selectedImageFile, setSelectedImageFile] = useState();
   const [registryData, setRegistryData] = useState('');
@@ -1086,27 +1088,43 @@ const EditWebsitePage = () => {
                             <LinkIcon className='w-8 h-8 text-white' />
                           </a>
                         </Link> */}
-                        <div
-                          className='absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center transition duration-300 opacity-0 bg-primary/80 hover:opacity-100'
-                          onClick={async () => {
-                            try {
-                              await deleteRegistry(
-                                {
-                                  id: registry?._id,
-                                  token: user?.token,
-                                },
-                                {
-                                  onSuccess: () => {
-                                    dispatch(attemptUpdateUserProfile({}));
-                                  },
+                        <div className='absolute top-0 bottom-0 left-0 right-0 space-x-3 flex items-center justify-center transition duration-300 opacity-0 bg-primary/80 hover:opacity-100'>
+                          <button
+                            type='button'
+                            className='rounded-xl bg-white p-2 hover:bg-red-100 group'
+                            onClick={async () => {
+                              if (confirm('Are you sure?')) {
+                                try {
+                                  await deleteRegistry(
+                                    {
+                                      id: registry?._id,
+                                      token: user?.token,
+                                    },
+                                    {
+                                      onSuccess: () => {
+                                        dispatch(attemptUpdateUserProfile({}));
+                                      },
+                                    }
+                                  );
+                                } catch (err) {
+                                  console.error(err);
                                 }
-                              );
-                            } catch (err) {
-                              console.error(err);
-                            }
-                          }}
-                        >
-                          <MinusIcon className='w-12 h-12 text-white' />
+                              }
+                            }}
+                          >
+                            <TrashIcon className='w-6 h-6' />
+                          </button>
+                          <button
+                            type='button'
+                            className='rounded-xl bg-white p-2 hover:bg-red-100 group'
+                            onClick={() => {
+                              setIsUpdate(true);
+                              setRegistryData(registry);
+                              setIsRegistryModalOpen(true);
+                            }}
+                          >
+                            <PencilIcon className='w-6 h-6' />
+                          </button>
                         </div>
                         <div>
                           <Image
@@ -1758,7 +1776,13 @@ const EditWebsitePage = () => {
       </DashboardLayout>
       <RegistryModal {...{ isModalOpen, setIsModalOpen }} />
       <OpenRegistryModal
-        {...{ isRegistryModalOpen, setIsRegistryModalOpen, registryData }}
+        {...{
+          isRegistryModalOpen,
+          setIsRegistryModalOpen,
+          registryData,
+          isUpdate,
+          setIsUpdate,
+        }}
       />
       <VenmoModal {...{ isVenmoModalOpen, setIsVenmoModalOpen }} />
       <Footer hideSocial />

@@ -100,7 +100,7 @@ export const sendGiftCardEmail = (name, message, url) => {
         </tr>
         <tr style="margin-bottom: 1.5rem">
           <td align="center">
-            <!-- <a
+           <a
               style="
                 background: #f9d1de;
                 color: #000;
@@ -115,7 +115,7 @@ export const sendGiftCardEmail = (name, message, url) => {
               "
               href="${url}"
               >Redeem</a
-            > -->
+            >
           </td>
         </tr>
         <tr>
@@ -146,8 +146,8 @@ export const sendGiftCardEmail = (name, message, url) => {
         </tr>
       </table>
     </body>
-  </html>`
-}
+  </html>`;
+};
 /**
  * @param  {String} name
  * @param  {String} url

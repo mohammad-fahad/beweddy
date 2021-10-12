@@ -1,17 +1,18 @@
 import asyncHandler from 'express-async-handler';
+import { nanoid } from 'nanoid';
 import Stripe from 'stripe';
 import { generateTangoToken } from '../utils/token/index.js';
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 // Get All Registry
 export const checkoutSession = asyncHandler(async (req, res) => {
-  const token = generateTangoToken(req.body.gift);
-
+  const token = generateTangoToken({ ...req.body.gift, id: nanoid() });
+  console.log(token);
   const transformedItem = {
     description: req.body.description,
     quantity: 1,
     price_data: {
       currency: 'usd',
-      unit_amount: Number(req.body.price) * 100,
+      unit_amount: (Number(req.body.price) + 3.23) * 100,
       product_data: {
         name: req.body.title,
         images: [req.body.image],

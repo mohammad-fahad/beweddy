@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
  * @param  {String} id
  */
 export const generateTangoToken = payload => {
-  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '30d' });
+  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '365d' });
 };
 
 /**

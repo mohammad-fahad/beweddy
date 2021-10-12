@@ -66,7 +66,7 @@ const RegistriesPage = () => {
                     />
                   ))}
             </motion.div>
-            {registries?.length > 0 && (
+            {/* {registries?.length > 0 && (
               <div className="flex flex-wrap items-center space-x-5 sm:flex-nowrap">
                 <Button
                   label="Save"
@@ -75,7 +75,7 @@ const RegistriesPage = () => {
                   onClick={addRegistries}
                 />
               </div>
-            )}
+            )} */}
           </div>
         </DashboardContainer>
       </DashboardLayout>
