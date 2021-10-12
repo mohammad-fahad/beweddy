@@ -1,7 +1,10 @@
 import { attemptUpdateUserProfile } from '@features/user/userActions';
 import { Dialog, Transition } from '@headlessui/react';
-import { createPrivetRegistry } from '@services/Registry/privetRegistry';
-import { Fragment } from 'react';
+import {
+  createPrivetRegistry,
+  updatePrivetRegistry,
+} from '@services/Registry/privetRegistry';
+import { Fragment, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { useSelector } from 'react-redux';
@@ -11,11 +14,13 @@ const OpenRegistryModal = ({
   isRegistryModalOpen,
   setIsRegistryModalOpen,
   registryData,
+  isUpdate,
+  setIsUpdate,
 }) => {
   const { user } = useSelector(state => state.user);
   const dispatch = useDispatch();
 
-  const { handleSubmit, register, reset } = useForm({
+  const { handleSubmit, register, reset, setValue } = useForm({
     mode: 'all',
     defaultValues: {
       title: registryData?.title,
@@ -23,24 +28,48 @@ const OpenRegistryModal = ({
     },
   });
 
+  useEffect(() => {
+    if (registryData) {
+      if (registryData?.link) {
+        setValue('link', registryData?.link);
+      }
+      setValue('title', registryData?.title);
+      setValue('image', registryData?.image);
+    }
+  }, [registryData]);
+
   function closeModal() {
     setIsRegistryModalOpen(false);
-    reset();
   }
   const { mutateAsync: createRegistry, isLoading } =
     useMutation(createPrivetRegistry);
+  const { mutateAsync: updateRegistry, isLoading: isUpdating } =
+    useMutation(updatePrivetRegistry);
 
   const onSubmit = async data => {
     try {
-      await createRegistry(
-        { payload: data, token: user?.token },
-        {
-          onSuccess: async () => {
-            dispatch(attemptUpdateUserProfile({}));
-            reset();
-          },
-        }
-      );
+      if (isUpdate) {
+        await updateRegistry(
+          { id: registryData?._id, payload: data, token: user?.token },
+          {
+            onSuccess: async () => {
+              dispatch(attemptUpdateUserProfile({}));
+              // reset();
+            },
+          }
+        );
+        setIsUpdate(false);
+      } else {
+        await createRegistry(
+          { payload: data, token: user?.token },
+          {
+            onSuccess: async () => {
+              dispatch(attemptUpdateUserProfile({}));
+              reset();
+            },
+          }
+        );
+      }
       setIsRegistryModalOpen(false);
     } catch (err) {
       console.error(err);
@@ -162,7 +191,7 @@ const OpenRegistryModal = ({
                       type='submit'
                       className='inline-flex justify-center px-4 py-2 text-sm font-medium text-white transition duration-300 border-2 rounded-md bg-primary border-primary hover:bg-white hover:text-primary'
                     >
-                      Connect
+                      {isUpdate ? 'Update' : 'Connect'}
                     </button>
                   </div>
                 </form>
