@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from 'react';
 import {
   ActivityInfo,
   DashboardHeader,
@@ -13,6 +14,8 @@ import DashboardTopBar from "@components/dashboard/header/TopBar";
 import DashboardLayout from "@components/dashboard/layout";
 import { useSelector } from "react-redux";
 import { GlobeAltIcon, LinkIcon, PencilIcon } from "@heroicons/react/outline";
+import useCopyClipboard from "react-use-clipboard";
+import toast from "react-hot-toast";
 
 const navLinks = [
   {
@@ -71,6 +74,14 @@ const navLinks = [
 
 const Dashboard = () => {
   const { user } = useSelector((state) => state.user);
+  const [value, setValue] = useState(
+    `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${user?.username}/rsvp`
+  );
+  const [isCopied, setCopied] = useCopyClipboard(value, {
+    successDuration: 1500,
+  });
+
+  isCopied && toast.success("Collect address website link copied!");
   return (
     <>
       <Head>
@@ -97,6 +108,17 @@ const Dashboard = () => {
                   <span className="customLabel">Edit your website</span>
                 </a>
               </Link>
+
+
+              <div
+                onClick={setCopied}
+                className={`sm:mt-3 cursor-pointer xs:mt-0 capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300 smallText`}
+              >
+                <LinkIcon className="hidden w-5 h-5 sm:inline-block" />
+                <span >Share To Collect Address</span>
+              </div>
+
+
               <Link href={`/couple/${user?.username}`}>
                 <a
                   target="_blank"
@@ -174,14 +196,15 @@ const Dashboard = () => {
 
               <div className="flex flex-col items-center justify-center">
                 <div className="inline-block">
-                  <Link href="/dashboard/features/qrcode-and-links">
-                    <a
-                      className={`sm:mt-3 xs:mt-0 capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300 smallText`}
-                    >
-                      <LinkIcon className="hidden w-5 h-5 sm:inline-block" />
-                      <span>Share To Collect Address</span>
-                    </a>
-                  </Link>
+
+                  <div
+                    onClick={setCopied}
+                    className={`sm:mt-3 cursor-pointer xs:mt-0 capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300 smallText`}
+                  >
+                    <LinkIcon className="hidden w-5 h-5 sm:inline-block" />
+                    <span>Share To Collect Address</span>
+                  </div>
+
                 </div>
                 <h1 className="text-[24px] leading-[27px] my-5">
                   Let's Eat, Drint & BeWeddy
