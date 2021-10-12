@@ -157,23 +157,11 @@ const AddressRSVP = () => {
     };
   };
 
-  // {
-  //   errors && toast.error("Please fill out information to submit");
-  // }
-
   return (
     <>
       <Head>
         <title>Beweddy | Address & RSVP</title>
       </Head>
-      {/* <>{errors && toast.error("Please fill out information to submit")}</> */}
-      {/* {errors?.name?.message && <>{errors && toast.error(errors?.name?.message)}</>}
-      {errors?.email?.message && <>{errors && toast.error(errors?.email?.message)}</>}
-      <>{errors && toast.error(errors?.street?.message)}</>
-      <>{errors && toast.error(errors?.city?.message)}</>
-      <>{errors && toast.error(errors?.state?.message)}</>
-      <>{errors && toast.error(errors?.zip?.message)}</>
-      <>{errors && toast.error(errors?.phone?.message)}</> */}
       <DashboardTopBar />
       <DashboardLayout>
         <DashboardHeader
@@ -190,10 +178,10 @@ const AddressRSVP = () => {
                 <span className="customLabel">Edit your website</span>
               </a>
             </Link>
-            <Link href="/">
+            <Link href="/#">
               <a className="flex space-x-3 white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
                 <LinkIcon className="w-5 h-5" />
-                <span className="customLabel">Share your super link</span>
+                <span className="customLabel">Share To Collect Addresses</span>
               </a>
             </Link>
             <Link href="/dashboard/invitation/rsvp-guest-management">

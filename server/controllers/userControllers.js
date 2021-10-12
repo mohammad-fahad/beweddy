@@ -46,9 +46,8 @@ export const register = asyncHandler(async (req, res) => {
     throw new Error('User already exists');
   }
 
-  const username = `${questions.firstName}_${
-    questions.spouseFirstName
-  }_${nanoid(4)}`
+  const username = `${questions.firstName}_${questions.spouseFirstName
+    }_${nanoid(4)}`
     .toLowerCase()
     .replace(/\s/g, '');
   // Create new user
@@ -127,9 +126,8 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       res.status(400);
       throw new Error('User already exists');
     }
-    const username = `${questions.firstName}_${
-      questions.spouseFirstName
-    }_${nanoid(4)}`
+    const username = `${questions.firstName}_${questions.spouseFirstName
+      }_${nanoid(4)}`
       .toLowerCase()
       .replace(/\s/g, '');
     // If not user exists then create new user
@@ -153,11 +151,11 @@ export const googleSignUp = asyncHandler(async (req, res) => {
         street: 'Laudantium veniam ',
         zip: '21268',
       },
-      callingCode: '1',
-      email: 'musa@example.com',
-      guestEstimate: '10',
-      id: '61462f3aef64f800048ebd65',
-      name: 'Aileen Haney',
+      callingCode: "1",
+      email: "musa@example.com",
+      guestEstimate: "10",
+      id: "61462f3aef64f800048ebd65",
+      name: "Example",
       phone: {
         number: '348450345',
         provider: {
@@ -337,11 +335,11 @@ export const activeUser = asyncHandler(async (req, res) => {
       street: 'Laudantium veniam ',
       zip: '21268',
     },
-    callingCode: '1',
-    email: 'musa@example.com',
-    guestEstimate: '10',
-    id: '61462f3aef64f800048ebd65',
-    name: 'Aileen Haney',
+    callingCode: "1",
+    email: "musa@example.com",
+    guestEstimate: "10",
+    id: "61462f3aef64f800048ebd65",
+    name: "Example",
     phone: {
       number: '348450345',
       provider: {

@@ -1,177 +1,195 @@
-import { attemptUpdateUserProfile } from "@features/user/userActions";
-import { Dialog, Transition } from "@headlessui/react";
-import { createPrivetRegistry } from "@services/Registry/privetRegistry";
-import { Fragment } from "react";
-import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { Loader } from '@components/shared';
+import { attemptUpdateUserProfile } from '@features/user/userActions';
+import { Dialog, Transition } from '@headlessui/react';
+import { createPrivetRegistry } from '@services/Registry/privetRegistry';
+import { fileUploader } from '@services/Uploader';
+import { Fragment, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useMutation } from 'react-query';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.user);
+  const { user } = useSelector(state => state.user);
+  const [uploading, setUploading] = useState(false);
+  const [uploadedFile, setUploadedFile] = useState();
+
   function closeModal() {
     setIsModalOpen(false);
   }
 
-  const { handleSubmit, register } = useForm({ mode: "all" });
+  const { handleSubmit, setValue, reset, register } = useForm({ mode: 'all' });
+
+  useEffect(() => {
+    if (uploadedFile) {
+      setValue('image', uploadedFile);
+    }
+  }, [uploadedFile]);
+
   const { mutateAsync, isLoading } = useMutation(createPrivetRegistry);
-  const onSubmit = async (data) => {
+  const onSubmit = async data => {
     setIsModalOpen(false);
     await mutateAsync(
       { payload: data, token: user?.token },
       {
         onSuccess: () => {
-          dispatch(attemptUpdateUserProfile({ refetch: true }));
+          dispatch(attemptUpdateUserProfile({}));
+          reset();
+          setUploadedFile();
         },
       }
     );
+  };
+
+  const handleAvatar = async e => {
+    const file = e.target.files[0];
+
+    try {
+      setUploading(true);
+      const data = await fileUploader(file);
+      setUploadedFile(data.secure_url);
+      setUploading(false);
+    } catch (err) {
+      setUploading(false);
+      console.error(err.message);
+    }
   };
 
   return (
     <>
       <Transition appear show={isModalOpen} as={Fragment}>
         <Dialog
-          as="div"
-          className="fixed inset-0 z-10 overflow-y-auto"
+          as='div'
+          className='fixed inset-0 z-10 overflow-y-auto'
           onClose={closeModal}
         >
-          <div className="min-h-screen px-4 text-center">
+          <div className='min-h-screen px-4 text-center'>
+            {(isLoading || uploading) && <Loader />}
             <Transition.Child
               as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
+              enter='ease-out duration-300'
+              enterFrom='opacity-0'
+              enterTo='opacity-100'
+              leave='ease-in duration-200'
+              leaveFrom='opacity-100'
+              leaveTo='opacity-0'
             >
-              <Dialog.Overlay className="fixed inset-0 bg-primary/40" />
+              <Dialog.Overlay className='fixed inset-0 bg-primary/40' />
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}
             <span
-              className="inline-block h-screen align-middle"
-              aria-hidden="true"
+              className='inline-block h-screen align-middle'
+              aria-hidden='true'
             >
               &#8203;
             </span>
             <Transition.Child
               as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
+              enter='ease-out duration-300'
+              enterFrom='opacity-0 scale-95'
+              enterTo='opacity-100 scale-100'
+              leave='ease-in duration-200'
+              leaveFrom='opacity-100 scale-100'
+              leaveTo='opacity-0 scale-95'
             >
-              <div className="inline-block w-full max-w-md p-6 mt-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+              <div className='inline-block w-full max-w-md p-6 mt-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl'>
                 <Dialog.Title
-                  as="h4"
-                  className="text-lg font-medium leading-6 text-gray-900 xs:text-xl sm:text-2xl"
+                  as='h4'
+                  className='text-lg font-medium leading-6 text-gray-900 xs:text-xl sm:text-2xl'
                 >
                   Connect Your registry
                 </Dialog.Title>
                 <form
-                  className="mt-5 space-y-2 sm:mt-10 xs:space-y-5"
+                  className='mt-5 space-y-2 sm:mt-10 xs:space-y-5'
                   onSubmit={handleSubmit(onSubmit)}
                 >
-                  <div className="flex flex-col space-y-2">
+                  <div className='flex flex-col space-y-2'>
                     <label
-                      htmlFor="title"
-                      className="text-sm font-medium md:text-base md:font-semibold"
+                      htmlFor='title'
+                      className='text-sm font-medium md:text-base md:font-semibold'
                     >
                       Registry Name
                     </label>
                     <input
-                      id="title"
-                      type="text"
-                      className="text-[13px] md:text-[15px] border-gray-100 border-2 py-2 px-4 xs:py-3 xs:px-5 placeholder-gray-300 rounded-[5px]"
-                      placeholder="Enter registry Name"
-                      {...register("title", {
+                      id='title'
+                      type='text'
+                      className='text-[13px] md:text-[15px] border-gray-100 border-2 py-2 px-4 xs:py-3 xs:px-5 placeholder-gray-300 rounded-[5px]'
+                      placeholder='Enter registry Name'
+                      {...register('title', {
                         required: {
                           value: true,
-                          message: "Registry name is required!",
+                          message: 'Registry name is required!',
                         },
                       })}
                     />
                   </div>
-                  <div className="flex flex-col space-y-2">
+                  <div className='flex flex-col space-y-2'>
                     <label
-                      htmlFor="image"
-                      className="text-sm font-medium md:text-base md:font-semibold"
+                      htmlFor='image'
+                      className='text-sm font-medium md:text-base md:font-semibold'
                     >
                       Company Logo
                     </label>
-                    <input
-                      id="image"
-                      type="text"
-                      className="text-[13px] md:text-[15px] border-gray-100 border-2 py-2 px-4 xs:py-3 xs:px-5 placeholder-gray-300 rounded-[5px]"
-                      placeholder="Enter Company Logo link here"
-                      {...register("image", {
-                        required: {
-                          value: false,
-                          message: "Image link is required!",
-                        },
-                        pattern: {
-                          value:
-                            /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/,
-                          message: "Link is not valid",
-                        },
-                      })}
-                    />
+                    <div className='relative focus:outline-none'>
+                      <input
+                        id='file-upload'
+                        type='file'
+                        className='hidden'
+                        onChange={handleAvatar}
+                      />
+                      <label
+                        htmlFor='file-upload'
+                        className='bg-white cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-2 px-10 placeholder-primary border-[3px] border-secondary-alternative/50 rounded-[5px]'
+                      >
+                        Upload
+                      </label>
+                    </div>
+                    {uploadedFile && (
+                      <img
+                        className='h-60 object-cover'
+                        src={uploadedFile}
+                        alt=''
+                      />
+                    )}
                   </div>
-                  <div className="flex flex-col space-y-2">
+                  <div className='flex flex-col space-y-2'>
                     <label
-                      htmlFor="link"
-                      className="text-sm font-medium md:text-base md:font-semibold"
+                      htmlFor='link'
+                      className='text-sm font-medium md:text-base md:font-semibold'
                     >
                       Registry URL
                     </label>
                     <input
-                      id="link"
-                      type="text"
-                      className="text-[13px] md:text-[15px] border-gray-100 border-2 py-2 px-4 xs:py-3 xs:px-5 placeholder-gray-300 rounded-[5px]"
-                      placeholder="Enter your registry link"
-                      {...register("link", {
+                      id='link'
+                      type='text'
+                      className='text-[13px] md:text-[15px] border-gray-100 border-2 py-2 px-4 xs:py-3 xs:px-5 placeholder-gray-300 rounded-[5px]'
+                      placeholder='Enter your registry link'
+                      {...register('link', {
                         required: {
                           value: true,
-                          message: "Registry URL is required!",
+                          message: 'Registry URL is required!',
                         },
                         pattern: {
                           value:
                             /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/,
-                          message: "Link is not valid",
+                          message: 'Link is not valid',
                         },
                       })}
                     />
                   </div>
-                  <div className="flex flex-col space-y-2">
-                    <label
-                      htmlFor="description"
-                      className="text-sm font-medium md:text-base md:font-semibold"
-                    >
-                      Description
-                    </label>
-                    <textarea
-                      id="description"
-                      type="text"
-                      className="text-[13px] md:text-[15px] border-gray-100 border-2 py-2 px-4 xs:py-3 xs:px-5 placeholder-gray-300 rounded-[5px]"
-                      placeholder="Enter registery description"
-                      {...register("description")}
-                    />
-                  </div>
-                  <div className="flex items-center space-x-3">
+                  <div className='flex items-center space-x-3'>
                     <button
-                      type="button"
-                      className="inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border-2 border-gray-100 rounded-md hover:bg-gray-100 "
+                      type='button'
+                      className='inline-flex justify-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border-2 border-gray-100 rounded-md hover:bg-gray-100 '
                       onClick={closeModal}
                     >
                       cancel
                     </button>
                     <button
-                      type="submit"
-                      className="inline-flex justify-center px-4 py-2 text-sm font-medium text-white transition duration-300 border-2 rounded-md bg-primary border-primary hover:bg-white hover:text-primary"
+                      type='submit'
+                      className='inline-flex justify-center px-4 py-2 text-sm font-medium text-white transition duration-300 border-2 rounded-md bg-primary border-primary hover:bg-white hover:text-primary'
                     >
                       Connect
                     </button>
