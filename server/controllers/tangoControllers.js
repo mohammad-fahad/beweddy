@@ -43,8 +43,8 @@ export const redeemGiftCard = asyncHandler(async (req, res) => {
 
   const payload = {
     accountIdentifier: TANGO_ACCOUNT_NUMBER,
-    amount: Number(amount),
-    // amount: 0.01,
+    // amount: Number(amount),
+    amount: 0.01,
     campaign: '',
     customerIdentifier: TANGO_CUSTOMER_IDENTIFIER, // Account Group ID
     emailSubject: '',
