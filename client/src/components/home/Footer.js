@@ -81,11 +81,10 @@ const Footer = ({ hideSocial, className, websitePreview }) => {
                 <img
                   src="/icons/gmail.svg"
                   alt="gmail"
-                  className={` ${
-                    size.width < 599
+                  className={` ${size.width < 599
                       ? "!w-[25px] !h-[25px]"
                       : "!w-[35px] !h-[35px]"
-                  }  hover:scale-125 transition duration-300`}
+                    }  hover:scale-125 transition duration-300`}
                 />
               </a>
               <a
@@ -107,9 +106,8 @@ const Footer = ({ hideSocial, className, websitePreview }) => {
       )}
 
       <div
-        className={`py-8 bg-gradient-to-br from-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary ${
-          className ? className : ""
-        } `}
+        className={`py-8 bg-gradient-to-br from-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary ${className ? className : ""
+          } `}
       >
         {/* <div className="container flex flex-col-reverse flex-wrap items-center justify-center gap-5 !md:flex-row sm:justify-between"> */}
         <div className="container flex !flex-row flex-wrap items-center justify-center gap-5  sm:justify-between footerWrapper">
@@ -140,7 +138,7 @@ const Footer = ({ hideSocial, className, websitePreview }) => {
 
                 <Link href="/contactUs">
                   <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
-                    <span className="customLabel">ContactUs</span>
+                    <span className="customLabel">Contact Us</span>
                     {/* <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-[#FFB1B6] group-hover:w-full transition-all duration-300"></span> */}
                   </a>
                 </Link>

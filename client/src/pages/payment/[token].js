@@ -43,7 +43,7 @@ const Payment = () => {
               Thank You!
             </h1>
             <p className='text-[24px] leading-[44px] font-medium subTitle'>
-              You Have Sent The Gift To The Couple.
+              Your gift is on the way.
             </p>
             {/* <div className='mx-auto block mt-16'>
               <svg
@@ -148,8 +148,8 @@ const Payment = () => {
                   fill='#808080'
                 />
               </svg>
-            </div>
-            <p className='text-[24px] leading-[44px] font-medium font-alice mt-5'>
+            </div> */}
+            {/* <p className='text-[24px] leading-[44px] font-medium font-alice mt-5'>
               Let's Eat, Drink & BeWeddy!
             </p> */}
           </div>
