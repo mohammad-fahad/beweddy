@@ -21,7 +21,7 @@ const Payment = () => {
     <div>
       <div className='container flex items-center justify-center min-h-screen py-5'>
         <div className='border-2 rounded-lg border-[#d9d9d9] sm:p-10 p-4 w-full'>
-          <div>
+          {/* <div>
             <Link href='/'>
               <a>
                 <Image
@@ -34,7 +34,7 @@ const Payment = () => {
                 />
               </a>
             </Link>
-          </div>
+          </div> */}
 
           <div className='flex justify-center items-center py-[100px] flex-col'>
             <div className="text-center text-6xl">🎉</div>
@@ -45,7 +45,7 @@ const Payment = () => {
             <p className='text-[24px] leading-[44px] font-medium subTitle'>
               You Have Sent The Gift To The Couple.
             </p>
-            <div className='mx-auto block mt-16'>
+            {/* <div className='mx-auto block mt-16'>
               <svg
                 width='35'
                 height='49'
@@ -151,7 +151,7 @@ const Payment = () => {
             </div>
             <p className='text-[24px] leading-[44px] font-medium font-alice mt-5'>
               Let's Eat, Drink & BeWeddy!
-            </p>
+            </p> */}
           </div>
         </div>
       </div>
