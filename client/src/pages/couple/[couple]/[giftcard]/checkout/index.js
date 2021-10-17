@@ -150,14 +150,14 @@ const CheckoutPage = props => {
                   <h4 className='text-4xl text-[#1f1f1f] font-bold sm:my-3 my-1 mudiumTitle'>
                     ${getValues('amount')}
                   </h4>
-                  <p className='text-lg text-[#000000] sm:my-3 my-1 font-light subTitle'>
+                  {/* <p className='text-lg text-[#000000] sm:my-3 my-1 font-light subTitle'>
                     See full gift card
                     <Link href='#'>
                       <a className='font-semibold capitalize hover:underline subTitle'>
                         information and terms
                       </a>
                     </Link>
-                  </p>
+                  </p> */}
 
                   <div className='my-8'>
                     <h4 className='text-lg text-[#000000] my-3 customLabel'>
