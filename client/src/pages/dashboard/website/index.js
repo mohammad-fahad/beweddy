@@ -19,7 +19,11 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { isoToUtcDate } from "@utils/index";
 import { useWindowSize } from "@hooks/useWindowSize";
+<<<<<<< HEAD
 import { withAuthRoute } from "@hoc/withAuthRoute";
+=======
+import { withAuthRoute } from '@hoc/withAuthRoute';
+>>>>>>> 6c2f3f071f3c9872b35b593f956aa14406a21e6e
 
 SwiperCore.use([Lazy, Autoplay]);
 const WebsitePageOne = () => {
@@ -29,62 +33,62 @@ const WebsitePageOne = () => {
     user?.receptionDetails?.length
       ? user.receptionDetails
       : [
-          {
-            id: generate(),
-            time: "5.00 PM",
-            details: "Example of event details",
-          },
-          {
-            id: generate(),
-            time: "5:30 PM",
-            details: "Ceremony",
-          },
-          {
-            id: generate(),
-            time: "6:00 PM",
-            details: "Ceremony ends/cocktails begin",
-          },
-          {
-            id: generate(),
-            time: "7:00 PM",
-            details: "Cocktails ends and guests are ushered into the reception",
-          },
-          {
-            id: generate(),
-            time: "7:20 PM",
-            details: "Introduction and first dance—guests asked to join after ",
-          },
-          {
-            id: generate(),
-            time: "7:45 PM",
-            details: " Guests take their seats and the first course is served",
-          },
-          {
-            id: generate(),
-            time: "8:00 PM",
-            details: "Welcome speech from parents",
-          },
-          {
-            id: generate(),
-            time: "8:10 PM",
-            details: "Toasts from maid of honor and best man",
-          },
-          {
-            id: generate(),
-            time: "9:00 PM",
-            details: "Parent dances",
-          },
-          {
-            id: generate(),
-            time: "9:30 PM ",
-            details: "Cake cutting",
-          },
-          {
-            id: generate(),
-            time: "10:00 PM",
-            details: "Send-Off",
-          },
-        ]
+        {
+          id: generate(),
+          time: "5.00 PM",
+          details: "Example of event details",
+        },
+        {
+          id: generate(),
+          time: "5:30 PM",
+          details: "Ceremony",
+        },
+        {
+          id: generate(),
+          time: "6:00 PM",
+          details: "Ceremony ends/cocktails begin",
+        },
+        {
+          id: generate(),
+          time: "7:00 PM",
+          details: "Cocktails ends and guests are ushered into the reception",
+        },
+        {
+          id: generate(),
+          time: "7:20 PM",
+          details: "Introduction and first dance—guests asked to join after ",
+        },
+        {
+          id: generate(),
+          time: "7:45 PM",
+          details: " Guests take their seats and the first course is served",
+        },
+        {
+          id: generate(),
+          time: "8:00 PM",
+          details: "Welcome speech from parents",
+        },
+        {
+          id: generate(),
+          time: "8:10 PM",
+          details: "Toasts from maid of honor and best man",
+        },
+        {
+          id: generate(),
+          time: "9:00 PM",
+          details: "Parent dances",
+        },
+        {
+          id: generate(),
+          time: "9:30 PM ",
+          details: "Cake cutting",
+        },
+        {
+          id: generate(),
+          time: "10:00 PM",
+          details: "Send-Off",
+        },
+      ]
   );
 
   const size = useWindowSize();
@@ -142,13 +146,17 @@ const WebsitePageOne = () => {
             interval={3000}
           >
             {user?.questions.couplePictures.map((image, index) => (
+<<<<<<< HEAD
               <div className="relative w-full">
+=======
+              <div key={index} className="relative w-full">
+>>>>>>> 6c2f3f071f3c9872b35b593f956aa14406a21e6e
                 <div className="aspect-w-16 aspect-h-9">
                   <Image
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                     publicId={image.public_id}
-                    src={!image.public_id ? image.url : null}
-                    width={image.width}
+                    src={!image.public_id ? image?.url : null}
+                    width={image?.width}
                     crop="scale"
                     className="object-cover"
                   />
@@ -251,7 +259,7 @@ const WebsitePageOne = () => {
               <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-10" />
             )}
 
-            {Object?.keys(user.receptionDetails)?.length !== 0 && (
+            {Object?.keys(user?.receptionDetails)?.length !== 0 && (
               <h2 className="text-2xl md:text-4xl font-medium text-center mt-[17px] commonTitle">
                 Reception Details
               </h2>
@@ -319,7 +327,6 @@ const WebsitePageOne = () => {
                         <WebsiteGiftCards
                           {...{ user }}
                           giftCards={user?.giftCards}
-                          coupleWebsite
                         />
                       </div>
                     </div>
@@ -336,7 +343,7 @@ const WebsitePageOne = () => {
                     <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-[28px] mb-[50px]" />
                     <div className="mt-5 space-y-3">
                       <div>
-                        <WebsiteRegistry registries={couple?.registries} />
+                        <WebsiteRegistry registries={user?.registries} />
                       </div>
                     </div>
                   </div>

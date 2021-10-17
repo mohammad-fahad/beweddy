@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Link from "next/link";
-// import Image from 'next/image';
 import { Image } from "cloudinary-react";
 import { DashboardHeader } from "@components/dashboard";
 import DashboardTopBar from "@components/dashboard/header/TopBar";
@@ -74,13 +73,14 @@ const AddressRSVP = () => {
     watch,
     register,
     setValue,
+    reset,
     getValues,
     handleSubmit,
     formState: { errors },
   } = useForm({
     mode: "all",
-    shouldFocusError: false,
-    shouldUnregister: true,
+    // shouldFocusError: false,
+    // shouldUnregister: true,
     defaultValues: {
       guestEstimate: "1",
     },
@@ -122,11 +122,14 @@ const AddressRSVP = () => {
   }, [allAbove, textInvite, mailInvite, emailInvite]);
   const onSubmit = async (data) => {
     dispatch(attemptCreateGuest(submitData(data)));
+    console.log("Submitted data", submitData(data))
     await client.invalidateQueries("guests");
+    reset()
     push("/dashboard/invitation/rsvp-guest-management");
   };
 
   const submitData = (data) => {
+
     const wayOfInvitations = {
       text_invite: data.text_invite,
       email_invite: data.email_invite,
@@ -154,23 +157,11 @@ const AddressRSVP = () => {
     };
   };
 
-  // {
-  //   errors && toast.error("Please fill out information to submit");
-  // }
-
   return (
     <>
       <Head>
         <title>Beweddy | Address & RSVP</title>
       </Head>
-      {/* <>{errors && toast.error("Please fill out information to submit")}</> */}
-      {/* {errors?.name?.message && <>{errors && toast.error(errors?.name?.message)}</>}
-      {errors?.email?.message && <>{errors && toast.error(errors?.email?.message)}</>}
-      <>{errors && toast.error(errors?.street?.message)}</>
-      <>{errors && toast.error(errors?.city?.message)}</>
-      <>{errors && toast.error(errors?.state?.message)}</>
-      <>{errors && toast.error(errors?.zip?.message)}</>
-      <>{errors && toast.error(errors?.phone?.message)}</> */}
       <DashboardTopBar />
       <DashboardLayout>
         <DashboardHeader
@@ -187,10 +178,10 @@ const AddressRSVP = () => {
                 <span className="customLabel">Edit your website</span>
               </a>
             </Link>
-            <Link href="/">
+            <Link href="/#">
               <a className="flex space-x-3 white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
                 <LinkIcon className="w-5 h-5" />
-                <span className="customLabel">Share your super link</span>
+                <span className="customLabel">Share To Collect Addresses</span>
               </a>
             </Link>
             <Link href="/dashboard/invitation/rsvp-guest-management">
@@ -441,10 +432,9 @@ const AddressRSVP = () => {
                         <Listbox.Options className="absolute z-50 max-w-xs py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                           <Listbox.Option
                             className={({ active }) =>
-                              `${
-                                active
-                                  ? "text-amber-900 bg-secondary-alternative/20"
-                                  : "text-gray-900"
+                              `${active
+                                ? "text-amber-900 bg-secondary-alternative/20"
+                                : "text-gray-900"
                               }
                           cursor-pointer select-none relative py-2 pl-10 pr-4`
                             }
@@ -453,19 +443,17 @@ const AddressRSVP = () => {
                             {({ selected, active }) => (
                               <>
                                 <span
-                                  className={`${
-                                    selected ? "font-medium" : "font-normal"
-                                  } block truncate`}
+                                  className={`${selected ? "font-medium" : "font-normal"
+                                    } block truncate`}
                                 >
                                   {`USA`}
                                 </span>
                                 {selected ? (
                                   <span
-                                    className={`${
-                                      active
-                                        ? "text-amber-600"
-                                        : "text-amber-600"
-                                    }
+                                    className={`${active
+                                      ? "text-amber-600"
+                                      : "text-amber-600"
+                                      }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                   >
                                     <CheckIcon
@@ -689,10 +677,9 @@ const AddressRSVP = () => {
                               <Listbox.Option
                                 key={providerIdx}
                                 className={({ active }) =>
-                                  `${
-                                    active
-                                      ? "text-secondary bg-secondary-alternative/50"
-                                      : "text-gray-900"
+                                  `${active
+                                    ? "text-secondary bg-secondary-alternative/50"
+                                    : "text-gray-900"
                                   }
                           cursor-pointer select-none relative py-2 pl-10 pr-4 font-medium`
                                 }
@@ -701,21 +688,19 @@ const AddressRSVP = () => {
                                 {({ selected, active }) => (
                                   <>
                                     <span
-                                      className={`customLabel ${
-                                        selected
-                                          ? "font-semibold"
-                                          : "font-medium"
-                                      } block truncate text-[14px]`}
+                                      className={`customLabel ${selected
+                                        ? "font-semibold"
+                                        : "font-medium"
+                                        } block truncate text-[14px]`}
                                     >
                                       {provider.name}
                                     </span>
                                     {selected ? (
                                       <span
-                                        className={`customLabel ${
-                                          active
-                                            ? "text-amber-600"
-                                            : "text-amber-600"
-                                        }
+                                        className={`customLabel ${active
+                                          ? "text-amber-600"
+                                          : "text-amber-600"
+                                          }
                                 absolute inset-y-0 left-0 flex items-center pl-3`}
                                       >
                                         <CheckIcon
@@ -988,7 +973,7 @@ const AddressRSVP = () => {
 
               <div
                 className="space-y-3 !mt-10 "
-                // title='Please include yourself'
+              // title='Please include yourself'
               >
                 <Heading
                   h3

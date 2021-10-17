@@ -1,71 +1,90 @@
-import { Loader } from '@components/shared';
 import { attemptUpdateUserProfile } from '@features/user/userActions';
 import { Dialog, Transition } from '@headlessui/react';
-import { createPrivetRegistry } from '@services/Registry/privetRegistry';
-import { fileUploader } from '@services/Uploader';
-import { Fragment, useEffect, useState } from 'react';
+import {
+  createPrivetRegistry,
+  updatePrivetRegistry,
+} from '@services/Registry/privetRegistry';
+import { Fragment, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 
-const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
-  const dispatch = useDispatch();
+const OpenRegistryModal = ({
+  isRegistryModalOpen,
+  setIsRegistryModalOpen,
+  registryData,
+  isUpdate,
+  setIsUpdate,
+}) => {
   const { user } = useSelector(state => state.user);
-  const [uploading, setUploading] = useState(false);
-  const [uploadedFile, setUploadedFile] = useState();
+  const dispatch = useDispatch();
 
-  function closeModal() {
-    setIsModalOpen(false);
-  }
-
-  const { handleSubmit, setValue, reset, register } = useForm({ mode: 'all' });
+  const { handleSubmit, register, reset, setValue } = useForm({
+    mode: 'all',
+    defaultValues: {
+      title: registryData?.title,
+      image: registryData?.image,
+    },
+  });
 
   useEffect(() => {
-    if (uploadedFile) {
-      setValue('image', uploadedFile);
-    }
-  }, [uploadedFile]);
-
-  const { mutateAsync, isLoading } = useMutation(createPrivetRegistry);
-  const onSubmit = async data => {
-    setIsModalOpen(false);
-    await mutateAsync(
-      { payload: data, token: user?.token },
-      {
-        onSuccess: () => {
-          dispatch(attemptUpdateUserProfile({}));
-          reset();
-          setUploadedFile();
-        },
+    if (registryData) {
+      if (registryData?.link) {
+        setValue('link', registryData?.link);
       }
-    );
-  };
+      setValue('title', registryData?.title);
+      setValue('image', registryData?.image);
+    }
+  }, [registryData]);
 
-  const handleAvatar = async e => {
-    const file = e.target.files[0];
+  function closeModal() {
+    setIsRegistryModalOpen(false);
+  }
+  const { mutateAsync: createRegistry, isLoading } =
+    useMutation(createPrivetRegistry);
+  const { mutateAsync: updateRegistry, isLoading: isUpdating } =
+    useMutation(updatePrivetRegistry);
 
+  const onSubmit = async data => {
     try {
-      setUploading(true);
-      const data = await fileUploader(file);
-      setUploadedFile(data.secure_url);
-      setUploading(false);
+      if (isUpdate) {
+        await updateRegistry(
+          { id: registryData?._id, payload: data, token: user?.token },
+          {
+            onSuccess: async () => {
+              dispatch(attemptUpdateUserProfile({}));
+              // reset();
+            },
+          }
+        );
+        setIsUpdate(false);
+      } else {
+        await createRegistry(
+          { payload: data, token: user?.token },
+          {
+            onSuccess: async () => {
+              dispatch(attemptUpdateUserProfile({}));
+              reset();
+            },
+          }
+        );
+      }
+      setIsRegistryModalOpen(false);
     } catch (err) {
-      setUploading(false);
-      console.error(err.message);
+      console.error(err);
     }
   };
 
   return (
     <>
-      <Transition appear show={isModalOpen} as={Fragment}>
+      <Transition appear show={isRegistryModalOpen} as={Fragment}>
         <Dialog
           as='div'
-          className='fixed inset-0 z-10 overflow-y-auto'
+          className='fixed inset-0 z-50 overflow-y-auto'
           onClose={closeModal}
         >
           <div className='min-h-screen px-4 text-center'>
-            {(isLoading || uploading) && <Loader />}
             <Transition.Child
               as={Fragment}
               enter='ease-out duration-300'
@@ -110,11 +129,12 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                       htmlFor='title'
                       className='text-sm font-medium md:text-base md:font-semibold'
                     >
-                      Registry Name
+                      Registry Name {registryData?.title}
                     </label>
                     <input
                       id='title'
                       type='text'
+                      defaultValue={registryData?.title}
                       className='text-[13px] md:text-[15px] border-gray-100 border-2 py-2 px-4 xs:py-3 xs:px-5 placeholder-gray-300 rounded-[5px]'
                       placeholder='Enter registry Name'
                       {...register('title', {
@@ -132,27 +152,7 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                     >
                       Company Logo
                     </label>
-                    <div className='relative focus:outline-none'>
-                      <input
-                        id='file-upload'
-                        type='file'
-                        className='hidden'
-                        onChange={handleAvatar}
-                      />
-                      <label
-                        htmlFor='file-upload'
-                        className='bg-white cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-2 px-10 placeholder-primary border-[3px] border-secondary-alternative/50 rounded-[5px]'
-                      >
-                        Upload
-                      </label>
-                    </div>
-                    {uploadedFile && (
-                      <img
-                        className='h-60 object-cover'
-                        src={uploadedFile}
-                        alt=''
-                      />
-                    )}
+                    <img className='w-full' src={registryData?.image} alt='' />
                   </div>
                   <div className='flex flex-col space-y-2'>
                     <label
@@ -169,7 +169,7 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                       {...register('link', {
                         required: {
                           value: true,
-                          message: 'Registry URL is required!',
+                          message: 'Registry link is required!',
                         },
                         pattern: {
                           value:
@@ -191,7 +191,7 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
                       type='submit'
                       className='inline-flex justify-center px-4 py-2 text-sm font-medium text-white transition duration-300 border-2 rounded-md bg-primary border-primary hover:bg-white hover:text-primary'
                     >
-                      Connect
+                      {isUpdate ? 'Update' : 'Connect'}
                     </button>
                   </div>
                 </form>
@@ -204,4 +204,4 @@ const RegistryModal = ({ isModalOpen, setIsModalOpen }) => {
   );
 };
 
-export default RegistryModal;
+export default OpenRegistryModal;

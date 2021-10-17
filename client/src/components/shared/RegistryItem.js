@@ -1,9 +1,14 @@
 import { LinkIcon } from '@heroicons/react/outline';
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import OpenRegistryModal from '@components/dashboard/OpenRegistryModal';
 import { motion } from 'framer-motion';
 
 const RegistryItem = ({ registry, onChange, checked }) => {
+  const [isRegistryModalOpen, setIsRegistryModalOpen] = useState(false);
+  // const [registryData, setRegistryData] = useState('');
+
   return (
     <motion.div
       layout
@@ -12,6 +17,10 @@ const RegistryItem = ({ registry, onChange, checked }) => {
       animate={{ opacity: 1 }}
       className='select-registry'
     >
+      <OpenRegistryModal
+        {...{ isRegistryModalOpen, setIsRegistryModalOpen }}
+        registryData={registry}
+      />
       <input
         name='registry'
         type='checkbox'
@@ -47,8 +56,14 @@ const RegistryItem = ({ registry, onChange, checked }) => {
         <div className='py-4 text-center flex flex-col'>
           <h3 className='text-lg font-semibold font-inter'>{registry.title}</h3>
           <div>
-            <button className='py-2 inline-block px-8 border-gray-900 border-2 rounded-[5px] mt-5 hover:bg-black transition duration-300 hover:text-white font-inter font-bold'>
-              Link
+            <button
+              type='button'
+              onClick={() => {
+                setIsRegistryModalOpen(true);
+              }}
+              className='py-2 inline-block px-8 border-gray-900 border-2 rounded-[5px] mt-5 hover:bg-black transition duration-300 hover:text-white font-inter font-bold'
+            >
+              Connect
             </button>
           </div>
         </div>

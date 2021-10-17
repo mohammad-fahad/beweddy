@@ -22,6 +22,7 @@ import {
   MinusIcon,
   PencilIcon,
   PlusIcon,
+  TrashIcon,
 } from '@heroicons/react/outline';
 import { withAuthRoute } from '@hoc/withAuthRoute';
 import { Popover, Transition } from '@headlessui/react';
@@ -49,10 +50,13 @@ import { attemptUpdateUserProfile } from '@features/user/userActions';
 import { Fragment } from 'react';
 import axios from 'axios';
 import RegistryModal from '@components/dashboard/RegistryModal';
+import OpenRegistryModal from '@components/dashboard/OpenRegistryModal';
 import getYear from 'date-fns/getYear';
 import getMonth from 'date-fns/getYear';
 import 'react-datepicker/dist/react-datepicker.css';
 import VenmoModal from '@components/dashboard/VenmoModal';
+import { deletePrivetRegistry } from '@services/Registry/privetRegistry';
+import { useMutation } from 'react-query';
 
 const EditWebsitePage = () => {
   const dispatch = useDispatch();
@@ -60,12 +64,18 @@ const EditWebsitePage = () => {
   const [spouseFirst, setSpouseFirst] = useState(false);
   const { user, loading: userLoading } = useSelector(state => state.user);
 
+  const { mutateAsync: deleteRegistry, isLoading: isDeleting } =
+    useMutation(deletePrivetRegistry);
+
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState();
   const [preview, setPreview] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isRegistryModalOpen, setIsRegistryModalOpen] = useState(false);
+  const [isUpdate, setIsUpdate] = useState(false);
   const [isVenmoModalOpen, setIsVenmoModalOpen] = useState(false);
   const [selectedImageFile, setSelectedImageFile] = useState();
+  const [registryData, setRegistryData] = useState('');
   const [uploadedFiles, setUploadedFiles] = useState(
     user.questions.couplePictures
   );
@@ -74,62 +84,62 @@ const EditWebsitePage = () => {
     user.receptionDetails.length
       ? user.receptionDetails
       : [
-        {
-          id: generate(),
-          time: '5.00 PM',
-          details: 'Example of event details',
-        },
-        {
-          id: generate(),
-          time: '5:30 PM',
-          details: 'Ceremony',
-        },
-        {
-          id: generate(),
-          time: '6:00 PM',
-          details: 'Ceremony ends/cocktails begin',
-        },
-        {
-          id: generate(),
-          time: '7:00 PM',
-          details: 'Cocktails ends and guests are ushered into the reception',
-        },
-        {
-          id: generate(),
-          time: '7:20 PM',
-          details: 'Introduction and first dance—guests asked to join after ',
-        },
-        {
-          id: generate(),
-          time: '7:45 PM',
-          details: ' Guests take their seats and the first course is served',
-        },
-        {
-          id: generate(),
-          time: '8:00 PM',
-          details: 'Welcome speech from parents',
-        },
-        {
-          id: generate(),
-          time: '8:10 PM',
-          details: 'Toasts from maid of honor and best man',
-        },
-        {
-          id: generate(),
-          time: '9:00 PM',
-          details: 'Parent dances',
-        },
-        {
-          id: generate(),
-          time: '9:30 PM ',
-          details: 'Cake cutting',
-        },
-        {
-          id: generate(),
-          time: '10:00 PM',
-          details: 'Send-Off',
-        },
-      ]
+          {
+            id: generate(),
+            time: '5.00 PM',
+            details: 'Example of event details',
+          },
+          {
+            id: generate(),
+            time: '5:30 PM',
+            details: 'Ceremony',
+          },
+          {
+            id: generate(),
+            time: '6:00 PM',
+            details: 'Ceremony ends/cocktails begin',
+          },
+          {
+            id: generate(),
+            time: '7:00 PM',
+            details: 'Cocktails ends and guests are ushered into the reception',
+          },
+          {
+            id: generate(),
+            time: '7:20 PM',
+            details: 'Introduction and first dance—guests asked to join after ',
+          },
+          {
+            id: generate(),
+            time: '7:45 PM',
+            details: ' Guests take their seats and the first course is served',
+          },
+          {
+            id: generate(),
+            time: '8:00 PM',
+            details: 'Welcome speech from parents',
+          },
+          {
+            id: generate(),
+            time: '8:10 PM',
+            details: 'Toasts from maid of honor and best man',
+          },
+          {
+            id: generate(),
+            time: '9:00 PM',
+            details: 'Parent dances',
+          },
+          {
+            id: generate(),
+            time: '9:30 PM ',
+            details: 'Cake cutting',
+          },
+          {
+            id: generate(),
+            time: '10:00 PM',
+            details: 'Send-Off',
+          },
+        ]
   );
 
   // WeddingDate Picker
@@ -372,6 +382,7 @@ const EditWebsitePage = () => {
   const range = (start, end) => {
     return new Array(end - start).fill().map((d, i) => i + start);
   };
+
   const years = range(1990, getYear(new Date()) + 5);
   const months = [
     'January',
@@ -394,7 +405,7 @@ const EditWebsitePage = () => {
         <title>Beweddy | Edit Website</title>
       </Head>
 
-      {(loading || userLoading) && <Loader />}
+      {(loading || userLoading || isDeleting) && <Loader />}
 
       <DashboardTopBar />
 
@@ -820,20 +831,28 @@ const EditWebsitePage = () => {
               <div className='flex flex-col space-y-5'>
                 <div className='flex items-center justify-between space-x-5'>
                   <h4 className='text-[24px] font-medium capitalize mudiumTitle'>
-                    Location Name &amp; Address
+                    Address
                   </h4>
                 </div>
+                <div className='w-full max-w-xs'>
+                  <input
+                    type='text'
+                    className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal'
+                    placeholder='Enter your location'
+                    {...register('location')}
+                  />
+                </div>
                 <div className='flex flex-row items-center justify-between w-full'>
-                  <div className='w-full max-w-xs'>
+                  {/* <div className='w-full max-w-xs'>
                     <input
                       type='text'
                       className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal'
                       placeholder='Enter your location'
                       {...register('location')}
                     />
-                  </div>
+                  </div> */}
 
-                  <div className='flex justify-end w-full'>
+                  {/* <div className='flex justify-end w-full'>
                     <iframe
                       width='55%'
                       height='400'
@@ -843,7 +862,7 @@ const EditWebsitePage = () => {
                       marginWidth='0'
                       src='https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=365%20Queen%20Street%20South,%20Mississauga,%20ON%20L5M%201M3+(Leedway%20group)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed'
                     />
-                  </div>
+                  </div> */}
                 </div>
                 <div>
                   <button
@@ -1014,15 +1033,17 @@ const EditWebsitePage = () => {
                 <h4 className='mb-6 text-[24px] font-medium capitalize mudiumTitle'>
                   Connect your registry & Venmo
                 </h4>
-                <div className='flex items-center space-y-3'>
+                <div className='flex items-center space-x-3'>
                   <div className='border-2 w-[200px] min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex flex-col items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'>
-                    <button
-                      type='button'
-                      className=' mt-5 text-xs w-[160px] py-2 text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap'
-                      onClick={() => setIsModalOpen(true)}
-                    >
-                      Connect Registry
-                    </button>
+                    <Link href='/dashboard/registries'>
+                      <a
+                        // type='button'
+                        className='inline-block text-center mt-5 text-xs w-[160px] py-2 text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap'
+                        // onClick={() => setIsModalOpen(true)}
+                      >
+                        Connect Registry
+                      </a>
+                    </Link>
                     <button
                       type='button'
                       className='w-[160px] py-2 mt-5 text-xs text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap'
@@ -1035,6 +1056,15 @@ const EditWebsitePage = () => {
                         Learn more
                       </a>
                     </Link> */}
+                  </div>
+                  <div className='border-2 w-[200px] min-h-[150px] border-secondary-alternative bg-secondary-alternative/50 flex flex-col items-center justify-center rounded-lg hover:bg-secondary-alternative transition duration-300'>
+                    <button
+                      type='button'
+                      className='inline-block text-center text-xs w-[160px] py-2 text-white transition-colors duration-300 rounded-lg bg-primary hover:bg-primary/80 md:text-base whitespace-nowrap'
+                      onClick={() => setIsModalOpen(true)}
+                    >
+                      Create Registry
+                    </button>
                   </div>
                 </div>
                 <motion.div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 2lg:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 sm:gap-5 md:gap-10'>
@@ -1058,17 +1088,43 @@ const EditWebsitePage = () => {
                             <LinkIcon className='w-8 h-8 text-white' />
                           </a>
                         </Link> */}
-                        <div
-                          className='absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center transition duration-300 opacity-0 bg-primary/80 hover:opacity-100'
-                          onClick={() =>
-                            dispatch(
-                              attemptUpdateUserProfile({
-                                removeRegistry: registry._id,
-                              })
-                            )
-                          }
-                        >
-                          <MinusIcon className='w-12 h-12 text-white' />
+                        <div className='absolute top-0 bottom-0 left-0 right-0 space-x-3 flex items-center justify-center transition duration-300 opacity-0 bg-primary/80 hover:opacity-100'>
+                          <button
+                            type='button'
+                            className='rounded-xl bg-white p-2 hover:bg-red-100 group'
+                            onClick={async () => {
+                              if (confirm('Are you sure?')) {
+                                try {
+                                  await deleteRegistry(
+                                    {
+                                      id: registry?._id,
+                                      token: user?.token,
+                                    },
+                                    {
+                                      onSuccess: () => {
+                                        dispatch(attemptUpdateUserProfile({}));
+                                      },
+                                    }
+                                  );
+                                } catch (err) {
+                                  console.error(err);
+                                }
+                              }
+                            }}
+                          >
+                            <TrashIcon className='w-6 h-6' />
+                          </button>
+                          <button
+                            type='button'
+                            className='rounded-xl bg-white p-2 hover:bg-red-100 group'
+                            onClick={() => {
+                              setIsUpdate(true);
+                              setRegistryData(registry);
+                              setIsRegistryModalOpen(true);
+                            }}
+                          >
+                            <PencilIcon className='w-6 h-6' />
+                          </button>
                         </div>
                         <div>
                           <Image
@@ -1087,11 +1143,15 @@ const EditWebsitePage = () => {
                         <h3 className='text-lg font-semibold font-inter'>
                           {registry.title}
                         </h3>
-                        <div>
-                          <button className='py-2 inline-block px-8 border-gray-900 border-2 rounded-[5px] mt-5 hover:bg-black transition duration-300 hover:text-white font-inter font-bold'>
-                            Link
+                        {/* <div>
+                          <button type="button" onClick={() => {
+                            setRegistryData(registry)
+                            setIsRegistryModalOpen(true)
+                          }}
+                            className='py-2 inline-block px-8 border-gray-900 border-2 rounded-[5px] mt-5 hover:bg-black transition duration-300 hover:text-white font-inter font-bold'>
+                            Connect
                           </button>
-                        </div>
+                        </div> */}
                       </div>
                     </motion.div>
                   ))}
@@ -1715,6 +1775,15 @@ const EditWebsitePage = () => {
         </DashboardContainer>
       </DashboardLayout>
       <RegistryModal {...{ isModalOpen, setIsModalOpen }} />
+      <OpenRegistryModal
+        {...{
+          isRegistryModalOpen,
+          setIsRegistryModalOpen,
+          registryData,
+          isUpdate,
+          setIsUpdate,
+        }}
+      />
       <VenmoModal {...{ isVenmoModalOpen, setIsVenmoModalOpen }} />
       <Footer hideSocial />
 
