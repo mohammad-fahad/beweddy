@@ -4,147 +4,11 @@ import DashboardLayout from "@components/dashboard/layout";
 import { Footer } from "@components/home";
 import Head from "next/head";
 import { Listbox, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/outline";
 import Link from "next/link";
-const fakeData = [
-  {
-    id: "1",
-    image:
-      "https://designshack.net/wp-content/uploads/free-invitation-templates.jpg",
-    name: "Card one",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-    color: "red green blue",
-  },
-  {
-    id: "11",
-    image:
-      "https://cdn3.vectorstock.com/i/1000x1000/42/27/luxury-invitation-card-design-vector-22684227.jpg",
-    name: "Card two",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "15",
-    image:
-      "https://www.proweddinginvites.com/images/thumb/files/18/PWIF063.jpg",
-    name: "Card three",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "17",
-    image:
-      "https://legaldbol.com/wp-content/uploads/2019/03/79-Create-Invitation-Card-Template-Free-Vector-in-Photoshop-for-Invitation-Card-Template-Free-Vector.jpg",
-    name: "Card four",
-    color: "red green blue",
+import { mailoutBox } from "@components/MailOuts/mailoutData";
 
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "19",
-    image:
-      "https://file.amockup.com/uploads/2020/08/free-modern-tracing-paper-mock-up1.jpg",
-    name: "Card five",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "174",
-    image:
-      "https://designshack.net/wp-content/uploads/free-invitation-templates.jpg",
-    name: "Card one",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "134",
-    image:
-      "https://cdn3.vectorstock.com/i/1000x1000/42/27/luxury-invitation-card-design-vector-22684227.jpg",
-    name: "Card two",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "1546",
-    image:
-      "https://www.proweddinginvites.com/images/thumb/files/18/PWIF063.jpg",
-    name: "Card three",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "1456",
-    image:
-      "https://legaldbol.com/wp-content/uploads/2019/03/79-Create-Invitation-Card-Template-Free-Vector-in-Photoshop-for-Invitation-Card-Template-Free-Vector.jpg",
-    name: "Card four",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "15464",
-    image:
-      "https://file.amockup.com/uploads/2020/08/free-modern-tracing-paper-mock-up1.jpg",
-    name: "Card five",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "154",
-    image:
-      "https://designshack.net/wp-content/uploads/free-invitation-templates.jpg",
-    name: "Card one",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "14784",
-    image:
-      "https://cdn3.vectorstock.com/i/1000x1000/42/27/luxury-invitation-card-design-vector-22684227.jpg",
-    name: "Card two",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "17412",
-    image:
-      "https://www.proweddinginvites.com/images/thumb/files/18/PWIF063.jpg",
-    name: "Card three",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "13210",
-    image:
-      "https://legaldbol.com/wp-content/uploads/2019/03/79-Create-Invitation-Card-Template-Free-Vector-in-Photoshop-for-Invitation-Card-Template-Free-Vector.jpg",
-    name: "Card four",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "2301",
-    image:
-      "https://file.amockup.com/uploads/2020/08/free-modern-tracing-paper-mock-up1.jpg",
-    name: "Card five",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-];
 const composeMethods = [
   { name: "5 items - ($1.99/each)", id: "1" },
   { name: "10 items - ($1.99/each)", id: "2" },
@@ -179,6 +43,8 @@ const colorSelection = [
 const Customize = ({ data }) => {
   const [front, setFront] = useState(true);
   const [back, setBack] = useState(false);
+  const [frontPart, setFrontPart] = useState(true);
+  const [backPart, setBackPart] = useState(false);
   const [selectComposeMethod, setSelectComposeMethod] = useState(
     composeMethods[0]
   );
@@ -188,6 +54,13 @@ const Customize = ({ data }) => {
   const [colorSelectionMethod, setColorSelectionMethod] = useState(
     colorSelection[0]
   );
+
+  useEffect(() => {
+    setFrontPart(data?.image1);
+    setBackPart(data?.backPart);
+  }, []);
+
+  console.log("data", data);
   return (
     <div>
       <Head>
@@ -223,6 +96,10 @@ const Customize = ({ data }) => {
                 <div className="flex items-center justify-between">
                   <div className="mt-5 border-2 rounded border-[#000000] inline-block">
                     <button
+                      onClick={() => {
+                        setFront(true);
+                        setBack(false);
+                      }}
                       className={`!w-[95px] !h-[36px] ${
                         front ? "bg-[#FCE0EB]" : "bg-[#ffffff]"
                       } font-semibold transition duration-300 font-inter text-[12px]`}
@@ -230,6 +107,10 @@ const Customize = ({ data }) => {
                       Edit Front
                     </button>
                     <button
+                      onClick={() => {
+                        setBack(true);
+                        setFront(false);
+                      }}
                       className={`!w-[95px] !h-[36px] ${
                         back ? "bg-[#FCE0EB]" : "bg-[#ffffff]"
                       } font-semibold transition duration-300  font-inter text-[12px]`}
@@ -457,9 +338,9 @@ const Customize = ({ data }) => {
                 <div className="border-2 border-[#000000] w-full flex h-[600px] relative">
                   <div className="flex items-center justify-center w-full h-full bg-[#F7F3F3]">
                     <img
-                      src={data?.image}
+                      src={front ? frontPart : backPart}
                       alt={data?.name}
-                      className="w-[80%] h-[90%] "
+                      className="w-[90%] h-[90%] "
                     />
                   </div>
                   <div className="absolute top-0 right-0 border-2 border-[#000000] inline-block p-2">
@@ -505,7 +386,7 @@ const Customize = ({ data }) => {
 export default Customize;
 
 export const getServerSideProps = async ({ params: { id } }) => {
-  const data = await fakeData.find((item) => item.id === id);
+  const data = await mailoutBox.find((item) => item.id === id);
   if (!data) {
     return {
       notFound: true,

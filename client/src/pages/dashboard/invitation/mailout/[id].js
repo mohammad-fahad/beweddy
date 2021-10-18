@@ -8,144 +8,145 @@ import { Fragment, useState } from "react";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/outline";
 import { AccordionPage } from "@components/shared/CustomAccordion";
 import Link from "next/link";
-const fakeData = [
-  {
-    id: "1",
-    image:
-      "https://designshack.net/wp-content/uploads/free-invitation-templates.jpg",
-    name: "Card one",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-    color: "red green blue",
-  },
-  {
-    id: "11",
-    image:
-      "https://cdn3.vectorstock.com/i/1000x1000/42/27/luxury-invitation-card-design-vector-22684227.jpg",
-    name: "Card two",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "15",
-    image:
-      "https://www.proweddinginvites.com/images/thumb/files/18/PWIF063.jpg",
-    name: "Card three",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "17",
-    image:
-      "https://legaldbol.com/wp-content/uploads/2019/03/79-Create-Invitation-Card-Template-Free-Vector-in-Photoshop-for-Invitation-Card-Template-Free-Vector.jpg",
-    name: "Card four",
-    color: "red green blue",
+import { mailoutBox } from "@components/MailOuts/mailoutData";
+// const fakeData = [
+//   {
+//     id: "1",
+//     image:
+//       "https://designshack.net/wp-content/uploads/free-invitation-templates.jpg",
+//     name: "Card one",
+//     description:
+//       "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
+//     color: "red green blue",
+//   },
+//   {
+//     id: "11",
+//     image:
+//       "https://cdn3.vectorstock.com/i/1000x1000/42/27/luxury-invitation-card-design-vector-22684227.jpg",
+//     name: "Card two",
+//     color: "red green blue",
+//     description:
+//       "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
+//   },
+//   {
+//     id: "15",
+//     image:
+//       "https://www.proweddinginvites.com/images/thumb/files/18/PWIF063.jpg",
+//     name: "Card three",
+//     color: "red green blue",
+//     description:
+//       "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
+//   },
+//   {
+//     id: "17",
+//     image:
+//       "https://legaldbol.com/wp-content/uploads/2019/03/79-Create-Invitation-Card-Template-Free-Vector-in-Photoshop-for-Invitation-Card-Template-Free-Vector.jpg",
+//     name: "Card four",
+//     color: "red green blue",
 
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "19",
-    image:
-      "https://file.amockup.com/uploads/2020/08/free-modern-tracing-paper-mock-up1.jpg",
-    name: "Card five",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "174",
-    image:
-      "https://designshack.net/wp-content/uploads/free-invitation-templates.jpg",
-    name: "Card one",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "134",
-    image:
-      "https://cdn3.vectorstock.com/i/1000x1000/42/27/luxury-invitation-card-design-vector-22684227.jpg",
-    name: "Card two",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "1546",
-    image:
-      "https://www.proweddinginvites.com/images/thumb/files/18/PWIF063.jpg",
-    name: "Card three",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "1456",
-    image:
-      "https://legaldbol.com/wp-content/uploads/2019/03/79-Create-Invitation-Card-Template-Free-Vector-in-Photoshop-for-Invitation-Card-Template-Free-Vector.jpg",
-    name: "Card four",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "15464",
-    image:
-      "https://file.amockup.com/uploads/2020/08/free-modern-tracing-paper-mock-up1.jpg",
-    name: "Card five",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "154",
-    image:
-      "https://designshack.net/wp-content/uploads/free-invitation-templates.jpg",
-    name: "Card one",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "14784",
-    image:
-      "https://cdn3.vectorstock.com/i/1000x1000/42/27/luxury-invitation-card-design-vector-22684227.jpg",
-    name: "Card two",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "17412",
-    image:
-      "https://www.proweddinginvites.com/images/thumb/files/18/PWIF063.jpg",
-    name: "Card three",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "13210",
-    image:
-      "https://legaldbol.com/wp-content/uploads/2019/03/79-Create-Invitation-Card-Template-Free-Vector-in-Photoshop-for-Invitation-Card-Template-Free-Vector.jpg",
-    name: "Card four",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-  {
-    id: "2301",
-    image:
-      "https://file.amockup.com/uploads/2020/08/free-modern-tracing-paper-mock-up1.jpg",
-    name: "Card five",
-    color: "red green blue",
-    description:
-      "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
-  },
-];
+//     description:
+//       "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
+//   },
+//   {
+//     id: "19",
+//     image:
+//       "https://file.amockup.com/uploads/2020/08/free-modern-tracing-paper-mock-up1.jpg",
+//     name: "Card five",
+//     color: "red green blue",
+//     description:
+//       "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
+//   },
+//   {
+//     id: "174",
+//     image:
+//       "https://designshack.net/wp-content/uploads/free-invitation-templates.jpg",
+//     name: "Card one",
+//     color: "red green blue",
+//     description:
+//       "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
+//   },
+//   {
+//     id: "134",
+//     image:
+//       "https://cdn3.vectorstock.com/i/1000x1000/42/27/luxury-invitation-card-design-vector-22684227.jpg",
+//     name: "Card two",
+//     color: "red green blue",
+//     description:
+//       "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
+//   },
+//   {
+//     id: "1546",
+//     image:
+//       "https://www.proweddinginvites.com/images/thumb/files/18/PWIF063.jpg",
+//     name: "Card three",
+//     color: "red green blue",
+//     description:
+//       "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
+//   },
+//   {
+//     id: "1456",
+//     image:
+//       "https://legaldbol.com/wp-content/uploads/2019/03/79-Create-Invitation-Card-Template-Free-Vector-in-Photoshop-for-Invitation-Card-Template-Free-Vector.jpg",
+//     name: "Card four",
+//     color: "red green blue",
+//     description:
+//       "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
+//   },
+//   {
+//     id: "15464",
+//     image:
+//       "https://file.amockup.com/uploads/2020/08/free-modern-tracing-paper-mock-up1.jpg",
+//     name: "Card five",
+//     color: "red green blue",
+//     description:
+//       "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
+//   },
+//   {
+//     id: "154",
+//     image:
+//       "https://designshack.net/wp-content/uploads/free-invitation-templates.jpg",
+//     name: "Card one",
+//     color: "red green blue",
+//     description:
+//       "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
+//   },
+//   {
+//     id: "14784",
+//     image:
+//       "https://cdn3.vectorstock.com/i/1000x1000/42/27/luxury-invitation-card-design-vector-22684227.jpg",
+//     name: "Card two",
+//     color: "red green blue",
+//     description:
+//       "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
+//   },
+//   {
+//     id: "17412",
+//     image:
+//       "https://www.proweddinginvites.com/images/thumb/files/18/PWIF063.jpg",
+//     name: "Card three",
+//     color: "red green blue",
+//     description:
+//       "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
+//   },
+//   {
+//     id: "13210",
+//     image:
+//       "https://legaldbol.com/wp-content/uploads/2019/03/79-Create-Invitation-Card-Template-Free-Vector-in-Photoshop-for-Invitation-Card-Template-Free-Vector.jpg",
+//     name: "Card four",
+//     color: "red green blue",
+//     description:
+//       "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
+//   },
+//   {
+//     id: "2301",
+//     image:
+//       "https://file.amockup.com/uploads/2020/08/free-modern-tracing-paper-mock-up1.jpg",
+//     name: "Card five",
+//     color: "red green blue",
+//     description:
+//       "This beautifully minimal wedding invitation is adorned with a charming leaf illustration. The information is set in a classic typeface, and the design is left simple to create a modern, elegant appearance. Colors are easily customizable to match your wedding decor.",
+//   },
+// ];
 
 const composeMethods = [
   { name: "5 items - ($1.99/each)", id: "1" },
@@ -178,27 +179,15 @@ const Invitation = ({ data }) => {
             <div class="grid grid-cols-12 w-full">
               <div class="col-span-7 p-2">
                 <div>
-                  {/* <Image
-                    src={data?.image}
-                    alt={data?.name}
-                    width={800}
-                    height={500}
-                  /> */}
                   <img
-                    src={data?.image}
+                    src={data?.main}
                     alt={data?.name}
                     className="w-[80%] h-full "
                   />
                 </div>
                 <div className="mt-10">
-                  {/* <Image
-                    src={data?.image}
-                    alt={data?.name}
-                    width={800}
-                    height={500}
-                  /> */}
                   <img
-                    src={data?.image}
+                    src={data?.backPart}
                     alt={data?.name}
                     className="w-[80%] h-full "
                   />
@@ -213,53 +202,6 @@ const Invitation = ({ data }) => {
                     Color Theme: Pink
                   </h2>
                   <div className="w-[20px] h-[20px] bg-[#FCE0EB] cursor-pointer mt-4 border-2 rounded-full border-black"></div>
-                </div>
-                <div className="mt-[15px]">
-                  <h2 className="text-[14px] font-medium">
-                    Paper Type: Signature
-                  </h2>
-                  <div className="flex items-center gap-3 mt-4">
-                    <button className="px-5 py-2 border-2 border-black bg-[#FCE0EB] rounded ">
-                      Signature
-                    </button>
-                    <button className="px-5 py-2 border-2 border-black rounded ">
-                      Pearlescent
-                    </button>
-                    <button className="px-5 py-2 border-2 border-black rounded ">
-                      Recyled
-                    </button>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2 mt-4">
-                  <svg
-                    width="30"
-                    height="30"
-                    viewBox="0 0 14 14"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="!h-[30px] !w-[30px]"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M12.1041 10.0333C12.1041 11.177 11.177 12.1041 10.0333 12.1041H3.96663C2.82294 12.1041 1.89579 11.177 1.89579 10.0333V3.96663C1.89579 2.82294 2.82294 1.89579 3.96663 1.89579H10.0333C11.177 1.89579 12.1041 2.82294 12.1041 3.96663V10.0333ZM10.0333 11.2291C10.6937 11.2291 11.2291 10.6937 11.2291 10.0333V3.96663C11.2291 3.30619 10.6937 2.77079 10.0333 2.77079H3.96663C3.30619 2.77079 2.77079 3.30619 2.77079 3.96663V10.0333C2.77079 10.6937 3.30619 11.2291 3.96663 11.2291H10.0333Z"
-                      fill="#3DABDA"
-                    />
-                    <path
-                      d="M6.41659 8.74992C6.41659 8.42775 6.67775 8.16659 6.99992 8.16659C7.32208 8.16659 7.58325 8.42775 7.58325 8.74992C7.58325 9.07208 7.32208 9.33325 6.99992 9.33325C6.67775 9.33325 6.41659 9.07208 6.41659 8.74992Z"
-                      fill="#3DABDA"
-                    />
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M7 4.22913C7.24162 4.22913 7.4375 4.425 7.4375 4.66663V7.58329C7.4375 7.82492 7.24162 8.02079 7 8.02079C6.75838 8.02079 6.5625 7.82492 6.5625 7.58329V4.66663C6.5625 4.425 6.75838 4.22913 7 4.22913Z"
-                      fill="#3DABDA"
-                    />
-                  </svg>
-                  <p className="text-[#3DABDA] font-[10px] ">
-                    Learn More About Our Paper Collection
-                  </p>
                 </div>
                 <div className="flex items-center mt-4">
                   <Listbox
@@ -345,9 +287,6 @@ const Invitation = ({ data }) => {
                     </button>
                   </Link>
                 </div>
-                <div className="mt-10">
-                  <AccordionPage description={data?.description} />
-                </div>
               </div>
             </div>
           </div>
@@ -362,7 +301,7 @@ const Invitation = ({ data }) => {
 export default Invitation;
 
 export const getServerSideProps = async ({ params: { id } }) => {
-  const data = await fakeData.find((item) => item.id === id);
+  const data = await mailoutBox.find((item) => item.id === id);
   if (!data) {
     return {
       notFound: true,

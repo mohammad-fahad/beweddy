@@ -69,7 +69,47 @@ const MailOutInvitationPage = () => {
         <div classNameName="p-10 border-4 border-gray-200 rounded-lg mt-14 space-y-10">
           <div className="flex items-start justify-between ">
             <div class="grid grid-cols-12 w-full">
-              <div class="col-span-1 p-2">
+              <h1>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla,
+                cum excepturi natus culpa neque sapiente tempora deleniti
+                nostrum laborum? Perferendis similique rerum dolor mollitia
+                minus, vitae debitis doloribus quae aperiam nostrum obcaecati,
+                dolorum quo. Velit cupiditate qui doloribus asperiores repellat
+                accusantium enim aliquid incidunt dignissimos hic, rerum
+                repellendus iste necessitatibus explicabo corrupti eligendi
+                facere harum aspernatur. Similique, modi. Provident fugit amet
+                voluptates dolor culpa. Odio, facere, possimus unde placeat
+                maxime ut soluta voluptatibus, dignissimos numquam at ex ad
+                blanditiis! Magni, sapiente rem eius perferendis dicta vitae
+                illum voluptas vel rerum sint consequatur repudiandae ab
+                aliquam, cupiditate iste illo, nihil quas consequuntur eos ex.
+                Non nesciunt pariatur asperiores qui maiores, officiis aperiam
+                possimus est eligendi incidunt minus a doloremque dolorem
+                voluptate autem quasi ullam! Dolor vitae fuga illum? Eaque
+                voluptas, labore praesentium minus laboriosam voluptatem
+                architecto velit quos tempora, iusto maxime. Neque maxime
+                tempore iste cum odit at officiis in ut voluptatibus! Magnam
+                voluptatem autem repellendus sed qui cum, aperiam sequi at
+                doloribus ex voluptatibus deleniti perferendis assumenda enim
+                optio quia mollitia nulla ratione repellat reiciendis vero
+                molestias! Quas, voluptate. Illum, asperiores ut ipsum officiis
+                soluta veniam quam tempore ea deleniti, laudantium recusandae
+                autem suscipit neque! At veniam, repudiandae perferendis,
+                provident nobis sint labore quas quam cupiditate ad laudantium
+                rerum delectus asperiores consequatur. Maxime, ad temporibus.
+                Porro animi tempora soluta aliquid perferendis atque repudiandae
+                nesciunt ea, repellendus eveniet, assumenda quod rerum est quia
+                incidunt laboriosam laudantium quasi culpa ipsa, architecto
+                quidem unde praesentium! Modi pariatur inventore ullam, at
+                corrupti quo repudiandae dignissimos neque eius vitae maxime
+                deserunt totam magni tempora minima aperiam veniam ipsa
+                praesentium consequatur laudantium accusamus eligendi facere.
+                Nesciunt, quidem voluptatem? Error sint eos ipsum ratione optio
+                fugit dolore quia inventore aliquid provident! Ducimus dolorum
+                qui, similique commodi fugit ipsam officia pariatur quas
+                doloribus facilis soluta, repellendus officiis accusantium?
+              </h1>
+              {/* <div class="col-span-1 p-2">
                 <div className="accordion-title">
                   <div
                     className="flex justify-between cursor-pointer"
@@ -153,51 +193,12 @@ const MailOutInvitationPage = () => {
                         <br />
                       </small>
 
-                      {/* <small>
-                        <div className="flex items-center my-2">
-                          <input
-                            type="checkbox"
-                            name="card_style"
-                            value="Summer"
-                          />
-                          <p className="ml-2">Summer</p>
-                        </div>
-
-                        <div className="flex items-center my-2">
-                          <input
-                            type="checkbox"
-                            name="card_style"
-                            value="Spring"
-                          />
-                          <p className="ml-2">Spring</p>
-                        </div>
-
-                        <div className="flex items-center my-2">
-                          <input
-                            type="checkbox"
-                            name="card_style"
-                            value="Fall"
-                          />
-                          <p className="ml-2">Fall</p>
-                        </div>
-
-                        <div className="flex items-center my-2">
-                          <input
-                            type="checkbox"
-                            name="card_style"
-                            value="Winter"
-                          />
-                          <p className="ml-2">Winter</p>
-                        </div>
-
-                        <br />
-                        <br />
-                      </small> */}
+                      
                     </fieldset>
                   )}
                 </div>
 
-                {/* New section */}
+                
                 <div className="accordion-title">
                   <div
                     className="flex justify-between cursor-pointer"
@@ -283,8 +284,9 @@ const MailOutInvitationPage = () => {
                     </fieldset>
                   )}
                 </div>
-              </div>
-              <div class="col-span-11 p-2">
+              </div> */}
+
+              <div class="col-span-12 p-2">
                 <div>
                   <h1 className="text-[18px]">
                     <span>{fakeData.length} </span> Items{" "}
@@ -303,12 +305,12 @@ const MailOutInvitationPage = () => {
                 <div className="bg-white">
                   <div className="flex ">
                     <div className="container w-full">
-                      <div className=" bg-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary w-full h-full py-5 border-4 border-gray-200 rounded-lg">
+                      <div className=" bg-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary w-full h-full py-5 border-4 rounded-lg">
                         <div class="flex items-center justify-center flex-wrap gap-4 w-full ">
                           <div className="flex items-start justify-between">
                             <div class="grid grid-cols-12 w-full">
                               <div class="col-span-3">
-                                <div className="qrCode flex justify-center items-center">
+                                <div className="flex items-center justify-center qrCode">
                                   <QRCode
                                     {...{ value }}
                                     size={275}
@@ -341,7 +343,6 @@ const MailOutInvitationPage = () => {
                     </div>
                   </div>
                 </div>
-                {/* Need a pagination here */}
               </div>
             </div>
           </div>
