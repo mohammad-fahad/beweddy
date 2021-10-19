@@ -26,7 +26,7 @@ const fontSelection = [
   { name: "Inter", id: "2", font: "inter" },
   { name: "Alice", id: "3", font: "alice" },
   { name: "Roboto", id: "4", font: "roboto" },
-  { name: "Open Sans", id: "5", font: "open Sans" },
+  { name: "Open Sans", id: "5", font: "openSans" },
   { name: "Lato", id: "6", font: "lato" },
   { name: "Montserrat", id: "7", font: "montserrat" },
   { name: "Poppins", id: "8", font: "poppins" },
@@ -466,21 +466,29 @@ const Customize = ({ data }) => {
                         {front ? (
                           <div className="flex flex-col items-center justify-center w-full h-[80%]">
                             <h2
-                              className={`text-[36px] font-medium leading-10 capitalize font-${textFont?.font} !text-[${textColor.color}] `}
+                              style={{
+                                color: `${textColor.color}`,
+                                fontFamily: `${textFont.font}`,
+                              }}
+                              className={`text-[36px] font-medium leading-10 capitalize `}
                             >
                               {user?.fullName}
                             </h2>
                             <h4
-                              className={`text-[36px] font-medium leading-10 capitalize font-${
-                                textFont?.font
-                              } !text-[${textColor.color.toString()}] `}
+                              style={{
+                                color: `${textColor.color}`,
+                                fontFamily: `${textFont.font}`,
+                              }}
+                              className={`text-[36px] font-medium leading-10 capitalize`}
                             >
                               And
                             </h4>
                             <h2
-                              className={`text-[36px] font-medium leading-10 capitalize font-${
-                                textFont?.font
-                              } !text-[${textColor.color.toString()}] `}
+                              className={`text-[36px] font-medium leading-10 capitalize `}
+                              style={{
+                                color: `${textColor.color}`,
+                                fontFamily: `${textFont.font}`,
+                              }}
                             >
                               <span>{user?.questions.spouseFirstName}</span>
                               <span className="ml-2">
@@ -549,11 +557,18 @@ const Customize = ({ data }) => {
                 </div>
               </div>
               <div class="col-span-12 flex justify-end p-0 mt-10">
-                <button
+                {/* <button
                   className={`!w-[95px] !h-[36px] font-semibold transition duration-300 font-inter text-[12px] border-2 rounded border-[#000000]`}
                 >
                   Reset Design
-                </button>
+                </button> */}
+                <Link href="/dashboard/invitation/mailout/cart">
+                  <button
+                    className={`!w-[95px] !h-[36px] font-semibold transition duration-300 font-inter text-[12px] border-2 rounded border-[#000000]`}
+                  >
+                    Checkout
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
