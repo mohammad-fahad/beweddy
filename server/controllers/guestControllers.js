@@ -15,9 +15,9 @@ export const getGuests = asyncHandler(async (req, res) => {
       guest.address.city !== ''
   ).length;
 
-  const countAttending = guests.filter(guest =>
-    guest.rsvp.includes('yes')
-  ).length;
+  const countAttending = guests
+    .filter(guest => guest.rsvp.includes('yes'))
+    .reduce((acc, guest) => acc + guest.guestEstimate, 0);
 
   const countDeclined = guests.filter(guest =>
     guest.rsvp.includes('no')
