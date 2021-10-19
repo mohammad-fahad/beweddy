@@ -7,9 +7,13 @@ export const getGuests = asyncHandler(async (req, res) => {
   const guests = await Guest.find({ user: req.user._id });
 
   // const a = guests.
-  const countCollectedAddress = guests.map(guest => guest.address);
-
-  console.log(countCollectedAddress);
+  const countCollectedAddress = guests.filter(
+    guest =>
+      guest.address.street !== '' ||
+      guest.address.zip !== '' ||
+      guest.address.state !== '' ||
+      guest.address.city !== ''
+  ).length;
 
   const countAttending = guests.filter(guest =>
     guest.rsvp.includes('yes')
@@ -27,9 +31,14 @@ export const getGuests = asyncHandler(async (req, res) => {
     guest.rsvp.includes('pending')
   ).length;
 
-  res
-    .status(200)
-    .json({ guests, countAttending, countDeclined, countMaybe, countPending });
+  res.status(200).json({
+    guests,
+    countCollectedAddress,
+    countAttending,
+    countDeclined,
+    countMaybe,
+    countPending,
+  });
 });
 
 // Create New Guest

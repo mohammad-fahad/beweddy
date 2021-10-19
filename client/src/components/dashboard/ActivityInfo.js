@@ -61,7 +61,9 @@ const ActivityInfo = () => {
           height={size.width > 599 ? 38 : 25}
           width={size.width > 599 ? 38 : 25}
         />
-        <h4 className='text-2xl font-medium subTitle'>0</h4>
+        <h4 className='text-2xl font-medium subTitle'>
+          {data?.countCollectedAddress}
+        </h4>
         <p className='text-sm font-medium whitespace-nowrap customLabel'>
           Addresses Collected
         </p>
