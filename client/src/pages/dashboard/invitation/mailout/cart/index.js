@@ -23,6 +23,16 @@ const MailoutCheckout = ({ data }) => {
   const [selectComposeMethod, setSelectComposeMethod] = useState(
     composeMethods[0]
   );
+
+  const handleSubmit = () => {
+    console.log({
+      name: "card one",
+      quantity: selectComposeMethod,
+      total: "999",
+      description:
+        "A better way to think of EmailJS in terms of security is not as a service that allows you to send email from Javascript, but rather as a service that allows yo",
+    });
+  };
   return (
     <div>
       <Head>
@@ -46,6 +56,120 @@ const MailoutCheckout = ({ data }) => {
                   <h5 className="text-[18px] text-[#545454]">
                     Great choices! Review your items below.
                   </h5>
+                </div>
+
+                <div class="grid grid-cols-12 w-full mt-5">
+                  <div class="col-span-7 p-2">
+                    <div className="flex justify-center">
+                      <div>
+                        <img
+                          src="/mailout/item1/main.jpg"
+                          alt=""
+                          className="w-[200px] "
+                        />
+                      </div>
+                      <div className="ml-2">
+                        <h1 className="text-[14px] font-bold font-inter">
+                          Beloved Floral Wedding Invitations
+                        </h1>
+                        <h1>Color Theme: Pink</h1>
+                        <h1>Paper Type: Signature</h1>
+                        <h1>Edit Design</h1>
+                        <h1>
+                          A better way to think of EmailJS in terms of security
+                          is not as a service that allows you to send email from
+                          Javascript, but rather as a service that allows you
+                        </h1>
+
+                        <div className="mt-5 bg-[#F6F6F6] p-4">
+                          <h1>Need Envelopes? </h1>
+                          <h1>Add plain or printed envelopes to your order.</h1>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-span-5 p-2">
+                    <div className="flex justify-between">
+                      <div>
+                        <Listbox
+                          value={selectComposeMethod}
+                          onChange={setSelectComposeMethod}
+                        >
+                          <div className="relative mt-1">
+                            <Listbox.Button className="relative font-inter w-[202px] rounded-[5px] border-2 border-primary py-3 pl-5 pr-10 text-base font-semibold hover:bg-secondary-alternative/50">
+                              <span className="block truncate !text-[12px]">
+                                {selectComposeMethod.name}
+                              </span>
+                              <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                                <ChevronDownIcon
+                                  className="w-5 h-5 text-primary"
+                                  aria-hidden="true"
+                                />
+                              </span>
+                            </Listbox.Button>
+                            <Transition
+                              as={Fragment}
+                              leave="transition ease-in duration-100"
+                              leaveFrom="opacity-100"
+                              leaveTo="opacity-0"
+                            >
+                              <Listbox.Options className="absolute z-10 min-w-[256px] py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                {composeMethods.map(
+                                  (composeMethod, composeMethodIdx) => (
+                                    <Listbox.Option
+                                      key={composeMethodIdx}
+                                      className={({ active }) =>
+                                        `${
+                                          active
+                                            ? "text-secondary bg-secondary-alternative/50"
+                                            : "text-gray-900"
+                                        }
+                              cursor-pointer select-none relative py-2 pl-10 pr-4 font-medium !text-[12px]`
+                                      }
+                                      value={composeMethod}
+                                    >
+                                      {({ selected, active }) => (
+                                        <>
+                                          <span
+                                            className={`${
+                                              selected
+                                                ? "font-semibold"
+                                                : "font-medium"
+                                            } block truncate !text-[12px]`}
+                                          >
+                                            {composeMethod.name}
+                                          </span>
+                                          {selected ? (
+                                            <span
+                                              className={`${
+                                                active
+                                                  ? "text-amber-600"
+                                                  : "text-amber-600"
+                                              }
+                                    absolute inset-y-0 left-0 flex items-center pl-3 !text-[12px]`}
+                                            >
+                                              <CheckIcon
+                                                className="w-5 h-5"
+                                                aria-hidden="true"
+                                              />
+                                            </span>
+                                          ) : null}
+                                        </>
+                                      )}
+                                    </Listbox.Option>
+                                  )
+                                )}
+                              </Listbox.Options>
+                            </Transition>
+                          </div>
+                        </Listbox>
+                      </div>
+                      <div>
+                        <h1>$999</h1>
+                        <h1>Remove</h1>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="col-span-4 p-2">
@@ -71,7 +195,10 @@ const MailoutCheckout = ({ data }) => {
                     <button className="!w-[48%] !h-[36px] bg-[#ffffff] font-semibold transition duration-300 font-inter text-[12px] border-[1px] rounded border-[#EEEEEE]">
                       update Cart
                     </button>
-                    <button className="!w-[48%] !h-[36px] bg-[#FCE0EB] font-semibold transition duration-300 font-inter text-[12px] border-[1px] rounded border-[#EEEEEE]">
+                    <button
+                      onClick={handleSubmit}
+                      className="!w-[48%] !h-[36px] bg-[#FCE0EB] font-semibold transition duration-300 font-inter text-[12px] border-[1px] rounded border-[#EEEEEE]"
+                    >
                       Check out
                     </button>
                   </div>

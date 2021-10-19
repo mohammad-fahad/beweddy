@@ -9,6 +9,8 @@ export const mailoutBox = [
     backPart: "/mailout/Pink Bordered Breakfast Invitation.png",
     name: "Beweddy Card one",
     color: ["red", "green", "blue"],
+    decription:
+      "A better way to think of EmailJS in terms of security is not as a service that allows you to send email from Javascript, but rather as a service that allows yo",
   },
   {
     id: "2",
@@ -20,6 +22,8 @@ export const mailoutBox = [
     backPart: "/mailout/Pink Bordered Breakfast Invitation.png",
     name: "Beweddy Card two",
     color: ["red", "green", "blue"],
+    decription:
+      "A better way to think of EmailJS in terms of security is not as a service that allows you to send email from Javascript, but rather as a service that allows yo",
   },
   {
     id: "3",
@@ -31,6 +35,8 @@ export const mailoutBox = [
     backPart: "/mailout/Pink Bordered Breakfast Invitation.png",
     name: "Beweddy Card two",
     color: ["red", "green", "blue"],
+    decription:
+      "A better way to think of EmailJS in terms of security is not as a service that allows you to send email from Javascript, but rather as a service that allows yo",
   },
   {
     id: "4",
@@ -42,6 +48,8 @@ export const mailoutBox = [
     backPart: "/mailout/Pink Bordered Breakfast Invitation.png",
     name: "Beweddy Card two",
     color: ["red", "green", "blue"],
+    decription:
+      "A better way to think of EmailJS in terms of security is not as a service that allows you to send email from Javascript, but rather as a service that allows yo",
   },
   {
     id: "5",
@@ -53,6 +61,8 @@ export const mailoutBox = [
     backPart: "/mailout/Pink Bordered Breakfast Invitation.png",
     name: "Beweddy Card two",
     color: ["red", "green", "blue"],
+    decription:
+      "A better way to think of EmailJS in terms of security is not as a service that allows you to send email from Javascript, but rather as a service that allows yo",
   },
   {
     id: "6",
@@ -64,6 +74,8 @@ export const mailoutBox = [
     backPart: "/mailout/Pink Bordered Breakfast Invitation.png",
     name: "Beweddy Card two",
     color: ["red", "green", "blue"],
+    decription:
+      "A better way to think of EmailJS in terms of security is not as a service that allows you to send email from Javascript, but rather as a service that allows yo",
   },
   {
     id: "7",
@@ -75,6 +87,8 @@ export const mailoutBox = [
     backPart: "/mailout/Pink Bordered Breakfast Invitation.png",
     name: "Beweddy Card two",
     color: ["red", "green", "blue"],
+    decription:
+      "A better way to think of EmailJS in terms of security is not as a service that allows you to send email from Javascript, but rather as a service that allows yo",
   },
   {
     id: "8",
@@ -86,6 +100,8 @@ export const mailoutBox = [
     backPart: "/mailout/Pink Bordered Breakfast Invitation.png",
     name: "Beweddy Card two",
     color: ["red", "green", "blue"],
+    decription:
+      "A better way to think of EmailJS in terms of security is not as a service that allows you to send email from Javascript, but rather as a service that allows yo",
   },
   {
     id: "9",
@@ -97,5 +113,7 @@ export const mailoutBox = [
     backPart: "/mailout/Pink Bordered Breakfast Invitation.png",
     name: "Beweddy Card two",
     color: ["red", "green", "blue"],
+    decription:
+      "A better way to think of EmailJS in terms of security is not as a service that allows you to send email from Javascript, but rather as a service that allows yo",
   },
 ];

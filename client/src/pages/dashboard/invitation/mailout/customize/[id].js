@@ -466,7 +466,7 @@ const Customize = ({ data }) => {
                         {front ? (
                           <div className="flex flex-col items-center justify-center w-full h-[80%]">
                             <h2
-                              className={`text-[36px] font-medium leading-10 capitalize font-${textFont?.font} !text-${textColor.color} `}
+                              className={`text-[36px] font-medium leading-10 capitalize font-${textFont?.font} !text-[${textColor.color}] `}
                             >
                               {user?.fullName}
                             </h2>
