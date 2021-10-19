@@ -20,8 +20,8 @@ const Payment = () => {
   return (
     <div>
       <div className='container flex items-center justify-center min-h-screen py-5'>
-        <div className='border-2 rounded-lg border-[#d9d9d9] sm:p-10 p-4 w-full'>
-          <div>
+        <div className='sm:p-10 p-4 w-full'>
+          <div className='flex items-center justify-center'>
             <Link href='/'>
               <a>
                 <Image
@@ -37,15 +37,15 @@ const Payment = () => {
           </div>
 
           <div className='flex justify-center items-center py-[100px] flex-col'>
-            <div className="text-center text-6xl">🎉</div>
+            <div className='text-center text-6xl'>🎉</div>
             {/* Thank you for sending this meaningful gift! */}
             <h1 className='text-4xl leading-10 font-bold py-[15px] commonTitle'>
               Thank You!
             </h1>
-            <p className='text-[24px] leading-[44px] font-medium subTitle'>
-              You Have Sent The Gift To The Couple.
+            <p className='text-[24px] leading-[44px] font-medium subTitle capitalize'>
+              Your gift is on the way.
             </p>
-            <div className='mx-auto block mt-16'>
+            {/* <div className='mx-auto block mt-16'>
               <svg
                 width='35'
                 height='49'
@@ -148,10 +148,10 @@ const Payment = () => {
                   fill='#808080'
                 />
               </svg>
-            </div>
-            <p className='text-[24px] leading-[44px] font-medium font-alice mt-5'>
+            </div> */}
+            {/* <p className='text-[24px] leading-[44px] font-medium font-alice mt-5'>
               Let's Eat, Drink & BeWeddy!
-            </p>
+            </p> */}
           </div>
         </div>
       </div>

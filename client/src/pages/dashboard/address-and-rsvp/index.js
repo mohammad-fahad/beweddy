@@ -14,7 +14,7 @@ import Swiper from "react-id-swiper";
 import toast from "react-hot-toast";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-
+import useCopyClipboard from "react-use-clipboard";
 import SwiperCore, { Lazy, Autoplay } from "swiper";
 import { Listbox, Transition } from "@headlessui/react";
 import { Fragment } from "react";
@@ -156,7 +156,14 @@ const AddressRSVP = () => {
       guestEstimate: data.guestEstimate,
     };
   };
+  const [valued, setValued] = useState(
+    `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${user?.username}/rsvp`
+  );
+  const [isCopied, setCopied] = useCopyClipboard(valued, {
+    successDuration: 1500,
+  });
 
+  isCopied && toast.success("Collect address website link copied!");
   return (
     <>
       <Head>
@@ -178,12 +185,12 @@ const AddressRSVP = () => {
                 <span className="customLabel">Edit your website</span>
               </a>
             </Link>
-            <Link href="/#">
-              <a className="flex space-x-3 white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
-                <LinkIcon className="w-5 h-5" />
-                <span className="customLabel">Share To Collect Addresses</span>
-              </a>
-            </Link>
+
+            <div onClick={setCopied} className="flex cursor-pointer space-x-3 white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300">
+              <LinkIcon className="w-5 h-5" />
+              <span className="customLabel">Share To Collect Addresses</span>
+            </div>
+
             <Link href="/dashboard/invitation/rsvp-guest-management">
               <a className="flex white-space-nowrap items-center py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300 customLabel">
                 Guests Management

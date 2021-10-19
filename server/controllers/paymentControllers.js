@@ -6,7 +6,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 // Get All Registry
 export const checkoutSession = asyncHandler(async (req, res) => {
   const token = generateTangoToken({ ...req.body.gift, id: nanoid() });
-  console.log(token);
+
   const transformedItem = {
     description: req.body.description,
     quantity: 1,
