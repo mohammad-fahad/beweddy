@@ -19,7 +19,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { isoToUtcDate } from "@utils/index";
 import { useWindowSize } from "@hooks/useWindowSize";
-import { withAuthRoute } from '@hoc/withAuthRoute';
+import { withAuthRoute } from "@hoc/withAuthRoute";
 
 SwiperCore.use([Lazy, Autoplay]);
 const WebsitePageOne = () => {
@@ -29,62 +29,62 @@ const WebsitePageOne = () => {
     user?.receptionDetails?.length
       ? user.receptionDetails
       : [
-        {
-          id: generate(),
-          time: "5.00 PM",
-          details: "Example of event details",
-        },
-        {
-          id: generate(),
-          time: "5:30 PM",
-          details: "Ceremony",
-        },
-        {
-          id: generate(),
-          time: "6:00 PM",
-          details: "Ceremony ends/cocktails begin",
-        },
-        {
-          id: generate(),
-          time: "7:00 PM",
-          details: "Cocktails ends and guests are ushered into the reception",
-        },
-        {
-          id: generate(),
-          time: "7:20 PM",
-          details: "Introduction and first dance—guests asked to join after ",
-        },
-        {
-          id: generate(),
-          time: "7:45 PM",
-          details: " Guests take their seats and the first course is served",
-        },
-        {
-          id: generate(),
-          time: "8:00 PM",
-          details: "Welcome speech from parents",
-        },
-        {
-          id: generate(),
-          time: "8:10 PM",
-          details: "Toasts from maid of honor and best man",
-        },
-        {
-          id: generate(),
-          time: "9:00 PM",
-          details: "Parent dances",
-        },
-        {
-          id: generate(),
-          time: "9:30 PM ",
-          details: "Cake cutting",
-        },
-        {
-          id: generate(),
-          time: "10:00 PM",
-          details: "Send-Off",
-        },
-      ]
+          {
+            id: generate(),
+            time: "5.00 PM",
+            details: "Example of event details",
+          },
+          {
+            id: generate(),
+            time: "5:30 PM",
+            details: "Ceremony",
+          },
+          {
+            id: generate(),
+            time: "6:00 PM",
+            details: "Ceremony ends/cocktails begin",
+          },
+          {
+            id: generate(),
+            time: "7:00 PM",
+            details: "Cocktails ends and guests are ushered into the reception",
+          },
+          {
+            id: generate(),
+            time: "7:20 PM",
+            details: "Introduction and first dance—guests asked to join after ",
+          },
+          {
+            id: generate(),
+            time: "7:45 PM",
+            details: " Guests take their seats and the first course is served",
+          },
+          {
+            id: generate(),
+            time: "8:00 PM",
+            details: "Welcome speech from parents",
+          },
+          {
+            id: generate(),
+            time: "8:10 PM",
+            details: "Toasts from maid of honor and best man",
+          },
+          {
+            id: generate(),
+            time: "9:00 PM",
+            details: "Parent dances",
+          },
+          {
+            id: generate(),
+            time: "9:30 PM ",
+            details: "Cake cutting",
+          },
+          {
+            id: generate(),
+            time: "10:00 PM",
+            details: "Send-Off",
+          },
+        ]
   );
 
   const size = useWindowSize();
