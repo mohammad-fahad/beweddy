@@ -8,12 +8,10 @@ const ActivityInfo = () => {
   const size = useWindowSize();
 
   const { user } = useSelector(state => state.user);
-  const {
-    data: guests,
-    isLoading,
-    isFetching,
-  } = useQuery(['guests', user.token], getGuests);
-  const countAttending = guests?.filter(guest => guest.rsvp === 'yes').length;
+  const { data, isLoading, isFetching } = useQuery(
+    ['guests', user.token],
+    getGuests
+  );
 
   return (
     // <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5 xl:gap-6">
@@ -75,7 +73,9 @@ const ActivityInfo = () => {
           height={size.width > 599 ? 38 : 25}
           width={size.width > 599 ? 38 : 25}
         />
-        <h4 className='text-2xl font-medium subTitle'>{countAttending}</h4>
+        <h4 className='text-2xl font-medium subTitle'>
+          {data?.countAttending}
+        </h4>
         <p className='text-sm font-medium whitespace-nowrap customLabel'>
           RSVP
         </p>

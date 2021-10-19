@@ -7,6 +7,10 @@ export const getGuests = asyncHandler(async (req, res) => {
   const guests = await Guest.find({ user: req.user._id });
 
   // const a = guests.
+  const countCollectedAddress = guests.map(guest => guest.address);
+
+  console.log(countCollectedAddress);
+
   const countAttending = guests.filter(guest =>
     guest.rsvp.includes('yes')
   ).length;
