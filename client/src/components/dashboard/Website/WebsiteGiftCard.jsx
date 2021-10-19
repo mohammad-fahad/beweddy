@@ -15,6 +15,8 @@ const WebsiteGiftCards = ({ giftCards, couple, coupleWebsite }) => {
   const isMediumDevice = useMediaQuery("only screen and (max-width: 991px)");
   const isSmallDevice = useMediaQuery("only screen and (max-width: 767px)");
 
+  console.log("sonjoy", giftCards);
+
   useEffect(() => {
     if (isSmallDevice) {
       return setCol(2);
@@ -30,6 +32,24 @@ const WebsiteGiftCards = ({ giftCards, couple, coupleWebsite }) => {
   return (
     <div className=" from-[#FCE3EB] to-white relative">
       <div className="grid w-full grid-cols-2 gap-5 mx-auto sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 md:gap-10">
+<<<<<<< HEAD
+        {giftCards?.map((giftCard) => (
+          <Link
+            key={giftCard._id}
+            href={`/couple/${couple?.username}/${giftCard?._id}/checkout`}
+          >
+            <a className="transition duration-300 hover:scale-110">
+              <Image
+                width={245}
+                height={157}
+                src={giftCard.image}
+                alt={giftCard.name}
+                className="w-full"
+              />
+            </a>
+          </Link>
+        ))}
+=======
         {giftCards?.map((giftCard) =>
           coupleWebsite ? (
             <Link
@@ -60,6 +80,7 @@ const WebsiteGiftCards = ({ giftCards, couple, coupleWebsite }) => {
             </Link>
           )
         )}
+>>>>>>> 6c2f3f071f3c9872b35b593f956aa14406a21e6e
       </div>
 
       {coupleWebsite ? (
