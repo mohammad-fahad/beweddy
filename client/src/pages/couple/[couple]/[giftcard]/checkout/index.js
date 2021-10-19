@@ -16,7 +16,7 @@ import { getCouple } from '@services/Couple';
 import { getGiftById } from '@services/Gift';
 import { API_URL } from '@utils/index';
 import { useRouter } from 'next/router';
-import { attemptPayment } from '@services/Payment';
+import { attemptGiftCardPayment } from '@services/Payment';
 
 const CheckoutPage = props => {
   const [loading, setLoading] = useState(false);
@@ -67,7 +67,7 @@ const CheckoutPage = props => {
 
     try {
       setLoading(true);
-      const url = await attemptPayment(payload);
+      const url = await attemptGiftCardPayment(payload);
       if (url) {
         push(url);
       }

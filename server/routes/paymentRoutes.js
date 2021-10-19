@@ -1,8 +1,12 @@
 import express from 'express';
-import { checkoutSession } from '../controllers/paymentControllers.js';
+import {
+  checkoutSession,
+  mailoutPayment,
+} from '../controllers/paymentControllers.js';
 
 const router = express.Router();
 
-router.route('/').post(checkoutSession);
+router.route('/giftcard').post(checkoutSession);
+router.route('/mailout').post(mailoutPayment);
 
 export default router;
