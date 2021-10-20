@@ -4,12 +4,14 @@ import DashboardLayout from "@components/dashboard/layout";
 import { Footer } from "@components/home";
 import Head from "next/head";
 import { Listbox, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import { CheckIcon, ChevronDownIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { mailoutBox } from "@components/MailOuts/mailoutData";
 import { useSelector } from "react-redux";
 import { QRCode } from "react-qrcode-logo";
+import { useForm } from "react-hook-form";
+import { useDropzone } from "react-dropzone";
 
 const composeMethods = [
   { name: "5 items - ($1.99/each)", id: "1" },
@@ -65,10 +67,52 @@ const Customize = ({ data }) => {
     colorSelection[0]
   );
 
+  const [selectedImageFile, setSelectedImageFile] = useState();
+  const [file, setFile] = useState();
+  const [preview, setPreview] = useState();
+  const [uploadedFiles, setUploadedFiles] = useState(
+    user.questions.couplePictures
+  );
+
+  console.log(file);
+
   useEffect(() => {
     setFrontPart(data?.image1);
     setBackPart(data?.backPart);
   }, []);
+
+  const {
+    setError,
+    formState: { errors },
+  } = useForm({
+    mode: "all",
+  });
+
+  const onDrop = useCallback((acceptedFiles) => {
+    if (uploadedFiles.length === 4) {
+      setError("couplePictures", {
+        type: "maxLength",
+        message: "Maximum number of files uploaded",
+      });
+      return;
+    }
+
+    const fileDropped = acceptedFiles[0];
+    if (fileDropped["type"].split("/")[0] === "image") {
+      setSelectedImageFile(fileDropped);
+      return;
+    }
+    setFile(fileDropped);
+    const previewUrl = URL.createObjectURL(fileDropped);
+    setPreview(previewUrl);
+  });
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: "image/*",
+    multiple: false,
+  });
+
   return (
     <div>
       <Head>
@@ -143,7 +187,7 @@ const Customize = ({ data }) => {
           {/* 2nd part */}
           <div className="flex items-start justify-between ">
             <div class="grid grid-cols-12 w-full">
-              <div class="col-span-6">
+              <div class="md:col-span-6 sm:col-span-12 col-span-12 ">
                 <div className="mt-5 border-2 border-[#000000] w-full flex">
                   <Listbox
                     value={fontSelectionMethod}
@@ -451,8 +495,8 @@ const Customize = ({ data }) => {
                   </ul>
                 </div>
               </div>
-              <div class="col-span-6">
-                <div className="mt-5 border-2 border-[#000000] !h-[44px] w-full"></div>
+              <div class="md:col-span-6 sm:col-span-12 col-span-12">
+                <div className="mt-5 border-2 border-[#000000] !h-[44px] w-full md:block hidden"></div>
                 {/* 2nd box */}
                 <div className="border-2 border-[#000000] w-full flex h-[600px] relative">
                   <div className="flex items-center justify-center w-full h-full bg-[#F7F3F3]">
@@ -533,9 +577,25 @@ const Customize = ({ data }) => {
                       </div>
                     </div>
                   </div>
-                  <div className="absolute top-0 right-0 border-2 border-[#000000] inline-block p-2">
-                    camera
-                  </div>
+                  {front ? (
+                    ""
+                  ) : (
+                    <div className="absolute top-0 right-0 border-2 border-[#000000] inline-block p-0 m-0 ">
+                      {/* camera */}
+                      <div
+                        className="relative focus:outline-none"
+                        {...getRootProps()}
+                      >
+                        <input {...getInputProps()} />
+                        <label
+                          htmlFor="couplePictures"
+                          className="bg-white cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-5 placeholder-primary border-[3px] border-secondary-alternative/50 rounded-[5px]"
+                        >
+                          Upload
+                        </label>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
               <div class="col-span-12 flex justify-end border-2 rounded border-[#000000] p-0 m-0">

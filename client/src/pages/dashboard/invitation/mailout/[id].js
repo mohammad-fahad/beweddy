@@ -39,23 +39,23 @@ const Invitation = ({ data }) => {
         <div classNameName="p-10 border-4 border-gray-200 rounded-lg mt-14 space-y-10 shadow-box">
           <div className="flex items-start justify-between ">
             <div class="grid grid-cols-12 w-full">
-              <div class="col-span-7 p-2">
+              <div class="sm:col-span-7 col-span-12 p-2">
                 <div>
                   <img
                     src={data?.main}
                     alt={data?.name}
-                    className="w-[80%] h-full "
+                    className="sm:w-[80%] w-[95%] h-full "
                   />
                 </div>
                 <div className="mt-10">
                   <img
                     src={data?.backPart}
                     alt={data?.name}
-                    className="w-[80%] h-full "
+                    className="sm:w-[80%] w-[95%] h-full "
                   />
                 </div>
               </div>
-              <div class="col-span-5 p-2">
+              <div class="sm:col-span-5 col-span-12 p-2">
                 <h1 className="text-[24px] font-medium leading-7 font-inter max-w-[242px]">
                   {data?.name}
                 </h1>

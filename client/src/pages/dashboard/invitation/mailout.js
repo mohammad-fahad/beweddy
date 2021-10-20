@@ -47,7 +47,7 @@ const MailOutInvitationPage = () => {
                 <div className="flex items-start my-5">
                   <div class="grid grid-cols-12 w-full gap-8">
                     {mailoutBox?.map((card, i) => (
-                      <div class="col-span-4">
+                      <div class="md:col-span-4 sm:col-span-6 col-span-12 ">
                         <InvitationCard data={card} key={i} />
                       </div>
                     ))}
@@ -145,7 +145,7 @@ const MailOutInvitationPage = () => {
                   </div>
                 </div>
 
-                <div className="bg-white">
+                {/* <div className="bg-white">
                   <div className="flex ">
                     <div className="container w-full !p-0 !m-0 ">
                       <div
@@ -158,11 +158,11 @@ const MailOutInvitationPage = () => {
                         <div class="flex items-center justify-center flex-wrap gap-4 w-full ">
                           <div className="flex items-start justify-between">
                             <div class="grid grid-cols-12 w-full">
-                              <div class="col-span-3">
+                              <div class="md:col-span-3 sm:col-span-4 col-span-12 ">
                                 <div className="flex items-center justify-center qrCode">
                                   <QRCode
                                     {...{ value }}
-                                    size={275}
+                                    size={200}
                                     eyeRadius={[
                                       {
                                         outer: [10, 10, 0, 10],
@@ -177,11 +177,11 @@ const MailOutInvitationPage = () => {
                                   />
                                 </div>
                               </div>
-                              <div class="col-span-9 flex justify-center items-center">
+                              <div class="md:col-span-9 sm:col-span-8 col-span-12 flex justify-center items-center">
                                 <h1 className="!text-[28px] font-medium  mudiumTitle">
                                   Attach a personalized QR Code to you
-                                  invitations. <br /> This brings guests
-                                  directly to your website for <br /> updates
+                                  invitations.  This brings guests
+                                  directly to your website for updates
                                   and gift registry.
                                 </h1>
                               </div>
@@ -191,7 +191,7 @@ const MailOutInvitationPage = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
