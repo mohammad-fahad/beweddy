@@ -20,7 +20,7 @@ const guestSchema = new mongoose.Schema(
     address: {
       street: {
         type: String,
-        required: true,
+        // required: true,
       },
       providence: {
         type: String,
@@ -28,15 +28,15 @@ const guestSchema = new mongoose.Schema(
       },
       city: {
         type: String,
-        required: true,
+        // required: true,
       },
       state: {
         type: String,
-        required: true,
+        // required: true,
       },
       zip: {
         type: String,
-        required: true,
+        // required: true,
       },
     },
     phone: {
