@@ -9,6 +9,8 @@ import { CheckIcon, ChevronDownIcon } from "@heroicons/react/outline";
 import { AccordionPage } from "@components/shared/CustomAccordion";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { attemptMailoutPayment } from "@services/Payment";
+import { Loader } from "@components/shared";
 
 const composeMethods = [
   { name: "Select Quality", id: "10" },
@@ -25,6 +27,7 @@ const MailoutCheckout = ({ data }) => {
   const [selectComposeMethod, setSelectComposeMethod] = useState(
     composeMethods[0]
   );
+  const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState([]);
   const [total, setTotal] = useState(0);
 
@@ -33,13 +36,6 @@ const MailoutCheckout = ({ data }) => {
   }, []);
 
   useEffect(() => {
-    // setTotal(
-    //   product.reduce(
-    //     (accumulator, current) => accumulator + Number(current.price),
-    //     0
-    //   )
-    // );
-    // const total = product.map(t => t.price)
     setTotal(product.map((t) => t.price));
   }, []);
 
@@ -231,133 +227,6 @@ const MailoutCheckout = ({ data }) => {
                     <h1>Product Not Found</h1>{" "}
                   </div>
                 )}
-
-                {/* {product?.map((product, index) => (
-                  <div class="grid grid-cols-12 w-full mt-5">
-                    <div class="md:col-span-7 col-span-12 p-2">
-                      <div className="flex justify-center">
-                        <div>
-                          <img
-                            src={product?.main}
-                            alt=""
-                            className="w-[200px] "
-                          />
-                        </div>
-                        <div className="ml-2">
-                          <h1 className="text-[14px] font-bold font-inter">
-                            {product?.name}
-                          </h1>
-                          <h1 className="text-[12px] ffont-normal">
-                            Color Theme: {product[0]?.color[0]}
-                          </h1>
-                          <h1 className="text-[12px] ffont-normal">
-                            Paper Type: Signature
-                          </h1>
-                          <h1 className="text-[12px] ffont-normal">
-                            Edit Design
-                          </h1>
-                          <h1 className="text-[10px] ffont-normal mt-4">
-                            {product?.decription}
-                          </h1>
-
-                          <div className="mt-5 bg-[#F6F6F6] p-4">
-                            <h1>Need Envelopes? </h1>
-                            <h1>
-                              Add plain or printed envelopes to your order.
-                            </h1>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="md:col-span-5 col-span-12 p-2">
-                      <div className="flex justify-between">
-                        <div>
-                          <Listbox
-                            value={selectComposeMethod}
-                            onChange={setSelectComposeMethod}
-                          >
-                            <div className="relative mt-1">
-                              <Listbox.Button className="relative font-inter sm:w-[202px] w-[150px] rounded-[5px] border-2 border-primary py-3 pl-5 pr-10 text-base font-semibold hover:bg-secondary-alternative/50">
-                                <span className="block truncate !text-[12px]">
-                                  {selectComposeMethod.name}
-                                </span>
-                                <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                                  <ChevronDownIcon
-                                    className="w-5 h-5 text-primary"
-                                    aria-hidden="true"
-                                  />
-                                </span>
-                              </Listbox.Button>
-                              <Transition
-                                as={Fragment}
-                                leave="transition ease-in duration-100"
-                                leaveFrom="opacity-100"
-                                leaveTo="opacity-0"
-                              >
-                                <Listbox.Options className="absolute z-10 sm:min-w-[256px] min-w-[150px] py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                  {composeMethods.map(
-                                    (composeMethod, composeMethodIdx) => (
-                                      <Listbox.Option
-                                        key={composeMethodIdx}
-                                        className={({ active }) =>
-                                          `${
-                                            active
-                                              ? "text-secondary bg-secondary-alternative/50"
-                                              : "text-gray-900"
-                                          }
-                              cursor-pointer select-none relative py-2 pl-10 pr-4 font-medium !text-[12px]`
-                                        }
-                                        value={composeMethod}
-                                      >
-                                        {({ selected, active }) => (
-                                          <>
-                                            <span
-                                              className={`${
-                                                selected
-                                                  ? "font-semibold"
-                                                  : "font-medium"
-                                              } block truncate !text-[12px]`}
-                                            >
-                                              {composeMethod.name}
-                                            </span>
-                                            {selected ? (
-                                              <span
-                                                className={`${
-                                                  active
-                                                    ? "text-amber-600"
-                                                    : "text-amber-600"
-                                                }
-                                    absolute inset-y-0 left-0 flex items-center pl-3 !text-[12px]`}
-                                              >
-                                                <CheckIcon
-                                                  className="w-5 h-5"
-                                                  aria-hidden="true"
-                                                />
-                                              </span>
-                                            ) : null}
-                                          </>
-                                        )}
-                                      </Listbox.Option>
-                                    )
-                                  )}
-                                </Listbox.Options>
-                              </Transition>
-                            </div>
-                          </Listbox>
-                        </div>
-                        <div>
-                          <h1>${product?.price}</h1>
-                          <button
-                            onClick={removeProduct}
-                            className="mt-3 px-4 py-3 border-[1px] border-secondary-alternative/50 rounded-[5px] text-[10px]"
-                          >
-                            Remove
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))} */}
                 <div className="mt-5 bg-[#F6F6F6] p-4">
                   <h1>Need Envelopes? </h1>
                   <h1>Add plain or printed envelopes to your order.</h1>

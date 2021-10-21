@@ -14,6 +14,8 @@ import { useForm } from "react-hook-form";
 import { useDropzone } from "react-dropzone";
 import FullScreenImage from "@components/MailOuts/FullScreenImage";
 import { isoToUtcDate } from "@utils/index";
+import { CropImage, Loader } from "@components/shared";
+import axios from "axios";
 
 const composeMethods = [
   { name: "5 items - ($1.99/each)", id: "1" },
@@ -55,6 +57,7 @@ const Customize = ({ data }) => {
   const [isActive, setIsActive] = useState(false);
   const [textFont, setTextFont] = useState(fontSelection[0]);
   const [textColor, setTextColor] = useState(colorSelection[0]);
+  const [loading, setLoading] = useState(false);
 
   const [value, setValue] = useState(`${process.env.NEXT_PUBLIC_CLIENT_URL}`);
 
@@ -71,19 +74,22 @@ const Customize = ({ data }) => {
   const [selectedImageFile, setSelectedImageFile] = useState();
   const [file, setFile] = useState();
   const [preview, setPreview] = useState();
-  const [uploadedFile, setUploadedFile] = useState(null);
+  const [uploadedFile, setUploadedFile] = useState(
+    user?.questions?.couplePictures[0]
+  );
 
   useEffect(() => {
     setFrontPart(data?.image1);
     setBackPart(data?.backPart);
   }, []);
 
+  useEffect(() => {
+    // setUploadedFile(localStorage.getItem("mailoutImage"));
+    setUploadedFile(JSON.parse(localStorage.getItem("mailoutImage")));
+  }, []);
   const {
-    setError,
     getValues,
     handleSubmit,
-    register,
-    watch,
     formState: { errors },
   } = useForm({
     mode: "all",
@@ -91,7 +97,7 @@ const Customize = ({ data }) => {
   });
 
   // watch(["do_this_later"]);
-  const doThisLater = getValues("do_this_later");
+  // const doThisLater = getValues("do_this_later");
 
   useEffect(() => {
     setValue("uploadAnnouncement", uploadedFile);
@@ -131,14 +137,13 @@ const Customize = ({ data }) => {
       const { data } = await axios.post(URL, formData, config);
       const { public_id, height, width, secure_url, url } = data;
       setLoading(false);
-      setValue("uploadAnnouncement", {
-        public_id,
-        height,
-        width,
-        secure_url,
-        url,
-      });
+
       setUploadedFile({ public_id, height, width, secure_url, url });
+      localStorage.removeItem("mailoutImage");
+      localStorage.setItem(
+        "mailoutImage",
+        JSON.stringify({ public_id, height, width, secure_url, url })
+      );
     } catch (err) {
       setLoading(false);
       console.error(err.message);
@@ -159,13 +164,15 @@ const Customize = ({ data }) => {
   };
 
   const onSubmit = (data) => console.log(data);
-  console.log("file", user, file, uploadedFile, value);
+  // console.log("file", uploadedFile);
+  // console.log("file", uploadedFile?.url);
   return (
     <div>
       <Head>
         <title>Beweddy | Mailout invites</title>
       </Head>
       <DashboardTopBar coupleName />
+      {loading && <Loader />}
       <DashboardLayout marginBottom="mb-[2.1rem]">
         <DashboardHeader
           title={
@@ -621,9 +628,10 @@ const Customize = ({ data }) => {
                           <div className="flex flex-col items-center justify-center w-full h-[95%]">
                             <div className="mb-[30px]">
                               <img
-                                src={user?.questions?.couplePictures[0]?.url}
-                                alt=""
-                                className="!md:max-h-[150px] !h-[150px] mx-auto"
+                                src={uploadedFile?.url}
+                                // src={user?.questions?.couplePictures[0]?.url}
+                                // alt=""
+                                className="!md:max-h-[150px] !h-[150px] max-w-[300px] mx-auto"
                               />
                             </div>
                             <div>
@@ -712,6 +720,11 @@ const Customize = ({ data }) => {
             </div>
           </div>
         </div>
+        <CropImage
+          onSave={onCropSave}
+          selectedFile={selectedImageFile}
+          // aspectRatio={3 / 2}
+        />
       </DashboardLayout>
 
       <Footer hideSocial />
