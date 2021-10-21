@@ -23,7 +23,7 @@ const composeMethods = [
   { name: "100 items - ($1.99/each)", id: "7" },
 ];
 
-const MailoutCheckout = ({ data }) => {
+const MailoutCheckout = () => {
   const [selectComposeMethod, setSelectComposeMethod] = useState(
     composeMethods[0]
   );
@@ -38,7 +38,7 @@ const MailoutCheckout = ({ data }) => {
 
   useEffect(() => {
     setTotal(product.map((t) => t.price));
-  }, []);
+  }, [product, total]);
 
   const router = useRouter();
   const removeProduct = () => {
@@ -47,13 +47,14 @@ const MailoutCheckout = ({ data }) => {
   };
 
   const handleSubmit = async () => {
+    const { name, main, price, decription, quality } = product;
+    console.log("sonjoy", product);
     const payload = {
-      title: "card one",
-      image:
-        "https://thumbs.dreamstime.com/z/hand-took-out-mail-envelope-greeting-card-hearts-cute-romantic-drawn-post-stamp-love-valentines-day-concept-208694888.jpg",
-      // quantity: selectComposeMethod,
-      price: 10,
-      description: "Quantity: 1",
+      title: name,
+      image: main,
+      quantity: quality,
+      price: price,
+      description: decription,
     };
 
     try {
@@ -223,9 +224,10 @@ const MailoutCheckout = ({ data }) => {
                     ))}
                   </div>
                 ) : (
-                  <div>
-                    {" "}
-                    <h1>Product Not Found</h1>{" "}
+                  <div className="w-full h-[400px] text-center flex items-center justify-center">
+                    <h1 className="text-[20px] text-[red] ">
+                      Product Not Found
+                    </h1>
                   </div>
                 )}
                 <div className="mt-5 bg-[#F6F6F6] p-4">
@@ -246,11 +248,15 @@ const MailoutCheckout = ({ data }) => {
                   <div className="border-[1px] border-[#EEEEEE] border-t-0 p-4">
                     <div className="flex items-center justify-between mb-5">
                       <h5 className="text-[14px] font-normal ">Subtotal</h5>
-                      <h5 className="text-[14px] font-normal ">${total}</h5>
+                      <h5 className="text-[14px] font-normal ">
+                        ${total ? total : "00"}
+                      </h5>
                     </div>
                     <div className="flex items-center justify-between">
                       <h5 className="text-[14px] font-semibold ">Total</h5>
-                      <h5 className="text-[14px] font-semibold ">${total}</h5>
+                      <h5 className="text-[14px] font-semibold ">
+                        ${total ? total : "00"}
+                      </h5>
                     </div>
                   </div>
 

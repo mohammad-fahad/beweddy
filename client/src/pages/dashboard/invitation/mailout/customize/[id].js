@@ -16,6 +16,7 @@ import FullScreenImage from "@components/MailOuts/FullScreenImage";
 import { isoToUtcDate } from "@utils/index";
 import { CropImage, Loader } from "@components/shared";
 import axios from "axios";
+import Draggable from "react-draggable";
 
 const composeMethods = [
   { name: "5 items - ($1.99/each)", id: "1" },
@@ -578,52 +579,54 @@ const Customize = ({ data }) => {
                       />
                       <div className="absolute top-0 bottom-0 left-0 right-0 text-center">
                         {front ? (
-                          <div className="flex flex-col items-center justify-center w-full h-[100%]">
-                            <h2
-                              style={{
-                                color: `${textColor.color}`,
-                                fontFamily: `${textFont.font}`,
-                              }}
-                              className={`text-[30px] font-medium leading-10 capitalize commonTitle`}
-                            >
-                              {user?.fullName}
-                            </h2>
-                            <h4
-                              style={{
-                                color: `${textColor.color}`,
-                                fontFamily: `${textFont.font}`,
-                              }}
-                              className={`text-[30px] font-medium leading-10 capitalize commonTitle`}
-                            >
-                              And
-                            </h4>
-                            <h2
-                              className={`text-[30px] font-medium leading-10 capitalize commonTitle`}
-                              style={{
-                                color: `${textColor.color}`,
-                                fontFamily: `${textFont.font}`,
-                              }}
-                            >
-                              <span>{user?.questions.spouseFirstName}</span>
-                              <span className="ml-2">
-                                {user?.questions.spouseLastName}
-                              </span>
-                            </h2>
-                            <h4
-                              style={{
-                                color: `${textColor.color}`,
-                                fontFamily: `${textFont.font}`,
-                              }}
-                              className={`text-[18px] font-medium leading-10 capitalize customLabel`}
-                            >
-                              We’re getting married
-                              <span className="ml-1">
-                                {isoToUtcDate(
-                                  user?.questions?.weddingDay?.weddingDate
-                                )}{" "}
-                              </span>
-                            </h4>
-                          </div>
+                          <Draggable>
+                            <div className="flex flex-col items-center justify-center w-full h-[100%]">
+                              <h2
+                                style={{
+                                  color: `${textColor.color}`,
+                                  fontFamily: `${textFont.font}`,
+                                }}
+                                className={`text-[30px] font-medium leading-10 capitalize commonTitle`}
+                              >
+                                {user?.fullName}
+                              </h2>
+                              <h4
+                                style={{
+                                  color: `${textColor.color}`,
+                                  fontFamily: `${textFont.font}`,
+                                }}
+                                className={`text-[30px] font-medium leading-10 capitalize commonTitle`}
+                              >
+                                And
+                              </h4>
+                              <h2
+                                className={`text-[30px] font-medium leading-10 capitalize commonTitle`}
+                                style={{
+                                  color: `${textColor.color}`,
+                                  fontFamily: `${textFont.font}`,
+                                }}
+                              >
+                                <span>{user?.questions.spouseFirstName}</span>
+                                <span className="ml-2">
+                                  {user?.questions.spouseLastName}
+                                </span>
+                              </h2>
+                              <h4
+                                style={{
+                                  color: `${textColor.color}`,
+                                  fontFamily: `${textFont.font}`,
+                                }}
+                                className={`text-[18px] font-medium leading-10 capitalize customLabel`}
+                              >
+                                We’re getting married
+                                <span className="ml-1">
+                                  {isoToUtcDate(
+                                    user?.questions?.weddingDay?.weddingDate
+                                  )}{" "}
+                                </span>
+                              </h4>
+                            </div>
+                          </Draggable>
                         ) : (
                           <div className="flex flex-col items-center justify-center w-full h-[95%]">
                             <div className="mb-[30px]">
@@ -695,6 +698,12 @@ const Customize = ({ data }) => {
                   <FullScreenImage
                     btnText="Review & Save"
                     image={front ? frontPart : backPart}
+                    front={front}
+                    textFont={textFont}
+                    textColor={textColor}
+                    user={user}
+                    uploadedFile={uploadedFile}
+                    value={value}
                   />
                   {/* <button
                     className={`!w-[95px] !h-[36px] bg-[#FCE0EB] font-semibold transition duration-300 font-inter text-[12px]`}

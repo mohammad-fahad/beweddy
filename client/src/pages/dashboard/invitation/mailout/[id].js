@@ -66,7 +66,7 @@ const Invitation = ({ data }) => {
                   </h2>
                   <div className="w-[20px] h-[20px] bg-[#FCE0EB] cursor-pointer mt-4 border-2 rounded-full border-black"></div>
                 </div>
-                <div className="flex items-center mt-4">
+                {/* <div className="flex items-center mt-4">
                   <Listbox
                     value={selectComposeMethod}
                     onChange={setSelectComposeMethod}
@@ -140,7 +140,7 @@ const Invitation = ({ data }) => {
                     </div>
                   </Listbox>
                   <h1 className="!text-[20px] font-medium ml-4 ">$199</h1>
-                </div>
+                </div> */}
                 <div className="mt-4">
                   <Link
                     href={`/dashboard/invitation/mailout/customize/${data?.id}`}
