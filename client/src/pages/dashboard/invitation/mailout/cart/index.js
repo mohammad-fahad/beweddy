@@ -30,6 +30,7 @@ const MailoutCheckout = ({ data }) => {
   const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState([]);
   const [total, setTotal] = useState(0);
+  const { push } = useRouter();
 
   useEffect(() => {
     setProduct(JSON.parse(localStorage.getItem("mailout")) || []);
@@ -95,7 +96,7 @@ const MailoutCheckout = ({ data }) => {
                 {product.length > 0 ? (
                   <div>
                     {product?.map((product, index) => (
-                      <div class="grid grid-cols-12 w-full mt-5">
+                      <div key={index} class="grid grid-cols-12 w-full mt-5">
                         <div class="md:col-span-7 col-span-12 p-2">
                           <div className="flex justify-center">
                             <div>

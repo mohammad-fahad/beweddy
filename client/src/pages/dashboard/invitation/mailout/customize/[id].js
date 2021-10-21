@@ -584,7 +584,7 @@ const Customize = ({ data }) => {
                                 color: `${textColor.color}`,
                                 fontFamily: `${textFont.font}`,
                               }}
-                              className={`text-[30px] font-medium leading-10 capitalize `}
+                              className={`text-[30px] font-medium leading-10 capitalize commonTitle`}
                             >
                               {user?.fullName}
                             </h2>
@@ -593,12 +593,12 @@ const Customize = ({ data }) => {
                                 color: `${textColor.color}`,
                                 fontFamily: `${textFont.font}`,
                               }}
-                              className={`text-[30px] font-medium leading-10 capitalize`}
+                              className={`text-[30px] font-medium leading-10 capitalize commonTitle`}
                             >
                               And
                             </h4>
                             <h2
-                              className={`text-[30px] font-medium leading-10 capitalize `}
+                              className={`text-[30px] font-medium leading-10 capitalize commonTitle`}
                               style={{
                                 color: `${textColor.color}`,
                                 fontFamily: `${textFont.font}`,
@@ -614,9 +614,9 @@ const Customize = ({ data }) => {
                                 color: `${textColor.color}`,
                                 fontFamily: `${textFont.font}`,
                               }}
-                              className={`text-[18px] font-medium leading-10 capitalize`}
+                              className={`text-[18px] font-medium leading-10 capitalize customLabel`}
                             >
-                              We're Married
+                              We’re getting married
                               <span className="ml-1">
                                 {isoToUtcDate(
                                   user?.questions?.weddingDay?.weddingDate
@@ -631,7 +631,7 @@ const Customize = ({ data }) => {
                                 src={uploadedFile?.url}
                                 // src={user?.questions?.couplePictures[0]?.url}
                                 // alt=""
-                                className="!md:max-h-[150px] !h-[150px] max-w-[300px] mx-auto"
+                                className="!md:max-h-[150px] !h-[150px] max-w-[300px] mx-auto mailoutImage"
                               />
                             </div>
                             <div>
