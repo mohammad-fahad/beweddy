@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-const InvitationCard = ({ data }) => {
+const InvitationCard = ({ data, handleSubmit }) => {
   const [color, setColor] = useState(1);
   const [image, setImage] = useState("");
 
@@ -27,7 +27,7 @@ const InvitationCard = ({ data }) => {
   return (
     <div className="mb-8">
       <div
-        className={`w-full border-2 border-[#343533] rounded flex justify-center items-center cursor-pointer `}
+        className={`w-full flex justify-center items-center cursor-pointer p-8`}
         // style={{ backgroundColor: selectColor(color) }}
       >
         <img
@@ -35,6 +35,8 @@ const InvitationCard = ({ data }) => {
           // src={data.main}
           // alt={`data.${image}`}
           className="w-full h-[300px] "
+          loading="lazy"
+          style={{}}
         />
       </div>
       <div className="my-4">
@@ -62,7 +64,10 @@ const InvitationCard = ({ data }) => {
           ></div>
         </div>
         <Link href={`/dashboard/invitation/mailout/${data?.id}`}>
-          <button className="px-5 py-2 font-bold capitalize transition duration-300 border-2 rounded-lg border-secondary-alternative/40 font-inter bg-secondary-alternative/20 hover:bg-secondary-alternative/40 hover:border-primary text-[12px]">
+          <button
+            onClick={() => handleSubmit(data)}
+            className="px-5 py-2 font-bold capitalize transition duration-300 border-2 rounded-lg border-secondary-alternative/40 font-inter bg-secondary-alternative/20 hover:bg-secondary-alternative/40 hover:border-primary text-[12px]"
+          >
             Order Now
           </button>
         </Link>
