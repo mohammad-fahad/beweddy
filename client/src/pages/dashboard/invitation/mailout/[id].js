@@ -24,6 +24,7 @@ const Invitation = ({ data }) => {
   const [selectComposeMethod, setSelectComposeMethod] = useState(
     composeMethods[0]
   );
+
   return (
     <div>
       <Head>

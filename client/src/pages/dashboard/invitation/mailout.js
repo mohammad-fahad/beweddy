@@ -22,6 +22,80 @@ const MailOutInvitationPage = () => {
   const setPage = ({ selected }) => {
     console.log(selected === 0 ? 1 : selected * perPage);
   };
+
+  var addItem = function (
+    name,
+    main,
+    price,
+    image1,
+    image2,
+    image3,
+    image4,
+    decription,
+    backPart,
+    color
+  ) {
+    var oldItems = JSON.parse(localStorage.getItem("mailout")) || [];
+
+    var newItem = {
+      name,
+      main,
+      price,
+      image1,
+      image2,
+      image3,
+      image4,
+      decription,
+      backPart,
+      color,
+    };
+
+    oldItems.pop(newItem);
+    oldItems.push(newItem);
+    // oldItems.splice(0, newItem);
+
+    localStorage.setItem("mailout", JSON.stringify(oldItems));
+  };
+
+  const handleSubmit = (data) => {
+    const {
+      name,
+      main,
+      price,
+      image1,
+      image2,
+      image3,
+      image4,
+      decription,
+      backPart,
+      color,
+    } = data;
+    console.log(
+      name,
+      main,
+      price,
+      image1,
+      image2,
+      image3,
+      image4,
+      decription,
+      backPart,
+      color
+    );
+    addItem(
+      name,
+      main,
+      price,
+      image1,
+      image2,
+      image3,
+      image4,
+      decription,
+      backPart,
+      color
+    );
+  };
+
   return (
     <>
       <Head>
@@ -47,8 +121,13 @@ const MailOutInvitationPage = () => {
                 <div className="flex items-start my-5">
                   <div class="grid grid-cols-12 w-full gap-8">
                     {mailoutBox?.map((card, i) => (
-                      <div class="md:col-span-4 sm:col-span-6 col-span-12 ">
-                        <InvitationCard data={card} key={i} />
+                      // <div class="lg:col-span-3 md:col-span-4 sm:col-span-6 col-span-12 ">
+                      <div class=" md:col-span-4 sm:col-span-6 col-span-12 ">
+                        <InvitationCard
+                          data={card}
+                          key={i}
+                          handleSubmit={handleSubmit}
+                        />
                       </div>
                     ))}
                   </div>

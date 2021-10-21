@@ -12,6 +12,10 @@ import { useSelector } from "react-redux";
 import { QRCode } from "react-qrcode-logo";
 import { useForm } from "react-hook-form";
 import { useDropzone } from "react-dropzone";
+import FullScreenImage from "@components/MailOuts/FullScreenImage";
+import { isoToUtcDate } from "@utils/index";
+import { CropImage, Loader } from "@components/shared";
+import axios from "axios";
 
 const composeMethods = [
   { name: "5 items - ($1.99/each)", id: "1" },
@@ -53,8 +57,8 @@ const Customize = ({ data }) => {
   const [isActive, setIsActive] = useState(false);
   const [textFont, setTextFont] = useState(fontSelection[0]);
   const [textColor, setTextColor] = useState(colorSelection[0]);
+  const [loading, setLoading] = useState(false);
 
-  console.log(textColor.color.toString());
   const [value, setValue] = useState(`${process.env.NEXT_PUBLIC_CLIENT_URL}`);
 
   const [selectComposeMethod, setSelectComposeMethod] = useState(
@@ -70,33 +74,36 @@ const Customize = ({ data }) => {
   const [selectedImageFile, setSelectedImageFile] = useState();
   const [file, setFile] = useState();
   const [preview, setPreview] = useState();
-  const [uploadedFiles, setUploadedFiles] = useState(
-    user.questions.couplePictures
+  const [uploadedFile, setUploadedFile] = useState(
+    user?.questions?.couplePictures[0]
   );
-
-  console.log(file);
 
   useEffect(() => {
     setFrontPart(data?.image1);
     setBackPart(data?.backPart);
   }, []);
 
+  useEffect(() => {
+    // setUploadedFile(localStorage.getItem("mailoutImage"));
+    setUploadedFile(JSON.parse(localStorage.getItem("mailoutImage")));
+  }, []);
   const {
-    setError,
+    getValues,
+    handleSubmit,
     formState: { errors },
   } = useForm({
     mode: "all",
+    defaultValues: { uploadAnnouncement: uploadedFile },
   });
 
-  const onDrop = useCallback((acceptedFiles) => {
-    if (uploadedFiles.length === 4) {
-      setError("couplePictures", {
-        type: "maxLength",
-        message: "Maximum number of files uploaded",
-      });
-      return;
-    }
+  // watch(["do_this_later"]);
+  // const doThisLater = getValues("do_this_later");
 
+  useEffect(() => {
+    setValue("uploadAnnouncement", uploadedFile);
+  }, [uploadedFile]);
+
+  const onDrop = useCallback((acceptedFiles) => {
     const fileDropped = acceptedFiles[0];
     if (fileDropped["type"].split("/")[0] === "image") {
       setSelectedImageFile(fileDropped);
@@ -113,12 +120,59 @@ const Customize = ({ data }) => {
     multiple: false,
   });
 
+  const onCropSave = async ({ file, preview }) => {
+    setPreview(preview);
+    setFile(file);
+    setLoading(true);
+    const URL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`;
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "beweddy_csfhgnsu");
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      const { data } = await axios.post(URL, formData, config);
+      const { public_id, height, width, secure_url, url } = data;
+      setLoading(false);
+
+      setUploadedFile({ public_id, height, width, secure_url, url });
+      localStorage.removeItem("mailoutImage");
+      localStorage.setItem(
+        "mailoutImage",
+        JSON.stringify({ public_id, height, width, secure_url, url })
+      );
+    } catch (err) {
+      setLoading(false);
+      console.error(err.message);
+    }
+  };
+
+  const handleRemoveImage = async () => {
+    try {
+      setLoading(true);
+      await removeImage(uploadedFile.public_id);
+      setUploadedFile({});
+      setValue("uploadAnnouncement", {});
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      console.error(err.message);
+    }
+  };
+
+  const onSubmit = (data) => console.log(data);
+  // console.log("file", uploadedFile);
+  // console.log("file", uploadedFile?.url);
   return (
     <div>
       <Head>
         <title>Beweddy | Mailout invites</title>
       </Head>
       <DashboardTopBar coupleName />
+      {loading && <Loader />}
       <DashboardLayout marginBottom="mb-[2.1rem]">
         <DashboardHeader
           title={
@@ -170,7 +224,7 @@ const Customize = ({ data }) => {
                       Edit back
                     </button>
                   </div>
-                  <Link
+                  {/* <Link
                     href={`/dashboard/invitation/mailout/customize/review/${data?.id}`}
                   >
                     <button
@@ -178,7 +232,7 @@ const Customize = ({ data }) => {
                     >
                       Review & Save
                     </button>
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>
@@ -199,7 +253,12 @@ const Customize = ({ data }) => {
                   >
                     <div className="relative mt-1">
                       <Listbox.Button className="relative w-full h-full py-1 pl-5 pr-10 text-base font-semibold font-inter">
-                        <span className="block truncate !text-[12px]">
+                        <span
+                          className="block truncate !text-[12px]"
+                          style={{
+                            fontFamily: `${textFont.font}`,
+                          }}
+                        >
                           {fontSelectionMethod?.name}
                         </span>
                         <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -238,6 +297,9 @@ const Customize = ({ data }) => {
                                           ? "font-semibold"
                                           : "font-medium"
                                       } block truncate !text-[12px]`}
+                                      style={{
+                                        fontFamily: `${composeMethod.font}`,
+                                      }}
                                     >
                                       {composeMethod.name}
                                     </span>
@@ -276,7 +338,12 @@ const Customize = ({ data }) => {
                   >
                     <div className="relative mt-1">
                       <Listbox.Button className="relative w-full h-full py-2 pl-5 pr-10 text-base font-semibold font-inter">
-                        <span className="block truncate !text-[12px]">
+                        <span
+                          className="block truncate !text-[12px]"
+                          style={{
+                            color: `${textColor.color}`,
+                          }}
+                        >
                           {colorSelectionMethod?.name}
                         </span>
                         <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -315,6 +382,9 @@ const Customize = ({ data }) => {
                                           ? "font-semibold"
                                           : "font-medium"
                                       } block truncate !text-[12px]`}
+                                      style={{
+                                        color: `${composeMethod.color}`,
+                                      }}
                                     >
                                       {composeMethod.name}
                                     </span>
@@ -508,13 +578,13 @@ const Customize = ({ data }) => {
                       />
                       <div className="absolute top-0 bottom-0 left-0 right-0 text-center">
                         {front ? (
-                          <div className="flex flex-col items-center justify-center w-full h-[80%]">
+                          <div className="flex flex-col items-center justify-center w-full h-[100%]">
                             <h2
                               style={{
                                 color: `${textColor.color}`,
                                 fontFamily: `${textFont.font}`,
                               }}
-                              className={`text-[36px] font-medium leading-10 capitalize `}
+                              className={`text-[30px] font-medium leading-10 capitalize `}
                             >
                               {user?.fullName}
                             </h2>
@@ -523,12 +593,12 @@ const Customize = ({ data }) => {
                                 color: `${textColor.color}`,
                                 fontFamily: `${textFont.font}`,
                               }}
-                              className={`text-[36px] font-medium leading-10 capitalize`}
+                              className={`text-[30px] font-medium leading-10 capitalize`}
                             >
                               And
                             </h4>
                             <h2
-                              className={`text-[36px] font-medium leading-10 capitalize `}
+                              className={`text-[30px] font-medium leading-10 capitalize `}
                               style={{
                                 color: `${textColor.color}`,
                                 fontFamily: `${textFont.font}`,
@@ -539,14 +609,29 @@ const Customize = ({ data }) => {
                                 {user?.questions.spouseLastName}
                               </span>
                             </h2>
+                            <h4
+                              style={{
+                                color: `${textColor.color}`,
+                                fontFamily: `${textFont.font}`,
+                              }}
+                              className={`text-[18px] font-medium leading-10 capitalize`}
+                            >
+                              We're Married
+                              <span className="ml-1">
+                                {isoToUtcDate(
+                                  user?.questions?.weddingDay?.weddingDate
+                                )}{" "}
+                              </span>
+                            </h4>
                           </div>
                         ) : (
                           <div className="flex flex-col items-center justify-center w-full h-[95%]">
                             <div className="mb-[30px]">
                               <img
-                                src={user?.questions?.couplePictures[0]?.url}
-                                alt=""
-                                className="!md:max-h-[150px] !h-[150px] mx-auto"
+                                src={uploadedFile?.url}
+                                // src={user?.questions?.couplePictures[0]?.url}
+                                // alt=""
+                                className="!md:max-h-[150px] !h-[150px] max-w-[300px] mx-auto"
                               />
                             </div>
                             <div>
@@ -582,38 +667,40 @@ const Customize = ({ data }) => {
                   ) : (
                     <div className="absolute top-0 right-0 border-2 border-[#000000] inline-block p-0 m-0 ">
                       {/* camera */}
-                      <div
-                        className="relative focus:outline-none"
-                        {...getRootProps()}
-                      >
-                        <input {...getInputProps()} />
-                        <label
-                          htmlFor="couplePictures"
-                          className="bg-white cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-3 px-5 placeholder-primary border-[3px] border-secondary-alternative/50 rounded-[5px]"
+                      <form onSubmit={handleSubmit(onSubmit)}>
+                        <div
+                          className="relative focus:outline-none"
+                          {...getRootProps()}
                         >
-                          Upload
-                        </label>
-                      </div>
+                          <input {...getInputProps()} />
+                          <label
+                            htmlFor="couplePictures"
+                            className="bg-white cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-1 px-2 placeholder-primary border-[1px] border-secondary-alternative/50 rounded-[5px]"
+                          >
+                            {/* Upload */}
+                            <img
+                              src="/upload.png"
+                              alt=""
+                              style={{ width: "30px" }}
+                            />
+                          </label>
+                        </div>
+                      </form>
                     </div>
                   )}
                 </div>
               </div>
               <div class="col-span-12 flex justify-end border-2 rounded border-[#000000] p-0 m-0">
                 <div className="inline-block">
-                  <button
-                    className={`!w-[95px] !h-[36px] ${
-                      front ? "bg-[#FCE0EB]" : "bg-[#ffffff]"
-                    } font-semibold transition duration-300 font-inter text-[12px]`}
+                  <FullScreenImage
+                    btnText="Review & Save"
+                    image={front ? frontPart : backPart}
+                  />
+                  {/* <button
+                    className={`!w-[95px] !h-[36px] bg-[#FCE0EB] font-semibold transition duration-300 font-inter text-[12px]`}
                   >
                     Full Screen
-                  </button>
-                  <button
-                    className={`!w-[95px] !h-[36px] ${
-                      back ? "bg-[#FCE0EB]" : "bg-[#ffffff]"
-                    } font-semibold transition duration-300 font-inter text-[12px]`}
-                  >
-                    Cut Lines
-                  </button>
+                  </button> */}
                 </div>
               </div>
               <div class="col-span-12 flex justify-end p-0 mt-10">
@@ -633,6 +720,11 @@ const Customize = ({ data }) => {
             </div>
           </div>
         </div>
+        <CropImage
+          onSave={onCropSave}
+          selectedFile={selectedImageFile}
+          // aspectRatio={3 / 2}
+        />
       </DashboardLayout>
 
       <Footer hideSocial />
