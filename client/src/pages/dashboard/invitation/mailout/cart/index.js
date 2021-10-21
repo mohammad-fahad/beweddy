@@ -49,20 +49,33 @@ const MailoutCheckout = ({ data }) => {
     localStorage.removeItem("mailout");
   };
 
-  const handleSubmit = () => {
-    console.log({
-      name: "card one",
-      quantity: selectComposeMethod,
-      total: "999",
-      description:
-        "A better way to think of EmailJS in terms of security is not as a service that allows you to send email from Javascript, but rather as a service that allows yo",
-    });
+  const handleSubmit = async () => {
+    const payload = {
+      title: "card one",
+      image:
+        "https://thumbs.dreamstime.com/z/hand-took-out-mail-envelope-greeting-card-hearts-cute-romantic-drawn-post-stamp-love-valentines-day-concept-208694888.jpg",
+      // quantity: selectComposeMethod,
+      price: 10,
+      description: "Quantity: 1",
+    };
+
+    try {
+      setLoading(true);
+      const url = await attemptMailoutPayment(payload);
+      if (url) {
+        push(url);
+      }
+    } catch (err) {
+      setLoading(false);
+      console.error(err);
+    }
   };
   return (
     <div>
       <Head>
         <title>Beweddy | Mailout invites</title>
       </Head>
+      {loading && <Loader />}
       <DashboardTopBar coupleName />
       <DashboardLayout marginBottom="mb-[2.1rem]">
         <DashboardHeader
