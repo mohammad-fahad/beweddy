@@ -1,8 +1,14 @@
 import React from "react";
 import Image from "next/image";
+import fileDownload from "js-file-download";
 
 export default function FullScreenImage({ btnText, image }) {
   const [showModal, setShowModal] = React.useState(false);
+
+  const handleDownload = () => {
+    fileDownload(image, "beweddy.png");
+    setShowModal(false);
+  };
   return (
     <>
       {/* <button
@@ -59,9 +65,9 @@ export default function FullScreenImage({ btnText, image }) {
                   <button
                     className="px-6 py-3 mb-1 mr-1 text-sm font-bold text-[#000000] uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={handleDownload}
                   >
-                    Save Changes
+                    Download
                   </button>
                 </div>
               </div>

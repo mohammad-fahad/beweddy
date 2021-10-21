@@ -165,7 +165,7 @@ const Customize = ({ data }) => {
 
   const onSubmit = (data) => console.log(data);
   // console.log("file", uploadedFile);
-  // console.log("file", uploadedFile?.url);
+  console.log("file", data);
   return (
     <div>
       <Head>
