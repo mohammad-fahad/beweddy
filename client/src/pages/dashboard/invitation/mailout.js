@@ -4,7 +4,7 @@ import { Footer } from "@components/index";
 import { withAuthRoute } from "@hoc/withAuthRoute";
 import DashboardTopBar from "@components/dashboard/header/TopBar";
 import DashboardLayout from "@components/dashboard/layout";
-import { useRef, useState } from "react";
+import { useState, useEffect } from "react";
 import InvitationCard from "./InvitationCard";
 import { QRCode } from "react-qrcode-logo";
 import { mailoutBox } from "@components/MailOuts/mailoutData";
@@ -12,16 +12,10 @@ const MailOutInvitationPage = () => {
   const [isActive, setIsActive] = useState(false);
   const [isActive2, setIsActive2] = useState(false);
   const [value, setValue] = useState(`${process.env.NEXT_PUBLIC_CLIENT_URL}`);
+  const [selected, setSelected] = useState(null);
+  const [data, setData] = useState([]);
 
-  const pagination = useRef();
-
-  console.log(pagination);
-
-  const perPage = 25;
-
-  const setPage = ({ selected }) => {
-    console.log(selected === 0 ? 1 : selected * perPage);
-  };
+  console.log("new", data);
 
   var addItem = function (
     name,
@@ -33,7 +27,8 @@ const MailOutInvitationPage = () => {
     image4,
     decription,
     backPart,
-    color
+    color,
+    selected
   ) {
     var oldItems = JSON.parse(localStorage.getItem("mailout")) || [];
 
@@ -48,6 +43,7 @@ const MailOutInvitationPage = () => {
       decription,
       backPart,
       color,
+      selected,
     };
 
     oldItems.pop(newItem);
@@ -57,7 +53,7 @@ const MailOutInvitationPage = () => {
     localStorage.setItem("mailout", JSON.stringify(oldItems));
   };
 
-  const handleSubmit = (data) => {
+  const handleSubmit = () => {
     const {
       name,
       main,
@@ -69,19 +65,9 @@ const MailOutInvitationPage = () => {
       decription,
       backPart,
       color,
+      selected,
     } = data;
-    console.log(
-      name,
-      main,
-      price,
-      image1,
-      image2,
-      image3,
-      image4,
-      decription,
-      backPart,
-      color
-    );
+
     addItem(
       name,
       main,
@@ -92,9 +78,40 @@ const MailOutInvitationPage = () => {
       image4,
       decription,
       backPart,
-      color
+      color,
+      selected
     );
   };
+
+  // const handleSubmit = (data) => {
+  //   const {
+  //     name,
+  //     main,
+  //     price,
+  //     image1,
+  //     image2,
+  //     image3,
+  //     image4,
+  //     decription,
+  //     backPart,
+  //     color,
+  //     selected,
+  //   } = data;
+
+  //   addItem(
+  //     name,
+  //     main,
+  //     price,
+  //     image1,
+  //     image2,
+  //     image3,
+  //     image4,
+  //     decription,
+  //     backPart,
+  //     color,
+  //     selected
+  //   );
+  // };
 
   return (
     <>
@@ -115,21 +132,23 @@ const MailOutInvitationPage = () => {
               <div class="col-span-12 p-2">
                 <div>
                   <h1 className="text-[18px]">
-                    <span>{mailoutBox?.length} </span> Items{" "}
+                    <span>{mailoutBox && mailoutBox.length} </span> Items{" "}
                   </h1>
                 </div>
                 <div className="flex items-start my-5">
                   <div class="grid grid-cols-12 w-full gap-8">
-                    {mailoutBox?.map((card, i) => (
-                      // <div class="lg:col-span-3 md:col-span-4 sm:col-span-6 col-span-12 ">
-                      <div class=" md:col-span-4 sm:col-span-6 col-span-12 ">
-                        <InvitationCard
-                          data={card}
-                          key={i}
-                          handleSubmit={handleSubmit}
-                        />
-                      </div>
-                    ))}
+                    {mailoutBox &&
+                      mailoutBox.map((card, i) => (
+                        // <div class="lg:col-span-3 md:col-span-4 sm:col-span-6 col-span-12 ">
+                        <div class=" md:col-span-4 sm:col-span-6 col-span-12 ">
+                          <InvitationCard
+                            data={card}
+                            key={i}
+                            handleSubmit={handleSubmit}
+                            setSelected={setData}
+                          />
+                        </div>
+                      ))}
                   </div>
                 </div>
                 {/* Need a pagination here */}
@@ -223,54 +242,6 @@ const MailOutInvitationPage = () => {
                     </nav>
                   </div>
                 </div>
-
-                {/* <div className="bg-white">
-                  <div className="flex ">
-                    <div className="container w-full !p-0 !m-0 ">
-                      <div
-                        style={{
-                          boxShadow:
-                            "0px 4px 6px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(0, 0, 0, 0.06)",
-                        }}
-                        className=" bg-[#FCE3EB] to-white w-full h-full py-20 border-4 rounded-lg"
-                      >
-                        <div class="flex items-center justify-center flex-wrap gap-4 w-full ">
-                          <div className="flex items-start justify-between">
-                            <div class="grid grid-cols-12 w-full">
-                              <div class="md:col-span-3 sm:col-span-4 col-span-12 ">
-                                <div className="flex items-center justify-center qrCode">
-                                  <QRCode
-                                    {...{ value }}
-                                    size={200}
-                                    eyeRadius={[
-                                      {
-                                        outer: [10, 10, 0, 10],
-                                        inner: [0, 10, 10, 10],
-                                      },
-                                      [10, 10, 10, 0], // top/right eye
-                                      [10, 0, 10, 10], // bottom/left
-                                    ]}
-                                    logoHeight={70}
-                                    logoWidth={70}
-                                    logoImage="/icons/circle-ring.png"
-                                  />
-                                </div>
-                              </div>
-                              <div class="md:col-span-9 sm:col-span-8 col-span-12 flex justify-center items-center">
-                                <h1 className="!text-[28px] font-medium  mudiumTitle">
-                                  Attach a personalized QR Code to you
-                                  invitations.  This brings guests
-                                  directly to your website for updates
-                                  and gift registry.
-                                </h1>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
               </div>
             </div>
           </div>

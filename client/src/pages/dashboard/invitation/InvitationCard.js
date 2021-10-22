@@ -1,28 +1,28 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
-const InvitationCard = ({ data, handleSubmit }) => {
-  const [color, setColor] = useState(1);
+const InvitationCard = ({ data, handleSubmit, setSelected }) => {
   const [image, setImage] = useState("");
 
   useEffect(() => {
     setImage(data.main);
   }, []);
 
-  const selectColor = (color) => {
-    if (color === "default") return "#9196A2";
-    if (color === "purple") return "#7C3AED";
-    if (color === "red") return "#DC2626";
-    if (color === "blue") return "#2563EB";
-    if (color === "green") return "#059669";
-  };
-
-  const handleClick = (s) => {
-    setImage(s);
-  };
-
-  // console.log(`{`data?.${image}`}`);
+  useEffect(() => {
+    setSelected({
+      name: data.name,
+      main: data.main,
+      price: data.price,
+      image1: data.image1,
+      image2: data.image2,
+      image3: data.image3,
+      image4: data.image4,
+      decription: data.decription,
+      backPart: data.backPart,
+      color: data.color,
+      selected: image,
+    });
+  }, [image]);
 
   return (
     <div className="mb-8">
@@ -46,8 +46,48 @@ const InvitationCard = ({ data, handleSubmit }) => {
           >
             M
           </div>
-
+          {data?.image1 && (
+            <div
+              className="w-5 h-5 border-[1px] border-primary bg-[#000000] text-[10px] text-[#ffffff] flex items-center justify-center bg-opacity-100 rounded-full cursor-pointer"
+              onClick={() => setImage(data?.image1)}
+            >
+              1
+            </div>
+          )}
           {data?.image2 && (
+            <div
+              className="w-5 h-5 border-[1px] border-primary bg-[#000000] text-[10px] text-[#ffffff] flex items-center justify-center bg-opacity-100 rounded-full cursor-pointer"
+              onClick={() => setImage(data?.image2)}
+            >
+              2
+            </div>
+          )}
+          {data?.image3 && (
+            <div
+              className="w-5 h-5 border-[1px] border-primary bg-[#000000] text-[10px] text-[#ffffff] flex items-center justify-center bg-opacity-100 rounded-full cursor-pointer"
+              onClick={() => setImage(data?.image3)}
+            >
+              3
+            </div>
+          )}
+          {data?.image4 && (
+            <div
+              className="w-5 h-5 border-[1px] border-primary bg-[#000000] text-[10px] text-[#ffffff] flex items-center justify-center bg-opacity-100 rounded-full cursor-pointer"
+              onClick={() => setImage(data?.image4)}
+            >
+              4
+            </div>
+          )}
+          {data?.image5 && (
+            <div
+              className="w-5 h-5 border-[1px] border-primary bg-[#000000] text-[10px] text-[#ffffff] flex items-center justify-center bg-opacity-100 rounded-full cursor-pointer"
+              onClick={() => setImage(data?.image5)}
+            >
+              5
+            </div>
+          )}
+
+          {/* {data?.image2 && (
             <div
               className="w-5 h-5 border-[1px] border-primary bg-[#EDEDED] bg-opacity-100 rounded-full cursor-pointer"
               onClick={() => setImage(data?.image1)}
@@ -74,7 +114,7 @@ const InvitationCard = ({ data, handleSubmit }) => {
               className="w-5 h-5 border-[1px] border-primary bg-[#B1C4B1] bg-opacity-100 rounded-full cursor-pointer"
               onClick={() => setImage(data?.image5)}
             ></div>
-          )}
+          )} */}
         </div>
         <Link href={`/dashboard/invitation/mailout/${data?.id}`}>
           <button

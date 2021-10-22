@@ -3,27 +3,18 @@ import DashboardTopBar from "@components/dashboard/header/TopBar";
 import DashboardLayout from "@components/dashboard/layout";
 import { Footer } from "@components/home";
 import Head from "next/head";
-import { Listbox, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
-import { CheckIcon, ChevronDownIcon } from "@heroicons/react/outline";
-import { AccordionPage } from "@components/shared/CustomAccordion";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { mailoutBox } from "@components/MailOuts/mailoutData";
 
-const composeMethods = [
-  { name: "5 items - ($1.99/each)", id: "1" },
-  { name: "10 items - ($1.99/each)", id: "2" },
-  { name: "20 items - ($1.99/each)", id: "3" },
-  { name: "30 items - ($1.99/each)", id: "4" },
-  { name: "40 items - ($1.99/each)", id: "5" },
-  { name: "50 items - ($1.99/each)", id: "6" },
-  { name: "100 items - ($1.99/each)", id: "7" },
-];
-
 const Invitation = ({ data }) => {
-  const [selectComposeMethod, setSelectComposeMethod] = useState(
-    composeMethods[0]
-  );
+  const [product, setProduct] = useState([]);
+
+  useEffect(() => {
+    setProduct(JSON.parse(localStorage.getItem("mailout")) || []);
+  }, []);
+
+  // console.log(product);
 
   return (
     <div>
@@ -43,15 +34,15 @@ const Invitation = ({ data }) => {
               <div class="sm:col-span-7 col-span-12 p-2">
                 <div>
                   <img
-                    src={data?.main}
-                    alt={data?.name}
+                    src={product[0]?.selected}
+                    alt={product[0]?.name}
                     className="sm:w-[80%] w-[95%] h-full "
                   />
                 </div>
                 <div className="mt-10">
                   <img
-                    src={data?.backPart}
-                    alt={data?.name}
+                    src={product[0]?.backPart}
+                    alt={product[0]?.name}
                     className="sm:w-[80%] w-[95%] h-full "
                   />
                 </div>
@@ -60,12 +51,12 @@ const Invitation = ({ data }) => {
                 <h1 className="text-[24px] font-medium leading-7 font-inter max-w-[242px]">
                   {data?.name}
                 </h1>
-                <div className="mt-[15px]">
+                {/* <div className="mt-[15px]">
                   <h2 coupleName="text-[14px] font-medium ">
                     Color Theme: Pink
                   </h2>
                   <div className="w-[20px] h-[20px] bg-[#FCE0EB] cursor-pointer mt-4 border-2 rounded-full border-black"></div>
-                </div>
+                </div> */}
                 {/* <div className="flex items-center mt-4">
                   <Listbox
                     value={selectComposeMethod}

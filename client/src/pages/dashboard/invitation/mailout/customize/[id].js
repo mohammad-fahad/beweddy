@@ -78,11 +78,18 @@ const Customize = ({ data }) => {
   const [uploadedFile, setUploadedFile] = useState(
     user?.questions?.couplePictures[0]
   );
+  const [product, setProduct] = useState([]);
 
   useEffect(() => {
-    setFrontPart(data?.image1);
-    setBackPart(data?.backPart);
+    setProduct(JSON.parse(localStorage.getItem("mailout")) || []);
   }, []);
+
+  useEffect(() => {
+    setFrontPart(product[0]?.selected);
+    setBackPart(product[0]?.backPart);
+  }, [product, uploadedFile]);
+
+  console.log("nft", product);
 
   useEffect(() => {
     // setUploadedFile(localStorage.getItem("mailoutImage"));
@@ -586,7 +593,7 @@ const Customize = ({ data }) => {
                                   color: `${textColor.color}`,
                                   fontFamily: `${textFont.font}`,
                                 }}
-                                className={`text-[30px] font-medium leading-10 capitalize commonTitle`}
+                                className={`text-[30px] font-medium leading-10 capitalize subTitle`}
                               >
                                 {user?.fullName}
                               </h2>
@@ -595,12 +602,12 @@ const Customize = ({ data }) => {
                                   color: `${textColor.color}`,
                                   fontFamily: `${textFont.font}`,
                                 }}
-                                className={`text-[30px] font-medium leading-10 capitalize commonTitle`}
+                                className={`text-[30px] font-medium leading-10 capitalize subTitle`}
                               >
                                 And
                               </h4>
                               <h2
-                                className={`text-[30px] font-medium leading-10 capitalize commonTitle`}
+                                className={`text-[30px] font-medium leading-10 capitalize subTitle`}
                                 style={{
                                   color: `${textColor.color}`,
                                   fontFamily: `${textFont.font}`,
@@ -616,7 +623,7 @@ const Customize = ({ data }) => {
                                   color: `${textColor.color}`,
                                   fontFamily: `${textFont.font}`,
                                 }}
-                                className={`text-[18px] font-medium leading-10 capitalize customLabel`}
+                                className={`text-[18px] font-medium leading-10 capitalize customLabel sm:max-w-full max-w-[150px] `}
                               >
                                 We’re getting married
                                 <span className="ml-1">

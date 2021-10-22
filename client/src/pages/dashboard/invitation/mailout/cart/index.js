@@ -47,11 +47,11 @@ const MailoutCheckout = () => {
   };
 
   const handleSubmit = async () => {
-    const { name, main, price, decription, quality } = product;
+    const { name, selected, price, decription, quality } = product;
     console.log("sonjoy", product);
     const payload = {
       title: name,
-      image: main,
+      image: selected,
       quantity: quality,
       price: price,
       description: decription,
@@ -102,7 +102,7 @@ const MailoutCheckout = () => {
                           <div className="flex justify-center">
                             <div>
                               <img
-                                src={product?.main}
+                                src={product?.selected}
                                 alt=""
                                 className="w-[200px] "
                               />
