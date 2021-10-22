@@ -48,7 +48,7 @@ const Invitation = ({ data }) => {
                 </div>
               </div>
               <div class="sm:col-span-5 col-span-12 p-2">
-                <h1 className="text-[24px] font-medium leading-7 font-inter max-w-[242px]">
+                <h1 className="text-[24px] font-medium leading-7 font-inter max-w-[350px]">
                   {data?.name}
                 </h1>
                 {/* <div className="mt-[15px]">
