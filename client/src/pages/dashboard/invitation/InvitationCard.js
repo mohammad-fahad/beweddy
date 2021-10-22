@@ -32,36 +32,49 @@ const InvitationCard = ({ data, handleSubmit }) => {
       >
         <img
           src={image}
-          // src={data.main}
-          // alt={`data.${image}`}
-          className="w-full h-[300px] "
+          alt={`data?.name`}
+          className="w-full h-[300px] max-w-[250px] mx-auto "
           loading="lazy"
-          style={{}}
         />
       </div>
       <div className="my-4">
         <h1 className="text-[14px] font-medium leading-4">{data?.name}</h1>
         <div className="flex items-center gap-3 my-3">
           <div
-            className="w-5 h-5 bg-[#F4F4F4] bg-opacity-100 rounded-full cursor-pointer"
-            onClick={() => setImage(data.main)}
-          ></div>
+            className="w-5 h-5 bg-[#000000] bg-opacity-100 rounded-full cursor-pointer flex items-center justify-center text-[10px] text-[#ffffff] border-[1px] border-primary"
+            onClick={() => setImage(data?.main)}
+          >
+            M
+          </div>
+
+          {data?.image2 && (
+            <div
+              className="w-5 h-5 border-[1px] border-primary bg-[#EDEDED] bg-opacity-100 rounded-full cursor-pointer"
+              onClick={() => setImage(data?.image1)}
+            ></div>
+          )}
           <div
-            className="w-5 h-5 bg-[#F3DFED] bg-opacity-100 rounded-full cursor-pointer"
-            onClick={() => setImage(data.image1)}
+            className="w-5 h-5 border-[1px] border-primary bg-[#ffffff] bg-opacity-100 rounded-full cursor-pointer"
+            onClick={() => setImage(data?.image2)}
           ></div>
-          <div
-            className="w-5 h-5 bg-[#F4CEB8] bg-opacity-100 rounded-full cursor-pointer"
-            onClick={() => setImage(data.image2)}
-          ></div>
-          <div
-            className="w-5 h-5 bg-[#D8EBD2] bg-opacity-100 rounded-full cursor-pointer"
-            onClick={() => setImage(data.image3)}
-          ></div>
-          <div
-            className="w-5 h-5 bg-[#DDADD0] bg-opacity-100 rounded-full cursor-pointer"
-            onClick={() => setImage(data.image4)}
-          ></div>
+          {data?.image3 && (
+            <div
+              className="w-5 h-5 border-[1px] border-primary bg-[#F8F8F1] bg-opacity-100 rounded-full cursor-pointer"
+              onClick={() => setImage(data?.image3)}
+            ></div>
+          )}
+          {data?.image4 && (
+            <div
+              className="w-5 h-5 border-[1px] border-primary bg-[#000000] bg-opacity-100 rounded-full cursor-pointer"
+              onClick={() => setImage(data?.image4)}
+            ></div>
+          )}
+          {data?.image5 && (
+            <div
+              className="w-5 h-5 border-[1px] border-primary bg-[#B1C4B1] bg-opacity-100 rounded-full cursor-pointer"
+              onClick={() => setImage(data?.image5)}
+            ></div>
+          )}
         </div>
         <Link href={`/dashboard/invitation/mailout/${data?.id}`}>
           <button
