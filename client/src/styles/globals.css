@@ -298,9 +298,22 @@
     left: 21px !important;
     top: 20px !important;
   }
+  /* .modalImage {
+    min-height: 400px !important;
+    height: 400px !important;
+  } */
 }
 
 @media screen and (max-width: 599px) {
+  .modalImage {
+    min-height: 300px !important;
+    height: 300px !important;
+  }
+  .mailoutImage2 {
+    height: 80px !important;
+    max-height: 80px !important;
+    width: 80px !important;
+  }
   .smallText {
     font-size: 10px !important;
   }
