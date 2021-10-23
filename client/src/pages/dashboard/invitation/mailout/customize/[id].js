@@ -79,38 +79,41 @@ const Customize = ({ data }) => {
     user?.questions?.couplePictures[0]
   );
   const [product, setProduct] = useState([]);
+  const [toggle, setToggle] = useState(true);
+  const [text, setText] = useState(
+    "There was an invitation for you to come to our wedding."
+  );
 
+  console.log("text", text);
+
+  function toggleInput() {
+    setToggle(false);
+  }
+  function handleChange(event) {
+    setText(event.target.value);
+  }
   useEffect(() => {
     setProduct(JSON.parse(localStorage.getItem("mailout")) || []);
   }, []);
-
   useEffect(() => {
     setFrontPart(product[0]?.selected);
     setBackPart(product[0]?.backPart);
   }, [product, uploadedFile]);
-
-  console.log("nft", product);
-
   useEffect(() => {
-    // setUploadedFile(localStorage.getItem("mailoutImage"));
     setUploadedFile(JSON.parse(localStorage.getItem("mailoutImage")));
   }, []);
   const {
     getValues,
     handleSubmit,
+    register,
     formState: { errors },
   } = useForm({
     mode: "all",
     defaultValues: { uploadAnnouncement: uploadedFile },
   });
-
-  // watch(["do_this_later"]);
-  // const doThisLater = getValues("do_this_later");
-
   useEffect(() => {
     setValue("uploadAnnouncement", uploadedFile);
   }, [uploadedFile]);
-
   const onDrop = useCallback((acceptedFiles) => {
     const fileDropped = acceptedFiles[0];
     if (fileDropped["type"].split("/")[0] === "image") {
@@ -121,13 +124,11 @@ const Customize = ({ data }) => {
     const previewUrl = URL.createObjectURL(fileDropped);
     setPreview(previewUrl);
   });
-
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: "image/*",
     multiple: false,
   });
-
   const onCropSave = async ({ file, preview }) => {
     setPreview(preview);
     setFile(file);
@@ -158,22 +159,20 @@ const Customize = ({ data }) => {
     }
   };
 
-  const handleRemoveImage = async () => {
-    try {
-      setLoading(true);
-      await removeImage(uploadedFile.public_id);
-      setUploadedFile({});
-      setValue("uploadAnnouncement", {});
-      setLoading(false);
-    } catch (err) {
-      setLoading(false);
-      console.error(err.message);
-    }
+  useEffect(() => {
+    setText(JSON.parse(localStorage.getItem("mailoutImageText")));
+  }, [text]);
+
+  var addItem = function (text) {
+    localStorage.setItem(JSON.stringify("mailoutImageText", text));
   };
 
-  const onSubmit = (data) => console.log(data);
-  // console.log("file", uploadedFile);
-  console.log("file", data);
+  const onSubmit = (data) => {
+    setToggle(true);
+    setText(data.info);
+    addItem(data.info);
+  };
+
   return (
     <div>
       <Head>
@@ -232,15 +231,6 @@ const Customize = ({ data }) => {
                       Edit back
                     </button>
                   </div>
-                  {/* <Link
-                    href={`/dashboard/invitation/mailout/customize/review/${data?.id}`}
-                  >
-                    <button
-                      className={`!w-[142px] !h-[36px] bg-[#FCE0EB] font-semibold transition duration-300  font-inter text-[12px] border-2 rounded border-[#000000]`}
-                    >
-                      Review & Save
-                    </button>
-                  </Link> */}
                 </div>
               </div>
             </div>
@@ -337,7 +327,6 @@ const Customize = ({ data }) => {
                   </Listbox>
                   <Listbox
                     value={colorSelectionMethod}
-                    // onChange={setColorSelectionMethod}
                     onChange={(data) => {
                       setColorSelectionMethod(data);
                       setTextColor(data);
@@ -424,27 +413,6 @@ const Customize = ({ data }) => {
                 {/* 2nd box */}
                 <div className="border-2 border-[#000000] w-full h-[600px] flex">
                   <ul className="p-5">
-                    {/* <li className="flex items-center gap-2 mt-3">
-                      <span>
-                        <svg
-                          width="5"
-                          height="11"
-                          viewBox="0 0 5 11"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <rect width="2" height="2" fill="black" />
-                          <rect x="3" width="2" height="2" fill="black" />
-                          <rect y="3" width="2" height="2" fill="black" />
-                          <rect x="3" y="3" width="2" height="2" fill="black" />
-                          <rect y="6" width="2" height="2" fill="black" />
-                          <rect x="3" y="6" width="2" height="2" fill="black" />
-                          <rect y="9" width="2" height="2" fill="black" />
-                          <rect x="3" y="9" width="2" height="2" fill="black" />
-                        </svg>
-                      </span>
-                      <span>B</span> Background
-                    </li> */}
                     <li>
                       <div className="accordion-title">
                         <div
@@ -528,38 +496,18 @@ const Customize = ({ data }) => {
                           <fieldset>
                             <small>
                               <div className="flex items-center my-2">
-                                {/* <input
-                                  type="checkbox"
-                                  name="card_style"
-                                  value="Modern"
-                                /> */}
                                 <p className="ml-2">Image 1</p>
                               </div>
 
                               <div className="flex items-center my-2">
-                                {/* <input
-                                  type="checkbox"
-                                  name="card_style"
-                                  value="Floral"
-                                /> */}
                                 <p className="ml-2">Image 2</p>
                               </div>
 
                               <div className="flex items-center my-2">
-                                {/* <input
-                                  type="checkbox"
-                                  name="card_style"
-                                  value="Simple"
-                                /> */}
                                 <p className="ml-2">Image 3</p>
                               </div>
 
                               <div className="flex items-center my-2">
-                                {/* <input
-                                  type="checkbox"
-                                  name="card_style"
-                                  value="Elegant"
-                                /> */}
                                 <p className="ml-2">Image 4</p>
                               </div>
 
@@ -632,6 +580,28 @@ const Customize = ({ data }) => {
                                   )}{" "}
                                 </span>
                               </h4>
+                              <form onSubmit={handleSubmit(onSubmit)}>
+                                {toggle ? (
+                                  <p
+                                    onClick={toggleInput}
+                                    className="text-[10px] font-medium leading-10 capitalize customLabel sm:max-w-full max-w-[150px]"
+                                  >
+                                    {text}
+                                  </p>
+                                ) : (
+                                  <div>
+                                    <input
+                                      {...register("info")}
+                                      value={text}
+                                      onChange={handleChange}
+                                      className="text-[13px] md:text-[15px] border-gray-100 border-2 py-2 px-4 xs:py-3 xs:px-5 placeholder-gray-300 rounded-[5px"
+                                    />
+                                    <button type="submit" className="ml-3">
+                                      Save
+                                    </button>
+                                  </div>
+                                )}
+                              </form>
                             </div>
                           </Draggable>
                         ) : (

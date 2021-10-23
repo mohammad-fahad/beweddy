@@ -41,14 +41,14 @@ const InvitationCard = ({ data, handleSubmit, setSelected }) => {
         <h1 className="text-[14px] font-medium leading-4">{data?.name}</h1>
         <div className="flex items-center gap-3 my-3">
           <div
-            className="w-5 h-5 bg-[#000000] bg-opacity-100 rounded-full cursor-pointer flex items-center justify-center text-[10px] text-[#ffffff] border-[1px] border-primary"
+            className="w-5 h-5 bg-[#FCE3EB] bg-opacity-100 rounded-full cursor-pointer flex items-center justify-center text-[10px] text-[#000000] border-[1px] border-primary"
             onClick={() => setImage(data?.main)}
           >
             M
           </div>
           {data?.image1 && (
             <div
-              className="w-5 h-5 border-[1px] border-primary bg-[#000000] text-[10px] text-[#ffffff] flex items-center justify-center bg-opacity-100 rounded-full cursor-pointer"
+              className="w-5 h-5 border-[1px] border-primary bg-[#FCE3EB] text-[10px] text-[#000000] flex items-center justify-center bg-opacity-100 rounded-full cursor-pointer"
               onClick={() => setImage(data?.image1)}
             >
               1
@@ -56,7 +56,7 @@ const InvitationCard = ({ data, handleSubmit, setSelected }) => {
           )}
           {data?.image2 && (
             <div
-              className="w-5 h-5 border-[1px] border-primary bg-[#000000] text-[10px] text-[#ffffff] flex items-center justify-center bg-opacity-100 rounded-full cursor-pointer"
+              className="w-5 h-5 border-[1px] border-primary bg-[#FCE3EB] text-[10px] text-[#000000] flex items-center justify-center bg-opacity-100 rounded-full cursor-pointer"
               onClick={() => setImage(data?.image2)}
             >
               2
@@ -64,7 +64,7 @@ const InvitationCard = ({ data, handleSubmit, setSelected }) => {
           )}
           {data?.image3 && (
             <div
-              className="w-5 h-5 border-[1px] border-primary bg-[#000000] text-[10px] text-[#ffffff] flex items-center justify-center bg-opacity-100 rounded-full cursor-pointer"
+              className="w-5 h-5 border-[1px] border-primary bg-[#FCE3EB] text-[10px] text-[#000000] flex items-center justify-center bg-opacity-100 rounded-full cursor-pointer"
               onClick={() => setImage(data?.image3)}
             >
               3
@@ -72,7 +72,7 @@ const InvitationCard = ({ data, handleSubmit, setSelected }) => {
           )}
           {data?.image4 && (
             <div
-              className="w-5 h-5 border-[1px] border-primary bg-[#000000] text-[10px] text-[#ffffff] flex items-center justify-center bg-opacity-100 rounded-full cursor-pointer"
+              className="w-5 h-5 border-[1px] border-primary bg-[#FCE3EB] text-[10px] text-[#000000] flex items-center justify-center bg-opacity-100 rounded-full cursor-pointer"
               onClick={() => setImage(data?.image4)}
             >
               4
@@ -80,7 +80,7 @@ const InvitationCard = ({ data, handleSubmit, setSelected }) => {
           )}
           {data?.image5 && (
             <div
-              className="w-5 h-5 border-[1px] border-primary bg-[#000000] text-[10px] text-[#ffffff] flex items-center justify-center bg-opacity-100 rounded-full cursor-pointer"
+              className="w-5 h-5 border-[1px] border-primary bg-[#FCE3EB] text-[10px] text-[#000000] flex items-center justify-center bg-opacity-100 rounded-full cursor-pointer"
               onClick={() => setImage(data?.image5)}
             >
               5

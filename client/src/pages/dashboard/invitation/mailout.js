@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import InvitationCard from "./InvitationCard";
 import { QRCode } from "react-qrcode-logo";
 import { mailoutBox } from "@components/MailOuts/mailoutData";
+import Pagination from "@components/shared/Pagination";
 const MailOutInvitationPage = () => {
   const [isActive, setIsActive] = useState(false);
   const [isActive2, setIsActive2] = useState(false);
@@ -15,8 +16,7 @@ const MailOutInvitationPage = () => {
   const [selected, setSelected] = useState(null);
   const [data, setData] = useState([]);
 
-  console.log("new", data);
-
+  const [currentData, setCurrentData] = useState();
   var addItem = function (
     name,
     main,
@@ -83,36 +83,11 @@ const MailOutInvitationPage = () => {
     );
   };
 
-  // const handleSubmit = (data) => {
-  //   const {
-  //     name,
-  //     main,
-  //     price,
-  //     image1,
-  //     image2,
-  //     image3,
-  //     image4,
-  //     decription,
-  //     backPart,
-  //     color,
-  //     selected,
-  //   } = data;
-
-  //   addItem(
-  //     name,
-  //     main,
-  //     price,
-  //     image1,
-  //     image2,
-  //     image3,
-  //     image4,
-  //     decription,
-  //     backPart,
-  //     color,
-  //     selected
-  //   );
-  // };
-
+  const onChangePage = (product) => {
+    setCurrentData({
+      product,
+    });
+  };
   return (
     <>
       <Head>
@@ -132,27 +107,33 @@ const MailOutInvitationPage = () => {
               <div class="col-span-12 p-2">
                 <div>
                   <h1 className="text-[18px]">
-                    <span>{mailoutBox && mailoutBox.length} </span> Items{" "}
+                    <span>{currentData?.product?.length} </span> Items{" "}
                   </h1>
                 </div>
                 <div className="flex items-start my-5">
                   <div class="grid grid-cols-12 w-full gap-8">
-                    {mailoutBox &&
-                      mailoutBox.map((card, i) => (
-                        // <div class="lg:col-span-3 md:col-span-4 sm:col-span-6 col-span-12 ">
-                        <div class=" md:col-span-4 sm:col-span-6 col-span-12 ">
-                          <InvitationCard
-                            data={card}
-                            key={i}
-                            handleSubmit={handleSubmit}
-                            setSelected={setData}
-                          />
-                        </div>
-                      ))}
+                    {currentData?.product?.map((card, i) => (
+                      // <div class="lg:col-span-3 md:col-span-4 sm:col-span-6 col-span-12 ">
+                      <div class=" md:col-span-4 sm:col-span-6 col-span-12 ">
+                        <InvitationCard
+                          data={card}
+                          key={i}
+                          handleSubmit={handleSubmit}
+                          setSelected={setData}
+                        />
+                      </div>
+                    ))}
                   </div>
                 </div>
                 {/* Need a pagination here */}
-                <div className="flex justify-center my-7">
+
+                <Pagination
+                  pageSize={6}
+                  items={mailoutBox}
+                  onChangePage={onChangePage}
+                />
+
+                {/* <div className="flex justify-center my-7">
                   <div className="py-2">
                     <nav className="block">
                       <ul className="flex flex-wrap pl-0 list-none rounded">
@@ -241,7 +222,7 @@ const MailOutInvitationPage = () => {
                       </ul>
                     </nav>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
