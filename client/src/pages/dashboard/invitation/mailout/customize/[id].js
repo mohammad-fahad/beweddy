@@ -17,6 +17,7 @@ import { isoToUtcDate } from "@utils/index";
 import { CropImage, Loader } from "@components/shared";
 import axios from "axios";
 import Draggable from "react-draggable";
+import Canvas from "@components/shared/Canvas";
 
 const composeMethods = [
   { name: "5 items - ($1.99/each)", id: "1" },
@@ -103,7 +104,6 @@ const Customize = ({ data }) => {
     setUploadedFile(JSON.parse(localStorage.getItem("mailoutImage")));
   }, []);
   const {
-    getValues,
     handleSubmit,
     register,
     formState: { errors },
@@ -527,90 +527,95 @@ const Customize = ({ data }) => {
                 <div className="border-2 border-[#000000] w-full flex h-[600px] relative">
                   <div className="flex items-center justify-center w-full h-full bg-[#F7F3F3]">
                     <div className="w-[90%] h-[90%] relative">
+                      {/* <Canvas
+                        image={front ? frontPart : backPart}
+                        text={user?.fullName}
+                      /> */}
+
                       <img
                         src={front ? frontPart : backPart}
                         alt={data?.name}
                         className="w-[90%] h-[90%] mx-auto"
                       />
-                      <div className="absolute top-0 bottom-0 left-0 right-0 text-center">
+                      <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center text-center">
                         {front ? (
-                          <Draggable>
-                            <div className="flex flex-col items-center justify-center w-full h-[100%]">
-                              <h2
-                                style={{
-                                  color: `${textColor.color}`,
-                                  fontFamily: `${textFont.font}`,
-                                }}
-                                className={`text-[30px] font-medium leading-10 capitalize subTitle`}
-                              >
-                                {user?.fullName}
-                              </h2>
-                              <h4
-                                style={{
-                                  color: `${textColor.color}`,
-                                  fontFamily: `${textFont.font}`,
-                                }}
-                                className={`text-[30px] font-medium leading-10 capitalize subTitle`}
-                              >
-                                And
-                              </h4>
-                              <h2
-                                className={`text-[30px] font-medium leading-10 capitalize subTitle`}
-                                style={{
-                                  color: `${textColor.color}`,
-                                  fontFamily: `${textFont.font}`,
-                                }}
-                              >
-                                <span>{user?.questions.spouseFirstName}</span>
-                                <span className="ml-2">
-                                  {user?.questions.spouseLastName}
-                                </span>
-                              </h2>
-                              <h4
-                                style={{
-                                  color: `${textColor.color}`,
-                                  fontFamily: `${textFont.font}`,
-                                }}
-                                className={`text-[18px] font-medium leading-10 capitalize customLabel sm:max-w-full max-w-[150px] `}
-                              >
-                                We’re getting married
-                                <span className="ml-1">
-                                  {isoToUtcDate(
-                                    user?.questions?.weddingDay?.weddingDate
-                                  )}{" "}
-                                </span>
-                              </h4>
-                              <form onSubmit={handleSubmit(onSubmit)}>
-                                {toggle ? (
-                                  <p
-                                    onClick={toggleInput}
-                                    className="text-[10px] font-medium leading-10 capitalize customLabel sm:max-w-full max-w-[150px]"
-                                  >
-                                    {text}
-                                  </p>
-                                ) : (
-                                  <div>
-                                    <input
-                                      {...register("info")}
-                                      value={text}
-                                      onChange={handleChange}
-                                      className="text-[13px] md:text-[15px] border-gray-100 border-2 py-2 px-4 xs:py-3 xs:px-5 placeholder-gray-300 rounded-[5px"
-                                    />
-                                    <button type="submit" className="ml-3">
-                                      Save
-                                    </button>
-                                  </div>
-                                )}
-                              </form>
-                            </div>
-                          </Draggable>
+                          <div>
+                            <Draggable>
+                              <div className="flex flex-col items-center justify-center w-full h-[100%]">
+                                <h2
+                                  style={{
+                                    color: `${textColor.color}`,
+                                    fontFamily: `${textFont.font}`,
+                                  }}
+                                  className={`text-[30px] font-medium leading-10 capitalize subTitle`}
+                                >
+                                  {user?.fullName}
+                                </h2>
+                                <h4
+                                  style={{
+                                    color: `${textColor.color}`,
+                                    fontFamily: `${textFont.font}`,
+                                  }}
+                                  className={`text-[30px] font-medium leading-10 capitalize subTitle`}
+                                >
+                                  And
+                                </h4>
+                                <h2
+                                  className={`text-[30px] font-medium leading-10 capitalize subTitle`}
+                                  style={{
+                                    color: `${textColor.color}`,
+                                    fontFamily: `${textFont.font}`,
+                                  }}
+                                >
+                                  <span>{user?.questions.spouseFirstName}</span>
+                                  <span className="ml-2">
+                                    {user?.questions.spouseLastName}
+                                  </span>
+                                </h2>
+                                <h4
+                                  style={{
+                                    color: `${textColor.color}`,
+                                    fontFamily: `${textFont.font}`,
+                                  }}
+                                  className={`text-[18px] font-medium leading-10 capitalize customLabel sm:max-w-full max-w-[150px] `}
+                                >
+                                  We’re getting married
+                                  <span className="ml-1">
+                                    {isoToUtcDate(
+                                      user?.questions?.weddingDay?.weddingDate
+                                    )}{" "}
+                                  </span>
+                                </h4>
+                                <form onSubmit={handleSubmit(onSubmit)}>
+                                  {toggle ? (
+                                    <p
+                                      onClick={toggleInput}
+                                      className="text-[10px] font-medium leading-10 capitalize customLabel sm:max-w-full max-w-[150px]"
+                                    >
+                                      {text}
+                                    </p>
+                                  ) : (
+                                    <div>
+                                      <input
+                                        {...register("info")}
+                                        value={text}
+                                        onChange={handleChange}
+                                        className="text-[13px] md:text-[15px] border-gray-100 border-2 py-2 px-4 xs:py-3 xs:px-5 placeholder-gray-300 rounded-[5px"
+                                      />
+                                      <button type="submit" className="ml-3">
+                                        Save
+                                      </button>
+                                    </div>
+                                  )}
+                                </form>
+                              </div>
+                            </Draggable>
+                          </div>
                         ) : (
                           <div className="flex flex-col items-center justify-center w-full h-[95%]">
                             <div className="mb-[30px]">
                               <img
                                 src={uploadedFile?.url}
-                                // src={user?.questions?.couplePictures[0]?.url}
-                                // alt=""
                                 className="!md:max-h-[150px] !h-[150px] max-w-[300px] mx-auto mailoutImage"
                               />
                             </div>

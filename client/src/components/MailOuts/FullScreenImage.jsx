@@ -17,8 +17,8 @@ export default function FullScreenImage({
 }) {
   const [showModal, setShowModal] = React.useState(false);
 
-  const handleDownload = () => {
-    fileDownload(image, "beweddy.png");
+  const handleDownload = (image, filename) => {
+    fileDownload(image, filename);
     setShowModal(false);
   };
   const [product, setProduct] = useState([]);
@@ -145,8 +145,6 @@ export default function FullScreenImage({
                           <div className="mb-[30px]">
                             <img
                               src={uploadedFile?.url}
-                              // src={user?.questions?.couplePictures[0]?.url}
-                              // alt=""
                               className="!md:max-h-[150px] !h-[150px] max-w-[300px] mx-auto mailoutImage2"
                             />
                           </div>
@@ -286,7 +284,9 @@ export default function FullScreenImage({
                   <button
                     className="px-6 py-3 mb-1 mr-1 text-sm font-bold text-[#000000] uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
                     type="button"
-                    onClick={handleDownload}
+                    onClick={() =>
+                      handleDownload(product[0]?.selected, "beweddy.png")
+                    }
                   >
                     Download
                   </button>

@@ -26,7 +26,7 @@ export const mailoutBox = [
     quality: "1",
     selected: "",
     decription:
-      "A better way to think of EmailJS in terms of security is not as a service that allows you to send email from Javascript, but rather as a service that allows yo",
+      "A gorgeously colorful wedding invitation with stunning vibrant flowers & leaves in opposite corners and your wedding details centered between them. A modern script for your names becomes the focal point. Of course we can't overlook the back, which has a saturated flush of color to coordinate with the floral design on the front!",
   },
   {
     id: "2",
@@ -56,32 +56,32 @@ export const mailoutBox = [
     quality: "1",
     selected: "",
     decription:
-      "A better way to think of EmailJS in terms of security is not as a service that allows you to send email from Javascript, but rather as a service that allows yo",
+      "A gorgeously colorful wedding invitation with stunning vibrant flowers & leaves in opposite corners and your wedding details centered between them. A modern script for your names becomes the focal point. Of course we can't overlook the back, which has a saturated flush of color to coordinate with the floral design on the front!",
   },
-  {
-    id: "3",
-    main: "/mailout/beWeddy/Brown Couple Photo Wedding Invitation(5).png",
-    image1: "/mailout/beWeddy/Brown Couple Photo Wedding Invitation.png",
-    image2: "/mailout/beWeddy/Brown Couple Photo Wedding Invitation(1).png",
-    image3: "/mailout/beWeddy/Brown Couple Photo Wedding Invitation(2).png",
-    image4: "/mailout/beWeddy/Brown Couple Photo Wedding Invitation(3).png",
-    image5: "/mailout/beWeddy/Brown Couple Photo Wedding Invitation(4).png",
-    backPart: "/mailout/Pink Bordered Breakfast Invitation.png",
-    name: "Brown Couple Photo Wedding Invitation",
-    color: [
-      { id: "1", color: "Black", code: "#000000", order: "main" },
-      { id: "2", color: "Gray93", code: "#EDEDED", order: "image1" },
-      { id: "3", color: "White", code: "#FFFFFF", order: "image2" },
-      { id: "4", color: "Cultured", code: "#F8F8F1", order: "image3" },
-      { id: "5", color: "Black", code: "#000000", order: "image4" },
-      { id: "6", color: "approxZanah", code: "#B1C4B1", order: "image5" },
-    ],
-    price: "50",
-    quality: "1",
-    selected: "",
-    decription:
-      "A better way to think of EmailJS in terms of security is not as a service that allows you to send email from Javascript, but rather as a service that allows yo",
-  },
+  // {
+  //   id: "3",
+  //   main: "/mailout/beWeddy/Brown Couple Photo Wedding Invitation(5).png",
+  //   image1: "/mailout/beWeddy/Brown Couple Photo Wedding Invitation.png",
+  //   image2: "/mailout/beWeddy/Brown Couple Photo Wedding Invitation(1).png",
+  //   image3: "/mailout/beWeddy/Brown Couple Photo Wedding Invitation(2).png",
+  //   image4: "/mailout/beWeddy/Brown Couple Photo Wedding Invitation(3).png",
+  //   image5: "/mailout/beWeddy/Brown Couple Photo Wedding Invitation(4).png",
+  //   backPart: "/mailout/Pink Bordered Breakfast Invitation.png",
+  //   name: "Brown Couple Photo Wedding Invitation",
+  //   color: [
+  //     { id: "1", color: "Black", code: "#000000", order: "main" },
+  //     { id: "2", color: "Gray93", code: "#EDEDED", order: "image1" },
+  //     { id: "3", color: "White", code: "#FFFFFF", order: "image2" },
+  //     { id: "4", color: "Cultured", code: "#F8F8F1", order: "image3" },
+  //     { id: "5", color: "Black", code: "#000000", order: "image4" },
+  //     { id: "6", color: "approxZanah", code: "#B1C4B1", order: "image5" },
+  //   ],
+  //   price: "50",
+  //   quality: "1",
+  //   selected: "",
+  //   decription:
+  //     "A gorgeously colorful wedding invitation with stunning vibrant flowers & leaves in opposite corners and your wedding details centered between them. A modern script for your names becomes the focal point. Of course we can't overlook the back, which has a saturated flush of color to coordinate with the floral design on the front!",
+  // },
   {
     id: "4",
     main: "/mailout/beWeddy/Delicate White Flower Rustic Wedding Invitation (Portrait)(5).png",
@@ -109,7 +109,7 @@ export const mailoutBox = [
     quality: "1",
     selected: "",
     decription:
-      "A better way to think of EmailJS in terms of security is not as a service that allows you to send email from Javascript, but rather as a service that allows yo",
+      "A gorgeously colorful wedding invitation with stunning vibrant flowers & leaves in opposite corners and your wedding details centered between them. A modern script for your names becomes the focal point. Of course we can't overlook the back, which has a saturated flush of color to coordinate with the floral design on the front!",
   },
   {
     id: "5",
@@ -138,7 +138,7 @@ export const mailoutBox = [
     quality: "1",
     selected: "",
     decription:
-      "A better way to think of EmailJS in terms of security is not as a service that allows you to send email from Javascript, but rather as a service that allows yo",
+      "A gorgeously colorful wedding invitation with stunning vibrant flowers & leaves in opposite corners and your wedding details centered between them. A modern script for your names becomes the focal point. Of course we can't overlook the back, which has a saturated flush of color to coordinate with the floral design on the front!",
   },
   {
     id: "6",
@@ -168,7 +168,7 @@ export const mailoutBox = [
     quality: "1",
     selected: "",
     decription:
-      "A better way to think of EmailJS in terms of security is not as a service that allows you to send email from Javascript, but rather as a service that allows yo",
+      "A gorgeously colorful wedding invitation with stunning vibrant flowers & leaves in opposite corners and your wedding details centered between them. A modern script for your names becomes the focal point. Of course we can't overlook the back, which has a saturated flush of color to coordinate with the floral design on the front!",
   },
   {
     id: "7",
@@ -197,7 +197,7 @@ export const mailoutBox = [
     quality: "1",
     selected: "",
     decription:
-      "A better way to think of EmailJS in terms of security is not as a service that allows you to send email from Javascript, but rather as a service that allows yo",
+      "A gorgeously colorful wedding invitation with stunning vibrant flowers & leaves in opposite corners and your wedding details centered between them. A modern script for your names becomes the focal point. Of course we can't overlook the back, which has a saturated flush of color to coordinate with the floral design on the front!",
   },
   {
     id: "8",
@@ -226,7 +226,7 @@ export const mailoutBox = [
     quality: "1",
     selected: "",
     decription:
-      "A better way to think of EmailJS in terms of security is not as a service that allows you to send email from Javascript, but rather as a service that allows yo",
+      "A gorgeously colorful wedding invitation with stunning vibrant flowers & leaves in opposite corners and your wedding details centered between them. A modern script for your names becomes the focal point. Of course we can't overlook the back, which has a saturated flush of color to coordinate with the floral design on the front!",
   },
   {
     id: "9",
@@ -255,6 +255,6 @@ export const mailoutBox = [
     quality: "1",
     selected: "",
     decription:
-      "A better way to think of EmailJS in terms of security is not as a service that allows you to send email from Javascript, but rather as a service that allows yo",
+      "A gorgeously colorful wedding invitation with stunning vibrant flowers & leaves in opposite corners and your wedding details centered between them. A modern script for your names becomes the focal point. Of course we can't overlook the back, which has a saturated flush of color to coordinate with the floral design on the front!",
   },
 ];
