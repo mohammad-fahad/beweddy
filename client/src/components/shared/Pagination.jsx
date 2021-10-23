@@ -96,13 +96,9 @@ class Pagination extends React.Component {
 
   render() {
     let pager = this.state.pager;
-
     if (!pager.pages || pager.pages.length <= 1) {
-      // don't display pager if there is only 1 page
       return null;
     }
-
-    console.log("pager", pager);
     return (
       <div className="w-full">
         <div className="flex justify-center my-7">

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
+import PreviewModal from "@components/MailOuts/previewModal";
+import { useRouter } from "next/router";
+import toast, { Toaster } from "react-hot-toast";
 
 const InvitationCard = ({ data, handleSubmit, setSelected }) => {
   const [image, setImage] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     setImage(data.main);
@@ -10,32 +13,45 @@ const InvitationCard = ({ data, handleSubmit, setSelected }) => {
 
   useEffect(() => {
     setSelected({
-      name: data.name,
-      main: data.main,
-      price: data.price,
-      image1: data.image1,
-      image2: data.image2,
-      image3: data.image3,
-      image4: data.image4,
-      decription: data.decription,
-      backPart: data.backPart,
-      color: data.color,
+      ...data,
       selected: image,
     });
   }, [image]);
 
+  const handleClick = (event) => {
+    if (image === "" || image === data.main) {
+      toast("This is a demo card with text, please select an empty card.");
+    } else {
+      handleSubmit(event);
+      router.push(`/dashboard/invitation/mailout/${data?.id}`);
+    }
+  };
+
   return (
     <div className="mb-8">
+      <Toaster />
       <div
         className={`w-full flex justify-center items-center cursor-pointer p-8`}
         // style={{ backgroundColor: selectColor(color) }}
       >
-        <img
-          src={image}
-          alt={`data?.name`}
-          className="w-full h-[300px] max-w-[250px] mx-auto "
-          loading="lazy"
-        />
+        <div className="h-[284px] max-w-[204px] mx-auto relative">
+          <img
+            src={image}
+            alt={`data?.name`}
+            className="h-[284px] max-w-[204px] mx-auto"
+            loading="lazy"
+          />
+          <div className="absolute top-0 bottom-0 left-0 right-0 flex items-end justify-center pb-5 transition duration-300 opacity-0 bg-primary/80 hover:opacity-100">
+            {/* <button className="w-[150px] h-[50px] border-[1px] border-primary bg-[#FCE3EB] text-[16px] text-[#000000] flex items-center justify-center bg-opacity-100 rounded-full">
+              okay
+            </button> */}
+            <PreviewModal
+              btnText="Preview"
+              data={data}
+              handleSubmit={handleSubmit}
+            />
+          </div>
+        </div>
       </div>
       <div className="my-4">
         <h1 className="text-[14px] font-medium leading-4">{data?.name}</h1>
@@ -116,14 +132,14 @@ const InvitationCard = ({ data, handleSubmit, setSelected }) => {
             ></div>
           )} */}
         </div>
-        <Link href={`/dashboard/invitation/mailout/${data?.id}`}>
-          <button
-            onClick={() => handleSubmit(data)}
-            className="px-5 py-2 font-bold capitalize transition duration-300 border-2 rounded-lg border-secondary-alternative/40 font-inter bg-secondary-alternative/20 hover:bg-secondary-alternative/40 hover:border-primary text-[12px]"
-          >
-            Order Now
-          </button>
-        </Link>
+        {/* <Link href={`/dashboard/invitation/mailout/${data?.id}`}> */}
+        <button
+          onClick={() => handleClick(data)}
+          className="px-5 py-2 font-bold capitalize transition duration-300 border-2 rounded-lg border-secondary-alternative/40 font-inter bg-secondary-alternative/20 hover:bg-secondary-alternative/40 hover:border-primary text-[12px]"
+        >
+          Order Now
+        </button>
+        {/* </Link> */}
       </div>
     </div>
   );
