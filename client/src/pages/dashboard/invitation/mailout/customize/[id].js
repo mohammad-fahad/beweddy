@@ -18,6 +18,7 @@ import { CropImage, Loader } from "@components/shared";
 import axios from "axios";
 import Draggable from "react-draggable";
 import Canvas from "@components/shared/Canvas";
+import { SketchPicker } from "react-color";
 
 const composeMethods = [
   { name: "5 items - ($1.99/each)", id: "1" },
@@ -49,6 +50,18 @@ const colorSelection = [
   { name: "Cyan", id: "6", color: "#00ffff" },
   { name: "white", id: "7", color: "white" },
 ];
+
+const popover = {
+  position: "absolute",
+  zIndex: "2",
+};
+const cover = {
+  position: "fixed",
+  top: "0px",
+  right: "0px",
+  bottom: "0px",
+  left: "0px",
+};
 
 const Customize = ({ data }) => {
   const { user } = useSelector((state) => state.user);
@@ -85,7 +98,20 @@ const Customize = ({ data }) => {
     "There was an invitation for you to come to our wedding."
   );
 
-  console.log("text", text);
+  const [color, setColor] = useState(null);
+  const [displayColorPicker, setDisplayColorPicker] = useState(false);
+  const [palette, setPalette] = useState([]);
+  const { rgb } = color || {};
+  const updateColor = useCallback((color) => setColor(color), []);
+  console.log(color?.hex);
+
+  const handleClick = () => {
+    setDisplayColorPicker(!displayColorPicker);
+  };
+
+  const handleClose = () => {
+    setDisplayColorPicker(false);
+  };
 
   function toggleInput() {
     setToggle(false);
@@ -239,7 +265,7 @@ const Customize = ({ data }) => {
           {/* 2nd part */}
           <div className="flex items-start justify-between ">
             <div class="grid grid-cols-12 w-full">
-              <div class="md:col-span-5 sm:col-span-12 col-span-12 ">
+              <div class="md:col-span-4 sm:col-span-12 col-span-12 ">
                 <div className="mt-5 border-2 border-[#000000] w-full flex">
                   <Listbox
                     value={fontSelectionMethod}
@@ -247,7 +273,7 @@ const Customize = ({ data }) => {
                       setFontSelectionMethod(data);
                       setTextFont(data);
                     }}
-                    className="w-[60%]  border-r-2 border-[#000000]"
+                    className="w-[100%]  border-r-2 border-[#000000]"
                   >
                     <div className="relative mt-1">
                       <Listbox.Button className="relative w-full h-full py-1 pl-5 pr-10 text-base font-semibold font-inter">
@@ -272,7 +298,7 @@ const Customize = ({ data }) => {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                       >
-                        <Listbox.Options className="absolute z-10 min-w-[400px] py-2 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                        <Listbox.Options className="absolute z-10 min-w-[200px] py-2 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                           {fontSelection?.map(
                             (composeMethod, composeMethodIdx) => (
                               <Listbox.Option
@@ -325,90 +351,20 @@ const Customize = ({ data }) => {
                       </Transition>
                     </div>
                   </Listbox>
-                  <Listbox
-                    value={colorSelectionMethod}
-                    onChange={(data) => {
-                      setColorSelectionMethod(data);
-                      setTextColor(data);
-                    }}
-                    className="w-[40%]"
+                  <button
+                    onClick={handleClick}
+                    className="flex items-center justify-center w-full h-full m-0"
+                    style={{ background: `${color?.hex}`, padding: "4px 0" }}
                   >
-                    <div className="relative mt-1">
-                      <Listbox.Button className="relative w-full h-full py-2 pl-5 pr-10 text-base font-semibold font-inter">
-                        <span
-                          className="block truncate !text-[12px]"
-                          style={{
-                            color: `${textColor.color}`,
-                          }}
-                        >
-                          {colorSelectionMethod?.name}
-                        </span>
-                        <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                          <ChevronDownIcon
-                            className="w-5 h-5 text-primary"
-                            aria-hidden="true"
-                          />
-                        </span>
-                      </Listbox.Button>
-                      <Transition
-                        as={Fragment}
-                        leave="transition ease-in duration-100"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
-                      >
-                        <Listbox.Options className="absolute z-10 min-w-[280px] py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                          {colorSelection?.map(
-                            (composeMethod, composeMethodIdx) => (
-                              <Listbox.Option
-                                key={composeMethodIdx}
-                                className={({ active }) =>
-                                  `${
-                                    active
-                                      ? "text-secondary bg-secondary-alternative/50"
-                                      : "text-gray-900"
-                                  }
-                          cursor-pointer select-none relative py-2 pl-10 pr-4 font-medium !text-[12px]`
-                                }
-                                value={composeMethod}
-                              >
-                                {({ selected, active }) => (
-                                  <>
-                                    <span
-                                      className={`${
-                                        selected
-                                          ? "font-semibold"
-                                          : "font-medium"
-                                      } block truncate !text-[12px]`}
-                                      style={{
-                                        color: `${composeMethod.color}`,
-                                      }}
-                                    >
-                                      {composeMethod.name}
-                                    </span>
-                                    {selected ? (
-                                      <span
-                                        className={`${
-                                          active
-                                            ? "text-amber-600"
-                                            : "text-amber-600"
-                                        }
-                                absolute inset-y-0 left-0 flex items-center pl-3 !text-[12px]`}
-                                      >
-                                        <CheckIcon
-                                          className="w-5 h-5"
-                                          aria-hidden="true"
-                                        />
-                                      </span>
-                                    ) : null}
-                                  </>
-                                )}
-                              </Listbox.Option>
-                            )
-                          )}
-                        </Listbox.Options>
-                      </Transition>
+                    Color
+                  </button>
+                  {displayColorPicker ? (
+                    <div style={popover}>
+                      <div style={cover} onClick={handleClose} />
+
+                      <SketchPicker color={rgb} onChange={updateColor} />
                     </div>
-                  </Listbox>
+                  ) : null}
                 </div>
                 {/* 2nd box */}
                 <div className="border-2 border-[#000000] w-full h-[600px] flex">
@@ -521,8 +477,8 @@ const Customize = ({ data }) => {
                   </ul>
                 </div>
               </div>
-              <div class="md:col-span-7 sm:col-span-12 col-span-12">
-                <div className="mt-5 border-2 border-[#000000] !h-[44px] w-full md:block hidden"></div>
+              <div class="md:col-span-8 sm:col-span-12 col-span-12">
+                <div className="mt-5 border-2 border-[#000000] !h-[36px] w-full md:block hidden"></div>
                 {/* 2nd box */}
                 <div className="border-2 border-[#000000] w-full flex h-[600px] relative">
                   <div className="flex items-center justify-center w-full h-full bg-[#F7F3F3]">
@@ -544,7 +500,8 @@ const Customize = ({ data }) => {
                               <div className="flex flex-col items-center justify-center w-full h-[100%]">
                                 <h2
                                   style={{
-                                    color: `${textColor.color}`,
+                                    // color: `${textColor.color}`,
+                                    color: `${color?.hex}`,
                                     fontFamily: `${textFont.font}`,
                                   }}
                                   className={`text-[30px] font-medium leading-10 capitalize subTitle`}
@@ -553,7 +510,7 @@ const Customize = ({ data }) => {
                                 </h2>
                                 <h4
                                   style={{
-                                    color: `${textColor.color}`,
+                                    color: `${color?.hex}`,
                                     fontFamily: `${textFont.font}`,
                                   }}
                                   className={`text-[30px] font-medium leading-10 capitalize subTitle`}
@@ -563,7 +520,7 @@ const Customize = ({ data }) => {
                                 <h2
                                   className={`text-[30px] font-medium leading-10 capitalize subTitle`}
                                   style={{
-                                    color: `${textColor.color}`,
+                                    color: `${color && color?.hex}`,
                                     fontFamily: `${textFont.font}`,
                                   }}
                                 >
@@ -574,7 +531,7 @@ const Customize = ({ data }) => {
                                 </h2>
                                 <h4
                                   style={{
-                                    color: `${textColor.color}`,
+                                    color: `${color?.hex}`,
                                     fontFamily: `${textFont.font}`,
                                   }}
                                   className={`text-[18px] font-medium leading-10 capitalize customLabel sm:max-w-full max-w-[150px] `}
@@ -651,7 +608,6 @@ const Customize = ({ data }) => {
                     ""
                   ) : (
                     <div className="absolute top-0 right-0 border-2 border-[#000000] inline-block p-0 m-0 ">
-                      {/* camera */}
                       <form onSubmit={handleSubmit(onSubmit)}>
                         <div
                           className="relative focus:outline-none"
@@ -662,7 +618,6 @@ const Customize = ({ data }) => {
                             htmlFor="couplePictures"
                             className="bg-white cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-1 px-2 placeholder-primary border-[1px] border-secondary-alternative/50 rounded-[5px]"
                           >
-                            {/* Upload */}
                             <img
                               src="/upload.png"
                               alt=""
@@ -687,19 +642,9 @@ const Customize = ({ data }) => {
                     uploadedFile={uploadedFile}
                     value={value}
                   />
-                  {/* <button
-                    className={`!w-[95px] !h-[36px] bg-[#FCE0EB] font-semibold transition duration-300 font-inter text-[12px]`}
-                  >
-                    Full Screen
-                  </button> */}
                 </div>
               </div>
               <div class="col-span-12 flex justify-end p-0 mt-10">
-                {/* <button
-                  className={`!w-[95px] !h-[36px] font-semibold transition duration-300 font-inter text-[12px] border-2 rounded border-[#000000]`}
-                >
-                  Reset Design
-                </button> */}
                 <Link href="/dashboard/invitation/mailout/cart">
                   <button
                     className={`!w-[95px] !h-[36px] font-semibold transition duration-300 font-inter text-[12px] border-2 rounded border-[#000000]`}
