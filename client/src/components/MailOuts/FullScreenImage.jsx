@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import fileDownload from "js-file-download";
 import Draggable from "react-draggable";
 import { isoToUtcDate } from "@utils/index";
 import { QRCode } from "react-qrcode-logo";
+import { saveAs } from "file-saver";
 
 export default function FullScreenImage({
   btnText,
@@ -16,13 +15,13 @@ export default function FullScreenImage({
   value,
 }) {
   const [showModal, setShowModal] = React.useState(false);
-
-  const handleDownload = (image, filename) => {
-    fileDownload(image, filename);
-    setShowModal(false);
-  };
   const [product, setProduct] = useState([]);
-
+  const FrontSaveFile = () => {
+    saveAs(product[0]?.selected, "beweddy.png");
+  };
+  const BackSaveFile = () => {
+    saveAs(product[0]?.backPart, "beweddy.png");
+  };
   useEffect(() => {
     setProduct(JSON.parse(localStorage.getItem("mailout")) || []);
   }, []);
@@ -283,12 +282,17 @@ export default function FullScreenImage({
                   </button>
                   <button
                     className="px-6 py-3 mb-1 mr-1 text-sm font-bold text-[#000000] uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
-                    type="button"
-                    onClick={() =>
-                      handleDownload(product[0]?.selected, "beweddy.png")
-                    }
+                    type="download"
+                    onClick={FrontSaveFile}
                   >
-                    Download
+                    Front Download
+                  </button>
+                  <button
+                    className="px-6 py-3 mb-1 mr-1 text-sm font-bold text-[#000000] uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
+                    type="download"
+                    onClick={BackSaveFile}
+                  >
+                    Back Download
                   </button>
                 </div>
               </div>
