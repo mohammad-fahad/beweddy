@@ -239,7 +239,7 @@ const Customize = ({ data }) => {
           {/* 2nd part */}
           <div className="flex items-start justify-between ">
             <div class="grid grid-cols-12 w-full">
-              <div class="md:col-span-6 sm:col-span-12 col-span-12 ">
+              <div class="md:col-span-5 sm:col-span-12 col-span-12 ">
                 <div className="mt-5 border-2 border-[#000000] w-full flex">
                   <Listbox
                     value={fontSelectionMethod}
@@ -521,7 +521,7 @@ const Customize = ({ data }) => {
                   </ul>
                 </div>
               </div>
-              <div class="md:col-span-6 sm:col-span-12 col-span-12">
+              <div class="md:col-span-7 sm:col-span-12 col-span-12">
                 <div className="mt-5 border-2 border-[#000000] !h-[44px] w-full md:block hidden"></div>
                 {/* 2nd box */}
                 <div className="border-2 border-[#000000] w-full flex h-[600px] relative">
