@@ -41,10 +41,7 @@ const InvitationCard = ({ data, handleSubmit, setSelected }) => {
             className="h-[284px] max-w-[204px] mx-auto"
             loading="lazy"
           />
-          <div className="absolute top-0 bottom-0 left-0 right-0 flex items-end justify-center pb-5 transition duration-300 opacity-0 bg-primary/80 hover:opacity-100">
-            {/* <button className="w-[150px] h-[50px] border-[1px] border-primary bg-[#FCE3EB] text-[16px] text-[#000000] flex items-center justify-center bg-opacity-100 rounded-full">
-              okay
-            </button> */}
+          <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center pb-5 transition duration-300 opacity-0 bg-primary/80 hover:opacity-100">
             <PreviewModal
               btnText="Preview"
               data={data}
@@ -53,8 +50,10 @@ const InvitationCard = ({ data, handleSubmit, setSelected }) => {
           </div>
         </div>
       </div>
-      <div className="my-4">
-        <h1 className="text-[14px] font-medium leading-4">{data?.name}</h1>
+      <div className="my-4 ">
+        <h1 className="text-[14px] font-semibold leading-4 font-inter">
+          {data?.name}
+        </h1>
         <div className="flex items-center gap-3 my-3">
           <div
             className="w-5 h-5 bg-[#FCE3EB] bg-opacity-100 rounded-full cursor-pointer flex items-center justify-center text-[10px] text-[#000000] border-[1px] border-primary"
