@@ -26,7 +26,7 @@ const Banner = ({ setImageLoaded }) => {
       <div className="container relative z-50">
         <div className="mb-28">
           <h1 className="text-[60px] !sm:text-[36px] lg:text-[60px] text-white text-center font-normal headerTitle ">
-            <span className="text-[#F9D1DE] relative inline-block pr-1 mr-2">
+            {/* <span className="text-[#F9D1DE] relative inline-block pr-1 mr-2">
               Free
               <div className="absolute headerTitleImage">
                 <img
@@ -35,8 +35,8 @@ const Banner = ({ setImageLoaded }) => {
                   className="w-full"
                 />
               </div>
-            </span>
-            All-in-One <br /> Wedding Platform
+            </span> */}
+            White-Label All-in-One <br /> Wedding Platform
           </h1>
         </div>
         <div className="flex flex-wrap items-center justify-center pt-32 banner-bubble sm:ml-8 md:px-5 md:mb-20 xl:pt-36 homePageWrapper">
