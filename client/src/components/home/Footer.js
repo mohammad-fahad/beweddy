@@ -81,10 +81,11 @@ const Footer = ({ hideSocial, className, websitePreview }) => {
                 <img
                   src="/icons/gmail.svg"
                   alt="gmail"
-                  className={` ${size.width < 599
+                  className={` ${
+                    size.width < 599
                       ? "!w-[25px] !h-[25px]"
                       : "!w-[35px] !h-[35px]"
-                    }  hover:scale-125 transition duration-300`}
+                  }  hover:scale-125 transition duration-300`}
                 />
               </a>
               <a
@@ -106,8 +107,9 @@ const Footer = ({ hideSocial, className, websitePreview }) => {
       )}
 
       <div
-        className={`py-8 bg-gradient-to-br from-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary ${className ? className : ""
-          } `}
+        className={`py-8 bg-gradient-to-br from-[#FCE3EB] to-white border-t-[5px] border-b-[5px] border-primary ${
+          className ? className : ""
+        } `}
       >
         {/* <div className="container flex flex-col-reverse flex-wrap items-center justify-center gap-5 !md:flex-row sm:justify-between"> */}
         <div className="container flex !flex-row flex-wrap items-center justify-center gap-5  sm:justify-between footerWrapper">
@@ -116,7 +118,8 @@ const Footer = ({ hideSocial, className, websitePreview }) => {
               &copy; {new Date().getFullYear()}
             </span>
             <strong className="font-semibold customLabel">BeWeddy.</strong>
-            <span className="ml-1 customLabel"> All rights reserved.</span>
+            {/* <span className="ml-1 customLabel"> All rights reserved.</span> */}
+            <span className="ml-1 customLabel"> Powered by BeWeddy.</span>
           </p>
           {/* <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-between sm:gap-6"> */}
           <div className="flex flex-col flex-wrap items-center justify-center gap-3 md:flex-row sm:justify-between sm:gap-6">
