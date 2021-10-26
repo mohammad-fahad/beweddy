@@ -491,7 +491,7 @@ const Customize = ({ data }) => {
                       <img
                         src={front ? frontPart : backPart}
                         alt={data?.name}
-                        className="w-[500px] h-[630px] mx-auto py-10"
+                        className="w-[450px] h-[630px] mx-auto py-10"
                       />
                       <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center text-center">
                         {front ? (

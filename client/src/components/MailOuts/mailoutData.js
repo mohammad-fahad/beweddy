@@ -242,7 +242,7 @@ export const mailoutBox = [
     image5:
       "/mailout/beWeddy/Yellow and Green Hexagon Geometric Floral Wedding Invitation.png",
     backPart: "/mailout/Pink Bordered Breakfast Invitation.png",
-    name: "Beweddy Card two",
+    name: "Yellow and Green Hexagon Geometric Floral Wedding Invitation",
     color: [
       { id: "1", color: "Black", code: "#000000", order: "main" },
       { id: "2", color: "Gray93", code: "#EDEDED", order: "image1" },

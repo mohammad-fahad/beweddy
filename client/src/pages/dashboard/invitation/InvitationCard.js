@@ -9,7 +9,7 @@ const InvitationCard = ({ data, handleSubmit, setSelected }) => {
 
   useEffect(() => {
     setImage(data.main);
-  }, []);
+  }, [data]);
 
   useEffect(() => {
     setSelected({
