@@ -128,14 +128,14 @@ const Dashboard = () => {
                   <span className="customLabel">Preview Website</span>
                 </a>
               </Link>
-              <Link href="/dashboard/features/qrcode-and-links">
+              {/* <Link href="/dashboard/features/qrcode-and-links">
                 <a
                   className={`sm:mt-3 xs:mt-0 capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 sm:px-3 px-1 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300 smallText`}
                 >
                   <LinkIcon className="hidden w-5 h-5 sm:inline-block" />
                   <span className="customLabel">Superlink</span>
                 </a>
-              </Link>
+              </Link> */}
             </div>
           </DashboardHeader>
           {/* <div className='border border-r-0 rounded-tl-xl border-secondary bg-secondary-alternative/10'>
