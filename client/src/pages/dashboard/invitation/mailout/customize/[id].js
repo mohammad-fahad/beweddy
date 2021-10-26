@@ -264,7 +264,7 @@ const Customize = ({ data }) => {
 
           {/* 2nd part */}
           <div className="flex items-start justify-between ">
-            <div class="grid grid-cols-12 w-full">
+            <div class="grid grid-cols-12 w-full h-full">
               <div class="md:col-span-4 sm:col-span-12 col-span-12 ">
                 <div className="mt-5 border-2 border-[#000000] w-full flex">
                   <Listbox
@@ -482,7 +482,7 @@ const Customize = ({ data }) => {
                 {/* 2nd box */}
                 <div className="border-2 border-[#000000] w-full flex h-[600px] relative">
                   <div className="flex items-center justify-center w-full h-full bg-[#F7F3F3]">
-                    <div className="w-[90%] h-[90%] relative">
+                    <div className="w-[500px] h-[650px] relative">
                       {/* <Canvas
                         image={front ? frontPart : backPart}
                         text={user?.fullName}
@@ -491,7 +491,7 @@ const Customize = ({ data }) => {
                       <img
                         src={front ? frontPart : backPart}
                         alt={data?.name}
-                        className="w-[90%] h-[90%] mx-auto"
+                        className="w-[500px] h-[630px] mx-auto py-10"
                       />
                       <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center text-center">
                         {front ? (

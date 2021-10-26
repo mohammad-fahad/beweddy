@@ -13,7 +13,7 @@ export const mailoutBox = [
     image5:
       "/mailout/beWeddy/Black Watercolour Flower Illustration Rustic Wedding Invitation.png",
     backPart: "/mailout/Pink Bordered Breakfast Invitation.png",
-    name: "Pink Bordered Breakfast Invitation",
+    name: "Caled and jenny wedding",
     color: [
       { id: "1", color: "Black", code: "#000000", order: "main" },
       { id: "2", color: "Gray93", code: "#EDEDED", order: "image1" },
@@ -43,7 +43,7 @@ export const mailoutBox = [
     // image5:
     //   "/mailout/beWeddy/Black Watercolour Flower Illustration Rustic Wedding Invitation.png",
     backPart: "/mailout/Pink Bordered Breakfast Invitation.png",
-    name: "Pink Bordered Breakfast Invitation",
+    name: "Meli and Juan Wedding",
     color: [
       { id: "1", color: "Black", code: "#000000", order: "main" },
       { id: "2", color: "Gray93", code: "#EDEDED", order: "image1" },
@@ -122,8 +122,8 @@ export const mailoutBox = [
       "/mailout/beWeddy/Gold and Green Bordered Leaves Geometric Floral Wedding Invitation(2).png",
     image4:
       "/mailout/beWeddy/Gold and Green Bordered Leaves Geometric Floral Wedding Invitation(3).png",
-    image5:
-      "/mailout/Gold and Green Bordered Leaves Geometric Floral Wedding Invitation(4).png",
+    // image5:
+    //   "/mailout/Gold and Green Bordered Leaves Geometric Floral Wedding Invitation(4).png",
     backPart: "/mailout/Pink Bordered Breakfast Invitation.png",
     name: "Gold and Green Bordered Leaves Geometric Floral Wedding Invitation",
     color: [
@@ -181,8 +181,8 @@ export const mailoutBox = [
       "/mailout/beWeddy/Green Bordered Script Geometric Floral Wedding Invitation(2).png",
     image4:
       "/mailout/beWeddy/Green Bordered Script Geometric Floral Wedding Invitation(4).png",
-    image5:
-      "/mailout/Green Bordered Script Geometric Floral Wedding Invitation(5).png",
+    // image5:
+    //   "/mailout/Green Bordered Script Geometric Floral Wedding Invitation(5).png",
     backPart: "/mailout/Pink Bordered Breakfast Invitation.png",
     name: "Green Bordered Script Geometric Floral Wedding Invitation",
     color: [

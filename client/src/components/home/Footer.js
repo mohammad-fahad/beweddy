@@ -117,9 +117,16 @@ const Footer = ({ hideSocial, className, websitePreview }) => {
             <span className="mr-1 customLabel">
               &copy; {new Date().getFullYear()}
             </span>
-            <strong className="font-semibold customLabel">BeWeddy.</strong>
+            <strong className="font-bold customLabel">
+              {/* BeWeddy. */}
+              Your Company.
+            </strong>
             {/* <span className="ml-1 customLabel"> All rights reserved.</span> */}
-            <span className="ml-1 customLabel"> Powered by BeWeddy.</span>
+            <span className="ml-1 customLabel">
+              {" "}
+              Powered by
+              <span className="ml-1 font-bold">BeWeddy.</span>
+            </span>
           </p>
           {/* <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-between sm:gap-6"> */}
           <div className="flex flex-col flex-wrap items-center justify-center gap-3 md:flex-row sm:justify-between sm:gap-6">

@@ -1,3 +1,4 @@
+import Logo from "@components/shared/Logo";
 import Link from "next/link";
 import Drawer from "./drawer";
 import Sidebar from "./Sidebar";
@@ -12,7 +13,8 @@ const DashboardLayout = ({ children, shadow }) => {
             className={`lg:pl-14 lg:min-h-[160px] flex lg:items-center py-5 lg:py-0 customPadding`}
           >
             <Link href="/dashboard">
-              <a className={`inline-block space-y-2`}>
+              <Logo />
+              {/* <a className={`inline-block space-y-2`}>
                 <img
                   src="/images/logo.png"
                   alt=""
@@ -21,11 +23,10 @@ const DashboardLayout = ({ children, shadow }) => {
                 <h3 className="text-base font-medium md:text-lg customLabel">
                   All-In-One Wedding Platform.
                 </h3>
-              </a>
+              </a> */}
             </Link>
           </div>
           <Sidebar />
-
         </div>
       </div>
       {shadow ? (
