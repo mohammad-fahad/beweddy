@@ -58,14 +58,14 @@ export default function PreviewModal({ btnText, data, handleSubmit }) {
                     <h1 className="text-[16px] font-normal max-w-[420px] customLabel">
                       {data?.decription}
                     </h1>
-                    <Link href={`/dashboard/invitation/mailout/${data?.id}`}>
+                    {/* <Link href={`/dashboard/invitation/mailout/${data?.id}`}>
                       <button
                         onClick={() => handleSubmit(data)}
                         className="px-5 py-2 font-bold capitalize transition duration-300 border-2 rounded-lg border-secondary-alternative/40 font-inter bg-secondary-alternative/20 hover:bg-secondary-alternative/40 hover:border-primary text-[12px] mt-5"
                       >
                         Order Now
                       </button>
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
 
