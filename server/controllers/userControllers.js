@@ -152,7 +152,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
         zip: '21268',
       },
       callingCode: "1",
-      email: "musa@example.com",
+      email: "example@example.com",
       guestEstimate: "10",
       id: "61462f3aef64f800048ebd65",
       name: "Example",
