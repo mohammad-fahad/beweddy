@@ -1,10 +1,13 @@
 import { Button, Heading, CreateWebsiteContainer } from "@components/index";
+import { addBusinessLink } from "@features/question/venueSlice";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 const BusinessLink = () => {
   const { push } = useRouter();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -13,8 +16,9 @@ const BusinessLink = () => {
   } = useForm({ mode: "all" });
 
   const onSubmit = (data) => {
-    console.log("bisnessName", data);
-    // push({ query: { step: 2 } });
+    // console.log("bisnessName", data);
+    dispatch(addBusinessLink(data));
+    push({ query: { step: 3 } });
   };
 
   return (
@@ -62,7 +66,7 @@ const BusinessLink = () => {
           <Button
             label="Back"
             className="opacity-50 !bg-[#bebebe] !rounded-[10px] !w-[178px] !h-[59px]"
-            onClick={() => push("/create-website", null, { shallow: true })}
+            onClick={() => push({ query: { step: 1 } })}
           />
           <Button
             label="Next"

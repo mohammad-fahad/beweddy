@@ -1,10 +1,13 @@
 import { Button, Heading, CreateWebsiteContainer } from "@components/index";
+import { addBusinessName } from "@features/question/venueSlice";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
 const BusinessName = () => {
   const { push } = useRouter();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -13,8 +16,9 @@ const BusinessName = () => {
   } = useForm({ mode: "all" });
 
   const onSubmit = (data) => {
-    console.log("bisnessName", data);
-    // push({ query: { step: 2 } });
+    // console.log("bisnessName", data);
+    dispatch(addBusinessName(data));
+    push({ query: { step: 2 } });
   };
 
   return (

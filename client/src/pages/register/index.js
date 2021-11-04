@@ -5,19 +5,16 @@ import { useForm } from "react-hook-form";
 
 const LoginStep = () => {
   const { push } = useRouter();
-
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm({ mode: "all" });
-
   watch("accountType");
-
   const onSubmit = (data) => {
-    console.log("login step", data);
-    // push({ query: { step: 2 } });
+    localStorage.setItem("rule", data.accountType);
+    push("/register");
   };
 
   return (
