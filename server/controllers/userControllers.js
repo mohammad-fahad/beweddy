@@ -19,7 +19,7 @@ import Registry from '../models/Registry.js';
 import Guest from '../models/Guest.js';
 import Gift from '../models/Gift.js';
 import Venue from '../models/Venue.js';
-import { addNewCustomer } from '../lib/stripe.js';
+import { addNewCustomer, createSubscription } from '../lib/stripe.js';
 
 // Register New User
 
@@ -61,22 +61,21 @@ export const register = asyncHandler(async (req, res) => {
     email,
     // phone,
     password,
-    questions,
+    questions: role === 'venue' ? null : questions,
     username,
     role,
   });
 
-  if (role === 'venue') {
-    const customer = await addNewCustomer({ email });
-    await Venue.create({
-      logo,
-      businessName,
-      websiteLink,
-      billingID: customer.id,
-    });
-  }
-
   if (user) {
+    if (role === 'venue') {
+      const customer = await addNewCustomer({ email });
+      await Venue.create({
+        user: user._id,
+        logo: questions.businessAnnouncement,
+        billingID: customer.id,
+        ...questions,
+      });
+    }
     defaultTodos.forEach(async todo => {
       await Todo.create({
         user: user._id,
@@ -302,7 +301,7 @@ export const googleSignIn = asyncHandler(async (req, res) => {
 
 export const activeUser = asyncHandler(async (req, res) => {
   const { token } = req.body;
-
+  const URL = `${process.env.CLIENT_URL}/activation/${token}`;
   // Push all GiftCards & Registries to user
 
   const gifts = await Gift.find({}).select('_id');
@@ -325,6 +324,19 @@ export const activeUser = asyncHandler(async (req, res) => {
 
   // Check if user exists
   const userExists = await User.findById(id);
+  const venue = await Venue.findOne({ user: id });
+
+  if (venue.plan === 'none') {
+    const session = await createSubscription(
+      venue.billingID,
+      process.env.PREMIUM_PLAN_ID,
+      URL
+    );
+
+    if (session) {
+      return res.status(200).json({ url: session.url });
+    }
+  }
   if (!userExists) {
     res.status(404);
     throw new Error('User not found');

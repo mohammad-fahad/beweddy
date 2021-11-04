@@ -5,8 +5,12 @@ import mongoose from 'mongoose';
 
 const venueSchema = new mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
     logo: {
-      type: String,
+      type: Object,
     },
     businessName: {
       type: String,
@@ -28,8 +32,11 @@ const venueSchema = new mongoose.Schema(
     payment: {
       type: Object,
     },
-    hasTrial: { type: Boolean, default: true },
-    endDate: { type: Date, default: Date.now() + 2592000000 },
+    hasTrial: { type: Boolean, default: false },
+    endDate: {
+      type: Date,
+      // default: Date.now() + 2592000000,
+    },
   },
   {
     timestamps: true,

@@ -8,9 +8,10 @@ const AccountActivationPage = () => {
   const dispatch = useDispatch();
   const { success } = useSelector(state => state.user);
   const { query, push } = useRouter();
-  const token = query.token;
+  const { token, session_id } = query;
 
   useEffect(() => {
+    // return;
     if (success) {
       const redirect = setTimeout(() => push('/dashboard'), 3000);
       return () => clearTimeout(redirect);
@@ -19,7 +20,8 @@ const AccountActivationPage = () => {
 
   useEffect(() => {
     if (token) {
-      dispatch(attemptActivation(token));
+      // return;
+      dispatch(attemptActivation({ token, session_id }));
     }
   }, [token]);
 

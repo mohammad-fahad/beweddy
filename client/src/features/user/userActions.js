@@ -11,13 +11,17 @@ const config = {
 
 export const attemptActivation = createAsyncThunk(
   'auth/attemptActivation',
-  async token => {
+  async ({ token, session_id }) => {
     try {
       const { data } = await axios.post(
         `${API_URL}/users/active`,
         { token },
         config
       );
+      console.log(data, session_id);
+      if (data.url && !session_id) {
+        return (window.location.href = data.url);
+      }
       localStorage.setItem('beweddy_token', JSON.stringify(data));
       successAlert(data.message);
       errorAlert(data.error);

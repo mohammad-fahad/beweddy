@@ -37,28 +37,28 @@ const userSchema = new mongoose.Schema(
     questions: {
       firstName: {
         type: String,
-        required: true,
+        // required: true,
         trim: true,
         min: 2,
         max: 20,
       },
       lastName: {
         type: String,
-        required: true,
+        // required: true,
         trim: true,
         min: 2,
         max: 20,
       },
       spouseFirstName: {
         type: String,
-        required: true,
+        // required: true,
         trim: true,
         min: 2,
         max: 20,
       },
       spouseLastName: {
         type: String,
-        required: true,
+        // required: true,
         trim: true,
         min: 2,
         max: 20,

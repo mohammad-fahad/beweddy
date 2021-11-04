@@ -17,8 +17,8 @@ export const getCustomerById = async id => {
   return await stripe.customers.retrieve(id);
 };
 
-export const createSubscription = async (customer, price) => {
-  const session = await Stripe.checkout.sessions.create({
+export const createSubscription = async (customer, price, success_url) => {
+  const session = await stripe.checkout.sessions.create({
     mode: 'subscription',
     payment_method_types: ['card'],
     customer,
@@ -32,18 +32,33 @@ export const createSubscription = async (customer, price) => {
       trial_period_days: 30,
     },
 
-    // success_url: `http://localhost:4242/success?session_id={CHECKOUT_SESSION_ID}`,
-    // cancel_url: `http://localhost:4242/failed`,
+    success_url: `${success_url}/?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `http://localhost:4242/failed`,
   });
 
   return session;
 };
 
+/**
+ * @param  {} rawBody - req.body
+ * @param  {} sig - req.header
+ */
 export const createStripeWebhook = (rawBody, sig) => {
   const event = stripe.webhooks.constructEvent(
     rawBody,
     sig,
     process.env.STRIPE_WEBHOOK_SECRET
   );
+
   return event;
+};
+
+/**
+ * @param  {} customer - Stripe Customer (billingID)
+ */
+export const createBillingSession = async customer => {
+  return await stripe.billingPortal.sessions.create({
+    customer,
+    return_url: process.env.CLIENT_URL,
+  });
 };

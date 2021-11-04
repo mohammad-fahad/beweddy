@@ -4,29 +4,74 @@ import Venue from '../models/Venue.js';
 
 // Create New Registry
 export const stripeWebhook = asyncHandler(async (req, res) => {
-  const event = createStripeWebhook(req.body, req.headers('Stripe-Signature'));
+  const event = await createStripeWebhook(
+    req.body,
+    req.header('Stripe-Signature')
+  );
 
+  console.log(req.body);
+
+  console.log('from controlelr', event);
   if (!event) {
     res.status(400);
     throw new Error('Something went wrong');
   }
 
   const data = event.data.object;
+  const venue = await Venue.findOne({ billingID: data.customer });
+  const isOnTrial = data.status === 'trialing';
 
   switch (event.type) {
-    case 'customer.subscription.created': {
-      const venue = await Venue.findOne({ billingID: data.customer });
-
+    case 'customer.subscription.created':
       if (data.plan.id === process.env.PREMIUM_PLAN_ID) {
-        user.plan = 'basic';
+        venue.plan = 'premium';
       }
 
-      user.hasTrial = true;
-      user.endDate = new Date(data.current_period_end * 1000);
-      await user.save();
+      if (isOnTrial) {
+        venue.plan = 'trial';
+        venue.hasTrial = true;
+        venue.endDate = new Date(data.current_period_end * 1000);
+      } else if (data.status === 'active') {
+        venue.hasTrial = false;
+        venue.endDate = new Date(data.current_period_end * 1000);
+      }
+
+      if (data.canceled_at) {
+        // cancelled
+        venue.plan = 'none';
+        venue.hasTrial = false;
+        venue.endDate = null;
+      }
+
+      await venue.save();
 
       break;
-    }
+
+    case 'customer.subscription.updated':
+      if (data.plan.id === process.env.PREMIUM_PLAN_ID) {
+        venue.plan = 'premium';
+      }
+
+      if (isOnTrial) {
+        venue.plan = 'trial';
+        venue.hasTrial = true;
+        venue.endDate = new Date(data.current_period_end * 1000);
+      } else if (data.status === 'active') {
+        venue.hasTrial = false;
+        venue.endDate = new Date(data.current_period_end * 1000);
+      }
+
+      if (data.canceled_at) {
+        // cancelled
+        venue.plan = 'none';
+        venue.hasTrial = false;
+        venue.endDate = null;
+      }
+
+      await venue.save();
+      break;
     default:
   }
+
+  res.status(200);
 });
