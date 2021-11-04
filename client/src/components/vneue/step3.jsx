@@ -13,6 +13,7 @@ import { attemptImageUpload, removeImage } from "@utils/index";
 import { motion } from "framer-motion";
 import { isEmpty } from "lodash";
 import axios from "axios";
+import { addBusinessAnnouncement } from "@features/question/venueSlice";
 
 const easing = [0.6, -0.05, 0.01, 0.99];
 const fadeInUp = {
@@ -64,32 +65,33 @@ const UploadAnnouncement = () => {
   });
 
   watch(["do_this_later"]);
-  const doThisLater = getValues("do_this_later");
+  // const doThisLater = getValues("do_this_later");
 
   // React hook form register uploadAnnouncement
-  useEffect(() => {
-    register("uploadAnnouncement", {
-      required: {
-        value: !doThisLater,
-        message: "Please upload file or check do this later",
-      },
-    });
-  }, [register, doThisLater]);
+  // useEffect(() => {
+  //   register("uploadAnnouncement", {
+  //     required: {
+  //       value: !doThisLater,
+  //       message: "Please upload file or check do this later",
+  //     },
+  //   });
+  // }, [register, doThisLater]);
 
   useEffect(() => {
     setValue("uploadAnnouncement", uploadedFile);
   }, [uploadedFile]);
 
-  useEffect(() => {
-    if (doThisLater) {
-      setUploadedFile({});
-      clearErrors("uploadAnnouncement");
-    }
-  }, [doThisLater]);
+  // useEffect(() => {
+  //   if (doThisLater) {
+  //     setUploadedFile({});
+  //     clearErrors("uploadAnnouncement");
+  //   }
+  // }, [doThisLater]);
 
   const onSubmit = (data) => {
-    console.log("logo", data);
-    // push({ query: { step: 4 } });
+    // console.log("logo", data);
+    dispatch(addBusinessAnnouncement(data));
+    push({ query: { step: 4 } });
   };
 
   const onDrop = useCallback((acceptedFiles) => {

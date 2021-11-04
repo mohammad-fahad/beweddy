@@ -26,7 +26,7 @@ const stagger = {
   },
 };
 
-const ExampleWebsite = ({ label, href, seo }) => {
+const ExampleWebsite = ({ label, href, seo, title, btn }) => {
   return (
     <>
       <Head>
@@ -49,7 +49,7 @@ const ExampleWebsite = ({ label, href, seo }) => {
             <motion.div variants={fadeInUp}>
               <h2 className=" pb-8 mx-auto text-[36px] text-center capitalize commonTitle1">
                 {/* Link & Sync Your Gift Registries <br /> All In One Place! */}
-                Wedding Website Preview
+                {title}
               </h2>
               <div className="w-48 mx-auto h-[2px] md:h-[4px] mb-16 bg-primary mt-6" />
             </motion.div>
@@ -85,7 +85,7 @@ const ExampleWebsite = ({ label, href, seo }) => {
               <LinkButton
                 className="!px-10 !md:px-15 !rounded-[10px] "
                 {...{ href }}
-                label="Create Your Website Now"
+                label={btn}
               />
             </div>
           </motion.div>
