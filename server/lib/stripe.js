@@ -28,10 +28,11 @@ export const createSubscription = async (customer, price, success_url) => {
         quantity: 1,
       },
     ],
-    subscription_data: {
-      trial_period_days: 30,
-    },
-
+    allow_promotion_codes: true,
+    // discounts: [{ coupon: process.env.COUPON }],
+    // subscription_data: {
+    //   trial_period_days: 30,
+    // },
     success_url: `${success_url}/?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `http://localhost:4242/failed`,
   });
