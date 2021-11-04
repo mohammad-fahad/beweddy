@@ -1,16 +1,16 @@
-import { Heading, Loader } from '@components/index';
-import Head from 'next/head';
-import Link from 'next/link';
-import { useForm } from 'react-hook-form';
-import { motion } from 'framer-motion';
-import { useDispatch, useSelector } from 'react-redux';
+import { Heading, Loader } from "@components/index";
+import Head from "next/head";
+import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
 import {
   attemptGoogleAuth as attemptGoogleSignUp,
   attemptGoogleSignIn,
   attemptLogin,
-} from '@features/user/userActions';
-import { withAuthRedirect } from '@hoc/withAuthRedirect';
-import { useGoogleLogin } from 'react-google-login';
+} from "@features/user/userActions";
+import { withAuthRedirect } from "@hoc/withAuthRedirect";
+import { useGoogleLogin } from "react-google-login";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const LoginPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: 'all' });
+  } = useForm({ mode: "all" });
 
   const onSubmit = (data) => {
     if (data) {
@@ -38,7 +38,7 @@ const LoginPage = () => {
     clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
     onSuccess,
     onFailure,
-    accessType: 'offline',
+    accessType: "offline",
   });
 
   return (
@@ -76,7 +76,7 @@ const LoginPage = () => {
                 label="Welcome Back!"
                 color="bg-[#F9D1DE]"
                 className="!pb-5"
-                lineStyle={{ marginBottom: '30px' }}
+                lineStyle={{ marginBottom: "30px" }}
               />
               <div className="flex flex-col items-center justify-center space-y-6">
                 <button
@@ -92,15 +92,15 @@ const LoginPage = () => {
                     type="email"
                     className="w-full text-sm md:text-lg font-normal py-2 md:py-3 px-4 md:px-6 placeholder-gray-400 border-[3px] border-primary rounded-lg"
                     placeholder="Your Email"
-                    {...register('email', {
+                    {...register("email", {
                       required: {
                         value: true,
-                        message: 'Email is required!',
+                        message: "Email is required!",
                       },
                       pattern: {
                         value:
                           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                        message: 'Must be a valid email address',
+                        message: "Must be a valid email address",
                       },
                     })}
                   />
@@ -115,14 +115,14 @@ const LoginPage = () => {
                     type="password"
                     className="w-full text-sm md:text-lg font-normal py-2 md:py-3 px-4 md:px-6 placeholder-gray-400 border-[3px] border-primary rounded-lg"
                     placeholder="Password"
-                    {...register('password', {
+                    {...register("password", {
                       required: {
                         value: true,
-                        message: 'Password is required!',
+                        message: "Password is required!",
                       },
                       minLength: {
                         value: 6,
-                        message: 'Password must be at least 6 characters',
+                        message: "Password must be at least 6 characters",
                       },
                     })}
                   />
@@ -162,7 +162,7 @@ const LoginPage = () => {
                   </Link>
                   <p className="text-sm font-semibold text-center md:text-lg">
                     Don't have an account?&nbsp;
-                    <Link href="/create-website">
+                    <Link href="/register">
                       <a className="font-semibold font-inter hover:underline">
                         Signup here
                       </a>

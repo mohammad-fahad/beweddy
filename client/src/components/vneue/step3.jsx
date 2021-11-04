@@ -1,18 +1,19 @@
-import { CreateWebsiteContainer } from "@components/createWebsite";
-import { Button, CropImage, Heading, Loader } from "@components/index";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
-import { useDropzone } from "react-dropzone";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { Image } from "cloudinary-react";
-import { addWeddingAnnouncement } from "@features/question/questionSlice";
-import { XIcon } from "@heroicons/react/solid";
-import { attemptImageUpload, removeImage } from "@utils/index";
-import { motion } from "framer-motion";
-import { isEmpty } from "lodash";
-import axios from "axios";
+import { CreateWebsiteContainer } from '@components/createWebsite';
+import { Button, CropImage, Heading, Loader } from '@components/index';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useCallback, useEffect, useState } from 'react';
+import { useDropzone } from 'react-dropzone';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { Image } from 'cloudinary-react';
+import { addWeddingAnnouncement } from '@features/question/questionSlice';
+import { XIcon } from '@heroicons/react/solid';
+import { attemptImageUpload, removeImage } from '@utils/index';
+import { motion } from 'framer-motion';
+import { isEmpty } from 'lodash';
+import axios from 'axios';
+import { addBusinessAnnouncement } from '@features/question/venueSlice';
 
 const easing = [0.6, -0.05, 0.01, 0.99];
 const fadeInUp = {
@@ -38,7 +39,7 @@ const stagger = {
   },
 };
 
-const UploadAnnouncement = () => {
+const BusinessLogo = () => {
   const dispatch = useDispatch();
   const { push } = useRouter();
   const [loading, setLoading] = useState(false);
@@ -46,10 +47,8 @@ const UploadAnnouncement = () => {
   const [preview, setPreview] = useState();
   const [selectedImageFile, setSelectedImageFile] = useState();
 
-  const { questions } = useSelector((state) => state.question);
-  const [uploadedFile, setUploadedFile] = useState(
-    questions.weddingAnnouncement?.uploadAnnouncement
-  );
+  const { questions } = useSelector(state => state.venue);
+  const [uploadedFile, setUploadedFile] = useState(questions?.logo);
 
   const {
     watch,
@@ -60,41 +59,42 @@ const UploadAnnouncement = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    mode: "all",
+    mode: 'all',
   });
 
-  watch(["do_this_later"]);
-  const doThisLater = getValues("do_this_later");
+  watch(['do_this_later']);
+  // const doThisLater = getValues("do_this_later");
 
-  // React hook form register uploadAnnouncement
-  useEffect(() => {
-    register("uploadAnnouncement", {
-      required: {
-        value: !doThisLater,
-        message: "Please upload file or check do this later",
-      },
-    });
-  }, [register, doThisLater]);
+  // React hook form register logo
+  // useEffect(() => {
+  //   register("logo", {
+  //     required: {
+  //       value: !doThisLater,
+  //       message: "Please upload file or check do this later",
+  //     },
+  //   });
+  // }, [register, doThisLater]);
 
   useEffect(() => {
-    setValue("uploadAnnouncement", uploadedFile);
+    setValue('logo', uploadedFile);
   }, [uploadedFile]);
 
-  useEffect(() => {
-    if (doThisLater) {
-      setUploadedFile({});
-      clearErrors("uploadAnnouncement");
-    }
-  }, [doThisLater]);
+  // useEffect(() => {
+  //   if (doThisLater) {
+  //     setUploadedFile({});
+  //     clearErrors("logo");
+  //   }
+  // }, [doThisLater]);
 
-  const onSubmit = (data) => {
-    console.log("logo", data);
-    // push({ query: { step: 4 } });
+  const onSubmit = data => {
+    // console.log("logo", data);
+    dispatch(addBusinessAnnouncement(data.logo));
+    push({ query: { step: 4 } });
   };
 
-  const onDrop = useCallback((acceptedFiles) => {
+  const onDrop = useCallback(acceptedFiles => {
     const fileDropped = acceptedFiles[0];
-    if (fileDropped["type"].split("/")[0] === "image") {
+    if (fileDropped['type'].split('/')[0] === 'image') {
       setSelectedImageFile(fileDropped);
       return;
     }
@@ -105,7 +105,7 @@ const UploadAnnouncement = () => {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: "image/*",
+    accept: 'image/*',
     multiple: false,
   });
 
@@ -116,17 +116,17 @@ const UploadAnnouncement = () => {
     const URL = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`;
     try {
       const formData = new FormData();
-      formData.append("file", file);
-      formData.append("upload_preset", "beweddy_csfhgnsu");
+      formData.append('file', file);
+      formData.append('upload_preset', 'beweddy_csfhgnsu');
       const config = {
         headers: {
-          "Content-Type": "multipart/form-data",
+          'Content-Type': 'multipart/form-data',
         },
       };
       const { data } = await axios.post(URL, formData, config);
       const { public_id, height, width, secure_url, url } = data;
       setLoading(false);
-      setValue("uploadAnnouncement", {
+      setValue('logo', {
         public_id,
         height,
         width,
@@ -145,7 +145,7 @@ const UploadAnnouncement = () => {
       setLoading(true);
       await removeImage(uploadedFile.public_id);
       setUploadedFile({});
-      setValue("uploadAnnouncement", {});
+      setValue('logo', {});
       setLoading(false);
     } catch (err) {
       setLoading(false);
@@ -155,8 +155,8 @@ const UploadAnnouncement = () => {
 
   return (
     <CreateWebsiteContainer
-      page="3"
-      seo={{ title: "Upload Your Company Logo" }}
+      page='3'
+      seo={{ title: 'Upload Your Company Logo' }}
     >
       {loading && <Loader />}
       <motion.form
@@ -170,70 +170,70 @@ const UploadAnnouncement = () => {
           animate={{ opacity: 1, scale: 1 }}
         >
           <Heading
-            label="Upload Your Company Logo"
-            color="bg-primary"
-            className="!text-[36px] commonTitle"
-            lineStyle={{ marginBottom: "37px" }}
+            label='Upload Your Company Logo'
+            color='bg-primary'
+            className='!text-[36px] commonTitle'
+            lineStyle={{ marginBottom: '37px' }}
           />
         </motion.div>
         <motion.div
-          className="flex flex-col items-center justify-center w-full gap-5 mb-8 md:gap-8 md:mb-10"
+          className='flex flex-col items-center justify-center w-full gap-5 mb-8 md:gap-8 md:mb-10'
           variants={fadeInUp}
         >
           {!isEmpty(uploadedFile) && (
-            <div className="max-w-[200px] md:max-w-[190px] w-full mx-auto">
-              <div className="group border-[3px] border-primary rounded-[5px] overflow-hidden relative">
+            <div className='max-w-[200px] md:max-w-[190px] w-full mx-auto'>
+              <div className='group border-[3px] border-primary rounded-[5px] overflow-hidden relative'>
                 <button
-                  type="button"
-                  className="absolute z-50 hidden p-1 text-red-400 bg-white border rounded-full group-hover:inline-block right-1 top-1 border-primary"
+                  type='button'
+                  className='absolute z-50 hidden p-1 text-red-400 bg-white border rounded-full group-hover:inline-block right-1 top-1 border-primary'
                   onClick={handleRemoveImage}
                 >
-                  <XIcon className="w-5 h-5" />
+                  <XIcon className='w-5 h-5' />
                 </button>
                 <div>
                   <Image
                     cloudName={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}
                     publicId={uploadedFile.public_id}
                     src={!uploadedFile.public_id ? uploadedFile.url : null}
-                    width="200"
-                    crop="scale"
-                    className="object-cover w-full"
+                    width='200'
+                    crop='scale'
+                    className='object-cover w-full'
                   />
                 </div>
               </div>
             </div>
           )}
           <motion.div
-            className="relative focus:outline-none"
+            className='relative focus:outline-none'
             variants={fadeInUp}
             {...getRootProps()}
           >
             <input {...getInputProps()} />
 
             <label
-              htmlFor="uploadAnnouncement"
-              className="w-56 bg-white cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-2 md:py-3 px-4 placeholder-primary border-[3px] border-primary rounded-[5px]"
+              htmlFor='logo'
+              className='w-56 bg-white cursor-pointer inline-block text-center text-sm md:text-base font-medium md:font-semibold py-2 md:py-3 px-4 placeholder-primary border-[3px] border-primary rounded-[5px]'
             >
               Upload
             </label>
-            <p className="mt-2 text-sm font-light text-center text-red-400">
-              {errors?.uploadAnnouncement?.message}
+            <p className='mt-2 text-sm font-light text-center text-red-400'>
+              {errors?.logo?.message}
             </p>
           </motion.div>
         </motion.div>
         <motion.div
-          className="flex flex-wrap items-center gap-5 my-1 text-center md:my-5 sm:flex-nowrap"
+          className='flex flex-wrap items-center gap-5 my-1 text-center md:my-5 sm:flex-nowrap'
           variants={fadeInUp}
         >
           <Button
-            label="Back"
-            className="opacity-50 !bg-[#bebebe] !rounded-[10px] w-[178px] h-[59px]"
+            label='Back'
+            className='opacity-50 !bg-[#bebebe] !rounded-[10px] w-[178px] h-[59px]'
             onClick={() => push({ query: { step: 2 } })}
           />
           <Button
-            label="Next"
-            type="submit"
-            className="!rounded-[10px] w-[178px] h-[59px]"
+            label='Next'
+            type='submit'
+            className='!rounded-[10px] w-[178px] h-[59px]'
           />
         </motion.div>
       </motion.form>
@@ -246,4 +246,4 @@ const UploadAnnouncement = () => {
   );
 };
 
-export default UploadAnnouncement;
+export default BusinessLogo;
