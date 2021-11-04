@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt';
-import { nanoid } from 'nanoid';
 import mongoose from 'mongoose';
 
 //creating user schema for user admin
@@ -7,14 +6,14 @@ const userSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
-      required: true,
+      // required: true,
       trim: true,
       min: 2,
       max: 20,
     },
     lastName: {
       type: String,
-      required: true,
+      // required: true,
       trim: true,
       min: 2,
       max: 20,
@@ -98,21 +97,6 @@ const userSchema = new mongoose.Schema(
       type: String,
     },
     receptionDetails: [],
-    // type: Array,
-    // default: [
-    //   {
-    //     time: '5.00 PM',
-    //     details: 'Example of event details',
-    //   },
-    //   {
-    //     time: '5.30 PM',
-    //     details: 'Ceremony',
-    //   },
-    //   {
-    //     time: '6.00 PM',
-    //     details: 'Ceremony ends/cocktails begin',
-    //   },
-    // ],
     giftCards: [
       {
         type: mongoose.Schema.Types.ObjectId,
