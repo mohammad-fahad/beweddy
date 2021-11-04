@@ -71,7 +71,6 @@ export const register = asyncHandler(async (req, res) => {
       const customer = await addNewCustomer({ email });
       await Venue.create({
         user: user._id,
-        logo: questions.businessAnnouncement,
         billingID: customer.id,
         ...questions,
       });
@@ -109,7 +108,7 @@ export const register = asyncHandler(async (req, res) => {
 // Active User
 
 export const googleSignUp = asyncHandler(async (req, res) => {
-  const { idToken, questions } = req.body;
+  const { idToken, questions, role } = req.body;
 
   // Push all GiftCards & Registries to user
 
@@ -155,6 +154,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       username,
       questions,
       giftCards,
+      role,
       // registries: registryCards,
     });
     const newGuest = {
@@ -186,7 +186,30 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       },
     };
 
+    const URL = `${process.env.CLIENT_URL}/login`;
+
     if (userCreated) {
+      if (role === 'venue') {
+        const customer = await addNewCustomer({ email });
+        const venue = await Venue.create({
+          user: userCreated._id,
+          billingID: customer.id,
+          ...questions,
+        });
+
+        if (venue.plan === 'none') {
+          const session = await createSubscription(
+            venue.billingID,
+            process.env.PREMIUM_PLAN_ID,
+            URL
+          );
+
+          if (session) {
+            return res.status(200).json({ url: session.url });
+          }
+        }
+      }
+
       defaultTodos.forEach(async todo => {
         await Todo.create({
           user: userCreated._id,
@@ -337,6 +360,7 @@ export const activeUser = asyncHandler(async (req, res) => {
       return res.status(200).json({ url: session.url });
     }
   }
+
   if (!userExists) {
     res.status(404);
     throw new Error('User not found');

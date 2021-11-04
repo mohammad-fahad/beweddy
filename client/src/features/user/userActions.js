@@ -18,7 +18,7 @@ export const attemptActivation = createAsyncThunk(
         { token },
         config
       );
-      console.log(data, session_id);
+
       if (data.url && !session_id) {
         return (window.location.href = data.url);
       }
@@ -88,6 +88,9 @@ export const attemptGoogleSignUp = createAsyncThunk(
         config
       );
 
+      if (data.url) {
+        return (window.location.href = data.url);
+      }
       successAlert(data.message);
       errorAlert(data.error);
       return data;

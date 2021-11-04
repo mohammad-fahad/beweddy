@@ -29,7 +29,7 @@ const Step5 = () => {
         attemptSignup({
           ...data,
           questions,
-          role: window.localStorage.getItem('beweddy_user_role'),
+          role: 'venue',
         })
       );
     }
@@ -47,7 +47,7 @@ const Step5 = () => {
       attemptGoogleSignUp({
         idToken: res.tokenId,
         questions,
-        role: window.localStorage.getItem('beweddy_user_role'),
+        role: 'venue',
       })
     );
   };
