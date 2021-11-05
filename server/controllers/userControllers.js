@@ -18,6 +18,8 @@ import PrivetRegistry from '../models/PrivetRegistry.js';
 import Registry from '../models/Registry.js';
 import Guest from '../models/Guest.js';
 import Gift from '../models/Gift.js';
+import Venue from '../models/Venue.js';
+import { addNewCustomer, createSubscription } from '../lib/stripe.js';
 
 // Register New User
 
@@ -37,7 +39,8 @@ const defaultTodos = [
 ];
 
 export const register = asyncHandler(async (req, res) => {
-  const { email, password, questions, role } = req.body;
+  const { email, password, questions, role, logo, businessName, websiteLink } =
+    req.body;
   const { firstName, lastName } = questions;
 
   const userExists = await User.findOne({ email });
@@ -46,8 +49,9 @@ export const register = asyncHandler(async (req, res) => {
     throw new Error('User already exists');
   }
 
-  const username = `${questions.firstName}_${questions.spouseFirstName
-    }_${nanoid(4)}`
+  const username = `${questions.firstName}_${
+    questions.spouseFirstName
+  }_${nanoid(4)}`
     .toLowerCase()
     .replace(/\s/g, '');
   // Create new user
@@ -57,12 +61,20 @@ export const register = asyncHandler(async (req, res) => {
     email,
     // phone,
     password,
-    questions,
+    questions: role === 'venue' ? null : questions,
     username,
     role,
   });
 
   if (user) {
+    if (role === 'venue') {
+      const customer = await addNewCustomer({ email });
+      await Venue.create({
+        user: user._id,
+        billingID: customer.id,
+        ...questions,
+      });
+    }
     defaultTodos.forEach(async todo => {
       await Todo.create({
         user: user._id,
@@ -96,7 +108,7 @@ export const register = asyncHandler(async (req, res) => {
 // Active User
 
 export const googleSignUp = asyncHandler(async (req, res) => {
-  const { idToken, questions } = req.body;
+  const { idToken, questions, role } = req.body;
 
   // Push all GiftCards & Registries to user
 
@@ -126,8 +138,9 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       res.status(400);
       throw new Error('User already exists');
     }
-    const username = `${questions.firstName}_${questions.spouseFirstName
-      }_${nanoid(4)}`
+    const username = `${questions.firstName}_${
+      questions.spouseFirstName
+    }_${nanoid(4)}`
       .toLowerCase()
       .replace(/\s/g, '');
     // If not user exists then create new user
@@ -141,6 +154,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       username,
       questions,
       giftCards,
+      role,
       // registries: registryCards,
     });
     const newGuest = {
@@ -151,11 +165,11 @@ export const googleSignUp = asyncHandler(async (req, res) => {
         street: 'Laudantium veniam ',
         zip: '21268',
       },
-      callingCode: "1",
-      email: "example@example.com",
-      guestEstimate: "10",
-      id: "61462f3aef64f800048ebd65",
-      name: "Example",
+      callingCode: '1',
+      email: 'example@example.com',
+      guestEstimate: '10',
+      id: '61462f3aef64f800048ebd65',
+      name: 'Example',
       phone: {
         number: '348450345',
         provider: {
@@ -172,7 +186,30 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       },
     };
 
+    const URL = `${process.env.CLIENT_URL}/login`;
+
     if (userCreated) {
+      if (role === 'venue') {
+        const customer = await addNewCustomer({ email });
+        const venue = await Venue.create({
+          user: userCreated._id,
+          billingID: customer.id,
+          ...questions,
+        });
+
+        if (venue.plan === 'none') {
+          const session = await createSubscription(
+            venue.billingID,
+            process.env.PREMIUM_PLAN_ID,
+            URL
+          );
+
+          if (session) {
+            return res.status(200).json({ url: session.url });
+          }
+        }
+      }
+
       defaultTodos.forEach(async todo => {
         await Todo.create({
           user: userCreated._id,
@@ -287,7 +324,7 @@ export const googleSignIn = asyncHandler(async (req, res) => {
 
 export const activeUser = asyncHandler(async (req, res) => {
   const { token } = req.body;
-
+  const URL = `${process.env.CLIENT_URL}/activation/${token}`;
   // Push all GiftCards & Registries to user
 
   const gifts = await Gift.find({}).select('_id');
@@ -310,6 +347,20 @@ export const activeUser = asyncHandler(async (req, res) => {
 
   // Check if user exists
   const userExists = await User.findById(id);
+  const venue = await Venue.findOne({ user: id });
+
+  if (venue.plan === 'none') {
+    const session = await createSubscription(
+      venue.billingID,
+      process.env.PREMIUM_PLAN_ID,
+      URL
+    );
+
+    if (session) {
+      return res.status(200).json({ url: session.url });
+    }
+  }
+
   if (!userExists) {
     res.status(404);
     throw new Error('User not found');
@@ -335,11 +386,11 @@ export const activeUser = asyncHandler(async (req, res) => {
       street: 'Laudantium veniam ',
       zip: '21268',
     },
-    callingCode: "1",
-    email: "musa@example.com",
-    guestEstimate: "10",
-    id: "61462f3aef64f800048ebd65",
-    name: "Example",
+    callingCode: '1',
+    email: 'musa@example.com',
+    guestEstimate: '10',
+    id: '61462f3aef64f800048ebd65',
+    name: 'Example',
     phone: {
       number: '348450345',
       provider: {
