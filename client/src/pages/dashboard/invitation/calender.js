@@ -116,10 +116,10 @@ const CalendarPage = () => {
   let DISCOVERY_DOCS = [
     "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
   ];
-  // let SCOPES =
-  //   "https://www.googleapis.com/auth/calendar.events";
   let SCOPES =
-    "https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar";
+    "https://www.googleapis.com/auth/calendar";
+  // let SCOPES =
+  //   "https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar";
 
   const onSubmit = (data) => {
     // data.start = startUpdate;

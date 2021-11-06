@@ -1,13 +1,12 @@
 import { ExampleWebsite } from '@components/index';
 import { withAuthRedirect } from '@hoc/withAuthRedirect';
 
-import Step1 from '../../components/vneue/step1';
-import Step2 from '../../components/vneue/step2';
-import Step3 from '../../components/vneue/step3';
-import Step4 from '../../components/vneue/step4';
-import Step5 from '../../components/vneue/step5';
-
 import { useRouter } from 'next/router';
+import Step1 from '../vneue/step1';
+import Step2 from '../vneue/step2';
+import Step3 from '../vneue/step3';
+import Step4 from '../vneue/step4';
+import Step5 from '../vneue/step4';
 
 const CreateVenuePage = () => {
   const { query } = useRouter();
@@ -25,6 +24,7 @@ const CreateVenuePage = () => {
 
     case 4:
       return <Step4 />;
+
     case 5:
       return <Step5 />;
 
@@ -34,7 +34,10 @@ const CreateVenuePage = () => {
           seo={{ title: 'Create Your Venue' }}
           href='/venue?step=1'
           label='Next'
+          title='Wedding Venue Preview'
+          btn='Create Your Venue Now'
         />
+        // <h1>venue</h1>
       );
   }
 };

@@ -1,13 +1,18 @@
-import React, { useEffect } from "react";
-import CreateVenuePage from "../../components/question/vneue";
-import Website from "../../components/question/website";
+import React, { useEffect } from 'react';
+import CreateVenuePage from '../../components/question/Venue';
+import Website from '../../components/question/website';
 
 const index = () => {
   const [venue, setVenue] = React.useState(false);
 
   useEffect(() => {
-    setVenue(localStorage.getItem("rule") === "venue" ? true : false);
+    setVenue(
+      window.localStorage.getItem('beweddy_user_role') === 'venue'
+        ? true
+        : false
+    );
   }, []);
+
   return <div>{venue ? <CreateVenuePage /> : <Website />}</div>;
 };
 

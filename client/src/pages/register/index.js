@@ -12,9 +12,10 @@ const LoginStep = () => {
     formState: { errors },
   } = useForm({ mode: "all" });
   watch("accountType");
+
   const onSubmit = (data) => {
-    localStorage.setItem("rule", data.accountType);
-    push("/register");
+    window.localStorage.setItem("beweddy_user_role", data.accountType);
+    push("/create-website");
   };
 
   return (

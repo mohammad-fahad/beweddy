@@ -19,6 +19,7 @@ import invitationRoutes from './routes/invitationRoutes.js';
 import paymentRoutes from './routes/paymentRoutes.js';
 import contactRoutes from './routes/contactusRoutes.js';
 import tangoRoutes from './routes/tangoRoutes.js';
+import stripeRoutes from './routes/stripeRoutes.js';
 
 // Connect MongoDB
 connectDB();
@@ -45,7 +46,13 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'));
 }
 
-app.use(express.json());
+app.use((req, res, next) => {
+  if (req.originalUrl === '/api/v1/webhook') {
+    next();
+  } else {
+    express.json()(req, res, next);
+  }
+});
 app.use(
   fileUpload({
     useTempFiles: true,
@@ -76,6 +83,7 @@ app.use(`${API_VERSION}/invitation`, invitationRoutes);
 app.use(`${API_VERSION}/contact`, contactRoutes);
 app.use(`${API_VERSION}/create-checkout-session`, paymentRoutes);
 app.use(`${API_VERSION}/tango`, tangoRoutes);
+app.use(`${API_VERSION}/webhook`, stripeRoutes);
 // app.use('/', require('./routes/redirect'))
 // app.use('/api/url', require('./routes/url'))
 
