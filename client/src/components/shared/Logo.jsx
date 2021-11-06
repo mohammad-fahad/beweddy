@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 const Logo = () => {
   const { user } = useSelector(state => state.user);
-  if (user.venue) {
+  if (user?.venue) {
     return (
       <div>
         <img className='h-28' src={user.venue.logo.secure_url} alt='logo' />
