@@ -19,7 +19,7 @@ const LoginStep = () => {
 
   return (
     <CreateWebsiteContainer seo={{ title: "Couple Names" }}>
-      <div className="bg-[#ffffff] py-16 rounded border-2 border-current">
+      <div className="bg-[#ffffff] py-16 max-w-[700px] sm:w-[700px] w-full  rounded border-2 border-current">
         <form
           className={`flex flex-col items-center justify-center w-full -mt-9 sm:mt-0`}
           onSubmit={handleSubmit(onSubmit)}
@@ -37,7 +37,7 @@ const LoginStep = () => {
             animate={{ opacity: 1 }}
           >
             <div className="flex flex-wrap items-center justify-center gap-3 sm:flex-nowrap">
-              <div className="max-w-[700px] sm:w-[700px] w-full flex-col flex  items-center justify-center ">
+              <div className="flex flex-col items-center justify-center ">
                 <div className="mt-2">
                   <label className="inline-flex items-center">
                     <input
