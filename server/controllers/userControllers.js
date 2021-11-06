@@ -48,12 +48,12 @@ export const register = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('User already exists');
   }
+  const _name = questions.firstName
+    ? `${questions.firstName}_${questions.spouseFirstName}`
+    : questions.businessName;
 
-  const username = `${questions.firstName}_${
-    questions.spouseFirstName
-  }_${nanoid(4)}`
-    .toLowerCase()
-    .replace(/\s/g, '');
+  const username = `${_name}_${nanoid(4)}`.toLowerCase().replace(/\s/g, '');
+
   // Create new user
   const user = await User.create({
     firstName,
@@ -84,7 +84,11 @@ export const register = asyncHandler(async (req, res) => {
 
     const activationToken = generateActivationToken(user._id);
     const url = `${process.env.CLIENT_URL}/activation/${activationToken}`;
-    await sendActivationEmail(user.fullName, email, url);
+    await sendActivationEmail(
+      role === 'venue' ? null : user.fullName,
+      email,
+      url
+    );
 
     res
       .status(201)
@@ -138,11 +142,12 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       res.status(400);
       throw new Error('User already exists');
     }
-    const username = `${questions.firstName}_${
-      questions.spouseFirstName
-    }_${nanoid(4)}`
-      .toLowerCase()
-      .replace(/\s/g, '');
+
+    const _name = questions.firstName
+      ? `${questions.firstName}_${questions.spouseFirstName}`
+      : questions.businessName;
+
+    const username = `${_name}_${nanoid(4)}`.toLowerCase().replace(/\s/g, '');
     // If not user exists then create new user
     const userCreated = await User.create({
       firstName,
@@ -152,7 +157,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       avatar: picture,
       emailVerified: email_verified,
       username,
-      questions,
+      questions: role === 'venue' ? null : questions,
       giftCards,
       role,
       // registries: registryCards,
@@ -187,11 +192,11 @@ export const googleSignUp = asyncHandler(async (req, res) => {
     };
 
     const URL = `${process.env.CLIENT_URL}/login`;
-
+    let venue;
     if (userCreated) {
       if (role === 'venue') {
         const customer = await addNewCustomer({ email });
-        const venue = await Venue.create({
+        venue = await Venue.create({
           user: userCreated._id,
           billingID: customer.id,
           ...questions,
@@ -236,7 +241,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
           _id: user._id,
           firstName: user.firstName,
           lastName: user.lastName,
-          fullName: user.fullName,
+          fullName: venue ? venue.businessName : user.fullName,
           coupleName: user.coupleName,
           username: user.username,
           email: user.email,
@@ -253,6 +258,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
           weddingVideo: user.weddingVideo,
           isAdmin: user.isAdmin,
           role: user.role,
+          venue,
           token: generateIdToken(user._id),
         },
         message: `Welcome to Beweddy, ${user.fullName}`,
@@ -282,6 +288,7 @@ export const googleSignIn = asyncHandler(async (req, res) => {
       // .populate('registries')
       .populate('giftCards');
 
+    const venue = await Venue.findOne({ user: user._id });
     const privetRegistries = await PrivetRegistry.find({ user: user._id });
 
     if (!user) {
@@ -312,6 +319,7 @@ export const googleSignIn = asyncHandler(async (req, res) => {
         weddingVideo: user.weddingVideo,
         isAdmin: user.isAdmin,
         role: user.role,
+        venue,
         token: generateIdToken(user._id),
       },
       message: `Welcome back ${user.fullName}`,
@@ -442,6 +450,7 @@ export const activeUser = asyncHandler(async (req, res) => {
         weddingVideo: user.weddingVideo,
         isAdmin: user.isAdmin,
         role: user.role,
+        venue,
         token: generateIdToken(user._id),
       },
       message: `Your account has been successfully activated!`,
@@ -462,6 +471,8 @@ export const login = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error('Please sign up we did not recognize this email');
   }
+
+  const venue = await Venue.findOne({ user: user._id });
 
   if (!user.emailVerified) {
     const activationToken = generateActivationToken(user._id);
@@ -501,6 +512,7 @@ export const login = asyncHandler(async (req, res) => {
         weddingVideo: user.weddingVideo,
         isAdmin: user.isAdmin,
         role: user.role,
+        venue,
         token: generateIdToken(user._id),
       },
       message: `Welcome back ${user.fullName}`,
