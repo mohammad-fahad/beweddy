@@ -61,3 +61,25 @@ export const SecondReceptionDatePicker = forwardRef(
     </div>
   )
 );
+
+export const WeddingNameDatePicker = forwardRef(
+  ({ value, onClick, errors, border = "border-primary" }, ref) => (
+    <div>
+      <button
+        ref={ref}
+        type="button"
+        {...{ onClick }}
+        className={`flex items-center min-w-[256px] font-inter bg-white text-sm md:text-base font-medium md:font-semibold placeholder-primary  ${border} border-[#E7E7E7] border w-full py-2 px-2 rounded`}
+      >
+        <InputIcon />
+        <InputText {...{ value }} placeholder="Pick Your date" />
+      </button>
+
+      {errors?.WeddingDate?.message && (
+        <p className="h-4 mt-2 text-sm font-light text-center text-red-400">
+          {errors?.WeddingDate?.message}
+        </p>
+      )}
+    </div>
+  )
+);

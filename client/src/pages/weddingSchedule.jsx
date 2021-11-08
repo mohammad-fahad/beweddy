@@ -1,0 +1,587 @@
+import Head from "next/head";
+import SwiperCore, { Lazy, Autoplay } from "swiper";
+import { useForm } from "react-hook-form";
+import InputField from "@components/shared/InputField";
+import { useEffect, useState } from "react";
+import getYear from "date-fns/getYear";
+import getMonth from "date-fns/getYear";
+import DatePicker from "react-datepicker";
+import { WeddingNameDatePicker } from "@components/shared";
+import { isEmpty } from "lodash";
+import moment from "moment";
+import { compareDate } from "@helpers/index";
+
+import TimePicker from "react-times";
+import "react-times/css/material/default.css";
+import "react-times/css/classic/default.css";
+
+SwiperCore.use([Lazy, Autoplay]);
+const WeddingSchedule = (props) => {
+  // WeddingName Picker
+  const [selectWeddingDay, setSelectWeddingDay] = useState(new Date());
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    getValues,
+    watch,
+    clearErrors,
+    formState: { errors },
+  } = useForm({
+    mode: "all",
+    defaultValues: new Date(),
+    shouldFocusError: false,
+    shouldUnregister: true,
+  });
+
+  // Watch Input Fields
+  watch(["WeddingDate", "tba"]);
+  const WeddingDate = getValues("WeddingDate");
+  const tba = getValues("tba");
+
+  // setValue("WeddingName", selectWeddingDay);
+
+  const onSubmit = (data) => {
+    console.log(data);
+    //   if (!tba && !compareDate(data.WeddingName)) {
+    //     setError("WeddingName", {
+    //       type: "validate",
+    //       message: "Seems like you have selected past date",
+    //     });
+    //     return;
+    //   }
+    // let values;
+    // if (getValues("tba")) {
+    //   values = {
+    //     ...values,
+    //     tba: data.tba,
+    //   };
+    // } else {
+    //   values = { ...values, WeddingName: moment(data.WeddingName) };
+    // }
+    // if (!Object.keys(errors).length) {
+    //   console.log(values);
+    //   // dispatch(addWeddingDay(values));
+    //   // push({ query: { step: 3 } });
+    // }
+  };
+
+  useEffect(() => {
+    if (isEmpty(WeddingDate) || compareDate(WeddingDate)) {
+      clearErrors("WeddingDate");
+    } else {
+      setError("WeddingDate", {
+        type: "validate",
+        message: "Seems like you have selected past date",
+      });
+    }
+  }, [WeddingDate]);
+
+  useEffect(() => {
+    if (tba) {
+      setSelectWeddingDay(null);
+      clearErrors("WeddingDate");
+      setValue("WeddingDate", "");
+    }
+  }, [tba]);
+
+  const range = (start, end) => {
+    return new Array(end - start).fill().map((d, i) => i + start);
+  };
+  const years = range(1990, getYear(new Date()) + 5);
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  // timer
+  const onTimeChange = (options) => {
+    console.log(options);
+  };
+
+  const onFocusChange = (focusStatue) => {
+    console.log(focusStatue);
+  };
+  return (
+    <>
+      <Head>
+        <title>Beweddy Wedding schedule</title>
+      </Head>
+
+      <div className="container p-1 sm:p-10 ">
+        <div className="flex items-center justify-center">
+          <img src="/images/logo.png" alt="" className="w-[180px]" />
+        </div>
+        <div className="w-full mx-auto border-4 border-[#E5E5E5] rounded-lg mt-5 ">
+          <div className="w-full">
+            <div className="aspect-w-16 aspect-h-9">
+              <img src="/images/banner.png" alt="" className="w-full h-full" />
+            </div>
+          </div>
+
+          <div className="flex items-center justify-center py-2 md:py-5 bg-[#FFD6D8] ">
+            <p className="font-medium text-center text-[32px] !font-alice flex items-center subTitle">
+              <span>
+                <img src="/icons/todo.svg" alt="" className="mr-2" />
+              </span>
+              Wedding Schedule Sheet
+            </p>
+          </div>
+
+          <div className="container p-3 sm:p-16">
+            {/* form */}
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="grid w-full grid-cols-12 gap-2">
+                <div className="col-span-12 ">
+                  <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                    Wedding Name & Date :
+                  </p>
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <InputField
+                    label=""
+                    placeholder="Your Wedding Name"
+                    {...register("weddingName", { required: true })}
+                  />
+                  {errors.weddingName && <span>This field is required</span>}
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <div>
+                    <DatePicker
+                      renderCustomHeader={({
+                        date,
+                        changeYear,
+                        changeMonth,
+                        decreaseMonth,
+                        increaseMonth,
+                        prevMonthButtonDisabled,
+                        nextMonthButtonDisabled,
+                      }) => (
+                        <div
+                          style={{
+                            margin: 10,
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
+                        >
+                          <button
+                            onClick={decreaseMonth}
+                            disabled={prevMonthButtonDisabled}
+                          >
+                            {"<"}
+                          </button>
+                          <select
+                            value={getYear(date)}
+                            onChange={({ target: { value } }) =>
+                              changeYear(value)
+                            }
+                          >
+                            {years.map((option) => (
+                              <option key={option} value={option}>
+                                {option}
+                              </option>
+                            ))}
+                          </select>
+
+                          <select
+                            value={months[getMonth(date)]}
+                            onChange={({ target: { value } }) =>
+                              changeMonth(months.indexOf(value))
+                            }
+                          >
+                            {months.map((option) => (
+                              <option key={option} value={option}>
+                                {option}
+                              </option>
+                            ))}
+                          </select>
+
+                          <button
+                            onClick={increaseMonth}
+                            disabled={nextMonthButtonDisabled}
+                          >
+                            {">"}
+                          </button>
+                        </div>
+                      )}
+                      selected={selectWeddingDay}
+                      popperPlacement="top-end"
+                      onChange={(date) => {
+                        setSelectWeddingDay(date);
+                        setValue("WeddingDate", moment(date).format("LL"));
+
+                        if (tba) {
+                          setValue("tba", false);
+                        }
+                      }}
+                      customInput={<WeddingNameDatePicker {...{ errors }} />}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Brides Full Name & Number   */}
+
+              <div className="grid w-full grid-cols-12 gap-2">
+                <div className="col-span-12">
+                  <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                    Brides Full Name & Number
+                  </p>
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <InputField
+                    label=""
+                    placeholder="Your Brides Name"
+                    {...register("bridesName", { required: true })}
+                  />
+                  {errors.bridesName && <span>This field is required</span>}
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <InputField
+                    label=""
+                    placeholder="(671) 555-0110"
+                    {...register("bridesNumber", { required: true })}
+                  />
+                  {errors.bridesNumber && <span>This field is required</span>}
+                </div>
+              </div>
+              {/* Groom’s Full Name & Number */}
+              <div className="grid w-full grid-cols-12 gap-2">
+                <div className="col-span-12">
+                  <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                    Brides Full Name & Number
+                  </p>
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <InputField
+                    label=""
+                    placeholder="Your Brides Name"
+                    {...register("bridesName", { required: true })}
+                  />
+                  {errors.bridesName && <span>This field is required</span>}
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <InputField
+                    label=""
+                    placeholder="(671) 555-0110"
+                    {...register("bridesNumber", { required: true })}
+                  />
+                  {errors.bridesNumber && <span>This field is required</span>}
+                </div>
+              </div>
+              {/* Bride’s Parent’s Name & Number  */}
+              <div className="grid w-full grid-cols-12 gap-2">
+                <div className="col-span-12">
+                  <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                    Bride’s Parent’s Name & Number
+                  </p>
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <InputField
+                    label=""
+                    placeholder="Your Bride’s Parent’s Name"
+                    {...register("brideParentName", { required: true })}
+                  />
+                  {errors.brideParentName && (
+                    <span>This field is required</span>
+                  )}
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <InputField
+                    label=""
+                    placeholder="(671) 555-0110"
+                    {...register("brideParentNumber", { required: true })}
+                  />
+                  {errors.brideParentNumber && (
+                    <span>This field is required</span>
+                  )}
+                </div>
+              </div>
+              {/*Groom’s Parent’s Name & Number*/}
+              <div className="grid w-full grid-cols-12 gap-2">
+                <div className="col-span-12">
+                  <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                    Groom’s Parent’s Name & Number
+                  </p>
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <InputField
+                    label=""
+                    placeholder="Your Groom’s Parent’s Name"
+                    {...register("groomParentName", { required: true })}
+                  />
+                  {errors.groomParentName && (
+                    <span>This field is required</span>
+                  )}
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <InputField
+                    label=""
+                    placeholder="(671) 555-0110"
+                    {...register("groomParentNumber", { required: true })}
+                  />
+                  {errors.groomParentNumber && (
+                    <span>This field is required</span>
+                  )}
+                </div>
+              </div>
+              {/*Number To Contact On Day Of*/}
+              <div className="grid w-full grid-cols-12 gap-2">
+                <div className="col-span-12">
+                  <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                    Number To Contact On Day Of
+                  </p>
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <InputField
+                    label=""
+                    placeholder="123"
+                    {...register("numberToContact", { required: true })}
+                  />
+                  {errors.numberToContact && (
+                    <span>This field is required</span>
+                  )}
+                </div>
+              </div>
+              {/* Arrival/Set-Up Time === Cocktail Hour Time */}
+              <div className="grid w-full grid-cols-12 gap-2">
+                <div className="col-span-12 sm:col-span-6">
+                  <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                    Arrival/Set-Up Time
+                  </p>
+                  <div style={{ width: "60%" }} className="customFullWidth">
+                    <TimePicker
+                      showTimezone
+                      withoutIcon
+                      theme="material"
+                      timeMode="12"
+                      // timezone="America/New_York"
+                      onFocusChange={onFocusChange}
+                      onTimeChange={onTimeChange}
+                    />
+                  </div>
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                    Cocktail Hour Time
+                  </p>
+                  <div style={{ width: "60%" }} className="customFullWidth">
+                    <TimePicker
+                      onFocusChange={onFocusChange}
+                      onTimeChange={onTimeChange}
+                      value={new Date().getTime()}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Event Room === Luncheon / Dinner Time */}
+              <div className="grid w-full grid-cols-12 gap-2">
+                <div className="col-span-12 sm:col-span-6">
+                  <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                    Event Room
+                  </p>
+                  <div style={{ width: "60%" }} className="customFullWidth">
+                    <TimePicker
+                      showTimezone
+                      // time="13:05"
+                      theme="material"
+                      timeMode="12"
+                      timezone="America/New_York"
+                      onFocusChange={onFocusChange}
+                      onTimeChange={onTimeChange}
+                    />
+                  </div>
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                    Luncheon / Dinner Time
+                  </p>
+                  <div style={{ width: "60%" }} className="customFullWidth">
+                    <TimePicker
+                      onFocusChange={onFocusChange}
+                      onTimeChange={onTimeChange}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/*Package or Basic Rental === Luncheon / Dinner Time */}
+              <div className="grid w-full grid-cols-12 gap-2">
+                <div className="col-span-12 sm:col-span-6">
+                  <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                    Package or Basic Rental
+                  </p>
+                  <div style={{ width: "60%" }} className="customFullWidth">
+                    <TimePicker
+                      showTimezone
+                      // time="13:05"
+                      theme="material"
+                      timeMode="12"
+                      timezone="America/New_York"
+                      onFocusChange={onFocusChange}
+                      onTimeChange={onTimeChange}
+                    />
+                  </div>
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                    Reception Time
+                  </p>
+                  <div style={{ width: "60%" }} className="customFullWidth">
+                    <TimePicker
+                      onFocusChange={onFocusChange}
+                      onTimeChange={onTimeChange}
+                    />
+                  </div>
+                </div>
+              </div>
+              {/*Bridal Party Count === Cake Cutting Time */}
+              <div className="grid w-full grid-cols-12 gap-2">
+                <div className="col-span-12 sm:col-span-6">
+                  <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                    Bridal Party Count
+                  </p>
+                  <div style={{ width: "60%" }} className="customFullWidth">
+                    <TimePicker
+                      showTimezone
+                      // time="13:05"
+                      theme="material"
+                      timeMode="12"
+                      timezone="America/New_York"
+                      onFocusChange={onFocusChange}
+                      onTimeChange={onTimeChange}
+                    />
+                  </div>
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                    Cake Cutting Time
+                  </p>
+                  <div style={{ width: "60%" }} className="customFullWidth">
+                    <TimePicker
+                      onFocusChange={onFocusChange}
+                      onTimeChange={onTimeChange}
+                    />
+                  </div>
+                </div>
+              </div>
+              {/*Ceremony Time === First Dance Time  */}
+              <div className="grid w-full grid-cols-12 gap-2">
+                <div className="col-span-12 sm:col-span-6">
+                  <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                    Ceremony Time
+                  </p>
+                  <div style={{ width: "60%" }} className="customFullWidth">
+                    <TimePicker
+                      showTimezone
+                      // time="13:05"
+                      theme="material"
+                      timeMode="12"
+                      timezone="America/New_York"
+                      onFocusChange={onFocusChange}
+                      onTimeChange={onTimeChange}
+                    />
+                  </div>
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                    First Dance Time
+                  </p>
+                  <div style={{ width: "60%" }} className="customFullWidth">
+                    <TimePicker
+                      onFocusChange={onFocusChange}
+                      onTimeChange={onTimeChange}
+                    />
+                  </div>
+                </div>
+              </div>
+              {/* Ceremony Song(s) === Bouquet Toss Time  */}
+              <div className="grid w-full grid-cols-12 gap-2">
+                <div className="col-span-12 sm:col-span-6">
+                  <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                    Ceremony Song(s)
+                  </p>
+                  <div style={{ width: "60%" }} className="customFullWidth">
+                    <TimePicker
+                      showTimezone
+                      // time="13:05"
+                      theme="material"
+                      timeMode="12"
+                      timezone="America/New_York"
+                      onFocusChange={onFocusChange}
+                      onTimeChange={onTimeChange}
+                    />
+                  </div>
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                    Bouquet Toss Time
+                  </p>
+                  <div style={{ width: "60%" }} className="customFullWidth">
+                    <TimePicker
+                      onFocusChange={onFocusChange}
+                      onTimeChange={onTimeChange}
+                    />
+                  </div>
+                </div>
+              </div>
+              {/*Photo Time === Luncheon / Dinner Time */}
+              <div className="grid w-full grid-cols-12 gap-2">
+                <div className="col-span-12 sm:col-span-6">
+                  <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                    Photo Time
+                  </p>
+                  <div style={{ width: "60%" }} className="customFullWidth">
+                    <TimePicker
+                      showTimezone
+                      // time="13:05"
+                      theme="material"
+                      timeMode="12"
+                      timezone="America/New_York"
+                      onFocusChange={onFocusChange}
+                      onTimeChange={onTimeChange}
+                    />
+                  </div>
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                    Departure Time
+                  </p>
+                  <div style={{ width: "60%" }} className="customFullWidth">
+                    <TimePicker
+                      onFocusChange={onFocusChange}
+                      onTimeChange={onTimeChange}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <input
+                type="submit"
+                className="bg-[#FFF4F8] border-2 rounded w-[160px] h-[50px] cursor-pointer mt-8 "
+              />
+            </form>
+          </div>
+
+          <footer className="container mt-5">
+            <h3 className="text-[14px] font-inter text-center">
+              Powered by <span className="font-semibold">BeWeddy.com</span>
+            </h3>
+          </footer>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default WeddingSchedule;
