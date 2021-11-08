@@ -289,6 +289,9 @@
   .footerWrapper {
     flex-direction: column-reverse !important;
   }
+  .customFullWidth {
+    width: 100% !important;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -298,10 +301,6 @@
     left: 21px !important;
     top: 20px !important;
   }
-  /* .modalImage {
-    min-height: 400px !important;
-    height: 400px !important;
-  } */
 }
 
 @media screen and (max-width: 599px) {
@@ -471,6 +470,9 @@
   }
   .smallDeviceAdd {
     display: block !important;
+  }
+  .customFullWidth {
+    width: 100% !important;
   }
 }
 
