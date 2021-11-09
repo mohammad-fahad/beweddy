@@ -322,7 +322,7 @@ export const googleSignIn = asyncHandler(async (req, res) => {
         venue,
         token: generateIdToken(user._id),
       },
-      message: `Welcome back ${user.fullName}`,
+      message: `Welcome back ${venue ? venue.businessName : user.fullName}`,
     });
   } else {
     res.status(400);
