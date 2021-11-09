@@ -23,6 +23,12 @@ const venueSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    weddingSchedule: {
+      type: Object,
+    },
+    vendorSchedule: {
+      type: Object,
+    },
     billingID: String,
     plan: {
       type: String,
