@@ -1,9 +1,6 @@
 import Head from "next/head";
 import SwiperCore, { Lazy, Autoplay } from "swiper";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import TimePicker from "react-times";
-import "react-times/css/material/default.css";
-import "react-times/css/classic/default.css";
 import InputField from "@components/shared/InputField";
 import { useForm } from "react-hook-form";
 SwiperCore.use([Lazy, Autoplay]);
@@ -27,13 +24,7 @@ const VendorsSchedule = (props) => {
     console.log(data);
   };
   // timer
-  const onTimeChange = (options) => {
-    console.log(options);
-  };
 
-  const onFocusChange = (focusStatue) => {
-    console.log(focusStatue);
-  };
   return (
     <>
       <Head>

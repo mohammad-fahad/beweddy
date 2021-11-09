@@ -11,10 +11,6 @@ import { isEmpty } from "lodash";
 import moment from "moment";
 import { compareDate } from "@helpers/index";
 
-import TimePicker from "react-times";
-import "react-times/css/material/default.css";
-import "react-times/css/classic/default.css";
-
 SwiperCore.use([Lazy, Autoplay]);
 const WeddingSchedule = (props) => {
   // WeddingName Picker
@@ -39,31 +35,24 @@ const WeddingSchedule = (props) => {
   const WeddingDate = getValues("WeddingDate");
   const tba = getValues("tba");
 
-  // setValue("WeddingName", selectWeddingDay);
-
   const onSubmit = (data) => {
-    console.log(data);
-    //   if (!tba && !compareDate(data.WeddingName)) {
-    //     setError("WeddingName", {
-    //       type: "validate",
-    //       message: "Seems like you have selected past date",
-    //     });
-    //     return;
-    //   }
-    // let values;
-    // if (getValues("tba")) {
-    //   values = {
-    //     ...values,
-    //     tba: data.tba,
-    //   };
-    // } else {
-    //   values = { ...values, WeddingName: moment(data.WeddingName) };
-    // }
-    // if (!Object.keys(errors).length) {
-    //   console.log(values);
-    //   // dispatch(addWeddingDay(values));
-    //   // push({ query: { step: 3 } });
-    // }
+    console.log(
+      data,
+      arrivalTime,
+      eventRoom,
+      packageRental,
+      bridalParty,
+      ceremonyTime,
+      ceremonySong,
+      photoTime,
+      cocktailTime,
+      lucheonDinnerTime,
+      receptionTime,
+      cakeCuttingTime,
+      firstDanceTime,
+      bouquetTossTime,
+      departureTime
+    );
   };
 
   useEffect(() => {
@@ -103,14 +92,6 @@ const WeddingSchedule = (props) => {
     "November",
     "December",
   ];
-  // timer
-  const onTimeChange = (options) => {
-    console.log(options);
-  };
-
-  const onFocusChange = (focusStatue) => {
-    console.log(focusStatue);
-  };
   return (
     <>
       <Head>
@@ -152,7 +133,9 @@ const WeddingSchedule = (props) => {
                     placeholder="Your Wedding Name"
                     {...register("weddingName", { required: true })}
                   />
-                  {errors.weddingName && <span>This field is required</span>}
+                  {errors.weddingName && (
+                    <span className="text-red-500">This field is required</span>
+                  )}
                 </div>
                 <div className="col-span-12 sm:col-span-6">
                   <div>
@@ -243,7 +226,9 @@ const WeddingSchedule = (props) => {
                     placeholder="Your Brides Name"
                     {...register("bridesName", { required: true })}
                   />
-                  {errors.bridesName && <span>This field is required</span>}
+                  {errors.bridesName && (
+                    <span className="text-red-500">This field is required</span>
+                  )}
                 </div>
                 <div className="col-span-12 sm:col-span-6">
                   <InputField
@@ -251,31 +236,37 @@ const WeddingSchedule = (props) => {
                     placeholder="(671) 555-0110"
                     {...register("bridesNumber", { required: true })}
                   />
-                  {errors.bridesNumber && <span>This field is required</span>}
+                  {errors.bridesNumber && (
+                    <span className="text-red-500">This field is required</span>
+                  )}
                 </div>
               </div>
               {/* Groom’s Full Name & Number */}
               <div className="grid w-full grid-cols-12 gap-2">
                 <div className="col-span-12">
                   <p className="my-2 font-[14px] font-inter text-[#000000]  ">
-                    Brides Full Name & Number
+                    Groom’s Full Name & Number
                   </p>
                 </div>
                 <div className="col-span-12 sm:col-span-6">
                   <InputField
                     label=""
                     placeholder="Your Brides Name"
-                    {...register("bridesName", { required: true })}
+                    {...register("groomName", { required: true })}
                   />
-                  {errors.bridesName && <span>This field is required</span>}
+                  {errors.groomName && (
+                    <span className="text-red-500">This field is required</span>
+                  )}
                 </div>
                 <div className="col-span-12 sm:col-span-6">
                   <InputField
                     label=""
                     placeholder="(671) 555-0110"
-                    {...register("bridesNumber", { required: true })}
+                    {...register("groomNumber", { required: true })}
                   />
-                  {errors.bridesNumber && <span>This field is required</span>}
+                  {errors.groomNumber && (
+                    <span className="text-red-500">This field is required</span>
+                  )}
                 </div>
               </div>
               {/* Bride’s Parent’s Name & Number  */}
@@ -292,7 +283,7 @@ const WeddingSchedule = (props) => {
                     {...register("brideParentName", { required: true })}
                   />
                   {errors.brideParentName && (
-                    <span>This field is required</span>
+                    <span className="text-red-500">This field is required</span>
                   )}
                 </div>
                 <div className="col-span-12 sm:col-span-6">
@@ -302,7 +293,7 @@ const WeddingSchedule = (props) => {
                     {...register("brideParentNumber", { required: true })}
                   />
                   {errors.brideParentNumber && (
-                    <span>This field is required</span>
+                    <span className="text-red-500">This field is required</span>
                   )}
                 </div>
               </div>
@@ -320,7 +311,7 @@ const WeddingSchedule = (props) => {
                     {...register("groomParentName", { required: true })}
                   />
                   {errors.groomParentName && (
-                    <span>This field is required</span>
+                    <span className="text-red-500">This field is required</span>
                   )}
                 </div>
                 <div className="col-span-12 sm:col-span-6">
@@ -330,7 +321,7 @@ const WeddingSchedule = (props) => {
                     {...register("groomParentNumber", { required: true })}
                   />
                   {errors.groomParentNumber && (
-                    <span>This field is required</span>
+                    <span className="text-red-500">This field is required</span>
                   )}
                 </div>
               </div>
@@ -348,7 +339,7 @@ const WeddingSchedule = (props) => {
                     {...register("numberToContact", { required: true })}
                   />
                   {errors.numberToContact && (
-                    <span>This field is required</span>
+                    <span className="text-red-500">This field is required</span>
                   )}
                 </div>
               </div>
@@ -359,15 +350,16 @@ const WeddingSchedule = (props) => {
                     Arrival/Set-Up Time
                   </p>
                   <div style={{ width: "60%" }} className="customFullWidth">
-                    <TimePicker
-                      showTimezone
-                      withoutIcon
-                      theme="material"
-                      timeMode="12"
-                      // timezone="America/New_York"
-                      onFocusChange={onFocusChange}
-                      onTimeChange={onTimeChange}
+                    <InputField
+                      label=""
+                      placeholder="12:00 PM / Note"
+                      {...register("americaTime", { required: true })}
                     />
+                    {errors.americaTime && (
+                      <span className="text-red-500">
+                        This field is required
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="col-span-12 sm:col-span-6">
@@ -375,11 +367,16 @@ const WeddingSchedule = (props) => {
                     Cocktail Hour Time
                   </p>
                   <div style={{ width: "60%" }} className="customFullWidth">
-                    <TimePicker
-                      onFocusChange={onFocusChange}
-                      onTimeChange={onTimeChange}
-                      value={new Date().getTime()}
+                    <InputField
+                      label=""
+                      placeholder="12:00 PM / Note"
+                      {...register("cocktail", { required: true })}
                     />
+                    {errors.cocktail && (
+                      <span className="text-red-500">
+                        This field is required
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -391,15 +388,16 @@ const WeddingSchedule = (props) => {
                     Event Room
                   </p>
                   <div style={{ width: "60%" }} className="customFullWidth">
-                    <TimePicker
-                      showTimezone
-                      // time="13:05"
-                      theme="material"
-                      timeMode="12"
-                      timezone="America/New_York"
-                      onFocusChange={onFocusChange}
-                      onTimeChange={onTimeChange}
+                    <InputField
+                      label=""
+                      placeholder="12:00 PM / Note"
+                      {...register("eventRoom", { required: true })}
                     />
+                    {errors.eventRoom && (
+                      <span className="text-red-500">
+                        This field is required
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="col-span-12 sm:col-span-6">
@@ -407,10 +405,16 @@ const WeddingSchedule = (props) => {
                     Luncheon / Dinner Time
                   </p>
                   <div style={{ width: "60%" }} className="customFullWidth">
-                    <TimePicker
-                      onFocusChange={onFocusChange}
-                      onTimeChange={onTimeChange}
+                    <InputField
+                      label=""
+                      placeholder="12:00 PM / Note"
+                      {...register("luncheonTime", { required: true })}
                     />
+                    {errors.luncheonTime && (
+                      <span className="text-red-500">
+                        This field is required
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -422,15 +426,16 @@ const WeddingSchedule = (props) => {
                     Package or Basic Rental
                   </p>
                   <div style={{ width: "60%" }} className="customFullWidth">
-                    <TimePicker
-                      showTimezone
-                      // time="13:05"
-                      theme="material"
-                      timeMode="12"
-                      timezone="America/New_York"
-                      onFocusChange={onFocusChange}
-                      onTimeChange={onTimeChange}
+                    <InputField
+                      label=""
+                      placeholder="12:00 PM / Note"
+                      {...register("packageTental", { required: true })}
                     />
+                    {errors.packageTental && (
+                      <span className="text-red-500">
+                        This field is required
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="col-span-12 sm:col-span-6">
@@ -438,10 +443,16 @@ const WeddingSchedule = (props) => {
                     Reception Time
                   </p>
                   <div style={{ width: "60%" }} className="customFullWidth">
-                    <TimePicker
-                      onFocusChange={onFocusChange}
-                      onTimeChange={onTimeChange}
+                    <InputField
+                      label=""
+                      placeholder="12:00 PM / Note"
+                      {...register("receptionTime", { required: true })}
                     />
+                    {errors.receptionTime && (
+                      <span className="text-red-500">
+                        This field is required
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -452,15 +463,16 @@ const WeddingSchedule = (props) => {
                     Bridal Party Count
                   </p>
                   <div style={{ width: "60%" }} className="customFullWidth">
-                    <TimePicker
-                      showTimezone
-                      // time="13:05"
-                      theme="material"
-                      timeMode="12"
-                      timezone="America/New_York"
-                      onFocusChange={onFocusChange}
-                      onTimeChange={onTimeChange}
+                    <InputField
+                      label=""
+                      placeholder="12:00 PM / Note"
+                      {...register("bridalParty", { required: true })}
                     />
+                    {errors.bridalParty && (
+                      <span className="text-red-500">
+                        This field is required
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="col-span-12 sm:col-span-6">
@@ -468,10 +480,16 @@ const WeddingSchedule = (props) => {
                     Cake Cutting Time
                   </p>
                   <div style={{ width: "60%" }} className="customFullWidth">
-                    <TimePicker
-                      onFocusChange={onFocusChange}
-                      onTimeChange={onTimeChange}
+                    <InputField
+                      label=""
+                      placeholder="12:00 PM / Note"
+                      {...register("cakeCutting", { required: true })}
                     />
+                    {errors.cakeCutting && (
+                      <span className="text-red-500">
+                        This field is required
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -482,15 +500,16 @@ const WeddingSchedule = (props) => {
                     Ceremony Time
                   </p>
                   <div style={{ width: "60%" }} className="customFullWidth">
-                    <TimePicker
-                      showTimezone
-                      // time="13:05"
-                      theme="material"
-                      timeMode="12"
-                      timezone="America/New_York"
-                      onFocusChange={onFocusChange}
-                      onTimeChange={onTimeChange}
+                    <InputField
+                      label=""
+                      placeholder="12:00 PM / Note"
+                      {...register("ceremonyTime", { required: true })}
                     />
+                    {errors.ceremonyTime && (
+                      <span className="text-red-500">
+                        This field is required
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="col-span-12 sm:col-span-6">
@@ -498,10 +517,16 @@ const WeddingSchedule = (props) => {
                     First Dance Time
                   </p>
                   <div style={{ width: "60%" }} className="customFullWidth">
-                    <TimePicker
-                      onFocusChange={onFocusChange}
-                      onTimeChange={onTimeChange}
+                    <InputField
+                      label=""
+                      placeholder="12:00 PM / Note"
+                      {...register("firstDance", { required: true })}
                     />
+                    {errors.firstDance && (
+                      <span className="text-red-500">
+                        This field is required
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -512,15 +537,16 @@ const WeddingSchedule = (props) => {
                     Ceremony Song(s)
                   </p>
                   <div style={{ width: "60%" }} className="customFullWidth">
-                    <TimePicker
-                      showTimezone
-                      // time="13:05"
-                      theme="material"
-                      timeMode="12"
-                      timezone="America/New_York"
-                      onFocusChange={onFocusChange}
-                      onTimeChange={onTimeChange}
+                    <InputField
+                      label=""
+                      placeholder="12:00 PM / Note"
+                      {...register("ceremonySong", { required: true })}
                     />
+                    {errors.ceremonySong && (
+                      <span className="text-red-500">
+                        This field is required
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="col-span-12 sm:col-span-6">
@@ -528,10 +554,16 @@ const WeddingSchedule = (props) => {
                     Bouquet Toss Time
                   </p>
                   <div style={{ width: "60%" }} className="customFullWidth">
-                    <TimePicker
-                      onFocusChange={onFocusChange}
-                      onTimeChange={onTimeChange}
+                    <InputField
+                      label=""
+                      placeholder="12:00 PM / Note"
+                      {...register("bouquestTime", { required: true })}
                     />
+                    {errors.bouquestTime && (
+                      <span className="text-red-500">
+                        This field is required
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -542,15 +574,16 @@ const WeddingSchedule = (props) => {
                     Photo Time
                   </p>
                   <div style={{ width: "60%" }} className="customFullWidth">
-                    <TimePicker
-                      showTimezone
-                      // time="13:05"
-                      theme="material"
-                      timeMode="12"
-                      timezone="America/New_York"
-                      onFocusChange={onFocusChange}
-                      onTimeChange={onTimeChange}
+                    <InputField
+                      label=""
+                      placeholder="12:00 PM / Note"
+                      {...register("photoTime", { required: true })}
                     />
+                    {errors.photoTime && (
+                      <span className="text-red-500">
+                        This field is required
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="col-span-12 sm:col-span-6">
@@ -558,27 +591,38 @@ const WeddingSchedule = (props) => {
                     Departure Time
                   </p>
                   <div style={{ width: "60%" }} className="customFullWidth">
-                    <TimePicker
-                      onFocusChange={onFocusChange}
-                      onTimeChange={onTimeChange}
+                    <InputField
+                      label=""
+                      placeholder="12:00 PM / Note"
+                      {...register("departure", { required: true })}
                     />
+                    {errors.departure && (
+                      <span className="text-red-500">
+                        This field is required
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
 
-              <input
+              {/* <input
                 type="submit"
                 className="bg-[#FFF4F8] border-2 rounded w-[160px] h-[50px] cursor-pointer mt-8 "
-              />
+              /> */}
+              <button
+                type="submit"
+                className="bg-[#FFF4F8] border-2 rounded w-[160px] h-[50px] cursor-pointer mt-8 "
+              >
+                Download
+              </button>
             </form>
           </div>
-
-          <footer className="container mt-5">
-            <h3 className="text-[14px] font-inter text-center">
-              Powered by <span className="font-semibold">BeWeddy.com</span>
-            </h3>
-          </footer>
         </div>
+        <footer className="container mt-5">
+          <h3 className="text-[14px] font-inter text-center">
+            Powered by <span className="font-semibold">BeWeddy.com</span>
+          </h3>
+        </footer>
       </div>
     </>
   );
