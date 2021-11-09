@@ -6,7 +6,7 @@ import DashboardLayout from "@components/dashboard/layout";
 import SwiperCore, { Lazy, Autoplay } from "swiper";
 import { useForm } from "react-hook-form";
 import InputField from "@components/shared/InputField";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import getYear from "date-fns/getYear";
 import getMonth from "date-fns/getYear";
 import DatePicker from "react-datepicker";
@@ -14,6 +14,8 @@ import { WeddingNameDatePicker } from "@components/shared";
 import { isEmpty } from "lodash";
 import moment from "moment";
 import { compareDate } from "@helpers/index";
+import { toPng } from "html-to-image";
+import { nanoid } from "nanoid";
 
 const WeddingSchedule = () => {
   // WeddingName Picker
@@ -39,23 +41,23 @@ const WeddingSchedule = () => {
   const tba = getValues("tba");
 
   const onSubmit = (data) => {
-    console.log(
-      data,
-      arrivalTime,
-      eventRoom,
-      packageRental,
-      bridalParty,
-      ceremonyTime,
-      ceremonySong,
-      photoTime,
-      cocktailTime,
-      lucheonDinnerTime,
-      receptionTime,
-      cakeCuttingTime,
-      firstDanceTime,
-      bouquetTossTime,
-      departureTime
-    );
+    // console.log(
+    //   data,
+    //   arrivalTime,
+    //   eventRoom,
+    //   packageRental,
+    //   bridalParty,
+    //   ceremonyTime,
+    //   ceremonySong,
+    //   photoTime,
+    //   cocktailTime,
+    //   lucheonDinnerTime,
+    //   receptionTime,
+    //   cakeCuttingTime,
+    //   firstDanceTime,
+    //   bouquetTossTime,
+    //   departureTime
+    // );
   };
 
   useEffect(() => {
@@ -96,6 +98,25 @@ const WeddingSchedule = () => {
     "December",
   ];
 
+  const ref = useRef();
+
+  const onButtonClick = useCallback(() => {
+    if (ref.current === null) {
+      return;
+    }
+
+    toPng(ref.current, { cacheBust: true })
+      .then((dataUrl) => {
+        const link = document.createElement("a");
+        link.download = `Wedding_Schedule_Sheet${nanoid(2)}.png`;
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [ref]);
+
   return (
     <>
       <Head>
@@ -105,7 +126,7 @@ const WeddingSchedule = () => {
       <div className="m-auto">
         <DashboardTopBar coupleName />
         <DashboardLayout shadow>
-          <div className="space-y-10 shadow-box">
+          <div className="space-y-10 bg-white shadow-box" ref={ref}>
             <div className="max-w-[1300px] w-full">
               <div className="container p-1 sm:p-10 ">
                 <div className="flex items-center justify-center">
@@ -694,8 +715,9 @@ const WeddingSchedule = () => {
                 className="bg-[#FFF4F8] border-2 rounded w-[160px] h-[50px] cursor-pointer mt-8 "
               /> */}
                       <button
-                        type="submit"
+                        // type="submit"
                         className="bg-[#FFF4F8] border-2 rounded w-[160px] h-[50px] cursor-pointer mt-8 "
+                        onClick={onButtonClick}
                       >
                         Download
                       </button>

@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { Footer } from "@components/index";
+import { useCallback, useRef } from "react";
 import { withAuthRoute } from "@hoc/withAuthRoute";
 import DashboardTopBar from "@components/dashboard/header/TopBar";
 import DashboardLayout from "@components/dashboard/layout";
@@ -7,6 +8,8 @@ import SwiperCore, { Lazy, Autoplay } from "swiper";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import InputField from "@components/shared/InputField";
 import { useForm } from "react-hook-form";
+import { toPng } from "html-to-image";
+import { nanoid } from "nanoid";
 SwiperCore.use([Lazy, Autoplay]);
 
 const VendorsSchedule = () => {
@@ -28,6 +31,26 @@ const VendorsSchedule = () => {
   const onSubmit = (data) => {
     console.log(data);
   };
+
+  const ref = useRef();
+
+  const onButtonClick = useCallback(() => {
+    if (ref.current === null) {
+      return;
+    }
+
+    toPng(ref.current, { cacheBust: true })
+      .then((dataUrl) => {
+        const link = document.createElement("a");
+        link.download = `Vendors${nanoid(2)}.png`;
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [ref]);
+
   return (
     <>
       <Head>
@@ -37,7 +60,7 @@ const VendorsSchedule = () => {
       <div className="m-auto">
         <DashboardTopBar coupleName />
         <DashboardLayout shadow>
-          <div className="space-y-10 shadow-box">
+          <div className="space-y-10 bg-white shadow-box" ref={ref}>
             <div className="max-w-[1300px] w-full">
               <div className="container p-1 sm:p-10 ">
                 <div className="flex items-center justify-center">
@@ -246,8 +269,9 @@ const VendorsSchedule = () => {
                     </div>
 
                     <button
-                      type="submit"
+                      // type="submit"
                       className="bg-[#FFF4F8] border-2 rounded w-[160px] h-[50px] cursor-pointer mt-8 "
+                      onClick={onButtonClick}
                     >
                       Download
                     </button>

@@ -3,6 +3,9 @@ import Draggable from "react-draggable";
 import { isoToUtcDate } from "@utils/index";
 import { QRCode } from "react-qrcode-logo";
 import { saveAs } from "file-saver";
+import { useCallback, useRef } from "react";
+import { toPng } from "html-to-image";
+import { nanoid } from "nanoid";
 
 export default function FullScreenImage({
   btnText,
@@ -25,6 +28,25 @@ export default function FullScreenImage({
   useEffect(() => {
     setProduct(JSON.parse(localStorage.getItem("mailout")) || []);
   }, []);
+
+  const ref = useRef();
+
+  const onButtonClick = useCallback(() => {
+    if (ref.current === null) {
+      return;
+    }
+
+    toPng(ref.current, { cacheBust: true })
+      .then((dataUrl) => {
+        const link = document.createElement("a");
+        link.download = `mailout${nanoid(2)}.png`;
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [ref]);
 
   return (
     <>
@@ -54,8 +76,8 @@ export default function FullScreenImage({
                     </span>
                   </button>
                 </div>
-                {/*body*/}
-                <div class="grid grid-cols-12 w-full">
+                {/*body start here */}
+                <div class="grid grid-cols-12 w-full bg-white " ref={ref}>
                   <div class="sm:col-span-6 col-span-12 ">
                     <div className="relative flex-auto p-2">
                       {/* <Image
@@ -283,6 +305,13 @@ export default function FullScreenImage({
                   <button
                     className="px-6 py-3 mb-1 mr-1 text-sm font-bold text-[#000000] uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
                     type="download"
+                    onClick={onButtonClick}
+                  >
+                    Download
+                  </button>
+                  {/* <button
+                    className="px-6 py-3 mb-1 mr-1 text-sm font-bold text-[#000000] uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
+                    type="download"
                     onClick={FrontSaveFile}
                   >
                     Front Download
@@ -293,7 +322,7 @@ export default function FullScreenImage({
                     onClick={BackSaveFile}
                   >
                     Back Download
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
