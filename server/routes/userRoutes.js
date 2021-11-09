@@ -11,6 +11,7 @@ import {
   resetPassword,
   updateUserProfile,
 } from '../controllers/userControllers.js';
+import { updateVenue } from '../controllers/venueControllers.js';
 import { protect } from '../middlewares/auth.js';
 
 const router = express.Router();
@@ -25,5 +26,6 @@ router.post('/resetPassword', resetPassword);
 router.route('/profile').get(protect, getUserProfile);
 router.route('/:username').get(getCouple);
 router.route('/updateUserProfile').put(protect, updateUserProfile);
+router.route('/updateVenue').put(protect, updateVenue);
 
 export default router;

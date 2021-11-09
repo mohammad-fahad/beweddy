@@ -15,6 +15,7 @@ import { Fragment } from 'react';
 const DashboardTopBar = () => {
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.user);
+
   return (
     <div className='bg-secondary-alternative border-b-[3px] border-primary'>
       <div className='max-w-[1620px] pr-12 md:pr-16 xxl:pr-0 ml-6 sm:ml-14'>
