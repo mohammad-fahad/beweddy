@@ -222,7 +222,9 @@ export const activationTemplate = (name, url) => {
     <tr>
       <td align="center">
         <p style="font-size: 18px; font-weight: 400;">
-          Hi <strong>${name}</strong> Thank You For Choosing BeWeddy For <br /> Your Wedding Platform! Confirm Your Email and <br /> Lets Get This Party Started!
+          ${
+            name ? `Hi <strong>${name}</strong>` : 'Welcome'
+          } Thank You For Choosing BeWeddy For <br /> Your Wedding Platform! Confirm Your Email and <br /> Lets Get This Party Started!
         </p>
       </td>
     </tr>
