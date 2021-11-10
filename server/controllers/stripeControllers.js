@@ -9,9 +9,6 @@ export const stripeWebhook = asyncHandler(async (req, res) => {
     req.header('Stripe-Signature')
   );
 
-  console.log(req.body);
-
-  console.log('from controlelr', event);
   if (!event) {
     res.status(400);
     throw new Error('Something went wrong');

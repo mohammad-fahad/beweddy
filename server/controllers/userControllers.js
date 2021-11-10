@@ -289,24 +289,26 @@ export const googleSignIn = asyncHandler(async (req, res) => {
       // .populate('registries')
       .populate('giftCards');
 
-    const privetRegistries = await PrivetRegistry.find({ user: user._id });
-
     if (!user) {
       res.status(404);
       throw new Error('Please sign up we did not recognize this email');
     }
 
+    const privetRegistries = await PrivetRegistry.find({ user: user._id });
+
     const venue = await Venue.findOne({ user: user._id });
 
-    if (venue.plan === 'none') {
-      const session = await createSubscription(
-        venue.billingID,
-        process.env.PREMIUM_PLAN_ID,
-        URL
-      );
+    if (user.role === 'venue') {
+      if (venue.plan === 'none') {
+        const session = await createSubscription(
+          venue.billingID,
+          process.env.PREMIUM_PLAN_ID,
+          URL
+        );
 
-      if (session) {
-        return res.status(200).json({ url: session.url });
+        if (session) {
+          return res.status(200).json({ url: session.url });
+        }
       }
     }
 
@@ -369,23 +371,26 @@ export const activeUser = asyncHandler(async (req, res) => {
 
   // Check if user exists
   const userExists = await User.findById(id);
-  const venue = await Venue.findOne({ user: id });
-
-  if (venue.plan === 'none') {
-    const session = await createSubscription(
-      venue.billingID,
-      process.env.PREMIUM_PLAN_ID,
-      URL
-    );
-
-    if (session) {
-      return res.status(200).json({ url: session.url });
-    }
-  }
 
   if (!userExists) {
     res.status(404);
     throw new Error('User not found');
+  }
+
+  const venue = await Venue.findOne({ user: id });
+
+  if (userExists.role === 'venue') {
+    if (venue.plan === 'none') {
+      const session = await createSubscription(
+        venue.billingID,
+        process.env.PREMIUM_PLAN_ID,
+        URL
+      );
+
+      if (session) {
+        return res.status(200).json({ url: session.url });
+      }
+    }
   }
 
   if (userExists.emailVerified) {
@@ -500,15 +505,17 @@ export const login = asyncHandler(async (req, res) => {
     );
   }
 
-  if (venue.plan === 'none') {
-    const session = await createSubscription(
-      venue.billingID,
-      process.env.PREMIUM_PLAN_ID,
-      URL
-    );
+  if (user.role === 'venue') {
+    if (venue.plan === 'none') {
+      const session = await createSubscription(
+        venue.billingID,
+        process.env.PREMIUM_PLAN_ID,
+        URL
+      );
 
-    if (session) {
-      return res.status(200).json({ url: session.url });
+      if (session) {
+        return res.status(200).json({ url: session.url });
+      }
     }
   }
 
