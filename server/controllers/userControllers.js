@@ -272,6 +272,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
 
 export const googleSignIn = asyncHandler(async (req, res) => {
   const { idToken } = req.body;
+  const URL = `${process.env.CLIENT_URL}/login`;
 
   // Verify Google ID token
   const verify = await client.verifyIdToken({
@@ -288,12 +289,25 @@ export const googleSignIn = asyncHandler(async (req, res) => {
       // .populate('registries')
       .populate('giftCards');
 
-    const venue = await Venue.findOne({ user: user._id });
     const privetRegistries = await PrivetRegistry.find({ user: user._id });
 
     if (!user) {
       res.status(404);
       throw new Error('Please sign up we did not recognize this email');
+    }
+
+    const venue = await Venue.findOne({ user: user._id });
+
+    if (venue.plan === 'none') {
+      const session = await createSubscription(
+        venue.billingID,
+        process.env.PREMIUM_PLAN_ID,
+        URL
+      );
+
+      if (session) {
+        return res.status(200).json({ url: session.url });
+      }
     }
 
     res.json({
@@ -472,6 +486,7 @@ export const login = asyncHandler(async (req, res) => {
     throw new Error('Please sign up we did not recognize this email');
   }
 
+  const URL = `${process.env.CLIENT_URL}/login`;
   const venue = await Venue.findOne({ user: user._id });
 
   if (!user.emailVerified) {
@@ -483,6 +498,18 @@ export const login = asyncHandler(async (req, res) => {
     throw new Error(
       'Your account is not activated yet, please check your email'
     );
+  }
+
+  if (venue.plan === 'none') {
+    const session = await createSubscription(
+      venue.billingID,
+      process.env.PREMIUM_PLAN_ID,
+      URL
+    );
+
+    if (session) {
+      return res.status(200).json({ url: session.url });
+    }
   }
 
   // Check if user & password matches
