@@ -34,7 +34,7 @@ export const createSubscription = async (customer, price, success_url) => {
     //   trial_period_days: 30,
     // },
     success_url: `${success_url}/?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `http://localhost:4242/failed`,
+    cancel_url: `${process.env.CLIENT_URL}`,
   });
 
   return session;
