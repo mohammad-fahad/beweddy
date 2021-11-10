@@ -272,6 +272,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
 
 export const googleSignIn = asyncHandler(async (req, res) => {
   const { idToken } = req.body;
+  const URL = `${process.env.CLIENT_URL}/login`;
 
   // Verify Google ID token
   const verify = await client.verifyIdToken({
@@ -288,12 +289,27 @@ export const googleSignIn = asyncHandler(async (req, res) => {
       // .populate('registries')
       .populate('giftCards');
 
-    const venue = await Venue.findOne({ user: user._id });
-    const privetRegistries = await PrivetRegistry.find({ user: user._id });
-
     if (!user) {
       res.status(404);
       throw new Error('Please sign up we did not recognize this email');
+    }
+
+    const privetRegistries = await PrivetRegistry.find({ user: user._id });
+
+    const venue = await Venue.findOne({ user: user._id });
+
+    if (user.role === 'venue') {
+      if (venue.plan === 'none') {
+        const session = await createSubscription(
+          venue.billingID,
+          process.env.PREMIUM_PLAN_ID,
+          URL
+        );
+
+        if (session) {
+          return res.status(200).json({ url: session.url });
+        }
+      }
     }
 
     res.json({
@@ -322,7 +338,7 @@ export const googleSignIn = asyncHandler(async (req, res) => {
         venue,
         token: generateIdToken(user._id),
       },
-      message: `Welcome back ${user.fullName}`,
+      message: `Welcome back ${venue ? venue.businessName : user.fullName}`,
     });
   } else {
     res.status(400);
@@ -355,23 +371,26 @@ export const activeUser = asyncHandler(async (req, res) => {
 
   // Check if user exists
   const userExists = await User.findById(id);
-  const venue = await Venue.findOne({ user: id });
-
-  if (venue.plan === 'none') {
-    const session = await createSubscription(
-      venue.billingID,
-      process.env.PREMIUM_PLAN_ID,
-      URL
-    );
-
-    if (session) {
-      return res.status(200).json({ url: session.url });
-    }
-  }
 
   if (!userExists) {
     res.status(404);
     throw new Error('User not found');
+  }
+
+  const venue = await Venue.findOne({ user: id });
+
+  if (userExists.role === 'venue') {
+    if (venue.plan === 'none') {
+      const session = await createSubscription(
+        venue.billingID,
+        process.env.PREMIUM_PLAN_ID,
+        URL
+      );
+
+      if (session) {
+        return res.status(200).json({ url: session.url });
+      }
+    }
   }
 
   if (userExists.emailVerified) {
@@ -472,6 +491,7 @@ export const login = asyncHandler(async (req, res) => {
     throw new Error('Please sign up we did not recognize this email');
   }
 
+  const URL = `${process.env.CLIENT_URL}/login`;
   const venue = await Venue.findOne({ user: user._id });
 
   if (!user.emailVerified) {
@@ -483,6 +503,20 @@ export const login = asyncHandler(async (req, res) => {
     throw new Error(
       'Your account is not activated yet, please check your email'
     );
+  }
+
+  if (user.role === 'venue') {
+    if (venue.plan === 'none') {
+      const session = await createSubscription(
+        venue.billingID,
+        process.env.PREMIUM_PLAN_ID,
+        URL
+      );
+
+      if (session) {
+        return res.status(200).json({ url: session.url });
+      }
+    }
   }
 
   // Check if user & password matches

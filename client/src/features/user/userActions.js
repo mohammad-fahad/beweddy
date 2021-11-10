@@ -42,6 +42,9 @@ export const attemptLogin = createAsyncThunk(
         loginData,
         config
       );
+      if (data.url) {
+        return (window.location.href = data.url);
+      }
       successAlert(data.message);
       errorAlert(data.error);
 
@@ -110,6 +113,10 @@ export const attemptGoogleSignIn = createAsyncThunk(
         signInData,
         config
       );
+
+      if (data.url) {
+        return (window.location.href = data.url);
+      }
 
       successAlert(data.message);
       errorAlert(data.error);
