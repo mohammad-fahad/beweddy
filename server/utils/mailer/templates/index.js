@@ -241,7 +241,7 @@ export const activationTemplate = (name, url) => {
               border-radius: 4px;
               margin-bottom: 30px;
               font-weight: 600;
-            " href="${url}">Active Account</a>
+            " href="${url}">Activate Account</a>
       </td>
     </tr>
     <tr>

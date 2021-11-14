@@ -443,6 +443,7 @@ const EditWebsitePage = () => {
                   <input
                     type='text'
                     className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal'
+                    placeholder='Your First Name'
                     {...register('firstName', {
                       required: {
                         value: true,
@@ -453,6 +454,7 @@ const EditWebsitePage = () => {
                   <input
                     type='text'
                     className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal'
+                    placeholder='Your Last Name'
                     {...register('lastName', {
                       required: {
                         value: true,
@@ -466,6 +468,7 @@ const EditWebsitePage = () => {
                   <input
                     type='text'
                     className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal'
+                    placeholder='Spouse First Name'
                     {...register('spouseFirstName', {
                       required: {
                         value: true,
@@ -476,6 +479,7 @@ const EditWebsitePage = () => {
                   <input
                     type='text'
                     className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal'
+                    placeholder='Spouse Last Name'
                     {...register('spouseLastName', {
                       required: {
                         value: true,
