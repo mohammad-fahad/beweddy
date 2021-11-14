@@ -23,9 +23,9 @@ export const checkoutSession = asyncHandler(async (req, res) => {
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
-    shipping_address_collection: {
-      allowed_countries: ['US'],
-    },
+    // shipping_address_collection: {
+    //   allowed_countries: ['US'],
+    // },
     line_items: [transformedItem],
     mode: 'payment',
     success_url: `${process.env.CLIENT_URL}/payment/${token}`,
