@@ -3,9 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import DashboardActiveLink from "./DashboardActiveLink";
 import Drawer from "./drawer";
-import Navbar from "reactjs-navbar";
 import { Disclosure } from '@headlessui/react'
-import "reactjs-navbar/dist/index.css";
 
 const navLinks = [
   {
