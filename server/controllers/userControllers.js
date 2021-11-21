@@ -39,8 +39,16 @@ const defaultTodos = [
 ];
 
 export const register = asyncHandler(async (req, res) => {
-  const { email, password, questions, role, logo, businessName, websiteLink } =
-    req.body;
+  const {
+    email,
+    password,
+    questions,
+    role,
+    logo,
+    businessName,
+    websiteLink,
+    venueId,
+  } = req.body;
   const { firstName, lastName } = questions;
 
   const userExists = await User.findOne({ email });
@@ -63,6 +71,7 @@ export const register = asyncHandler(async (req, res) => {
     password,
     questions: role === 'venue' ? null : questions,
     username,
+    venue: venueId,
     role,
   });
 
@@ -112,7 +121,7 @@ export const register = asyncHandler(async (req, res) => {
 // Active User
 
 export const googleSignUp = asyncHandler(async (req, res) => {
-  const { idToken, questions, role } = req.body;
+  const { idToken, questions, role, venueId } = req.body;
 
   // Push all GiftCards & Registries to user
 
@@ -159,6 +168,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       username,
       questions: role === 'venue' ? null : questions,
       giftCards,
+      venue: venueId,
       role,
       // registries: registryCards,
     });
@@ -234,7 +244,8 @@ export const googleSignUp = asyncHandler(async (req, res) => {
         _id: userCreated._id,
       })
         .populate('giftCards')
-        .populate('registries');
+        .populate('registries')
+        .populate('venue');
 
       res.json({
         user: {
@@ -258,7 +269,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
           weddingVideo: user.weddingVideo,
           isAdmin: user.isAdmin,
           role: user.role,
-          venue,
+          venue: user.role === 'venue' ? venue : user.venue, //!
           token: generateIdToken(user._id),
         },
         message: `Welcome to Beweddy, ${user.fullName}`,
@@ -287,7 +298,8 @@ export const googleSignIn = asyncHandler(async (req, res) => {
   if (email_verified) {
     const user = await User.findOne({ email })
       // .populate('registries')
-      .populate('giftCards');
+      .populate('giftCards')
+      .populate('venue');
 
     if (!user) {
       res.status(404);
@@ -335,7 +347,7 @@ export const googleSignIn = asyncHandler(async (req, res) => {
         weddingVideo: user.weddingVideo,
         isAdmin: user.isAdmin,
         role: user.role,
-        venue,
+        venue: user.role === 'venue' ? venue : user.venue, //!
         token: generateIdToken(user._id),
       },
       message: `Welcome back ${venue ? venue.businessName : user.fullName}`,
@@ -436,7 +448,8 @@ export const activeUser = asyncHandler(async (req, res) => {
 
   const user = await User.findOne({ email: userUpdated.email })
     .populate('registries')
-    .populate('giftCards');
+    .populate('giftCards')
+    .populate('venue');
   // Send response
   if (user) {
     const privetRegistries = await PrivetRegistry.find({ user: user._id });
@@ -469,7 +482,7 @@ export const activeUser = asyncHandler(async (req, res) => {
         weddingVideo: user.weddingVideo,
         isAdmin: user.isAdmin,
         role: user.role,
-        venue,
+        venue: user.role === 'venue' ? venue : user.venue, //!
         token: generateIdToken(user._id),
       },
       message: `Your account has been successfully activated!`,
@@ -484,7 +497,8 @@ export const login = asyncHandler(async (req, res) => {
 
   const user = await User.findOne({ email })
     .populate('registries')
-    .populate('giftCards');
+    .populate('giftCards')
+    .populate('venue');
 
   if (!user) {
     res.status(404);
@@ -546,7 +560,7 @@ export const login = asyncHandler(async (req, res) => {
         weddingVideo: user.weddingVideo,
         isAdmin: user.isAdmin,
         role: user.role,
-        venue,
+        venue: user.role === 'venue' ? venue : user.venue, //!
         token: generateIdToken(user._id),
       },
       message: `Welcome back ${venue ? venue.businessName : user.fullName}`,
