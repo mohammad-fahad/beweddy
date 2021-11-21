@@ -8,7 +8,7 @@ import Step4 from "../../components/vneue/step4";
 import Step5 from "../../components/vneue/step5";
 
 import { useRouter } from "next/router";
-import Step6 from "../../components/vneue/Step6";
+// import Step6 from "../../components/question/Step6";
 
 const CreateVenuePage = () => {
   const { query } = useRouter();
@@ -24,11 +24,11 @@ const CreateVenuePage = () => {
     case 3:
       return <Step3 />;
 
+    // case 4:
+    //   return <Step6 />;
     case 4:
-      return <Step6 />;
-    case 5:
       return <Step4 />;
-    case 6:
+    case 5:
       return <Step5 />;
 
     default:

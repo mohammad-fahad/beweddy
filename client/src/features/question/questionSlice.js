@@ -9,6 +9,7 @@ const initialState = {
     weddingAnnouncement: {},
     sentInvitation: {},
     couplePictures: [],
+    selectVenue : []
   },
 };
 
@@ -30,6 +31,9 @@ const questionSlice = createSlice({
     },
     addCouplePictures: (state, action) => {
       state.questions.couplePictures = action.payload;
+    },
+    addSelectVenue: (state, action) => {
+      state.questions.selectVenue = action.payload;
     },
     resetQuestions: (state, action) => {
       return initialState;
