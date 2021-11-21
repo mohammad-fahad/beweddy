@@ -12,6 +12,7 @@ import Step5 from "./step-5";
 import Step6 from "./step-6";
 import Step7 from "./step-7";
 import Step8 from "./step-8";
+import Step9 from "./Step6";
 
 const CreateWebsitePage = () => {
   const { query } = useRouter();
@@ -30,17 +31,18 @@ const CreateWebsitePage = () => {
 
     case 4:
       return <Step4 />;
-
     case 5:
       return <Step5 />;
-
     case 6:
-      return <Step6 />;
+      return <Step9 />;
 
     case 7:
-      return <Step7 />;
+      return <Step6 />;
 
     case 8:
+      return <Step7 />;
+
+    case 9:
       return <Step8 />;
 
     default:
