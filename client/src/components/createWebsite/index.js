@@ -68,6 +68,11 @@ export const CreateWebsiteContainer = ({ seo, page, children }) => {
                   page == 5 ? "bg-primary" : " bg-[#cccccc]"
                 } `}
               />
+              <div
+                className={`w-[71px] h-[5px] customStep ${
+                  page == 6 ? "bg-primary" : " bg-[#cccccc]"
+                } `}
+              />
             </div>
           </div>
         )}

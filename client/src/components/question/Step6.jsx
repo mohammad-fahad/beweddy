@@ -5,13 +5,37 @@ import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { attemptSignup } from "@features/auth/authActions";
-import { useEffect, useState ,Fragment } from "react";
+import { useEffect, useState, Fragment } from "react";
 import { resetQuestions } from "@features/question/questionSlice";
 import { Listbox, Transition } from "@headlessui/react";
 import { SelectorIcon } from "@heroicons/react/outline";
 import { CheckIcon } from "@heroicons/react/solid";
+import { CreateWebsiteContainer } from "@components/createWebsite";
+import { Button } from "@components/index";
+import { addSelectVenue } from "@features/question/questionSlice";
 
-const vneueSelector = [{ id: 1, name: "Sleepy Ridge" }, { id: 1, name: "Sleepy Ridge 1" }, { id: 1, name: "Sleepy Ridge 2" }, { id: 1, name: "Sleepy Ridge 3" }];
+const vneueSelector = [
+  { id: 1, name: "Sleepy Ridge" },
+  { id: 1, name: "Sleepy Ridge 1" },
+  { id: 1, name: "Sleepy Ridge 2" },
+  { id: 1, name: "Sleepy Ridge 3" },
+];
+
+const easing = [0.6, -0.05, 0.01, 0.99];
+const fadeInUp = {
+  initial: {
+    opacity: 0,
+    y: 60,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: easing,
+    },
+  },
+};
 
 const Step6 = () => {
   const dispatch = useDispatch();
@@ -26,31 +50,21 @@ const Step6 = () => {
   } = useForm({ mode: "all" });
 
   const onSubmit = (data) => {
-    if (data) {
-      dispatch(
-        attemptSignup({
-          ...data,
-          questions,
-          role: "venue",
-        })
-      );
-    }
+    // dispatch(
+
+    // );
+
+    console.log(selectedProvider);
   };
 
-  useEffect(() => {
-    if (success) {
-      dispatch(resetQuestions());
-    }
-  }, [success]);
-
   return (
-    <>
+    <CreateWebsiteContainer seo={{ title: "Select Venue" }} page="6">
       <Head>
         <title>BeWeddy | Get Started</title>
       </Head>
       {loading && <Loader />}
       <motion.div className={`bg-gradient-to-br from-[#FCE3EB] to-white`}>
-        <div className="container flex items-center justify-center min-h-screen">
+        <div className="container flex items-center justify-center ">
           <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
             <section
               className={`bg-white border-4 my-5 md:my-10 border-primary py-5 md:py-10 px-10 md:px-24 max-w-xl w-full mx-auto rounded-xl h-[400px]`}
@@ -60,8 +74,12 @@ const Step6 = () => {
               </h2>
               <div className="w-48 mx-auto h-[2px] md:h-[4px] mb-16 bg-primary" />
 
-              <Listbox value={selectedProvider} onChange={setSelectedProvider} className='w-full ' >
-                <div className="relative mt-1 w-full">
+              <Listbox
+                value={selectedProvider}
+                onChange={setSelectedProvider}
+                className="w-full "
+              >
+                <div className="relative w-full mt-1">
                   <Listbox.Button className="relative font-inter rounded-[5px] border-2 border-secondary/20 py-3 pl-5 pr-10 text-base font-semibold w-[370px]">
                     <span className="block truncate">
                       {" "}
@@ -128,7 +146,22 @@ const Step6 = () => {
           </form>
         </div>
       </motion.div>
-    </>
+      <motion.div
+        className="flex flex-wrap items-center gap-5 my-1 text-center md:my-5 sm:flex-nowrap"
+        variants={fadeInUp}
+      >
+        <Button
+          label="Back"
+          className="opacity-50 !bg-[#bebebe] !rounded-[10px] w-[178px] h-[59px]"
+          onClick={() => push({ query: { step: 5 } })}
+        />
+        <Button
+          label="Next"
+          type="submit"
+          className="!rounded-[10px] w-[178px] h-[59px]"
+        />
+      </motion.div>
+    </CreateWebsiteContainer>
   );
 };
 
