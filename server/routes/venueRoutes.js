@@ -4,6 +4,6 @@ import { protect } from '../middlewares/auth.js';
 
 const router = express.Router();
 
-router.post('/', getVenues);
+router.get('/', getVenues);
 
 export default router;
