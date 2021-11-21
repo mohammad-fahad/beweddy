@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import DashboardActiveLink from "./DashboardActiveLink";
 import Drawer from "./drawer";
+import { Disclosure } from '@headlessui/react'
 
 const navLinks = [
   {
@@ -10,16 +11,16 @@ const navLinks = [
     href: "/dashboard/address-and-rsvp",
     icon: "/icons/location.svg",
   },
-  {
-    label: "Wedding Schedule",
-    href: "/dashboard/wedding-schedule",
-    icon: "/icons/todo.svg",
-  },
-  {
-    label: "Vendors Schedule",
-    href: "/dashboard/vendors-schedule",
-    icon: "/icons/home.png",
-  },
+  // {
+  //   label: "Wedding Schedule",
+  //   href: "/dashboard/wedding-schedule",
+  //   icon: "/icons/todo.svg",
+  // },
+  // {
+  //   label: "Vendors Schedule",
+  //   href: "/dashboard/vendors-schedule",
+  //   icon: "/icons/home.png",
+  // },
   {
     label: "Just Do It List",
     href: "/dashboard/features/todo",
@@ -87,6 +88,7 @@ const specialFeatures = [
   },
 ];
 
+
 const DashboardNavLinks = ({ user }) => {
   const [open, setOpen] = useState(false);
   const dashboardRoutes = ["/dashboard", "/dashboard/website/edit"];
@@ -150,6 +152,36 @@ const DashboardNavLinks = ({ user }) => {
             </a>
           </Link>
         </div>
+          <Disclosure>
+      <Disclosure.Button className="py-2">
+       <p className="flex items-center w-full my-1">
+          <img src='/note 2.png' alt="" className="w-5 h-5 mr-3" />
+          Wedding Forms
+        </p>
+      </Disclosure.Button>
+
+      <Disclosure.Panel className="text-gray-500 ml-3">
+
+      
+      <div><Link href="/dashboard/wedding-schedule" > 
+        <p className="flex items-center w-full my-1 cursor-pointer">
+            <img src="/edot 2.svg" alt="" className="w-5 h-5 mr-3" />
+          Wedding Schedule
+        </p>
+      </Link> </div>
+      <div> 
+      <Link href="/dashboard/vendors-schedule" > 
+          <p className="flex items-center w-full my-1 cursor-pointer">
+            <img src="/home2.png" alt="" className="w-5 h-5 mr-3" />
+          Vendors Schedule
+          </p>
+      </Link></div>
+      
+       
+      
+      
+      </Disclosure.Panel>
+    </Disclosure>
         {navLinks.map((link, index) => (
           <DashboardActiveLink
             href={link.isComing ? "#" : link.href}
@@ -174,33 +206,6 @@ const DashboardNavLinks = ({ user }) => {
           </DashboardActiveLink>
         ))}
       </div>
-      {/* <div className='!mt-10'>
-        <DashboardActiveLink
-          href='/dashboard/features'
-          customActiveLink={
-            pathname.includes('/dashboard/features') ? 'w-full' : 'w-0'
-          }
-          customFontActiveLink={
-            pathname.includes('/dashboard/features')
-              ? 'font-bold'
-              : 'font-medium'
-          }
-        >
-          Specials Features
-        </DashboardActiveLink>
-        <div className='space-y-3 !mt-4'>
-          {specialFeatures.map((feature, index) => (
-            <div className='flex items-center space-x-3'>
-              <span className='w-2 h-2 bg-[#F9D1DE] rounded-full inline-block' />
-              <Link href={feature.href}>
-                <a className='inline-block text-sm font-medium capitalize font-inter hover:underline'>
-                  {feature.label}
-                </a>
-              </Link>
-            </div>
-          ))}
-        </div>
-      </div> */}
     </div>
   );
 };
