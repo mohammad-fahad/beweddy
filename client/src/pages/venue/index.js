@@ -1,13 +1,14 @@
-import { ExampleWebsite } from '@components/index';
-import { withAuthRedirect } from '@hoc/withAuthRedirect';
+import { ExampleWebsite } from "@components/index";
+import { withAuthRedirect } from "@hoc/withAuthRedirect";
 
-import Step1 from '../../components/vneue/step1';
-import Step2 from '../../components/vneue/step2';
-import Step3 from '../../components/vneue/step3';
-import Step4 from '../../components/vneue/step4';
-import Step5 from '../../components/vneue/step5';
+import Step1 from "../../components/vneue/step1";
+import Step2 from "../../components/vneue/step2";
+import Step3 from "../../components/vneue/step3";
+import Step4 from "../../components/vneue/step4";
+import Step5 from "../../components/vneue/step5";
 
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
+import Step6 from "../../components/vneue/Step6";
 
 const CreateVenuePage = () => {
   const { query } = useRouter();
@@ -24,16 +25,18 @@ const CreateVenuePage = () => {
       return <Step3 />;
 
     case 4:
-      return <Step4 />;
+      return <Step6 />;
     case 5:
+      return <Step4 />;
+    case 6:
       return <Step5 />;
 
     default:
       return (
         <ExampleWebsite
-          seo={{ title: 'Create Your Venue' }}
-          href='/venue?step=1'
-          label='Next'
+          seo={{ title: "Create Your Venue" }}
+          href="/venue?step=1"
+          label="Next"
         />
       );
   }

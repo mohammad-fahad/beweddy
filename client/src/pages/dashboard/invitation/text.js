@@ -270,151 +270,15 @@ const TextInvitesPage = () => {
                           </span>
                         </label>
                       </div>
-                      {/* <div className="flex items-center">
-                        <input
-                          type="radio"
-                          id="calenderInvite"
-                          value="calenderInvite"
-                          className="hidden"
-                          {...register("compose")}
-                        />
-                        <label
-                          htmlFor="calenderInvite"
-                          className="flex items-center space-x-3 cursor-pointer"
-                        >
-                          <div className="checked-outer border-[2px] rounded-full border-primary w-5 h-5 flex items-center justify-center">
-                            <div className="checked-inner w-[10px] h-[10px] rounded-full"></div>
-                          </div>
-                          <span className="text-lg font-light font-inter">
-                            Calender Invite
-                          </span>
-                        </label>
-                      </div> */}
-                    </div>
-                    <div className="flex justify-between">
-                      <Heading h3 className="!text-sm xl:!text-base !font-bold">
-                        To
-                      </Heading>
-                      {/* <h5 className='xl:text-[12px] xxl:text-base font-bold'>
-                        Recipients: 13
-                      </h5> */}
                     </div>
                     <Select
                       closeMenuOnSelect={false}
                       components={animatedComponents}
                       onChange={handlePhones}
-                      // defaultValue={[colourOptions[4], colourOptions[5]]}
                       isMulti
                       styles={customStyles}
                       options={phones}
                     />
-                    {/* <Heading h3 className="!text-sm xl:!text-base !font-bold">
-                      From
-                    </Heading>
-                    <div>
-                      <div className="flex items-center">
-                        <Listbox
-                          value={selectedCountry}
-                          onChange={setSelectedCountry}
-                        >
-                          <div className="relative -mr-2">
-                            <Listbox.Button className="bg-white cursor-pointer inline-block font-semibold py-[6px] md:py-[10px] px-4 placeholder-gray-400 border border-primary rounded-[5px] -mr-1">
-                              <img
-                                src={selectedCountry.flag}
-                                alt={selectedCountry.name}
-                                className="object-cover mr-8 rounded-full w-7 h-7 md:mr-5"
-                              />
-                              <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                                <svg
-                                  width="13"
-                                  height="13"
-                                  viewBox="0 0 13 13"
-                                  fill="none"
-                                  className="w-4 h-4 text-gray-400"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M6.05473 10.6C6.10442 10.6722 6.17091 10.7312 6.24848 10.772C6.32604 10.8128 6.41235 10.8341 6.49998 10.8341C6.58761 10.8341 6.67392 10.8128 6.75148 10.772C6.82905 10.7312 6.89554 10.6722 6.94523 10.6L11.8202 3.55837C11.8767 3.47715 11.9097 3.38202 11.9159 3.28332C11.9221 3.18461 11.9011 3.0861 11.8552 2.9985C11.8093 2.9109 11.7402 2.83755 11.6556 2.78642C11.5709 2.73529 11.4739 2.70834 11.375 2.7085H1.62498C1.52631 2.7089 1.42962 2.7362 1.34531 2.78745C1.26099 2.8387 1.19224 2.91197 1.14646 2.99937C1.10067 3.08677 1.07957 3.185 1.08543 3.28349C1.09129 3.38199 1.1239 3.47702 1.17973 3.55837L6.05473 10.6Z"
-                                    fill="#C4C4C4"
-                                  />
-                                </svg>
-                              </span>
-                            </Listbox.Button>
-                            <Transition
-                              as={Fragment}
-                              leave="transition ease-in duration-100"
-                              leaveFrom="opacity-100"
-                              leaveTo="opacity-0"
-                            >
-                              <Listbox.Options className="absolute z-50 max-w-xs py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                                {countries?.map((country, countryIdx) => (
-                                  <Listbox.Option
-                                    key={countryIdx}
-                                    className={({ active }) =>
-                                      `${
-                                        active
-                                          ? "text-amber-900 bg-secondary-alternative/20"
-                                          : "text-gray-900"
-                                      }
-                                      cursor-pointer select-none relative py-2 pl-10 pr-4`
-                                    }
-                                    value={country}
-                                  >
-                                    {({ selected, active }) => (
-                                      <>
-                                        <span
-                                          className={`${
-                                            selected
-                                              ? "font-medium"
-                                              : "font-normal"
-                                          } block truncate`}
-                                        >
-                                          {country.name}
-                                        </span>
-                                        {selected ? (
-                                          <span
-                                            className={`${
-                                              active
-                                                ? "text-amber-600"
-                                                : "text-amber-600"
-                                            }
-                                             inset-y-0 left-0 flex items-center pl-3`}
-                                          >
-                                            <CheckIcon
-                                              className="w-5 h-5"
-                                              aria-hidden="true"
-                                            />
-                                          </span>
-                                        ) : null}
-                                      </>
-                                    )}
-                                  </Listbox.Option>
-                                ))}
-                              </Listbox.Options>
-                            </Transition>
-                          </div>
-                        </Listbox>
-                        <input
-                          id="phone"
-                          type="tel"
-                          className="w-full focus:!border-primary bg-white inline-block font-normal py-2 md:py-3 px-4 pl-5 placeholder-gray-400 border border-primary rounded-[5px]"
-                          placeholder="Enter phone number"
-                          {...register("phone", {
-                            required: {
-                              value: true,
-                              message: "Phone numbers are required!",
-                            },
-                            pattern: {
-                              value: /^([0-9\(\)\/\+ \-]*)$/,
-                              message: "Must be a valid phone number",
-                            },
-                          })}
-                        />
-                      </div>
-                       <p className='h-4 mt-2 text-sm font-light text-red-400'>
-                        {errors?.phone?.message}
-                      </p>
-                    </div> */}
                     {getValues("compose") === "Picture" && (
                       <div {...getRootProps()}>
                         <input {...getInputProps()} />
@@ -439,10 +303,6 @@ const TextInvitesPage = () => {
                               value: true,
                               message: "Compose message is required!",
                             },
-                            // maxLength: {
-                            //   value: 160,
-                            //   message: 'Maximum 160 characters is reached!',
-                            // },
                           })}
                         ></textarea>
                         {errors.message && (
@@ -450,22 +310,6 @@ const TextInvitesPage = () => {
                             {errors.message.message}
                           </p>
                         )}
-                        {/* <svg
-                          className='absolute bottom-0 right-0'
-                          width='114'
-                          height='60'
-                          viewBox='0 0 114 60'
-                          fill='none'
-                          xmlns='http://www.w3.org/2000/svg'
-                        >
-                          <path
-                            d='M113 59L1 1H113V59Z'
-                            fill='white'
-                            stroke='black'
-                          />
-                        </svg>
-
-                        <span className='absolute bottom-0 right-0 h-10 bg-white w-52'></span> */}
                         <div className="flex justify-end">
                           <button
                             type="submit"
@@ -477,28 +321,11 @@ const TextInvitesPage = () => {
                         </div>
                       </div>
                     </div>
-
-                    {/* <button
-                      type="submit"
-                      className="flex items-center border-2 py-2 bg-secondary-alternative px-2 border-black  justify-end !mt-10 space-x-3 text-sm md:text-base font-bold text-right"
-                    >
-                      <span>Send Message</span>
-                      <ArrowRightIcon className="w-6 h-6" />
-                    </button> */}
                   </form>
                 </div>
-
-                {/* <div className="hidden mx-auto md:block"> */}
                 <div className="hidden mx-auto md:block">
                   <div className="relative">
-                    {/* <img
-                      // src="/images/mobile-template.svg"
-                      src="/images/textInvites.png"
-                      alt=""
-                      className="min-w-[338px]"
-                    /> */}
                     <img
-                      // src="/images/mobile-template.svg"
                       src="/images/textInvites.png"
                       alt=""
                       className="min-w-[338px] w-[350px]"
@@ -506,19 +333,6 @@ const TextInvitesPage = () => {
                     <div className="absolute max-w-[315px] max-h-[540px] h-full w-full top-[60px] left-[12px] p-2">
                       <div className="px-1">
                         <div className="flex items-center justify-between">
-                          {/* <svg
-                            width="30"
-                            height="42"
-                            viewBox="0 0 30 42"
-                            fill="none"
-                            // className='w-8 h-8'
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M12.7053 22.8984L20.6446 14.9591C21.2304 14.3733 21.2304 13.4236 20.6446 12.8378C20.0589 12.252 19.1091 12.252 18.5233 12.8378L9.52332 21.8378C8.93754 22.4236 8.93754 23.3733 9.52332 23.9591L18.5233 32.9591C19.1091 33.5449 20.0589 33.5449 20.6446 32.9591C21.2304 32.3733 21.2304 31.4236 20.6446 30.8378L12.7053 22.8984Z"
-                              fill="#007AFF"
-                            />
-                          </svg> */}
                           <span></span>
                           <div className="flex flex-col items-center h-20 space-y-2">
                             <div className="w-[50px] h-[50px] rounded-full">
