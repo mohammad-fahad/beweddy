@@ -1,20 +1,21 @@
-import { logout } from '@features/auth/authSlice';
-import { Menu, Popover, Transition } from '@headlessui/react';
+import { logout } from "@features/auth/authSlice";
+import { Menu, Popover, Transition } from "@headlessui/react";
 import {
   LogoutIcon,
   UserIcon,
   SearchIcon,
   LoginIcon,
   HomeIcon,
-} from '@heroicons/react/outline';
-import Link from 'next/link';
-import { useDispatch, useSelector } from 'react-redux';
-import { WeddingDayCountDown } from '@components/index';
-import { Fragment } from 'react';
+} from "@heroicons/react/outline";
+import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { WeddingDayCountDown } from "@components/index";
+import { Fragment } from "react";
+import AddVenue from "@components/question/AddVenue";
 
 const DashboardTopBar = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector(state => state.user);
+  const { user } = useSelector((state) => state.user);
 
   return (
     <div className="bg-secondary-alternative border-b-[3px] border-primary">
@@ -35,13 +36,14 @@ const DashboardTopBar = () => {
             </div>
           </div>
           <div className="flex items-center space-x-5">
-            <Link href={`/dashboard/wedding-schedule`}>
+            <AddVenue />
+            {/* <Link href={`/dashboard/wedding-schedule`}>
               <a
                 className={`capitalize text-xs md:text-base font-inter font-semibold rounded-[5px] animate-bounce bg-[#FF5A79] text-[#ffffff] py-2 sm:px-3 px-1 md:px-5 flex items-center sm:space-x-3 hover:bg-secondary-primary transition duration-300 smallText`}
               >
                 <span className="customLabel">Connect Your Venue</span>
               </a>
-            </Link>
+            </Link> */}
             <Link href="#">
               <a className="flex items-center space-x-2 text-sm font-semibold text-gray-700 transition duration-300 md:space-x-3 font-inter md:text-base hover:text-primary">
                 <img
