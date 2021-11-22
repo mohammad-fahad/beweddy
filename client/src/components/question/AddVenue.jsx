@@ -1,41 +1,41 @@
-import { useEffect, useState, Fragment } from 'react';
-import { motion } from 'framer-motion';
-import { useForm } from 'react-hook-form';
-import { Listbox, Transition } from '@headlessui/react';
-import { SelectorIcon } from '@heroicons/react/outline';
-import { CheckIcon } from '@heroicons/react/solid';
-import { Button } from '@components/index';
-import { useQuery } from 'react-query';
-import { getVenues } from '@services/Venue';
-import { attemptUpdateUserProfile } from '@features/user/userActions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState, Fragment } from "react";
+import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import { Listbox, Transition } from "@headlessui/react";
+import { SelectorIcon } from "@heroicons/react/outline";
+import { CheckIcon } from "@heroicons/react/solid";
+import { Button } from "@components/index";
+import { useQuery } from "react-query";
+import { getVenues } from "@services/Venue";
+import { attemptUpdateUserProfile } from "@features/user/userActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const selectVenue = {
   _id: 1,
-  name: 'Sleepy Ridge',
+  name: "Sleepy Ridge",
 };
 
 export default function AddVenue() {
   const dispatch = useDispatch();
-  const { user } = useSelector(state => state.user);
+  const { user } = useSelector((state) => state.user);
   const [showModal, setShowModal] = useState(false);
   const [selectedProvider, setSelectedProvider] = useState(selectVenue);
   const [venues, setVenues] = useState([]);
 
   const handleVenueSubmit = () => {
-    if (selectedProvider._id === '') return;
+    if (selectedProvider._id === "") return;
     dispatch(attemptUpdateUserProfile({ venueId: selectedProvider?._id }));
     setShowModal(false);
   };
 
-  const { data } = useQuery('venues', getVenues);
+  const { data } = useQuery("venues", getVenues);
 
   useEffect(() => {
     if (data) {
       setVenues(
         data
-          ?.filter(item => item.plan !== 'none')
-          ?.map(venue => ({
+          ?.filter((item) => item.plan !== "none")
+          ?.map((venue) => ({
             _id: venue._id,
             name: venue.businessName,
           }))

@@ -474,9 +474,9 @@
   .customFullWidth {
     width: 100% !important;
   }
-  .selectInput{
-    width : 300px !important;
-    min-width : 300px !important;
+  .selectInput {
+    width: 300px !important;
+    min-width: 300px !important;
   }
 }
 
