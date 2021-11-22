@@ -83,7 +83,7 @@ const Step6 = () => {
         <div className="container flex items-center justify-center ">
           <form className="w-full">
             <section
-              className={`bg-white border-4 my-5 md:my-10 border-primary py-5 md:py-10 sm:px-10 px-4 md:px-24 max-w-xl w-full mx-auto rounded-xl h-[400px]`}
+              className={`bg-white border-4 my-5 md:my-10 border-primary py-5 md:py-10 px-10 md:px-24 max-w-xl w-full mx-auto rounded-xl h-[400px]`}
             >
               <h2 className="pb-8 mx-auto text-[36px] text-center commonTitle">
                 Select Your Venue
