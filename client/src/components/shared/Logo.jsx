@@ -24,7 +24,7 @@ const Logo = () => {
                 </h3>
               </a>  : <a className={`inline-block space-y-2`}>
                 <img
-                  src={user?.venue?.logo?.secure_url}
+                  src='/images/logo.png'
                   alt=""
                   className="h-14 md:h-[4.5rem] customImage"
                 />
