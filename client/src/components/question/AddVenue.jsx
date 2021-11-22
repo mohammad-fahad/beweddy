@@ -81,99 +81,94 @@ export default function AddVenue() {
                   <motion.div
                     className={`bg-gradient-to-br from-[#FCE3EB] to-white`}
                   >
-                    <div className='container flex items-center justify-center '>
-                      <form className='w-full'>
-                        <section
-                          className={`bg-white border-4 my-5 md:my-10 border-primary py-5 md:py-10 px-10 md:px-24 max-w-xl w-full mx-auto rounded-xl h-[400px]`}
-                        >
-                          <h2 className='pb-8 mx-auto text-[36px] text-center commonTitle'>
-                            Select Your Venue
-                          </h2>
-                          <div className='w-48 mx-auto h-[2px] md:h-[4px] mb-16 bg-primary' />
 
-                          <Listbox
-                            value={selectedProvider}
-                            onChange={setSelectedProvider}
-                            className='w-full '
-                          >
-                            <div className='relative w-full mt-1'>
-                              <Listbox.Button className='relative font-inter rounded-[5px] border-2 border-secondary/20 py-3 pl-5 pr-10 text-base font-semibold w-[370px]'>
-                                <span className='block truncate'>
-                                  {' '}
-                                  {selectedProvider?.name}
-                                </span>
-                                <span className='absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none'>
-                                  <SelectorIcon
-                                    className='w-5 h-5 text-gray-400'
+
+
+                    <div className='container flex items-center justify-center '>
+          <form className='w-full'>
+            <section
+              className={`bg-white border-4 my-5 md:my-10 border-primary py-5 md:py-10 sm:px-10 px-4 md:px-24 max-w-xl w-full mx-auto rounded-xl h-[400px]`}
+            >
+              <h2 className='pb-8 mx-auto text-[36px] text-center commonTitle'>
+                Select Your Venue
+              </h2>
+              <div className='w-48 mx-auto h-[2px] md:h-[4px] mb-16 bg-primary' />
+
+              <Listbox
+                value={selectedProvider}
+                onChange={setSelectedProvider}
+                className='w-full '
+              >
+                <div className='relative w-full mt-1'>
+                  <Listbox.Button className='relative font-inter rounded-[5px] border-2 border-secondary/20 py-3 pl-5 pr-10 text-base font-semibold w-[370px] selectInput'>
+                    <span className='block truncate'>
+                      {' '}
+                      {selectedProvider?.name}
+                    </span>
+                    <span className='absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none'>
+                      <SelectorIcon
+                        className='w-5 h-5 text-gray-400'
+                        aria-hidden='true'
+                      />
+                    </span>
+                  </Listbox.Button>
+                  <Transition
+                    as={Fragment}
+                    leave='transition ease-in duration-100'
+                    leaveFrom='opacity-100'
+                    leaveTo='opacity-0'
+                  >
+                    <Listbox.Options className='absolute min-w-[370px] selectInput py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
+                      {venues?.map((provider, providerIdx) => (
+                        <Listbox.Option
+                          key={providerIdx}
+                          className={({ active }) =>
+                            `${
+                              active
+                                ? 'text-secondary bg-secondary-alternative/50'
+                                : 'text-gray-900'
+                            }
+                            cursor-pointer select-none relative py-2 pl-10 pr-4 font-medium`
+                          }
+                          value={provider}
+                        >
+                          {({ selected, active }) => (
+                            <>
+                              <span
+                                className={`${
+                                  selected ? 'font-semibold' : 'font-medium'
+                                } block truncate`}
+                              >
+                                {provider.name}
+                              </span>
+                              {selected ? (
+                                <span
+                                  className={`${
+                                    active ? 'text-amber-600' : 'text-amber-600'
+                                  }
+                                  absolute inset-y-0 left-0 flex items-center pl-3`}
+                                >
+                                  <CheckIcon
+                                    className='w-5 h-5'
                                     aria-hidden='true'
                                   />
                                 </span>
-                              </Listbox.Button>
-                              <Transition
-                                as={Fragment}
-                                leave='transition ease-in duration-100'
-                                leaveFrom='opacity-100'
-                                leaveTo='opacity-0'
-                              >
-                                <Listbox.Options className='absolute min-w-[370px] py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
-                                  {venues?.map((provider, providerIdx) => (
-                                    <Listbox.Option
-                                      key={providerIdx}
-                                      className={({ active }) =>
-                                        `${
-                                          active
-                                            ? 'text-secondary bg-secondary-alternative/50'
-                                            : 'text-gray-900'
-                                        }
-                            cursor-pointer select-none relative py-2 pl-10 pr-4 font-medium`
-                                      }
-                                      value={provider}
-                                    >
-                                      {({ selected, active }) => (
-                                        <>
-                                          <span
-                                            className={`${
-                                              selected
-                                                ? 'font-semibold'
-                                                : 'font-medium'
-                                            } block truncate`}
-                                          >
-                                            {provider.name}
-                                          </span>
-                                          {selected ? (
-                                            <span
-                                              className={`${
-                                                active
-                                                  ? 'text-amber-600'
-                                                  : 'text-amber-600'
-                                              }
-                                  absolute inset-y-0 left-0 flex items-center pl-3`}
-                                            >
-                                              <CheckIcon
-                                                className='w-5 h-5'
-                                                aria-hidden='true'
-                                              />
-                                            </span>
-                                          ) : null}
-                                        </>
-                                      )}
-                                    </Listbox.Option>
-                                  ))}
-                                </Listbox.Options>
-                              </Transition>
-                            </div>
-                          </Listbox>
-                          <div className='mt-8'>
-                            <Button
-                              label='Save'
-                              type='button'
-                              onClick={handleVenueSubmit}
-                              className='!rounded-[10px] w-[178px] h-[59px]'
-                            />
-                          </div>
-                        </section>
-                      </form>
-                    </div>
+                              ) : null}
+                            </>
+                          )}
+                        </Listbox.Option>
+                      ))}
+                    </Listbox.Options>
+                  </Transition>
+                </div>
+              </Listbox>
+            </section>
+          </form>
+        </div>
+
+
+
+
                   </motion.div>
                 </div>
               </div>

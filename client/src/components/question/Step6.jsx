@@ -83,7 +83,7 @@ const Step6 = () => {
         <div className='container flex items-center justify-center '>
           <form className='w-full'>
             <section
-              className={`bg-white border-4 my-5 md:my-10 border-primary py-5 md:py-10 px-10 md:px-24 max-w-xl w-full mx-auto rounded-xl h-[400px]`}
+              className={`bg-white border-4 my-5 md:my-10 border-primary py-5 md:py-10 sm:px-10 px-4 md:px-24 max-w-xl w-full mx-auto rounded-xl h-[400px]`}
             >
               <h2 className='pb-8 mx-auto text-[36px] text-center commonTitle'>
                 Select Your Venue
@@ -96,7 +96,7 @@ const Step6 = () => {
                 className='w-full '
               >
                 <div className='relative w-full mt-1'>
-                  <Listbox.Button className='relative font-inter rounded-[5px] border-2 border-secondary/20 py-3 pl-5 pr-10 text-base font-semibold w-[370px]'>
+                  <Listbox.Button className='relative font-inter rounded-[5px] border-2 border-secondary/20 py-3 pl-5 pr-10 text-base font-semibold w-[370px] selectInput'>
                     <span className='block truncate'>
                       {' '}
                       {selectedProvider?.name}
@@ -114,7 +114,7 @@ const Step6 = () => {
                     leaveFrom='opacity-100'
                     leaveTo='opacity-0'
                   >
-                    <Listbox.Options className='absolute min-w-[370px] py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
+                    <Listbox.Options className='absolute min-w-[370px] selectInput py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
                       {venues?.map((provider, providerIdx) => (
                         <Listbox.Option
                           key={providerIdx}
