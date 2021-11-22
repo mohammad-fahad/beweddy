@@ -31,7 +31,7 @@ const DashboardTopBar = () => {
               </div>
               <h3 className='text-base capitalize customLabel'>
                 👋 Welcome{' '}
-                {user?.role === 'venue'
+                {user?.venue
                   ? user?.venue?.businessName
                   : user?.coupleName}
                 !
