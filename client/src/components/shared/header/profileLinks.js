@@ -15,7 +15,9 @@ const ProfileLinks = ({ user }) => {
             <div className='border border-gray-200 rounded-lg py-2 px-6 flex items-center space-x-3'>
               <img src={user.avatar} alt='' className='w-7 h-7 rounded-full' />
               <h4 className='text-base font-semibold whitespace-nowrap'>
-                {user?.venue ? user?.venue?.businessName : user?.firstName}
+                {user?.role === 'venue'
+                  ? user?.venue?.businessName
+                  : user?.firstName}
               </h4>
             </div>
           </Menu.Button>

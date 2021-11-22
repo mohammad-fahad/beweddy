@@ -19,7 +19,9 @@ const WelcomeAlert = () => {
           Welcome{' '}
           {user ? (
             <span className='ml-1 capitalize'>
-              {user?.venue ? user?.venue?.businessName : user?.coupleName}{' '}
+              {user?.role === 'venue'
+                ? user?.venue?.businessName
+                : user?.coupleName}{' '}
             </span>
           ) : (
             'To BeWeddy '

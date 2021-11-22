@@ -39,7 +39,6 @@ const selectVenue = {
 
 const Step6 = () => {
   const dispatch = useDispatch();
-  const { questions } = useSelector(state => state.venue);
   const { success, loading } = useSelector(state => state.auth);
   const [selectedProvider, setSelectedProvider] = useState(selectVenue);
   const [venues, setVenues] = useState([]);
@@ -49,10 +48,12 @@ const Step6 = () => {
   useEffect(() => {
     if (data) {
       setVenues(
-        data?.map(venue => ({
-          _id: venue._id,
-          name: venue.businessName,
-        }))
+        data
+          ?.filter(item => item.plan !== 'none')
+          ?.map(venue => ({
+            _id: venue._id,
+            name: venue.businessName,
+          }))
       );
 
       setSelectedProvider({ _id: data[0]?._id, name: data[0]?.businessName });
