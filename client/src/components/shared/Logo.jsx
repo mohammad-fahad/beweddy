@@ -6,7 +6,7 @@ const Logo = () => {
   if (user?.venue) {
     return (
       <div>
-        <img className='h-28' src={user.venue.logo.secure_url} alt='logo' />
+        <img className='h-28' src={user?.venue?.logo?.secure_url} alt='logo' />
       </div>
     );
   }

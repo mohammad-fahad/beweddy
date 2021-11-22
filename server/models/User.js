@@ -115,6 +115,10 @@ const userSchema = new mongoose.Schema(
         ref: 'Todo',
       },
     ],
+    venue: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Venue',
+    },
     socialAccounts: {
       groom: {
         facebook: String,

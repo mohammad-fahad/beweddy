@@ -2,7 +2,6 @@ import bcrypt from 'bcrypt';
 import mongoose from 'mongoose';
 
 //creating Venue schema for Venue admin
-
 const venueSchema = new mongoose.Schema(
   {
     user: {

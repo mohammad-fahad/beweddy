@@ -64,7 +64,7 @@ const WebsitePreview = () => {
         </div>
         <div className='my-5 text-center'>
           <LinkButton
-            href='/create-website?step=7'
+            href='/create-website?step=8'
             label='Launch Your Wedding Platform'
             className='!rounded-[10px] md:!px-10'
           />
