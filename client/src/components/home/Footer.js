@@ -119,7 +119,7 @@ const Footer = ({ hideSocial, className, websitePreview }) => {
             </span>
             <strong className="font-bold customLabel">
               {/* BeWeddy. */}
-              Your Company.
+              {user?.venue?.businessName}.
             </strong>
             {/* <span className="ml-1 customLabel"> All rights reserved.</span> */}
             <span className="ml-1 customLabel">
