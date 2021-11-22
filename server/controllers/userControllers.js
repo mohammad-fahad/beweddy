@@ -690,6 +690,9 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
       user.location = req.body.location;
     }
 
+    if (req.body.venueId) {
+      user.venue = req.body.venueId;
+    }
     // user.avatar = req.body.avatar || user.avatar;
     user.ourStory = req.body.ourStory || user.ourStory;
     user.receptionDetails = req.body.receptionDetails || user.receptionDetails;
@@ -741,7 +744,9 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     const updatedUser = await user.save();
     const updatesUser = await User.findById(updatedUser._id)
       .populate('giftCards')
-      .populate('registries');
+      .populate('registries')
+      .populate('venue', 'businessName logo websiteLink');
+
     const updateUser = JSON.parse(JSON.stringify(updatesUser));
     res.json({
       user: {
@@ -766,6 +771,7 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
         weddingVideo: updateUser.weddingVideo,
         isAdmin: updateUser.isAdmin,
         role: updateUser.role,
+        venue: updateUser.venue,
         token: generateIdToken(updateUser._id),
       },
       message: 'Updated!',
