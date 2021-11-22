@@ -474,10 +474,6 @@
   .customFullWidth {
     width: 100% !important;
   }
-  .selectInput{
-    width : 300px !important;
-    min-width : 300px !important;
-  }
 }
 
 @media screen and (max-width: 480px) {
