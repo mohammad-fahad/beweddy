@@ -16,6 +16,7 @@ import moment from "moment";
 import { compareDate } from "@helpers/index";
 import { toPng } from "html-to-image";
 import { nanoid } from "nanoid";
+import Logo from "@components/shared/Logo";
 
 const WeddingSchedule = () => {
   // WeddingName Picker
@@ -130,7 +131,8 @@ const WeddingSchedule = () => {
             <div className="max-w-[1300px] w-full">
               <div className="container p-1 sm:p-10 ">
                 <div className="flex items-center justify-center">
-                  <img src="/images/logo.png" alt="" className="w-[180px]" />
+                  {/* <img src="/images/logo.png" alt="" className="w-[180px]" /> */}
+                  <Logo />
                 </div>
                 <div className="w-full mx-auto border-4 border-[#E5E5E5] rounded-lg mt-5 ">
                   <div className="w-full">

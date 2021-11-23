@@ -31,7 +31,7 @@ const DashboardPage = () => {
                 </span>
               </a>
             </Link>
-            <Link href='/'>
+            <Link href='/dashboard/invitation/rsvp-guest-management'>
               <a className='py-2 px-5 border-2 border-secondary-alternative rounded-[5px] capitalize font-inter font-semibold hover:bg-secondary/5 transition duration-300'>
                 Guests Management
               </a>
