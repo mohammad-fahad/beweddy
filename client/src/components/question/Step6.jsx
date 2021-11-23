@@ -45,15 +45,31 @@ const Step6 = () => {
   const { push } = useRouter();
   const { data } = useQuery("venues", getVenues);
 
+  // useEffect(() => {
+  //   if (data) {
+  //     setVenues(
+  //       data
+  //         ?.filter((item) => item.plan !== "none")
+  //         ?.map((venue) => ({
+  //           _id: venue._id,
+  //           name: venue.businessName,
+  //         }))
+  //     );
+
+  //     setSelectedProvider({ _id: data[0]?._id, name: data[0]?.businessName });
+  //   } else {
+  //     setVenues([selectVenue]);
+  //     setSelectedProvider(selectVenue);
+  //   }
+  // }, [data]);
+
   useEffect(() => {
     if (data) {
       setVenues(
-        data
-          ?.filter((item) => item.plan !== "none")
-          ?.map((venue) => ({
-            _id: venue._id,
-            name: venue.businessName,
-          }))
+        data?.map((venue) => ({
+          _id: venue._id,
+          name: venue.businessName,
+        }))
       );
 
       setSelectedProvider({ _id: data[0]?._id, name: data[0]?.businessName });
