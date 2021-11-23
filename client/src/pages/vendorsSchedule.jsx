@@ -3,6 +3,7 @@ import SwiperCore, { Lazy, Autoplay } from "swiper";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import InputField from "@components/shared/InputField";
 import { useForm } from "react-hook-form";
+import Logo from "@components/shared/Logo";
 SwiperCore.use([Lazy, Autoplay]);
 const VendorsSchedule = (props) => {
   const {
@@ -33,12 +34,14 @@ const VendorsSchedule = (props) => {
 
       <div className="container p-1 sm:p-10 ">
         <div className="flex items-center justify-center">
-          <img src="/images/logo.png" alt="" className="w-[180px]" />
+          {/* <img src="/images/logo.png" alt="" className="w-[180px]" /> */}
+          <Logo />
         </div>
         <div className="w-full border-4 border-[#E5E5E5] rounded-lg mt-5 ">
           <div className="w-full">
             <div className="aspect-w-16 aspect-h-9">
-              <img src="/images/banner.png" alt="" className="w-full h-full" />
+              {/* <img src="/images/banner.png" alt="" className="w-full h-full" /> */}
+              <Logo />
             </div>
           </div>
 
@@ -50,7 +53,7 @@ const VendorsSchedule = (props) => {
               Vendors
             </p>
             <p className="text-[14px] font-inter">
-              Please include SOcial Media Handles and Number and/or email
+              Please include Social Media Handles and Number and/or email
             </p>
           </div>
 
