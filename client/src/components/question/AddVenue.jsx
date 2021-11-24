@@ -29,7 +29,6 @@ export default function AddVenue() {
   };
 
   const { data } = useQuery("venues", getVenues);
-  console.log(data, "sonjoy");
 
   // useEffect(() => {
   //   if (data) {
