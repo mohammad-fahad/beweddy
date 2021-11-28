@@ -134,7 +134,7 @@ const CoupleName = () => {
           <Button
             label='Back'
             className='opacity-50 !bg-[#bebebe] !rounded-[10px] !w-[178px] !h-[59px]'
-            onClick={() => push('/create-website', null, { shallow: true })}
+            onClick={() => push('/register', null, { shallow: true })}
           />
           <Button
             label='Next'

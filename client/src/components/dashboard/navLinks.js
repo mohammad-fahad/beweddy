@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import DashboardActiveLink from "./DashboardActiveLink";
 import Drawer from "./drawer";
-import { Disclosure } from '@headlessui/react'
+import { Disclosure } from "@headlessui/react";
 
 const navLinks = [
   {
@@ -88,7 +88,6 @@ const specialFeatures = [
   },
 ];
 
-
 const DashboardNavLinks = ({ user }) => {
   const [open, setOpen] = useState(false);
   const dashboardRoutes = ["/dashboard", "/dashboard/website/edit"];
@@ -152,36 +151,33 @@ const DashboardNavLinks = ({ user }) => {
             </a>
           </Link>
         </div>
-          <Disclosure>
-      <Disclosure.Button className="py-2">
-       <p className="flex items-center w-full my-1">
-          <img src='/note 2.png' alt="" className="w-5 h-5 mr-3" />
-          Wedding Forms
-        </p>
-      </Disclosure.Button>
+        <Disclosure>
+          <Disclosure.Button className="py-2">
+            <p className="flex items-center w-full my-1">
+              <img src="/note 2.png" alt="" className="w-5 h-5 mr-3" />
+              Wedding Forms
+            </p>
+          </Disclosure.Button>
 
-      <Disclosure.Panel className="text-gray-500 ml-3">
-
-      
-      <div><Link href="/dashboard/wedding-schedule" > 
-        <p className="flex items-center w-full my-1 cursor-pointer">
-            <img src="/edot 2.svg" alt="" className="w-5 h-5 mr-3" />
-          Wedding Schedule
-        </p>
-      </Link> </div>
-      <div> 
-      <Link href="/dashboard/vendors-schedule" > 
-          <p className="flex items-center w-full my-1 cursor-pointer">
-            <img src="/home2.png" alt="" className="w-5 h-5 mr-3" />
-          Vendors Schedule
-          </p>
-      </Link></div>
-      
-       
-      
-      
-      </Disclosure.Panel>
-    </Disclosure>
+          <Disclosure.Panel className="ml-3 text-gray-500">
+            <div>
+              <Link href="/dashboard/wedding-schedule">
+                <p className="flex items-center w-full my-1 cursor-pointer">
+                  <img src="/edot 2.svg" alt="" className="w-5 h-5 mr-3" />
+                  Wedding Schedule
+                </p>
+              </Link>{" "}
+            </div>
+            <div>
+              <Link href="/dashboard/vendors-schedule">
+                <p className="flex items-center w-full my-1 cursor-pointer">
+                  <img src="/home2.png" alt="" className="w-5 h-5 mr-3" />
+                  Vendors Schedule
+                </p>
+              </Link>
+            </div>
+          </Disclosure.Panel>
+        </Disclosure>
         {navLinks.map((link, index) => (
           <DashboardActiveLink
             href={link.isComing ? "#" : link.href}

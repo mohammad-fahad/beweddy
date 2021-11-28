@@ -3,6 +3,8 @@ import { XIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { Fragment, useState } from "react";
 import DashboardActiveLink from "../DashboardActiveLink";
+import { Disclosure } from "@headlessui/react";
+import Logo from "../../shared/Logo";
 
 const navLinks = [
   {
@@ -107,11 +109,14 @@ const Drawer = ({ open, setOpen }) => {
                     <Dialog.Title className="flex items-center justify-center">
                       <Link href="/dashboard">
                         <a className={`inline-block space-y-2`}>
-                          <img
+                          {/* <img
                             src="/images/logo.png"
                             alt=""
                             className="h-8 sm:h-[4rem] mx-auto"
-                          />
+                          /> */}
+                          <div className="flex items-center justify-center">
+                            <Logo />
+                          </div>
                           <h3 className="text-base font-medium text-center sm:text-lg">
                             All-In-One Wedding Platform.
                           </h3>
@@ -144,6 +149,47 @@ const Drawer = ({ open, setOpen }) => {
                           >
                             Dashboard
                           </DashboardActiveLink>
+
+                          <Disclosure>
+                            <Disclosure.Button className="py-2">
+                              <p className="flex items-center w-full my-1">
+                                <img
+                                  src="/note 2.png"
+                                  alt=""
+                                  className="w-5 h-5 mr-3"
+                                />
+                                Wedding Forms
+                              </p>
+                            </Disclosure.Button>
+
+                            <Disclosure.Panel className="ml-3 text-gray-500">
+                              <div>
+                                <Link href="/dashboard/wedding-schedule">
+                                  <p className="flex items-center w-full my-1 cursor-pointer">
+                                    <img
+                                      src="/edot 2.svg"
+                                      alt=""
+                                      className="w-5 h-5 mr-3"
+                                    />
+                                    Wedding Schedule
+                                  </p>
+                                </Link>{" "}
+                              </div>
+                              <div>
+                                <Link href="/dashboard/vendors-schedule">
+                                  <p className="flex items-center w-full my-1 cursor-pointer">
+                                    <img
+                                      src="/home2.png"
+                                      alt=""
+                                      className="w-5 h-5 mr-3"
+                                    />
+                                    Vendors Schedule
+                                  </p>
+                                </Link>
+                              </div>
+                            </Disclosure.Panel>
+                          </Disclosure>
+
                           {navLinks.map((link, index) => (
                             <DashboardActiveLink
                               href={link.isComing ? "#" : link.href}
