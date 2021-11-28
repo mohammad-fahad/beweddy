@@ -12,6 +12,6 @@ export const updateVenue = asyncHandler(async (req, res) => {
 });
 
 export const getVenues = asyncHandler(async (req, res) => {
-  const venues = await Venue.find();
+  const venues = await Venue.find({}).sort({ businessName: 1 });
   res.status(200).json(venues);
 });
