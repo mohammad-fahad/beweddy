@@ -1,13 +1,13 @@
 import Link from "next/link";
 
-const WebsiteNav = ({ user }) => {
+const WebsiteNav = ({ user , noEdit }) => {
   // const { user } = useSelector((state) => state.user);
   return (
     <div className="bg-[#ffffff] border-b-[3px] border-primary">
       {/* <div className="xxl:pr-0"> */}
       <div className="w-full px-5 !py-3  md:py-0 md:flex-row md:justify-between">
         <div className="mt-2">
-          {user && (
+          {!noEdit && (
             <Link href="/dashboard/website/edit">
               <a className="flex items-center space-x-3 text-sm font-semibold text-gray-700 transition duration-300 md:text-md whitespace-nowrap font-inter hover:text-primary">
                 <span className="subTitle">Edit Website</span>

@@ -47,14 +47,14 @@ const CreateWebsitePage = () => {
 
     default:
       return (
-        <ExampleWebsite
-          seo={{ title: "Create Your Website" }}
-          href="/create-website?step=1"
-          label="Next"
-          title="Wedding Website Preview"
-          btn="Create Your Website Now"
-        />
-        // <h1>website</h1>
+        // <ExampleWebsite
+        //   seo={{ title: "Create Your Website" }}
+        //   href="/create-website?step=1"
+        //   label="Next"
+        //   title="Wedding Website Preview"
+        //   btn="Create Your Website Now"
+        // />
+        <Step1 />
       );
   }
 };

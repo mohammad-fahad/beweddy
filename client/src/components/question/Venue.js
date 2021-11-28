@@ -28,17 +28,17 @@ const CreateVenuePage = () => {
     case 5:
       return <Step5 />;
 
-    default:
-      return (
-        <ExampleWebsite
-          seo={{ title: 'Create Your Venue' }}
-          href='/venue?step=1'
-          label='Next'
-          title='Wedding Venue Preview'
-          btn='Create Your Venue Now'
-        />
-        // <h1>venue</h1>
-      );
+    // default:
+    //   return (
+    //     // <ExampleWebsite
+    //     //   seo={{ title: 'Create Your Venue' }}
+    //     //   href='/venue?step=1'
+    //     //   label='Next'
+    //     //   title='Wedding Venue Preview'
+    //     //   btn='Create Your Venue Now'
+    //     // />
+    //     <Step1 />
+    //   );
   }
 };
 export default withAuthRedirect(CreateVenuePage);

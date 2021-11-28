@@ -130,7 +130,7 @@ const Step6 = () => {
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                   >
-                    <Listbox.Options className="absolute min-w-[370px] selectInput py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                    <Listbox.Options className="absolute min-w-[370px] selectInput py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm" style={{zIndex : "99999999999"}}>
                       {venues?.map((provider, providerIdx) => (
                         <Listbox.Option
                           key={providerIdx}

@@ -138,7 +138,7 @@ const WeddingSchedule = () => {
                   <div className="w-full">
                     <div className="aspect-w-16 aspect-h-9">
                       <img
-                        src="/images/banner.png"
+                        src="/images/dashboardPicture.png"
                         alt=""
                         className="w-full h-full"
                       />
@@ -157,7 +157,7 @@ const WeddingSchedule = () => {
                   <div className="container p-3 sm:p-16">
                     {/* form */}
                     <form onSubmit={handleSubmit(onSubmit)}>
-                      <div className="grid w-full grid-cols-12 gap-2">
+                      <div className="grid w-full grid-cols-12 gap-4">
                         <div className="col-span-12 ">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Wedding Name & Date :
@@ -167,7 +167,7 @@ const WeddingSchedule = () => {
                           <InputField
                             label=""
                             placeholder="Your Wedding Name"
-                            {...register("weddingName", { required: true })}
+                            {...register("weddingName")}
                           />
                           {errors.weddingName && (
                             <span className="text-red-500">
@@ -257,7 +257,7 @@ const WeddingSchedule = () => {
 
                       {/* Brides Full Name & Number   */}
 
-                      <div className="grid w-full grid-cols-12 gap-2">
+                      <div className="grid w-full grid-cols-12 gap-4">
                         <div className="col-span-12">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Brides Full Name & Number
@@ -267,29 +267,19 @@ const WeddingSchedule = () => {
                           <InputField
                             label=""
                             placeholder="Your Brides Name"
-                            {...register("bridesName", { required: true })}
+                            {...register("bridesName")}
                           />
-                          {errors.bridesName && (
-                            <span className="text-red-500">
-                              This field is required
-                            </span>
-                          )}
                         </div>
                         <div className="col-span-12 sm:col-span-6">
                           <InputField
                             label=""
                             placeholder="(671) 555-0110"
-                            {...register("bridesNumber", { required: true })}
+                            {...register("bridesNumber")}
                           />
-                          {errors.bridesNumber && (
-                            <span className="text-red-500">
-                              This field is required
-                            </span>
-                          )}
                         </div>
                       </div>
                       {/* Groom’s Full Name & Number */}
-                      <div className="grid w-full grid-cols-12 gap-2">
+                      <div className="grid w-full grid-cols-12 gap-4">
                         <div className="col-span-12">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Groom’s Full Name & Number
@@ -298,30 +288,20 @@ const WeddingSchedule = () => {
                         <div className="col-span-12 sm:col-span-6">
                           <InputField
                             label=""
-                            placeholder="Your Brides Name"
-                            {...register("groomName", { required: true })}
+                            placeholder="Your Groom’s Name"
+                            {...register("groomName")}
                           />
-                          {errors.groomName && (
-                            <span className="text-red-500">
-                              This field is required
-                            </span>
-                          )}
                         </div>
                         <div className="col-span-12 sm:col-span-6">
                           <InputField
                             label=""
                             placeholder="(671) 555-0110"
-                            {...register("groomNumber", { required: true })}
+                            {...register("groomNumber")}
                           />
-                          {errors.groomNumber && (
-                            <span className="text-red-500">
-                              This field is required
-                            </span>
-                          )}
                         </div>
                       </div>
                       {/* Bride’s Parent’s Name & Number  */}
-                      <div className="grid w-full grid-cols-12 gap-2">
+                      <div className="grid w-full grid-cols-12 gap-4">
                         <div className="col-span-12">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Bride’s Parent’s Name & Number
@@ -331,13 +311,8 @@ const WeddingSchedule = () => {
                           <InputField
                             label=""
                             placeholder="Your Bride’s Parent’s Name"
-                            {...register("brideParentName", { required: true })}
+                            {...register("brideParentName")}
                           />
-                          {errors.brideParentName && (
-                            <span className="text-red-500">
-                              This field is required
-                            </span>
-                          )}
                         </div>
                         <div className="col-span-12 sm:col-span-6">
                           <InputField
@@ -347,15 +322,10 @@ const WeddingSchedule = () => {
                               required: true,
                             })}
                           />
-                          {errors.brideParentNumber && (
-                            <span className="text-red-500">
-                              This field is required
-                            </span>
-                          )}
                         </div>
                       </div>
                       {/*Groom’s Parent’s Name & Number*/}
-                      <div className="grid w-full grid-cols-12 gap-2">
+                      <div className="grid w-full grid-cols-12 gap-4">
                         <div className="col-span-12">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Groom’s Parent’s Name & Number
@@ -365,13 +335,8 @@ const WeddingSchedule = () => {
                           <InputField
                             label=""
                             placeholder="Your Groom’s Parent’s Name"
-                            {...register("groomParentName", { required: true })}
+                            {...register("groomParentName")}
                           />
-                          {errors.groomParentName && (
-                            <span className="text-red-500">
-                              This field is required
-                            </span>
-                          )}
                         </div>
                         <div className="col-span-12 sm:col-span-6">
                           <InputField
@@ -381,15 +346,10 @@ const WeddingSchedule = () => {
                               required: true,
                             })}
                           />
-                          {errors.groomParentNumber && (
-                            <span className="text-red-500">
-                              This field is required
-                            </span>
-                          )}
                         </div>
                       </div>
                       {/*Number To Contact On Day Of*/}
-                      <div className="grid w-full grid-cols-12 gap-2">
+                      <div className="grid w-full grid-cols-12 gap-4">
                         <div className="col-span-12">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Number To Contact On Day Of
@@ -398,18 +358,13 @@ const WeddingSchedule = () => {
                         <div className="col-span-12 sm:col-span-6">
                           <InputField
                             label=""
-                            placeholder="123"
-                            {...register("numberToContact", { required: true })}
+                            placeholder="+1 650-385-8068"
+                            {...register("numberToContact")}
                           />
-                          {errors.numberToContact && (
-                            <span className="text-red-500">
-                              This field is required
-                            </span>
-                          )}
                         </div>
                       </div>
                       {/* Arrival/Set-Up Time === Cocktail Hour Time */}
-                      <div className="grid w-full grid-cols-12 gap-2">
+                      <div className="grid w-full grid-cols-12 gap-4">
                         <div className="col-span-12 sm:col-span-6">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Arrival/Set-Up Time
@@ -421,13 +376,8 @@ const WeddingSchedule = () => {
                             <InputField
                               label=""
                               placeholder="12:00 PM / Note"
-                              {...register("americaTime", { required: true })}
+                              {...register("americaTime")}
                             />
-                            {errors.americaTime && (
-                              <span className="text-red-500">
-                                This field is required
-                              </span>
-                            )}
                           </div>
                         </div>
                         <div className="col-span-12 sm:col-span-6">
@@ -441,19 +391,14 @@ const WeddingSchedule = () => {
                             <InputField
                               label=""
                               placeholder="12:00 PM / Note"
-                              {...register("cocktail", { required: true })}
+                              {...register("cocktail")}
                             />
-                            {errors.cocktail && (
-                              <span className="text-red-500">
-                                This field is required
-                              </span>
-                            )}
                           </div>
                         </div>
                       </div>
 
                       {/* Event Room === Luncheon / Dinner Time */}
-                      <div className="grid w-full grid-cols-12 gap-2">
+                      <div className="grid w-full grid-cols-12 gap-4">
                         <div className="col-span-12 sm:col-span-6">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Event Room
@@ -465,13 +410,8 @@ const WeddingSchedule = () => {
                             <InputField
                               label=""
                               placeholder="12:00 PM / Note"
-                              {...register("eventRoom", { required: true })}
+                              {...register("eventRoom")}
                             />
-                            {errors.eventRoom && (
-                              <span className="text-red-500">
-                                This field is required
-                              </span>
-                            )}
                           </div>
                         </div>
                         <div className="col-span-12 sm:col-span-6">
@@ -485,19 +425,14 @@ const WeddingSchedule = () => {
                             <InputField
                               label=""
                               placeholder="12:00 PM / Note"
-                              {...register("luncheonTime", { required: true })}
+                              {...register("luncheonTime")}
                             />
-                            {errors.luncheonTime && (
-                              <span className="text-red-500">
-                                This field is required
-                              </span>
-                            )}
                           </div>
                         </div>
                       </div>
 
                       {/*Package or Basic Rental === Luncheon / Dinner Time */}
-                      <div className="grid w-full grid-cols-12 gap-2">
+                      <div className="grid w-full grid-cols-12 gap-4">
                         <div className="col-span-12 sm:col-span-6">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Package or Basic Rental
@@ -509,13 +444,8 @@ const WeddingSchedule = () => {
                             <InputField
                               label=""
                               placeholder="12:00 PM / Note"
-                              {...register("packageTental", { required: true })}
+                              {...register("packageTental")}
                             />
-                            {errors.packageTental && (
-                              <span className="text-red-500">
-                                This field is required
-                              </span>
-                            )}
                           </div>
                         </div>
                         <div className="col-span-12 sm:col-span-6">
@@ -529,18 +459,13 @@ const WeddingSchedule = () => {
                             <InputField
                               label=""
                               placeholder="12:00 PM / Note"
-                              {...register("receptionTime", { required: true })}
+                              {...register("receptionTime")}
                             />
-                            {errors.receptionTime && (
-                              <span className="text-red-500">
-                                This field is required
-                              </span>
-                            )}
                           </div>
                         </div>
                       </div>
                       {/*Bridal Party Count === Cake Cutting Time */}
-                      <div className="grid w-full grid-cols-12 gap-2">
+                      <div className="grid w-full grid-cols-12 gap-4">
                         <div className="col-span-12 sm:col-span-6">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Bridal Party Count
@@ -552,13 +477,8 @@ const WeddingSchedule = () => {
                             <InputField
                               label=""
                               placeholder="12:00 PM / Note"
-                              {...register("bridalParty", { required: true })}
+                              {...register("bridalParty")}
                             />
-                            {errors.bridalParty && (
-                              <span className="text-red-500">
-                                This field is required
-                              </span>
-                            )}
                           </div>
                         </div>
                         <div className="col-span-12 sm:col-span-6">
@@ -572,18 +492,13 @@ const WeddingSchedule = () => {
                             <InputField
                               label=""
                               placeholder="12:00 PM / Note"
-                              {...register("cakeCutting", { required: true })}
+                              {...register("cakeCutting")}
                             />
-                            {errors.cakeCutting && (
-                              <span className="text-red-500">
-                                This field is required
-                              </span>
-                            )}
                           </div>
                         </div>
                       </div>
                       {/*Ceremony Time === First Dance Time  */}
-                      <div className="grid w-full grid-cols-12 gap-2">
+                      <div className="grid w-full grid-cols-12 gap-4">
                         <div className="col-span-12 sm:col-span-6">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Ceremony Time
@@ -595,13 +510,8 @@ const WeddingSchedule = () => {
                             <InputField
                               label=""
                               placeholder="12:00 PM / Note"
-                              {...register("ceremonyTime", { required: true })}
+                              {...register("ceremonyTime")}
                             />
-                            {errors.ceremonyTime && (
-                              <span className="text-red-500">
-                                This field is required
-                              </span>
-                            )}
                           </div>
                         </div>
                         <div className="col-span-12 sm:col-span-6">
@@ -615,18 +525,13 @@ const WeddingSchedule = () => {
                             <InputField
                               label=""
                               placeholder="12:00 PM / Note"
-                              {...register("firstDance", { required: true })}
+                              {...register("firstDance")}
                             />
-                            {errors.firstDance && (
-                              <span className="text-red-500">
-                                This field is required
-                              </span>
-                            )}
                           </div>
                         </div>
                       </div>
                       {/* Ceremony Song(s) === Bouquet Toss Time  */}
-                      <div className="grid w-full grid-cols-12 gap-2">
+                      <div className="grid w-full grid-cols-12 gap-4">
                         <div className="col-span-12 sm:col-span-6">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Ceremony Song(s)
@@ -638,13 +543,8 @@ const WeddingSchedule = () => {
                             <InputField
                               label=""
                               placeholder="12:00 PM / Note"
-                              {...register("ceremonySong", { required: true })}
+                              {...register("ceremonySong")}
                             />
-                            {errors.ceremonySong && (
-                              <span className="text-red-500">
-                                This field is required
-                              </span>
-                            )}
                           </div>
                         </div>
                         <div className="col-span-12 sm:col-span-6">
@@ -658,18 +558,13 @@ const WeddingSchedule = () => {
                             <InputField
                               label=""
                               placeholder="12:00 PM / Note"
-                              {...register("bouquestTime", { required: true })}
+                              {...register("bouquestTime")}
                             />
-                            {errors.bouquestTime && (
-                              <span className="text-red-500">
-                                This field is required
-                              </span>
-                            )}
                           </div>
                         </div>
                       </div>
                       {/*Photo Time === Luncheon / Dinner Time */}
-                      <div className="grid w-full grid-cols-12 gap-2">
+                      <div className="grid w-full grid-cols-12 gap-4">
                         <div className="col-span-12 sm:col-span-6">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Photo Time
@@ -681,13 +576,8 @@ const WeddingSchedule = () => {
                             <InputField
                               label=""
                               placeholder="12:00 PM / Note"
-                              {...register("photoTime", { required: true })}
+                              {...register("photoTime")}
                             />
-                            {errors.photoTime && (
-                              <span className="text-red-500">
-                                This field is required
-                              </span>
-                            )}
                           </div>
                         </div>
                         <div className="col-span-12 sm:col-span-6">
@@ -701,13 +591,8 @@ const WeddingSchedule = () => {
                             <InputField
                               label=""
                               placeholder="12:00 PM / Note"
-                              {...register("departure", { required: true })}
+                              {...register("departure")}
                             />
-                            {errors.departure && (
-                              <span className="text-red-500">
-                                This field is required
-                              </span>
-                            )}
                           </div>
                         </div>
                       </div>
