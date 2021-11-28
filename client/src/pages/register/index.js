@@ -15,7 +15,9 @@ const LoginStep = () => {
 
   const onSubmit = (data) => {
     window.localStorage.setItem("beweddy_user_role", data.accountType);
-    push("/create-website");
+    const role =  `${data.accountType}` === "venue" ? "venue" : "create-website"
+    // push("/create-website");
+    push(`/${role}?step=1`);
   };
 
   return (

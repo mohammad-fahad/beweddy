@@ -72,7 +72,7 @@ const VendorsSchedule = () => {
                   <div className="w-full">
                     <div className="aspect-w-16 aspect-h-9">
                       <img
-                        src="/images/banner.png"
+                        src="/images/dashboardPicture.png"
                         alt=""
                         className="w-full h-full"
                       />
