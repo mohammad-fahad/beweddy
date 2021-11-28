@@ -7,10 +7,6 @@ import {
   generateIdToken,
   resetPasswordIdToken,
 } from '../utils/token/index.js';
-import {
-  sendActivationEmail,
-  sendPasswordResetEmail,
-} from '../utils/mailer/index.js';
 import { client } from '../lib/google.js';
 import { nanoid } from 'nanoid';
 import Todo from '../models/Todo.js';
@@ -20,6 +16,7 @@ import Guest from '../models/Guest.js';
 import Gift from '../models/Gift.js';
 import Venue from '../models/Venue.js';
 import { addNewCustomer, createSubscription } from '../lib/stripe.js';
+import { sendActivationEmail } from './invitationControllers.js';
 
 // Register New User
 
@@ -88,7 +85,8 @@ export const register = asyncHandler(async (req, res) => {
     await sendActivationEmail(
       role === 'venue' ? null : user.fullName,
       email,
-      url
+      url,
+      role
     );
 
     res
