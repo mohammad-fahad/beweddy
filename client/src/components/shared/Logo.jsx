@@ -1,12 +1,6 @@
+import { prependHttp } from '@utils/index.js';
 import React from 'react';
 import { useSelector } from 'react-redux';
-
-const prependHttp = url => {
-  if (!url.startsWith('http' || 'https')) {
-    return `http://${url}`;
-  }
-  return url;
-};
 
 const Logo = () => {
   const { user } = useSelector(state => state.user);
