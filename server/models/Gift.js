@@ -11,6 +11,10 @@ const giftSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    isRecommended: {
+      type: Boolean,
+      required: false,
+    },
     link: {
       type: String,
       required: true,
