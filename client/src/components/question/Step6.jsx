@@ -79,13 +79,15 @@ const Step6 = () => {
     }
   }, [data]);
 
-  const {
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ mode: 'all' });
-
+  const { watch, getValues, register } = useForm({ mode: 'all' });
+  watch('skip_venue');
+  const skipVenue = getValues('skip_venue');
   const handleVenueSubmit = () => {
-    dispatch(addSelectVenue(selectedProvider?._id));
+    if (!skipVenue) {
+      dispatch(addSelectVenue(selectedProvider?._id));
+    } else {
+      dispatch(addSelectVenue(null));
+    }
     push('create-website?step=7');
   };
 
@@ -177,6 +179,24 @@ const Step6 = () => {
                   </Transition>
                 </div>
               </Listbox>
+              <motion.div
+                className='flex items-center justify-center my-5 space-x-3'
+                variants={fadeInUp}
+              >
+                <input
+                  type='checkbox'
+                  id='skip_venue'
+                  value={true}
+                  className='text-secondary-alternative rounded-md border-2 border-primary w-[24px] h-[24px] focus:ring-2 focus:ring-offset-2 focus:ring-primary'
+                  {...register('skip_venue')}
+                />
+                <label
+                  htmlFor='skip_venue'
+                  className='text-lg font-normal cursor-pointer font-inter'
+                >
+                  Undecided on venue
+                </label>
+              </motion.div>
             </section>
           </form>
         </div>
