@@ -99,7 +99,7 @@ export const sendActivationEmail = async (name, email, url, role) => {
   });
 
   const mailOptions = {
-    from: `${SITE_NAME} <${EMAIL_FROM}>`,
+    from: `${SITE_NAME} <${EMAIL_USER}>`,
     to: email,
     subject: `Signup to ${CLIENT_URL}`,
     html:
@@ -121,7 +121,7 @@ export const sendPasswordResetEmail = async (email, url) => {
   });
 
   const mailOptions = {
-    from: `${SITE_NAME} <${EMAIL_FROM}>`,
+    from: `${SITE_NAME} <${EMAIL_USER}>`,
     to: email,
     subject: `Reset your Password for ${SITE_NAME}`,
     html: passwordResetTemplate(url),
