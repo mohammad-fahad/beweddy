@@ -118,7 +118,9 @@ export const googleSignUp = asyncHandler(async (req, res) => {
   const gifts = await Gift.find({}).select('_id');
   // const registries = await Registry.find({}).select('_id');
 
-  const giftCards = gifts.map(gift => gift._id);
+  const giftCards = gifts
+    .filter(gift => gift.isRecommended)
+    .map(gift => gift._id);
 
   // const registryCards = registries.map(registry => registry._id);
 
