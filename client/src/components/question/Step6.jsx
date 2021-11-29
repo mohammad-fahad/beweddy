@@ -33,7 +33,7 @@ const fadeInUp = {
 };
 
 const selectVenue = {
-  _id: null,
+  // _id: undefined,
   name: 'Select a venue',
 };
 
