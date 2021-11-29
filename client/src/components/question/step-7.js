@@ -32,9 +32,11 @@ const SignupPage = () => {
     formState: { errors },
   } = useForm({ mode: 'all' });
 
+  const role = window.localStorage.getItem('beweddy_user_role');
+
   const onSubmit = data => {
     if (data) {
-      dispatch(attemptSignup({ ...data, questions }));
+      dispatch(attemptSignup({ ...data, questions, role }));
     }
   };
 
@@ -46,7 +48,7 @@ const SignupPage = () => {
   }, [success]);
 
   const onSuccess = async res => {
-    dispatch(attemptGoogleSignUp({ idToken: res.tokenId, questions }));
+    dispatch(attemptGoogleSignUp({ idToken: res.tokenId, questions, role }));
   };
   const onFailure = async res => {};
 
