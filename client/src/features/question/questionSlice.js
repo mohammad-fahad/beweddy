@@ -9,7 +9,7 @@ const initialState = {
     weddingAnnouncement: {},
     sentInvitation: {},
     couplePictures: [],
-    venueId: '',
+    venueId: null,
   },
 };
 

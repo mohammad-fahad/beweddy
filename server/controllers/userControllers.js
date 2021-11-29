@@ -60,7 +60,7 @@ export const register = asyncHandler(async (req, res) => {
     password,
     questions: role === 'venue' ? null : questions,
     username,
-    venue: venueId,
+    venue: venueId && venueId,
     role,
   });
 
@@ -160,7 +160,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       username,
       questions: role === 'venue' ? null : questions,
       giftCards,
-      venue: venueId,
+      venue: venueId && venueId,
       role,
       // registries: registryCards,
     });
