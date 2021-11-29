@@ -82,12 +82,7 @@ export const register = asyncHandler(async (req, res) => {
 
     const activationToken = generateActivationToken(user._id);
     const url = `${process.env.CLIENT_URL}/activation/${activationToken}`;
-    await sendActivationEmail(
-      role === 'venue' ? null : user.fullName,
-      email,
-      url,
-      role
-    );
+    await sendActivationEmail(user.fullName, email, url, role);
 
     res
       .status(201)

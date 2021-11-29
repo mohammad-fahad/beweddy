@@ -1,3 +1,4 @@
+import { resetQuestions } from '@features/question/questionSlice';
 import { errorAlert, handleErrorMessage, successAlert } from '@helpers/index';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { API_URL } from '@utils/index';
@@ -83,13 +84,14 @@ export const attemptUpdateUserProfile = createAsyncThunk(
 
 export const attemptGoogleSignUp = createAsyncThunk(
   'auth/attemptGoogleSignUp',
-  async signupData => {
+  async (signupData, { dispatch }) => {
     try {
       const { data } = await axios.post(
         `${API_URL}/users/googleSignUp`,
         signupData,
         config
       );
+      dispatch(resetQuestions());
 
       if (data.url) {
         return (window.location.href = data.url);

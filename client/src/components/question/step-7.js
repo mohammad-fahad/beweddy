@@ -42,7 +42,6 @@ const SignupPage = () => {
 
   useEffect(() => {
     if (success) {
-      dispatch(resetQuestions());
       push({ query: { step: 8 } });
     }
   }, [success]);

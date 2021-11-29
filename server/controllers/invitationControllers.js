@@ -101,11 +101,12 @@ export const sendActivationEmail = async (name, email, url, role) => {
   const mailOptions = {
     from: `${SITE_NAME} <${EMAIL_USER}>`,
     to: email,
+    replyTo: EMAIL_USER,
     subject: `Signup to ${CLIENT_URL}`,
     html:
       role === 'couple'
         ? coupleActivationTemplate(name, url)
-        : venueActivationTemplate(name, url),
+        : venueActivationTemplate(url),
   };
 
   await smtpTransport.sendMail(mailOptions);
