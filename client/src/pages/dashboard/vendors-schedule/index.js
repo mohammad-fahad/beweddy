@@ -103,13 +103,8 @@ const VendorsSchedule = () => {
                         <InputField
                           label="Florist+Arrival Time"
                           placeholder=""
-                          {...register("floristArrivalTime", {
-                            required: true,
-                          })}
+                          {...register("floristArrivalTime")}
                         />
-                        {errors.floristArrivalTime && (
-                          <span>This field is required</span>
-                        )}
                       </div>
                     </div>
                     {/* Caterer+Arrival Time  */}
@@ -118,13 +113,8 @@ const VendorsSchedule = () => {
                         <InputField
                           label="Caterer+Arrival Time "
                           placeholder=""
-                          {...register("catererArrivalTime", {
-                            required: true,
-                          })}
+                          {...register("catererArrivalTime")}
                         />
-                        {errors.catererArrivalTime && (
-                          <span>This field is required</span>
-                        )}
                       </div>
                     </div>
                     {/* Cake+Arrival Time  */}
@@ -133,11 +123,8 @@ const VendorsSchedule = () => {
                         <InputField
                           label="Cake+Arrival Time"
                           placeholder=""
-                          {...register("cakeArrivalTime", { required: true })}
+                          {...register("cakeArrivalTime")}
                         />
-                        {errors.cakeArrivalTime && (
-                          <span>This field is required</span>
-                        )}
                       </div>
                     </div>
 
@@ -147,11 +134,8 @@ const VendorsSchedule = () => {
                         <InputField
                           label="Photo+Arrival Time"
                           placeholder=""
-                          {...register("photoArrivalTime", { required: true })}
+                          {...register("photoArrivalTime")}
                         />
-                        {errors.photoArrivalTime && (
-                          <span>This field is required</span>
-                        )}
                       </div>
                     </div>
 
@@ -161,11 +145,8 @@ const VendorsSchedule = () => {
                         <InputField
                           label="video+Arrival Time"
                           placeholder=""
-                          {...register("videoArrivalTime", { required: true })}
+                          {...register("videoArrivalTime")}
                         />
-                        {errors.videoArrivalTime && (
-                          <span>This field is required</span>
-                        )}
                       </div>
                     </div>
                     {/* DJ+Arrival Time  */}
@@ -174,11 +155,8 @@ const VendorsSchedule = () => {
                         <InputField
                           label="DJ+Arrival Time"
                           placeholder=""
-                          {...register("DJArrivalTime", { required: true })}
+                          {...register("DJArrivalTime")}
                         />
-                        {errors.DJArrivalTime && (
-                          <span>This field is required</span>
-                        )}
                       </div>
                     </div>
                     {/* MUA/Hair+Arrival Time  */}
@@ -187,13 +165,8 @@ const VendorsSchedule = () => {
                         <InputField
                           label="MUA/Hair+Arrival Time"
                           placeholder=""
-                          {...register("muaHairArrivalTime", {
-                            required: true,
-                          })}
+                          {...register("muaHairArrivalTime")}
                         />
-                        {errors.muaHairArrivalTime && (
-                          <span>This field is required</span>
-                        )}
                       </div>
                     </div>
 
@@ -203,13 +176,8 @@ const VendorsSchedule = () => {
                         <InputField
                           label="Rentals+Arrival Time"
                           placeholder=""
-                          {...register("rentalsArrivalTime", {
-                            required: true,
-                          })}
+                          {...register("rentalsArrivalTime")}
                         />
-                        {errors.rentalsArrivalTime && (
-                          <span>This field is required</span>
-                        )}
                       </div>
                     </div>
 
@@ -219,9 +187,8 @@ const VendorsSchedule = () => {
                         <InputField
                           label="Dress"
                           placeholder=""
-                          {...register("dress", { required: true })}
+                          {...register("dress")}
                         />
-                        {errors.dress && <span>This field is required</span>}
                       </div>
                     </div>
                     {/* Ring  */}
@@ -230,9 +197,8 @@ const VendorsSchedule = () => {
                         <InputField
                           label="Ring"
                           placeholder=""
-                          {...register("Ring", { required: true })}
+                          {...register("Ring")}
                         />
-                        {errors.Ring && <span>This field is required</span>}
                       </div>
                     </div>
                     {/* Suit/Tie  */}
@@ -241,9 +207,8 @@ const VendorsSchedule = () => {
                         <InputField
                           label="Suit/Tie"
                           placeholder=""
-                          {...register("suitTie", { required: true })}
+                          {...register("suitTie")}
                         />
-                        {errors.suitTie && <span>This field is required</span>}
                       </div>
                     </div>
                     {/* alcohol */}

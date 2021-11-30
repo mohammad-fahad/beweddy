@@ -70,6 +70,7 @@ export const WeddingNameDatePicker = forwardRef(
         type="button"
         {...{ onClick }}
         className={`flex items-center min-w-[256px] font-inter bg-white text-sm md:text-base font-medium md:font-semibold placeholder-primary  ${border} border-[#E7E7E7] border w-full py-2 px-2 rounded`}
+        style={{ fontSize: "12px" }}
       >
         <InputIcon />
         <InputText {...{ value }} placeholder="Pick Your date" />
