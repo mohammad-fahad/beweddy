@@ -2,7 +2,17 @@ import React from "react";
 
 const InputField = React.forwardRef(
   (
-    { placeholder, type, value, name, change, className, label, ...rest },
+    {
+      placeholder,
+      type,
+      value,
+      name,
+      change,
+      disabled,
+      className,
+      label,
+      ...rest
+    },
     ref
   ) => {
     return (
@@ -13,6 +23,7 @@ const InputField = React.forwardRef(
           </p>
         )}
         <input
+          disabled={disabled || false}
           type={type}
           value={value}
           name={name}

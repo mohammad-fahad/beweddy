@@ -17,8 +17,12 @@ import { compareDate } from "@helpers/index";
 import { toPng } from "html-to-image";
 import { nanoid } from "nanoid";
 import Logo from "@components/shared/Logo";
+import { useSelector } from "react-redux";
 
 const WeddingSchedule = () => {
+  const { user } = useSelector((state) => state.user);
+
+  console.log(user);
   // WeddingName Picker
   const [selectWeddingDay, setSelectWeddingDay] = useState(new Date());
   const {
@@ -41,25 +45,7 @@ const WeddingSchedule = () => {
   const WeddingDate = getValues("WeddingDate");
   const tba = getValues("tba");
 
-  const onSubmit = (data) => {
-    // console.log(
-    //   data,
-    //   arrivalTime,
-    //   eventRoom,
-    //   packageRental,
-    //   bridalParty,
-    //   ceremonyTime,
-    //   ceremonySong,
-    //   photoTime,
-    //   cocktailTime,
-    //   lucheonDinnerTime,
-    //   receptionTime,
-    //   cakeCuttingTime,
-    //   firstDanceTime,
-    //   bouquetTossTime,
-    //   departureTime
-    // );
-  };
+  const onSubmit = (data) => {};
 
   useEffect(() => {
     if (isEmpty(WeddingDate) || compareDate(WeddingDate)) {
@@ -166,17 +152,24 @@ const WeddingSchedule = () => {
                         <div className="col-span-12 sm:col-span-6">
                           <InputField
                             label=""
+                            value={user.fullName}
+                            disabled={true}
                             placeholder="Your Wedding Name"
                             {...register("weddingName")}
                           />
-                          {errors.weddingName && (
-                            <span className="text-red-500">
-                              This field is required
-                            </span>
-                          )}
                         </div>
                         <div className="col-span-12 sm:col-span-6">
-                          <div>
+                          <div className="col-span-12 sm:col-span-6">
+                            <InputField
+                              label=""
+                              disabled={true}
+                              value={moment(
+                                user?.questions?.weddingDay?.weddingDate
+                              ).format("LL")}
+                              placeholder="Your Wedding Name"
+                            />
+                          </div>
+                          {/* <div>
                             <DatePicker
                               renderCustomHeader={({
                                 date,
@@ -251,7 +244,7 @@ const WeddingSchedule = () => {
                                 <WeddingNameDatePicker {...{ errors }} />
                               }
                             />
-                          </div>
+                          </div> */}
                         </div>
                       </div>
 
@@ -266,6 +259,8 @@ const WeddingSchedule = () => {
                         <div className="col-span-12 sm:col-span-6">
                           <InputField
                             label=""
+                            value={`${user.questions.firstName} ${user.questions.lastName}`}
+                            disabled={true}
                             placeholder="Your Brides Name"
                             {...register("bridesName")}
                           />
@@ -288,6 +283,8 @@ const WeddingSchedule = () => {
                         <div className="col-span-12 sm:col-span-6">
                           <InputField
                             label=""
+                            value={`${user.questions.spouseFirstName} ${user.questions.spouseLastName}`}
+                            disabled={true}
                             placeholder="Your Groom’s Name"
                             {...register("groomName")}
                           />
