@@ -376,7 +376,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="12:00 PM / Note"
+                              placeholder="Note"
                               {...register("americaTime")}
                             />
                           </div>
@@ -391,7 +391,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="12:00 PM / Note"
+                              placeholder="Note"
                               {...register("cocktail")}
                             />
                           </div>
@@ -410,7 +410,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="12:00 PM / Note"
+                              placeholder="Note"
                               {...register("eventRoom")}
                             />
                           </div>
@@ -425,7 +425,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="12:00 PM / Note"
+                              placeholder="Note"
                               {...register("luncheonTime")}
                             />
                           </div>
@@ -444,7 +444,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="12:00 PM / Note"
+                              placeholder="Note"
                               {...register("packageTental")}
                             />
                           </div>
@@ -459,7 +459,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="12:00 PM / Note"
+                              placeholder="Note"
                               {...register("receptionTime")}
                             />
                           </div>
@@ -477,7 +477,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="12:00 PM / Note"
+                              placeholder="Note"
                               {...register("bridalParty")}
                             />
                           </div>
@@ -492,7 +492,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="12:00 PM / Note"
+                              placeholder="Note"
                               {...register("cakeCutting")}
                             />
                           </div>
@@ -510,7 +510,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="12:00 PM / Note"
+                              placeholder="Note"
                               {...register("ceremonyTime")}
                             />
                           </div>
@@ -525,7 +525,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="12:00 PM / Note"
+                              placeholder="Note"
                               {...register("firstDance")}
                             />
                           </div>
@@ -543,7 +543,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="12:00 PM / Note"
+                              placeholder="Note"
                               {...register("ceremonySong")}
                             />
                           </div>
@@ -558,7 +558,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="12:00 PM / Note"
+                              placeholder="Note"
                               {...register("bouquestTime")}
                             />
                           </div>
@@ -576,7 +576,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="12:00 PM / Note"
+                              placeholder="Note"
                               {...register("photoTime")}
                             />
                           </div>
@@ -591,7 +591,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="12:00 PM / Note"
+                              placeholder="Note"
                               {...register("departure")}
                             />
                           </div>

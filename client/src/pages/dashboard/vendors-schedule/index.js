@@ -102,7 +102,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="Florist+Arrival Time"
-                          placeholder=""
+                          placeholder="Note"
                           {...register("floristArrivalTime")}
                         />
                       </div>
@@ -112,7 +112,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="Caterer+Arrival Time "
-                          placeholder=""
+                          placeholder="Note"
                           {...register("catererArrivalTime")}
                         />
                       </div>
@@ -122,7 +122,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="Cake+Arrival Time"
-                          placeholder=""
+                          placeholder="Note"
                           {...register("cakeArrivalTime")}
                         />
                       </div>
@@ -133,7 +133,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="Photo+Arrival Time"
-                          placeholder=""
+                          placeholder="Note"
                           {...register("photoArrivalTime")}
                         />
                       </div>
@@ -144,7 +144,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="video+Arrival Time"
-                          placeholder=""
+                          placeholder="Note"
                           {...register("videoArrivalTime")}
                         />
                       </div>
@@ -154,7 +154,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="DJ+Arrival Time"
-                          placeholder=""
+                          placeholder="Note"
                           {...register("DJArrivalTime")}
                         />
                       </div>
@@ -164,7 +164,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="MUA/Hair+Arrival Time"
-                          placeholder=""
+                          placeholder="Note"
                           {...register("muaHairArrivalTime")}
                         />
                       </div>
@@ -175,7 +175,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="Rentals+Arrival Time"
-                          placeholder=""
+                          placeholder="Note"
                           {...register("rentalsArrivalTime")}
                         />
                       </div>
@@ -186,7 +186,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="Dress"
-                          placeholder=""
+                          placeholder="Note"
                           {...register("dress")}
                         />
                       </div>
@@ -196,7 +196,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="Ring"
-                          placeholder=""
+                          placeholder="Note"
                           {...register("Ring")}
                         />
                       </div>
@@ -206,7 +206,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="Suit/Tie"
-                          placeholder=""
+                          placeholder="Note"
                           {...register("suitTie")}
                         />
                       </div>
