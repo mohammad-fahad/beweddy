@@ -35,7 +35,11 @@ const WeddingSchedule = () => {
     formState: { errors },
   } = useForm({
     mode: "all",
-    defaultValues: new Date(),
+    defaultValues: {
+      weddingName: user.fullName,
+      bridesName: `${user.questions.spouseFirstName} ${user.questions.spouseLastName}`,
+      groomName: `${user.questions.firstName} ${user.questions.lastName}`,
+    },
     shouldFocusError: false,
     shouldUnregister: true,
   });
@@ -143,7 +147,7 @@ const WeddingSchedule = () => {
                   <div className="container p-3 sm:p-16">
                     {/* form */}
                     <form onSubmit={handleSubmit(onSubmit)}>
-                      <div className="grid w-full grid-cols-12 gap-4">
+                      <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12 ">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Wedding Name & Date :
@@ -152,24 +156,27 @@ const WeddingSchedule = () => {
                         <div className="col-span-12 sm:col-span-6">
                           <InputField
                             label=""
-                            value={user.fullName}
-                            disabled={true}
                             placeholder="Your Wedding Name"
-                            {...register("weddingName")}
+                            {...register("weddingName", {
+                              required: {
+                                value: true,
+                                message: "Spouse last name is required!",
+                              },
+                            })}
                           />
                         </div>
                         <div className="col-span-12 sm:col-span-6">
-                          <div className="col-span-12 sm:col-span-6">
+                          {/* <div className="col-span-12 sm:col-span-6">
                             <InputField
                               label=""
-                              disabled={true}
+                              
                               value={moment(
                                 user?.questions?.weddingDay?.weddingDate
                               ).format("LL")}
                               placeholder="Your Wedding Name"
                             />
-                          </div>
-                          {/* <div>
+                          </div> */}
+                          <div>
                             <DatePicker
                               renderCustomHeader={({
                                 date,
@@ -244,13 +251,13 @@ const WeddingSchedule = () => {
                                 <WeddingNameDatePicker {...{ errors }} />
                               }
                             />
-                          </div> */}
+                          </div>
                         </div>
                       </div>
 
                       {/* Brides Full Name & Number   */}
 
-                      <div className="grid w-full grid-cols-12 gap-4">
+                      <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Brides Full Name & Number
@@ -259,8 +266,6 @@ const WeddingSchedule = () => {
                         <div className="col-span-12 sm:col-span-6">
                           <InputField
                             label=""
-                            value={`${user.questions.firstName} ${user.questions.lastName}`}
-                            disabled={true}
                             placeholder="Your Brides Name"
                             {...register("bridesName")}
                           />
@@ -274,7 +279,7 @@ const WeddingSchedule = () => {
                         </div>
                       </div>
                       {/* Groom’s Full Name & Number */}
-                      <div className="grid w-full grid-cols-12 gap-4">
+                      <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Groom’s Full Name & Number
@@ -283,8 +288,7 @@ const WeddingSchedule = () => {
                         <div className="col-span-12 sm:col-span-6">
                           <InputField
                             label=""
-                            value={`${user.questions.spouseFirstName} ${user.questions.spouseLastName}`}
-                            disabled={true}
+                            // value={`${user.questions.firstName} ${user.questions.lastName}`}
                             placeholder="Your Groom’s Name"
                             {...register("groomName")}
                           />
@@ -298,7 +302,7 @@ const WeddingSchedule = () => {
                         </div>
                       </div>
                       {/* Bride’s Parent’s Name & Number  */}
-                      <div className="grid w-full grid-cols-12 gap-4">
+                      <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Bride’s Parent’s Name & Number
@@ -322,7 +326,7 @@ const WeddingSchedule = () => {
                         </div>
                       </div>
                       {/*Groom’s Parent’s Name & Number*/}
-                      <div className="grid w-full grid-cols-12 gap-4">
+                      <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Groom’s Parent’s Name & Number
@@ -346,7 +350,7 @@ const WeddingSchedule = () => {
                         </div>
                       </div>
                       {/*Number To Contact On Day Of*/}
-                      <div className="grid w-full grid-cols-12 gap-4">
+                      <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Number To Contact On Day Of
@@ -361,7 +365,7 @@ const WeddingSchedule = () => {
                         </div>
                       </div>
                       {/* Arrival/Set-Up Time === Cocktail Hour Time */}
-                      <div className="grid w-full grid-cols-12 gap-4">
+                      <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12 sm:col-span-6">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Arrival/Set-Up Time
@@ -395,7 +399,7 @@ const WeddingSchedule = () => {
                       </div>
 
                       {/* Event Room === Luncheon / Dinner Time */}
-                      <div className="grid w-full grid-cols-12 gap-4">
+                      <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12 sm:col-span-6">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Event Room
@@ -429,7 +433,7 @@ const WeddingSchedule = () => {
                       </div>
 
                       {/*Package or Basic Rental === Luncheon / Dinner Time */}
-                      <div className="grid w-full grid-cols-12 gap-4">
+                      <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12 sm:col-span-6">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Package or Basic Rental
@@ -462,7 +466,7 @@ const WeddingSchedule = () => {
                         </div>
                       </div>
                       {/*Bridal Party Count === Cake Cutting Time */}
-                      <div className="grid w-full grid-cols-12 gap-4">
+                      <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12 sm:col-span-6">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Bridal Party Count
@@ -495,7 +499,7 @@ const WeddingSchedule = () => {
                         </div>
                       </div>
                       {/*Ceremony Time === First Dance Time  */}
-                      <div className="grid w-full grid-cols-12 gap-4">
+                      <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12 sm:col-span-6">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Ceremony Time
@@ -528,7 +532,7 @@ const WeddingSchedule = () => {
                         </div>
                       </div>
                       {/* Ceremony Song(s) === Bouquet Toss Time  */}
-                      <div className="grid w-full grid-cols-12 gap-4">
+                      <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12 sm:col-span-6">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Ceremony Song(s)
@@ -561,7 +565,7 @@ const WeddingSchedule = () => {
                         </div>
                       </div>
                       {/*Photo Time === Luncheon / Dinner Time */}
-                      <div className="grid w-full grid-cols-12 gap-4">
+                      <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12 sm:col-span-6">
                           <p className="my-2 font-[14px] font-inter text-[#000000]  ">
                             Photo Time
