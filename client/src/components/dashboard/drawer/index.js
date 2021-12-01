@@ -117,9 +117,9 @@ const Drawer = ({ open, setOpen }) => {
                           <div className="flex items-center justify-center">
                             <Logo />
                           </div>
-                          <h3 className="text-base font-medium text-center sm:text-lg">
+                          {/* <h3 className="text-base font-medium text-center sm:text-lg">
                             All-In-One Wedding Platform.
-                          </h3>
+                          </h3> */}
                         </a>
                       </Link>
                     </Dialog.Title>
