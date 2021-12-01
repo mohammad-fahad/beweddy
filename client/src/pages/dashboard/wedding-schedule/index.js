@@ -18,11 +18,16 @@ import { toPng } from "html-to-image";
 import { nanoid } from "nanoid";
 import Logo from "@components/shared/Logo";
 import { useSelector } from "react-redux";
+import { fileUploader } from "@services/Uploader";
 
 const WeddingSchedule = () => {
   const { user } = useSelector((state) => state.user);
+  const [uploading, setUploading] = useState(false);
+  const [uploadedFile, setUploadedFile] = useState(
+    "/images/dashboardPicture.png"
+  );
 
-  console.log(user);
+  console.log(uploadedFile);
   // WeddingName Picker
   const [selectWeddingDay, setSelectWeddingDay] = useState(new Date());
   const {
@@ -108,6 +113,26 @@ const WeddingSchedule = () => {
       });
   }, [ref]);
 
+  useEffect(() => {
+    if (uploadedFile) {
+      setValue("image", uploadedFile);
+    }
+  }, [uploadedFile]);
+
+  const handleAvatar = async (e) => {
+    const file = e.target.files[0];
+    console.log(file);
+    try {
+      setUploading(true);
+      const data = await fileUploader(file);
+      setUploadedFile(data.secure_url);
+      setUploading(false);
+    } catch (err) {
+      setUploading(false);
+      console.error(err.message);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -121,17 +146,37 @@ const WeddingSchedule = () => {
             <div className="max-w-[1300px] w-full">
               <div className="container p-1 sm:p-10 ">
                 <div className="flex items-center justify-center">
-                  {/* <img src="/images/logo.png" alt="" className="w-[180px]" /> */}
                   <Logo />
                 </div>
                 <div className="w-full mx-auto border-4 border-[#E5E5E5] rounded-lg mt-5 ">
-                  <div className="w-full">
+                  <div className="w-full " style={{ position: "relative" }}>
                     <div className="aspect-w-16 aspect-h-9">
                       <img
-                        src="/images/dashboardPicture.png"
+                        src={uploadedFile}
                         alt=""
                         className="w-full h-full"
                       />
+                    </div>
+                    <div className="absolute bg-white bottom-2 right-2">
+                      <div className="relative focus:outline-none">
+                        <input
+                          id="file-upload"
+                          type="file"
+                          className="hidden"
+                          onChange={handleAvatar}
+                        />
+                        <label
+                          htmlFor="file-upload"
+                          className="cursor-pointer bg-[#ffffff] py-2 flex px-4 rounded"
+                        >
+                          <img
+                            src="/camera.svg"
+                            alt="camera"
+                            style={{ marginRight: "5px", width: "20px" }}
+                          />
+                          Edit Wedding Image
+                        </label>
+                      </div>
                     </div>
                   </div>
 

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { Footer } from "@components/index";
-import { useCallback, useRef } from "react";
+import { useCallback, useRef, useState, useEffect } from "react";
 import { withAuthRoute } from "@hoc/withAuthRoute";
 import DashboardTopBar from "@components/dashboard/header/TopBar";
 import DashboardLayout from "@components/dashboard/layout";
@@ -11,9 +11,17 @@ import { useForm } from "react-hook-form";
 import { toPng } from "html-to-image";
 import { nanoid } from "nanoid";
 import Logo from "@components/shared/Logo";
+import { fileUploader } from "@services/Uploader";
 SwiperCore.use([Lazy, Autoplay]);
 
 const VendorsSchedule = () => {
+  const [uploading, setUploading] = useState(false);
+  const [uploadedFile, setUploadedFile] = useState(
+    "/images/dashboardPicture.png"
+  );
+
+  console.log(uploadedFile);
+
   const {
     register,
     handleSubmit,
@@ -52,6 +60,26 @@ const VendorsSchedule = () => {
       });
   }, [ref]);
 
+  useEffect(() => {
+    if (uploadedFile) {
+      setValue("image", uploadedFile);
+    }
+  }, [uploadedFile]);
+
+  const handleAvatar = async (e) => {
+    const file = e.target.files[0];
+    console.log(file);
+    try {
+      setUploading(true);
+      const data = await fileUploader(file);
+      setUploadedFile(data.secure_url);
+      setUploading(false);
+    } catch (err) {
+      setUploading(false);
+      console.error(err.message);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -69,13 +97,34 @@ const VendorsSchedule = () => {
                   <Logo />
                 </div>
                 <div className="w-full border-4 border-[#E5E5E5] rounded-lg mt-5 ">
-                  <div className="w-full">
+                  <div className="w-full " style={{ position: "relative" }}>
                     <div className="aspect-w-16 aspect-h-9">
                       <img
-                        src="/images/dashboardPicture.png"
+                        src={uploadedFile}
                         alt=""
                         className="w-full h-full"
                       />
+                    </div>
+                    <div className="absolute bg-white bottom-2 right-2">
+                      <div className="relative focus:outline-none">
+                        <input
+                          id="file-upload"
+                          type="file"
+                          className="hidden"
+                          onChange={handleAvatar}
+                        />
+                        <label
+                          htmlFor="file-upload"
+                          className="cursor-pointer bg-[#ffffff] py-2 flex px-4 rounded"
+                        >
+                          <img
+                            src="/camera.svg"
+                            alt="camera"
+                            style={{ marginRight: "5px", width: "20px" }}
+                          />
+                          Edit Wedding Image
+                        </label>
+                      </div>
                     </div>
                   </div>
 
