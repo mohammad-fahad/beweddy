@@ -223,7 +223,7 @@ const CoupleWebsitePage = (props) => {
               <div className="w-64 mx-auto h-[5px] md:h-[5px]  bg-[#FCE0EB] mt-10" />
             )}
             {/* Reception Details */}
-            {Object.keys(couple?.receptionDetails)?.length !== 0 && (
+            {Object.keys( couple?.receptionDetails)?.length !== 0 && (
               <h2 className="text-[32px] font-alice font-medium text-center mt-[17px] commonTitle">
                 Reception Details
               </h2>

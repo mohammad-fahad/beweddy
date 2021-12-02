@@ -5,7 +5,7 @@ import DashboardTopBar from '@components/dashboard/header/TopBar';
 import DashboardLayout from '@components/dashboard/layout';
 import { Footer } from '@components/index';
 import WebsiteNav from '@components/dashboard/Website/WebsiteNav';
-import { useSelector } from 'react-redux';
+import { useSelector ,  useDispatch } from 'react-redux';
 import WebsiteGiftCards from '@components/dashboard/Website/WebsiteGiftCard';
 import WebsiteRegistry from '@components/dashboard/Website/websiteRegistry';
 import SocialSection from '@components/dashboard/Website/SocialSection';
