@@ -92,6 +92,7 @@ export const sendActivationEmail = async (name, email, url, role) => {
   const smtpTransport = nodemailer.createTransport({
     service: 'gmail',
     host: 'smtp.gmail.com',
+    from: EMAIL_USER,
     auth: {
       user: EMAIL_USER,
       pass: EMAIL_PASS,
@@ -100,9 +101,10 @@ export const sendActivationEmail = async (name, email, url, role) => {
 
   const mailOptions = {
     from: `${SITE_NAME} <${EMAIL_USER}>`,
-    to: email,
     replyTo: EMAIL_USER,
+    to: email,
     subject: `Signup to ${CLIENT_URL}`,
+    text: `Please click on the link below to Activate.\n\n${url}`,
     html:
       role === 'couple'
         ? coupleActivationTemplate(name, url)
@@ -115,6 +117,7 @@ export const sendPasswordResetEmail = async (email, url) => {
   const smtpTransport = nodemailer.createTransport({
     service: 'gmail',
     host: 'smtp.gmail.com',
+    from: EMAIL_USER,
     auth: {
       user: EMAIL_USER,
       pass: EMAIL_PASS,
