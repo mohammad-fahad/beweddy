@@ -1,21 +1,21 @@
-import axios from "axios";
-import moment from "moment";
+import axios from 'axios';
+import moment from 'moment';
 
 export const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const config = {
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 };
 
 /**
  * @param  {String} imageData
  */
-export const attemptImageUpload = async (imageData) => {
+export const attemptImageUpload = async imageData => {
   const config = {
     headers: {
-      "Content-Type": "multipart/form-data",
+      'Content-Type': 'multipart/form-data',
     },
   };
 
@@ -30,7 +30,7 @@ export const attemptImageUpload = async (imageData) => {
 /**
  * @param  {String} public_id
  */
-export const removeImage = async (public_id) => {
+export const removeImage = async public_id => {
   try {
     const { data } = await axios.post(
       `${API_URL}/upload/delete`,
@@ -51,7 +51,7 @@ export const downloadQRCode = () => {
 
 export function isoToUtcDateTime(date) {
   if (!date) {
-    return "";
+    return '';
   }
 
   date = new Date(date);
@@ -60,8 +60,15 @@ export function isoToUtcDateTime(date) {
 
 export function isoToUtcDate(date) {
   if (!date) {
-    return "";
+    return '';
   }
   date = moment(date);
-  return date.utc().format("MM|DD|YYYY");
+  return date.utc().format('MM|DD|YYYY');
 }
+
+export const prependHttp = url => {
+  if (!url?.startsWith('http' || 'https')) {
+    return `http://${url}`;
+  }
+  return url;
+};

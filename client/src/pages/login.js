@@ -65,7 +65,7 @@ const LoginPage = () => {
             <section
               className={`bg-white border-4 my-10 border-primary py-8 md:py-10 px-10 md:px-24 max-w-xl w-full mx-auto rounded-xl`}
             >
-              <div className="mb-3 text-center">
+              {/* <div className="mb-3 text-center">
                 <Link href="/">
                   <a className="text-center">
                     <img
@@ -75,9 +75,9 @@ const LoginPage = () => {
                     />
                   </a>
                 </Link>
-              </div>
+              </div> */}
               <Heading
-                label="Welcome Back!"
+                label="Welcome!"
                 color="bg-[#F9D1DE]"
                 className="!pb-5"
                 lineStyle={{ marginBottom: "30px" }}

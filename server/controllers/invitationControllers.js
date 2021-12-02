@@ -1,9 +1,14 @@
 import asyncHandler from 'express-async-handler';
-import { sendEmailInvites } from '../utils/mailer/index.js';
+// import { sendEmailInvites } from '../utils/mailer/index.js';
 import nodemailer from 'nodemailer';
 import fs from 'fs';
 import { v2 as cloudinary } from 'cloudinary';
-import { sendEmailInvitesTemplate } from '../utils/mailer/templates/index.js';
+import {
+  coupleActivationTemplate,
+  passwordResetTemplate,
+  sendEmailInvitesTemplate,
+  venueActivationTemplate,
+} from '../utils/mailer/templates/index.js';
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -11,7 +16,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_CLOUD_API_SECRET,
 });
 
-const { EMAIL_USER, EMAIL_PASS } = process.env;
+const { EMAIL_USER, EMAIL_PASS, CLIENT_URL, SITE_NAME } = process.env;
 
 /**
  * @param  {Array} phone list of phone numbers ['8019197212', '8019197212']
@@ -80,7 +85,55 @@ export const inviteSMS = asyncHandler(async (req, res) => {
  * @access  Private
  * @returns {object} 200 - Success
  * @returns {object} 400 - Bad request
+ *
  */
+
+export const sendActivationEmail = async (name, email, url, role) => {
+  const smtpTransport = nodemailer.createTransport({
+    service: 'gmail',
+    host: 'smtp.gmail.com',
+    from: EMAIL_USER,
+    auth: {
+      user: EMAIL_USER,
+      pass: EMAIL_PASS,
+    },
+  });
+
+  const mailOptions = {
+    from: `${SITE_NAME} <${EMAIL_USER}>`,
+    replyTo: EMAIL_USER,
+    to: email,
+    subject: `Signup to ${CLIENT_URL}`,
+    text: `Please click on the link below to Activate.\n\n${url}`,
+    html:
+      role === 'couple'
+        ? coupleActivationTemplate(name, url)
+        : venueActivationTemplate(url),
+  };
+
+  await smtpTransport.sendMail(mailOptions);
+};
+export const sendPasswordResetEmail = async (email, url) => {
+  const smtpTransport = nodemailer.createTransport({
+    service: 'gmail',
+    host: 'smtp.gmail.com',
+    from: EMAIL_USER,
+    auth: {
+      user: EMAIL_USER,
+      pass: EMAIL_PASS,
+    },
+  });
+
+  const mailOptions = {
+    from: `${SITE_NAME} <${EMAIL_USER}>`,
+    to: email,
+    subject: `Reset your Password for ${SITE_NAME}`,
+    html: passwordResetTemplate(url),
+  };
+
+  await smtpTransport.sendMail(mailOptions);
+};
+
 export const inviteMMS = asyncHandler(async (req, res) => {
   const { phones, from, coupleName, message, image } = req.body;
 

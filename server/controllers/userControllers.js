@@ -7,10 +7,6 @@ import {
   generateIdToken,
   resetPasswordIdToken,
 } from '../utils/token/index.js';
-import {
-  sendActivationEmail,
-  sendPasswordResetEmail,
-} from '../utils/mailer/index.js';
 import { client } from '../lib/google.js';
 import { nanoid } from 'nanoid';
 import Todo from '../models/Todo.js';
@@ -20,6 +16,7 @@ import Guest from '../models/Guest.js';
 import Gift from '../models/Gift.js';
 import Venue from '../models/Venue.js';
 import { addNewCustomer, createSubscription } from '../lib/stripe.js';
+import { sendActivationEmail } from './invitationControllers.js';
 
 // Register New User
 
@@ -63,7 +60,7 @@ export const register = asyncHandler(async (req, res) => {
     password,
     questions: role === 'venue' ? null : questions,
     username,
-    venue: venueId,
+    venue: venueId && venueId,
     role,
   });
 
@@ -85,11 +82,7 @@ export const register = asyncHandler(async (req, res) => {
 
     const activationToken = generateActivationToken(user._id);
     const url = `${process.env.CLIENT_URL}/activation/${activationToken}`;
-    await sendActivationEmail(
-      role === 'venue' ? null : user.fullName,
-      email,
-      url
-    );
+    await sendActivationEmail(user.fullName, email, url, role);
 
     res
       .status(201)
@@ -120,7 +113,9 @@ export const googleSignUp = asyncHandler(async (req, res) => {
   const gifts = await Gift.find({}).select('_id');
   // const registries = await Registry.find({}).select('_id');
 
-  const giftCards = gifts.map(gift => gift._id);
+  const giftCards = gifts
+    .filter(gift => gift.isRecommended)
+    .map(gift => gift._id);
 
   // const registryCards = registries.map(registry => registry._id);
 
@@ -160,7 +155,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       username,
       questions: role === 'venue' ? null : questions,
       giftCards,
-      venue: venueId,
+      venue: venueId && venueId,
       role,
       // registries: registryCards,
     });
@@ -358,7 +353,9 @@ export const activeUser = asyncHandler(async (req, res) => {
   const gifts = await Gift.find({}).select('_id');
   // const registries = await Registry.find({}).select('_id');
 
-  const giftCards = gifts.map(gift => gift._id);
+  const giftCards = gifts
+    .filter(gift => gift.isRecommended)
+    .map(gift => gift._id);
 
   // const registryCards = registries.map(registry => registry._id);
 
