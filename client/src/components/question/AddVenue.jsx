@@ -79,8 +79,8 @@ export default function AddVenue() {
       )}
       {showModal ? (
         <>
-          <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
-            <div className="relative w-auto max-w-3xl mx-auto my-6">
+          <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none !m-0">
+            <div className="relative w-auto max-w-3xl my-6">
               {/*content*/}
               <div className="relative flex flex-col w-full bg-gradient-to-br from-[#FCE3EB] to-white border-0 rounded-lg shadow-lg outline-none focus:outline-none">
                 {/*header*/}
@@ -198,7 +198,7 @@ export default function AddVenue() {
               </div>
             </div>
           </div>
-          <div className="fixed inset-0 z-40 bg-black opacity-25"></div>
+          <div className="fixed inset-0 z-40 bg-black opacity-25 !m-0"></div>
         </>
       ) : null}
     </>

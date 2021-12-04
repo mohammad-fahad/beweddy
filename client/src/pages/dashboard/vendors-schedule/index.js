@@ -66,19 +66,7 @@ const VendorsSchedule = () => {
     }
   }, [uploadedFile]);
 
-  const handleAvatar = async (e) => {
-    const file = e.target.files[0];
-    console.log(file);
-    try {
-      setUploading(true);
-      const data = await fileUploader(file);
-      setUploadedFile(data.secure_url);
-      setUploading(false);
-    } catch (err) {
-      setUploading(false);
-      console.error(err.message);
-    }
-  };
+  
 
   return (
     <>
@@ -97,7 +85,7 @@ const VendorsSchedule = () => {
                   <Logo />
                 </div>
                 <div className="w-full border-4 border-[#E5E5E5] rounded-lg mt-5 ">
-                  <div className="w-full " style={{ position: "relative" }}>
+                  {/* <div className="w-full " style={{ position: "relative" }}>
                     <div className="aspect-w-16 aspect-h-9">
                       <img
                         src={uploadedFile}
@@ -126,7 +114,7 @@ const VendorsSchedule = () => {
                         </label>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className="flex items-center  flex-col justify-center py-2 md:py-5 bg-[#FFD6D8] ">
                     <p className="font-medium text-center text-[32px] !font-alice flex items-center">
@@ -138,6 +126,9 @@ const VendorsSchedule = () => {
                     <p className="text-[14px] font-inter">
                       Please include Social Media Handles and Number and/or
                       email
+                    </p>
+                    <p className="text-[14px] font-inter">
+                      Please fill out and send to your venue
                     </p>
                   </div>
 
@@ -151,7 +142,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="Florist+Arrival Time"
-                          placeholder="Note"
+                          //placeholder="Note"
                           {...register("floristArrivalTime")}
                         />
                       </div>
@@ -161,7 +152,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="Caterer+Arrival Time "
-                          placeholder="Note"
+                          //placeholder="Note"
                           {...register("catererArrivalTime")}
                         />
                       </div>
@@ -171,7 +162,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="Cake+Arrival Time"
-                          placeholder="Note"
+                          //placeholder="Note"
                           {...register("cakeArrivalTime")}
                         />
                       </div>
@@ -182,7 +173,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="Photo+Arrival Time"
-                          placeholder="Note"
+                          //placeholder="Note"
                           {...register("photoArrivalTime")}
                         />
                       </div>
@@ -193,7 +184,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="video+Arrival Time"
-                          placeholder="Note"
+                          //placeholder="Note"
                           {...register("videoArrivalTime")}
                         />
                       </div>
@@ -203,7 +194,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="DJ+Arrival Time"
-                          placeholder="Note"
+                          //placeholder="Note"
                           {...register("DJArrivalTime")}
                         />
                       </div>
@@ -213,7 +204,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="MUA/Hair+Arrival Time"
-                          placeholder="Note"
+                          //placeholder="Note"
                           {...register("muaHairArrivalTime")}
                         />
                       </div>
@@ -224,7 +215,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="Rentals+Arrival Time"
-                          placeholder="Note"
+                          //placeholder="Note"
                           {...register("rentalsArrivalTime")}
                         />
                       </div>
@@ -235,7 +226,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="Dress"
-                          placeholder="Note"
+                          //placeholder="Note"
                           {...register("dress")}
                         />
                       </div>
@@ -245,7 +236,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="Ring"
-                          placeholder="Note"
+                          //placeholder="Note"
                           {...register("Ring")}
                         />
                       </div>
@@ -255,7 +246,7 @@ const VendorsSchedule = () => {
                       <div className="col-span-12 sm:col-span-12">
                         <InputField
                           label="Suit/Tie"
-                          placeholder="Note"
+                          //placeholder="Note"
                           {...register("suitTie")}
                         />
                       </div>

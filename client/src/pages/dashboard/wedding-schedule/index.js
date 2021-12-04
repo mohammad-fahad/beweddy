@@ -150,15 +150,15 @@ const WeddingSchedule = () => {
                 </div>
                 <div className="w-full mx-auto border-4 border-[#E5E5E5] rounded-lg mt-5 ">
                   <div className="w-full " style={{ position: "relative" }}>
-                    <div className="aspect-w-16 aspect-h-9">
+                    {/* <div className="aspect-w-16 aspect-h-9">
                       <img
                         src={uploadedFile}
                         alt=""
                         className="w-full h-full"
                       />
-                    </div>
+                    </div> */}
                     <div className="absolute bg-white bottom-2 right-2">
-                      <div className="relative focus:outline-none">
+                      {/* <div className="relative focus:outline-none">
                         <input
                           id="file-upload"
                           type="file"
@@ -176,17 +176,18 @@ const WeddingSchedule = () => {
                           />
                           Edit Wedding Image
                         </label>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-center py-2 md:py-5 bg-[#FFD6D8] ">
+                  <div className="flex flex-col items-center justify-center py-2 md:py-5 bg-[#FFD6D8] ">
                     <p className="font-medium text-center text-[32px] !font-alice flex items-center subTitle">
                       <span>
                         <img src="/icons/todo.svg" alt="" className="mr-2" />
                       </span>
                       Wedding Schedule Sheet
                     </p>
+                    <p>Please fill out and send to your venue</p>
                   </div>
 
                   <div className="container p-3 sm:p-16">
@@ -201,7 +202,7 @@ const WeddingSchedule = () => {
                         <div className="col-span-12 sm:col-span-6">
                           <InputField
                             label=""
-                            placeholder="Your Wedding Name"
+                            //placeholder="Your Wedding Name"
                             {...register("weddingName", {
                               required: {
                                 value: true,
@@ -218,7 +219,7 @@ const WeddingSchedule = () => {
                               value={moment(
                                 user?.questions?.weddingDay?.weddingDate
                               ).format("LL")}
-                              placeholder="Your Wedding Name"
+                              //placeholder="Your Wedding Name"
                             />
                           </div> */}
                           <div>
@@ -311,14 +312,14 @@ const WeddingSchedule = () => {
                         <div className="col-span-12 sm:col-span-6">
                           <InputField
                             label=""
-                            placeholder="Your Brides Name"
+                            //placeholder="Your Brides Name"
                             {...register("bridesName")}
                           />
                         </div>
                         <div className="col-span-12 sm:col-span-6">
                           <InputField
                             label=""
-                            placeholder="(671) 555-0110"
+                            //placeholder="(671) 555-0110"
                             {...register("bridesNumber")}
                           />
                         </div>
@@ -334,14 +335,14 @@ const WeddingSchedule = () => {
                           <InputField
                             label=""
                             // value={`${user.questions.firstName} ${user.questions.lastName}`}
-                            placeholder="Your Groom’s Name"
+                            //placeholder="Your Groom’s Name"
                             {...register("groomName")}
                           />
                         </div>
                         <div className="col-span-12 sm:col-span-6">
                           <InputField
                             label=""
-                            placeholder="(671) 555-0110"
+                            //placeholder="(671) 555-0110"
                             {...register("groomNumber")}
                           />
                         </div>
@@ -356,14 +357,14 @@ const WeddingSchedule = () => {
                         <div className="col-span-12 sm:col-span-6">
                           <InputField
                             label=""
-                            placeholder="Your Bride’s Parent’s Name"
+                            //placeholder="Your Bride’s Parent’s Name"
                             {...register("brideParentName")}
                           />
                         </div>
                         <div className="col-span-12 sm:col-span-6">
                           <InputField
                             label=""
-                            placeholder="(671) 555-0110"
+                            //placeholder="(671) 555-0110"
                             {...register("brideParentNumber", {
                               required: true,
                             })}
@@ -380,14 +381,14 @@ const WeddingSchedule = () => {
                         <div className="col-span-12 sm:col-span-6">
                           <InputField
                             label=""
-                            placeholder="Your Groom’s Parent’s Name"
+                            //placeholder="Your Groom’s Parent’s Name"
                             {...register("groomParentName")}
                           />
                         </div>
                         <div className="col-span-12 sm:col-span-6">
                           <InputField
                             label=""
-                            placeholder="(671) 555-0110"
+                            //placeholder="(671) 555-0110"
                             {...register("groomParentNumber", {
                               required: true,
                             })}
@@ -404,7 +405,7 @@ const WeddingSchedule = () => {
                         <div className="col-span-12 sm:col-span-6">
                           <InputField
                             label=""
-                            placeholder="+1 650-385-8068"
+                            //placeholder="+1 650-385-8068"
                             {...register("numberToContact")}
                           />
                         </div>
@@ -421,7 +422,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="Note"
+                              //placeholder="Note"
                               {...register("americaTime")}
                             />
                           </div>
@@ -436,7 +437,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="Note"
+                              //placeholder="Note"
                               {...register("cocktail")}
                             />
                           </div>
@@ -455,7 +456,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="Note"
+                              //placeholder="Note"
                               {...register("eventRoom")}
                             />
                           </div>
@@ -470,7 +471,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="Note"
+                              //placeholder="Note"
                               {...register("luncheonTime")}
                             />
                           </div>
@@ -489,7 +490,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="Note"
+                              //placeholder="Note"
                               {...register("packageTental")}
                             />
                           </div>
@@ -504,7 +505,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="Note"
+                              //placeholder="Note"
                               {...register("receptionTime")}
                             />
                           </div>
@@ -522,7 +523,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="Note"
+                              //placeholder="Note"
                               {...register("bridalParty")}
                             />
                           </div>
@@ -537,7 +538,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="Note"
+                              //placeholder="Note"
                               {...register("cakeCutting")}
                             />
                           </div>
@@ -555,7 +556,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="Note"
+                              //placeholder="Note"
                               {...register("ceremonyTime")}
                             />
                           </div>
@@ -570,7 +571,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="Note"
+                              //placeholder="Note"
                               {...register("firstDance")}
                             />
                           </div>
@@ -588,7 +589,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="Note"
+                              //placeholder="Note"
                               {...register("ceremonySong")}
                             />
                           </div>
@@ -603,7 +604,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="Note"
+                              //placeholder="Note"
                               {...register("bouquestTime")}
                             />
                           </div>
@@ -621,7 +622,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="Note"
+                              //placeholder="Note"
                               {...register("photoTime")}
                             />
                           </div>
@@ -636,7 +637,7 @@ const WeddingSchedule = () => {
                           >
                             <InputField
                               label=""
-                              placeholder="Note"
+                              //placeholder="Note"
                               {...register("departure")}
                             />
                           </div>

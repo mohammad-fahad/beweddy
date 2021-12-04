@@ -21,7 +21,7 @@ const Logo = () => {
             alt=''
             className='h-14 md:h-[4.5rem] customImage'
           />
-          <h3 className='text-base font-medium md:text-lg customLabel'>
+          <h3 className='text-base text-center font-medium md:text-lg customLabel'>
             All-In-One Wedding Platform.
           </h3>
         </a>
@@ -32,7 +32,7 @@ const Logo = () => {
             alt=''
             className='h-14 md:h-[4.5rem] customImage'
           />
-          <h3 className='text-base font-medium md:text-lg customLabel'>
+          <h3 className='text-base text-center font-medium md:text-lg customLabel'>
             All-In-One Wedding Platform.
           </h3>
         </a>
