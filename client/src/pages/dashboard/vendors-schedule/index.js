@@ -116,7 +116,7 @@ const VendorsSchedule = () => {
                     </div>
                   </div> */}
 
-                  <div className="flex items-center  flex-col justify-center py-2 md:py-5 bg-[#FFD6D8] ">
+                  <div className="flex items-center  flex-col justify-center py-2 md:py-5 bg-secondary-alternative ">
                     <p className="font-medium text-center text-[32px] !font-alice flex items-center">
                       <span>
                         <img src="/icons/home.png" alt="" className="mr-2" />
@@ -253,7 +253,7 @@ const VendorsSchedule = () => {
                     </div>
                     {/* alcohol */}
                     <div className="mt-8">
-                      <span className="mr-4">Alcohol</span>
+                      <span className="mr-4 font-bold">Alcohol</span>
                       <label className="inline-flex items-center">
                         <input
                           type="radio"

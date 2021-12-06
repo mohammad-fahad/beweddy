@@ -18,7 +18,7 @@ const InputField = React.forwardRef(
     return (
       <div className="">
         {label && (
-          <p className="my-3 font-[14px] font-inter text-[#000000]  ">
+          <p className="my-3 font-[14px] font-bold text-[#000000]  ">
             {label}
           </p>
         )}

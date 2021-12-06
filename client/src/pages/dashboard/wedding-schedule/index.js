@@ -180,7 +180,7 @@ const WeddingSchedule = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-col items-center justify-center py-2 md:py-5 bg-[#FFD6D8] ">
+                  <div className="flex flex-col items-center justify-center py-2 md:py-5 bg-secondary-alternative ">
                     <p className="font-medium text-center text-[32px] !font-alice flex items-center subTitle">
                       <span>
                         <img src="/icons/todo.svg" alt="" className="mr-2" />
@@ -195,7 +195,7 @@ const WeddingSchedule = () => {
                     <form onSubmit={handleSubmit(onSubmit)}>
                       <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12 ">
-                          <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                          <p className="my-2 font-[14px] font-bold text-[#000000]  ">
                             Wedding Name & Date :
                           </p>
                         </div>
@@ -305,7 +305,7 @@ const WeddingSchedule = () => {
 
                       <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12">
-                          <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                          <p className="my-2 font-[14px] font-bold text-[#000000]  ">
                             Brides Full Name & Number
                           </p>
                         </div>
@@ -327,7 +327,7 @@ const WeddingSchedule = () => {
                       {/* Groom’s Full Name & Number */}
                       <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12">
-                          <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                          <p className="my-2 font-[14px] font-bold text-[#000000]  ">
                             Groom’s Full Name & Number
                           </p>
                         </div>
@@ -350,7 +350,7 @@ const WeddingSchedule = () => {
                       {/* Bride’s Parent’s Name & Number  */}
                       <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12">
-                          <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                          <p className="my-2 font-[14px] font-bold text-[#000000]  ">
                             Bride’s Parent’s Name & Number
                           </p>
                         </div>
@@ -374,7 +374,7 @@ const WeddingSchedule = () => {
                       {/*Groom’s Parent’s Name & Number*/}
                       <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12">
-                          <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                          <p className="my-2 font-[14px] font-bold text-[#000000]  ">
                             Groom’s Parent’s Name & Number
                           </p>
                         </div>
@@ -398,7 +398,7 @@ const WeddingSchedule = () => {
                       {/*Number To Contact On Day Of*/}
                       <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12">
-                          <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                          <p className="my-2 font-[14px] font-bold text-[#000000]  ">
                             Number To Contact On Day Of
                           </p>
                         </div>
@@ -413,7 +413,7 @@ const WeddingSchedule = () => {
                       {/* Arrival/Set-Up Time === Cocktail Hour Time */}
                       <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12 sm:col-span-6">
-                          <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                          <p className="my-2 font-[14px] font-bold text-[#000000]  ">
                             Arrival/Set-Up Time
                           </p>
                           <div
@@ -428,7 +428,7 @@ const WeddingSchedule = () => {
                           </div>
                         </div>
                         <div className="col-span-12 sm:col-span-6">
-                          <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                          <p className="my-2 font-[14px] font-bold text-[#000000]  ">
                             Cocktail Hour Time
                           </p>
                           <div
@@ -447,7 +447,7 @@ const WeddingSchedule = () => {
                       {/* Event Room === Luncheon / Dinner Time */}
                       <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12 sm:col-span-6">
-                          <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                          <p className="my-2 font-[14px] font-bold text-[#000000]  ">
                             Event Room
                           </p>
                           <div
@@ -462,7 +462,7 @@ const WeddingSchedule = () => {
                           </div>
                         </div>
                         <div className="col-span-12 sm:col-span-6">
-                          <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                          <p className="my-2 font-[14px] font-bold text-[#000000]  ">
                             Luncheon / Dinner Time
                           </p>
                           <div
@@ -481,7 +481,7 @@ const WeddingSchedule = () => {
                       {/*Package or Basic Rental === Luncheon / Dinner Time */}
                       <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12 sm:col-span-6">
-                          <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                          <p className="my-2 font-[14px] font-bold text-[#000000]  ">
                             Package or Basic Rental
                           </p>
                           <div
@@ -496,7 +496,7 @@ const WeddingSchedule = () => {
                           </div>
                         </div>
                         <div className="col-span-12 sm:col-span-6">
-                          <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                          <p className="my-2 font-[14px] font-bold text-[#000000]  ">
                             Reception Time
                           </p>
                           <div
@@ -514,7 +514,7 @@ const WeddingSchedule = () => {
                       {/*Bridal Party Count === Cake Cutting Time */}
                       <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12 sm:col-span-6">
-                          <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                          <p className="my-2 font-[14px] font-bold text-[#000000]  ">
                             Bridal Party Count
                           </p>
                           <div
@@ -529,7 +529,7 @@ const WeddingSchedule = () => {
                           </div>
                         </div>
                         <div className="col-span-12 sm:col-span-6">
-                          <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                          <p className="my-2 font-[14px] font-bold text-[#000000]  ">
                             Cake Cutting Time
                           </p>
                           <div
@@ -547,7 +547,7 @@ const WeddingSchedule = () => {
                       {/*Ceremony Time === First Dance Time  */}
                       <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12 sm:col-span-6">
-                          <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                          <p className="my-2 font-[14px] font-bold text-[#000000]  ">
                             Ceremony Time
                           </p>
                           <div
@@ -562,7 +562,7 @@ const WeddingSchedule = () => {
                           </div>
                         </div>
                         <div className="col-span-12 sm:col-span-6">
-                          <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                          <p className="my-2 font-[14px] font-bold text-[#000000]  ">
                             First Dance Time
                           </p>
                           <div
@@ -580,7 +580,7 @@ const WeddingSchedule = () => {
                       {/* Ceremony Song(s) === Bouquet Toss Time  */}
                       <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12 sm:col-span-6">
-                          <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                          <p className="my-2 font-[14px] font-bold text-[#000000]  ">
                             Ceremony Song(s)
                           </p>
                           <div
@@ -595,7 +595,7 @@ const WeddingSchedule = () => {
                           </div>
                         </div>
                         <div className="col-span-12 sm:col-span-6">
-                          <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                          <p className="my-2 font-[14px] font-bold text-[#000000]  ">
                             Bouquet Toss Time
                           </p>
                           <div
@@ -613,7 +613,7 @@ const WeddingSchedule = () => {
                       {/*Photo Time === Luncheon / Dinner Time */}
                       <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12 sm:col-span-6">
-                          <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                          <p className="my-2 font-[14px] font-bold text-[#000000]  ">
                             Photo Time
                           </p>
                           <div
@@ -628,7 +628,7 @@ const WeddingSchedule = () => {
                           </div>
                         </div>
                         <div className="col-span-12 sm:col-span-6">
-                          <p className="my-2 font-[14px] font-inter text-[#000000]  ">
+                          <p className="my-2 font-[14px] font-bold text-[#000000]  ">
                             Departure Time
                           </p>
                           <div
@@ -659,7 +659,7 @@ const WeddingSchedule = () => {
                   </div>
                 </div>
                 <footer className="container mt-5">
-                  <h3 className="text-[14px] font-inter text-center">
+                  <h3 className="text-[14px] font-bold text-center">
                     Powered by{" "}
                     <span className="font-semibold">BeWeddy.com</span>
                   </h3>

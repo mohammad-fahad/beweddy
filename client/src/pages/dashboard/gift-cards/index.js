@@ -174,53 +174,62 @@ const GiftCardPage = () => {
       <Head>
         <title>Beweddy | Gift Cards </title>
       </Head>
+
       {loading && <Loader />}
       <DashboardTopBar />
       <DashboardLayout shadow>
-        <DashboardHeader title='Gift Cards' />
+        <DashboardHeader
+          children={
+            <p className="text-start font-bold">
+              Add Gift Cards To Your Wedding Website Registry.
+            </p>
+          }
+          title="Gift Cards"
+        />
+
         <DashboardContainer>
           {/* <div class='grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 xxl:grid-cols-5 gap-5 mb-12 '> */}
-          <motion.div class='flex items-center justify-center flex-wrap gap-5 mb-12 '>
+          <motion.div class="flex items-center justify-center flex-wrap gap-5 mb-12 ">
             {gifts?.length <= 0
-              ? 'All Gift Cards Are Added'
-              : gifts?.map(gift => (
-                <motion.div
-                  layout
-                  exit={{ opacity: 0 }}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className='select-gift'
-                >
-                  <input
-                    name='gift-card'
-                    type='checkbox'
-                    value={gift._id}
-                    className='hidden'
-                    id={gift._id}
-                    onChange={e => handleItemSelect(e.target.id)}
-                    checked={selected.includes(gift._id)}
-                  />
-                  {/* // <div className="justify-self-center relative max-w-[260px] max-h-[155px] overflow-hidden transition duration-300 cursor-pointer rounded-xl ease-easing"> */}
-                  <label
-                    className='inline-block relative max-w-[200px] max-h-[120px] w-full h-full overflow-hidden transition duration-300 cursor-pointer rounded-xl ease-easing'
-                    htmlFor={gift._id}
+              ? "All Gift Cards Are Added"
+              : gifts?.map((gift) => (
+                  <motion.div
+                    layout
+                    exit={{ opacity: 0 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="select-gift"
                   >
-                    <Image
-                      width={200}
-                      height={120}
-                      src={gift.image}
-                      alt={gift.name}
+                    <input
+                      name="gift-card"
+                      type="checkbox"
+                      value={gift._id}
+                      className="hidden"
+                      id={gift._id}
+                      onChange={(e) => handleItemSelect(e.target.id)}
+                      checked={selected.includes(gift._id)}
                     />
+                    {/* // <div className="justify-self-center relative max-w-[260px] max-h-[155px] overflow-hidden transition duration-300 cursor-pointer rounded-xl ease-easing"> */}
+                    <label
+                      className="inline-block relative max-w-[200px] max-h-[120px] w-full h-full overflow-hidden transition duration-300 cursor-pointer rounded-xl ease-easing"
+                      htmlFor={gift._id}
+                    >
+                      <Image
+                        width={200}
+                        height={120}
+                        src={gift.image}
+                        alt={gift.name}
+                      />
 
-                    {/* <div className="flex items-center justify-center w-full h-full opacity-0 hover:opacity-100"> */}
-                    <div className='absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center transition duration-300 opacity-0 bg-primary/80 hover:opacity-100'>
-                      {/* <img src="/icons/plus.png" alt="" className="text-white w-9" /> */}
-                      <PlusIcon className='w-12 h-12 text-white plus' />
-                      <MinusIcon className='w-12 h-12 text-white minus hidden' />
-                    </div>
-                  </label>
-                </motion.div>
-              ))}
+                      {/* <div className="flex items-center justify-center w-full h-full opacity-0 hover:opacity-100"> */}
+                      <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center transition duration-300 opacity-0 bg-primary/80 hover:opacity-100">
+                        {/* <img src="/icons/plus.png" alt="" className="text-white w-9" /> */}
+                        <PlusIcon className="w-12 h-12 text-white plus" />
+                        <MinusIcon className="w-12 h-12 text-white minus hidden" />
+                      </div>
+                    </label>
+                  </motion.div>
+                ))}
             {/* <button
               className="py-2 px-10 border-2 rounded-[10px] mt-5 bg-black transition duration-300
 text-white  font-inter font-medium text-center	"
@@ -244,9 +253,9 @@ text-white  font-inter font-medium text-center	"
           {gifts?.length > 0 && (
             <div>
               <Button
-                label='SAVE'
-                type='button'
-                className='!rounded-[5px] ml-4'
+                label="SAVE"
+                type="button"
+                className="!rounded-[5px] ml-4"
                 onClick={addGifts}
               />
             </div>
