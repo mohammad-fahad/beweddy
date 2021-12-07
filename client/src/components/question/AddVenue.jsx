@@ -87,10 +87,10 @@ export default function AddVenue() {
                 <div className="flex items-start justify-between p-5 border-b border-solid rounded-t border-blueGray-200">
                   <h3 className="text-3xl font-semibold">Connect Venue</h3>
                   <button
-                    className="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-5 focus:outline-none"
+                    className="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none  focus:outline-none "
                     onClick={() => setShowModal(false)}
                   >
-                    <span className="block w-6 h-6 text-2xl text-black bg-transparent outline-none opacity-5 focus:outline-none">
+                    <span className="block w-6 h-6 text-2xl pb-3 hover:text-red-500  text-black bg-transparent outline-none focus:outline-none">
                       ×
                     </span>
                   </button>
