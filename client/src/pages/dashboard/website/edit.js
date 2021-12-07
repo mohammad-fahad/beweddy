@@ -837,7 +837,7 @@ const EditWebsitePage = () => {
               <div className="flex flex-col space-y-5">
                 <div className="flex items-center justify-between space-x-5">
                   <h4 className="text-[24px] font-medium capitalize mudiumTitle">
-                    Address
+                    Reception Address
                   </h4>
                 </div>
                 <div className="w-full max-w-xs">
