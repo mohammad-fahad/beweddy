@@ -82,9 +82,9 @@ const RSVPGuestManagementPage = () => {
                     <span>Add Guest</span>
                   </a>
                 </Link>
-                <button className='w-full px-4 py-2 text-sm font-medium transition duration-300 bg-white border-2 border-white rounded-md sm:w-max xl:text-base font-inter hover:border-primary'>
+                {/* <button className='w-full px-4 py-2 text-sm font-medium transition duration-300 bg-white border-2 border-white rounded-md sm:w-max xl:text-base font-inter hover:border-primary'>
                   Export RSVP’s
-                </button>
+                </button> */}
                 <div className='relative w-full sm:w-max'>
                   <input
                     type='text'
