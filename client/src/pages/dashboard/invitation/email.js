@@ -1,5 +1,5 @@
 import Head from "next/head";
-import axios from "axios";
+import { useRouter } from "next/router";
 import { DashboardHeader } from "@components/dashboard";
 import DashboardTopBar from "@components/dashboard/header/TopBar";
 import DashboardLayout from "@components/dashboard/layout";
@@ -33,6 +33,7 @@ import { useDropzone } from "react-dropzone";
 import toast from "react-hot-toast";
 import { sendEmailInvites } from "@services/Invitation/email";
 import { fileUploader } from "@services/Uploader";
+import { push } from "draft-js/lib/EditorState";
 
 const animatedComponents = makeAnimated();
 
@@ -67,6 +68,7 @@ const customStyles = {
 
 const EmailInvitesPage = () => {
   const { user } = useSelector((state) => state.user);
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [fromEmail, setFromEmail] = useState(user?.email);
   const [toEmails, setToEmails] = useState(null);
@@ -188,6 +190,7 @@ const EmailInvitesPage = () => {
         message,
       });
       setIsOpen(false);
+      router.push("/dashboard");
     } catch (err) {
       console.error(err);
     }
@@ -299,7 +302,7 @@ const EmailInvitesPage = () => {
           ></div>
           <div className="fixed inset-0 z-[5000] top-1/2 -translate-y-1/2 max-w-4xl mx-auto bg-white h-[80vh] overflow-y-auto p-10 rounded-lg">
             <EmailPreview
-              {...{ handleSubmit, setIsOpen, uploadedFile, message }}
+              {...{ handleSubmit, setIsOpen, uploadedFile, message, toEmails }}
             />
           </div>
         </>
