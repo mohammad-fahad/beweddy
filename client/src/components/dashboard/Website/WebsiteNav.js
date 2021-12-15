@@ -1,19 +1,19 @@
 import { PencilAltIcon } from "@heroicons/react/outline";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
-
-const WebsiteNav = ({ user , noEdit }) => {
-  // const { user } = useSelector((state) => state.user);
+const WebsiteNav = ({ user, noEdit }) => {
+  const { user: loggedInUser } = useSelector((state) => state.user);
   return (
     <div className="bg-[#ffffff] border-b-[3px] border-primary">
       {/* <div className="xxl:pr-0"> */}
       <div className="w-full flex items-center px-5 !py-3  md:py-0 md:flex-row md:justify-between">
         <div className="">
-          {user && (
+          {loggedInUser && user && user?.username === loggedInUser?.username && (
             <Link href="/dashboard/website/edit">
               <a className="flex items-center space-x-3 text-sm font-semibold text-gray-700 transition duration-300 md:text-md whitespace-nowrap font-inter hover:text-primary">
-                <PencilAltIcon className="w-5 h-5"/>
-                                <span className="subTitle">Edit Website</span>
+                <PencilAltIcon className="w-5 h-5" />
+                <span className="subTitle">Edit Website</span>
               </a>
             </Link>
           )}

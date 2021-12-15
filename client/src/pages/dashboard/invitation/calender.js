@@ -116,8 +116,8 @@ const CalendarPage = () => {
   let DISCOVERY_DOCS = [
     "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
   ];
-  let SCOPES =
-    "https://www.googleapis.com/auth/calendar";
+
+  let SCOPES = "https://www.googleapis.com/auth/calendar";
   // let SCOPES =
   //   "https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar";
 
@@ -140,8 +140,6 @@ const CalendarPage = () => {
       };
       data.recurrence = ["RRULE:FREQ=DAILY;COUNT=1"];
       gapi.load("client:auth2", () => {
-        console.log("loaded");
-
         gapi.client.init({
           apiKey: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
           clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
