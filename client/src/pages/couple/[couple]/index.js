@@ -111,7 +111,7 @@ const CoupleWebsitePage = (props) => {
           name="image"
           content={
             couple?.questions?.couplePictures[0]
-              ? couple?.questions?.couplePictures
+              ? couple?.questions?.couplePictures[0]?.secure_url
               : `/images/seo_image.png`
           }
         />
@@ -119,7 +119,7 @@ const CoupleWebsitePage = (props) => {
           property="og:image"
           content={
             couple?.questions?.couplePictures[0]
-              ? couple?.questions?.couplePictures[0]
+              ? couple?.questions?.couplePictures[0]?.secure_url
               : `/images/seo_image.png`
           }
         />
@@ -127,7 +127,7 @@ const CoupleWebsitePage = (props) => {
           name="twitter:image"
           content={
             couple?.questions?.couplePictures[0]
-              ? couple?.questions?.couplePictures[0]
+              ? couple?.questions?.couplePictures[0]?.secure_url
               : `/images/seo_image.png`
           }
         />
