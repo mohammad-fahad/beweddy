@@ -224,7 +224,7 @@ export const coupleActivationTemplate = (name, url) => {
       <td align="center">
         <p style="font-size: 18px; font-weight: 400;">
           ${
-            name ? `Hi <strong>${name}</strong>` : 'Welcome'
+            name ? `Hi <strong>${name}</strong>` : "Welcome"
           } Thank You For Choosing BeWeddy For <br /> Your Wedding Platform! Confirm Your Email and <br /> Lets Get This Party Started!
         </p>
       </td>
@@ -282,7 +282,7 @@ export const coupleActivationTemplate = (name, url) => {
  * @param  {String} url
  */
 
-export const venueActivationTemplate = url => {
+export const venueActivationTemplate = (url) => {
   return `
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html data-editor-version="2" class="sg-campaigns" xmlns="http://www.w3.org/1999/xhtml">
@@ -409,7 +409,7 @@ export const venueActivationTemplate = url => {
 /**
  * @param  {String} url
  */
-export const passwordResetTemplate = url => {
+export const passwordResetTemplate = (url) => {
   return `
   <body style='background: #eee; padding:20px; font-family: "Lato",-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI","Roboto","Helvetica Neue",Arial,sans-serif!important;'>
   <table style='max-width: 600px; width:100%; padding-bottom: 35px; margin: auto; background: #fff; text-align: center; border: 2px solid #eee; border-radius: 10px;'>
@@ -593,7 +593,7 @@ export const sendEmailInvitesTemplate = (coupleName, image, message) => `
         </div>
         <div class="banner-container">
             <img
-            src="${image}"
+              src="${image}"
             alt=""
 
             />
