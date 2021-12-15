@@ -107,6 +107,30 @@ const CoupleWebsitePage = (props) => {
     <>
       <Head>
         <title>Beweddy | {couple?.coupleName}'s Wedding</title>
+        <meta
+          name="image"
+          content={
+            couple?.questions?.couplePictures[0]
+              ? couple?.questions?.couplePictures
+              : `/images/seo_image.png`
+          }
+        />
+        <meta
+          property="og:image"
+          content={
+            couple?.questions?.couplePictures[0]
+              ? couple?.questions?.couplePictures[0]
+              : `/images/seo_image.png`
+          }
+        />
+        <meta
+          name="twitter:image"
+          content={
+            couple?.questions?.couplePictures[0]
+              ? couple?.questions?.couplePictures[0]
+              : `/images/seo_image.png`
+          }
+        />
       </Head>
 
       <div className="container p-1 sm:p-10 ">
