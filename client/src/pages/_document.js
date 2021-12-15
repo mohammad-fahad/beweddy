@@ -27,7 +27,6 @@ class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
 
-          <meta name="image" content="/images/seo_image.png" />
           <meta
             property="title"
             content="BeWeddy | Free All-in-One Wedding Platform"
@@ -52,7 +51,6 @@ class MyDocument extends Document {
                     3. Text invitations and announcements!
                     "
           />
-          <meta property="og:image" content="/images/seo_image.png" />
           <meta property="og:url" content="https://www.beweddy.com" />
           <meta property="og:type" content="website" />
 
@@ -70,7 +68,6 @@ class MyDocument extends Document {
             name="twitter:description"
             content="Free All-in-One Wedding Platform"
           />
-          <meta name="twitter:image" content="/images/seo_image.png" />
 
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
