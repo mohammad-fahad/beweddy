@@ -20,6 +20,7 @@ import { sendMMSInvites } from "@services/Invitation/mms";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useRouter } from "next/router";
 // import { getGuests } from '@services/GuestManagement';
 
 const animatedComponents = makeAnimated();
@@ -60,6 +61,7 @@ const TextInvitesPage = () => {
   const { data, isLoading } = useQuery(["guests", user.token], getGuests);
   const [uploadedFile, setUploadedFile] = useState();
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
   const [file, setFile] = useState();
   const [preview, setPreview] = useState();
   const [selectedImageFile, setSelectedImageFile] = useState();
@@ -109,6 +111,7 @@ const TextInvitesPage = () => {
           message: data.message,
           from: data.phone,
         });
+        router.push("/dashboard/invitation/rsvp-guest-management");
       } else {
         await sendMMSInvites({
           phones: toPhones,
@@ -117,6 +120,7 @@ const TextInvitesPage = () => {
           image: uploadedFile,
           coupleName: user?.coupleName,
         });
+        router.push("/dashboard/invitation/rsvp-guest-management");
       }
       // console.log({
       //   phones: toPhones,
@@ -312,8 +316,11 @@ const TextInvitesPage = () => {
                         )}
                         <div className="flex justify-end">
                           <button
+                            disabled={!toPhones}
                             type="submit"
-                            className="flex items-center rounded border-2 py-2 bg-secondary-alternative px-5 border-black  justify-end !mt-10 space-x-3 text-sm md:text-base font-bold text-right"
+                            className={`flex items-center rounded border-2 py-2 bg-secondary-alternative px-5 border-black  justify-end !mt-10 space-x-3 text-sm md:text-base font-bold text-right ${
+                              !toPhones ? "cursor-not-allowed" : ""
+                            }`}
                           >
                             <span>Send Message</span>
                             <ArrowRightIcon className="w-6 h-6" />

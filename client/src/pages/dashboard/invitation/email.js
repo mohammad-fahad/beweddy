@@ -190,7 +190,7 @@ const EmailInvitesPage = () => {
         message,
       });
       setIsOpen(false);
-      router.push("/dashboard");
+      router.push("/dashboard/invitation/rsvp-guest-management");
     } catch (err) {
       console.error(err);
     }
