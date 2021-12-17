@@ -48,14 +48,13 @@ export default function AddVenue() {
   //   }
   // }, [data]);
 
-   useEffect(() => {
+  useEffect(() => {
     if (data) {
       setVenues(
-        data
-          ?.map((venue) => ({
-            _id: venue._id,
-            name: venue.businessName,
-          }))
+        data?.map((venue) => ({
+          _id: venue._id,
+          name: venue.businessName,
+        }))
       );
 
       setSelectedProvider({ _id: data[0]?._id, name: data[0]?.businessName });
@@ -69,14 +68,19 @@ export default function AddVenue() {
 
   return (
     <>
-      {user?.role !== "venue" && !user?.venue && (
+      {/* {user?.role !== "venue" && !user?.venue && ( */}
         <button
           onClick={() => setShowModal(true)}
-          className={`capitalize text-xs md:text-base font-inter font-semibold rounded-[5px] animate-bounce bg-[#000000] text-[#ffffff] py-2 sm:px-3 px-1 md:px-5 flex items-center sm:space-x-3 hover:bg-secondary-primary transition duration-300 smallText`}
+          className={`capitalize text-xs md:text-base font-inter font-semibold rounded-[5px] ${
+            user?.role !== "venue" && !user?.venue ? "animate-bounce" : ""
+          } bg-[#000000] text-[#ffffff] py-2 sm:px-3 px-1 md:px-5 flex items-center sm:space-x-3 hover:bg-secondary-primary transition duration-300 smallText`}
         >
-          <span className="customLabel">Connect Your Venue</span>
+          <span className="customLabel">
+            {user?.role !== "venue" && !user?.venue ? "Connect" : "Change"} Your
+            Venue
+          </span>
         </button>
-      )}
+      {/* )} */}
       {showModal ? (
         <>
           <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none !m-0">
@@ -87,10 +91,10 @@ export default function AddVenue() {
                 <div className="flex items-start justify-between p-5 border-b border-solid rounded-t border-blueGray-200">
                   <h3 className="text-3xl font-semibold">Connect Venue</h3>
                   <button
-                    className="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none  focus:outline-none "
+                    className="float-right p-1 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none focus:outline-none "
                     onClick={() => setShowModal(false)}
                   >
-                    <span className="block w-6 h-6 text-2xl pb-3 hover:text-red-500  text-black bg-transparent outline-none focus:outline-none">
+                    <span className="block w-6 h-6 pb-3 text-2xl text-black bg-transparent outline-none hover:text-red-500 focus:outline-none">
                       ×
                     </span>
                   </button>
