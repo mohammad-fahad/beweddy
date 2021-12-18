@@ -8,7 +8,7 @@ const opts = {
   height: "400px",
 };
 
-const WebsiteVideo = ({ className, videoLink }) => {
+const WebsiteVideo = ({ className, videoLink, videoTitle }) => {
   const newSection =
     /http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/;
   const newSectionData = newSection.test(videoLink);
@@ -22,7 +22,7 @@ const WebsiteVideo = ({ className, videoLink }) => {
     >
       <div className="container relative z-20 px-10 pt-20 pb-20 md:pb-32">
         <Heading
-          label="First Look or Wedding Video"
+          label={videoTitle ? videoTitle : "First Look or Wedding Video"}
           className="!text-[36px] commonTitle"
         />
         <div className="max-w-3xl mx-auto">
