@@ -1751,31 +1751,42 @@ const EditWebsitePage = () => {
                 </button>
               </div>
 
-              {/* <Divider />
+              <Divider />
 
-              <div className='space-y-5'>
-                <Heading h3>First Look or Wedding Video</Heading>
-                <div className='space-y-3'>
-                  <label htmlFor='videoTitle' className='block'>
+              <div className="space-y-5">
+                <div className="space-y-3">
+                  <label htmlFor="videoTitle" className="block">
+                    Youtube Video Title
+                  </label>
+                  <input
+                    type="text"
+                    id="videoTitle"
+                    className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal placeholder-gray-300"
+                    placeholder="Your Video Title Here"
+                    {...register("weddingVideoTitle")}
+                  />
+                </div>
+                <div className="space-y-3">
+                  <label htmlFor="videoTitle" className="block">
                     Youtube Video Link
                   </label>
                   <input
-                    type='text'
-                    id='videoTitle'
-                    className='max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal placeholder-gray-300'
-                    placeholder='Paste Your Wedding Youtube Link'
-                    {...register('weddingVideo')}
+                    type="text"
+                    id="videoTitle"
+                    className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal placeholder-gray-300"
+                    placeholder="Paste Your Wedding Youtube Link"
+                    {...register("weddingVideo")}
                   />
                 </div>
-              </div> */}
-              {/* <div>
+              </div>
+              <div>
                 <button
                   className="border-2 transition-colors duration-300 border-[#000000] px-3 py-1 bg-white text-primary hover:bg-primary hover:text-white"
                   type="submit"
                 >
                   Save
                 </button>
-              </div> */}
+              </div>
             </form>
           </div>
         </DashboardContainer>

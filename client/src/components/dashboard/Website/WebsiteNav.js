@@ -18,8 +18,8 @@ const WebsiteNav = ({ user, noEdit }) => {
             </Link>
           )}
         </div>
-        <h3 className="flex items-center justify-center w-full text-lg capitalize">
-          <span className="pl-2 !font-alice text-[36px] font-medium mudiumTitle">
+        <h3 className="flex items-center justify-center w-full text-lg capitalize mr-20">
+          <span className="pl-2 !font-alice text-[36px] font-medium mudiumTitle ">
             {user?.coupleName}
           </span>
         </h3>
