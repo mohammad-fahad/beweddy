@@ -71,7 +71,9 @@ const RSVPage = ({ user }) => {
   const dispatch = useDispatch();
   const { push, query } = useRouter();
   const { loading } = useSelector((state) => state.rsvp);
-  const logo = user?.venue ? user?.venue?.logo : "/safari-pinned-tab.svg";
+  const logo = user?.venue
+    ? user?.venue?.logo?.secure_url
+    : "/safari-pinned-tab.svg";
 
   // const {
   //   data: user,
@@ -181,7 +183,7 @@ const RSVPage = ({ user }) => {
             <Link href="/">
               <a className="cursor-pointer">
                 {/* <img src="/images/logo.png" className="w-36" /> */}
-                <img src={logo} className="w-[42px] h-[51px] mt-2" />
+                <img src={logo} className="h-[51px] mt-2" />
               </a>
             </Link>
             <h1 className="mt-1 text-2xl font-medium md:text-3xl">
