@@ -100,7 +100,9 @@ const CoupleWebsitePage = (props) => {
   if (query.couple && !couple) return <NotFoundPage />;
 
   if (isLoading) return <Loader />;
-
+  const logo = couple?.venue
+    ? couple?.venue?.logo?.secure_url
+    : "/safari-pinned-tab.svg";
   const size = useWindowSize();
 
   return (
@@ -134,6 +136,14 @@ const CoupleWebsitePage = (props) => {
       </Head>
 
       <div className="container p-1 sm:p-10 ">
+        <div className="flex flex-col items-center justify-center w-full space-y-5 ">
+          <Link href="/">
+            <a className="cursor-pointer">
+              {/* <img src="/images/logo.png" className="w-36" /> */}
+              <img src={logo} className="h-[51px] mt-2" />
+            </a>
+          </Link>
+        </div>
         <div className="w-full mx-auto border-4 border-[#000000] rounded-lg mt-5 ">
           <WebsiteNav user={couple} />
           <Carousel
