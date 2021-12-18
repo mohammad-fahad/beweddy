@@ -399,6 +399,7 @@ const CoupleWebsitePage = (props) => {
           </div>
           <WebsiteVideo
             videoLink={couple?.weddingVideo}
+            videoTitle={couple?.weddingVideoTitle}
             className="!bg-[#ffffff] !from-transparent !to-transparent"
           />
           <footer className="container">
