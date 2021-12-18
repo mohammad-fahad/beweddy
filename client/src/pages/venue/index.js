@@ -27,9 +27,9 @@ const CreateVenuePage = () => {
     // case 4:
     //   return <Step6 />;
     case 4:
-      return <Step4 />;
-    case 5:
       return <Step5 />;
+    // case 5:
+    //   return <Step5 />;
 
     default:
       return (

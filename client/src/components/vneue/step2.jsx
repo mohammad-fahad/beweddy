@@ -2,11 +2,13 @@ import { Button, Heading, CreateWebsiteContainer } from "@components/index";
 import { addBusinessLink } from "@features/question/venueSlice";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 const BusinessLink = () => {
+  const [website, setWebsite] = useState(false);
   const { push } = useRouter();
   const dispatch = useDispatch();
   const { questions } = useSelector((state) => state.venue);
@@ -35,6 +37,7 @@ const BusinessLink = () => {
         <h2 className="pb-8 mx-auto text-[36px] text-center commonTitle">
           What Is Your Website URL ?
         </h2>
+
         <div className="w-48 mx-auto h-[2px] md:h-[4px] mb-16 bg-primary" />
 
         {/* </motion.div> */}
@@ -62,9 +65,17 @@ const BusinessLink = () => {
                 {errors?.websiteLink?.message}
               </p>
             </div>
-            <h3 className="font-inter font-bold font-[24px] capitalize leading-[29px]">
-              Want us to build a custom website?
-            </h3>
+            <div className="flex gap-5 items-center">
+              <h3 className="font-inter font-bold font-[24px] capitalize leading-[29px]">
+                Want us to build a custom website?
+              </h3>
+              <input
+                type="checkbox"
+                name="need-URL"
+                id=""
+                onClick={() => setWebsite(!website)}
+              />
+            </div>
           </div>
         </motion.div>
         <div className="flex flex-wrap items-center gap-5 my-3 text-center md:my-10 sm:flex-nowrap">
