@@ -793,7 +793,8 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
 export const getCouple = asyncHandler(async (req, res) => {
   const user = await User.findOne({ username: req.params.username })
     .populate("giftCards")
-    .populate("registries");
+    .populate("registries")
+    .populate("venue", "businessName logo websiteLink");
 
   if (!user) {
     res.status(404);
@@ -823,6 +824,7 @@ export const getCouple = asyncHandler(async (req, res) => {
     giftCards: user.giftCards,
     registries: privetRegistries,
     socialAccounts: user.socialAccounts,
+    venue: user.venue,
     weddingVideo: user.weddingVideo,
     weddingVideoTitle: user.weddingVideoTitle,
   });
