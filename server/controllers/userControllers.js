@@ -383,7 +383,7 @@ export const activeUser = asyncHandler(async (req, res) => {
   const venue = await Venue.findOne({ user: id });
 
   if (userExists.role === "venue") {
-    if (venue.plan === "none") {
+    if (venue.plan === "none" || venue.plan === "") {
       const session = await createSubscription(
         venue.billingID,
         process.env.PREMIUM_PLAN_ID,
@@ -475,10 +475,11 @@ export const activeUser = asyncHandler(async (req, res) => {
         weddingVideoTitle: user.weddingVedioTitle,
         isAdmin: user.isAdmin,
         role: user.role,
-        venue: user.role === "venue" ? venue : user.venue, //!
+        venue: user.role === "venue" ? venue : user.venue,
         token: generateIdToken(user._id),
       },
       message: `Your account has been successfully activated!`,
+      redirect: user.role === "venue" ? true : false,
     });
   }
 });

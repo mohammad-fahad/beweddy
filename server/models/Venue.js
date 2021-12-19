@@ -1,12 +1,12 @@
-import bcrypt from 'bcrypt';
-import mongoose from 'mongoose';
+import bcrypt from "bcrypt";
+import mongoose from "mongoose";
 
 //creating Venue schema for Venue admin
 const venueSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User",
     },
     logo: {
       type: Object,
@@ -31,8 +31,7 @@ const venueSchema = new mongoose.Schema(
     billingID: String,
     plan: {
       type: String,
-      // enum: ['none', 'trial', 'premium'],
-      default: 'none',
+      default: "none",
     },
     payment: {
       type: Object,
@@ -48,6 +47,6 @@ const venueSchema = new mongoose.Schema(
   }
 );
 
-const Venue = mongoose.model('Venue', venueSchema);
+const Venue = mongoose.model("Venue", venueSchema);
 
 export default Venue;
