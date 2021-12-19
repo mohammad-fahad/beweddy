@@ -201,6 +201,7 @@ const EditWebsitePage = () => {
       location: user?.location,
       ...socialLinks,
       weddingVideo: user?.weddingVideo,
+      weddingVideoTitle: user?.weddingVideoTitle,
     },
     shouldFocusError: false,
     shouldUnregister: true,
@@ -377,6 +378,7 @@ const EditWebsitePage = () => {
       couplePictures: uploadedFiles,
       socialAccounts,
       weddingVideo: data.weddingVideo,
+      weddingVideoTitle: data.weddingVideoTitle,
     };
     return payload;
   };
@@ -1767,12 +1769,12 @@ const EditWebsitePage = () => {
                   />
                 </div>
                 <div className="space-y-3">
-                  <label htmlFor="videoTitle" className="block">
+                  <label htmlFor="videoLink" className="block">
                     Youtube Video Link
                   </label>
                   <input
                     type="text"
-                    id="videoTitle"
+                    id="videoLink"
                     className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal placeholder-gray-300"
                     placeholder="Paste Your Wedding Youtube Link"
                     {...register("weddingVideo")}

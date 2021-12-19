@@ -1,37 +1,37 @@
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import asyncHandler from 'express-async-handler';
-import User from '../models/User.js';
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import asyncHandler from "express-async-handler";
+import User from "../models/User.js";
 import {
   generateActivationToken,
   generateIdToken,
   resetPasswordIdToken,
-} from '../utils/token/index.js';
-import { client } from '../lib/google.js';
-import { nanoid } from 'nanoid';
-import Todo from '../models/Todo.js';
-import PrivetRegistry from '../models/PrivetRegistry.js';
-import Registry from '../models/Registry.js';
-import Guest from '../models/Guest.js';
-import Gift from '../models/Gift.js';
-import Venue from '../models/Venue.js';
-import { addNewCustomer, createSubscription } from '../lib/stripe.js';
-import { sendActivationEmail } from './invitationControllers.js';
+} from "../utils/token/index.js";
+import { client } from "../lib/google.js";
+import { nanoid } from "nanoid";
+import Todo from "../models/Todo.js";
+import PrivetRegistry from "../models/PrivetRegistry.js";
+import Registry from "../models/Registry.js";
+import Guest from "../models/Guest.js";
+import Gift from "../models/Gift.js";
+import Venue from "../models/Venue.js";
+import { addNewCustomer, createSubscription } from "../lib/stripe.js";
+import { sendActivationEmail } from "./invitationControllers.js";
 
 // Register New User
 
 const defaultTodos = [
   {
     isComplete: true,
-    description: 'List No. 1; The Bride is Always Right',
+    description: "List No. 1; The Bride is Always Right",
   },
   {
     isComplete: true,
-    description: 'List No. 2; Buy A Beautiful & Expensive Wedding Dress.',
+    description: "List No. 2; Buy A Beautiful & Expensive Wedding Dress.",
   },
   {
     isComplete: false,
-    description: 'Appointment with The Wedding Planner @HouseOffice At 9:30 AM',
+    description: "Appointment with The Wedding Planner @HouseOffice At 9:30 AM",
   },
 ];
 
@@ -43,13 +43,13 @@ export const register = asyncHandler(async (req, res) => {
   const userExists = await User.findOne({ email });
   if (userExists) {
     res.status(400);
-    throw new Error('User already exists');
+    throw new Error("User already exists");
   }
   const _name = questions.firstName
     ? `${questions.firstName}_${questions.spouseFirstName}`
     : questions.businessName;
 
-  const username = `${_name}_${nanoid(4)}`.toLowerCase().replace(/\s/g, '');
+  const username = `${_name}_${nanoid(4)}`.toLowerCase().replace(/\s/g, "");
 
   // Create new user
   const user = await User.create({
@@ -58,14 +58,14 @@ export const register = asyncHandler(async (req, res) => {
     email,
     // phone,
     password,
-    questions: role === 'venue' ? null : questions,
+    questions: role === "venue" ? null : questions,
     username,
     venue: venueId && venueId,
     role,
   });
 
   if (user) {
-    if (role === 'venue') {
+    if (role === "venue") {
       const customer = await addNewCustomer({ email });
       await Venue.create({
         user: user._id,
@@ -73,7 +73,7 @@ export const register = asyncHandler(async (req, res) => {
         ...questions,
       });
     }
-    defaultTodos.forEach(async todo => {
+    defaultTodos.forEach(async (todo) => {
       await Todo.create({
         user: user._id,
         ...todo,
@@ -110,12 +110,12 @@ export const googleSignUp = asyncHandler(async (req, res) => {
 
   // Push all GiftCards & Registries to user
 
-  const gifts = await Gift.find({}).select('_id');
+  const gifts = await Gift.find({}).select("_id");
   // const registries = await Registry.find({}).select('_id');
 
   const giftCards = gifts
-    .filter(gift => gift.isRecommended)
-    .map(gift => gift._id);
+    .filter((gift) => gift.isRecommended)
+    .map((gift) => gift._id);
 
   // const registryCards = registries.map(registry => registry._id);
 
@@ -136,14 +136,14 @@ export const googleSignUp = asyncHandler(async (req, res) => {
 
     if (userExists) {
       res.status(400);
-      throw new Error('User already exists');
+      throw new Error("User already exists");
     }
 
     const _name = questions.firstName
       ? `${questions.firstName}_${questions.spouseFirstName}`
       : questions.businessName;
 
-    const username = `${_name}_${nanoid(4)}`.toLowerCase().replace(/\s/g, '');
+    const username = `${_name}_${nanoid(4)}`.toLowerCase().replace(/\s/g, "");
     // If not user exists then create new user
     const userCreated = await User.create({
       firstName,
@@ -153,7 +153,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       avatar: picture,
       emailVerified: email_verified,
       username,
-      questions: role === 'venue' ? null : questions,
+      questions: role === "venue" ? null : questions,
       giftCards,
       venue: venueId && venueId,
       role,
@@ -161,25 +161,25 @@ export const googleSignUp = asyncHandler(async (req, res) => {
     });
     const newGuest = {
       address: {
-        city: 'Optio quasi labore ',
-        providence: 'Consequuntur facilis',
-        state: 'Vel veniam qui est ',
-        street: 'Laudantium veniam ',
-        zip: '21268',
+        city: "Optio quasi labore ",
+        providence: "Consequuntur facilis",
+        state: "Vel veniam qui est ",
+        street: "Laudantium veniam ",
+        zip: "21268",
       },
-      callingCode: '1',
-      email: 'example@example.com',
-      guestEstimate: '10',
-      id: '61462f3aef64f800048ebd65',
-      name: 'Example',
+      callingCode: "1",
+      email: "example@example.com",
+      guestEstimate: "10",
+      id: "61462f3aef64f800048ebd65",
+      name: "Example",
       phone: {
-        number: '348450345',
+        number: "348450345",
         provider: {
-          sms: 'txt.att.net',
-          mms: 'mms.att.net',
+          sms: "txt.att.net",
+          mms: "mms.att.net",
         },
       },
-      rsvp: 'maybe',
+      rsvp: "maybe",
       wayOfInvitations: {
         allAbove_invite: false,
         email_invite: true,
@@ -191,7 +191,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
     const URL = `${process.env.CLIENT_URL}/login`;
     let venue;
     if (userCreated) {
-      if (role === 'venue') {
+      if (role === "venue") {
         const customer = await addNewCustomer({ email });
         venue = await Venue.create({
           user: userCreated._id,
@@ -199,7 +199,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
           ...questions,
         });
 
-        if (venue.plan === 'none') {
+        if (venue.plan === "none") {
           const session = await createSubscription(
             venue.billingID,
             process.env.PREMIUM_PLAN_ID,
@@ -212,7 +212,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
         }
       }
 
-      defaultTodos.forEach(async todo => {
+      defaultTodos.forEach(async (todo) => {
         await Todo.create({
           user: userCreated._id,
           ...todo,
@@ -230,9 +230,9 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       const user = await User.findOne({
         _id: userCreated._id,
       })
-        .populate('giftCards')
-        .populate('registries')
-        .populate('venue', 'businessName logo websiteLink');
+        .populate("giftCards")
+        .populate("registries")
+        .populate("venue", "businessName logo websiteLink");
 
       res.json({
         user: {
@@ -254,9 +254,10 @@ export const googleSignUp = asyncHandler(async (req, res) => {
           registries: privetRegistries,
           socialAccounts: user.socialAccounts,
           weddingVideo: user.weddingVideo,
+          weddingVideoTitle: user.weddingVedioTitle,
           isAdmin: user.isAdmin,
           role: user.role,
-          venue: user.role === 'venue' ? venue : user.venue, //!
+          venue: user.role === "venue" ? venue : user.venue, //!
           token: generateIdToken(user._id),
         },
         message: `Welcome to Beweddy, ${user.fullName}`,
@@ -264,7 +265,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
     }
   } else {
     res.status(400);
-    throw new Error('Google sign up failed, Email is not verified');
+    throw new Error("Google sign up failed, Email is not verified");
   }
 });
 
@@ -285,20 +286,20 @@ export const googleSignIn = asyncHandler(async (req, res) => {
   if (email_verified) {
     const user = await User.findOne({ email })
       // .populate('registries')
-      .populate('giftCards')
-      .populate('venue', 'businessName logo websiteLink');
+      .populate("giftCards")
+      .populate("venue", "businessName logo websiteLink");
 
     if (!user) {
       res.status(404);
-      throw new Error('Please sign up we did not recognize this email');
+      throw new Error("Please sign up we did not recognize this email");
     }
 
     const privetRegistries = await PrivetRegistry.find({ user: user._id });
 
     const venue = await Venue.findOne({ user: user._id });
 
-    if (user.role === 'venue') {
-      if (venue.plan === 'none') {
+    if (user.role === "venue") {
+      if (venue.plan === "none") {
         const session = await createSubscription(
           venue.billingID,
           process.env.PREMIUM_PLAN_ID,
@@ -332,16 +333,17 @@ export const googleSignIn = asyncHandler(async (req, res) => {
         registries: privetRegistries ? privetRegistries : [],
         socialAccounts: user.socialAccounts,
         weddingVideo: user.weddingVideo,
+        weddingVideoTitle: user.weddingVedioTitle,
         isAdmin: user.isAdmin,
         role: user.role,
-        venue: user.role === 'venue' ? venue : user.venue, //!
+        venue: user.role === "venue" ? venue : user.venue, //!
         token: generateIdToken(user._id),
       },
       message: `Welcome back ${venue ? venue.businessName : user.fullName}`,
     });
   } else {
     res.status(400);
-    throw new Error('Google sign up failed, Email is not verified');
+    throw new Error("Google sign up failed, Email is not verified");
   }
 });
 
@@ -350,12 +352,12 @@ export const activeUser = asyncHandler(async (req, res) => {
   const URL = `${process.env.CLIENT_URL}/activation/${token}`;
   // Push all GiftCards & Registries to user
 
-  const gifts = await Gift.find({}).select('_id');
+  const gifts = await Gift.find({}).select("_id");
   // const registries = await Registry.find({}).select('_id');
 
   const giftCards = gifts
-    .filter(gift => gift.isRecommended)
-    .map(gift => gift._id);
+    .filter((gift) => gift.isRecommended)
+    .map((gift) => gift._id);
 
   // const registryCards = registries.map(registry => registry._id);
 
@@ -365,7 +367,7 @@ export const activeUser = asyncHandler(async (req, res) => {
   // Check if token is not valid
   if (!decode) {
     res.status(401);
-    throw new Error('Activation token expired');
+    throw new Error("Activation token expired");
   }
 
   const id = decode.id;
@@ -375,13 +377,13 @@ export const activeUser = asyncHandler(async (req, res) => {
 
   if (!userExists) {
     res.status(404);
-    throw new Error('User not found');
+    throw new Error("User not found");
   }
 
   const venue = await Venue.findOne({ user: id });
 
-  if (userExists.role === 'venue') {
-    if (venue.plan === 'none') {
+  if (userExists.role === "venue") {
+    if (venue.plan === "none") {
       const session = await createSubscription(
         venue.billingID,
         process.env.PREMIUM_PLAN_ID,
@@ -396,7 +398,7 @@ export const activeUser = asyncHandler(async (req, res) => {
 
   if (userExists.emailVerified) {
     res.status(400);
-    throw new Error('Account already activated, please login');
+    throw new Error("Account already activated, please login");
   }
 
   userExists.emailVerified = true;
@@ -408,25 +410,25 @@ export const activeUser = asyncHandler(async (req, res) => {
   const userUpdated = await userExists.save();
   const newGuest = {
     address: {
-      city: 'Optio quasi labore ',
-      providence: 'Consequuntur facilis',
-      state: 'Vel veniam qui est ',
-      street: 'Laudantium veniam ',
-      zip: '21268',
+      city: "Optio quasi labore ",
+      providence: "Consequuntur facilis",
+      state: "Vel veniam qui est ",
+      street: "Laudantium veniam ",
+      zip: "21268",
     },
-    callingCode: '1',
-    email: 'musa@example.com',
-    guestEstimate: '10',
-    id: '61462f3aef64f800048ebd65',
-    name: 'Example',
+    callingCode: "1",
+    email: "musa@example.com",
+    guestEstimate: "10",
+    id: "61462f3aef64f800048ebd65",
+    name: "Example",
     phone: {
-      number: '348450345',
+      number: "348450345",
       provider: {
-        sms: 'txt.att.net',
-        mms: 'mms.att.net',
+        sms: "txt.att.net",
+        mms: "mms.att.net",
       },
     },
-    rsvp: 'maybe',
+    rsvp: "maybe",
     wayOfInvitations: {
       allAbove_invite: false,
       email_invite: true,
@@ -436,9 +438,9 @@ export const activeUser = asyncHandler(async (req, res) => {
   };
 
   const user = await User.findOne({ email: userUpdated.email })
-    .populate('registries')
-    .populate('giftCards')
-    .populate('venue', 'businessName logo websiteLink');
+    .populate("registries")
+    .populate("giftCards")
+    .populate("venue", "businessName logo websiteLink");
 
   // Send response
   if (user) {
@@ -470,9 +472,10 @@ export const activeUser = asyncHandler(async (req, res) => {
         registries: privetRegistries ? privetRegistries : [],
         socialAccounts: user.socialAccounts,
         weddingVideo: user.weddingVideo,
+        weddingVideoTitle: user.weddingVedioTitle,
         isAdmin: user.isAdmin,
         role: user.role,
-        venue: user.role === 'venue' ? venue : user.venue, //!
+        venue: user.role === "venue" ? venue : user.venue, //!
         token: generateIdToken(user._id),
       },
       message: `Your account has been successfully activated!`,
@@ -486,13 +489,13 @@ export const login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email })
-    .populate('registries')
-    .populate('giftCards')
-    .populate('venue', 'businessName logo websiteLink');
+    .populate("registries")
+    .populate("giftCards")
+    .populate("venue", "businessName logo websiteLink");
 
   if (!user) {
     res.status(404);
-    throw new Error('Please sign up we did not recognize this email');
+    throw new Error("Please sign up we did not recognize this email");
   }
 
   const URL = `${process.env.CLIENT_URL}/login`;
@@ -505,12 +508,12 @@ export const login = asyncHandler(async (req, res) => {
 
     res.status(401);
     throw new Error(
-      'Your account is not activated yet, please check your email'
+      "Your account is not activated yet, please check your email"
     );
   }
 
-  if (user.role === 'venue') {
-    if (venue.plan === 'none') {
+  if (user.role === "venue") {
+    if (venue.plan === "none") {
       const session = await createSubscription(
         venue.billingID,
         process.env.PREMIUM_PLAN_ID,
@@ -548,16 +551,17 @@ export const login = asyncHandler(async (req, res) => {
         registries: privetRegistries,
         socialAccounts: user.socialAccounts,
         weddingVideo: user.weddingVideo,
+        weddingVideoTitle: user.weddingVedioTitle,
         isAdmin: user.isAdmin,
         role: user.role,
-        venue: user.role === 'venue' ? venue : user.venue, //!
+        venue: user.role === "venue" ? venue : user.venue, //!
         token: generateIdToken(user._id),
       },
       message: `Welcome back ${venue ? venue.businessName : user.fullName}`,
     });
   } else {
     res.status(401);
-    throw new Error('Invalid password');
+    throw new Error("Invalid password");
   }
 });
 
@@ -570,7 +574,7 @@ export const requestResetPassword = asyncHandler(async (req, res) => {
   // Check if user does not exist
   if (!user) {
     res.status(404);
-    throw new Error('User not found');
+    throw new Error("User not found");
   }
 
   const url = `${process.env.CLIENT_URL}/password/reset/${resetPasswordIdToken(
@@ -592,7 +596,7 @@ export const resetPassword = asyncHandler(async (req, res) => {
   // Check if token is valid
   if (!decode) {
     res.status(401);
-    throw new Error('Invalid token');
+    throw new Error("Invalid token");
   }
 
   const id = decode.id;
@@ -608,7 +612,7 @@ export const resetPassword = asyncHandler(async (req, res) => {
   // Check if user does not exist
   if (!user) {
     res.status(404);
-    throw new Error('User not found');
+    throw new Error("User not found");
   }
 
   await user.save();
@@ -645,6 +649,7 @@ export const getUserProfile = asyncHandler(async (req, res) => {
         registries: privetRegistries,
         socialAccounts: user.socialAccounts,
         weddingVideo: user.weddingVideo,
+        weddingVideoTitle: user.weddingVedioTitle,
         isAdmin: user.isAdmin,
         role: user.role,
         token: generateIdToken(user._id),
@@ -652,7 +657,7 @@ export const getUserProfile = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(404);
-    throw new Error('User not found');
+    throw new Error("User not found");
   }
 });
 
@@ -699,6 +704,9 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
     if (req.body.weddingVideo) {
       user.weddingVideo = req.body.weddingVideo;
     }
+    if (req.body.weddingVideoTitle) {
+      user.weddingVideoTitle = req.body.weddingVideoTitle;
+    }
     user.qrCode = req.body.qrCode || user.qrCode;
     user.qrCodeAvatar = req.body.qrCodeAvatar || user.qrCodeAvatar;
 
@@ -734,15 +742,15 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
         user.password = req.body.newPassword;
       } else {
         res.status(400);
-        throw new Error('Current password is incorrect');
+        throw new Error("Current password is incorrect");
       }
     }
 
     const updatedUser = await user.save();
     const updatesUser = await User.findById(updatedUser._id)
-      .populate('giftCards')
-      .populate('registries')
-      .populate('venue', 'businessName logo websiteLink');
+      .populate("giftCards")
+      .populate("registries")
+      .populate("venue", "businessName logo websiteLink");
 
     const updateUser = JSON.parse(JSON.stringify(updatesUser));
     res.json({
@@ -765,17 +773,18 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
         giftCards: updateUser.giftCards,
         registries: privetRegistries,
         socialAccounts: updateUser.socialAccounts,
+        weddingVideoTitle: updateUser.weddingVideoTitle,
         weddingVideo: updateUser.weddingVideo,
         isAdmin: updateUser.isAdmin,
         role: updateUser.role,
         venue: updateUser.venue,
         token: generateIdToken(updateUser._id),
       },
-      message: 'Updated!',
+      message: "Updated!",
     });
   } else {
     res.status(404);
-    throw new Error('User not found');
+    throw new Error("User not found");
   }
 });
 
@@ -783,12 +792,13 @@ export const updateUserProfile = asyncHandler(async (req, res) => {
 
 export const getCouple = asyncHandler(async (req, res) => {
   const user = await User.findOne({ username: req.params.username })
-    .populate('giftCards')
-    .populate('registries');
+    .populate("giftCards")
+    .populate("registries")
+    .populate("venue", "businessName logo websiteLink");
 
   if (!user) {
     res.status(404);
-    throw new Error('User not found');
+    throw new Error("User not found");
   }
 
   const privetRegistries = await PrivetRegistry.find({
@@ -814,6 +824,8 @@ export const getCouple = asyncHandler(async (req, res) => {
     giftCards: user.giftCards,
     registries: privetRegistries,
     socialAccounts: user.socialAccounts,
+    venue: user.venue,
     weddingVideo: user.weddingVideo,
+    weddingVideoTitle: user.weddingVideoTitle,
   });
 });

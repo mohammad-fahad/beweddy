@@ -1,5 +1,5 @@
-import bcrypt from 'bcrypt';
-import mongoose from 'mongoose';
+import bcrypt from "bcrypt";
+import mongoose from "mongoose";
 
 //creating user schema for user admin
 const userSchema = new mongoose.Schema(
@@ -91,7 +91,7 @@ const userSchema = new mongoose.Schema(
     ourStory: {
       type: String,
       default:
-        'We sincerely hope we will have the honor to dine, laugh, and dance with you on our wedding weekend. It would mean the world to us.',
+        "We sincerely hope we will have the honor to dine, laugh, and dance with you on our wedding weekend. It would mean the world to us.",
     },
     location: {
       type: String,
@@ -100,24 +100,24 @@ const userSchema = new mongoose.Schema(
     giftCards: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Gift',
+        ref: "Gift",
       },
     ],
     registries: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Registry',
+        ref: "Registry",
       },
     ],
     todos: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Todo',
+        ref: "Todo",
       },
     ],
     venue: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Venue',
+      ref: "Venue",
     },
     socialAccounts: {
       groom: {
@@ -144,11 +144,16 @@ const userSchema = new mongoose.Schema(
 
     weddingVideo: {
       type: String,
+      default: "https://www.youtube.com/watch?v=tm7ZtsuzZ-k",
+    },
+    weddingVideoTitle: {
+      type: String,
+      default: "First Look or Wedding Video",
     },
     role: {
       type: String,
-      enum: ['couple', 'venue'],
-      default: 'couple',
+      enum: ["couple", "venue"],
+      default: "couple",
     },
     isAdmin: {
       type: Boolean,
@@ -164,7 +169,7 @@ const userSchema = new mongoose.Schema(
     qrCodeAvatar: {
       type: String,
       default:
-        'https://res.cloudinary.com/beweddy/image/upload/v1631619815/utils/circle-ring_tbmyjw.png',
+        "https://res.cloudinary.com/beweddy/image/upload/v1631619815/utils/circle-ring_tbmyjw.png",
     },
     phone: {
       type: String,
@@ -172,7 +177,7 @@ const userSchema = new mongoose.Schema(
     avatar: {
       type: String,
       default:
-        'https://res.cloudinary.com/muttakinhasib/image/upload/v1611336104/avatar/user_qcrqny.svg',
+        "https://res.cloudinary.com/muttakinhasib/image/upload/v1611336104/avatar/user_qcrqny.svg",
     },
   },
   {
@@ -180,11 +185,11 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-userSchema.virtual('fullName').get(function () {
+userSchema.virtual("fullName").get(function () {
   return `${this.questions.firstName} ${this.questions.lastName}`;
 });
 
-userSchema.virtual('coupleName').get(function () {
+userSchema.virtual("coupleName").get(function () {
   return `${this.questions.firstName} & ${this.questions.spouseFirstName}`;
 });
 
@@ -192,8 +197,8 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) {
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
     next();
   }
 
@@ -201,6 +206,6 @@ userSchema.pre('save', async function (next) {
   this.password = await bcrypt.hash(this.password, salt);
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 
 export default User;
