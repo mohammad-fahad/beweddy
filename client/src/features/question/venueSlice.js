@@ -1,18 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   loading: false,
   // error: null,
   questions: {
-    businessName: '',
-    websiteLink: '',
+    businessName: "",
+    websiteLink: "",
+    customWebsite: false,
     logo: {},
-    plan: '',
   },
 };
 
 const venueSlice = createSlice({
-  name: 'question',
+  name: "question",
   initialState,
   reducers: {
     addBusinessName: (state, action) => {
@@ -27,6 +27,9 @@ const venueSlice = createSlice({
     addplan: (state, action) => {
       state.questions.plan = action.payload;
     },
+    buildCustomWebsite: (state, action) => {
+      state.questions.customWebsite = action.payload;
+    },
     resetQuestions: (state, action) => {
       return initialState;
     },
@@ -38,6 +41,7 @@ export const {
   addBusinessLink,
   addBusinessAnnouncement,
   addplan,
+  buildCustomWebsite,
   resetQuestions,
 } = venueSlice.actions;
 export const venueReducer = venueSlice.reducer;

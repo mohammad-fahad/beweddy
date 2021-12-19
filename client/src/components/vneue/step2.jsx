@@ -1,5 +1,5 @@
 import { Button, Heading, CreateWebsiteContainer } from "@components/index";
-import { addBusinessLink } from "@features/question/venueSlice";
+import { addBusinessLink, buildCustomWebsite } from "@features/question/venueSlice";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -25,6 +25,7 @@ const BusinessLink = () => {
   const onSubmit = (data) => {
     // console.log("bisnessName", data);
     dispatch(addBusinessLink(data.websiteLink));
+    dispatch(buildCustomWebsite(data.customWebsite));
     push({ query: { step: 3 } });
   };
 
@@ -65,15 +66,14 @@ const BusinessLink = () => {
                 {errors?.websiteLink?.message}
               </p>
             </div>
-            <div className="flex gap-5 items-center">
+            <div className="flex items-center gap-5">
               <h3 className="font-inter font-bold font-[24px] capitalize leading-[29px]">
                 Want us to build a custom website?
               </h3>
               <input
                 type="checkbox"
-                name="need-URL"
-                id=""
-                onClick={() => setWebsite(!website)}
+                name="customWebsite"
+                {...register("customWebsite")}
               />
             </div>
           </div>
