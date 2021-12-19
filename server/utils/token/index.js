@@ -11,7 +11,7 @@ export const generateTangoToken = payload => {
  * @param  {String} id
  */
 export const generateActivationToken = id => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '15m' });
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
 };
 
 /**

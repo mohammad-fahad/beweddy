@@ -18,7 +18,7 @@ import { generate } from "shortid";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import NotFoundPage from "pages/404";
-import { API_URL, isoToUtcDate } from "@utils/index";
+import { API_URL, isoToUtcDate, prependHttp } from "@utils/index";
 import { useWindowSize } from "@hooks/useWindowSize";
 SwiperCore.use([Lazy, Autoplay]);
 const CoupleWebsitePage = (props) => {
@@ -137,8 +137,12 @@ const CoupleWebsitePage = (props) => {
 
       <div className="container p-1 sm:p-10 ">
         <div className="flex flex-col items-center justify-center w-full space-y-5 ">
-          <Link href="/">
-            <a className="cursor-pointer">
+          <Link
+            href={couple?.venue ? prependHttp(couple?.venue?.websiteLink) : "/"}
+          >
+            <a
+            target="_blank"
+            className="cursor-pointer">
               {/* <img src="/images/logo.png" className="w-36" /> */}
               <img src={logo} className="h-[51px] mt-2" />
             </a>

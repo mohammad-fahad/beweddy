@@ -21,7 +21,7 @@ import { client } from "pages/_app";
 import { getCouple } from "@services/Couple";
 import { useQuery } from "react-query";
 import NotFoundPage from "pages/404";
-import { API_URL } from "@utils/index";
+import { API_URL, prependHttp } from "@utils/index";
 import axios from "axios";
 
 import { Carousel } from "react-responsive-carousel";
@@ -180,8 +180,13 @@ const RSVPage = ({ user }) => {
       <div className="container flex flex-col items-center w-full mx-auto">
         <DashboardHeader>
           <div className="flex flex-col items-center justify-center w-full space-y-5 ">
-            <Link href="/">
-              <a className="cursor-pointer">
+            <Link
+            
+              href={user?.venue ? prependHttp(user?.venue?.websiteLink) : "/"}
+            >
+              <a
+              target="_blank"
+              className="cursor-pointer">
                 {/* <img src="/images/logo.png" className="w-36" /> */}
                 <img src={logo} className="h-[51px] mt-2" />
               </a>

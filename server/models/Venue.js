@@ -31,7 +31,7 @@ const venueSchema = new mongoose.Schema(
     billingID: String,
     plan: {
       type: String,
-      enum: ['none', 'trial', 'premium'],
+      // enum: ['none', 'trial', 'premium'],
       default: 'none',
     },
     payment: {
