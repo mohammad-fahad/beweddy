@@ -22,6 +22,10 @@ const venueSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    customWebsite: {
+      type: Boolean,
+      default: false,
+    },
     weddingSchedule: {
       type: Object,
     },
