@@ -48,7 +48,7 @@ const stagger = {
 const WeddingDay = () => {
   const dispatch = useDispatch();
   const { questions } = useSelector((state) => state.question);
-  const { push } = useRouter();
+  const { push, query } = useRouter();
 
   // WeddingDate Picker
   const _weddingDate = questions?.weddingDay?.weddingDate
@@ -179,7 +179,7 @@ const WeddingDay = () => {
 
     if (!Object.keys(errors).length) {
       dispatch(addWeddingDay(values));
-      push({ query: { step: 3 } });
+      push({ query: { ...query, step: 3 } });
 
       // push('/create-website/step-3', null, { shallow: true });
     }
@@ -517,7 +517,7 @@ const WeddingDay = () => {
           <Button
             label="Back"
             className="opacity-50 !bg-[#bebebe] !rounded-[10px] w-[178px] h-[59px]"
-            onClick={() => push({ query: { step: 1 } })}
+            onClick={() => push({ query: { ...query, step: 1 } })}
           />
           <Button
             label="Next"

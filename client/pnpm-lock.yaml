@@ -16,28 +16,35 @@ specifiers:
   cloudinary-react: ^1.7.0
   draft-js: ^0.11.7
   draftjs-to-html: ^0.9.1
+  file-saver: ^2.0.5
   framer-motion: ^4.1.17
   html-to-draftjs: ^1.5.0
+  html-to-image: ^1.9.0
   immer: ^9.0.5
+  immutable: ^4.0.0
   lodash: ^4.17.21
   moment: ^2.29.1
+  moment-timezone: ^0.5.33
   nanoid: ^3.1.25
   next: 11.0.1
   postcss: ^8.3.5
   qrcode.react: ^1.0.1
   react: 17.0.2
+  react-color: ^2.19.3
   react-confetti: ^6.0.1
   react-datepicker: ^4.1.1
   react-datetime: ^3.1.1
   react-day-picker: ^7.4.10
   react-dom: 17.0.2
   react-draft-wysiwyg: ^1.14.7
+  react-draggable: ^4.4.4
   react-dropzone: ^11.3.4
   react-google-login: ^5.2.2
   react-hook-form: ^7.11.1
   react-hot-toast: ^2.1.0
   react-icons: ^4.2.0
   react-id-swiper: ^4.0.0
+  react-image: ^4.0.3
   react-image-crop: ^8.6.12
   react-qrcode-logo: ^2.5.0
   react-query: ^3.23.0
@@ -69,27 +76,34 @@ dependencies:
   cloudinary-react: 1.7.0_lodash@4.17.21+react@17.0.2
   draft-js: 0.11.7_react-dom@17.0.2+react@17.0.2
   draftjs-to-html: 0.9.1
+  file-saver: 2.0.5
   framer-motion: 4.1.17_react-dom@17.0.2+react@17.0.2
-  html-to-draftjs: 1.5.0_draft-js@0.11.7
+  html-to-draftjs: 1.5.0_draft-js@0.11.7+immutable@4.0.0
+  html-to-image: 1.9.0
   immer: 9.0.5
+  immutable: 4.0.0
   lodash: 4.17.21
   moment: 2.29.1
+  moment-timezone: 0.5.34
   nanoid: 3.1.25
   next: 11.0.1_react-dom@17.0.2+react@17.0.2
   qrcode.react: 1.0.1_react@17.0.2
   react: 17.0.2
+  react-color: 2.19.3_react@17.0.2
   react-confetti: 6.0.1_react@17.0.2
   react-datepicker: 4.2.1_react-dom@17.0.2+react@17.0.2
   react-datetime: 3.1.1_moment@2.29.1+react@17.0.2
   react-day-picker: 7.4.10_react@17.0.2
   react-dom: 17.0.2_react@17.0.2
-  react-draft-wysiwyg: 1.14.7_238eb5982f30a9897f3f19039e5e474f
+  react-draft-wysiwyg: 1.14.7_88d44ac20b3e192ced84799b818b01c0
+  react-draggable: 4.4.4_react-dom@17.0.2+react@17.0.2
   react-dropzone: 11.3.4_react@17.0.2
   react-google-login: 5.2.2_react-dom@17.0.2+react@17.0.2
   react-hook-form: 7.13.0_react@17.0.2
   react-hot-toast: 2.1.1_react-dom@17.0.2+react@17.0.2
   react-icons: 4.2.0_react@17.0.2
   react-id-swiper: 4.0.0_402ed3ae5b84a2e6c1565ef8ac1fb15b
+  react-image: 4.0.3_react-dom@17.0.2+react@17.0.2
   react-image-crop: 8.6.12_react@17.0.2
   react-qrcode-logo: 2.5.0_react-dom@17.0.2+react@17.0.2
   react-query: 3.23.0_react-dom@17.0.2+react@17.0.2
@@ -174,6 +188,7 @@ packages:
 
   /@emotion/is-prop-valid/0.8.8:
     resolution: {integrity: sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA==}
+    requiresBuild: true
     dependencies:
       '@emotion/memoize': 0.7.4
     dev: false
@@ -286,6 +301,14 @@ packages:
       react: ^16.13 || ^17
     dependencies:
       prop-types: 15.7.2
+      react: 17.0.2
+    dev: false
+
+  /@icons/material/0.2.4_react@17.0.2:
+    resolution: {integrity: sha512-QPcGmICAPbGLGb6F/yNf/KzKqvFx8z5qx3D1yFqVAjoFmXK35EgyW+cJ57Te3CNsmzblwtzakLGFqHPqrfb4Tw==}
+    peerDependencies:
+      react: '*'
+    dependencies:
       react: 17.0.2
     dev: false
 
@@ -1143,13 +1166,14 @@ packages:
     resolution: {integrity: sha512-fFstE6+IayaVFBEvaFt/wN8vdj8FsTRzij7dy7LI9QIwf5LgfHFi9zSpvCg+feJ2tbYVqHxUkjcibwpsTpgFVQ==}
     dev: false
 
-  /draftjs-utils/0.10.2_draft-js@0.11.7:
+  /draftjs-utils/0.10.2_draft-js@0.11.7+immutable@4.0.0:
     resolution: {integrity: sha512-EstHqr3R3JVcilJrBaO/A+01GvwwKmC7e4TCjC7S94ZeMh4IVmf60OuQXtHHpwItK8C2JCi3iljgN5KHkJboUg==}
     peerDependencies:
       draft-js: ^0.11.x
       immutable: 3.x.x || 4.x.x
     dependencies:
       draft-js: 0.11.7_react-dom@17.0.2+react@17.0.2
+      immutable: 4.0.0
     dev: false
 
   /electron-to-chromium/1.3.816:
@@ -1288,6 +1312,10 @@ packages:
       ua-parser-js: 0.7.28
     dev: false
 
+  /file-saver/2.0.5:
+    resolution: {integrity: sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==}
+    dev: false
+
   /file-selector/0.2.4:
     resolution: {integrity: sha512-ZDsQNbrv6qRi1YTDOEWzf5J2KjZ9KMI1Q2SGeTkCJmNNW25Jg4TW4UMcmoqcg4WrAyKRcpBXdbWRxkfrOzVRbA==}
     engines: {node: '>= 10'}
@@ -1375,6 +1403,7 @@ packages:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
+    requiresBuild: true
     optional: true
 
   /function-bind/1.1.1:
@@ -1504,13 +1533,18 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /html-to-draftjs/1.5.0_draft-js@0.11.7:
+  /html-to-draftjs/1.5.0_draft-js@0.11.7+immutable@4.0.0:
     resolution: {integrity: sha512-kggLXBNciKDwKf+KYsuE+V5gw4dZ7nHyGMX9m0wy7urzWjKGWyNFetmArRLvRV0VrxKN70WylFsJvMTJx02OBQ==}
     peerDependencies:
       draft-js: ^0.10.x || ^0.11.x
       immutable: 3.x.x || 4.x.x
     dependencies:
       draft-js: 0.11.7_react-dom@17.0.2+react@17.0.2
+      immutable: 4.0.0
+    dev: false
+
+  /html-to-image/1.9.0:
+    resolution: {integrity: sha512-9gaDCIYg62Ek07F2pBk76AHgYZ2gxq2YALU7rK3gNCqXuhu6cWzsOQqM7qGbjZiOzxGzrU1deDqZpAod2NEwbA==}
     dev: false
 
   /http-errors/1.7.3:
@@ -1561,6 +1595,10 @@ packages:
   /immutable/3.7.6:
     resolution: {integrity: sha1-E7TTyxK++hVIKib+Gy665kAHHks=}
     engines: {node: '>=0.8.0'}
+    dev: false
+
+  /immutable/4.0.0:
+    resolution: {integrity: sha512-zIE9hX70qew5qTUjSS7wi1iwj/l7+m54KWU247nhM3v806UdGj1yDndXj+IOYxxtW9zyLI+xqFNZjTuDaLUqFw==}
     dev: false
 
   /import-cwd/3.0.0:
@@ -1853,6 +1891,10 @@ packages:
       remove-accents: 0.4.2
     dev: false
 
+  /material-colors/1.2.6:
+    resolution: {integrity: sha512-6qE4B9deFBIa9YSpOc9O0Sgc43zTeVYbgDT5veRKSlB2+ZuHNoVVxA1L/ckMUayV9Ay9y7Z/SZCLcGteW9i7bg==}
+    dev: false
+
   /md5.js/1.3.5:
     resolution: {integrity: sha512-xitP+WxNPcTTOgnTJcrhM0xvdPepipPSf3I8EIpGKeFLjt3PlJLIDG3u8EX53ZIubkb+5U2+3rELYpEhHhzdkg==}
     dependencies:
@@ -1919,6 +1961,12 @@ packages:
     resolution: {integrity: sha512-2lMlY1Yc1+CUy0gw4H95uNN7vjbpoED7NNRSBHE25nWfLBdmMzFCsPshlzbxHz+gYMcBEUN8V4pU16prcdPSgA==}
     engines: {node: '>=6'}
     dev: true
+
+  /moment-timezone/0.5.34:
+    resolution: {integrity: sha512-3zAEHh2hKUs3EXLESx/wsgw6IQdusOT8Bxm3D9UrHPQR7zlMmzwybC8zHEM1tQ4LJwP7fcxrWr8tuBg05fFCbg==}
+    dependencies:
+      moment: 2.29.1
+    dev: false
 
   /moment/2.29.1:
     resolution: {integrity: sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==}
@@ -2473,6 +2521,21 @@ packages:
       unpipe: 1.0.0
     dev: false
 
+  /react-color/2.19.3_react@17.0.2:
+    resolution: {integrity: sha512-LEeGE/ZzNLIsFWa1TMe8y5VYqr7bibneWmvJwm1pCn/eNmrabWDh659JSPn9BuaMpEfU83WTOJfnCcjDZwNQTA==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      '@icons/material': 0.2.4_react@17.0.2
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      material-colors: 1.2.6
+      prop-types: 15.7.2
+      react: 17.0.2
+      reactcss: 1.2.3
+      tinycolor2: 1.4.2
+    dev: false
+
   /react-confetti/6.0.1_react@17.0.2:
     resolution: {integrity: sha512-ZpOTBrqSNhWE4rRXCZ6E6U+wGd7iYHF5MGrqwikoiBpgBq9Akdu0DcLW+FdFnLjyZYC+VfAiV2KeFgYRMyMrkA==}
     engines: {node: '>=10.18'}
@@ -2530,7 +2593,7 @@ packages:
       scheduler: 0.20.2
     dev: false
 
-  /react-draft-wysiwyg/1.14.7_238eb5982f30a9897f3f19039e5e474f:
+  /react-draft-wysiwyg/1.14.7_88d44ac20b3e192ced84799b818b01c0:
     resolution: {integrity: sha512-D4X8F/ourvQZuqHzCQ6Vs6Tnt6TbGH58kvHQxC+aZGq+45ko2EyatL6G5C/paMaNKDZq2JRe7yAzykneMLpNOg==}
     peerDependencies:
       draft-js: ^0.10.x || ^0.11.x
@@ -2540,9 +2603,22 @@ packages:
     dependencies:
       classnames: 2.3.1
       draft-js: 0.11.7_react-dom@17.0.2+react@17.0.2
-      draftjs-utils: 0.10.2_draft-js@0.11.7
-      html-to-draftjs: 1.5.0_draft-js@0.11.7
+      draftjs-utils: 0.10.2_draft-js@0.11.7+immutable@4.0.0
+      html-to-draftjs: 1.5.0_draft-js@0.11.7+immutable@4.0.0
+      immutable: 4.0.0
       linkify-it: 2.2.0
+      prop-types: 15.7.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  /react-draggable/4.4.4_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-6e0WdcNLwpBx/YIDpoyd2Xb04PB0elrDrulKUgdrIlwuYvxh5Ok9M+F8cljm8kPXXs43PmMzek9RrB1b7mLMqA==}
+    peerDependencies:
+      react: '>= 16.3.0'
+      react-dom: '>= 16.3.0'
+    dependencies:
+      clsx: 1.1.1
       prop-types: 15.7.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -2635,6 +2711,17 @@ packages:
       clsx: 1.1.1
       prop-types: 15.7.2
       react: 17.0.2
+    dev: false
+
+  /react-image/4.0.3_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-19MUK9u1qaw9xys8XEsVkSpVhHctEBUeYFvrLTe1PN+4w5Co13AN2WA7xtBshPM6SthsOj77SlDrEAeOaJpf7g==}
+    peerDependencies:
+      '@babel/runtime': '>=7'
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
     dev: false
 
   /react-input-autosize/3.0.0_react@17.0.2:
@@ -2819,6 +2906,12 @@ packages:
     dependencies:
       loose-envify: 1.4.0
       object-assign: 4.1.1
+    dev: false
+
+  /reactcss/1.2.3:
+    resolution: {integrity: sha512-KiwVUcFu1RErkI97ywr8nvx8dNOpT03rbnma0SSalTYjkrPYaEajR4a/MRt6DZ46K6arDRbWMNHF+xH7G7n/8A==}
+    dependencies:
+      lodash: 4.17.21
     dev: false
 
   /readable-stream/2.3.7:
@@ -3237,6 +3330,10 @@ packages:
     engines: {node: '>=0.6.0'}
     dependencies:
       setimmediate: 1.0.5
+    dev: false
+
+  /tinycolor2/1.4.2:
+    resolution: {integrity: sha512-vJhccZPs965sV/L2sU4oRQVAos0pQXwsvTLkWYdqJ+a8Q5kPFzJTuOFwy7UniPli44NKQGAglksjvOcpo95aZA==}
     dev: false
 
   /tmp/0.2.1:

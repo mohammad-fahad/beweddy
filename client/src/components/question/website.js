@@ -15,9 +15,9 @@ import Step8 from "./step-8";
 import Step9 from "./Step6";
 
 const CreateWebsitePage = () => {
-  const { query } = useRouter();
+  const router = useRouter();
+  const { query } = router;
   const step = Number(query.step);
-  // useEffect(() => {}, []);
 
   switch (step) {
     case 1:

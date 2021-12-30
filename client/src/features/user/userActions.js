@@ -28,7 +28,8 @@ export const attemptActivation = createAsyncThunk(
       errorAlert(data.error);
 
       if (data.redirect) {
-        return (window.location.href = "/venue-landing");
+        return (window.location.href =
+          "/venue-landing?venueId=" + data.user.venue._id);
       }
 
       return data;
@@ -54,6 +55,10 @@ export const attemptLogin = createAsyncThunk(
       successAlert(data.message);
       errorAlert(data.error);
 
+      if (data.redirect) {
+        return (window.location.href =
+          "/venue-landing?venueId=" + data.user.venue._id);
+      }
       return data;
     } catch (err) {
       errorAlert(handleErrorMessage(err));
@@ -127,6 +132,10 @@ export const attemptGoogleSignIn = createAsyncThunk(
 
       successAlert(data.message);
       errorAlert(data.error);
+      if (data.redirect) {
+        return (window.location.href =
+          "/venue-landing?venueId=" + data.user.venue._id);
+      }
       return data;
     } catch (err) {
       errorAlert(handleErrorMessage(err));

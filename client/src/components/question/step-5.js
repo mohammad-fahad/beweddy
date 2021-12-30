@@ -1,6 +1,9 @@
 import { CreateWebsiteContainer } from "@components/createWebsite";
 import { Button, CropImage, Heading, Loader } from "@components/index";
-import { addCouplePictures } from "@features/question/questionSlice";
+import {
+  addCouplePictures,
+  addSelectVenue,
+} from "@features/question/questionSlice";
 import { XIcon } from "@heroicons/react/solid";
 import { attemptImageUpload, removeImage } from "@utils/index";
 import axios from "axios";
@@ -52,7 +55,7 @@ const stagger = {
 
 const UploadCouplePicture = () => {
   const dispatch = useDispatch();
-  const { push } = useRouter();
+  const { push, query } = useRouter();
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState();
   const [preview, setPreview] = useState();
@@ -101,6 +104,12 @@ const UploadCouplePicture = () => {
     }
   }, [doThisLater]);
 
+  useEffect(() => {
+    if (query.venueId) {
+      dispatch(addSelectVenue(query.venueId));
+    }
+  }, [query]);
+
   // Handle form submission
   const onSubmit = (_) => {
     // check if user will not do this later
@@ -111,7 +120,11 @@ const UploadCouplePicture = () => {
       dispatch(addCouplePictures([]));
     }
     // if submit done then go to next page
-    push({ query: { step: 6 } });
+    if (query.venueId) {
+      push({ query: { ...query, step: 7 } });
+    } else {
+      push({ query: { ...query, step: 6 } });
+    }
     // push('/create-website/step-6', null, { shallow: true });
   };
 
@@ -315,7 +328,7 @@ const UploadCouplePicture = () => {
             label="Back"
             className="opacity-50 !bg-[#bebebe] !rounded-[10px] w-[178px] h-[59px]"
             onClick={
-              () => push({ query: { step: 4 } })
+              () => push({ query: { ...query, step: 4 } })
               // push('/create-website/step-4', null, { shallow: true })
             }
           />
