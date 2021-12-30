@@ -340,6 +340,7 @@ export const googleSignIn = asyncHandler(async (req, res) => {
         token: generateIdToken(user._id),
       },
       message: `Welcome back ${venue ? venue.businessName : user.fullName}`,
+      redirect: user.role === "venue" ? true : false,
     });
   } else {
     res.status(400);
@@ -559,6 +560,7 @@ export const login = asyncHandler(async (req, res) => {
         token: generateIdToken(user._id),
       },
       message: `Welcome back ${venue ? venue.businessName : user.fullName}`,
+      redirect: user.role === "venue" ? true : false,
     });
   } else {
     res.status(401);
