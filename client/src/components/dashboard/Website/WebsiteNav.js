@@ -11,14 +11,16 @@ const WebsiteNav = ({ user, noEdit }) => {
         <div className="">
           {loggedInUser && user && user?.username === loggedInUser?.username && (
             <Link href="/dashboard/website/edit">
-              <a className="flex items-center space-x-3 text-sm font-semibold text-gray-700 transition duration-300 md:text-md whitespace-nowrap font-inter hover:text-primary">
-                <PencilAltIcon className="w-5 h-5" />
-                <span className="subTitle">Edit Website</span>
+              <a>
+                <div className="flex items-center space-x-3 text-sm font-semibold text-gray-700 transition duration-300 md:text-md whitespace-nowrap font-inter hover:text-primary">
+                  <PencilAltIcon className="w-5 h-5" />
+                  <span className="subTitle">Edit Website</span>
+                </div>
               </a>
             </Link>
           )}
         </div>
-        <h3 className="flex items-center justify-center w-full text-lg capitalize -ml-20">
+        <h3 className="flex items-center justify-center w-42 text-lg capitalize -ml-20">
           <span className="pl-2 !font-alice text-[36px] font-medium mudiumTitle ">
             {user?.coupleName}
           </span>

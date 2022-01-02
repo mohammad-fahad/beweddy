@@ -23,15 +23,18 @@ const index = () => {
             </svg>
           </a>
         </Link>
-        <img
-          className="-ml-20 h-30 w-60"
-          src="images/logo.png"
-          layout="fill"
-          alt=""
-        />
+        <div className="grid-cols-10">
+          <img
+            className="-ml-32 h-30 w-60 "
+            src="images/logo.png"
+            layout="fill"
+            alt=""
+          />
+        </div>
       </div>
       <div className="flex flex-col justify-center items-center min-h-[70vh]">
         <img src="congratulations.png" className="h-30 w-30" alt="" />
+
         <h1 className="text-4xl font-alice ">Congratulations!</h1>
         <div className="flex justify-center my-7">
           <span className="h-1 w-52 bg-[#FFB1B6]"></span>

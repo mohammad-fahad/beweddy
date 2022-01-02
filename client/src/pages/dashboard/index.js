@@ -109,15 +109,13 @@ const Dashboard = () => {
                 </a>
               </Link>
 
-
               <div
                 onClick={setCopied}
                 className={`sm:mt-3 cursor-pointer xs:mt-0 capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300 smallText`}
               >
                 <LinkIcon className="hidden w-5 h-5 sm:inline-block" />
-                <span >Share To Collect Address</span>
+                <span>Share To Collect Address</span>
               </div>
-
 
               <Link href={`/couple/${user?.username}`}>
                 <a
@@ -196,7 +194,6 @@ const Dashboard = () => {
 
               <div className="flex flex-col items-center justify-center">
                 <div className="inline-block">
-
                   <div
                     onClick={setCopied}
                     className={`sm:mt-3 cursor-pointer xs:mt-0 capitalize text-xs md:text-base font-inter font-semibold border-2 border-primary rounded-[5px] bg-[#FCE0EB] py-2 px-3 md:px-5 flex items-center sm:space-x-3 hover:border-secondary/50 hover:bg-secondary-alternative/50 transition duration-300 smallText`}
@@ -204,7 +201,6 @@ const Dashboard = () => {
                     <LinkIcon className="hidden w-5 h-5 sm:inline-block" />
                     <span>Share To Collect Address</span>
                   </div>
-
                 </div>
                 <h1 className="text-[24px] leading-[27px] my-5">
                   Let's Eat, Drint & BeWeddy

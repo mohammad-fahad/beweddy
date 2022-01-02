@@ -306,7 +306,7 @@ const WeddingSchedule = () => {
                       <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12">
                           <p className="my-2 font-[14px] font-bold text-[#000000]  ">
-                            Brides Full Name & Number
+                            Bride's/Partner's Name & Number
                           </p>
                         </div>
                         <div className="col-span-12 sm:col-span-6">
@@ -328,7 +328,7 @@ const WeddingSchedule = () => {
                       <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12">
                           <p className="my-2 font-[14px] font-bold text-[#000000]  ">
-                            Groom’s Full Name & Number
+                            Groom’s/Partner's Name & Number
                           </p>
                         </div>
                         <div className="col-span-12 sm:col-span-6">
@@ -351,7 +351,7 @@ const WeddingSchedule = () => {
                       <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12">
                           <p className="my-2 font-[14px] font-bold text-[#000000]  ">
-                            Bride’s Parent’s Name & Number
+                            Bride’s/Partner's Parent’s Name & Number
                           </p>
                         </div>
                         <div className="col-span-12 sm:col-span-6">
@@ -375,7 +375,7 @@ const WeddingSchedule = () => {
                       <div className="grid w-full grid-cols-12 gap-1">
                         <div className="col-span-12">
                           <p className="my-2 font-[14px] font-bold text-[#000000]  ">
-                            Groom’s Parent’s Name & Number
+                            Groom’s/Partner's Parent’s Name & Number
                           </p>
                         </div>
                         <div className="col-span-12 sm:col-span-6">
