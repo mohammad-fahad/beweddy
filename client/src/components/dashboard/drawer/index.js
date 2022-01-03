@@ -33,6 +33,7 @@ const navLinks = [
   },
   {
     label: "Mailout Invites",
+    isComing: true,
     href: "/dashboard/invitation/mailout",
   },
   {
@@ -181,7 +182,7 @@ const Drawer = ({ open, setOpen }) => {
                                     <svg
                                       width="{18}"
                                       height="{20}"
-                                      className='w-6 h-7 mr-3'
+                                      className="w-6 h-7 mr-3"
                                       viewBox="0 0 18 20"
                                       fill="none"
                                       xmlns="http://www.w3.org/2000/svg"
@@ -211,7 +212,7 @@ const Drawer = ({ open, setOpen }) => {
                                   <span className="opacity-30">
                                     {link.label}
                                   </span>
-                                  <small className="opacity-50 text-secondary">
+                                  <small className="text-secondary opacity-50">
                                     Coming Soon
                                   </small>
                                 </p>
