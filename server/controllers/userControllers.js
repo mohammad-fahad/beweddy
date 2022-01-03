@@ -16,7 +16,10 @@ import Guest from "../models/Guest.js";
 import Gift from "../models/Gift.js";
 import Venue from "../models/Venue.js";
 import { addNewCustomer, createSubscription } from "../lib/stripe.js";
-import { sendActivationEmail } from "./invitationControllers.js";
+import {
+  sendActivationEmail,
+  userActivationNotifyAdmin as userActivationNotifyToAdmin,
+} from "./invitationControllers.js";
 
 // Register New User
 
@@ -206,6 +209,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
             URL
           );
 
+          await userActivationNotifyToAdmin(venue.name, email, role);
           if (session) {
             return res.status(200).json({ url: session.url });
           }
@@ -233,6 +237,9 @@ export const googleSignUp = asyncHandler(async (req, res) => {
         .populate("giftCards")
         .populate("registries")
         .populate("venue", "businessName logo websiteLink");
+
+      const name = user.role === "venue" ? venue.name : user.fullName;
+      await userActivationNotifyToAdmin(name, user?.email, user?.role);
 
       res.json({
         user: {
@@ -451,6 +458,14 @@ export const activeUser = asyncHandler(async (req, res) => {
       user: user._id,
       ...newGuest,
     });
+    const name = user.role === "venue" ? venue.name : user.fullName;
+    
+    await userActivationNotifyToAdmin(
+      name,
+      user?.email,
+      user?.role,
+      venue?.customWebsite
+    );
 
     res.status(201).json({
       user: {

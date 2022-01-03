@@ -18,6 +18,10 @@ const venueSchema = new mongoose.Schema(
       min: 2,
       max: 20,
     },
+    notifyAdmin: {
+      type: Boolean,
+      default: false,
+    },
     websiteLink: {
       type: String,
       required: true,
