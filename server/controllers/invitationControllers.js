@@ -140,13 +140,17 @@ export const userActivationNotifyAdmin = async ({
     html: `
     <div style="background-color: #f5f5f5; padding: 10px;">
       <div style="background-color: #fff; padding: 10px;">
-        <h3 style="margin-bottom: 1rem;">
+        <p style="margin-bottom: 1rem; font-size: 2rem;">
           <strong>${name}</strong> has signed up to be a ${role}
-        </h3>
+        </p>
         <table>
           <tr>
             <td><strong>Email:</strong></td>
             <td>${email}</td>
+          </tr>
+          <tr>
+            <td><strong>Role:</strong></td>
+            <td>${role}</td>
           </tr>
           ${
             customWebsite
