@@ -209,10 +209,12 @@ export const googleSignUp = asyncHandler(async (req, res) => {
             URL
           );
           const url = `${process.env.CLIENT_URL}/create-website?step=1&venueId=${venue._id}`;
+
           await userActivationNotifyToAdmin({
-            name: venue.name,
+            name: venue.businessName,
             email,
-            role,
+            role: userCreated.role,
+            customWebsite: venue.customWebsite,
             url,
           });
           if (session) {
@@ -243,7 +245,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
         .populate("registries")
         .populate("venue", "businessName logo websiteLink");
 
-      const name = user.role === "venue" ? venue.name : user.fullName;
+      const name = user.role === "venue" ? venue.businessName : user.fullName;
 
       await userActivationNotifyToAdmin({
         name,
@@ -468,7 +470,7 @@ export const activeUser = asyncHandler(async (req, res) => {
       user: user._id,
       ...newGuest,
     });
-    const name = user.role === "venue" ? venue.name : user.fullName;
+    const name = user.role === "venue" ? venue.businessName : user.fullName;
     const url =
       user.role === "venue"
         ? `${process.env.CLIENT_URL}/create-website?step=1&venueId=${venue._id}`
