@@ -1,14 +1,14 @@
-import asyncHandler from 'express-async-handler';
+import asyncHandler from "express-async-handler";
 // import { sendEmailInvites } from '../utils/mailer/index.js';
-import nodemailer from 'nodemailer';
-import fs from 'fs';
-import { v2 as cloudinary } from 'cloudinary';
+import nodemailer from "nodemailer";
+import fs from "fs";
+import { v2 as cloudinary } from "cloudinary";
 import {
   coupleActivationTemplate,
   passwordResetTemplate,
   sendEmailInvitesTemplate,
   venueActivationTemplate,
-} from '../utils/mailer/templates/index.js';
+} from "../utils/mailer/templates/index.js";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -47,21 +47,21 @@ export const inviteSMS = asyncHandler(async (req, res) => {
   }
 
   const smtpTransport = nodemailer.createTransport({
-    service: 'gmail',
-    host: 'smtp.gmail.com',
+    service: "gmail",
+    host: "smtp.gmail.com",
     auth: {
       user: EMAIL_USER,
       pass: EMAIL_PASS,
     },
   });
 
-  mailOptions.forEach(mailOption => {
+  mailOptions.forEach((mailOption) => {
     try {
       smtpTransport.sendMail(mailOption, function (error, response) {
         if (error) {
-          console.log('error', error);
+          console.log("error", error);
         } else {
-          console.log('Message sent: ' + response);
+          console.log("Message sent: " + response);
         }
       });
     } catch (error) {
@@ -69,7 +69,7 @@ export const inviteSMS = asyncHandler(async (req, res) => {
     }
   });
 
-  res.status(200).json({ message: 'Invite sent' });
+  res.status(200).json({ message: "Invite sent" });
 });
 
 // Invite mms to phone
@@ -90,8 +90,8 @@ export const inviteSMS = asyncHandler(async (req, res) => {
 
 export const sendActivationEmail = async (name, email, url, role) => {
   const smtpTransport = nodemailer.createTransport({
-    service: 'gmail',
-    host: 'smtp.gmail.com',
+    service: "gmail",
+    host: "smtp.gmail.com",
     from: EMAIL_USER,
     auth: {
       user: EMAIL_USER,
@@ -106,17 +106,69 @@ export const sendActivationEmail = async (name, email, url, role) => {
     subject: `Signup to ${CLIENT_URL}`,
     text: `Please click on the link below to Activate.\n\n${url}`,
     html:
-      role === 'couple'
+      role === "couple"
         ? coupleActivationTemplate(name, url)
         : venueActivationTemplate(url),
   };
 
   await smtpTransport.sendMail(mailOptions);
 };
+
+export const userActivationNotifyAdmin = async (
+  name,
+  email,
+  role,
+  customWebsite
+) => {
+  const smtpTransport = nodemailer.createTransport({
+    service: "gmail",
+    host: "smtp.gmail.com",
+    from: EMAIL_USER,
+    auth: {
+      user: EMAIL_USER,
+      pass: EMAIL_PASS,
+    },
+  });
+
+  const mailOptions = {
+    from: `${SITE_NAME} <${EMAIL_USER}>`,
+    replyTo: email,
+    to: EMAIL_USER,
+    subject: `Got a New ${role} Customer in Beweddy`,
+    text: `${name} has signed up to be a ${role}`,
+    html: `
+    <div style="background-color: #f5f5f5; padding: 10px;">
+      <div style="background-color: #fff; padding: 10px;">
+        <h3 style="margin-bottom: 1rem;">
+          <strong>${name}</strong> has signed up to be a ${role}
+        </h3>
+        <table>
+          <tr>
+            <td><strong>Email:</strong></td>
+            <td>${email}</td>
+          </tr>
+          ${
+            customWebsite
+              ? `<tr>
+                <td>
+                  <strong>Want us to build a custom website? :</strong>
+                </td>
+                <td>Yes</td>
+              </tr>`
+              : ""
+          }
+        </table>
+      </div>
+    </div>
+    `,
+  };
+
+  await smtpTransport.sendMail(mailOptions);
+};
 export const sendPasswordResetEmail = async (email, url) => {
   const smtpTransport = nodemailer.createTransport({
-    service: 'gmail',
-    host: 'smtp.gmail.com',
+    service: "gmail",
+    host: "smtp.gmail.com",
     from: EMAIL_USER,
     auth: {
       user: EMAIL_USER,
@@ -158,21 +210,21 @@ export const inviteMMS = asyncHandler(async (req, res) => {
   }
 
   const smtpTransport = nodemailer.createTransport({
-    service: 'gmail',
-    host: 'smtp.gmail.com',
+    service: "gmail",
+    host: "smtp.gmail.com",
     auth: {
       user: EMAIL_USER,
       pass: EMAIL_PASS,
     },
   });
 
-  mailOptions.forEach(mailOption => {
+  mailOptions.forEach((mailOption) => {
     try {
       smtpTransport.sendMail(mailOption, function (error, response) {
         if (error) {
-          console.log('error', error);
+          console.log("error", error);
         } else {
-          console.log('Message sent: ' + response.message);
+          console.log("Message sent: " + response.message);
         }
       });
     } catch (error) {
@@ -180,7 +232,7 @@ export const inviteMMS = asyncHandler(async (req, res) => {
     }
   });
 
-  res.status(200).json({ message: 'Invite sent' });
+  res.status(200).json({ message: "Invite sent" });
 });
 
 export const inviteEmail = asyncHandler(async (req, res) => {
@@ -202,21 +254,21 @@ export const inviteEmail = asyncHandler(async (req, res) => {
   }
 
   const smtpTransport = nodemailer.createTransport({
-    service: 'gmail',
-    host: 'smtp.gmail.com',
+    service: "gmail",
+    host: "smtp.gmail.com",
     auth: {
       user: EMAIL_USER,
       pass: EMAIL_PASS,
     },
   });
 
-  mailOptions.forEach(mailOption => {
+  mailOptions.forEach((mailOption) => {
     try {
       smtpTransport.sendMail(mailOption, function (error, response) {
         if (error) {
-          console.log('error', error);
+          console.log("error", error);
         } else {
-          console.log('Message sent: ' + response.message);
+          console.log("Message sent: " + response.message);
         }
       });
     } catch (error) {
@@ -224,5 +276,5 @@ export const inviteEmail = asyncHandler(async (req, res) => {
     }
   });
 
-  res.status(200).json({ message: 'Invite sent' });
+  res.status(200).json({ message: "Invite sent" });
 });
