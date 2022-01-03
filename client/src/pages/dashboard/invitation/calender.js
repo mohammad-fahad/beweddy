@@ -116,8 +116,7 @@ const CalendarPage = () => {
   let DISCOVERY_DOCS = [
     "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
   ];
-  let SCOPES =
-    "https://www.googleapis.com/auth/calendar";
+  let SCOPES = "https://www.googleapis.com/auth/calendar";
   // let SCOPES =
   //   "https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar";
 
@@ -130,7 +129,7 @@ const CalendarPage = () => {
       data.start = startUpdate;
       data.end = endUpdate;
       data.visibility = "public";
-      data.attendees = emails;
+      data.attendees = [...emails, { email: user?.email }];
       data.reminders = {
         useDefault: false,
         overrides: [
