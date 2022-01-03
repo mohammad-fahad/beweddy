@@ -208,8 +208,13 @@ export const googleSignUp = asyncHandler(async (req, res) => {
             process.env.PREMIUM_PLAN_ID,
             URL
           );
-
-          await userActivationNotifyToAdmin(venue.name, email, role);
+          const url = `${process.env.CLIENT_URL}/create-website?step=1&venueId=${venue._id}`;
+          await userActivationNotifyToAdmin({
+            name: venue.name,
+            email,
+            role,
+            url,
+          });
           if (session) {
             return res.status(200).json({ url: session.url });
           }
@@ -239,7 +244,12 @@ export const googleSignUp = asyncHandler(async (req, res) => {
         .populate("venue", "businessName logo websiteLink");
 
       const name = user.role === "venue" ? venue.name : user.fullName;
-      await userActivationNotifyToAdmin(name, user?.email, user?.role);
+
+      await userActivationNotifyToAdmin({
+        name,
+        email: user?.email,
+        role: user?.role,
+      });
 
       res.json({
         user: {
@@ -459,13 +469,18 @@ export const activeUser = asyncHandler(async (req, res) => {
       ...newGuest,
     });
     const name = user.role === "venue" ? venue.name : user.fullName;
-    
-    await userActivationNotifyToAdmin(
-      name,
-      user?.email,
-      user?.role,
-      venue?.customWebsite
-    );
+    const url =
+      user.role === "venue"
+        ? `${process.env.CLIENT_URL}/create-website?step=1&venueId=${venue._id}`
+        : false;
+
+    await userActivationNotifyToAdmin({
+      name: name,
+      email: user?.email,
+      role: user?.role,
+      customWebsite: venue?.customWebsite,
+      url,
+    });
 
     res.status(201).json({
       user: {

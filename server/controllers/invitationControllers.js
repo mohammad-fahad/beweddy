@@ -114,12 +114,13 @@ export const sendActivationEmail = async (name, email, url, role) => {
   await smtpTransport.sendMail(mailOptions);
 };
 
-export const userActivationNotifyAdmin = async (
+export const userActivationNotifyAdmin = async ({
   name,
   email,
   role,
-  customWebsite
-) => {
+  customWebsite,
+  url,
+}) => {
   const smtpTransport = nodemailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
@@ -154,6 +155,16 @@ export const userActivationNotifyAdmin = async (
                   <strong>Want us to build a custom website? :</strong>
                 </td>
                 <td>Yes</td>
+              </tr>`
+              : ""
+          }
+          ${
+            url
+              ? `<tr>
+                <td>
+                  <strong>Referral Link :</strong>
+                </td>
+                <td>${url}</td>
               </tr>`
               : ""
           }
