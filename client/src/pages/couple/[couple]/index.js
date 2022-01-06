@@ -140,9 +140,7 @@ const CoupleWebsitePage = (props) => {
           <Link
             href={couple?.venue ? prependHttp(couple?.venue?.websiteLink) : "/"}
           >
-            <a
-            target="_blank"
-            className="cursor-pointer">
+            <a target="_blank" className="cursor-pointer">
               {/* <img src="/images/logo.png" className="w-36" /> */}
               <img src={logo} className="h-[51px] mt-2" />
             </a>
@@ -282,7 +280,7 @@ const CoupleWebsitePage = (props) => {
                 </div>
               )}
               {couple?.location && (
-                <div class="col-span-5 p-5 flex justify-end">
+                <div class="col-span-4 pl-3 flex justify-center">
                   <div>
                     <h2 className="text-lg">Locations</h2>
                     <h6>{couple?.location}</h6>
