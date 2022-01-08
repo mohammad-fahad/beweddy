@@ -4,11 +4,18 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import Link from "next/link";
+import { getVenue } from "@services/Venue";
+import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { prependHttp } from "@utils/index";
 
 const CoupleName = () => {
   const dispatch = useDispatch();
   const { push, query } = useRouter();
   const { questions } = useSelector((state) => state.question);
+
+  const { data: venue } = useQuery(["venue", query.venueId], getVenue);
 
   const {
     register,
@@ -28,6 +35,17 @@ const CoupleName = () => {
         className={`flex flex-col items-center justify-center w-full -mt-9 sm:mt-0`}
         onSubmit={handleSubmit(onSubmit)}
       >
+        {query?.venueId && venue && (
+          <Link href={prependHttp(venue?.websiteLink)}>
+            <a target="_blank">
+              <img
+                className="mb-3 mt-24 lg:mt-0 max-w-[100px] sm:max-w-[150px] w-full"
+                src={venue?.logo?.secure_url}
+                alt="Logo"
+              />
+            </a>
+          </Link>
+        )}
         <h2 className="pb-8 mx-auto text-[36px] text-center commonTitle">
           What's your name? & Who's your lucky spouse-to-be?
         </h2>
