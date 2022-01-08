@@ -352,7 +352,7 @@ export const venueActivationTemplate = (url) => {
     <tr>
       <td align="center">
         <p style="font-size: 18px; font-weight: 400;">
-        Thank you for partnering with BeWeddy. Our team will contact you in the next 24 hours. We will help onboard the software to your website. Cheers.
+        Thank you for partnering with BeWeddy. Activate Account and our team will contact you in the next 24 hours. We will help onboard the software to your website. Cheers!
         </p>
       </td>
     </tr>
