@@ -97,7 +97,7 @@ const CoupleWebsitePage = (props) => {
     `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${couple?.username}`
   );
 
-  if (query.couple && !couple) return <NotFoundPage />;
+  if (props.status === 404) return <NotFoundPage />;
 
   if (isLoading) return <Loader />;
   const logo = couple?.venue
@@ -140,9 +140,7 @@ const CoupleWebsitePage = (props) => {
           <Link
             href={couple?.venue ? prependHttp(couple?.venue?.websiteLink) : "/"}
           >
-            <a
-            target="_blank"
-            className="cursor-pointer">
+            <a target="_blank" className="cursor-pointer">
               {/* <img src="/images/logo.png" className="w-36" /> */}
               <img src={logo} className="h-[51px] mt-2" />
             </a>
@@ -434,6 +432,16 @@ export default CoupleWebsitePage;
 
 export const getServerSideProps = async ({ params: { couple } }) => {
   const res = await fetch(`${API_URL}/users/${couple}`);
+
+  if (res.status === 404) {
+    return {
+      props: {
+        user: null,
+        status: res.status,
+      },
+    };
+  }
+
   const user = await res.json();
   if (!user) {
     return {
@@ -443,6 +451,7 @@ export const getServerSideProps = async ({ params: { couple } }) => {
   return {
     props: {
       user,
+      status: res.status,
     },
   };
 };
