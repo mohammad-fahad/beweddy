@@ -193,7 +193,7 @@ const CoupleWebsitePage = (props) => {
                 <h4 className="text-[24px] !font-alice font-normal text-center mb-5 mudiumTitle">
                   Wedding Day Countdown
                 </h4>
-                <WeddingDayCountDown />
+                <WeddingDayCountDown {...{ couple }} />
               </div>
             </div>
 
