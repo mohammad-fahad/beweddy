@@ -419,6 +419,7 @@ const CoupleWebsitePage = (props) => {
             <Footer
               hideSocial
               websitePreview
+              {...{ couple }}
               className="!bg-[#ffffff] !from-transparent !to-transparent  !border-none"
             />
           </footer>

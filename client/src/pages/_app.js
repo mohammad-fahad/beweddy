@@ -26,6 +26,9 @@ function MyApp({ Component, router, pageProps }) {
       });
     });
   }, []);
+
+  console.log(router.query);
+
   return (
     <QueryClientProvider {...{ client }}>
       <Provider {...{ store }}>
