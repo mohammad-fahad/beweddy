@@ -97,7 +97,7 @@ const CoupleWebsitePage = (props) => {
     `${process.env.NEXT_PUBLIC_CLIENT_URL}/couple/${couple?.username}`
   );
 
-  if (query.couple && !couple) return <NotFoundPage />;
+  if (props.status === 404) return <NotFoundPage />;
 
   if (isLoading) return <Loader />;
   const logo = couple?.venue
@@ -432,6 +432,16 @@ export default CoupleWebsitePage;
 
 export const getServerSideProps = async ({ params: { couple } }) => {
   const res = await fetch(`${API_URL}/users/${couple}`);
+
+  if (res.status === 404) {
+    return {
+      props: {
+        user: null,
+        status: res.status,
+      },
+    };
+  }
+
   const user = await res.json();
   if (!user) {
     return {
@@ -441,6 +451,7 @@ export const getServerSideProps = async ({ params: { couple } }) => {
   return {
     props: {
       user,
+      status: res.status,
     },
   };
 };
