@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
+import React, { useState } from "react";
+import Link from "next/link";
 
-import { useForm } from 'react-hook-form';
-import { Button, Heading, Loader } from '@components/shared';
-import Image from 'next/image';
+import { useForm } from "react-hook-form";
+import { Button, Heading, Loader } from "@components/shared";
+import Image from "next/image";
 
-import DatePicker from 'react-datepicker';
+import DatePicker from "react-datepicker";
 
 // import required css from library
-import 'react-datepicker/dist/react-datepicker.css';
-import { Footer } from '@components/home';
-import WebsiteNav from '@components/dashboard/Website/WebsiteNav';
-import { useQuery } from 'react-query';
-import { getCouple } from '@services/Couple';
-import { getGiftById } from '@services/Gift';
-import { API_URL } from '@utils/index';
-import { useRouter } from 'next/router';
-import { attemptGiftCardPayment } from '@services/Payment';
+import "react-datepicker/dist/react-datepicker.css";
+import { Footer } from "@components/home";
+import WebsiteNav from "@components/dashboard/Website/WebsiteNav";
+import { useQuery } from "react-query";
+import { getCouple } from "@services/Couple";
+import { getGiftById } from "@services/Gift";
+import { API_URL } from "@utils/index";
+import { useRouter } from "next/router";
+import { attemptGiftCardPayment } from "@services/Payment";
 
-const CheckoutPage = props => {
+const CheckoutPage = (props) => {
   const [loading, setLoading] = useState(false);
   const { query, push, pathname } = useRouter();
 
@@ -26,11 +26,11 @@ const CheckoutPage = props => {
     data: user,
     isLoading,
     isError,
-  } = useQuery(['couple', query?.couple], getCouple, {
+  } = useQuery(["couple", query?.couple], getCouple, {
     initialData: props.user,
   });
 
-  const { data: gift } = useQuery(['gift', query?.giftcard], getGiftById, {
+  const { data: gift } = useQuery(["gift", query?.giftcard], getGiftById, {
     initialData: props.giftCard,
   });
 
@@ -386,11 +386,16 @@ const CheckoutPage = props => {
                     </div> */}
                     <div>
                       <input
-                        type="text"
+                        type="number"
                         className="sm:w-[476px] w-[90%] rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
                         value={getValues("amount")}
                         onChange={(e) => setValue("amount", e.target.value)}
                       />
+                      {getValues("amount") < 10 && (
+                        <p className="h-4 mt-2 text-sm font-light text-red-400">
+                          Minimum amount is $10
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
