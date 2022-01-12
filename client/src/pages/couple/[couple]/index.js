@@ -142,7 +142,7 @@ const CoupleWebsitePage = (props) => {
           >
             <a target="_blank" className="cursor-pointer">
               {/* <img src="/images/logo.png" className="w-36" /> */}
-              <img src={logo} className="h-[51px] mt-2" />
+              <img src={logo} className="h-[100px] mt-2" />
             </a>
           </Link>
         </div>

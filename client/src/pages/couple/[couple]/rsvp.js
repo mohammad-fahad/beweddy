@@ -188,7 +188,7 @@ const RSVPage = ({ user }) => {
               target="_blank"
               className="cursor-pointer">
                 {/* <img src="/images/logo.png" className="w-36" /> */}
-                <img src={logo} className="h-[51px] mt-2" />
+                <img src={logo} className="h-[100px] mt-2" />
               </a>
             </Link>
             <h1 className="mt-1 text-2xl font-medium md:text-3xl">
