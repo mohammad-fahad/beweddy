@@ -40,11 +40,6 @@ export const sendGiftCardEmail = (name, message, url) => {
           'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
       "
     >
-      <table style="max-width: 800px; width: 100%; margin: auto">
-        <p style="text-align: center; font-size: 16px; margin-bottom: 2rem">
-          Welcome to <strong>BeWeddy- Free All-In-One Wedding Platform.</strong>
-        </p>
-      </table>
       <table
         style="
           max-width: 800px;
@@ -92,7 +87,7 @@ export const sendGiftCardEmail = (name, message, url) => {
             <p style="font-size: 18px; font-weight: 400">
               <!-- Hi <strong>${name}</strong> Thank You For Choosing BeWeddy For -->
               <br />
-              you Just Got a gift!! Redeem your gift card below and you will
+              You Just Got a gift!! Redeem your gift card below and you will
               <br />
               receive an email within 24 hours to activate.
             </p>

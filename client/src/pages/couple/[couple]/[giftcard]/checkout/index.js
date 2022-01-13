@@ -61,6 +61,7 @@ const CheckoutPage = (props) => {
         coupleEmail: user?.email,
         guestEmail: data.email,
         guestName: data.name,
+        cardName: gift?.title,
         message: data.message,
         amount: data.amount,
       },
