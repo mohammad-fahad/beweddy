@@ -427,13 +427,13 @@ const CheckoutPage = (props) => {
                       h3
                       className="!text-[22px] !font-medium customLabel"
                     >
-                      From - Your Name <span className="text-red-400">*</span>
+                      From - Your Full Name <span className="text-red-400">*</span>
                     </Heading>
                     <div>
                       <input
                         type="text"
                         className="sm:w-[476px] w-[90%] rounded-[5px] border-2 border-gray-200 py-3 px-5 text-base font-normal"
-                        placeholder="Your First Name"
+                        placeholder="Your Full Name"
                         {...register("name", {
                           required: {
                             value: true,
