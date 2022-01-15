@@ -19,8 +19,15 @@ const {
 // Get All Gifts
 export const getGifts = asyncHandler(async (req, res) => {
   const { token } = req.body;
-  const { coupleName, cardName, guestEmail, guestName, amount, coupleEmail } =
-    jwt.verify(token, process.env.JWT_SECRET);
+  const {
+    coupleName,
+    cardName,
+    guestEmail,
+    guestName,
+    amount,
+    coupleEmail,
+    message,
+  } = jwt.verify(token, process.env.JWT_SECRET);
   const URL = `${CLIENT_URL}/redeem/${token}`;
   const user = await User.findOne({ email: coupleEmail }).populate("venue");
 
@@ -32,7 +39,9 @@ export const getGifts = asyncHandler(async (req, res) => {
     guestEmail,
     amount,
     cardName,
-    venue: user.venue ? user.venue.name : "Not connected with any venue",
+    venue: user.venue
+      ? user.venue.businessName
+      : "Not connected with any venue",
   });
 
   res.status(200).json({ success: true });

@@ -227,7 +227,7 @@ export const giftCardPurchasedNotify = async ({
           </tr>
           <tr>
             <td><strong>Card Name:</strong></td>
-            <td>$${cardName}</td>
+            <td>${cardName}</td>
           </tr>
           <tr>
             <td><strong>Amount:</strong></td>

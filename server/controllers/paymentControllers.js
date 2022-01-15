@@ -1,7 +1,7 @@
-import asyncHandler from 'express-async-handler';
-import { nanoid } from 'nanoid';
-import Stripe from 'stripe';
-import { generateTangoToken } from '../utils/token/index.js';
+import asyncHandler from "express-async-handler";
+import { nanoid } from "nanoid";
+import Stripe from "stripe";
+import { generateTangoToken } from "../utils/token/index.js";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Get All Registry
@@ -12,7 +12,7 @@ export const checkoutSession = asyncHandler(async (req, res) => {
     description: req.body.description,
     quantity: 1,
     price_data: {
-      currency: 'usd',
+      currency: "usd",
       unit_amount: (Number(req.body.price) + 3.23) * 100,
       product_data: {
         name: req.body.title,
@@ -22,12 +22,12 @@ export const checkoutSession = asyncHandler(async (req, res) => {
   };
 
   const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'],
+    payment_method_types: ["card"],
     // shipping_address_collection: {
     //   allowed_countries: ['US'],
     // },
     line_items: [transformedItem],
-    mode: 'payment',
+    mode: "payment",
     success_url: `${process.env.CLIENT_URL}/payment/${token}`,
     // cancel_url: `${process.env.CLIENT_URL}/couple/${req.body.cancel}`,
     cancel_url: `${process.env.CLIENT_URL}`,
@@ -44,7 +44,7 @@ export const mailoutPayment = asyncHandler(async (req, res) => {
     description: req.body.description,
     quantity: 1,
     price_data: {
-      currency: 'usd',
+      currency: "usd",
       unit_amount: Number(req.body.price) * 100,
       product_data: {
         name: req.body.title,
@@ -54,12 +54,12 @@ export const mailoutPayment = asyncHandler(async (req, res) => {
   };
 
   const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'],
+    payment_method_types: ["card"],
     shipping_address_collection: {
-      allowed_countries: ['US'],
+      allowed_countries: ["US"],
     },
     line_items: [transformedItem],
-    mode: 'payment',
+    mode: "payment",
     success_url: `${process.env.CLIENT_URL}/mailout?payment=success`,
     // cancel_url: `${process.env.CLIENT_URL}/couple/${req.body.cancel}`,
     cancel_url: `${process.env.CLIENT_URL}`,
