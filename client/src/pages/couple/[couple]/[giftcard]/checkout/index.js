@@ -225,6 +225,25 @@ const CheckoutPage = (props) => {
                           </div>
                         </label>
                       </div>
+                      <div className="flex items-center mt-2 select-amount">
+                        <input
+                          type="radio"
+                          id="30"
+                          value={30}
+                          className="hidden"
+                          {...register("amount")}
+                        />
+                        <label
+                          htmlFor="30"
+                          className="flex items-center space-x-3 cursor-pointer"
+                        >
+                          <div className="checked-outer border-[2px] rounded-[5px] border-[#dbdbdb] sm:w-[109px] w-[60px] sm:h-[58px] h-[40px] flex items-center justify-center">
+                            <span className="text-lg font-semibold font-inter customLabel">
+                              $30
+                            </span>
+                          </div>
+                        </label>
+                      </div>
                       {/* 3rd part */}
                       {/* <span className="">$20</span> */}
                       <div className="flex items-center mt-2 select-amount">
