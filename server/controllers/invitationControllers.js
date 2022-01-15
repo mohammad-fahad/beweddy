@@ -180,6 +180,68 @@ export const userActivationNotifyAdmin = async ({
 
   await smtpTransport.sendMail(mailOptions);
 };
+
+export const giftCardPurchasedNotify = async ({
+  coupleName,
+  guestName,
+  coupleEmail,
+  guestEmail,
+  cardName,
+  amount,
+  venue,
+}) => {
+  const smtpTransport = nodemailer.createTransport({
+    service: "gmail",
+    host: "smtp.gmail.com",
+    from: EMAIL_USER,
+    auth: {
+      user: EMAIL_USER,
+      pass: EMAIL_PASS,
+    },
+  });
+
+  const mailOptions = {
+    from: `${SITE_NAME} <${EMAIL_USER}>`,
+    replyTo: coupleEmail,
+    to: EMAIL_USER,
+    subject: `Gift Card Purchased From BeWeddy`,
+    text: `${coupleName} got a gift card from ${guestName}`,
+    html: `
+    <div style="background-color: #f5f5f5; padding: 10px;">
+      <div style="background-color: #fff; padding: 10px;">
+        <p style="margin-bottom: 1rem; font-size: 2rem;">
+          <strong>${coupleName}</strong> got a gift card from ${guestName}
+        </p>
+        <table>
+          <tr>
+            <td><strong>Couple Email:</strong></td>
+            <td>${coupleEmail}</td>
+          </tr>
+          <tr>
+            <td><strong>Guest Email:</strong></td>
+            <td>${guestEmail}</td>
+          </tr>
+          <tr>
+            <td><strong>Venue Name:</strong></td>
+            <td>${venue}</td>
+          </tr>
+          <tr>
+            <td><strong>Card Name:</strong></td>
+            <td>$${cardName}</td>
+          </tr>
+          <tr>
+            <td><strong>Amount:</strong></td>
+            <td>$${amount}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    `,
+  };
+
+  await smtpTransport.sendMail(mailOptions);
+};
+
 export const sendPasswordResetEmail = async (email, url) => {
   const smtpTransport = nodemailer.createTransport({
     service: "gmail",

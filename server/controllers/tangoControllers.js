@@ -1,7 +1,9 @@
-import axios from 'axios';
-import jwt from 'jsonwebtoken';
-import asyncHandler from 'express-async-handler';
-import { attemptToGiftCardRedeem } from './mailControllers.js';
+import axios from "axios";
+import jwt from "jsonwebtoken";
+import asyncHandler from "express-async-handler";
+import { attemptToGiftCardRedeem } from "./mailControllers.js";
+import User from "../models/User.js";
+import { giftCardPurchasedNotify } from "./invitationControllers.js";
 
 const {
   TANGO_API,
@@ -17,13 +19,21 @@ const {
 // Get All Gifts
 export const getGifts = asyncHandler(async (req, res) => {
   const { token } = req.body;
-  const { coupleEmail, guestName, message } = jwt.verify(
-    token,
-    process.env.JWT_SECRET
-  );
+  const { coupleName, cardName, guestEmail, guestName, amount, coupleEmail } =
+    jwt.verify(token, process.env.JWT_SECRET);
   const URL = `${CLIENT_URL}/redeem/${token}`;
+  const user = await User.findOne({ email: coupleEmail }).populate("venue");
 
   await attemptToGiftCardRedeem(guestName, coupleEmail, message, URL);
+  await giftCardPurchasedNotify({
+    coupleName,
+    guestName,
+    coupleEmail,
+    guestEmail,
+    amount,
+    cardName,
+    venue: user.venue ? user.venue.name : "Not connected with any venue",
+  });
 
   res.status(200).json({ success: true });
 });
@@ -45,12 +55,12 @@ export const redeemGiftCard = asyncHandler(async (req, res) => {
     accountIdentifier: TANGO_ACCOUNT_NUMBER,
     amount: Number(amount),
     // amount: 0.01,
-    campaign: '',
+    campaign: "",
     customerIdentifier: TANGO_CUSTOMER_IDENTIFIER, // Account Group ID
-    emailSubject: '',
+    emailSubject: "",
     externalRefID: id, // to prevent duplicate purchase
     message,
-    notes: '',
+    notes: "",
     recipient: {
       email: coupleEmail,
       firstName: coupleName,
@@ -67,7 +77,7 @@ export const redeemGiftCard = asyncHandler(async (req, res) => {
   // axios config
   const config = {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     auth: {
       username: TANGO_ACCOUNT_USERNAME,

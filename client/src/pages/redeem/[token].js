@@ -40,7 +40,7 @@ const RedeemPage = () => {
           </Link>
         </div>
         <p className='text-base text-center w-full max-w-lg leading-[33px] font-medium'>
-          Your redeemation link is on it’s way, You will receive an email with
+          Your redemption link is on it's way, You will receive an email with
           your gift card.
         </p>
       </div>
