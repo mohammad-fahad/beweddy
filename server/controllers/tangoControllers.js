@@ -1,7 +1,10 @@
 import axios from "axios";
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
-import { attemptToGiftCardRedeem } from "./mailControllers.js";
+import {
+  attemptToGiftCardRedeem,
+  giftCardPurchasedNotifyToGuest,
+} from "./mailControllers.js";
 import User from "../models/User.js";
 import { giftCardPurchasedNotify } from "./invitationControllers.js";
 
@@ -32,6 +35,7 @@ export const getGifts = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email: coupleEmail }).populate("venue");
 
   await attemptToGiftCardRedeem(guestName, coupleEmail, message, URL);
+  await giftCardPurchasedNotifyToGuest(guestEmail);
   await giftCardPurchasedNotify({
     coupleName,
     guestName,
