@@ -82,14 +82,11 @@ export const sendGiftCardEmail = (name, message, url) => {
             <h2 style="font-weight: 500">Congratulations! 🎉</h2>
           </td>
         </tr>
-        <tr>
+       <tr>
           <td align="center">
-            <p style="font-size: 18px; font-weight: 400">
-              <!-- Hi <strong>${name}</strong> Thank You For Choosing BeWeddy For -->
-              <br />
-              You Just Got a gift!! Redeem your gift card below and you will
-              <br />
-              receive an email within 24 hours to activate.
+            <p style="font-weight: 600; font-size: 13px; line-height: 30px">
+              <strong>From:</strong> ${name} <br />
+              <strong>Note:</strong> "${message}"
             </p>
           </td>
         </tr>
@@ -113,11 +110,14 @@ export const sendGiftCardEmail = (name, message, url) => {
             >
           </td>
         </tr>
-        <tr>
+         <tr>
           <td align="center">
-            <p style="font-weight: 600; font-size: 13px; line-height: 30px">
-              <strong>From:</strong> ${name} <br />
-              <strong>Note:</strong> "${message}"
+            <p style="font-size: 18px; font-weight: 400">
+              <!-- Hi <strong>${name}</strong> Thank You For Choosing BeWeddy For -->
+              <br />
+              You Just Got a gift!! Redeem your gift card below and you will
+              <br />
+              receive an email within 24 hours to activate.
             </p>
           </td>
         </tr>
