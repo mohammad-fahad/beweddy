@@ -1,3 +1,7 @@
 {
-  "cSpell.words": ["fileuploader", "todos"]
+  "cSpell.words": [
+    "fileuploader",
+    "todos"
+  ],
+  "liveServer.settings.port": 5501
 }

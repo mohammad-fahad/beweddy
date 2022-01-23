@@ -44,32 +44,44 @@ export const giftCardPurchasedNotifyToGuest = async ({
     from: `${SITE_NAME} <${EMAIL_USER}>`,
     to: guestEmail,
     subject: `Gift Card Purchased Successfully`,
-    html: `<!DOCTYPE html>
-<html lang="en">
+    html: `
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html data-editor-version="2"
+    class="sg-campaigns"
+    xmlns="http://www.w3.org/1999/xhtml"
+  >
+  <head>
+  <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+  <!--[if !mso]><!-->
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400&display=swap" rel="stylesheet" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400&family=Niconne&display=swap"
-    rel="stylesheet" />
-  <title>Email To guest</title>
-</head>
+  <meta httpEquiv="X-UA-Compatible" content="IE=Edge" />
+
+
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Niconne&display=swap');
   body {
     font-family: "Inter", sans-serif;
   }
 
   h1 {
-    font-family: "Niconne", cursive;
+    font-family: "Niconne", cursive !important;
   }
+ @media screen and (max-width: 630px) {
+      h1 {
+        font-size: 38px !important;
+      }
+      p {
+        font-size: 18px !important;
+      }
+      img {
+       max-width: 70% !important;
+              width: 48% !important;
+              height: auto !important;   
+      }
+    }
 </style>
-
+</head>
 <body>
   <table style="
         max-width: 800px;
@@ -105,7 +117,7 @@ export const giftCardPurchasedNotifyToGuest = async ({
         ">
       <tr>
         <td align="center">
-          <h1 style="font-size: 52px; font-weight: 400; font-family: Niconne">
+          <h1 style="font-size: 52px; font-weight: 400; font-family: 'Niconne', cursive;">
             Thank You!
           </h1>
         </td>
@@ -123,7 +135,6 @@ export const giftCardPurchasedNotifyToGuest = async ({
         </td>
       </tr>
     </table>
-
     <table style="max-width: 800px; width: 100%; margin: 1.5rem auto">
       <tr class="row">
         <th align="left" style="font-weight: 500">
