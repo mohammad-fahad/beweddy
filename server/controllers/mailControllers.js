@@ -35,18 +35,17 @@ export const attemptToGiftCardRedeem = async (name, email, message, url) => {
   // }
 };
 
-export const giftCardPurchasedNotifyToGuest = async (email) => {
+export const giftCardPurchasedNotifyToGuest = async ({
+  guestEmail,
+  coupleName,
+  amount,
+}) => {
   const mailOptions = {
     from: `${SITE_NAME} <${EMAIL_USER}>`,
-    to: email,
+    to: guestEmail,
     subject: `Gift Card Purchased Successfully`,
-    html: `<div style={{backgroundColor: '#f5f5f5', padding: 10}}>
-    <div style={{backgroundColor: '#fff', padding: 10}}>
-      <p style={{marginBottom: '1rem', fontSize: '2rem'}}>
-        Thank you! Your gift card has been purchased successfully.
-      </p>
-    </div>
-  </div>
+    html: `
+
 `,
   };
 
