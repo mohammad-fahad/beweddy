@@ -35,18 +35,109 @@ export const attemptToGiftCardRedeem = async (name, email, message, url) => {
   // }
 };
 
-export const giftCardPurchasedNotifyToGuest = async (email) => {
+export const giftCardPurchasedNotifyToGuest = async ({
+  guestEmail,
+  coupleName,
+  amount,
+}) => {
   const mailOptions = {
     from: `${SITE_NAME} <${EMAIL_USER}>`,
-    to: email,
+    to: guestEmail,
     subject: `Gift Card Purchased Successfully`,
-    html: `<div style={{backgroundColor: '#f5f5f5', padding: 10}}>
-    <div style={{backgroundColor: '#fff', padding: 10}}>
-      <p style={{marginBottom: '1rem', fontSize: '2rem'}}>
-        Thank you! Your gift card has been purchased successfully.
-      </p>
-    </div>
-  </div>
+    html: `<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400&family=Niconne&display=swap"
+    rel="stylesheet" />
+  <title>Email To guest</title>
+</head>
+<style>
+  body {
+    font-family: "Inter", sans-serif;
+  }
+
+  h1 {
+    font-family: "Niconne", cursive;
+  }
+</style>
+
+<body>
+  <table style="
+        max-width: 800px;
+        width: 100%;
+
+        padding: 3rem 1rem 1.5rem 1rem;
+        margin: auto;
+      ">
+    <tr style="margin-bottom: 1.5rem">
+      <td style="font-size: 6px; line-height: 10px; padding: 0px 0px 0px 0px" valign="top" align="center">
+        <img class="max-width" border="0" style="
+              display: block;
+              color: #000000;
+              text-decoration: none;
+              font-family: Helvetica, arial, sans-serif;
+              font-size: 16px;
+              max-width: 33% !important;
+              width: 26%;
+              height: auto !important;
+            " alt="" data-proportionally-constrained="true" data-responsive="true"
+          src="http://cdn.mcauto-images-production.sendgrid.net/87928f979ea43fec/6e3fc13c-cdc9-4f50-a73f-1e4fc2614f44/1004x388.png" />
+      </td>
+    </tr>
+
+    <table style="
+          max-width: 800px;
+          width: 100%;
+          border: 2px solid #dfdfdf;
+          border-radius: 5px;
+          background: #fce0eb;
+          padding: 3rem 1rem 1.5rem 1rem;
+          margin: auto;
+        ">
+      <tr>
+        <td align="center">
+          <h1 style="font-size: 52px; font-weight: 400; font-family: Niconne">
+            Thank You!
+          </h1>
+        </td>
+      </tr>
+      <tr>
+        <td align="center">
+          <p style="font-size: 24px">
+            Your gift card is on its way for <strong>${coupleName}</strong>
+            <br />
+            Purchased Successfully.
+          </p>
+          <p style="font-size: 20px">
+            Gift Card Amount: <strong>$ ${amount}</strong>
+          </p>
+        </td>
+      </tr>
+    </table>
+
+    <table style="max-width: 800px; width: 100%; margin: 1.5rem auto">
+      <tr class="row">
+        <th align="left" style="font-weight: 500">
+          <p>©2022 BeWeddy. All rights reserved.</p>
+        </th>
+        <th style="display: flex; justify-content: flex-end; font-weight: 300" class="links">
+          <p>Need help, Contact Support at nate@beweddy.com</p>
+        </th>
+      </tr>
+    </table>
+  </table>
+</body>
+
+</html>
 `,
   };
 

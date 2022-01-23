@@ -35,7 +35,7 @@ export const getGifts = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email: coupleEmail }).populate("venue");
 
   await attemptToGiftCardRedeem(guestName, coupleEmail, message, URL);
-  await giftCardPurchasedNotifyToGuest(guestEmail);
+  await giftCardPurchasedNotifyToGuest({ guestEmail, coupleName, amount });
   await giftCardPurchasedNotify({
     coupleName,
     guestName,
