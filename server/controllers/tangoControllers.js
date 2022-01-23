@@ -1,7 +1,10 @@
 import axios from "axios";
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
-import { attemptToGiftCardRedeem } from "./mailControllers.js";
+import {
+  attemptToGiftCardRedeem,
+  giftCardPurchasedNotifyToGuest,
+} from "./mailControllers.js";
 import User from "../models/User.js";
 import { giftCardPurchasedNotify } from "./invitationControllers.js";
 
@@ -19,12 +22,20 @@ const {
 // Get All Gifts
 export const getGifts = asyncHandler(async (req, res) => {
   const { token } = req.body;
-  const { coupleName, cardName, guestEmail, guestName, amount, coupleEmail } =
-    jwt.verify(token, process.env.JWT_SECRET);
+  const {
+    coupleName,
+    cardName,
+    guestEmail,
+    guestName,
+    amount,
+    coupleEmail,
+    message,
+  } = jwt.verify(token, process.env.JWT_SECRET);
   const URL = `${CLIENT_URL}/redeem/${token}`;
   const user = await User.findOne({ email: coupleEmail }).populate("venue");
 
   await attemptToGiftCardRedeem(guestName, coupleEmail, message, URL);
+  await giftCardPurchasedNotifyToGuest(guestEmail);
   await giftCardPurchasedNotify({
     coupleName,
     guestName,
@@ -32,7 +43,9 @@ export const getGifts = asyncHandler(async (req, res) => {
     guestEmail,
     amount,
     cardName,
-    venue: user.venue ? user.venue.name : "Not connected with any venue",
+    venue: user.venue
+      ? user.venue.businessName
+      : "Not connected with any venue",
   });
 
   res.status(200).json({ success: true });
