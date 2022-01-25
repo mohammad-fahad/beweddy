@@ -107,9 +107,9 @@ export default function AddVenue() {
                     <div className="container flex items-center justify-center ">
                       <form className="w-full">
                         <section
-                          className={`bg-white border-4 my-5 md:my-10 border-primary py-5 md:py-10 px-10 md:px-24 max-w-xl w-full mx-auto rounded-xl h-[400px]`}
+                          className={`bg-white border-4 my-5 md:my-10 border-primary py-5 md:py-10 px-7 md:px-24 max-w-xl w-full mx-auto rounded-xl h-[400px]`}
                         >
-                          <h2 className="pb-8 mx-auto text-[36px] text-center commonTitle">
+                          <h2 className="pb-8 mx-auto text-[36px] text-center ">
                             Select Your Venue
                           </h2>
                           <div className="w-48 mx-auto h-[2px] md:h-[4px] mb-16 bg-primary" />
@@ -127,7 +127,7 @@ export default function AddVenue() {
                                 </span>
                                 <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                                   <SelectorIcon
-                                    className="w-5 h-5 text-gray-400"
+                                    className="w-1/2 h-5 text-gray-400"
                                     aria-hidden="true"
                                   />
                                 </span>
@@ -138,7 +138,7 @@ export default function AddVenue() {
                                 leaveFrom="opacity-100"
                                 leaveTo="opacity-0"
                               >
-                                <Listbox.Options className="absolute min-w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                <Listbox.Options className="absolute min-w-[287px]  py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                   {venues?.map((provider, providerIdx) => (
                                     <Listbox.Option
                                       key={providerIdx}
