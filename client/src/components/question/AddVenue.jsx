@@ -69,17 +69,17 @@ export default function AddVenue() {
   return (
     <>
       {/* {user?.role !== "venue" && !user?.venue && ( */}
-        <button
-          onClick={() => setShowModal(true)}
-          className={`capitalize text-xs md:text-base font-inter font-semibold rounded-[5px] ${
-            user?.role !== "venue" && !user?.venue ? "animate-bounce" : ""
-          } bg-[#000000] text-[#ffffff] py-2 sm:px-3 px-1 md:px-5 flex items-center sm:space-x-3 hover:bg-secondary-primary transition duration-300 smallText`}
-        >
-          <span className="customLabel">
-            {user?.role !== "venue" && !user?.venue ? "Connect" : "Change"} Your
-            Venue
-          </span>
-        </button>
+      <button
+        onClick={() => setShowModal(true)}
+        className={`capitalize text-xs md:text-base font-inter font-semibold rounded-[5px] ${
+          user?.role !== "venue" && !user?.venue ? "animate-bounce" : ""
+        } bg-[#000000] text-[#ffffff] py-2 sm:px-3 px-1 md:px-5 flex items-center sm:space-x-3 hover:bg-secondary-primary transition duration-300 smallText`}
+      >
+        <span className="customLabel">
+          {user?.role !== "venue" && !user?.venue ? "Connect" : "Change"} Your
+          Venue
+        </span>
+      </button>
       {/* )} */}
       {showModal ? (
         <>
@@ -120,7 +120,7 @@ export default function AddVenue() {
                             className="w-full "
                           >
                             <div className="relative w-full mt-1">
-                              <Listbox.Button className="relative font-inter rounded-[5px] border-2 border-secondary/20 py-3 pl-5 pr-10 text-base font-semibold w-[370px]">
+                              <Listbox.Button className="relative font-inter rounded-[5px] border-2 border-secondary/20 py-3 pl-5 pr-10 text-base font-semibold w-full">
                                 <span className="block truncate">
                                   {" "}
                                   {selectedProvider?.name}
@@ -138,7 +138,7 @@ export default function AddVenue() {
                                 leaveFrom="opacity-100"
                                 leaveTo="opacity-0"
                               >
-                                <Listbox.Options className="absolute min-w-[370px] py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                                <Listbox.Options className="absolute min-w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                                   {venues?.map((provider, providerIdx) => (
                                     <Listbox.Option
                                       key={providerIdx}
