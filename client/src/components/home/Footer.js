@@ -118,7 +118,9 @@ const Footer = ({ hideSocial, className, websitePreview, couple }) => {
             <span className="mr-1 customLabel">
               &copy; {new Date().getFullYear()}
             </span>
-            {user?.venue?.businessName && (
+            {user?.venue?.businessName === "Undecided on venue" ? (
+              ""
+            ) : (
               <a href={prependHttp(user?.venue?.websiteLink)} target="_blank">
                 <strong className="font-bold customLabel hover:underline">
                   {/* BeWeddy. */}
