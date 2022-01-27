@@ -169,6 +169,8 @@ const GiftCardPage = () => {
 
   if (isLoading) return <Loader />;
 
+ 
+
   return (
     <Fragment>
       <Head>
@@ -185,6 +187,7 @@ const GiftCardPage = () => {
             </p>
           }
           title="Gift Cards"
+          button={true}
         />
 
         <DashboardContainer>

@@ -843,9 +843,11 @@ const EditWebsitePage = () => {
                   </h4>
                 </div>
                 <div className="w-full max-w-xs">
-                  <input
+                  <textarea
+                    cols="30"
+                    rows="5"
                     type="text"
-                    className="max-w-xs w-full rounded-[5px] border-2 border-gray-200 py-2 px-4 text-base font-normal"
+                    className="w-full px-5 py-3 text-base font-normal border-2 border-gray-200 rounded-lg focus:ring-0 focus:border-primary"
                     placeholder="Enter your location"
                     {...register("location")}
                   />
