@@ -77,7 +77,7 @@ const Step6 = () => {
       setVenues([selectVenue]);
       setSelectedProvider(selectVenue);
     }
-  }, [data]);
+  }, [data, skip]);
 
   const { watch, getValues, register } = useForm({ mode: "all" });
   watch("skip_venue");
@@ -90,6 +90,9 @@ const Step6 = () => {
     }
     push({ query: { ...query, step: 7 } });
   };
+
+  const [skip, setSkip] = useState(false);
+  console.log(skip);
 
   return (
     <CreateWebsiteContainer seo={{ title: "Select Venue" }} page="6">
@@ -117,7 +120,7 @@ const Step6 = () => {
                   <Listbox.Button className="relative font-inter rounded-[5px] border-2 border-secondary/20 py-3 pl-5 pr-10 text-base font-semibold w-[370px] selectInput">
                     <span className="block truncate">
                       {" "}
-                      {selectedProvider?.name}
+                      {skip ? "Undecided on venue" : selectedProvider?.name}
                     </span>
                     <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                       <SelectorIcon
@@ -186,7 +189,8 @@ const Step6 = () => {
                 <input
                   type="checkbox"
                   id="skip_venue"
-                  value={true}
+                  value={skip}
+                  onClick={() => setSkip(!skip)}
                   className="text-secondary-alternative rounded-md border-2 border-primary w-[24px] h-[24px] focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                   {...register("skip_venue")}
                 />
