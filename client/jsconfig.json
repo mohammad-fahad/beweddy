@@ -9,6 +9,7 @@
       "@helpers/*": ["helpers/*"],
       "@hoc/*": ["hoc/*"],
       "@hooks/*": ["hooks/*"],
+      "@lib/*": ["lib/*"],
       "@services/*": ["services/*"],
       "@utils/*": ["utils/*"],
       "@styles/*": ["styles/*"]

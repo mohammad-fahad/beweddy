@@ -1,4 +1,5 @@
 import { persistor, store } from "@app/store";
+import Script from "next/script";
 import { Layout } from "@components/index";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
@@ -7,6 +8,7 @@ import Head from "next/head";
 import { Toaster } from "react-hot-toast";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { QueryClientProvider, QueryClient } from "react-query";
+import * as gtag from "@lib/gtag";
 
 import "swiper/swiper.min.css";
 import "react-datepicker/dist/react-datepicker.css";
@@ -27,12 +29,41 @@ function MyApp({ Component, router, pageProps }) {
     });
   }, []);
 
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      gtag.pageview(url);
+    };
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
+
   return (
     <QueryClientProvider {...{ client }}>
       <Provider {...{ store }}>
         <PersistGate loading={null} {...{ persistor }}>
           <AnimatePresence exitBeforeEnter>
             <Layout key={router.route}>
+              {/* Global Site Tag (gtag.js) - Google Analytics */}
+              <Script
+                strategy="afterInteractive"
+                src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+              />
+              <Script
+                id="gtag-init"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                  __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${gtag.GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+                }}
+              />
               <Toaster
                 // position='top-right'
                 reverseOrder={false}
