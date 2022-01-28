@@ -140,7 +140,10 @@ const CoupleWebsitePage = (props) => {
           <Link
             href={couple?.venue ? prependHttp(couple?.venue?.websiteLink) : "/"}
           >
-            <a target="_blank" className="cursor-pointer">
+            <a
+              target="_blank"
+              className="cursor-pointer hover:scale-[1.3] transition"
+            >
               {/* <img src="/images/logo.png" className="w-36" /> */}
               <img src={logo} className="h-[100px] mt-2" />
             </a>

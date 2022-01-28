@@ -36,7 +36,7 @@ const Banner = ({ setImageLoaded }) => {
                 />
               </div>
             </span> */}
-            White-Label All-in-One <br /> Wedding Platform
+            All-in-One <br /> Wedding Registry & Planner
           </h1>
         </div>
         <div className="flex flex-wrap items-center justify-center pt-32 banner-bubble sm:ml-8 md:px-5 md:mb-20 xl:pt-36 homePageWrapper">
