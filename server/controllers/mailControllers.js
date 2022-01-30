@@ -1,9 +1,8 @@
-import asyncHandler from "express-async-handler";
-import { sendEmailInvites } from "../utils/mailer/index.js";
 import nodemailer from "nodemailer";
 import fs from "fs";
 import { v2 as cloudinary } from "cloudinary";
 import { sendGiftCardEmail } from "../utils/mailer/templates/index.js";
+import { welcomeEmailCouple } from "../utils/mailer/templates/welcome-email.js";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -150,6 +149,28 @@ export const giftCardPurchasedNotifyToGuest = async ({
 
 </html>
 `,
+  };
+
+  const smtpTransport = nodemailer.createTransport({
+    service: "gmail",
+    host: "smtp.gmail.com",
+    auth: {
+      user: EMAIL_USER,
+      pass: EMAIL_PASS,
+    },
+  });
+  await smtpTransport.sendMail(mailOptions);
+  // if (result) {
+  //     res.status(200).json({ success: true });
+  // }
+};
+
+export const sendWelcomeEmailToCouple = async ({ email }) => {
+  const mailOptions = {
+    from: `${SITE_NAME} <${EMAIL_USER}>`,
+    to: email,
+    subject: `Welcome to Beweddy`,
+    html: welcomeEmailCouple(),
   };
 
   const smtpTransport = nodemailer.createTransport({
