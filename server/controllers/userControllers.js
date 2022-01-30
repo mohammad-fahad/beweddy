@@ -20,6 +20,7 @@ import {
   sendActivationEmail,
   userActivationNotifyAdmin as userActivationNotifyToAdmin,
 } from "./invitationControllers.js";
+import { sendWelcomeEmailToCouple } from "./mailControllers.js";
 
 // Register New User
 
@@ -253,6 +254,8 @@ export const googleSignUp = asyncHandler(async (req, res) => {
         role: user?.role,
       });
 
+      await sendWelcomeEmailToCouple({ email: user.email });
+
       res.json({
         user: {
           _id: user._id,
@@ -483,6 +486,7 @@ export const activeUser = asyncHandler(async (req, res) => {
       customWebsite: venue?.customWebsite,
       url,
     });
+    await sendWelcomeEmailToCouple({ email: user.email });
 
     res.status(201).json({
       user: {
