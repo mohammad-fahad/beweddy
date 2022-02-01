@@ -264,12 +264,12 @@ const GiftCards = () => {
           <Link href="/">
             <a className="flex items-center">
               <div className="flex flex-col items-center justify-center w-[287px] h-[170px] py-5 overflow-hidden transition-transform duration-300 border-2 cursor-pointer border-primary rounded-xl ease-easing customBox">
-                <h1 className="text-[64px] relative commonTitle">
+                <p className="text-[64px] relative commonTitle">
                   100+
                   <span className="text-[18px] absolute -bottom-3 right-0 subTitle ">
                     See All
                   </span>
-                </h1>
+                </p>
               </div>
             </a>
           </Link>
