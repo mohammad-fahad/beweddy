@@ -182,7 +182,7 @@ const LoginPage = () => {
                   </button>
                 </div>
                 <div className="w-full space-y-2">
-                  <Link href="/signup">
+                  <Link href="/forgotPassword">
                     <a className="block text-sm font-normal text-center font-inter hover:underline hover:text-red-400">
                       Forgot your password?
                     </a>
