@@ -21,68 +21,8 @@ import NotFoundPage from "pages/404";
 import { API_URL, isoToUtcDate, prependHttp } from "@utils/index";
 import { useWindowSize } from "@hooks/useWindowSize";
 SwiperCore.use([Lazy, Autoplay]);
+
 const CoupleWebsitePage = (props) => {
-  const [receptionDetails, setReceptionDetails] = useState(
-    couple?.receptionDetails?.length
-      ? couple.receptionDetails
-      : [
-          {
-            id: generate(),
-            time: "5.00 PM",
-            details: "Example of event details",
-          },
-          {
-            id: generate(),
-            time: "5:30 PM",
-            details: "Ceremony",
-          },
-          {
-            id: generate(),
-            time: "6:00 PM",
-            details: "Ceremony ends/cocktails begin",
-          },
-          {
-            id: generate(),
-            time: "7:00 PM",
-            details: "Cocktails ends and guests are ushered into the reception",
-          },
-          {
-            id: generate(),
-            time: "7:20 PM",
-            details: "Introduction and first dance—guests asked to join after ",
-          },
-          {
-            id: generate(),
-            time: "7:45 PM",
-            details: " Guests take their seats and the first course is served",
-          },
-          {
-            id: generate(),
-            time: "8:00 PM",
-            details: "Welcome speech from parents",
-          },
-          {
-            id: generate(),
-            time: "8:10 PM",
-            details: "Toasts from maid of honor and best man",
-          },
-          {
-            id: generate(),
-            time: "9:00 PM",
-            details: "Parent dances",
-          },
-          {
-            id: generate(),
-            time: "9:30 PM ",
-            details: "Cake cutting",
-          },
-          {
-            id: generate(),
-            time: "10:00 PM",
-            details: "Send-Off",
-          },
-        ]
-  );
   const { query } = useRouter();
 
   const { data: couple, isLoading } = useQuery(
@@ -91,6 +31,10 @@ const CoupleWebsitePage = (props) => {
     {
       initialData: props.user,
     }
+  );
+
+  const [receptionDetails, setReceptionDetails] = useState(
+    couple?.receptionDetails?.length > 0 ? couple.receptionDetails : []
   );
 
   const [value, setValue] = useState(
@@ -348,30 +292,36 @@ const CoupleWebsitePage = (props) => {
                   </div>
                 </div>
               )}
+              {(couple?.socialAccounts?.groom ||
+                couple?.socialAccounts?.bride) && (
+                <div class="grid grid-cols-12 gap-4 w-full my-3 md:my-8">
+                  <div class="col-start-2 col-span-10">
+                    <div class="flex flex-wrap items-center space-x-4 space-y-4 w-full my-3 md:my-8">
+                      {couple?.socialAccounts?.groom &&
+                        Object?.keys(couple.socialAccounts?.groom)?.length !==
+                          0 && (
+                          <div class="col-span-6 p-5 pl-0">
+                            <SocialSection
+                              name={couple?.questions?.firstName}
+                              links={couple?.socialAccounts?.groom}
+                            />
+                          </div>
+                        )}
+                      {couple?.socialAccounts?.bride &&
+                        Object?.keys(couple.socialAccounts?.bride)?.length !==
+                          0 && (
+                          <div class="col-span-6 p-5">
+                            <SocialSection
+                              name={couple?.questions?.spouseFirstName}
+                              links={couple?.socialAccounts?.bride}
+                            />
+                          </div>
+                        )}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
-            {(couple?.socialAccounts?.groom ||
-              couple?.socialAccounts?.bride) && (
-              <div class="flex flex-wrap items-center space-x-4 space-y-4 w-full my-3 md:my-8">
-                {couple?.socialAccounts?.groom &&
-                  Object?.keys(couple.socialAccounts?.groom)?.length !== 0 && (
-                    <div class="col-span-6 p-5">
-                      <SocialSection
-                        name={couple?.questions?.firstName}
-                        links={couple?.socialAccounts?.groom}
-                      />
-                    </div>
-                  )}
-                {couple?.socialAccounts?.bride &&
-                  Object?.keys(couple.socialAccounts?.bride)?.length !== 0 && (
-                    <div class="col-span-6 p-5">
-                      <SocialSection
-                        name={couple?.questions?.spouseFirstName}
-                        links={couple?.socialAccounts?.bride}
-                      />
-                    </div>
-                  )}
-              </div>
-            )}
           </div>
           {/* QR Codes section */}
           <div class="grid place-items-center sm:py-[100px] py-10 grid-cols-12 w-full bg-gradient-to-br from-[#FCE3EB] to-white border-black border-t-4 border-b-4">
