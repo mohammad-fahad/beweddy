@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Heading, Loader } from "@components/index";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 
 import { useRouter } from "next/router";
+import { attemptPRRequest } from "@services/User";
 
 const ForgotPassword = ({ newUser }) => {
+  const [loading, setLoading] = useState(false);
   const {
     watch,
     register,
@@ -18,8 +20,16 @@ const ForgotPassword = ({ newUser }) => {
 
   const { push } = useRouter();
 
-  const onSubmit = () => {
-    push("/StepTwoPage");
+  const onSubmit = async (data) => {
+    try {
+      setLoading(true);
+      await attemptPRRequest(data);
+      setLoading(false);
+      push("/forgot-password/requested");
+    } catch (err) {
+      setLoading(false);
+      console.error(err);
+    }
   };
 
   return (
@@ -27,7 +37,7 @@ const ForgotPassword = ({ newUser }) => {
       {/* <Meta title="Forgot Password | Beweddy" /> */}
       {/* Ey part ta fix kore dio @MuttakinHasib */}
 
-      {/* {loading && <Loader />} */}
+      {loading && <Loader />}
       <motion.div
         className="bg-gradient-to-br from-[#FCE3EB] to-white w-full"
         exit={{ opacity: 0 }}
@@ -56,7 +66,7 @@ const ForgotPassword = ({ newUser }) => {
               <Heading
                 label={"Forgot Password?"}
                 color="bg-[#F9D1DE]"
-                className="text-2xl md:text-4xl lg:text-5xl mx-auto mt-20 text-center font-alice pb-8 capitalize md:!text-[36px]"
+                className="text-2xl md:text-4xl lg:text-5xl mx-auto text-center font-alice pb-8 capitalize md:!text-[36px]"
                 lineStyle={{ marginBottom: "30px" }}
               />
 
@@ -65,7 +75,7 @@ const ForgotPassword = ({ newUser }) => {
                 you instructions to reset your password.
               </p>
 
-              <div className="flex flex-col items-center w-full justify-center space-y-6">
+              <div className="flex flex-col items-center justify-center w-full space-y-6">
                 <p className="font-bold text-center">Enter Your Email</p>
 
                 <div className="w-full">
@@ -73,17 +83,17 @@ const ForgotPassword = ({ newUser }) => {
                     type="email"
                     placeholder="Your Email"
                     className="w-full text-sm md:text-lg font-medium py-2 md:py-3 px-4 md:px-6 placeholder-gray-400 border-[3px] border-primary rounded-lg focus:outline-none"
-                    // {...register("email", {
-                    //   required: {
-                    //     value: true,
-                    //     message: "Email is required!",
-                    //   },
-                    //   pattern: {
-                    //     value:
-                    //       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                    //     message: "Must be a valid email address",
-                    //   },
-                    // })}
+                    {...register("email", {
+                      required: {
+                        value: true,
+                        message: "Email is required!",
+                      },
+                      pattern: {
+                        value:
+                          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                        message: "Must be a valid email address",
+                      },
+                    })}
                   />
                   {errors.email && (
                     <p className="mt-2 text-sm font-light text-red-400">

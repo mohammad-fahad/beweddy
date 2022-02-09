@@ -18,6 +18,7 @@ import Venue from "../models/Venue.js";
 import { addNewCustomer, createSubscription } from "../lib/stripe.js";
 import {
   sendActivationEmail,
+  sendPasswordResetEmail,
   userActivationNotifyAdmin as userActivationNotifyToAdmin,
 } from "./invitationControllers.js";
 import { sendWelcomeEmailToCouple } from "./mailControllers.js";
@@ -620,7 +621,7 @@ export const requestResetPassword = asyncHandler(async (req, res) => {
     user._id
   )}`;
 
-  await sendPasswordResetEmail(email, url);
+  await sendPasswordResetEmail(user.username,email, url);
   return res.status(200).json({
     message: `Password reset link has been sent to ${email}`,
   });

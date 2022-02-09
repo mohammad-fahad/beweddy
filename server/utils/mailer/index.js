@@ -1,9 +1,9 @@
-import sgMail from '@sendgrid/mail';
+import sgMail from "@sendgrid/mail";
 
 import {
   passwordResetTemplate,
   sendEmailInvitesTemplate,
-} from './templates/index.js';
+} from "./templates/index.js";
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
@@ -29,7 +29,7 @@ export const sendEmailInvites = async (
     to: emails,
     // to: 'azimaahmed36@gmail.com',
     replyTo: from,
-    subject: 'BeWeddy',
+    subject: "BeWeddy",
     html: sendEmailInvitesTemplate(coupleName, image, message),
     // attachments: [
     //   {
@@ -44,7 +44,7 @@ export const sendEmailInvites = async (
   // const result = await transport.sendMail(mailOptions);
   const result = await sgMail.send(mailOptions);
   if (!result) {
-    throw new Error('Something went wrong');
+    throw new Error("Something went wrong");
   }
 };
 
@@ -53,18 +53,18 @@ export const sendEmailInvites = async (
  * @param  {String} url
  */
 
-export const sendPasswordResetEmail = async (email, url) => {
+export const sendPasswordResetEmail = async (name, email, url) => {
   const mailOptions = {
     from: `${SITE_NAME} <${EMAIL_FROM}>`,
     to: email,
     subject: `Reset your Password for ${SITE_NAME}`,
-    html: passwordResetTemplate(url),
+    html: passwordResetTemplate({ name, url }),
   };
   const result = await sgMail.send(mailOptions);
 
   // const result = await transport.sendMail(mailOptions);
 
   if (!result) {
-    throw new Error('Something went wrong');
+    throw new Error("Something went wrong");
   }
 };

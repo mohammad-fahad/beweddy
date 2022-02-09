@@ -246,7 +246,7 @@ export const giftCardPurchasedNotify = async ({
   await smtpTransport.sendMail(mailOptions);
 };
 
-export const sendPasswordResetEmail = async (email, url) => {
+export const sendPasswordResetEmail = async (name, email, url) => {
   const smtpTransport = nodemailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
@@ -261,7 +261,7 @@ export const sendPasswordResetEmail = async (email, url) => {
     from: `${SITE_NAME} <${EMAIL_USER}>`,
     to: email,
     subject: `Reset your Password for ${SITE_NAME}`,
-    html: passwordResetTemplate(url),
+    html: passwordResetTemplate({ name, url }),
   };
 
   await smtpTransport.sendMail(mailOptions);
