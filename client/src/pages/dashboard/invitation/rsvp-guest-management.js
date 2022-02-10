@@ -80,7 +80,7 @@ const RSVPGuestManagementPage = () => {
                 <Link href="/dashboard/rsvp">
                   <a className="flex items-center px-5 py-2 my-3 space-x-3 text-base font-semibold transition duration-300 border-2 border-gray-500 rounded-md font-inter bg-secondary-alternative text-primary hover:bg-secondary-alternative/50 guestButton">
                     {/* <PlusIcon className="w-5 h-5" /> */}
-                    <span>RSVP Details</span>
+                    <span>Export List</span>
                   </a>
                 </Link>
               </div>
