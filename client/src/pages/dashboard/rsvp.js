@@ -5,7 +5,7 @@ import { withAuthRoute } from "@hoc/withAuthRoute";
 import DashboardTopBar from "@components/dashboard/header/TopBar";
 import DashboardLayout from "@components/dashboard/layout";
 import { useSelector } from "react-redux";
-import { PlusIcon, SearchIcon } from "@heroicons/react/outline";
+import { PlusIcon, PrinterIcon, SearchIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { useQuery } from "react-query";
 import { getGuests } from "@services/GuestManagement";
@@ -79,7 +79,8 @@ const RSVPGuestInfo = () => {
                   className="flex items-center px-5 py-2 my-3 space-x-3 text-base font-semibold transition duration-300 border-2 border-gray-500 rounded-md font-inter bg-secondary-alternative text-primary hover:bg-secondary-alternative/50 guestButton print-btn"
                   onClick={handlePrint}
                 >
-                  Print
+                  <PrinterIcon className="w-5 h-5" />
+                  <span>Print</span>
                 </button>
               </div>
             </div>
