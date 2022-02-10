@@ -5,12 +5,13 @@ import { withAuthRoute } from "@hoc/withAuthRoute";
 import DashboardTopBar from "@components/dashboard/header/TopBar";
 import DashboardLayout from "@components/dashboard/layout";
 import { useSelector } from "react-redux";
-import { PlusIcon, PrinterIcon, SearchIcon } from "@heroicons/react/outline";
+import { PrinterIcon, DocumentDownloadIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import { useQuery } from "react-query";
 import { getGuests } from "@services/GuestManagement";
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
+import { CSVLink } from "react-csv";
 
 const AttendingStatus = ({ status }) => {
   if (status === "yes") {
@@ -39,6 +40,20 @@ const RSVPGuestInfo = () => {
     getGuests
   );
   // const countAttending = guests?.filter(guest => guest.rsvp === 'yes').length;
+
+  const rsvpData = data
+    ? data?.guests?.slice(1)?.map((item) => ({
+        name: item.name,
+        email: item.email,
+        phone: item?.phone?.number,
+        address: `${item?.address?.street} ${item?.address?.providence}`,
+        city: item?.address?.city,
+        state: item?.address?.state,
+        zip: item?.address?.zip,
+        attending: item?.rsvp,
+        guests: item?.guestEstimate,
+      }))
+    : [];
 
   const handlePrint = useReactToPrint({
     content: () => printRef.current,
@@ -75,6 +90,12 @@ const RSVPGuestInfo = () => {
                 </p>
               </div>
               <div className="flex flex-wrap items-center justify-center gap-3 print:none sm:justify-end">
+                <CSVLink data={rsvpData} filename="rsvp-list.csv">
+                  <button className="flex items-center px-5 py-2 my-3 space-x-3 text-base font-semibold transition duration-300 border-2 border-gray-500 rounded-md font-inter bg-secondary-alternative text-primary hover:bg-secondary-alternative/50 guestButton print-btn">
+                    <DocumentDownloadIcon className="w-5 h-5" />
+                    <span>Export as CSV</span>
+                  </button>
+                </CSVLink>
                 <button
                   className="flex items-center px-5 py-2 my-3 space-x-3 text-base font-semibold transition duration-300 border-2 border-gray-500 rounded-md font-inter bg-secondary-alternative text-primary hover:bg-secondary-alternative/50 guestButton print-btn"
                   onClick={handlePrint}
