@@ -229,7 +229,7 @@ const CoupleWebsitePage = (props) => {
               {couple?.location && (
                 <div class="col-start-2 col-span-4 pl-3 flex justify-center">
                   <div>
-                    <h2 className="text-lg">Locations</h2>
+                    <h2 className="text-lg font-medium">Locations:</h2>
                     <h6>{couple?.location}</h6>
                   </div>
                 </div>
