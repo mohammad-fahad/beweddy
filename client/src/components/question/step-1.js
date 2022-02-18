@@ -17,6 +17,12 @@ const CoupleName = () => {
 
   const { data: venue } = useQuery(["venue", query.venueId], getVenue);
 
+  useEffect(() => {
+    if (query.venueId) {
+      window.localStorage.setItem("beweddy_user_role", "couple");
+    }
+  }, [query.venueId]);
+
   const {
     register,
     handleSubmit,
