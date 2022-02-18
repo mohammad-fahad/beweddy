@@ -10,6 +10,15 @@ const index = () => {
   const { query } = useRouter();
   const dispatch = useDispatch();
 
+  console.log(query);
+
+  useEffect(() => {
+    if (query.venueId) {
+      window.localStorage.setItem("beweddy_user_role", "couple");
+      setVenue(false);
+    }
+  }, [query.venueId]);
+
   useEffect(() => {
     setVenue(
       window.localStorage.getItem("beweddy_user_role") === "venue"
@@ -19,10 +28,10 @@ const index = () => {
   }, []);
 
   useEffect(() => {
-    if (query.venue) {
-      dispatch(addSelectVenue(query.venue));
+    if (query.venueId) {
+      dispatch(addSelectVenue(query.venueId));
     }
-  }, [query]);
+  }, [query.venueId]);
 
   return <div>{venue ? <CreateVenuePage /> : <Website />}</div>;
 };
