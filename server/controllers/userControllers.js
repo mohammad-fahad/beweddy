@@ -210,6 +210,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
             process.env.PREMIUM_PLAN_ID,
             URL
           );
+
           const url = `${process.env.CLIENT_URL}/create-website?step=1&venueId=${venue._id}`;
 
           await userActivationNotifyToAdmin({
@@ -621,7 +622,7 @@ export const requestResetPassword = asyncHandler(async (req, res) => {
     user._id
   )}`;
 
-  await sendPasswordResetEmail(user.username,email, url);
+  await sendPasswordResetEmail(user.username, email, url);
   return res.status(200).json({
     message: `Password reset link has been sent to ${email}`,
   });
