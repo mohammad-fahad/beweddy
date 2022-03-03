@@ -21,7 +21,10 @@ import {
   sendPasswordResetEmail,
   userActivationNotifyAdmin as userActivationNotifyToAdmin,
 } from "./invitationControllers.js";
-import { sendWelcomeEmailToCouple } from "./mailControllers.js";
+import {
+  sendNewCoupleEmailToVenue,
+  sendWelcomeEmailToCouple,
+} from "./mailControllers.js";
 
 // Register New User
 
@@ -88,6 +91,18 @@ export const register = asyncHandler(async (req, res) => {
     const activationToken = generateActivationToken(user._id);
     const url = `${process.env.CLIENT_URL}/activation/${activationToken}`;
     await sendActivationEmail(user.fullName, email, url, role);
+
+    if (venueId) {
+      const findVenue = await Venue.findById(venueId).populate("user");
+      if (findVenue) {
+        await sendNewCoupleEmailToVenue({
+          logo: findVenue.logo.secure_url,
+          email: findVenue.user.email,
+          venueName: findVenue.businessName,
+          websiteURL: `${process.env.CLIENT_URL}/couple/${user.username}`,
+        });
+      }
+    }
 
     res
       .status(201)
@@ -258,6 +273,17 @@ export const googleSignUp = asyncHandler(async (req, res) => {
 
       await sendWelcomeEmailToCouple({ email: user.email });
 
+      if (venueId) {
+        const findVenue = await Venue.findById(venueId).populate("user");
+        if (findVenue) {
+          await sendNewCoupleEmailToVenue({
+            logo: findVenue.logo.secure_url,
+            email: findVenue.user.email,
+            venueName: findVenue.businessName,
+            websiteURL: `${process.env.CLIENT_URL}/couple/${user.username}`,
+          });
+        }
+      }
       res.json({
         user: {
           _id: user._id,
