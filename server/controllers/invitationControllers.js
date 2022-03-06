@@ -88,7 +88,7 @@ export const inviteSMS = asyncHandler(async (req, res) => {
  *
  */
 
-export const sendActivationEmail = async (name, email, url, role) => {
+export const sendActivationEmail = async (logo, email, url, role) => {
   const smtpTransport = nodemailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
@@ -107,7 +107,7 @@ export const sendActivationEmail = async (name, email, url, role) => {
     text: `Please click on the link below to Activate.\n\n${url}`,
     html:
       role === "couple"
-        ? coupleActivationTemplate(name, url)
+        ? coupleActivationTemplate(logo, url)
         : venueActivationTemplate(url),
   };
 

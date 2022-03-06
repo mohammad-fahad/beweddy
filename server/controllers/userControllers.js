@@ -90,7 +90,14 @@ export const register = asyncHandler(async (req, res) => {
 
     const activationToken = generateActivationToken(user._id);
     const url = `${process.env.CLIENT_URL}/activation/${activationToken}`;
-    await sendActivationEmail(user.fullName, email, url, role);
+    const _venue = await Venue.findById(venueId);
+
+    await sendActivationEmail(
+      _venue ? _venue.logo.secure_url : undefined,
+      email,
+      url,
+      role
+    );
 
     if (venueId) {
       const findVenue = await Venue.findById(venueId).populate("user");
@@ -570,7 +577,11 @@ export const login = asyncHandler(async (req, res) => {
   if (!user.emailVerified) {
     const activationToken = generateActivationToken(user._id);
     const url = `${process.env.CLIENT_URL}/activation/${activationToken}`;
-    await sendActivationEmail(user.fullName, email, url);
+    await sendActivationEmail(
+      user.venue.logo ? user.venue.logo.secure_url : undefined,
+      email,
+      url
+    );
 
     res.status(401);
     throw new Error(
