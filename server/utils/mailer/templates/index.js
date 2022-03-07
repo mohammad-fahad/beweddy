@@ -286,11 +286,7 @@ export const coupleActivationTemplate = (logo, url) => {
                                 <tr>
                                   <td style="padding-right: 0px;padding-left: 0px;" align="center">
 
-                                    <img align="center" border="0" src="${
-                                      logo
-                                        ? logo
-                                        : "https://s3.amazonaws.com/unroll-images-production/projects%2F65513%2F1645970346044-Beweddy+Logo.png"
-                                    }" alt="" title="" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 35%;max-width: 168px;"
+                                    <img align="center" border="0" src="${logo}" alt="" title="" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 35%;max-width: 168px;"
                                       width="168" />
 
                                   </td>
@@ -472,7 +468,7 @@ export const coupleActivationTemplate = (logo, url) => {
 
                               <div style="line-height: 140%; text-align: center; word-wrap: break-word;">
                                 <p style="font-size: 14px; line-height: 140%;"><span style="font-family: Lato, sans-serif; font-size: 14px; line-height: 19.6px;">We're always here to support you. If you have any questions.</span></p>
-                                <p style="font-size: 14px; line-height: 140%;"><span style="font-family: Lato, sans-serif; font-size: 14px; line-height: 19.6px;">feel free to email us <strong><a rel="noopener" href="mailto:nate@beweddy.com?subject=Venue%20Tutorial%20Video&body=Watch%20our%20tutorial%20video" target="_blank">nate@beweddy.com</a></strong> or call us: <strong>+8019197212</strong></span></p>
+                                <p style="font-size: 14px; line-height: 140%;"><span style="font-family: Lato, sans-serif; font-size: 14px; line-height: 19.6px;">Feel free to email us <strong><a rel="noopener" href="mailto:nate@beweddy.com?subject=Venue%20Tutorial%20Video&body=Watch%20our%20tutorial%20video" target="_blank">nate@beweddy.com</a></strong> or call us: <strong>+8019197212</strong></span></p>
                               </div>
 
                             </td>

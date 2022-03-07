@@ -28,6 +28,9 @@ import {
 
 // Register New User
 
+const defaultLogo =
+  "https://s3.amazonaws.com/unroll-images-production/projects%2F65513%2F1645970346044-Beweddy+Logo.png";
+
 const defaultTodos = [
   {
     isComplete: true,
@@ -93,7 +96,7 @@ export const register = asyncHandler(async (req, res) => {
     const _venue = await Venue.findById(venueId);
 
     await sendActivationEmail(
-      _venue ? _venue.logo.secure_url : undefined,
+      _venue ? _venue.logo.secure_url : defaultLogo,
       email,
       url,
       role
@@ -578,7 +581,7 @@ export const login = asyncHandler(async (req, res) => {
     const activationToken = generateActivationToken(user._id);
     const url = `${process.env.CLIENT_URL}/activation/${activationToken}`;
     await sendActivationEmail(
-      user.venue.logo ? user.venue.logo.secure_url : undefined,
+      user.venue.logo ? user.venue.logo.secure_url : defaultLogo,
       email,
       url
     );
