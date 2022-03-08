@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from 'react';
+import { useState } from "react";
 import {
   ActivityInfo,
   DashboardHeader,
@@ -203,7 +203,7 @@ const Dashboard = () => {
                   </div>
                 </div>
                 <h1 className="text-[24px] leading-[27px] my-5">
-                  Let's Eat, Drint & BeWeddy
+                  Eat, Drink, & Celebrate!
                 </h1>
               </div>
 
