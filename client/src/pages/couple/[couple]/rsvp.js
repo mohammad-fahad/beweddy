@@ -181,12 +181,9 @@ const RSVPage = ({ user }) => {
         <DashboardHeader>
           <div className="flex flex-col items-center justify-center w-full space-y-5 ">
             <Link
-            
               href={user?.venue ? prependHttp(user?.venue?.websiteLink) : "/"}
             >
-              <a
-              target="_blank"
-              className="cursor-pointer">
+              <a target="_blank" className="cursor-pointer">
                 {/* <img src="/images/logo.png" className="w-36" /> */}
                 <img src={logo} className="h-[100px] mt-2" />
               </a>
@@ -904,7 +901,7 @@ const RSVPage = ({ user }) => {
                   type="submit"
                 />
                 <h1 className="text-[32px] leading-9 font-normal mt-4 mudiumTitle">
-                  Eat, Drink, & BeWeddy!
+                  Eat, Drink, & Celebrate!
                 </h1>
               </div>
             </form>

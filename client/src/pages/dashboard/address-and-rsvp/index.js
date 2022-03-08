@@ -1,27 +1,27 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import { Image } from 'cloudinary-react';
-import { DashboardHeader } from '@components/dashboard';
-import DashboardTopBar from '@components/dashboard/header/TopBar';
-import DashboardLayout from '@components/dashboard/layout';
-import { Button, Footer, Heading } from '@components/index';
-import { LinkIcon, PencilIcon, SelectorIcon } from '@heroicons/react/outline';
-import { withAuthRoute } from '@hoc/withAuthRoute';
-import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import Swiper from 'react-id-swiper';
-import toast from 'react-hot-toast';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
-import useCopyClipboard from 'react-use-clipboard';
-import SwiperCore, { Lazy, Autoplay } from 'swiper';
-import { Listbox, Transition } from '@headlessui/react';
-import { Fragment } from 'react';
-import { CheckIcon } from '@heroicons/react/solid';
-import { useRouter } from 'next/router';
-import { attemptCreateGuest } from '@features/guest/guestActions';
-import { client } from 'pages/_app';
+import Head from "next/head";
+import Link from "next/link";
+import { Image } from "cloudinary-react";
+import { DashboardHeader } from "@components/dashboard";
+import DashboardTopBar from "@components/dashboard/header/TopBar";
+import DashboardLayout from "@components/dashboard/layout";
+import { Button, Footer, Heading } from "@components/index";
+import { LinkIcon, PencilIcon, SelectorIcon } from "@heroicons/react/outline";
+import { withAuthRoute } from "@hoc/withAuthRoute";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import Swiper from "react-id-swiper";
+import toast from "react-hot-toast";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import useCopyClipboard from "react-use-clipboard";
+import SwiperCore, { Lazy, Autoplay } from "swiper";
+import { Listbox, Transition } from "@headlessui/react";
+import { Fragment } from "react";
+import { CheckIcon } from "@heroicons/react/solid";
+import { useRouter } from "next/router";
+import { attemptCreateGuest } from "@features/guest/guestActions";
+import { client } from "pages/_app";
 
 SwiperCore.use([Lazy, Autoplay]);
 
@@ -34,38 +34,38 @@ const params = {
 };
 
 const otherProviders = [
-  { id: 1, name: 'Other' },
-  { id: 7, name: 'Metro PCS' },
-  { id: 8, name: 'Mint Mobile' },
-  { id: 9, name: 'Page Plus' },
-  { id: 10, name: 'Red Pocket' },
-  { id: 11, name: 'Republic Wireless' },
-  { id: 12, name: 'Sprint' },
-  { id: 13, name: 'T-Mobile' },
-  { id: 14, name: 'Tracfone' },
-  { id: 15, name: 'U.S. Cellular' },
-  { id: 17, name: 'Ting' },
-  { id: 18, name: 'Xfinity Mobile' },
+  { id: 1, name: "Other" },
+  { id: 7, name: "Metro PCS" },
+  { id: 8, name: "Mint Mobile" },
+  { id: 9, name: "Page Plus" },
+  { id: 10, name: "Red Pocket" },
+  { id: 11, name: "Republic Wireless" },
+  { id: 12, name: "Sprint" },
+  { id: 13, name: "T-Mobile" },
+  { id: 14, name: "Tracfone" },
+  { id: 15, name: "U.S. Cellular" },
+  { id: 17, name: "Ting" },
+  { id: 18, name: "Xfinity Mobile" },
 ];
 
 const providers = {
-  'at&t': { sms: 'txt.att.net', mms: 'mms.att.net' },
-  tmobile: { sms: 'tmomail.net', mms: 'tmomail.net' },
-  verizon: { sms: 'vtext.com', mms: 'vzwpix.com' },
+  "at&t": { sms: "txt.att.net", mms: "mms.att.net" },
+  tmobile: { sms: "tmomail.net", mms: "tmomail.net" },
+  verizon: { sms: "vtext.com", mms: "vzwpix.com" },
   boostmobile: {
-    sms: 'sms.myboostmobile.com',
-    mms: 'myboostmobile.com',
+    sms: "sms.myboostmobile.com",
+    mms: "myboostmobile.com",
   },
   cricketwireless: {
-    sms: 'sms.cricketwireless.net',
-    mms: 'mms.cricketwireless.net',
+    sms: "sms.cricketwireless.net",
+    mms: "mms.cricketwireless.net",
   },
-  virginmobile: { sms: 'vmobl.com', mms: 'vmpix.com' },
+  virginmobile: { sms: "vmobl.com", mms: "vmpix.com" },
 };
 
 const AddressRSVP = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector(state => state.user);
+  const { user } = useSelector((state) => state.user);
   const { push } = useRouter();
   const [selectedProvider, setSelectedProvider] = useState(otherProviders[0]);
 
@@ -78,59 +78,58 @@ const AddressRSVP = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    mode: 'all',
+    mode: "all",
     // shouldFocusError: false,
     // shouldUnregister: true,
     defaultValues: {
-      guestEstimate: '1',
+      guestEstimate: "1",
     },
   });
 
-
   watch([
-    'guestEstimate',
-    'provider',
-    'allAbove_invite',
-    'email_invite',
-    'text_invite',
-    'mail_invite',
+    "guestEstimate",
+    "provider",
+    "allAbove_invite",
+    "email_invite",
+    "text_invite",
+    "mail_invite",
   ]);
 
-  const allAbove = getValues('allAbove_invite');
-  const textInvite = getValues('text_invite');
-  const emailInvite = getValues('email_invite');
-  const mailInvite = getValues('mail_invite');
+  const allAbove = getValues("allAbove_invite");
+  const textInvite = getValues("text_invite");
+  const emailInvite = getValues("email_invite");
+  const mailInvite = getValues("mail_invite");
 
   useEffect(() => {
     if (allAbove) {
-      setValue('text_invite', true);
-      setValue('email_invite', true);
-      setValue('mail_invite', true);
+      setValue("text_invite", true);
+      setValue("email_invite", true);
+      setValue("mail_invite", true);
     }
     if (
-      textInvite === 'true' &&
-      emailInvite === 'true' &&
-      mailInvite === 'true'
+      textInvite === "true" &&
+      emailInvite === "true" &&
+      mailInvite === "true"
     ) {
-      setValue('all_the_above', true);
+      setValue("all_the_above", true);
     }
     if (
-      textInvite === 'false' &&
-      emailInvite === 'false' &&
-      mailInvite === 'false'
+      textInvite === "false" &&
+      emailInvite === "false" &&
+      mailInvite === "false"
     ) {
-      setValue('all_the_above', false);
+      setValue("all_the_above", false);
     }
   }, [allAbove, textInvite, mailInvite, emailInvite]);
-  const onSubmit = async data => {
+  const onSubmit = async (data) => {
     dispatch(attemptCreateGuest(submitData(data)));
-    console.log('Submitted data', submitData(data));
-    await client.invalidateQueries('guests');
+    console.log("Submitted data", submitData(data));
+    await client.invalidateQueries("guests");
     reset();
-    push('/dashboard/invitation/rsvp-guest-management');
+    push("/dashboard/invitation/rsvp-guest-management");
   };
 
-  const submitData = data => {
+  const submitData = (data) => {
     const wayOfInvitations = {
       text_invite: data.text_invite,
       email_invite: data.email_invite,
@@ -153,7 +152,7 @@ const AddressRSVP = () => {
       name: data.name,
       email: data.email,
       phone: { number: data.phone, provider: providers[data.provider] },
-      callingCode: '1',
+      callingCode: "1",
       rsvp: data.rsvp,
       guestEstimate: data.guestEstimate,
     };
@@ -165,7 +164,7 @@ const AddressRSVP = () => {
     successDuration: 1500,
   });
 
-  isCopied && toast.success('Collect address website link copied!');
+  isCopied && toast.success("Collect address website link copied!");
   return (
     <>
       <Head>
@@ -996,7 +995,7 @@ const AddressRSVP = () => {
                   type="submit"
                 />
                 <h1 className="text-[32px] leading-9 font-normal mt-4 mudiumTitle">
-                  Eat, Drink, & BeWeddy!
+                  Eat, Drink, & Celebrate!
                 </h1>
               </div>
             </form>
