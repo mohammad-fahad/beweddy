@@ -230,7 +230,13 @@ const CoupleWebsitePage = (props) => {
                 </div>
               )}
               {couple?.venue?._id === sierra ? (
-                <div class="col-start-2 col-span-full">
+                <div class="col-start-2 col-span-full space-y-5">
+                  {couple?.location && (
+                    <div>
+                      <h2 className="text-lg font-semibold">Locations:</h2>
+                      <h6>{couple?.location}</h6>
+                    </div>
+                  )}
                   <div>
                     <h2 className="text-lg font-semibold">Directions:</h2>
                     <h6>
