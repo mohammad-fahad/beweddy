@@ -230,7 +230,7 @@ const CoupleWebsitePage = (props) => {
                 </div>
               )}
               {couple?.venue?._id === sierra ? (
-                <div class="col-start-2 col-span-4 pl-3 flex justify-center">
+                <div class="col-start-2 col-span-full">
                   <div>
                     <h2 className="text-lg font-semibold">Directions:</h2>
                     <h6>
