@@ -203,7 +203,7 @@ const VenueDashboard = () => {
                   </div>
                 </div>
                 <h1 className="text-[24px] leading-[27px] my-5">
-                  Let's Eat, Drint & BeWeddy
+                  Eat, Drink, & Celebrate!
                 </h1>
               </div>
 
