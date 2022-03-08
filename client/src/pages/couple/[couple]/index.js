@@ -33,6 +33,8 @@ const CoupleWebsitePage = (props) => {
     }
   );
 
+  const sierra = "62169a23f6c758545efa6b7c";
+
   const [receptionDetails, setReceptionDetails] = useState(
     couple?.receptionDetails?.length > 0 ? couple.receptionDetails : []
   );
@@ -211,6 +213,7 @@ const CoupleWebsitePage = (props) => {
                 Reception Details
               </h2>
             )}
+
             <div class="grid grid-cols-12 gap-4 w-full sm:px-0 px-5 my-3 md:my-8">
               {couple?.questions?.weddingDay?.firstReception && (
                 <div class="sm:col-start-2 sm:col-span-5 col-span-12 sm:p-5 p-2 text-lg font-semibold subTitle">
@@ -226,13 +229,30 @@ const CoupleWebsitePage = (props) => {
                   )}
                 </div>
               )}
-              {couple?.location && (
+              {couple?.venue?._id === sierra ? (
                 <div class="col-start-2 col-span-4 pl-3 flex justify-center">
                   <div>
-                    <h2 className="text-lg font-medium">Locations:</h2>
-                    <h6>{couple?.location}</h6>
+                    <h2 className="text-lg font-semibold">Directions:</h2>
+                    <h6>
+                      Please use the Camino Heights Exit off Hwy 50 <br />
+                      Please allow more time During September - December due to
+                      <br />
+                      Apply Hill Traffic Sierra Banquet Center{" "}
+                      <a href="http://maps.apple.com/maps?q=3220+Ponderado+Rd+Camino+Ca">
+                        3220 Ponderado Rd Camino Ca
+                      </a>
+                    </h6>
                   </div>
                 </div>
+              ) : (
+                couple?.location && (
+                  <div class="col-start-2 col-span-4 pl-3 flex justify-center">
+                    <div>
+                      <h2 className="text-lg font-semibold">Locations:</h2>
+                      <h6>{couple?.location}</h6>
+                    </div>
+                  </div>
+                )
               )}
             </div>
             {/* timeline section */}
