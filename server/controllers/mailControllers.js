@@ -166,12 +166,12 @@ export const giftCardPurchasedNotifyToGuest = async ({
   // }
 };
 
-export const sendWelcomeEmailToCouple = async ({ email }) => {
+export const sendWelcomeEmailToCouple = async ({ email,logo }) => {
   const mailOptions = {
     from: `${SITE_NAME} <${EMAIL_USER}>`,
     to: email,
     subject: `Welcome to Beweddy`,
-    html: welcomeEmailCouple(),
+    html: welcomeEmailCouple(logo),
   };
 
   const smtpTransport = nodemailer.createTransport({

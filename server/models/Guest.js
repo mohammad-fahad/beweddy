@@ -1,10 +1,10 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const guestSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User",
     },
     name: {
       type: String,
@@ -64,10 +64,11 @@ const guestSchema = new mongoose.Schema(
         default: false,
       },
     },
+    allergies: String,
     rsvp: {
       type: String,
-      enum: ['yes', 'maybe', 'no', 'pending'],
-      default: 'pending',
+      enum: ["yes", "maybe", "no", "pending"],
+      default: "pending",
     },
     guestEstimate: {
       type: Number,
@@ -79,6 +80,6 @@ const guestSchema = new mongoose.Schema(
   }
 );
 
-const Guest = mongoose.model('Guest', guestSchema);
+const Guest = mongoose.model("Guest", guestSchema);
 
 export default Guest;

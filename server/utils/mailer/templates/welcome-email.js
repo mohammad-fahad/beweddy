@@ -1,4 +1,6 @@
-export const welcomeEmailCouple = () => `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+export const welcomeEmailCouple = (
+  logo
+) => `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html
   xmlns="http://www.w3.org/1999/xhtml"
   xmlns:v="urn:schemas-microsoft-com:vml"
@@ -385,7 +387,11 @@ export const welcomeEmailCouple = () => `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTM
                                       <img
                                         align="center"
                                         border="0"
-                                        src="https://s3.amazonaws.com/unroll-images-production/projects%2F61295%2F1643539539195-logo.png"
+                                        src="${
+                                          logo
+                                            ? logo
+                                            : "https://s3.amazonaws.com/unroll-images-production/projects%2F61295%2F1643539539195-logo.png"
+                                        }"
                                         alt=""
                                         title=""
                                         style="
@@ -2070,4 +2076,4 @@ export const welcomeEmailCouple = () => `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTM
     <!--[if IE]></div><![endif]-->
   </body>
 </html>
-`
+`;
