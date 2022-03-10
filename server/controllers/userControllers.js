@@ -281,7 +281,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
         role: user?.role,
       });
 
-      await sendWelcomeEmailToCouple({ email: user.email,logo: user.veneu.logo.secure_url });
+      // await sendWelcomeEmailToCouple({ email: user.email,logo: user.veneu.logo.secure_url });
 
       if (venueId) {
         const findVenue = await Venue.findById(venueId).populate("user");
@@ -525,10 +525,10 @@ export const activeUser = asyncHandler(async (req, res) => {
       url,
     });
     
-      await sendWelcomeEmailToCouple({
-        email: user.email,
-        logo: user.veneu.logo.secure_url,
-      });
+      // await sendWelcomeEmailToCouple({
+      //   email: user.email,
+      //   logo: user.veneu.logo.secure_url,
+      // });
 
 
     res.status(201).json({
