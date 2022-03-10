@@ -52,6 +52,7 @@ const RSVPGuestInfo = () => {
         zip: item?.address?.zip,
         attending: item?.rsvp,
         guests: item?.guestEstimate,
+        allergies: item?.allergies,
       }))
     : [];
 
@@ -123,6 +124,9 @@ const RSVPGuestInfo = () => {
                     <th className="px-4 py-3 text-sm" align="center">
                       Guests
                     </th>
+                    <th className="px-4 py-3 text-sm" align="center">
+                      Food Allergies
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="bg-white">
@@ -152,6 +156,9 @@ const RSVPGuestInfo = () => {
                       </td>
                       <td className="px-4 pt-6 pb-3 text-xs" align="center">
                         {guest?.guestEstimate}
+                      </td>
+                      <td className="px-4 pt-6 pb-3 text-xs" align="center">
+                        {guest?.allergies}
                       </td>
                     </tr>
                   ))}
