@@ -154,6 +154,7 @@ const AddressRSVP = () => {
       phone: { number: data.phone, provider: providers[data.provider] },
       callingCode: "1",
       rsvp: data.rsvp,
+      allergies: data.allergies,
       guestEstimate: data.guestEstimate,
     };
   };
@@ -959,7 +960,19 @@ const AddressRSVP = () => {
                   </div>
                 </div>
               </div>
-
+              <div className="space-y-3">
+                <Heading h3 className="!text-[18px] !font-medium mudiumTitle">
+                  Any Food Allergies?
+                </Heading>
+                <div>
+                  <input
+                    type="allergies"
+                    className="w-full rounded-[5px] border-2 border-gray-200 placeholder-[#757575] text-[14px] py-3 px-5 text-base font-normal"
+                    placeholder="Enter any food name"
+                    {...register("allergies")}
+                  />
+                </div>
+              </div>
               <div
                 className="space-y-3 !mt-10 "
                 // title='Please include yourself'
