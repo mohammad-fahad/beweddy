@@ -143,7 +143,7 @@ const userSchema = new mongoose.Schema(
 
     weddingVideo: {
       type: String,
-      default: "https://www.youtube.com/watch?v=tm7ZtsuzZ-k",
+      // default: "https://www.youtube.com/watch?v=tm7ZtsuzZ-k",
     },
     weddingVideoTitle: {
       type: String,
