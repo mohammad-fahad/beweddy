@@ -147,7 +147,7 @@ const userSchema = new mongoose.Schema(
     },
     weddingVideoTitle: {
       type: String,
-      default: "First Look or Wedding Video",
+      // default: "First Look or Wedding Video",
     },
     role: {
       type: String,
