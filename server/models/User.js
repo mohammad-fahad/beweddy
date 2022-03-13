@@ -97,12 +97,11 @@ const userSchema = new mongoose.Schema(
       type: String,
     },
     receptionDetails: [],
-    giftCards: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Gift",
-      },
-    ],
+    giftCards: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "Gift",
+    },
+
     registries: [
       {
         type: mongoose.Schema.Types.ObjectId,
