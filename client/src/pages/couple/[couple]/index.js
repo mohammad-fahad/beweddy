@@ -388,11 +388,13 @@ const CoupleWebsitePage = (props) => {
               </div>
             </div>
           </div>
-          <WebsiteVideo
-            videoLink={couple?.weddingVideo}
-            videoTitle={couple?.weddingVideoTitle}
-            className="!bg-[#ffffff] !from-transparent !to-transparent"
-          />
+          {(couple?.weddingVideo || couple?.weddingVideoTitle) && (
+            <WebsiteVideo
+              videoLink={couple?.weddingVideo}
+              videoTitle={couple?.weddingVideoTitle}
+              className="!bg-[#ffffff] !from-transparent !to-transparent"
+            />
+          )}
           <footer className="container">
             {/* footer section */}
             <Footer
