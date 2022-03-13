@@ -56,6 +56,7 @@ export const register = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("User already exists");
   }
+
   const _name = questions.firstName
     ? `${questions.firstName}_${questions.spouseFirstName}`
     : questions.businessName;
@@ -84,6 +85,7 @@ export const register = asyncHandler(async (req, res) => {
         ...questions,
       });
     }
+
     defaultTodos.forEach(async (todo) => {
       await Todo.create({
         user: user._id,
@@ -140,7 +142,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
 
   // Push all GiftCards & Registries to user
 
-  const gifts = await Gift.find({}).select("_id");
+  const gifts = await Gift.find({});
   // const registries = await Registry.find({}).select('_id');
 
   const giftCards = gifts
@@ -281,7 +283,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
         role: user?.role,
       });
 
-      await sendWelcomeEmailToCouple({ email: user.email,logo: user.veneu.logo.secure_url });
+      // await sendWelcomeEmailToCouple({ email: user.email,logo: user.veneu.logo.secure_url });
 
       if (venueId) {
         const findVenue = await Venue.findById(venueId).populate("user");
@@ -413,7 +415,7 @@ export const activeUser = asyncHandler(async (req, res) => {
   const URL = `${process.env.CLIENT_URL}/activation/${token}`;
   // Push all GiftCards & Registries to user
 
-  const gifts = await Gift.find({}).select("_id");
+  const gifts = await Gift.find({});
   // const registries = await Registry.find({}).select('_id');
 
   const giftCards = gifts
@@ -524,12 +526,11 @@ export const activeUser = asyncHandler(async (req, res) => {
       customWebsite: venue?.customWebsite,
       url,
     });
-    
-      await sendWelcomeEmailToCouple({
-        email: user.email,
-        logo: user.veneu.logo.secure_url,
-      });
 
+    // await sendWelcomeEmailToCouple({
+    //   email: user.email,
+    //   logo: user.veneu.logo.secure_url,
+    // });
 
     res.status(201).json({
       user: {
