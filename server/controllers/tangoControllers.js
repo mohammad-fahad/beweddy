@@ -38,16 +38,19 @@ export const getGifts = asyncHandler(async (req, res) => {
 
   await attemptToGiftCardRedeem(
     guestName,
-    user.venue.logo.secure_url ? user.venue.logo.secure_url : defaultLogo,
+    user.venue?.logo?.secure_url ? user.venue?.logo?.secure_url : defaultLogo,
     coupleEmail,
     message,
     amount,
     image,
     URL
   );
+
   await giftCardPurchasedNotifyToGuest({
     guestEmail,
-    logo: user.venue.logo.secure_url ? user.venue.logo.secure_url : defaultLogo,
+    logo: user.venue?.logo?.secure_url
+      ? user.venue?.logo?.secure_url
+      : defaultLogo,
   });
   await giftCardPurchasedNotify({
     coupleName,

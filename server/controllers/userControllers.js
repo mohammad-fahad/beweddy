@@ -99,7 +99,7 @@ export const register = asyncHandler(async (req, res) => {
     const _venue = await Venue.findById(venueId);
 
     await sendActivationEmail(
-      _venue ? _venue.logo.secure_url : defaultLogo,
+      _venue?.logo?.secure_url ? _venue?.logo?.secure_url : defaultLogo,
       email,
       url,
       role
@@ -109,7 +109,7 @@ export const register = asyncHandler(async (req, res) => {
       const findVenue = await Venue.findById(venueId).populate("user");
       if (findVenue) {
         await sendNewCoupleEmailToVenue({
-          logo: findVenue.logo.secure_url || defaultLogo,
+          logo: findVenue?.logo?.secure_url || defaultLogo,
           email: findVenue.user.email,
           venueName: findVenue.businessName,
           websiteURL: `${process.env.CLIENT_URL}/couple/${user.username}`,
@@ -252,7 +252,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
           await sendWelcomeEmailToVenue({
             link: url,
             email,
-            logo: venue.logo.secure_url,
+            logo: venue?.logo?.secure_url,
           });
 
           if (session) {
@@ -294,7 +294,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
       if (user.role === "couple") {
         await sendWelcomeEmailToCouple({
           email: user.email,
-          logo: user.venue ? user.venue.logo.secure_url : defaultLogo,
+          logo: user.venue ? user.venue?.logo?.secure_url : defaultLogo,
         });
       }
 
@@ -304,7 +304,7 @@ export const googleSignUp = asyncHandler(async (req, res) => {
         const findVenue = await Venue.findById(venueId).populate("user");
         if (findVenue) {
           await sendNewCoupleEmailToVenue({
-            logo: findVenue.logo.secure_url,
+            logo: findVenue?.logo?.secure_url || defaultLogo,
             email: findVenue.user.email,
             venueName: findVenue.businessName,
             websiteURL: `${process.env.CLIENT_URL}/couple/${user.username}`,
@@ -546,14 +546,14 @@ export const activeUser = asyncHandler(async (req, res) => {
       await sendWelcomeEmailToVenue({
         link: url,
         email: user?.email,
-        logo: venue.logo.secure_url,
+        logo: venue?.logo?.secure_url,
       });
     }
 
     if (user.role === "couple") {
       await sendWelcomeEmailToCouple({
         email: user.email,
-        logo: user.venue ? user.venue.logo.secure_url : defaultLogo,
+        logo: user.venue ? user.venue?.logo?.secure_url : defaultLogo,
       });
     }
 
@@ -612,7 +612,7 @@ export const login = asyncHandler(async (req, res) => {
     const activationToken = generateActivationToken(user._id);
     const url = `${process.env.CLIENT_URL}/activation/${activationToken}`;
     await sendActivationEmail(
-      user.venue.logo ? user.venue.logo.secure_url : defaultLogo,
+      user.venue.logo ? user.venue?.logo?.secure_url : defaultLogo,
       email,
       url
     );
