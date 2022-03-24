@@ -108,7 +108,7 @@ export const sendActivationEmail = async (logo, email, url, role) => {
     html:
       role === "couple"
         ? coupleActivationTemplate(logo, url)
-        : venueActivationTemplate(url),
+        : venueActivationTemplate(logo, url),
   };
 
   await smtpTransport.sendMail(mailOptions);
