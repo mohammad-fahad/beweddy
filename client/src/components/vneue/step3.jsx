@@ -49,13 +49,14 @@ const BusinessLogo = () => {
 
   const { questions } = useSelector((state) => state.venue);
   const [uploadedFile, setUploadedFile] = useState(questions?.logo);
-  console.log(JSON.stringify(uploadedFile));
+
   const {
     watch,
     register,
     getValues,
     setValue,
     clearErrors,
+    setError,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -66,17 +67,18 @@ const BusinessLogo = () => {
   // const doThisLater = getValues("do_this_later");
 
   // React hook form register logo
-  // useEffect(() => {
-  //   register("logo", {
-  //     required: {
-  //       value: !doThisLater,
-  //       message: "Please upload file or check do this later",
-  //     },
-  //   });
-  // }, [register, doThisLater]);
+  useEffect(() => {
+    register("logo", {
+      required: {
+        value: true,
+        message: "Please upload file or check do this later",
+      },
+    });
+  }, [register]);
 
   useEffect(() => {
     setValue("logo", uploadedFile);
+    clearErrors('logo')
   }, [uploadedFile]);
 
   // useEffect(() => {
@@ -88,6 +90,14 @@ const BusinessLogo = () => {
 
   const onSubmit = (data) => {
     // console.log("logo", data);
+    if (isEmpty(data.logo)) {
+      setError("logo", {
+        type: "required",
+        message: "Please upload your logo",
+      });
+      return;
+    }
+
     dispatch(addBusinessAnnouncement(data.logo));
     push({ query: { step: 4 } });
   };

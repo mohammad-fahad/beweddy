@@ -7,6 +7,7 @@ import {
 } from "./mailControllers.js";
 import User from "../models/User.js";
 import { giftCardPurchasedNotify } from "./invitationControllers.js";
+import { defaultLogo } from "./userControllers.js";
 
 const {
   TANGO_API,
@@ -30,12 +31,27 @@ export const getGifts = asyncHandler(async (req, res) => {
     amount,
     coupleEmail,
     message,
+    image,
   } = jwt.verify(token, process.env.JWT_SECRET);
   const URL = `${CLIENT_URL}/redeem/${token}`;
   const user = await User.findOne({ email: coupleEmail }).populate("venue");
 
-  await attemptToGiftCardRedeem(guestName, coupleEmail, message, URL);
-  await giftCardPurchasedNotifyToGuest({ guestEmail, coupleName, amount });
+  await attemptToGiftCardRedeem(
+    guestName,
+    user.venue?.logo?.secure_url ? user.venue?.logo?.secure_url : defaultLogo,
+    coupleEmail,
+    message,
+    amount,
+    image,
+    URL
+  );
+
+  await giftCardPurchasedNotifyToGuest({
+    guestEmail,
+    logo: user.venue?.logo?.secure_url
+      ? user.venue?.logo?.secure_url
+      : defaultLogo,
+  });
   await giftCardPurchasedNotify({
     coupleName,
     guestName,

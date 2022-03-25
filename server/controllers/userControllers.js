@@ -24,11 +24,12 @@ import {
 import {
   sendNewCoupleEmailToVenue,
   sendWelcomeEmailToCouple,
+  sendWelcomeEmailToVenue,
 } from "./mailControllers.js";
 
 // Register New User
 
-const defaultLogo =
+export const defaultLogo =
   "https://s3.amazonaws.com/unroll-images-production/projects%2F65513%2F1645970346044-Beweddy+Logo.png";
 
 const defaultTodos = [
@@ -98,7 +99,7 @@ export const register = asyncHandler(async (req, res) => {
     const _venue = await Venue.findById(venueId);
 
     await sendActivationEmail(
-      _venue ? _venue.logo.secure_url : defaultLogo,
+      _venue?.logo?.secure_url ? _venue?.logo?.secure_url : defaultLogo,
       email,
       url,
       role
@@ -108,7 +109,7 @@ export const register = asyncHandler(async (req, res) => {
       const findVenue = await Venue.findById(venueId).populate("user");
       if (findVenue) {
         await sendNewCoupleEmailToVenue({
-          logo: findVenue.logo.secure_url,
+          logo: findVenue?.logo?.secure_url || defaultLogo,
           email: findVenue.user.email,
           venueName: findVenue.businessName,
           websiteURL: `${process.env.CLIENT_URL}/couple/${user.username}`,
@@ -247,6 +248,13 @@ export const googleSignUp = asyncHandler(async (req, res) => {
             customWebsite: venue.customWebsite,
             url,
           });
+
+          await sendWelcomeEmailToVenue({
+            link: url,
+            email,
+            logo: venue?.logo?.secure_url,
+          });
+
           if (session) {
             return res.status(200).json({ url: session.url });
           }
@@ -283,13 +291,20 @@ export const googleSignUp = asyncHandler(async (req, res) => {
         role: user?.role,
       });
 
+      if (user.role === "couple") {
+        await sendWelcomeEmailToCouple({
+          email: user.email,
+          logo: user.venue ? user.venue?.logo?.secure_url : defaultLogo,
+        });
+      }
+
       // await sendWelcomeEmailToCouple({ email: user.email,logo: user.veneu.logo.secure_url });
 
       if (venueId) {
         const findVenue = await Venue.findById(venueId).populate("user");
         if (findVenue) {
           await sendNewCoupleEmailToVenue({
-            logo: findVenue.logo.secure_url,
+            logo: findVenue?.logo?.secure_url || defaultLogo,
             email: findVenue.user.email,
             venueName: findVenue.businessName,
             websiteURL: `${process.env.CLIENT_URL}/couple/${user.username}`,
@@ -527,10 +542,20 @@ export const activeUser = asyncHandler(async (req, res) => {
       url,
     });
 
-    // await sendWelcomeEmailToCouple({
-    //   email: user.email,
-    //   logo: user.veneu.logo.secure_url,
-    // });
+    if (venue) {
+      await sendWelcomeEmailToVenue({
+        link: url,
+        email: user?.email,
+        logo: venue?.logo?.secure_url,
+      });
+    }
+
+    if (user.role === "couple") {
+      await sendWelcomeEmailToCouple({
+        email: user.email,
+        logo: user.venue ? user.venue?.logo?.secure_url : defaultLogo,
+      });
+    }
 
     res.status(201).json({
       user: {
@@ -587,7 +612,7 @@ export const login = asyncHandler(async (req, res) => {
     const activationToken = generateActivationToken(user._id);
     const url = `${process.env.CLIENT_URL}/activation/${activationToken}`;
     await sendActivationEmail(
-      user.venue.logo ? user.venue.logo.secure_url : defaultLogo,
+      user.venue.logo ? user.venue?.logo?.secure_url : defaultLogo,
       email,
       url
     );

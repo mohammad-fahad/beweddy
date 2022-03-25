@@ -64,6 +64,7 @@ const CheckoutPage = (props) => {
         cardName: gift?.title,
         message: data.message,
         amount: data.amount,
+        image: gift?.image
       },
     };
 
