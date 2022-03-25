@@ -305,13 +305,13 @@ const CalendarPage = () => {
                       width={20}
                       height={20}
                     />
-                    <span>Location</span>
+                    <span>Venue Location</span>
                   </div>
                   <input
                     required
                     type="text"
                     className="border border-primary max-w-[275px] py-3 px-5 text-sm font-semibold w-full rounded-[5px]"
-                    placeholder="Utah Convention Hall, Utah"
+                    placeholder="Convention Hall Name"
                     {...register("location", {
                       required: {
                         value: true,
