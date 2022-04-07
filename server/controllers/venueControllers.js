@@ -19,11 +19,11 @@ export const getVenues = asyncHandler(async (req, res) => {
 
 export const getVenue = asyncHandler(async (req, res) => {
   const venue = await Venue.findById(req.params.id).select(
-    "businessName logo websiteLink"
+    "businessName logo websiteLink user"
   );
 
   const data = await User.findById(venue.user);
 
-  const result = { ...venue, username: data.username };
+  const result = { ...venue._docs, username: data.username };
   res.status(200).json(result);
 });

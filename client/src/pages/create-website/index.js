@@ -37,6 +37,7 @@ const index = () => {
 
   const fetchVenue = async () => {
     const result = await attemptGetVenue(query.venueId);
+
     window.location.href = `https://v2.beweddy.com/onboard/couple?question=couple-name&reference=${result.username}`;
   };
 
