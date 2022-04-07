@@ -52,6 +52,7 @@ export const getGifts = asyncHandler(async (req, res) => {
       ? user.venue?.logo?.secure_url
       : defaultLogo,
   });
+  
   await giftCardPurchasedNotify({
     coupleName,
     guestName,

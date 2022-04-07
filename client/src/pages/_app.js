@@ -13,7 +13,7 @@ import * as gtag from "@lib/gtag";
 import "swiper/swiper.min.css";
 import "react-datepicker/dist/react-datepicker.css";
 import "../styles/globals.css";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { Router } from "next/router";
 
 export const client = new QueryClient();
@@ -39,22 +39,20 @@ function MyApp({ Component, router, pageProps }) {
     };
   }, [router.events]);
 
-  return (
-    <QueryClientProvider {...{ client }}>
-      <Provider {...{ store }}>
-        <PersistGate loading={null} {...{ persistor }}>
-          <AnimatePresence exitBeforeEnter>
-            <Layout key={router.route}>
-              {/* Global Site Tag (gtag.js) - Google Analytics */}
-              <Script
-                strategy="afterInteractive"
-                src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
-              />
-              <Script
-                id="gtag-init"
-                strategy="afterInteractive"
-                dangerouslySetInnerHTML={{
-                  __html: `
+  const page = useMemo(() => {
+    return (
+      <AnimatePresence exitBeforeEnter>
+        <Layout key={router.route}>
+          {/* Global Site Tag (gtag.js) - Google Analytics */}
+          <Script
+            strategy="afterInteractive"
+            src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+          />
+          <Script
+            id="gtag-init"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -62,27 +60,33 @@ function MyApp({ Component, router, pageProps }) {
               page_path: window.location.pathname,
             });
           `,
-                }}
-              />
-              <Toaster
-                // position='top-right'
-                reverseOrder={false}
-                // toastOptions={{ style: { marginTop: '4.5rem' } }}
-              />
-              <Head>
-                <meta
-                  name="viewport"
-                  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
-                />
-                <meta name="image" content="/images/seo_image.png" />
-                <meta property="og:image" content="/images/seo_image.png" />
-                <meta name="twitter:image" content="/images/seo_image.png" />
-              </Head>
-              <Component {...pageProps} />
-              {process.env.NODE_ENV !== "production" && <ReactQueryDevtools />}
-            </Layout>
-          </AnimatePresence>
-        </PersistGate>
+            }}
+          />
+          <Toaster
+            // position='top-right'
+            reverseOrder={false}
+            // toastOptions={{ style: { marginTop: '4.5rem' } }}
+          />
+          <Head>
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+            />
+            <meta name="image" content="/images/seo_image.png" />
+            <meta property="og:image" content="/images/seo_image.png" />
+            <meta name="twitter:image" content="/images/seo_image.png" />
+          </Head>
+          <Component {...pageProps} />
+          {process.env.NODE_ENV !== "production" && <ReactQueryDevtools />}
+        </Layout>
+      </AnimatePresence>
+    );
+  }, [Component, pageProps]);
+
+  return (
+    <QueryClientProvider {...{ client }}>
+      <Provider {...{ store }}>
+        <PersistGate {...{ persistor }}>{page}</PersistGate>
       </Provider>
     </QueryClientProvider>
   );
