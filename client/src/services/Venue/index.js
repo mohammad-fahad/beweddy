@@ -37,3 +37,21 @@ export const getVenue = async ({ queryKey }) => {
     }
   }
 };
+
+export const attemptGetVenue = async (id) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      // Authorization: `Bearer ${token}`,
+    },
+  };
+
+  if (id) {
+    try {
+      const { data } = await axios.get(`${API_URL}/venues/${id}`, config);
+      return data;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+};

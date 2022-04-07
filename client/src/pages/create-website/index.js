@@ -1,4 +1,5 @@
 import { addSelectVenue } from "@features/question/questionSlice";
+import { attemptGetVenue } from "@services/Venue";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -30,8 +31,14 @@ const index = () => {
   useEffect(() => {
     if (query.venueId) {
       dispatch(addSelectVenue(query.venueId));
+      fetchVenue();
     }
   }, [query.venueId]);
+
+  const fetchVenue = async () => {
+    const result = await attemptGetVenue(query.venueId);
+    window.location.href = `https://v2.beweddy.com/onboard/couple?question=couple-name&reference=${result.username}`;
+  };
 
   return <div>{venue ? <CreateVenuePage /> : <Website />}</div>;
 };

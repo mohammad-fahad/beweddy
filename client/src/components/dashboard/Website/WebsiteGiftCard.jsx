@@ -28,7 +28,7 @@ const WebsiteGiftCards = ({ giftCards, couple, coupleWebsite }) => {
   }, [isSmallDevice, isMediumDevice, isLargeDevice]);
 
   return (
-    <div className=" from-[#FCE3EB] to-white relative">
+    <div className="from-[#FCE3EB] to-white relative">
       <div className="grid w-full grid-cols-2 gap-5 mx-auto sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 md:gap-10">
         {giftCards?.map((giftCard) =>
           coupleWebsite ? (

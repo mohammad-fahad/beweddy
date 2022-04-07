@@ -6,7 +6,7 @@ import { isEmpty } from 'lodash';
 
 const WebsiteRegistry = ({ registries }) => {
   return (
-    <div className=' from-[#FCE3EB] to-white relative'>
+    <div className='from-[#FCE3EB] to-white relative'>
       {/* <div class="flex flex-wrap justify-center items-center gap-x-5 gap-y-3 w-full mb-5"> */}
       <div className='grid w-full xs:grid-cols-2 mx-auto mb-5 md:mb-10 md:grid-cols-3 lg:grid-cols-4 sm:px-0 sm:max-w-full gap-5 sm:gap-10'>
         {registries?.map(registry => (

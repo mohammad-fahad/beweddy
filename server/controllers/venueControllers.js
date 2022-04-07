@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler";
 import Venue from "../models/Venue.js";
+import User from "../models/User.js";
 
 export const updateVenue = asyncHandler(async (req, res) => {
   const { id } = req.body;
@@ -21,5 +22,8 @@ export const getVenue = asyncHandler(async (req, res) => {
     "businessName logo websiteLink"
   );
 
-  res.status(200).json(venue);
+  const data = await User.findById(venue.user);
+
+  const result = { ...venue, username: data.username };
+  res.status(200).json(result);
 });

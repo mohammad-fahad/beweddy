@@ -17,6 +17,7 @@ import { getGuests } from "@services/GuestManagement";
 import Select from "react-select/creatable";
 import makeAnimated from "react-select/animated";
 import { useWindowSize } from "@hooks/useWindowSize";
+import toast from "react-hot-toast";
 const animatedComponents = makeAnimated();
 
 const customStyles = {
@@ -66,9 +67,11 @@ const CalendarPage = () => {
   }));
 
   var yesterday = moment().subtract(1, "day");
+
   var valid = function (current) {
     return current.isAfter(yesterday);
   };
+
   const dateFormat = moment(newDate).format("YYYY-MM-DD");
   const startTimeFormat = moment(start).format();
   const endTimeFormat = moment(end).format();
@@ -81,6 +84,7 @@ const CalendarPage = () => {
     dateTime: startSection,
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
   };
+
   const endUpdate = {
     dateTime: endSection,
     timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
@@ -137,7 +141,9 @@ const CalendarPage = () => {
           { method: "popup", minutes: 60 },
         ],
       };
+
       data.recurrence = ["RRULE:FREQ=DAILY;COUNT=1"];
+
       gapi.load("client:auth2", () => {
         console.log("loaded");
 
@@ -162,6 +168,8 @@ const CalendarPage = () => {
             request.execute((event) => {
               window.open(event.htmlLink);
             });
+
+            toast.success("Sent Successfully");
 
             /*
                 Uncomment the following block to get events
