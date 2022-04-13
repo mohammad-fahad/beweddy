@@ -5,7 +5,7 @@ const ExampleWebsitePage = () => {
     <ExampleWebsite
       seo={{ title: "Example Website" }}
       label="Create Your Website"
-      href="/register"
+      href="https://v2.beweddy.com/register"
     />
   );
 };

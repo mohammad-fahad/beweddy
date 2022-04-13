@@ -10,6 +10,7 @@ export const LinkButton = ({ outline, label, className, href, onClick }) => {
             : "bg-primary text-white hover:bg-white hover:text-primary"
         } ${className ? className : ""}`}
         {...{ onClick }}
+        {...{ href }}
       >
         {label}
       </a>

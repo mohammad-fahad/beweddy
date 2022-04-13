@@ -68,7 +68,7 @@ const GiftRegistryPage = () => {
 
               <div className="flex items-center justify-center md:justify-start">
                 <LinkButton
-                  href="/register"
+                  href="https://v2.beweddy.com/register"
                   label="Create Your Wedding Website"
                   className="!rounded-[5px] !py-3 !px-7 !m-0 md:!mr-auto"
                 />

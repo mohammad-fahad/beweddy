@@ -8,11 +8,14 @@ const StartedButton = ({ className }) => {
         className ? className : ""
       }`}
     >
-      <Link href="/register">
-        <a className="py-3 text-base font-bold bg-white border-2 p-11 whitespace-nowrap border-primary text-primary rounded-3xl">
-          Let's Get Started
-        </a>
-      </Link>
+      {/* <Link href="/register"> */}
+      <a
+        className="py-3 text-base font-bold bg-white border-2 p-11 whitespace-nowrap border-primary text-primary rounded-3xl"
+        href="https://v2.beweddy.com/register"
+      >
+        Let's Get Started
+      </a>
+      {/* </Link> */}
     </div>
   );
 };
