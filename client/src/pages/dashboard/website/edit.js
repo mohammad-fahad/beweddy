@@ -156,7 +156,7 @@ const EditWebsitePage = () => {
 
   const [selectFirstReception, setSelectFirstReception] =
     useState(_firstReception);
-
+console.log(selectFirstReception);
   // Second Reception Picker
   const _secondReception = user.questions?.weddingDay?.secondReception
     ? new Date(user.questions?.weddingDay?.secondReception)

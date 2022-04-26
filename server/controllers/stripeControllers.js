@@ -76,5 +76,5 @@ export const stripeWebhook = asyncHandler(async (req, res) => {
     default:
   }
 
-  res.status(200);
+  res.status(200).end();
 });
