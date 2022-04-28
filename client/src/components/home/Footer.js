@@ -139,11 +139,14 @@ const Footer = ({ hideSocial, className, websitePreview, couple }) => {
           <div className="flex flex-col flex-wrap items-center justify-center gap-3 md:flex-row sm:justify-between sm:gap-6">
             {websitePreview ? (
               <>
-                <Link href="/register">
-                  <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
-                    <span className="customLabel">Sign Up</span>
-                  </a>
-                </Link>
+                {/* <Link href="/register"> */}
+                <a
+                  className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary"
+                  href="https://v2.beweddy.com/register"
+                >
+                  <span className="customLabel">Sign Up</span>
+                </a>
+                {/* </Link> */}
                 <Link href="/terms">
                   <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
                     <span className="customLabel">Terms of Uses</span>
@@ -168,11 +171,14 @@ const Footer = ({ hideSocial, className, websitePreview, couple }) => {
             ) : (
               <>
                 {!user && (
-                  <Link href="/register">
-                    <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
-                      <span className="customLabel">Sign Up</span>
-                    </a>
-                  </Link>
+                  // <Link href="/register">
+                  <a
+                    className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary"
+                    href="https://v2.beweddy.com/register"
+                  >
+                    <span className="customLabel">Sign Up</span>
+                  </a>
+                  // </Link>
                 )}
                 <Link href="#">
                   <a className="relative font-medium transition-colors duration-300 text-primary/60 font-inter group hover:text-primary">
