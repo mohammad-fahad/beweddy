@@ -24,7 +24,7 @@ const LoginPage = () => {
 
   watch("accountType");
 
-  console.log(watch("accountType"))
+  console.log(watch("accountType"));
 
   const onSubmit = (data) => {
     if (data) {
@@ -189,11 +189,11 @@ const LoginPage = () => {
                   </Link>
                   <p className="text-sm font-semibold text-center md:text-lg">
                     Don't have an account?&nbsp;
-                    <Link href="/register">
-                      <a className="font-semibold font-inter hover:underline">
-                        Signup here
-                      </a>
-                    </Link>
+                    <a 
+                    href='https://v2.beweddy.com/register'
+                    className="font-semibold font-inter hover:underline">
+                      Signup here
+                    </a>
                   </p>
                 </div>
               </div>
